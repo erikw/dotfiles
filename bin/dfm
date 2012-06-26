@@ -400,7 +400,7 @@ sub install_files {
     my $cwd_before_install = getcwd();
     chdir($target_dir);
 
-    my $dfm_install = _load_dfminstall("$source_dir/.dfminstall");
+    my $dfm_install = _load_dfminstall("$source_dir/.config/dfm/install");
 
     if ( !-e $backup_dir ) {
         DEBUG("Creating $backup_dir");
@@ -526,7 +526,7 @@ sub uninstall_files {
 
     chdir($target_dir);
 
-    my $dfm_install = _load_dfminstall("$source_dir/.dfminstall");
+    my $dfm_install = _load_dfminstall("$source_dir/.config/dfm/install");
 
     my $dirh;
     opendir $dirh, $target_dir;
@@ -820,7 +820,7 @@ sub _file_in_tracked_or_untracked {
     my $cwd_before_inspection = getcwd();
     chdir($source_dir);
 
-    my $dfm_install = _load_dfminstall("$source_dir/.dfminstall");
+    my $dfm_install = _load_dfminstall("$source_dir/.config/dfm/install");
 
     # skip vim swap files
     return ('skip') if $file =~ /.*\.sw.$/;
