@@ -1,0 +1,7 @@
+[General]
+MPDHost=GIT-SENSORED@localhost
+MPDPort=6600
+MusicDir=/home/erikw/media/music/
+CommandsNames=Open ncmpcpp
+Commands=xterm -e ncmpcpp
+Format=<b>Title:</b> %Title%<br><b>Album:</b> %Album%<br><b>Artist:</b> %Artist%<br><b>Date:</b> %Date%

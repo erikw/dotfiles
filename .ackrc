@@ -1,0 +1,11 @@
+# Ignore these files by default. See man(1) grep section 'Defining your own types'.
+# Vim development
+--ignore-file=match:cscope.out
+--ignore-file=match:cscope.files
+--ignore-file=match:tags
+--ignore-file=match:Session.vim
+--ignore-file=match:.syntastic_javac_config
+
+# Intellij project files (old=fileformat).
+--ignore-file=match:.*.(ipr|iml)
+--ignore-dir=.idea/

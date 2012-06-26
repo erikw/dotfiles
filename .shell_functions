@@ -1,0 +1,254 @@
+# Utility shell functions.
+# vi: foldmarker={,} filetype=sh foldmethod=marker foldlevel=0: tabstop=4 shiftwidth=4:
+
+
+# Import ~/.shell_functions.d/ {
+
+if [ -d $HOME/.shell_functions.d ]; then
+	for funcfile in $HOME/.shell_functions.d/*.sh; do
+		source $funcfile
+	done;
+fi
+
+# }
+
+# Check if we have a program in PATH
+program_is_in_path() {
+	local program="$1"
+	type "$1" >/dev/null 2>&1
+}
+
+# Shell detect functions {
+	export SHELL_PLATFORM='unknown'
+	#ostype() { echo $OSTYPE | tr '[:upper:]' '[:lower:]'; }
+	ostype() { echo $OSTYPE; } # tr is not built-in => expensive. See if this works in practive, to not lowercase.
+	case "$(ostype)" in
+		*'linux'*	) SHELL_PLATFORM='linux'	;;
+		*'darwin'*	) SHELL_PLATFORM='macos'	;;
+		*'bsd'*		) SHELL_PLATFORM='bsd'		;;
+	esac
+
+	shell_is_linux() { [ "$SHELL_PLATFORM" = 'linux' ]; }
+	shell_is_macos() { [ "$SHELL_PLATFORM" = 'macos' ]; }
+	shell_is_bsd() { [ "$SHELL_PLATFORM" = 'bsd' ] || [ "$SHELL_PLATFORM" = 'macos' ]; }
+
+	# Test if the shell is interactive.
+	shell_is_interactive() {
+		#tty -s >/dev/null 2>/dev/null
+		case $- in
+			*i*) return 0;;
+			*) return 1;;
+		esac
+	}
+# }
+
+# cd to the directory containing the program found in PATH.
+cdw() {
+	local prog="$1"
+	if type "$prog" >/dev/null 2>&1; then
+		dir=$(dirname $(which "$prog"))
+		echo "$dir"
+		cd "$dir"
+	else
+		echo "\"${prog}\" not found in \$PATH." >&2
+	fi
+}
+export cdw >/dev/null
+[ -n "$completion_func" ] && shell_is_interactive && $completion_func -cf cdw
+
+# Time conversions.
+epoch2iso8601() {
+	local epoch="$1"
+	date -d @$epoch +%Y-%m-%dT%H:%M:%S%z
+}
+export epoch2iso8601 >/dev/null
+
+iso86012epoch() {
+	local iso="$1"
+	date -d "$iso" +%s
+}
+export iso86012epoch >/dev/null
+
+
+# Countdown with given amount of seconds
+# Source: http://superuser.com/questions/611538/is-there-a-way-to-display-a-countdown-or-stopwatch-timer-in-a-terminal
+countdown() {
+	date1=$(($(date +%s) + $1));
+	while [ "$date1" -ge `date +%s` ]; do
+		## Is this more than 24h away?
+		days=$(($(($(( $date1 - $(date +%s))) * 1 ))/86400))
+		echo -ne "$days day(s) and $(date -u --date @$(($date1 - $(date +%s))) +%H:%M:%S)\r";
+		sleep 0.1
+	done
+}
+
+# Stopwatch, press enter to time.
+# Source: http://superuser.com/questions/611538/is-there-a-way-to-display-a-countdown-or-stopwatch-timer-in-a-terminal
+stopwatch() {
+	date1=$(date +%s);
+	while :; do
+		days=$(( $(($(date +%s) - date1)) / 86400 ))
+		echo -ne "$days day(s) and $(date -u --date @$(($(date +%s) - $date1)) +%H:%M:%S)\r";
+		sleep 0.1
+	done
+}
+
+
+# Visual countdown with voice announcing that the time is up.
+termdownsay() {
+	termdown -b -q 1 $@ && espeak -v en -s 130 -a 120 "Time has ended"
+}
+
+
+# Git overlay which adds a command to cd to the root of a git repo.
+git() {
+	if shell_is_linux; then
+		local gitbin=/usr/bin/git
+	elif shell_is_bsd; then
+		local gitbin=/usr/local/bin/git
+	fi
+
+	if [ "$1" = root ]; then
+		local root="$($gitbin rev-parse --show-cdup)"
+		[ -n "$root" ] && cd "$root"
+	else
+		$gitbin $@
+	fi
+}
+
+# Wrapper around the classic 'vi with ack' with search highlighting.
+# Usage example: viack -i "search_term
+# Last argument is the search string. Preceding arguments are for ack.
+viack() {
+	local search
+	# Get the last argument. Source: http://stackoverflow.com/questions/1853946/getting-the-last-argument-passed-to-a-shell-script
+	for search; do true; done
+	vim -p $(ack -l $@) -c 1 +/$search  # Go to first line then search downwards.
+}
+
+# Wrapper around the classic 'vi with grep'.
+vigrep() {
+	local search
+	for search; do true; done
+	vim -p $(grep -Rl $@) -c 1 +/$search
+}
+
+
+_dev_log() {
+	local message="$@"
+	echo "🔨 > $message..."
+}
+
+# Start development with virtualenv. Creates if does not exist yet.
+# Assumes that PWD is in the project root dir.
+py_dev() {
+	proj=${PWD#$HOME/dev/}
+	if ! lsvirtualenv | grep -q $proj;  then
+		_dev_log "Creating virtualenv $proj"
+		mkvirtualenv $proj -p python3
+	else
+		_dev_log "Switching to virtualenv $proj"
+		workon $proj
+	fi
+}
+
+# Set up python development environment. Assumes that PWD is in the project root dir.
+py_fix_dev() {
+	py_dev
+
+	_dev_log "Installing python requirements"
+	[ -e requirements.txt ] && pip install -r requirements.txt
+	[ -e requirements_testing.txt ] && pip install -r requirements_testing.txt
+
+	# Generate tags for all modules found in the python library path and current directory.
+	_dev_log "Generating tags file"
+	ctags -R -f ./tags $(python -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())") >/dev/null 2>&1
+
+	_dev_log "Generating cscope DB"
+	find . -name '*.py' >cscope.files
+	cscope -b -q
+
+	# Rope-vim support.
+	pip list &>/dev/null | grep -q ropevim
+	if [ "$?" -ne 0 ]; then
+		_dev_log "Installing ropevim"
+		pip install ropevim
+	fi
+	_dev_log "Generating Rope import cache"
+	vim -c RopeGenerateAutoimportCache -c q ropefiximport.py  # Need to open a buffer for a python file to activate Rope plugin.
+}
+
+
+
+# Set up java development environment. Assumes that PWD is in the project root dir.
+java_fix_dev() {
+	# Generate tags for all modules found in the python library path and current directory.
+	_dev_log "Generating tags file"
+	ctags-jdk # From ~/.shell_aliases
+	# TODO find a way to include dependencies from a gradle/maven project in the tags file.
+
+	_dev_log "Generating cscope DB"
+	find . -name '*.java' >cscope.files
+	cscope -b -q
+}
+
+
+# Encrypt file with a symmetric cipher.
+encryptf() {
+	local file="$1"
+	local filecrypt="$1.gpg"
+	[ -z "$file" ] && echo "No filename given!" >&2 && return
+	if ! [ -e "$file" ]; then
+		echo "File '$file' does not exist!" >&2
+		return
+	fi
+	gpg --symmetric --output "$filecrypt"  "$file" >/dev/null
+	[ "$?" -ne 0 ] && echo "Encryption failed!" >&2 && return
+	rm "$file"
+	printf "Encrypted %s to %s\n" "$file" "$filecrypt"
+	# Clear gpg-agent password cache
+	echo RELOADAGENT | gpg-connect-agent >/dev/null
+}
+
+# Decrypt file with a symmetric cipher.
+decryptf() {
+	local filecrypt="$1"
+	local file=${filecrypt%.gpg}
+	[ -z "$filecrypt" ] && echo "No filename given!" >&2 && return
+	if ! [ -e "$filecrypt" ]; then
+		echo "File '$filecrypt' does not exist!" >&2
+		return
+	fi
+	gpg --decrypt --output "$file"  "$filecrypt" 2>/dev/null
+	[ "$?" -ne 0 ] && echo "Decryption failed!" >&2 && return
+	rm "$filecrypt"
+	printf "Decrypted %s to %s\n" "$filecrypt" "$file"
+}
+
+# Swap file name of two files.
+function mv_swap() {
+    local tmpf=tmp.$$
+    mv "$1" $tmpf
+    mv "$2" "$1"
+    mv $tmpf "$2"
+}
+
+# Cd in to newly created direcotry.
+function mkdircd() {
+	local dir="$1"
+	mkdir -p "$dir"
+	cd "$dir"
+}
+
+# Cd in to newly created direcotry.
+function mkdirtodaycd() {
+	local today=$(date -I)
+	mkdircd "$today"
+}
+
+# Open man page in Preview.app
+# Example: $ pman ls
+# Source: https://www.devopsderek.com/blog/2013/03/10/view-man-pages-with-preview-on-mac-os-x/
+pman() {
+    man -t ${@} | open -f -a /Applications/Preview.app/
+}

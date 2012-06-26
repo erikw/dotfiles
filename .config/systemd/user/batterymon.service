@@ -1,0 +1,9 @@
+[Unit]
+Description=Batterymon
+After=xorg.target
+
+[Service]
+ExecStart=/usr/bin/batterymon
+
+[Install]
+WantedBy=xinitrc.target

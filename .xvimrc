@@ -1,0 +1,45 @@
+" XVim XCode vim extension configuration file.
+" Modeline {
+"	vi: foldmarker={,} foldmethod=marker foldlevel=0: tabstop=8:
+" }
+
+" General {
+	" Incremental search.
+	set incsearch
+
+	" Case-insensitive searching.
+	set ignorecase
+
+	" But case-sensitive if expression contains a capital letter.
+	set smartcase
+
+	" Highligth search.
+	set hlsearch
+
+	" Don't wrap searches around the file.
+	set nowrapscan
+
+	" Show line numbers.
+	set number
+
+	" Default to global substitutions on lines.
+	"set gdefault
+
+	" Share system clipboard with unnamed register
+	set clipboard=unnamed
+
+	" Show vertical and horizontal scrollbars.
+	set guioptions=rb
+" }
+
+" Mappings {
+	" Map <space>b to toggle a breakpoint at the current line
+	nmap <space>b :xccmd toggleBreakpointAtCurrentLine<CR>
+
+	" Use <space>cm to toggle comments for the selection
+	nmap <space>cm :xccmd commentAndUncommentCurrentLines<CR>
+
+	" Clear search matches highlighting. (Ctrl+/ => ^_)
+	" TODO does this work?
+	"nmap <C-_> :nohlsearch<CR>
+" }

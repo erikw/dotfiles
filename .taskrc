@@ -1,0 +1,69 @@
+# Erik Westrup's taskwarrior configuration.
+
+# Files
+data.location=~/.task			# Where all data is to be saved.
+editor=vim				# Preferred text editor
+search.case.sensitive=no		# Setting to no allows case insensitive searches
+default.command=list			# When no arguments are specified
+
+# Dates
+dateformat=Y-m-d			# Preferred input and display date format
+dateformat.holiday=Y-m-d		# Preferred input date format for holidays
+dateformat.report=Y-m-d			# Preferred display date format for repors
+dateformat.annotation=Y-m-d		# Date format for annotations.
+weekstart=monday			# Sunday or Monday only
+displayweeknumber=yes			# Show week numbers on calendar
+due=7					# Task is considered due in 7 days
+
+# Calendar controls
+# Linux
+include /usr/share/doc//task/rc/holidays.sv-SE.rc
+include /usr/share/doc//task/rc/holidays.de-DE.rc
+# MACOS-CONFIG
+#include /usr/local/share/doc/task/rc/holidays.sv-SE.rc
+#include /usr/local/share/doc/task/rc/holidays.de-DE.rc
+
+# UI
+color=on					# Enable color
+
+# Themes.
+# Linux
+include /usr/share/doc/task/rc/solarized-dark-256.theme
+# MACOS-CONFIG
+#include /usr/local/share/doc/task/rc/solarized-dark-256.theme
+
+# Aliases 
+alias.rm=delete                        # Alias for the delete command
+
+## Reports
+# Next
+#report.next.filter=status:pending limit:page
+report.next.filter=status:pending limit:10
+#report.next.columns=id,project,priority,due,start.active,entry.age,urgency,description
+#report.next.columns=id,project,priority,due,start.active,entry.age,urgency,description.desc
+
+# Custom report
+report.sequential.description=Erikw's custom sequentical report.
+report.sequential.columns=id,project,tags,priority,due,description
+report.sequential.filter=status:pending
+report.sequential.sort=id+
+
+# Tasks due today
+report.today.description=Due today
+report.today.columns=id,project,tags,priority,due,description
+report.today.filter=status:pending due:today
+report.today.sort=id+
+
+# Tasks due tomorrow
+report.tomorrow.description=Due tomorrow
+report.tomorrow.columns=id,project,tags,priority,due,description
+report.tomorrow.filter=status:pending due:tomorrow
+report.tomorrow.sort=id+
+
+#Inthe.AM sync
+#taskd.trust=ignore hostname
+#taskd.certificate=GIT-CENSORED
+#taskd.key=GIT-CENSORED
+#taskd.ca=GIT-CENSORED
+#taskd.server=taskwarrior.inthe.am:53589
+#taskd.credentials=GIT-CENSORED

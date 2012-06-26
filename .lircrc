@@ -1,0 +1,158 @@
+# Config for lircd clients.
+
+#begin
+	#flags = startup_mode
+	#mode = mpd
+#end
+
+# Disabled because there is no logic for modes that synchronizes the states.
+#begin irexec
+	#begin
+		#prog = irexec
+		#remote = Apple_A1156
+		#button = PLAY
+		#config = mpc toggle
+		#repeat = 0
+		#flags = quit
+	#end
+
+	#begin
+		#prog = irexec
+		#remote = Apple_A1156
+		#button = FORWARD
+		#config = mpc next
+		#repeat = 1
+	#end
+
+	#begin
+		#prog = irexec
+		#remote = Apple_A1156
+		#button = BACKWARD
+		#config = mpc prev
+		#repeat = 1
+	#end
+
+	#begin
+		#prog = irexec
+		#button = VOLUMEUP
+		#remote = Apple_A1156
+		#config = mpc volume +1
+		#repeat = 1
+	#end
+
+	#begin
+		#prog = irexec
+		#button = VOLUMEDOWN
+		#remote = Apple_A1156
+		#config = mpc volume -1
+		#repeat = 1
+	#end
+
+	##begin
+		##prog = irexec
+		##button = MENU
+		##remote = Apple_A1156
+		##config = key-toggle-fullscreen
+	##end
+
+#end irexec
+
+begin mplayer
+	begin
+		prog = mplayer
+		remote = Apple_A1156
+		button = PLAY
+		config = pause
+		repeat = 0
+	end
+
+	begin
+		prog = mplayer
+		remote = Apple_A1156
+		button = FORWARD
+		config = seek +20
+		repeat = 1
+	end
+
+	begin
+		prog = mplayer
+		remote = Apple_A1156
+		button = BACKWARD
+		config = seek -20
+		repeat = 1
+	end
+
+	begin
+		prog = mplayer
+		button = VOLUMEUP
+		remote = Apple_A1156
+		config = volume 1
+		repeat = 1
+	end
+
+	begin
+		prog = mplayer
+		button = VOLUMEDOWN
+		remote = Apple_A1156
+		config = volume -1
+		repeat = 1
+	end
+
+	begin
+		prog = mplayer
+		button = MENU
+		remote = Apple_A1156
+		config = osd
+	end
+
+end mplayer
+
+begin vlc
+	begin
+		prog = vlc
+		remote = Apple_A1156
+		button = PLAY
+		config = key-play-pause
+		repeat = 0
+	end
+
+	begin
+		prog = vlc
+		remote = Apple_A1156
+		button = FORWARD
+		config = key-jump+short
+		repeat = 1
+	end
+
+	begin
+		prog = vlc
+		remote = Apple_A1156
+		button = BACKWARD
+		config = key-jump-short
+		repeat = 1
+	end
+
+	begin
+		prog = vlc
+		button = VOLUMEUP
+		remote = Apple_A1156
+		config = key-vol-up
+		repeat = 1
+	end
+
+	begin
+		prog = vlc
+		button = VOLUMEDOWN
+		remote = Apple_A1156
+		config = key-vol-down
+		repeat = 1
+	end
+
+	begin
+		prog = vlc
+		button = MENU
+		remote = Apple_A1156
+		config = key-toggle-fullscreen
+	end
+
+end vlc

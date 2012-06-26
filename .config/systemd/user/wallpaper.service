@@ -1,0 +1,10 @@
+[Unit]
+Description=Set wallpaper
+After=xorg.target
+
+[Service]
+Type=oneshot
+ExecStart=/home/erikw/bin/wallpaper_set.sh
+
+[Install]
+WantedBy=xinitrc.target

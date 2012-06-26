@@ -1,0 +1,155 @@
+" Erik Westrup's Vimperator configuration.
+
+" Modeline {{
+"	 vi: foldmarker={{,}} foldmethod=marker foldlevel=0: tabstop=8: filetype=vim:
+" }}
+
+" Environment {{
+	" runtimepath, fileencoding and encoding currently broken, see https://github.com/vimperator/vimperator-labs/issues/733
+	" Set runtime path, "current directory".
+	"set runtimepath=~/.vimperator
+	" Set character encoding for the buffer.
+	"set encoding="UTF-8"
+	" Encoding for files read and written by Vimperator.
+	"set fileencoding="UTF-8"
+	" Set external editor.
+	set editor='gvim -f'
+" }}
+
+" General {{
+	" Load plugins on start
+	set loadplugins
+	" Always work online.
+	set online
+	" Open popups in new tabs.
+	set popups=tab
+	" What tabs that will be activated when created.
+	set activate="homepage,quickmark,tabopen,paste"
+	" Number of commands to save to command-line history,
+	set history=500
+	" Use autocompletion
+	set autocomplete
+	" How to use wildmode.
+	set wildmode="list:full"
+	" Maximum nbr of suggestions.
+	set maxitems=10
+	" Default search engine keyword.
+	set defsearch=g
+	" Search engine used for completion.
+	set suggestengines="ggl"
+	" Incremental search.
+	set incsearch
+	" Highlight previous search pattern matches.
+	set hlsearch
+	" Ignore case in search patterns.
+	set ignorecase
+	" Items which are completed at the :open prompts.
+	set complete=blsSt
+	" Timespan for the sanitize commands. 0 = everything.
+	set sanitizetimespan=0
+	" What to sanitize with ':sanitize!'. Skip cookies,sessions & sitesettings.
+	set sanitizeitems="cache,commandline,formdata,history,marks,sessions,downloads,offlineapps,macros"
+	" Don't enter insert mode when loading a page.
+	set nofocuscontent
+	" Forbid sites (Wikipedia) from grabbing keyboard shortcuts
+	set! ui.key.contentAccess=3
+	" Timeout in ms before following a non unique matching link. Default is 0.
+	set hinttimeout=1500
+
+	" Ignore vimperator keyboard shortcuts on certain sites.
+	ignorekeys add -except=:,/,`,\\,t,P http*://*duolingo.com/
+" }}
+
+" UI {{
+	" Color theme to use. The default is 'default'.
+	colorscheme default
+	"colorscheme darkness
+	" Set a custom window title.
+	set titlestring="Vimperator"
+	" Page info items.
+	set pageinfo=gfm
+	" What GUI-elements to show.
+	" Hiding the navigation bar is broken, breaks for example Pushbullet. https://github.com/vimperator/vimperator-labs/issues/465
+	set toolbars=noaddons,tabs,nomenu,nobookmarks,navigation
+	" Show tabnumbers.
+	set tabnumbers
+	" Hide scrollbars.
+	set noscrollbars
+	" What elements to show in the statusbar.
+	set status=input,location,bookmark,history,tabcount,position
+	" Use visual bell.
+	set visualbell
+	" Turn off error bells.
+	set errorbells=false
+	" Overide liberators bell-function (disable it).
+	javascript liberator.beep = function() { return false; }
+	" Show what mode you are in.
+	set showmode
+	" Use small icons.
+	set smallicons
+	"Show link destinations in the status bar.
+	set showstatuslinks=1
+" }}
+
+" Mappings {{
+	" Go back in tabs.
+	noremap K gT
+	noremap <Left> gT
+	" Go forward in tabs.
+	noremap J gt
+	noremap <Right> gt
+	" Quick word lookup from selection.
+	"nmap <silent> ` Y:!xclip -o | sed 's/[^a-zA-Z]\+/ /g' | xclip -i <CR> :tabopen t <S-insert><CR>
+	"nmap <silent> ` Y:!xclip -o | sed 's/[^a-zA-Z]\+/ /g' | xclip -i <CR> :tabopen t <C-v><CR>
+	"nmap <silent> ` Y:tabopen t "<C-v>"<CR>
+	nmap <silent> ` Y:!xclip -o | perl -MURI::Escape -ne 'print uri_escape($_)' | xclip -i<CR>:tabopen https://translate.google.com/#auto/en/<S-insert><CR>
+	nmap <silent> \\ y:!xclip -o | perl -MURI::Escape -ne 'print uri_escape($_)' | xclip -i<CR>:tabopen https://translate.google.com/translate?sl=auto&tl=en&u=<S-insert><CR>
+	" Escape from Firefox search in insert mode.
+	" Disable annoying Google search.
+	nmap <C-k> <Nop>
+	nmap <C-j> <Nop>
+	imap <silent> <C-f> <ESC>
+	" Open bookmarks in sidebar.
+	map <silent> <M-b> :sidebar Bookmarks<CR>
+	" Close sidebar.
+	map <silent> <M-n> :sbclose<CR>
+	" Disable default close tab.
+	map <C-w> <silent> <Nop>
+	" Move up in command history.
+	cnoremap <C-P> <Up>
+	" Move down i command history.
+	cnoremap <C-N> <Down>
+	" Unhighlight search results.
+	map <C-/> :nohlsearch<CR>
+	" Pass through-shortcut to open a private browsing window.
+	nnoremap <c-s-p> i<c-s-p>
+" }}
+
+" Quickmarks {{
+	silent qmark G https://gmail.com/
+	silent qmark L https://lifesum.com/
+	silent qmark P https://photos.google.com/
+	silent qmark c https://contacts.google.com/
+	silent qmark d https://www.duolingo.com/
+	silent qmark f http://www.facebook.com/
+	silent qmark g https://github.com/
+	silent qmark l chrome://lastpass/content/home2.xul
+	silent qmark n https://my.n26.com/
+	silent qmark p https://getpocket.com/
+	silent qmark r https://cloud.feedly.com/
+	silent qmark s https://online.swedbank.se/
+" }}
+
+" Plugins {{
+	" Load plugins before settings can be set.
+	loadplugins
+
+	" Enable flashblocking.
+	"set flashblock
+	" Use a whitelist.
+	"set fbwhitelist="youtube.com,vimeo.com,maps.google.com,dsek.lth.se,dsek.se,facebook.com,tyda.se,howjsay.com,svtplay.se,playrapport.se,tv4play.se,kanal5play.se,fz.se,lifehacker.com,grooveshark.com,lth.se,lu.se,sydsvenskan.se,github.com,8bc.org,ekort.swedbank.se,imdb.com,videobb.com,bredbandskollen.se"
+" }}
+
+" Source local {{
+	source! ~/.vimperatorrc.local
+" }}

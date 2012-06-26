@@ -1,0 +1,55 @@
+# Erik Westrup's mailcap describing how MIME types should be viewed.
+# See mailcap(4).
+# test=test -n "$DISPLAY" is used to test if there is an X environment avaiable.
+
+# HTML
+text/html; lynx -dump -force_html -assume-charset=%{charset} %s; copiousoutput; nametemplate=%s.html
+#text/html; w3m -I %{charset} -T text/html -dump %s; copiousoutput
+text/enriched; lynx -dump -stdin %s; copiousoutput
+
+# Media
+#image/*; display "%s"; ;  test=test -n "$DISPLAY"
+image/*; feh -d. %s; ;  test=test -n "$DISPLAY"
+image/*; anytopnm %s | pamscale -xsize=80  | ppmtopgm | \
+	 pgmtopbm | pbmtoascii; copiousoutput
+audio/*; vlc %s; ; test=test -n "$DISPLAY"
+video/*; mplayer %s
+image/vnd.adobe.photoshop; gimp %s; test=test -n "$DISPLAY"
+
+# Compressed
+application/x-gunzip; gunzip -c %s; copiousoutput
+application/x-gzip; gunzip -c %s; copiousoutput
+application/x-bunzip2; bunzip2 -c %s; copiousoutput
+application/x-bzip2; bunzip2 -c %s; copiousoutput
+application/x-tar-gz; gunzip -c %s | tar -tf -; copiousoutput
+
+# Documents
+text/plain; gvim %s; test=test -n "$DISPLAY";
+application/x-dvi; xdvi %s ;  test=test -n "$DISPLAY"
+application/postscript; ps2ascii %s ; copiousoutput
+#application/postscript; gs "%s";
+#application/pdf; mutt_bgrun apvlv "%s"; test=test -n "$DISPLAY";
+application/pdf; apvlv %s; test=test -n "$DISPLAY";
+#application/pdf; pdftohtml"%s"; copiousoutput
+
+# OpenDocument
+#application/ vnd.oasis.*; libreoffice "%s"; ; test=test -n "$DISPLAY"
+#application/vnd.openxmlformats-officedocument.*; \
+#		libreoffice "%s"; ; test=test -n "$DISPLAY"
+application/vnd.oasis.opendocument.*; odt2txt --width=80 --subst=all %s; copiousoutput
+#application/vnd.oasis.opendocument.text; odt2txt --width=80 --subst=all %s; copiousoutput
+#application/vnd.oasis.opendocument.spreadsheet; ods2txt --width=80 --subst=all %s; copiousoutput
+#application/vnd.oasis.opendocument.presentation; odp2txt --width=80 --subst=all %s; copiousoutput
+
+#  MS
+#application/msword; libreoffice "%s"; ; test=test -n "$DISPLAY"
+application/vnd.ms-*; libreoffice "%s"; ; test=test -n "$DISPLAY"
+application/vnd.openxmlformats-officedocument.wordprocessingml.*; libreoffice "%s"; ; test=test -n "$DISPLAY"
+application/vnd.openxmlformats-officedocument.spreadsheetml.*; libreoffice "%s"; ; test=test -n "$DISPLAY"
+application/msword; antiword -ftw 80 -i 1 %s; copiousoutput
+
+# Misc
+application/octet-stream; od -t x %s ; copiousoutput; description="Hex dump of data"
+application/x-uudecode; uudecode -o- %s; copiousoutput
+application/x-java-jnlp-file;/usr/bin/javaws "%s"
+application/x-bittorrent; $HOME/bin/protocol-handlers/magnet-torrent.sh "%s"; test=test -n "$DISPLAY"

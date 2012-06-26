@@ -1,0 +1,14 @@
+# Sourced when the shell is loaded by some script from the bash-completion package.
+
+# When bash-completion package is installed the normal glob expansion like "file.*<tab><tab>" work.
+# Hack around this by telling complete to try file completion of everything else fails.
+bins=$(find /usr/bin/ /usr/sbin/ /usr/local/bin/ /usr/local/sbin/ -executable -print | sed 's/.*\///')
+compopt -o bashdefault $bins 2>/dev/null
+unset bins
+
+# Source taskwarrior completion.
+taskwcomp=/usr/share/doc/task/scripts/bash/task.sh
+if [ -f "$taskwcomp" ]; then
+	source "$taskwcomp"
+fi
+unset taskwcomp

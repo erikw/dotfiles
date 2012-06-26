@@ -1,0 +1,9 @@
+# Erik Westrup's nethack configuration.
+
+OPTIONS=windowtype:tty,toptenwin,hilite_pet,
+OPTIONS=fixinv,safe_pet,sortpack,tombstone,color
+OPTIONS=verbose,news,fruit:potato
+OPTIONS=dogname:Slinky
+OPTIONS=catname:Rex
+OPTIONS=pickup_types:$
+OPTIONS=nomail

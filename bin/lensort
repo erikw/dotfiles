@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# Sort input lines by length. Modified original from UNIX Power Tools section 22.7.
+# -c precedes the output with a column of line lengths.
+
+if [ "$1" == "-c" ]; then
+	shift 1
+	awk 'BEGIN {FS=RS} {print length, $0}' $* | sort +0n -1
+else
+	awk 'BEGIN {FS=RS} {print length, $0}' $* | sort +0n -1 | sed 's/^[0-9]\+\s*//'
+fi

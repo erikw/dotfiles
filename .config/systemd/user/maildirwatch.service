@@ -1,0 +1,9 @@
+[Unit]
+Description=Maildir notifier
+After=xorg.target
+
+[Service]
+ExecStart=/home/erikw/bin/maildir_watch.sh
+
+[Install]
+WantedBy=xinitrc.target

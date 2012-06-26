@@ -1,0 +1,9 @@
+[Unit]
+Description=URxvt daemon
+After=xorg.target
+
+[Service]
+ExecStart=/usr/bin/urxvtd --quiet --opendisplay
+
+[Install]
+WantedBy=xinitrc.target

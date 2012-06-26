@@ -1,0 +1,22 @@
+# Vim
+Session.vim
+*.sw[opn]
+
+# OS X
+.DS_Store
+
+# Ctags
+tags
+TAGS
+
+# Cscope
+cscope.files
+cscope.out
+cscope.po.out
+cscope.in.out
+
+# Rope python refactoring lib.
+.ropeproject/
+
+# Syntastic class path confugration file is generated globally on all gradle projects from the gradle-syntastic-plugin (see ~/.gradle/init.gradle). Ignore by default in git repos as this is personal to me.
+.syntastic_javac_config

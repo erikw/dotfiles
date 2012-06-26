@@ -1,0 +1,6 @@
+# Gradle composite build in settings.gradle. Some times vim thinks this is a groovy files, some times a jproperties file.
+snippet composite
+	def compositeFile = file('composite.gradle')
+	if (compositeFile.exists()) {
+		apply from: compositeFile
+	}

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Start irctor tmux session on login. -->
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>Label</key>
+        <string>com.user.irctor</string>
+        <key>ProgramArguments</key>
+        <array>
+            <string>/Users/erikw/bin/irctor</string>
+            <string>start</string>
+        </array>
+        <key>EnvironmentVariables</key>
+        <!-- Need to set PATH so tmux and powerline-daemon can be found.-->
+        <!-- ~/.shell_commons is not read so need to set the same related tmux-powerline variables as set there. -->
+        <dict>
+            <key>PATH</key>
+            <string>/bin:/usr/bin:/usr/local/bin:/Users/erikw/Library/Python/3.6/bin</string>
+            <key>POWERLINE_ROOT</key>
+            <string>/Users/erikw/Library/Python/3.6/lib/python/site-packages/powerline</string>
+            <key>LC_ALL</key>
+            <string>en_US.UTF-8</string>
+            <key>LANG</key>
+            <string>en_US.UTF-8</string>
+        </dict>
+        <!-- Working directory for tmux is / if not set. -->
+        <key>WorkingDirectory</key>
+	<string>/Users/erikw/</string>
+        <key>RunAtLoad</key>
+        <true/>
+        <!-- Output logging for debugging. -->
+        <!--<key>StandardOutPath</key>-->
+        <!--<string>/Users/erikw/.log/tmux/launchd_stdout.txt</string>-->
+        <!--<key>StandardErrorPath</key>-->
+        <!--<string>/Users/erikw/.log/tmux/launchd_stderr.txt</string>-->
+    </dict>
+</plist>

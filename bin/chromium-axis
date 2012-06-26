@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# Start proxy and chromium for internal web.
+
+pid_ssh=
+pid_chromium=
+
+kill_progs() {
+	[ -n $pid_ssh ] && kill -9 $pid_ssh
+	[ -n $pid_chromium ] && kill -9 $pid_chromium
+}
+trap kill_progs SIGINT
+
+ssh axis -L 8080:wwwproxy.se.axis.com:3128 -N &
+pid_ssh=$!
+
+chromium --proxy-server="http://localhost:8080" &
+pid_chromium=$!
+
+wait $pid_chromium
+kill -9 $pid_ssh

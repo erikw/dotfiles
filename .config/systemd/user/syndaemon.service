@@ -1,0 +1,9 @@
+[Unit]
+Description=Syndaemon
+After=xorg.target
+
+[Service]
+ExecStart=/usr/bin/syndaemon -K -i 0.5
+
+[Install]
+WantedBy=xinitrc.target

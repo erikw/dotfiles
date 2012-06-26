@@ -1,0 +1,7 @@
+[Unit]
+Description=Fetch new podcast episodes with gpodder
+
+[Service]
+Type=simple
+Nice=5
+ExecStart=/home/erikw/bin/gpodder_fetch.sh

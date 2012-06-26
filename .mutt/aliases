@@ -1,0 +1,3 @@
+# vi: ft=muttrc
+
+alias erikw $my_addr_default (Erik Westrup)

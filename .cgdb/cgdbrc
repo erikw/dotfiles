@@ -1,0 +1,45 @@
+# Erik Westrup's CGDB configuration.
+
+# Modeline {
+#	 vi: foldmarker={,} foldmethod=marker foldlevel=0: tabstop=8:
+# }
+
+# Options {
+	# Color syntax.
+	syntax
+	# Reload changed source files.
+	set autosourcereload
+	# The mode key to use.
+	set cgdbmodekey=<ESC>
+	# Ingore case when searching
+	set ignorecase
+	# Wrap EOF to BOF when searching.
+	set wrapscan
+	# Show GDB commands being sent.
+	set showtgdbcommands
+	# Tabstop for real programmers.
+	set tabstop=8
+# }
+
+# UI {
+	# How to split window for command and source view.
+	#set winsplit=top_big
+	set winsplit=even
+	# Highligt the current line.
+	set arrowstyle=highlight
+# }
+
+# Mappings {
+	# GDB-like mappings
+	map r :run<CR>
+	map c :continue<CR>
+	map f :finish<CR>
+	map n :next<CR>
+	map s :step<CR>
+	
+	map sta :start<CR>
+# }
+
+# Colors {
+	highlight SelectedLineNr ctermbg=LightGray  ctermfg=Black
+# }

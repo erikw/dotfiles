@@ -1,0 +1,8 @@
+# Source: https://bitbucket.org/KaiSforza/systemd-user-units
+[Unit]
+Description=Xinitrc programs
+#Wants=wm.target
+Requires=xorg.target
+
+[Install]
+Alias=default.target

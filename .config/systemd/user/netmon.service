@@ -1,0 +1,9 @@
+[Unit]
+Description=Netmon network monitor for netctl
+After=xorg.target
+
+[Service]
+ExecStart=/usr/bin/netmon
+
+[Install]
+WantedBy=xinitrc.target

@@ -1,0 +1,6 @@
+#!/usr/bin/awk -f
+# Center input lines across 80 char line.
+# Original author: Greg Ubben
+{
+	printf "%" int(40+length($0)/2) "s\n",  $0
+}

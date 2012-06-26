@@ -1,0 +1,4 @@
+" vim_mode.pl configuration.
+"set utf8 = on
+"set max_undo_lines = 64
+"set ex_history_size = 128

@@ -1,0 +1,307 @@
+# Erik Westrup's shell aliases.
+
+
+# Modeline {
+#	 vi: foldmarker={,} foldmethod=marker foldlevel=0: tabstop=8 ft=sh:
+# }
+
+# Suppress alias expansion:: $ \aliasname || 'aliasname'
+# Print alias definition: alias <aliasname>
+
+# Desktop Environment specific {
+	# Defaults.
+	alias open='xdg-open'						# Open files.
+	alias afk='xscreensaver-command -lock'		# Start screensaver.
+
+	case $DESKTYPE in
+	kde)
+		alias open='kde-open'					# Open files like in Dolphin.
+		# Log out
+		alias xlogout='qdbus org.kde.ksmserver /KSMServer org.kde.KSMServerInterface.logout 0 0 2'
+		#alias xlogout='kdeinit4_shutdown'
+		# Start screensaver.
+		alias afk='qdbus org.kde.screensaver /ScreenSaver org.freedesktop.ScreenSaver.SetActive true > /dev/null'
+		# Empty KDE trash folders.
+		alias emptytrash='rm -rf ~/.local/share/Trash/info/* ~/.local/share/Trash/files/*'
+		;;
+	gnome)
+		alias open='gnome-open'								# Open files like in Nautilus.
+		alias xlogout='gnome-session-save --force-logout'	# Log out.
+		;;
+	mate)
+		alias open='mate-open'								# Open files like in Nautilus.
+		alias xlogout='mate-session-save --force-logout'	# Log out.
+		;;
+	openbox)
+		alias open='thunar'					# Open files.
+		alias xlogout='openbox-logout'		# Log out.
+		;;
+	dwm)
+		alias xlogout='pkill -f startdwm.sh'
+		alias afk='slimlock'
+		;;
+	macos)
+		unalias open
+		# Enable or disable the Dashboard.
+		alias mac_dashboard_enable='defaults write com.apple.dashboard mcx-disabled -boolean NO'
+		alias mac_dashboard_disable='defaults write com.apple.dashboard mcx-disabled -boolean YES'
+		# Show or hide dotfiles in Finder.app.
+		alias mac_showhidden='defaults write com.apple.finder AppleShowAllFiles TRUE; killall Finder'
+		alias mac_hidehidden='defaults write com.apple.finder AppleShowAllFiles FALSE; killall Finder'
+		# Hibernate the Mac.
+		alias mac_hibernate='sudo pmset -a hibernatemode'
+		alias mac_listhibernate='sudo pmset -g | grep hibernatemode'
+		alias mac_emptytrash='rm -rf ~/.Trash/*' 		# Empty trash bin.
+		alias afk='/System/Library/CoreServices/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine'
+		;;
+	esac
+# }
+
+# Color support {
+	LS_OPTIONS=
+	shell_is_linux && LS_OPTIONS="$LS_OPTIONS --time-style=long-iso -F"
+	if [ "$TERM" != "dumb" ] && (type dircolors &>/dev/null || shell_is_macos); then
+		if shell_is_linux; then
+			eval "`dircolors -b`"
+			# Colors when output is terminal.
+			#alias ls="ls ${ls_options} --color=auto"
+			# Force colors to all stdouts.
+			#alias ls="ls ${ls_options} --color=always"
+			#alias dir='ls --color=auto --format=vertical'
+			#alias vdir='ls --color=auto --format=long'
+			LS_OPTIONS="$LS_OPTIONS --color=auto"
+		fi
+
+		# Highligt matches when output is on the terminal.
+		#export GREP_OPTIONS='--color=always'
+
+		alias grep='grep --color=auto'
+		# Force color e.g. to use when piping to less.
+		alias grepc='grep --color=always'
+		alias fgrepc='fgrep --color=always'
+		alias egrepc='egrep --color=always'
+
+		# Colored cows, yeah!
+		alias cower='cower --color=auto'
+
+		# Use colored diff if it can be found.
+		if type colordiff >/dev/null 2>&1; then
+			#alias cdiff='colordiff'
+			alias diff='colordiff'
+		fi
+
+		# Use colored du if exists.
+		hash cdu 2>/dev/null
+		if [ "$?" -eq 0 ]; then
+			alias du='cdu -idh'
+		fi
+
+		# Colorize SVN.
+		if type colorsvn >/dev/null 2>&1; then
+			alias svn='colorsvn'
+		fi
+
+		# Make colors.
+		if type colormake >/dev/null 2>&1; then
+			alias make='colormake'
+		fi
+
+		# Compile with dem colors. TODO detect when $(gcc -v) >= 4.9?
+		alias gcc="gcc -fdiagnostics-color=auto"
+	fi
+
+	alias ls="ls $LS_OPTIONS"
+
+	# Global BSD util colors support.
+	if [ "$TERM" != "dumb" ] && shell_is_macos; then
+	    export CLICOLORS=1
+	fi
+
+
+# }
+
+# GNU coreutils on macOS {
+# Some override of GNU utils with macOS default BSD utils are problematic, so reverse those.
+if shell_is_macos; then
+    # GNU ls from coreutils on macOS does not work with colors, at least not now.
+    alias ls='/bin/ls $LS_OPTIONS'
+    # GNU locate does not read the default locate database on macOS.
+    alias locate='/usr/bin/locate'
+fi
+# }
+
+# SSH agent {
+	alias keyon="ssh-add -t 14400"
+	alias keyoff='ssh-add -D'
+	alias keylist='ssh-add -l'
+# }
+
+# Sudo {
+	alias loadkeys='sudo loadkeys'
+	alias poweroff='sudo poweroff'
+	alias halt='sudo halt'
+	alias shutdown='sudo shutdown'
+	alias reboot='sudo reboot'
+	#alias pm-suspend='sudo pm-suspend'
+	#alias pm-hibernate='sudo pm-hibernate'
+	alias sudo='sudo '			# Bring my aliases with me.
+# }
+
+# Navigation {
+	alias -- +='pushd'
+	alias -- ++='pushd .'
+	alias -- -='popd'
+# }
+
+# jump {
+    # Bashmark style aliases for https://github.com/flavio/jump
+    alias g="jump"
+    alias s="jump --add"
+    alias d="jump --del"
+    alias l="jump --list"
+# }
+
+# Libreoffice {
+	alias lbase='libreoffice --base'			# Writer.
+	alias lcalc='libreoffice --calc'			# Calc.
+	alias ldraw='libreoffice --draw'			# Draw.
+	alias limpress='libreoffice --impress'		# Impress.
+	alias lmath='libreoffice --math'			# Math.
+	alias lwriter='libreoffice --writer'		# Writer.
+# }
+
+# Program enhancements {
+	alias emacs='emacs --no-window-system'			# Emacs belongs to the terminal.
+	#alias mvim='mvim -v'					# When macvim is the installed vim, make mvim open in terminal instead of GUI.
+	alias gdb='gdb -q'					# Suppress legal info.
+	#alias gdb='gdb -q -x $GOPATH/.gdbinit'			# Suppress legal info + Go support.
+	alias cgdb='cgdb -q'					# Suppress legal info.
+	#alias cgdb='cgdb -q -x $GOPATH/.gdbinit'		# Suppress legal info + Go support.
+
+	#alias df='df -h'						# Always show in human readable.
+	alias dfc='dfc -d' 						# Show used column.
+	alias octave='octave-cli --silent'				# Run in terminal without greeting message.
+	alias xoctave='\octave'						# Default X version.
+	alias matlab='matlab -nodesktop -nosplash'			# Run in terminal with no splash screen.
+	alias xmatlab='\matlab'						# Default X version.
+	alias gimp='gimp --no-splash'					# Splash screens are just annoying.
+	alias dmenu="dmenu -i"						# Ignore case.
+	alias cal='cal --monday'					# Monday IS the first day of the week.
+	alias pdflatex='pdflatex -interaction=nonstopmode -halt-on-error' # Quit on error.
+
+	# Not needed anymore, installing with brew --with-default-names.
+	#if type gsed >/dev/null 2>&1 && shell_is_macos; then
+		#alias sed='gsed'	# The default sed on macOS is utter crap..
+	#fi
+	#if type ggrep >/dev/null 2>&1 && shell_is_macos; then
+		#alias grep='ggrep'	# The default sed on macOS is utter crap..
+	#fi
+# }
+
+# Short-hands {
+	alias cls='clear'					# Old DOS habit...
+	alias vi='vim'						# Be IMproved.
+	alias view='vim -R'					# Not all distributions of vim provide the readonly bin.
+	alias vidiff='vimdiff'
+	alias viclean="vim -u NONE -i NONE"				# Start wiht without reading ~/.vimrc and using ~/.viminfo.
+	alias vibclean="vim -u NONE -i NONE -c 'set number backup'"	# Same, but write local backup file.
+	#alias t='task'
+	#alias c='gcalcli'
+	alias gcal='gcalcli'
+	alias vboxmanage='VBoxManage'							# Who likes caps?- I don't.
+	alias ll='ls -l'										# I don't use it but aliens on my systems presumes its existence.
+	#unalias l &>/dev/null									# I use bashmarks.
+	alias lsc="ls ${LS_OPTIONS} --color=always"				# Force color.
+	alias agdbtui='arm-none-eabi-gdbtui'					# So tired of typing that...
+	alias shredzr='shred --zero --remove'					# Zero out and delete file.
+	alias sysc='systemctl'									# The length of a name should correspond to its importance, see vi.
+	alias syscu='systemctl --user'							# Systemd user sessions.
+	alias journal='journalctl'
+	# Take a screenshot of selected window.
+	alias scrot-win="scrot --quality 80 --count --delay --border --delay 3 --select $HOME/media/images/screenshots/screenshot_%Y-%m-%d-%H%M%S.png"
+	# Run JUnit on a test class.
+	alias junitx="java -cp /usr/share/java/junit.jar:bin org.junit.runner.JUnitCore"
+	alias pkillf="pkill -9 -f"								# Force kill full name matched process.
+	alias iperl="perl -de 0"								# Interactive perl.
+	alias catu="cat -vet"									# A cat that likes unprintable characters.
+	alias tiga='tig --all'									# Show all branches in tig.
+	alias mkcscope_c='find . -name "*.[ch]" > cscope.files'		# Gen cscope file for C programs.
+	alias wlan_quality='iwconfig wlan | grep Quality'		# Display the signal quality and strength of WLAN. Alternatively use wavemon(1).
+	alias cryfs_mount='history-off && cryfs ~/dropbox/priv ~/priv'	# Decrypt & mount CryFS folder.
+	alias cryfs_umount='fusermount -u ~/priv'			# Umount CryFS folder.
+	alias mkdirtoday='_today=$(date -I) && mkdir -p $_today && echo "Created $_today" && unset _today'	# Create a directory in CWD with today's date.
+	alias reload_zsh='source $HOME/.zshrc'				# Reload zsh configuration.
+	alias reload_bash='source $HOME/.bashrc'			# Reload bash configuration.
+	alias remove_swap_files='find . -name "*.sw[op]" -delete'	# Delete all swap files in current path recursively.
+
+
+	#alias x-proxy='ssh x -L 8080:x.com:123 -N'				# Start SSH tunnel web proxy to some server.
+	#alias chromium-xproxy='chromium --proxy-server="http://localhost:8080"'	# Starts Chromium that uses X proxy tunnel.
+
+	# Stop limiting battery charge level.
+	alias lenovo-charge='sudo tpacpi-bat -s stopThreshold 0 99'
+	alias lenovo-limitcharge='sudo tpacpi-bat -s stopThreshold 0 80'
+
+	if type ack-grep >/dev/null 2>&1; then
+		alias ack='ack-grep'	# Debain renames ack.
+	fi
+
+	# Ctags with JDK source code included.
+	# Get JDK source e.g. with
+	# $ cd ~/src
+	# $ hg clone http://hg.openjdk.java.net/jdk8/jdk8
+	# $ cd jdk8 && chmod 744 get_source.sh && ./get_source.sh
+	# -or-
+	# $ ghq get http://hg.openjdk.java.net/jdk8/jdk8
+	# Reference: http://blog.vinceliu.com/2007/08/vim-tips-for-java-2-using-exuberant.html
+	# Reference: https://stackoverflow.com/questions/20457107/how-to-clone-the-openjdk-java-8-repository
+	alias ctags-jdk='ctags -R --language-force=java ~/src/hg.openjdk.java.net/jdk8/jdk8/jdk/src/share/'
+
+
+	if shell_is_macos; then
+	    alias intellijopen='open -a IntelliJ\ IDEA\ CE'  	# Open Intellij with a path as an argument.
+	    alias pycharmopen='open -a PyCharm\ CE'  	# Open Pycharm with a path as an argument.
+	    alias phpstormopen='open -a PhpStorm'  		# Open PhpStorm with a path as an argument.
+        fi
+# }
+
+# Mounts {
+	alias mount-newport='jmtpfs /media/newport/'
+	alias umount-newport='fusermount -u /media/newport/'
+# }
+
+# Permutation aliases {
+	# From $(bin/permute_aliases.sh cmd > $HOME/.shell_aliases_cmd)
+	sourceifexists "$HOME/.shell_aliases_make"
+	sourceifexists "$HOME/.shell_aliases_git"
+# }
+
+# Virtualenvwrapper {
+	# Pesky virtulaenvwrapper does not prefix their shell functions...
+	virtualenv_functions=(add2virtualenv allvirtualenv cdproject cdsitepackages cdvirtualenv cpvirtualenv lssitepackages lsvirtualenv mkproject mktmpenv mkvirtualenv rmvirtualenv setvirtualenvproject showvirtualenv toggleglobalsitepackages virtualenv wipenv workon)
+	for venv_func in "${virtualenv_functions[@]}"; do
+		eval "alias venv_${venv_func}='${venv_func}'"
+	done
+
+# }
+
+# Misc {
+	alias psg='ps aux | grep -i '					# List matching processes.
+	alias dusch='du -sch'							# The best file size calculator is a shower.
+	alias rehash='hash -r'							# Reload PATH caches or something similar. It works!
+	alias beep='echo -en "\007"'					# Whoop whoop'
+	alias bygg='make -f Byggfil'					# New standard?
+	alias webshare='python -m SimpleHTTPServer'			# Start webshare on port 8000 in CWD.
+	alias image_dim="identify -format '%w %h\n'"			# Get dimmensions of an image.
+	alias git-root='cd $(git rev-parse --show-cdup)'		# Go to the root of a git.
+	alias cursh="ps -p \$\$ | tail -1 | awk '{print \$NF}' | sed -e 's/^-//g'| tr -d '()'"		# Current shell.
+	alias history-off='unset HISTFILE'				# Disable command history for the current shell.
+	# Simple network speed test.
+	alias speed_check='wget -O/dev/null ftp://ftp.port80.se/100M'
+	# Unmount my key.
+	alias uk='umount /dev/key1 2>/dev/null && echo "Key umounted." || echo "Umount failed." 1>&2'
+	# ZO RELAXEN
+	alias blinkenlichten='while true; do xset led 3; sleep 0.2s; xset -led 3; sleep 0.3s; done'
+	alias whatismyip='curl ifconfig.me'			# Get external IP-address
+	#alias whatismyip='curl ifconfig.co'			# Get external IP-address
+# }

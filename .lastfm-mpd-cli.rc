@@ -1,0 +1,19 @@
+# Configuration file for lastfm-mpd-cli.
+
+# Specify a username
+lastfmusername = ErikWestrup
+
+# Specify a password
+# You can obtain the md5 hash by running 
+#       lastfm-mpd-cli md5 <your password>
+lastfmpassword = GIT-CENSORED
+
+# MPD password
+# WARNING: not currently implemented (sorry if you have a password set on mpd!)
+mpdpassword = GIT-CENSORED
+
+# MPD hostname
+mpdhostname = localhost
+
+# MPD port
+mpdport = 6600

@@ -1,0 +1,20 @@
+#!/usr/bin/env
+# Interactive netctl profile selection.
+# Written by hto: https://bbs.archlinux.org/viewtopic.php?pid=1279174#p1279174
+
+filter() {
+	NUM=0;
+	ls -1 $(find /etc/netctl/ -maxdepth 1 -type f -print) | while read i; do
+    	echo $(basename $i) $(basename $i); NUM=$(($NUM+1));
+	done;
+}
+
+LINES=$(filter)
+FILE=$(dialog --stdout --no-tags --title "net-menu" --menu "Select a Profile:" 20 50 10 $LINES)
+
+if [ $FILE ]; then
+	echo "Starting Profile: $FILE ..."
+	sudo netctl start $FILE
+else
+	echo "Canceled"
+fi

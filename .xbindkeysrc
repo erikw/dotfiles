@@ -1,0 +1,304 @@
+# Erik Westrup's xbindkeys configuration.
+# Keysymbols are defined in /usr/include/X11/keysymdef.h (exclude the XL_ prefix).
+# List of modifier: Release, Control, Shift, Mod1 (Alt), Mod2 (NumLock), Mod3 (CapsLock), Mod4 (Windows key), Mod5 (Scroll).
+# Modeline {
+#	 vi: foldmarker={,} foldmethod=marker foldlevel=0: tabstop=8: ft=rc
+# }
+
+# Programs {
+	# Start my default terminal
+	#"gnome-terminal"
+	#"konsole"
+	#"terminator"
+	"urxvtc"
+		Mod4 + Mod1 + t
+
+	# Start the always-working XTerm!
+	"xterm"
+		Mod4 + Mod1 + x
+
+	# Read some mails.
+	"xterm -e mutt"
+		Mod4 + Mod1 + m
+
+	# Control MPD.
+	"xterm -e ncmpcpp"
+		Mod4 + Mod1 + n
+
+	# Lock screen. Uses my alias afk.
+	#"xscreensaver-command -lock"
+	"slock"
+		Mod4 + Mod1 + l
+
+	# Lock the screen.
+	#"xscreensaver-command -lock"
+	"slock"
+		XF86ScreenSaver
+
+	# Temporarily disable xautolock.
+	"xautolockctl caffeine"
+		Mod4 + Mod1 + a
+
+	# Toggle xautolocking.
+	"xautolockctl"
+		Mod4 + Mod1 + Shift + a
+
+	# Blank the screen.
+	"sleep 1; xset dpms force off"
+		Mod4 + Mod1 + b
+
+	# Close/open CD/DVD-rebder.
+	"eject -T"
+		Mod4 + Mod1 + e
+
+	# Umount key.
+	"umount /dev/key1 && notify-send --app-name 'xbindkeys'  'Umounted key.'"
+		Mod4 + Mod1 + u
+
+	# Hijack ThinkVantage button to show system stats.
+	"urxvtc -e htop"
+		XF86Launch1
+
+	# Control the music with the media icon (that gives the wrong event).
+	"urxvtc -e ncmpcpp"
+		XF86WebCam
+
+	# Toogle touchpad with the unknown function key at fn+F7.
+	"touchpad-toggle.sh"
+		XF86Display
+
+	# Take a screenshot.
+	#"scrot --quality 80 ~/media/images/screenshots/screenshot_%Y-%m-%d-%H%M%S.png"
+	"$HOME/bin/printscreen_scrot.sh"
+		Print
+
+	# Selection screenshot
+	#"shutter"
+	"zscreen"
+		Mod4 + Mod1 + p
+
+	# Fetch emails.
+	"offlineimap.sh && notify-send --app-name 'xbindkeys' 'offlineimap.sh fetchig emails...'"
+		Mod4 + Mod1 + F5
+
+	# Toggle emoji-keyboard
+	"emoji-keyboard -k"
+		Mod4 + Mod1 + e
+
+	# Search emoji-keyboard
+	"emoji-keyboard -s"
+		Mod4 + Mod1 + w
+
+# }
+
+# Volume {
+	# Amixer {
+		## Decrease volume.
+		#"amixer set Master playback 3.2dB-"
+		#	Control + F10
+
+		## Increase volume.
+		#"amixer set Master playback 3.2dB+"
+		#	Control + F11
+
+		## Toggle mute.
+		#"amixer set Master toggle"
+		#	Control + F12
+	# }
+
+	# voltune.sh {
+		# Lower volume.
+		"voltune.sh -c down -i 5%"
+			XF86AudioLowerVolume
+		"voltune.sh -c down -i 5%"
+			Control + F10
+		"voltune.sh -c down -i 1%"
+			Control + Shift + F10
+
+		# Raise volume.
+		"voltune.sh -c up -i 5%"
+			XF86AudioRaiseVolume
+		"voltune.sh -c up -i 5%"
+			Control + F11
+		"voltune.sh -c up -i 1%"
+			Control + Shift + F11
+
+		# Mute sound.
+		"voltune.sh -c mute"
+			XF86AudioMute
+		"voltune.sh -c mute"
+			Control + F12
+
+		# Toggle mic mute. TODO when the MIC_MUTE button with keycode 248 works and X can handle the new XF86MIC_MUTE (or what the will call it).
+		"amixer set Capture toggle"
+			Control + F9
+	# }
+
+	# Kmix {
+		# Decrease volume.
+		#"qdbus org.kde.kmix  /Mixers/0/Master_0 org.kde.KMix.Control.decreaseVolume"
+		#"qdbus org.kde.kmix /kmix/KMixWindow/actions/decrease_volume org.qtproject.Qt.QAction.trigger"
+			#Control + F10
+
+		# Increase volume.
+		#"qdbus org.kde.kmix  /Mixers/0/Master_0 org.kde.KMix.Control.increaseVolume"
+		#"qdbus org.kde.kmix /kmix/KMixWindow/actions/increase_volume org.qtproject.Qt.QAction.trigger"
+			#Control + F11
+
+		# Toggle mute.
+		#"qdbus org.kde.kmix  /Mixers/0/Master_0 org.kde.KMix.Control.toggleMute"
+		#"qdbus org.kde.kmix /kmix/KMixWindow/actions/mute org.qtproject.Qt.QAction.trigger"
+			#Control + F12
+	# }
+# }
+
+# MPD {
+# Control {
+		# Play previous track.
+		"mpc prev"
+			Control + Alt + Shift + F6
+
+		# Toggle play/pause.
+		"mpc toggle"
+			Control + Alt + Shift + F7
+
+		# Play next track.
+		"mpc next"
+			Control + Alt + Shift + F8
+
+		# Seek backwards.
+		"mpc seek -1"
+			Control + Shift + F6
+
+		# Stop playing.
+		"mpc stop"
+			Control + Shift + F7
+
+		# Seek forwards
+		"mpc seek +1"
+			Control + Shift + F8
+
+		# Lower the volume.
+		"mpc volume -1"
+			Control + Shift + F10
+
+		# Raise the volume.
+		"mpc volume +1"
+			Control + Shift + F11
+		
+		# XF86 {
+			# Play previous track.
+			#"mpc prev"
+				#XF86AudioPrev
+
+			# Toggle play/pause.
+			#"mpc toggle"
+				#XF86AudioPlay
+
+			# Play next track.
+			#"mpc next"
+				#XF86AudioNext
+		}
+# }
+
+# Rating {
+		# Put the current song in playlist "rated-x"
+
+		"mpdrate 1"
+			Shift + F1
+
+		"mpdrate 2"
+			Shift + F2
+
+		"mpdrate 3"
+			Shift + F3
+
+		"mpdrate 4"
+			Shift + F4
+
+		"mpdrate 5"
+			Shift + F5
+# }
+
+# Show now playing in with notify-send
+"$HOME/bin/mpd_np_notify.sh"
+	Shift + F12
+# }
+
+# Playerctl {
+	# Play previous track.
+	"playerctl previous"
+		Control + F6
+	"playerctl previous"
+		XF86AudioPrev
+
+	# Toggle play/pause.
+	"playerctl play-pause"
+		Control + F7
+	"playerctl play-pause"
+		XF86AudioPlay
+
+	# Play next track.
+	"playerctl next"
+		Control + F8
+	"playerctl next"
+		XF86AudioNext
+
+	# Stop playing.
+	"playerctl stop"
+		Control + F9
+	"playerctl next"
+		XF86AudioNext
+# }
+
+# Spotify (native) {
+	# Play previous track.
+	#"dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous"
+		#Control + F6
+
+	# Toggle play/pause.
+	#"dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause"
+		#Control + F7
+
+	# Play next track.
+	#"dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next"
+		#Control + F8
+
+	# Stop playing.
+	#"dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Stop"
+		#Control + F9
+# }
+
+# Display {
+	# Rotate Dell UltraSharp U2412M e-IPS 24" monitor right
+	"xrandr --output HDMI2 --rotate right"
+		Mod4 + Mod1 + Right
+
+	# Rotate Dell UltraSharp U2412M e-IPS 24" monitor left
+	"xrandr --output HDMI2 --rotate left"
+		Mod4 + Mod1 + Left
+
+	# Rotate Dell UltraSharp U2412M e-IPS 24" to normal
+	"xrandr --output HDMI2 --rotate normal"
+		Mod4 + Mod1 + Down
+
+	# Toggle redshift on and off
+	"killall -USR1 redshift"
+		Mod4 + Mod1 + r
+
+
+# }
+
+# Misc {
+	# Toggle English and Swedish keboard layout.
+    	#"~/dev/vimomap/vimomap.sh --layout && xmodmap ~/.Xmodmap"
+    	#	Mod4 + Mod1 + Shift + k
+
+	# Fix keyboard when docked.
+	"xkbset"
+		Mod4 + Mod1 + k
+
+	# Toggle solarized colors
+	"notify-send --app-name 'xbindkeys' solarized $(solarized_toggle.sh)"
+		Mod4 + Mod1 + s
+# }

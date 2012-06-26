@@ -1,0 +1,9 @@
+[Unit]
+Description=Parcellite
+After=xorg.target
+
+[Service]
+ExecStart=/usr/bin/parcellite
+
+[Install]
+WantedBy=xinitrc.target

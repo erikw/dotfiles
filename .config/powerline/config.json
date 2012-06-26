@@ -1,0 +1,19 @@
+{
+	"common": {
+		"term_truecolor": false
+	},
+	"ext": {
+		"shell": {
+			"colorscheme": "default",
+			"theme": "erikw",
+			"local_themes": {
+				"continuation": "continuation",
+				"select": "select"
+			}
+		},
+		"tmux": {
+			"colorscheme": "default",
+			"theme": "erikw"
+		}
+	}
+}

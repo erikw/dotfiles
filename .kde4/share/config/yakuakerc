@@ -1,0 +1,38 @@
+[Animation]
+Frames=10
+
+[Desktop Entry]
+DefaultProfile=Shell.profile
+
+[Dialogs]
+FirstRun=false
+ShowPopup=false
+
+[Favorite Profiles]
+Favorites=
+
+[KFileDialog Settings]
+Height 1200=583
+Width 1920=960
+
+[Shortcuts]
+close-active-terminal=none
+close-session=none
+decrease-window-height=none
+decrease-window-width=none
+grow-terminal-bottom=none
+grow-terminal-left=none
+grow-terminal-right=none
+grow-terminal-top=none
+help_whats_this=none
+increase-window-height=none
+increase-window-width=none
+rename-session=none
+split-left-right=none
+split-top-bottom=none
+view-full-screen=Shift+Help
+
+[Window]
+DynamicTabTitles=true
+Height=55
+KeepOpen=false

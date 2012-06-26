@@ -1,0 +1,9 @@
+[Unit]
+Description=Pnxmier volume control applet
+After=xorg.target
+
+[Service]
+ExecStart=/usr/bin/pnmixer
+
+[Install]
+WantedBy=xinitrc.target

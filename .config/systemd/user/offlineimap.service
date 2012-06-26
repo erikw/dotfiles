@@ -1,0 +1,9 @@
+[Unit]
+Description=Fetch IMAP mails with offlinemap
+
+[Service]
+Type=simple
+Nice=5
+KillSignal=SIGUSR2
+Restart=no
+ExecStart=/usr/bin/offlineimap -u quiet

@@ -1,0 +1,13 @@
+regex: True,  Use regular expressions in matching titles.
+# General.
+auth_browser: firefox, Browser to launch when authenticating the OAuth request token.
+tags_prompt: True, Prompt for tags for each item being uploaded.
+date_print_format: %Y-%m-%d at %H:%M, Format to use when printing date information.
+url_style: site, Which sub-style to use for listing urls.
+
+# Picasa.
+access: private, The default access level of the albums you create.
+
+# Docs.
+editor: vim, Default editor.
+format: txt, Default file extension

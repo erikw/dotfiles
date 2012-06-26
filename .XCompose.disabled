@@ -1,0 +1,13 @@
+# Custom XCompose mappings. These mappings will allow me to easily type Swedish letters while using ANSI US keyboard layout. See .Xmodmap for mapping the multi_key to the more reachable left windows key.
+
+#include "/usr/share/X11/locale/en_US.UTF-8/Compose"
+#include "%S/en_US.UTF-8/Compose"
+# What file is included depends on current locale settings
+#include "%L"
+
+<Multi_key> <apostrophe>		: "ä" adiaeresis # LATIN SMALL LETTER A WITH DIAERESIS
+<Multi_key> <quotedbl>			: "Ä" Adiaeresis # LATIN CAPITAL LETTER A WITH DIAERESIS
+<Multi_key> <bracketleft>		: "å" aring # LATIN SMALL LETTER A WITH RING ABOVE
+<Multi_key> <braceleft>			: "Å" Aring # LATIN CAPITAL LETTER A WITH RING ABOVE
+<Multi_key> <semicolon>			: "ö" odiaeresis # LATIN SMALL LETTER O WITH DIAERESIS
+<Multi_key> <colon>			: "Ö" Odiaeresis # LATIN CAPITAL LETTER O WITH DIAERESIS

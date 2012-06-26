@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+# Overlay for urxvtc that starts urxvtd if needed.
+URXVTC=/usr/bin/urxvtc
+
+$URXVTC "$@"
+if [ "$?" -eq 2 ]; then
+	urxvtd --quiet --opendisplay --fork
+	$URXVTC "$@"
+fi

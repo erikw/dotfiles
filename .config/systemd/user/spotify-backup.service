@@ -1,0 +1,8 @@
+[Unit]
+Description=Backup Spotify playlists
+
+[Service]
+Type=simple
+Nice=5
+ExecStart=/home/erikw/bin/spotify-backup.sh
+

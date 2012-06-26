@@ -1,0 +1,8 @@
+// Remappings and hacks.
+default partial alphanumeric_keys modifier_keys
+xkb_symbols "default" {
+	// Left Win -> Alt Gr. Does not play well with DWM using lwin as MODKEY.
+	//key <LWIN> { [ ISO_Level3_Shift ] };
+	// Pause -> Caps Lock
+	key <PAUS> { [Caps_Lock] };
+};

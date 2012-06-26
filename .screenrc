@@ -1,0 +1,62 @@
+# Erik Westrup's GNU screen configuration.
+
+# Modeline {
+#	 vi: foldmarker={,} foldmethod=marker foldlevel=0: tabstop=8:
+# }
+
+# General {
+
+	startup_message off				# Don't show info at startup.
+	autodetach on					# If something goes wrong automatically detach screen.
+	defutf8 on					# Tells screen that UTF8 encoding should be uses in all and new windows.
+	#idle 1800 lockscreen				# Lock after 30 min of inactivity.
+	
+	# Start screensaver in a new screen after 30 min, reset idle.
+	#idle 1800 eval "screen -t screensaver cmatrix -u 10" "idle 0"
+	
+	deflog on					# Set log on all windows (and new ones).
+	logfile $HOME/.log/screen/%t.screenlog		# Set log path and filename.
+	maxwin 15					# Max numbers of windows.
+	#wall "Welcome to screen@`uname -n`."		# Message to all windows.
+	#maptimeout 0					# Set esc timeout to 0 ms. Good when using finch. obs might disable escape.
+	defscrollback 16384				# Set scrollback to a higher value (in lines) (2^14).
+	termcapinfo xterm* ti@:te@			# Fix scrollback in putty.
+	nethack on					# Turn on nethack-like messages.
+	ignorecase on					# Case insensitive search in copy mode.
+	#muliuser on					# Multiuser. Others attach with: screen -ls erikw/;screen -x erikw/sessionname
+	#addacl <username>				# User that can attach to this session.
+# }
+
+# UI {
+	time '[%c:%s] %Y-%m-%d %D'			# Format for displaying time and date in the caption.
+	#vbell off					# Turn off annoying vbell 'wuff! wuff!'.
+	caption always					# Always show caption.
+	caption string "%{kw}%-w[%{r}%n %t%{-}]%+w"	# Format of the caption bar.
+	
+	hardstatus on					# Always show the hardstatus bar.
+	hardstatus alwayslastline			# Show as the last line.
+	backtick 1 5 5 $HOME/bin/screen/hardstatus.sh	# Update interval (id, lifespan, autorefresh, script)
+	# Format of the hardstatus bar. %1` refers to the output of the script above.
+	hardstatus string  "[%c:%s] %Y-%m-%d %D | Host: %H% | Load average: %l | %1`"
+	
+# }
+
+# Bindings {
+	# Unbind C-a Q and C-a C-Q and bind C-a Q to quit.
+	bind ^Q
+	bind Q
+	bind Q quit
+
+	#Launch urlview with the current screens text in a new screen window.
+	bind o eval "hardcopy_append off" "hardcopy -h /tmp/${USER}_screen-urlview" "screen urlview /tmp/${USER}_screen-urlview"
+	
+	# ^H stoppes working in some instances of Screen.
+	bindkey -d ^H stuff ^?
+
+	# Put copied text from buffer to x clipboard. Does not work if it cant access X display.
+	#bind b eval "writebuf" "exec sh -c 'xclip -i < /tmp/screen-exchange'"
+
+	# Window numbering starts at 1, not 0.
+	#bind c screen 1
+	#bind 0 select 10
+# }

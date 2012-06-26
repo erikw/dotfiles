@@ -1,0 +1,86 @@
+# Erik Westrup's OfflineIMAP configuration.
+# vim: ft=cfg
+
+[general]
+# Where to store offlineimap data.
+metadata = ~/.offlineimap
+# Comma separated list of account names.
+accounts = Gmail
+# Number of account to sync at the same time. Important when having many acounts + autorefresh.
+maxsyncaccounts = 1
+# Default UI to use.
+ui = ttyui
+# Skip write check for faster sync.
+#fsync = false
+
+[Account Gmail]
+# The local repository.
+localrepository = Gmail-Local
+# The remote repository.
+remoterepository = Gmail-Remote
+# IDLE: Continue to run and refresh automatically.
+#autorefresh = 1
+# Maxsize in Bytes.
+maxsize = 33554432
+
+[Repository Gmail-Local]
+# Type of local repository. Use the favorable Maildir type.
+type = Maildir
+# Where to put the Maildir hierarchy.
+localfolders = ~/.mail/
+# The folder separator to use in nametrans. See http://docs.offlineimap.org/en/latest/nametrans.html#faq-on-nametrans
+sep = .
+# Use more connections to speed up. Must be >= than the number of IMAP IDLE folders used.
+maxconnections = 3
+# Inverse nametrans needed since v6.5.3 that added support for remote creation of folders. See https://wiki.archlinux.org/index.php/OfflineIMAP
+nametrans = lambda folder: \
+	re.sub('archive', '[Gmail].All Mail',
+	re.sub('drafts', '[Gmail].Drafts',
+	re.sub('inbox', 'INBOX',
+	re.sub('sent', '[Gmail].Sent Mail',
+	re.sub('spam', '[Gmail].Spam',
+	re.sub('trash', '[Gmail].Trash',
+	re.sub('.*lists$', 'lists',
+	re.sub('postponed', 'postponed',
+	re.sub('.*work$', 'work',
+	re.sub('.*music$', 'music',
+	folder))))))))))
+
+[Repository Gmail-Remote]
+# Use Gmail specific IMAP with hard-coded remotehost, remoteport, tunnel and ssl.
+type = Gmail
+# Gmail username.
+remoteuser = erik.westrup@gmail.com
+# Gmail password token.
+remotepass = GIT-CENSORED
+# Use SSL. Implicit for type = Gmail.
+#ssl=yes
+# Gmail's cert fingerprint. Using sslcacert option failes to verify even though `openssl` can use it for verification. http://docs.offlineimap.org/en/latest/FAQ.html#how-do-i-generate-an-sslcacertfile-file
+#cert_fingerprint=f3043dd689a2e7dddfbef82703a6c65ea9b634c1
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+# Use more connections to speed up.
+maxconnections = 3
+# Mark as deleted on the server but don't actually delete them. This is required to retain the Gmail Archive feature. To delete a mail; move it to the Trash folder and Gmail will delete it after 30 days. Reference: https://support.google.com/mail/bin/answer.py?hl=en&ctx=mail&answer=7401
+expunge = no
+# Remote directories to use with  IMAP IDLE to get new mails pushed to my machine.
+idlefolders = ['INBOX']
+# Hold connection opened. Needed for IMAP IDLE.
+holdconnectionopen = yes
+# Send heartbeats every x minute. Apparently required for IMAP IDLE.
+keepalive = 29
+# Prevent folder creation on the remote. This will eliminate the need for reverese nametrans.
+#createfolders = false
+# Rename folders to saner names. Use `offlineimap --info` for details about folders.
+# Reference: # http://docs.offlineimap.org/en/latest/nametrans.html
+nametrans = lambda folder: \
+	re.sub('.*All Mail$', 'archive',
+	re.sub('.*Drafts$', 'drafts',
+	re.sub('.*INBOX$', 'inbox',
+	re.sub('.*Sent Mail$', 'sent',
+	re.sub('.*Spam$', 'spam',
+	re.sub('.*Trash$', 'trash',
+	re.sub('.*lists$', 'lists',
+	re.sub('.*postponed$', 'postponed',
+	re.sub('.*work$', 'work',
+	re.sub('.*music$', 'music',
+	folder))))))))))

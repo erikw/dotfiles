@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+# Overlay for XDG-open that uses a program to query the mailcap file for noraml MIME types and else miemo for URLs.
+# Source: https://wiki.archlinux.org/index.php/Xdg-open#run-mailcap
+
+#run-mailcap "$1" || mimeo "$1" &
+for file in "$@"; do
+	#echo "opening \"${file}\""
+	run-mailcap "$file" 2>/dev/null || mimeo "$file" &
+done
