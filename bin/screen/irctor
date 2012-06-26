@@ -1,0 +1,24 @@
+#!/bin/bash
+# Script that starts, stops or attaches to a specific instance of screen called irctor.
+
+case $1 in
+"")
+   echo 'Attaching irctor...   [OK]'
+   screen -x irctor
+   ;;
+attach)
+   echo 'Attaching irctor...   [OK]'
+   screen -x irctor
+   ;;
+start)
+  echo 'Starting irctor...   [OK]'
+  ~/bin/screen/irctor_start.sh
+  ;;
+stop)
+   echo 'Stopping irctor...   [OK]'
+   screen -S irctor -X quit
+   ;;
+restart)
+    screen -S irctor -X quit
+    ~/bin/screen/irctor_start.sh
+esac

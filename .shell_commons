@@ -1,0 +1,318 @@
+# Common shelll settings (used by at least my .bashrc and .zshrc)
+# Find out which are good sandboxing candidates with profileing like in: https://kev.inburke.com/kevin/profiling-zsh-startup-time/
+
+# Modeline {
+#	vi: foldmarker={,} filetype=sh foldmethod=marker foldlevel=0: tabstop=4 shiftwidth=4:
+# }
+
+# Load utility functions.
+source $HOME/.shell_functions
+
+# Paths {
+	# Make the path available in subshells. Export is only needed once.
+	export PATH
+
+	# Include system binaries.
+	PATH="$PATH:/sbin:/usr/sbin:/usr/local/sbin"
+	# Include binaries in home directory.
+	PATH="$HOME/bin:$PATH"
+
+	# Set common bin paths.
+	#PATH=${PATH}:$(find ~/bin -maxdepth 2 -type d | tr '\n' ':' | sed 's/:$//')
+	#common_bin_dirs=(mutt mkdirs)
+	#for common_dir in "${common_bin_dirs[@]}"; do
+		#if [ -d "$HOME/bin/$common_dir" ]; then
+			#PATH="$PATH:$HOME/bin/$common_dir"
+		#fi
+	#done
+
+	# Convenient cdpaths.
+	#CDPATH=$HOME
+# }
+
+# Environment {
+	# Use THE text editor.
+	export EDITOR=vim
+	export VISUAL=vim
+	export CSHEDIT=vim
+
+	# and the only pager.
+	export PAGER=less
+
+	# Current DE in use.
+	if shell_is_macos; then
+		export DESKTYPE=macos
+	else
+		export DESKTYPE=dwm
+	fi
+
+	# Add homebrew coreutils with default names to PATH, and also to MANPATH.
+	# Instructions comes from the output of $(brew install coreutils).
+	if [ -d /usr/local/opt/coreutils/libexec/gnubin ]; then
+		PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+		MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+	fi
+
+	# Source aliases.
+	sourceifexists $HOME/.shell_aliases
+
+
+	# Let others know what underlying terminal emulator is used. This is needed since $TERM does not always represent the real terminal e.g. in tmux when you want colors.
+	shell_is_linux && program_is_in_path urxvt && export TERMEMU=urxvt
+
+	# Enable forward history search with ^s
+	#stty stop ""
+
+	# Web browser to use. urlscan (and others?) uses this variable.
+	if [ -n "$DISPLAY" ]; then
+		export BROWSER=firefox
+	else
+		export BROWSER=w3m
+	fi
+
+	if [ "$DESKTYPE" = "dwm" ]; then
+		# Java does not know about dwm so GUI apps will not be displayed correctly (if at all).
+		# Reference: https://wiki.archlinux.org/index.php/Dwm#Fixing_misbehaving_Java_applications
+		export _JAVA_AWT_WM_NONREPARENTING=1
+	fi
+
+	# A better compiler for C lang.
+	if program_is_in_path clang; then
+		export CC=clang
+		export CXX=clang++
+	fi
+
+	# Personal log folder used by some program configurations.
+	[ -d $HOME/.log ] || (mkdir $HOME/.log && mkdir $HOME/.log/tmux && mkdir $HOME/.log/irssi)
+
+	# Enable sandboxing a.k.a. lazy loading of shell initialization for some programs.
+	if [ -e $HOME/.sandboxd/sandboxd ]; then
+		source $HOME/.sandboxd/sandboxd
+	fi
+
+# }
+
+# UI {
+	# Solarized ls colors.
+	if shell_is_linux; then
+		dircolorstheme=$HOME/src/github.com/seebi/dircolors-solarized/dircolors.256dark
+		if [ -f $dircolorstheme ]; then
+			eval `dircolors $dircolorstheme`
+		elif [ -f "$HOME/.dircolorsrc" ]; then
+			eval `dircolors $HOME/.dircolorsrc`
+		fi
+	elif shell_is_bsd; then
+		export CLICOLOR=yes
+	fi
+
+	 # Use colorful terminal.
+	 case "$TERM" in
+	xterm*)		export TERM=xterm-256color ;;
+	screen*)	export TERM=screen-256color ;;
+	rxvt*)		export TERM=rxvt-unicode-256color ;;
+	 esac
+
+
+
+	# Colored man pages. Reference: https://wiki.archlinux.org/index.php/Man_Page#Colored_man_pages
+	#
+	man() {
+		env \
+			LESS_TERMCAP_mb=$(printf "\e[1;31m") \
+			LESS_TERMCAP_md=$(printf "\e[1;31m") \
+			LESS_TERMCAP_me=$(printf "\e[0m") \
+			LESS_TERMCAP_se=$(printf "\e[0m") \
+			LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
+			LESS_TERMCAP_ue=$(printf "\e[0m") \
+			LESS_TERMCAP_us=$(printf "\e[1;32m") \
+				man "$@"
+	}
+# }
+
+# Programs {
+	# pkgfile "command not found" hook.
+	sourceifexists /usr/share/doc/pkgfile/command-not-found.$my_shell
+
+
+	# Tell gPodder to reside in multimedia directory. KDE4 uses ~/.kde4/env/
+	export GPODDER_HOME=$HOME/media/music/gPodder
+
+	# Source MPD environment variables.
+	sourceifexists $HOME/.mpd_env
+
+	# SSH agent. Source bash file if not connected from a remote SSH.
+	#if [ -z "$SSH_CLIENT" ] && [ -f "$HOME/.ssh-agent" ]; then
+		#. $HOME/.ssh-agent
+	#fi
+
+	# Set up ros environment.
+	sourceifexists $HOME/bin/ros/setup.$my_shell
+
+	# Tmuxinator initialization.
+	if [ -d $HOME/src/github.com/tmuxinator/tmuxinator/bin/ ]; then
+		PATH="$PATH:$HOME/src/github.com/tmuxinator/tmuxinator/bin/"
+		source $HOME/src/github.com/tmuxinator/tmuxinator/completion/tmuxinator.$my_shell
+	fi
+
+	# Dotfiles manager.
+	if [ -d "$HOME/.dotfiles/bin" ]; then
+		PATH="$PATH:$HOME/.dotfiles/bin"
+	fi
+
+	# cloc.pl
+	if [ -d "$HOME/src/github.com/AlDanial/cloc" ]; then
+		PATH="$PATH:$HOME/src/github.com/AlDanial/cloc"
+	fi
+
+	# svtget
+	if [ -d "$HOME/src/github.com/smgt/svtget/" ]; then
+		PATH="$PATH:$HOME/src/github.com/smgt/svtget/"
+	fi
+
+	# youtube2mp3.sh
+	if [ -d "/opt/youtube2mp3/" ]; then
+		PATH="$PATH:/opt/youtube2mp3/"
+	fi
+
+	# Add ANSI color output to ant.
+	if program_is_in_path ant; then
+		export ANT_ARGS='-logger org.apache.tools.ant.listener.AnsiColorLogger'
+	fi
+
+	# Add tab completion to daemonize.
+	if program_is_in_path daemonize; then
+		$completion_func -cf daemonize
+	fi
+
+	# Tab complete for viw.
+	if program_is_in_path viw; then
+	 	 $completion_func -cf viw
+	fi
+
+	# Go
+	if [ -d $HOME/src/godeps ]; then
+		export GOPATH="$HOME/src/godeps/:$GOPATH"
+		PATH="$HOME/src/godeps/bin:$PATH"
+	fi
+	if [ -d $HOME/dev/go ]; then
+		export GOPATH="$HOME/dev/go/:$GOPATH"
+		PATH="$HOME/dev/go/bin:$PATH"
+	fi
+	if [ -e "$HOME/src/github.com/golang/go" ]; then
+		export GOROOT="$HOME/src/golang/go"
+		PATH="$GOROOT/bin:$GOROOT/pkg/tool/linux_amd64:$PATH"
+	fi
+
+	# less {
+		# Syntax highlighting for less with src-highlight.
+		# Normal highlight.
+		#if type src-hilite-lesspipe.sh  >/dev/null 2>&1; then
+			#export LESSOPEN="| src-hilite-lesspipe.sh %s"
+		#fi
+
+		# Solarized version, as the normal version does not work (hidden text) when solarized terminal background is used.
+		# https://github.com/jrunning/source-highlight-solarized
+		if program_is_in_path source-highlight; then
+			export LESSOPEN="| source-highlight --failsafe -f esc-solarized --style-file=esc-solarized.style -i %s -o STDOUT"
+		fi
+
+		LESS=		# Debians /etc/zsh/zshenv sets LESS to values that quits less when hitting the bottom.
+		#LESS="$LESS --no-lessopen"		# Disable usage of LESSOPEN.
+		LESS="$LESS --RAW-CONTROL-CHARS"	# Display colors.
+		LESS="$LESS --ignore-case"		# Case insensitive search. However using capital letter(s) will enable case sensitive search.
+		LESS="$LESS --status-column"		# Status column with number of lines etc.
+		#LESS="$LESS --LINE-NUMBERS"		# Show line numbers.
+		#LESS="$LESS --mouse-support"		# TODO Some lessess seems to have this option. What does it do?
+		export LESS
+	# }
+
+	# Android SDK
+	if [ -d "$HOME/src/android-sdk-linux/" ]; then
+		PATH="$HOME/src/android-sdk-linux/tools/:$HOME/src/android-sdk-linux/platform-tools/:$PATH"
+	fi
+
+	# Perl local libraries.
+	# Reference: http://search.cpan.org/~haarg/local-lib-2.000015/lib/local/lib.pm http://www.perladvent.org/2009/3/
+	#perl_local=$HOME/bin/perl5
+	#if program_is_in_path perl && [ -d $perl_local/lib/perl5/local ]; then
+		#eval $(perl -I $perl_local/lib/perl5/ -Mlocal::lib=$perl_local)
+	#fi
+
+	# Virtualenvwrapper, installed with pip.
+	shell_is_macos && virtenv_path=/usr/local/bin/virtualenvwrapper.sh || virtenv_path=/usr/bin/virtualenvwrapper_lazy.sh
+	if [ -e $virtenv_path ]; then
+		source $virtenv_path
+		export WORKON_HOME=$HOME/.virtualenvs
+		export PROJECT_HOME=$HOME/dev
+	fi
+
+
+	# macOS python
+	# Add macOS python binary folders to the path (the binaries from homebrew pyhon are already included from /usr/local/bin)
+	# $PYTHONPATH is a PATH-formatted list of additional directories where python should look for modules when importing ones. Don't mix py2 and py3 paths in it.
+	if shell_is_macos; then
+		macos_py2path=$HOME/Library/Python/2.7
+		macos_py3path=$HOME/Library/Python/3.6
+		if [ -d $macos_py2path ]; then
+			PATH="$macos_py2path/bin:$PATH"
+			# Python path must be set for ropevim to find rope.
+			#export PYTHONPATH="$macos_py2path/lib/python/site-packages:$PYTHONPATH"
+			# To really use only python2 from homebrew, so "python" refers to this version too, then (found with brew info python)
+			# export PATH="/usr/local/opt/python/libexec/bin:$PATH"
+		fi
+		if [ -d $macos_py3path ]; then
+			PATH="$macos_py3path/bin:$PATH"
+			#export PYTHONPATH="$macos_py3path/lib/python/site-packages:$PYTHONPATH"
+		fi
+		if [ -n "$PYTHONPATH" ]; then
+			# Pip in virtualenv does not work with PYTHONPATH set.
+			alias pip='PYTHONPATH= pip'
+			alias pip2='PYTHONPATH= pip2'
+			alias pip3='PYTHONPATH= pip3'
+		fi
+	fi
+
+	#if program_is_in_path pyenv; then
+		# Light-weight version:
+		#PATH="$(pyenv root)/shims:$PATH"
+		# Full config. NOTE is sandboxed
+		#eval "$(pyenv init -)"
+	#fi
+
+
+	# Powerline plugin.
+	if shell_is_macos; then
+		export POWERLINE_ROOT=$macos_py3path/lib/python/site-packages/powerline
+		export LC_ALL=en_US.UTF-8
+		export LANG=en_US.UTF-8
+	elif shell_is_bsd; then
+		export POWERLINE_ROOT=/usr/local/lib/python3.6/site-packages/powerline
+	elif shell_is_linux; then
+		export POWERLINE_ROOT=/usr/lib/python3.6/site-packages/powerline
+	fi
+
+	if program_is_in_path powerline-daemon; then
+		powerline-daemon -q
+	fi
+
+	# Lets remove these guys..
+	if shell_is_macos; then
+		unset macos_py2path macos_py3path
+	fi
+
+
+	# tig
+	# On OSX, ^Y in tig suspends the application. Source: https://github.com/jonas/tig/issues/214
+	if program_is_in_path tig && shell_is_macos; then
+		stty dsusp undef
+	fi
+
+	# RubyGems package manager
+	# Add installed $(gem install ...) binaries to path
+	# Reference: http://guides.rubygems.org/faqs/
+	# NOTE -rubygems is deprecated and removed in modern versions, see https://bbs.archlinux.org/viewtopic.php?id=233309
+	# TODO conider sandboxing this, as it's slow.
+	if which ruby >/dev/null && which gem >/dev/null; then
+		PATH="$(ruby -e 'puts Gem.user_dir')/bin:$PATH"
+	fi
+# }

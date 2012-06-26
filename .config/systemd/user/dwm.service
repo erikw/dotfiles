@@ -1,0 +1,15 @@
+# Source: https://wiki.archlinux.org/index.php/Systemd/User
+[Unit]
+Description=Dynamic Window Manager
+#Before=xinitrc.target
+After=xorg.target
+#Requires=xorg.target
+
+[Service]
+#Environment=PATH=uncomment:to:override:your:PATH
+ExecStart=/usr/local/bin/dwm
+Restart=always
+RestartSec=5
+ 
+[Install]
+WantedBy=wm.target

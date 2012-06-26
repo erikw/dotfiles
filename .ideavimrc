@@ -1,0 +1,49 @@
+" Settings for IdeaVim plugin for Intellij.
+" List of avaialbe configurations: https://github.com/JetBrains/ideavim/blob/master/doc/set-commands.md
+" Modeline [[
+"	 vi: foldmarker=[[,]] foldmethod=marker foldlevel=0: tabstop=8: filetype=vim:
+" ]]
+
+# Settings [[
+set gdefault        " The ":substitute" flag 'g' is default on
+set history=100     " Number of command-lines that are remembered
+set hlsearch        " Highlight matches with last search pattern
+set ignorecase      " Ignore case in search patterns
+set incsearch       " Show where search pattern typed so far matches
+
+set number          " Print the line number in front of each line
+set scroll          " Lines to scroll with CTRL-U and CTRL-D
+set scrolljump=5    " Minimum number of lines to scroll
+set scrolloff=3     " Minimum nr. of lines above and below cursor
+set showmode        " Message on status line to show current mode
+set smartcase       " No ignore case when pattern has uppercase
+set undolevels=2048 " Maximum number of changes that can be undone
+set nowrapscan      " Searches wrap around the end of the file
+# ]]
+
+# Mappings [[
+" vim-unimpaired emulation
+" Create line above.
+nmap [<Space> O<ESC>j
+" Create line below.
+nmap ]<Space> o<ESC>k
+" Swap line up.
+nmap ]E ddkPj
+" Swap line down.
+nmap ]e ddpk
+
+
+" Find actions with :actionlist [pattern]
+" Go to implementations of an interface.
+nmap g] :action GotoImplementation<CR>
+
+"nmap C-/ /thiswillnotmatchanything
+"map C-/ :set nohls<CR>:let @/ = ""<CR>:set hls<CR>
+
+"map \c<Space> :action CommentByLineComment<CR>
+# ]]
+
+# Plugins [[
+# Built-in emulated vim plugins.
+set surround
+# ]]

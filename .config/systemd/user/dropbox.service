@@ -1,0 +1,10 @@
+[Unit]
+Description=Dropbox file synchronization
+After=xorg.target
+
+[Service]
+ExecStart=/home/erikw/.dropbox-dist/dropboxd
+ExecReload=/bin/kill -HUP $MAINPID
+
+[Install]
+WantedBy=xinitrc.target

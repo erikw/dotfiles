@@ -1,0 +1,10 @@
+[Unit]
+Description=xbindkeys
+After=xorg.target
+
+[Service]
+ExecStart=/usr/bin/xbindkeys
+Type=forking
+
+[Install]
+WantedBy=xinitrc.target

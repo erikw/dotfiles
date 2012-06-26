@@ -1,0 +1,4 @@
+; Conditional git config for work.
+; Append work-specific configuration like user.email etc.
+; vi: ft=gitconfig
+

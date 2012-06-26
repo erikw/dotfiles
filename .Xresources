@@ -1,0 +1,113 @@
+! Xresouces for X program. This file deprecates .Xdefaults.
+! Reload with `xrdb -load .Xresouces` or -merge to not overwrite all settings.
+
+! Modeline {
+!	 vi: foldmarker={,} foldmethod=marker foldlevel=0: tabstop=8:
+! }
+
+!! XTerm. {
+! Use UTF-8.
+XTerm.utf8: 1
+! Show scrollbars.
+XTerm.scrollBar: true
+! Enable more colors.
+XTerm.termName: xterm-256color
+! Put the scrollbar to the right as customary.
+XTerm.rightScrollBar: true
+! Default window size.
+! TODO The mouse menues does not work when changing the geometry :S
+!XTerm.geometry: 80x24
+! Bell style
+XTerm.visualBell: on
+! Color of the cursor.
+!XTerm.cursorColor: white
+! Use solarized foreground color.
+XTerm.cursorColor: 657b8
+! Blink the cursor.
+XTerm.cursorBlink: true
+! Blink time in ms.
+XTerm.cursorOffTime: 900
+XTerm.cursorOnTime: 1200
+! Use a fancier font.
+XTerm.faceName: terminus:normal:pixelsize=12
+
+! Alternative resouce. Load with $ xterm -name XTermBig.
+XTermBig.geometry: 120x40
+
+! }
+
+!! urxvt {
+!! urxvt
+! Set the color bitdepth.
+URxvt.depth: 32
+! Use 8 bit mode i.e. set the 8th bit when using Meta key.
+!URxvt.meta8: true
+! Double buffering for performance.
+URxvt.buffered: true
+! Font to use.
+!URxvt.font: xft:Terminus:normal:pixelsize=12
+!Symbola gives basic (ugly) emoji support.
+URxvt.font: xft:Terminus for Powerline:normal:pixelsize=14,xft:Symbola
+! TODO if I stop using powerline with patched fonts, try to use Noto (Color) Emoji for Android style emojis.
+!URxvt.font: xft:Terminus for Powerline:normal:pixelsize=14,xft:Noto Emoji:style=Regular:pixelsize=13
+! Toggle between small and large font.
+URxvt.keysym.C-M-minus:	command:\033]710;xft:Terminus:normal:pixelsize=12\007
+URxvt.keysym.C-M-equal:	command:\033]710;xft:Terminus:normal:pixelsize=14\007
+URxvt.keysym.C-M-plus:	command:\033]710;xft:Terminus:normal:pixelsize=16\007
+! Default geometry.
+urxvt.geometry: 80x24
+! Scroll one page in case of exploding stdout.
+URxvt.jumpScroll: true
+! Fake transparency.
+!URxvt.transparent: true
+! Real transparency (requires *.dpth: 32 and a composite window manager like xcompmgr)
+!URxvt.background: rgba:1111/1111/1111/dddd
+!URxvt.background: rgba:0000/0000/0200/c800
+! I want the bells to ring!
+URxvt.visualBell: false
+! Type of scrollbar.
+URxvt.scrollstyle: rxvt
+! Show scrollbar.
+URxvt.scrollbar: true
+! Scrollbar placed where expected.
+URxvt.scrollBar_right: true
+! Prevent scroll down to bottom when new output is present.
+URxvt.scrollTtyOutput: false
+! Scroll to bottom when non-special key is pressed.
+URxvt.scrollTtyKeypress: true
+! Number of lines to save in the scrollback buffer.
+URxvt.saveLines: 65535
+! No blinking please.
+URxvt.cursorBlink: false
+! Underline instead of block cursor.
+!URxvt.cursorUnderline: true
+
+! Match URLs.
+URxvt.perl-ext-common: default,matcher
+! Open URLs in the true web broweser.
+URxvt.urlLauncher: firefox
+! Make URLs clickable.
+URxvt.matcher.button: 1
+! Open last URL.
+URxvt.keysym.C-Delete: perl:matcher:last
+! Show a list of (max 10) recently opened URLs.
+URxvt.keysym.M-Delete: perl:matcher:list
+
+
+! }
+
+!! Misc {
+! Needed for set-clipboard in tmux.
+disallowedWindowOps: 20,21,SetXprop
+
+#ifdef COLOR
+! Source some solarized colors. The path starts from where this script is loaded from (which hopefully is $HOME).
+!#include "/home/erikw/.Xresources.solarized"
+!#include "/home/erikw/.Xresources.solarized_light"
+!#include "/home/erikw/.Xresources.solarized_urxvt"
+
+! Set by solarizetoggle.sh.
+#include "/home/erikw/.solarizedtoggle/Xresouces_theme"
+
+#endif
+! }

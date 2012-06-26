@@ -1,0 +1,46 @@
+// Multi project development.
+// Include maven local repository for all projects.
+// With this, when you have a module A which uses B, A's gradle build/test will look for B in local maven (~/.m2/) too.
+// Thus you can have a continuous build in B, like $(gradle install -t),
+//
+// Alternatives:
+// * Directly in IntelliJ: https://blog.jetbrains.com/idea/2016/10/intellij-idea-2016-3-eap-gradle-composite-builds-and-android-studio-2-2/
+//   1. Open A in Intellij.
+//   2. File > New > "Module From Existing Sources" and choose B.
+//   3. View > Tool Windows > Gradle.
+//   4. Right click on module A's gradle entry and click "Composite build configuration".
+//   5. Chose module B.
+//
+// * With composite builds:
+// 1. Create A/composite.gradle (git ignore this) with content:
+// includeBuild 'path/to/B'
+// 2. In A, append to settings.gradle:
+// def compositeFile = file('composite.gradle')
+// if (compositeFile.exists()) {
+//     apply from: compositeFile
+// }
+//
+// * Composite build (simpler)
+// * In A/settings.gradle, append:
+//   includeBuild 'path/to/B'
+// * Directly on the command line from A
+// A$ gradle test --include-build path/to/B
+
+// Disabled by default, to not unknowingly end up in a hard to debug situation.
+/*
+buildscript {
+    repositories {
+	mavenLocal()
+    }
+}
+allprojects {
+    buildscript {
+	repositories {
+	    mavenLocal()
+	}
+    }
+    repositories {
+	mavenLocal()
+    }
+}
+*/

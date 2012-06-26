@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# vi-which: wrapper for the classic"vi $(which script)".
+
+prog="$1"
+shift
+args="$*"
+type "$prog" &>/dev/null
+if [ "$?" -ne 0 ]; then
+	echo "\"${prog}\" not found in \$PATH." >&2
+	exit 1
+else
+	vim $(which "$prog") $args
+	exit 0
+fi
+

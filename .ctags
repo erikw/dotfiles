@@ -1,0 +1,17 @@
+--regex-C=/$x/x/x/e/ Config file comment hack from:
+--regex-C=/$x/x/x/e/ http://stackoverflow.com/questions/10973224/how-to-add-comments-to-an-exuberant-ctags-config-file
+
+
+--recurse
+--sort=foldcase
+--tag-relative=yes
+
+--fields=+iaSnm
+--extra=+qf
+--if0=yes
+
+--c-kinds=+x
+--c++-kinds=+p
+
+--regex-C=/$x/x/x/e/ Skip import statement in pyton files.
+--python-kinds=-i

@@ -1,0 +1,7 @@
+[Unit]
+Description=Index email with notmuch
+
+[Service]
+Type=simple
+Nice=10
+ExecStart=/usr/bin/notmuch new

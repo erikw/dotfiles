@@ -1,0 +1,63 @@
+" ==obsidian_Color_Scheme (based on Zenburn)==
+" name: obsidian
+" ==obsidian_Colorscheme_Settings==
+hi Bell					border: 0 none; background-color: black;
+hi Boolean				color: #70B751;
+hi CmdLine				font-family: monospace; padding: 1px;
+hi CmdOutput				white-space: pre;
+hi CompDesc				color: #B4A05A; width: 50%;
+" hi CompGroup
+" hi CompGroup:not(:first-of-type)	margin-top: .5em;
+hi CompIcon				width: 16px; min-width: 16px; display: inline-block; margin-right: .5ex;
+hi CompIcon>img				max-width: 16px; max-height: 16px; vertical-align: middle;
+hi CompItem				font-size: 9px;
+hi CompItem>*				padding: 0 .5ex;
+hi CompItem[selected]			color: #201F1F; background: #B4A05A;
+hi CompLess				text-align: center; height: 0; line-height: .5ex; padding-top: 1ex;
+hi CompLess::after			content: "\2303" /* Unicode up arrowhead */
+hi CompMore				text-align: center; height: .5ex; line-height: .5ex; margin-bottom: -.5ex;
+hi CompMore::after			content: "\2304" /* Unicode down arrowhead */
+hi CompMsg				font-style: italic; margin-left: 16px;
+hi CompResult				width: 45%; overfloaw: hidden;
+hi CompTitle				color: #70B751; background: #302F2F; font-weight: bold;
+hi CompTitle>*				padding: 0 .5ex;
+hi ErrorMsg				color: #201F1F; background: #A22618; font-weight: bold;
+hi Filter				font-weight: bold;
+hi FrameIndicator			background-color: #70B751; opacity: 0.5; z-index: 999; position: fixed; top: 0; bottom: 0; left: 0; right: 0;
+hi Function				color: navy;
+hi Gradient				height: 1px; margin-bottom: -1px; margin-top: -1px;
+hi GradientLeft				background-color: #70B751;
+hi GradientRight			background-color: #302F2F;
+hi Hint					font-family: monospace; font-size: 9px; font-weight: bold; color: #FFFFFF; background-color: #275FA0; border-color: ButtonShadow; border-width: 0px; border-style: solid; padding 0px 1px 0px 1px;
+hi Hint::after				content: attr(number);
+hi HintActive				background: #E84C24; color: #333333;
+hi HintElem				background-color: #4D92B4; color: #000D18;
+hi HintImage				opacity: .5;
+hi Indicator				color: #8BCAEA;
+hi InfoMsg				color: #D4D2CF; background: #302F2F;
+hi LineNr				color: 8E6514; background: #302F2F;
+hi Message				white-space: normal; min-width: 100%; padding-left: 2em; text-indent: -2em; display: block;
+hi ModeMsg				color: #D4D2CF; background: #302F2F;
+hi MoreMsg				color: #70B751; background: #302F2F;
+hi NonText				color: #8BCAEA; min-height: 16px; padding-left: 2px;
+hi Normal				color: #D4D2CF; background: #302F2F;
+hi Null					color: #8BCAEA;
+hi Number				color: #8BCAEA;
+hi Object				color: #543973;
+hi Preview				color: gray;
+hi Question				color: #70B751; background: #302F2F; font-weight: bold;
+hi Search				font-size: inherit; padding: 0; color: #293324; background-color: #E6D273; padding: 0;
+hi StatusLine				color: #70B751; background: #201F1F;
+hi StatusLineBroken			color: #70B751; background: #201F1F;
+hi StatusLineSecure			color: #B4A05A; background: #201F1F;
+hi String				color: #70B751;
+" hi TabClose
+" hi TabIcon
+" hi TabIconNumber			font-weight: normal; color: #D4D2CF; text-align: center; text-shadow: black -1px 0 1px, black 0 1px 1px, black 1px 0 1px, black 0 -1px 1px;
+hi TabNumber				font-weight: bold; margin: 0; padding-right: .3ex;
+"chi TabText
+hi Tag					color: #8BCAEA;
+hi Title				color: #70B751; background: #302F2F; font-weight: bold;
+hi URL					text-decoration: none; color: #70B751; background: inherit;
+hi URL:hover				text-decoration: underline; cursor: pointer;
+hi WarningMsg				color: #70B751; background: #302F2F;

@@ -1,0 +1,13 @@
+! Map the old plastic Mac keyboards to PC layout.
+
+remove Lock = Caps_Lock
+keysym Caps_Lock = Escape
+! F15 as capslock
+keycode 193 = Caps_Lock
+add Lock = Caps_Lock
+
+remove mod1 = Alt_L
+remove mod4 = Super_L
+
+keysym Alt_L = Multi_key
+add mod1 = Super_L

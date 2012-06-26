@@ -1,0 +1,26 @@
+# main()
+snippet mainf
+	#include <stdlib.h>
+
+	int main(int argc, const char *argv[])
+	{
+		${1}
+		return EXIT_SUCCESS;
+	}
+# For Loop
+snippet for
+	for (${2:i} = 0; $2 < ${1:count}; ${3:+}$3$2) {
+		${4:/* code */}
+	}
+# Custom For Loop
+snippet forr
+	for (${1:i} = ${2:0}; ${3:$1 < 10}; ${4:+}$4$1) {
+		${5:/* code */}
+	}
+snippet once2
+	#ifndef `toupper(Filename('$1_H', 'UNTITLED_H'))`
+	#define `toupper(Filename('$1_H', 'UNTITLED_H'))`
+
+	${1}
+
+	#endif

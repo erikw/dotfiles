@@ -1,0 +1,12 @@
+snippet mainf
+	package main
+
+	import (
+		"fmt"
+	)
+
+	func main() {
+		${1:// code}
+	}
+snippet log
+	log.Printf("%${1:s}\n", ${2:var})${3}

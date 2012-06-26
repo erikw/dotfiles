@@ -1,0 +1,34 @@
+#/etc/khal/khal.conf.sample
+[calendars]
+#[[home]]
+#path = ~/.khal/calendars/home/
+#color = dark blue
+
+#[[work]]
+#path = ~/.khal/calendars/work/
+#readonly = True
+
+[[gcal]]
+path = ~/.vdirsyncer/calendars/GIT-CENSORED
+color = dark blue
+
+[sqlite]
+path = ~/.khal/khal.db
+
+[locale]
+local_timezone = Europe/Berlin
+default_timezone = Europe/Berlin
+
+timeformat = %H:%M
+dateformat = %d.%m.
+longdateformat = %Y-%m-%d
+datetimeformat =  %d/%m. %H:%M
+longdatetimeformat = %Y-%m-%d %H:%M
+
+firstweekday = 0
+
+[default]
+default_command = calendar
+default_calendar = gcal
+# in agenda/calendar display, shows all days even if there is no event
+show_all_days = False

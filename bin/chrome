@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+# Wrapper for Chrome with a long name.
+exec /usr/bin/google-chrome-stable

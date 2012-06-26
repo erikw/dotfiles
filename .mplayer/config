@@ -1,0 +1,47 @@
+# Erik Westrup's mplayer configuration.
+
+# General
+#ao = "alsa"			# Audio out, ALSA.
+ao = "pulse"			# Audio out, pulseaudio.
+alang = en
+mixer-channel = "Master"
+srate = 48000
+utf8 = 1
+really-quiet="1" 		# Very very little console output.
+
+vo = "xv"			# Video out.
+zoom = "1" 			# Allow sofware scaling if I use X11 for vo.  aid = "1".
+sid = "0"			# Subtitle set.
+
+# Display
+double="yes"			# Double buffering.
+framedrop="1"			# For slow machines
+hardframedrop="0" 	  	# Make sure hard frame drop is off but can turn on easily now.
+
+# Subtitles
+#font=/usr/share/fonts/truetype/msttcorefonts/impact.ttf
+
+ffactor="10"			# Black outline.
+sub-bg-alpha="0" 		# Background color ala closed captions.
+sub-bg-color="0" 		# Black to white.
+subfont-text-scale="3.7"	# Truetype font scaling.
+subfont-blur="1" 		# Slight blur.
+unicode            = 1
+
+# This sets the postprocessing into overdrive using all possible spare cpu cycles to make the movie look better.
+autoq=100
+vf=pp=de,hqdn3d
+
+
+subpos="90"			# By default subtitles are too low
+subalign="2"
+
+# Always keep mplayer on top
+#ontop="1"
+
+# Prevent xscreensaver from locking.
+#heartbeat-cmd="xscreensaver-command -deactivate >&- 2>&- &"
+heartbeat-cmd="xautolock -disable;xautolock -enable"
+
+# I don't have IR on this computer.
+nolirc=yes

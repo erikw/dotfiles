@@ -1,0 +1,11 @@
+[Unit]
+Description=MPDScribble
+After=xorg.target
+After=mpd.service
+
+[Service]
+ExecStart=/usr/bin/mpdscribble
+Type=forking
+
+[Install]
+WantedBy=xinitrc.target

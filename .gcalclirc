@@ -1,0 +1,17 @@
+[gcalcli]
+# Google account name.
+user: erik.westrup@gmail.com
+# Google password token.
+pw: GIT-CENSORED
+# Calendars to show.
+cal: erikw,school,"Week Numbers"
+# Columns for output.
+#width: 80
+# Use 24 hour format.
+24hr: true
+# Show item details.
+details: true
+# A week starts on Monday.
+mon: true
+# Don't show started events.
+ignore-started: true

@@ -1,0 +1,43 @@
+" Pentadactyl color scheme
+"
+" Mantainer: helmuthdu <helmuthdu@gmail.com>
+" Last Modified: 2012-03-09 13:23:33
+" Note: Based on vimium
+" Version: 0.2
+" Name: Vimium
+
+" Statusline {{{
+style -name=yourUglyStatusline * #dactyl-statusline-field-container { padding-left: 2px; }
+style -name=yourUglyStatuslineMozSelection * #dactyl-statusline-field-container *::-moz-selection { background: rgba(0,0,0,0.2); }
+style -name=yourUglyStatuslineChildren * #dactyl-statusline-field-container * { font-family: "Lucida Grande", "Arial", "Sans"; font-size: 12px; font-weight: normal; }
+style -name=yourUglyStatuslineZoomLevel * #dactyl-statusline-field-container #dactyl-statusline-field-zoomlevel { display: none; }
+style -name=yourUglyStatuslineBufferPosition * #dactyl-statusline-field-container #dactyl-statusline-field-bufferposition { display: none; }
+style -name=yourUglyStatuslineTabCount * #dactyl-statusline-field-container #dactyl-statusline-field-tabcount { display: none; }
+style -name=yourUglyStatuslineProgress * #dactyl-statusline-field-container #dactyl-statusline-field-progress { display: none; }
+hi StatusLine         background: Black !important; font-size: 12px; font-family: "Lucida Grande", "Arial", "Sans"; color: white; padding: 0px 3px 4px;
+hi StatusLineNormal   background: Black !important; font-size: 12px; color: white;
+hi StatusLineBroken   background: Black !important; font-size: 12px; color: white;
+hi StatusLineSecure   background: Black !important; font-size: 12px; color: white;
+hi StatusLineExtended background: Black !important; font-size: 12px; color: white;
+" }}}
+" Command-line {{{
+hi Normal             background-color: #FFF; color: black; font-family: "Lucida Grande", "Arial", "Sans"; font-size: 12px;
+hi CmdLine            font-family: "Lucida Grande", "Arial", "Sans"; font-size: 12px;
+" }}}
+" Completion {{{
+hi CompDesc           padding-left: 6px;
+hi CompIcon           display: none;
+hi CompItem[selected] background: #FFC542 !important;
+hi CompTitle          text-transform: uppercase; background: -moz-linear-gradient(top, #FFF785, #FFC542); font-size: 11px; padding: 1px 3px 0px 3px; font-family : "Helvetica Neue", "Helvetica", "Arial", "Sans"; font-weight: bold; color: #302505;
+hi CompTitleSep       -a background: #C38A22;
+" }}}
+" Hints {{{
+hi Hint               text-transform: uppercase; font-family : "Helvetica Neue", "Helvetica", "Arial", "Sans"; font-weight: bold; font-size: 11px; text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6); color: #302505; padding: 1px 3px 0px 3px; background: -moz-linear-gradient(top, #FFF785, #FFC542); border: 1px #C38A22 solid; -moz-border-radius: 3px; -moz-box-shadow: 0 3px 7px 0px rgba(0,0,0,0.3);
+hi HintElem           background-color: inherit !important
+hi HintActive	      background-color: inherit !important
+hi HintImage          opacity: .5 !important;
+" }}}
+" Messages {{{
+hi ErrorMsg           background: #a00 !important; color: #fff !important; font: 11px "Menlo" !important; padding: 2px 4px !important;
+hi WarningMsg         background: #a00 !important; color: #fff !important; font: 11px "Menlo" !important; padding: 2px 4px !important;
+" }}}

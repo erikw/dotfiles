@@ -1,0 +1,207 @@
+# Xinit for irvine
+# Modeline {
+#	 vi: foldmarker={,} foldmethod=marker foldlevel=0:
+# }
+
+# Environment {
+	# Desktop session. Used by $HOME/.xinitrc
+	session=dwm
+
+	# Web browser to use. urlscan (and others?) uses this variable.
+	# This is also set in ~/.shell_commons, but must be set here since mutt is started from here via irctor.
+	export BROWSER=firefox
+
+	# Set up display with default modes. NOTE set wallpaper after this.
+	#xrandr --auto --output LVDS1 --mode 1600x900 --output HDMI2 --mode 1920x1200 --right-of LVDS1
+	# Done by lenovo-dock.sh.
+	#$HOME/bin/dualscreen.sh dell24 enable
+
+	# Set keyboard map.
+	xkbset
+
+	# Combined Escape and Control hack for CapsLock key.
+	#xcape -e 'Control_L=Escape'
+
+	# Start PulseAudio.
+	# Previously autostarted by /etc/X11/xinit/xinitrc.d/pulseaudio, seems to be replaced by XDG autostart.
+	if ! pulseaudio --check; then
+		pulseaudio --start
+	fi
+
+
+	# Modify key bindings.
+	#if [ -f "$HOME/.Xmodmap" ]; then
+		#xmodmap $HOME/.Xmodmap
+	#fi
+
+	# Updated X resouce database.
+	if [ -f "$HOME/.Xresources" ]; then
+		# Apparently merge will not always work for xterm settings.
+		#xrdb -merge $HOME/.Xresources
+		xrdb -load $HOME/.Xresources
+	fi
+
+	# Tell GTK and QT applications to use X input method so my .Xmodmaps becomes visible.
+	#export GTK_IM_MODULE=xim
+	#export QT_IM_MODULE=xim
+
+	# Set wallpaper.
+	# Done by lenovo-dock.sh->dualscreen.sh.
+	#wallpaper_set.sh
+
+	# Start screensaver
+	#xscreensaver -no-splash &
+	#xautolock -time 20 -detectsleep -locker slimlock -corners +000 -cornerdelay 2 -cornerredelay 30 -notify 10 -notifier "notify-send -u normal -a xautolock 'Locking screen in 10 seconds.'" &
+	xautolock -time 20 -detectsleep -locker slock -notify 10 -notifier "notify-send -u normal -a xautolock 'Locking screen in 10 seconds.'" &
+
+	# Screen blanking, turn off screen after inactivity (in seconds). For mysterious reasons the sleep is needed.
+	# NOTE Done by lenovo-dock.sh->xautolockctl now.
+	#xset +dpms
+	# NOTE done by laptop-mode now.
+	#sleep 1; xset s 1500
+
+	# Docked vs Undocked mode.
+	# Start after pulseaudio, xautolock.
+	lenovo-is-docked && lenovo-dock.sh dock || lenovo-dock.sh undock
+
+	# Set terminal cursor speed. First argument (in ms) is the delay before auto repeat starts.
+	# The second parameter is the repeat rate in number repeats per second.
+	# Get current values with $(xset q | grep rate)
+	xset r rate 600 60
+
+
+	# Set desktop environment. Needed by e.g. variety(1).
+	export XDG_CURRENT_DESKTOP=dwm
+	export XDG_SESSION_DESKTOP="$XDG_CURRENT_DESKTOP"
+
+# }
+
+# Start applications {
+	# Try to not start programs in daemon mode, so that when parent (the desktop manager) quits all programs started there are killed as well.
+
+	# Wallpaper changer.
+	# Let's have this early, as it's visually one of the first things that is seen by the user.
+	# Currently it needs a custom patch in ~/.config/variety/scripts/set_wallpaper: https://bugs.launchpad.net/variety/+bug/1755257
+	variety &
+
+
+	# Start notification system.
+	#/usr/lib/notification-daemon-1.0/notification-daemon &
+	#dunst &
+	dunst_restarter.sh &
+
+
+	# Start XDG autostart programs
+	# dex -a
+
+	# Start GNOME keyring. From https://wiki.archlinux.org/index.php/Gnome-keyring
+	# Also updated /etc/pam.d/{login/passwd} for this to work.
+	# Start a D-Bus session
+	#source /etc/X11/xinit/xinitrc.d/30-dbus
+	# Start GNOME Keyring
+	eval $(/usr/bin/gnome-keyring-daemon --start --components=gpg,pkcs11,secrets,ssh)
+	# You probably need to do this too:
+	export SSH_AUTH_SOCK
+	export GPG_AGENT_INFO
+	export GNOME_KEYRING_CONTROL
+	export GNOME_KEYRING_PID
+
+
+	# Disable touchpad when typing.
+	# Disbled: Synaptics palmdetection is good enough.
+	#syndaemon -K -d -i 0.5 &
+	#syndaemon -K -i 0.5 &
+
+	# Start URxvt daemon.
+	#urxvtd --quiet --opendisplay --fork
+	urxvtd --quiet --opendisplay &
+
+	# Start my general tmux session.
+	irctor start &
+
+	# A ahell is always good start...
+	(sleep 3s && urxvtc -e irctor) &
+
+	# Start Music Player Daemon.
+	#mpd &
+	#mopidy &
+
+	# Volume notification daemon.
+	#volnoti --timeout 1.2
+	volnoti --no-daemon --timeout 1.2 &
+
+	# Start X keyboard shortcut daemon.
+	xbindkeys
+
+	# DWM statusbar.
+	dwmstatus &
+
+	# Start my Maildir notifier.
+	$HOME/bin/maildir_watch.sh &
+
+	# Start mailleds that will blink LEDs when there are unread emails.
+	$HOME/bin/mailleds_start.sh &
+
+	# Automatic screen color adjustment.
+	redshift-gtk &
+
+	# MPD notifier.
+	#mpd-notification &
+
+	# Scrobble songs in MPD.
+	#mpdscribble --no-daemon &
+
+	# Start skype.
+	#skype &
+
+	# Start skyped hopefully after Skype is loaded.
+	# TODO is this sleep still needed?
+	#(sleep 10s && skyped) &
+
+	# Start auto mounter. Needs a running notification systen daemon.
+	udiskie &
+
+	# System tray volume control.
+	pnmixer &
+
+	# Network monitor for netctl.
+	netmon &
+
+	# Battery monitor.
+	batterymon &
+
+	# Clipboard manager.
+	parcellite &
+
+	# Bluetooth applet. TODO broken in AUR, find replacement.
+	#blueman-applet &
+
+	# Lock screen when my phone is too far away.
+	# TODO is it proximity who causes kernel oops?
+	#start_proximity.sh &
+
+	# Start Dropbox.
+	# Start with a delay as dropbox some times does a massively CPU intensive file indexing on launch, which slows down the whole system.
+	(sleep 30s && dropbox start) &
+
+	# Start GDrive syncer.
+	(sleep 50s && insync start) &
+
+	# Facebook Messenger for desktop.
+	#messengerfordesktop --os-startup &
+
+	# Whatsapp-desktop.
+	#Whatsapp &
+
+	# Discord chat app.
+	#discord &
+
+	# Mutli-chat app
+	franz &
+
+	# Firefox
+	firefox &
+
+	# Emoji keyboard
+	emoji-keyboard &
+# }

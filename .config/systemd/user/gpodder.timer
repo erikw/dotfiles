@@ -1,0 +1,9 @@
+[Unit]
+Description=Fetch new podcast episodes each day
+
+[Timer]
+OnCalendar=daily
+Persistent=true
+
+[Install]
+WantedBy=timers.target

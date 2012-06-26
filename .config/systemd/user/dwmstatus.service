@@ -1,0 +1,10 @@
+[Unit]
+Description=DWM statusbar
+After=xorg.target
+After=dwm.service
+
+[Service]
+ExecStart=/home/erikw/dev/dwmstatus/dwmstatus
+
+[Install]
+WantedBy=xinitrc.target

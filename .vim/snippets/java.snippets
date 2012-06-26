@@ -1,0 +1,49 @@
+snippet class
+	public class ${1:`Filename('$1', 'name')`} {
+
+		public $1() {
+			${2}
+
+		}
+
+	}
+snippet mainc
+	public class ${1:`Filename('$1', 'name')`} {
+
+		public static void main(String args[]) {
+			${2:new $1().run();}
+		}
+
+		public $1() {
+
+		}
+
+		public void run() {
+			${3}
+		}
+
+	}
+
+## Print Methods
+snippet sysout
+	System.out.println(${1});
+snippet sysoutf
+	System.out.printf(${1});
+snippet syserr
+	System.err.println(${1});
+snippet syserrf
+	System.err.printf(${1});
+
+# Android log tag.
+snippet ltag
+	private final String TAG = this.getClass().getName();
+snippet logv
+	Log.v(TAG, ${1});
+snippet logd
+	Log.d(TAG, ${1});
+snippet loge
+	Log.e(TAG, ${1});
+snippet logi
+	Log.i(TAG, ${1});
+snippet logw
+	Log.w(TAG, ${1});

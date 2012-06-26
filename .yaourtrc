@@ -1,0 +1,21 @@
+# Temporary fix as the default URL has been (301) moved.
+# TODO uncomment this when the snapper package is updated.
+#AURURL='https://aur.archlinux.org'
+
+# Don't check vote status.
+AURVOTE=0
+
+
+# Skip confirmation message for installing package.
+# "Continue installing xyz ? [Y/n]"
+# Not good to skip, I want to look at the list of packages to upgrade before I continue.
+# NOCONFIRM=1
+
+
+# Skip the confirmation for you if you want to continue the build.
+# "Continue building XYZ ? [Y/n]
+BUILD_NOCONFIRM=1
+
+
+# Skip message about editing PKGBUILD and the install files.
+EDITFILES=0

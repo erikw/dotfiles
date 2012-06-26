@@ -1,0 +1,17 @@
+# Start X if we're at vt1.
+# TODO start using systemd service when there is an official way of starting xorg in a user session.
+
+source $HOME/.shell_functions
+
+if shell_is_linux; then
+	host=$(hostname --short)
+elif shell_is_macos; then
+	host=$(hostname -s)
+else
+	host=$(hostname)
+fi
+
+if [ $host = irvine ]; then
+	type startx >/dev/null 2>&1
+	[[ -z $DISPLAY && $XDG_VTNR -eq 1 && "$?" -eq 0 ]] && exec startx
+fi

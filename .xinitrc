@@ -1,0 +1,80 @@
+#!/usr/bin/env bash
+# Modeline {
+#	 vi: foldmarker={,} foldmethod=marker foldlevel=0:
+# }
+
+# Initialize my X session. Different files are used depending on how X is started.
+#	$HOME/.Xsession: called by displaymanagers like xdm.
+#	$HOME/.xinitrc: called by xinit which is called by startx and also DMs like SLiM.
+# I want to keep it consistent so I let .Xsession run this script instead. A symlink would do fine too but those tend to become invalid when moving between systems.
+
+# Setup {
+	# In case everything goes wrong, we at least fall back to a plain xterm.
+	failsafe="xterm -ls -T Failsafe -geometry 80x24-0-0"
+	# Damn son, where'd you find this?
+	trap "exec $failsafe" EXIT SIGHUP SIGINT SIGPIPE SIGTERM SIGIO
+
+	# Some bash (1 and 2) settings to avoid trouble on a failed program call.
+	set +e > /dev/null 2>&1
+	set +u > /dev/null 2>&1
+	set +o posix  > /dev/null 2>&1
+	if type shopt > /dev/null 2>&1 ; then
+		shopt -s execfail
+	fi
+
+	if [ -d /etc/X11/xinit/xinitrc.d ]; then
+		for f in /etc/X11/xinit/xinitrc.d/*; do
+			[ -x "$f" ] && . "$f"
+		done
+		unset f
+	fi
+
+	# Be compatible with other DM and use xprofile.
+	if [ -f $HOME/.xprofile ]; then
+		source $HOME/.xprofile
+	fi
+# }
+
+# Host specific {
+	host=$(hostname --short)
+	xinithost=$HOME/.xinitrc.$host
+	if [ -f $xinithost ] && [ -r $xinithost ]; then
+		. $xinithost
+	fi
+# }
+
+# Window manager {
+	# $session is possibly set by host specific xinitrc files.
+	if [ -z "$session" ]; then
+		[ "$#" -gt 0 ] && session="$@" || session=dwm
+	fi
+	case $session in
+		awesome				) wm="awesome";;
+		bspwm				) wm="bspwm";;
+		catwm				) wm="catwm";;
+		cinnamon			) wm="cinnamon-session";;
+		dwm					) wm="dwm";;
+		enlightenment		) wm="enlightenment_start";;
+		ede					) wm="startede";;
+		fluxbox				) wm="startfluxbox";;
+		gnome				) wm="gnome-session";;
+		gnome-classic		) wm="gnome-session --session=gnome-classic";;
+		i3|i3wm				) wm="i3";;
+		icewm				) wm="icewm-session";;
+		jwm					) wm="jwm";;
+		kde					) wm="startkde";;
+		mate				) wm="mate-session";;
+		monster|monsterwm	) wm="monsterwm";;
+		notion				) wm="notion";;
+		openbox				) wm="openbox-session";;
+		unity				) wm="unity";;
+		xfce|xfce4			) wm="startxfce4";;
+		xmonad				) wm="xmonad";;
+		# No known session, try to run it as command
+		*) wm="$1";;
+	esac
+	exec "$wm"
+
+	# Call failsafe.
+	exit 0
+# }

@@ -1,0 +1,10 @@
+[Unit]
+Description=MPD notifier
+After=xorg.target
+After=mpd.service
+
+[Service]
+ExecStart=/usr/local/bin/mpd-notification
+
+[Install]
+WantedBy=xinitrc.target

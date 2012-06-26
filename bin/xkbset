@@ -1,0 +1,8 @@
+#!/bin/sh
+# Set keyboard settings
+
+#setxkbmap -layout us -variant altgr-intl
+#xmodmap ~/.Xmodmap
+
+#setxkbmap -layout us,se -variant basic,basic -option terminate:ctrl_alt_bksp -option grp:switch -option caps:escape -option compose:rwin
+xkbcomp -w 0 -I$HOME/.xkb $HOME/.xkb/keymap.xkb $DISPLAY

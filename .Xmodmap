@@ -1,0 +1,39 @@
+! Modify keybindings. 'xmodmap ~/.xmodmap' should typically be executed during system boot.
+! Keycodes found with xev. Keysyms are listed in /usr/include/X11/keysymdef.h. Exclude the preceding 'XK_'.
+
+! Remove Caps Lock key from the Lock-list.
+remove Lock = Caps_Lock
+
+! Translate the Caps Lock key into matching the Escape keycode.
+keysym Caps_Lock = Escape
+
+! Translate the Pause key to the Caps Lock keycode.
+keysym Pause = Caps_Lock
+
+! Translate the Escape key to the Help keycode.
+!keysym Escape = Help
+
+! Map compose key. Find key sequences in /usr/share/X11/locale/en_US.UTF-8/Compose. 
+!keysym Menu = Multi_key
+!keysym Super_L = Multi_key
+! Using super as both MODKEY in DWM and as Multi_key causes input-focus to be lost in terminals. Solution: remap Multi_key to be Shift-Super.
+keysym Super_L = Super_L Multi_key
+
+
+! For Emacs: translate Alt-keys to Meta.
+!clear Mod1
+!keycode 64 = Meta_L
+!keycode 108 = Meta_R
+!keysym Alt_L = Meta_L
+!keysym Alt_R = Meta_R
+!add Mod1 = Meta_L Meta_R
+
+! Make Caps Lock key an extra Control
+!remove Lock = Caps_Lock
+!keysym Caps_Lock = Control_L
+!add Control = Control_L
+
+! Mute & volume.
+!keycode 121 = F21
+!keycode 122 = F22
+!keycode 123 = F23

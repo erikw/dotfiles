@@ -1,0 +1,262 @@
+# Erik Westrup's mutt configuration.
+
+# Modeline {{
+#	 vi: foldmarker={{,}} foldmethod=marker foldlevel=0: tabstop=8:
+# }}
+
+# Variables {{
+	# Addresses {{
+		set my_addr_default	=	"erik.westrup@gmail.com" 	# My default mail address.
+		set my_addr_westrup	=	"erik@westrup.se"		# Fancy address thanks to Anders Westrup.
+		set my_addr_dsek	=	"erikw@dsek.lth.se"		# Mailalias for me at Dsek.
+	# }}
+
+	set my_local_mbox = "/var/spool/mail/erikw"		# The system local mailbox.
+	set my_format_status = "-%r-Mutt: %f [Msgs:%?M?%M/?%m%?n? New:%n?%?o? Old:%o?%?d? Del:%d?%?F? Flag:%F?%?t? Tag:%t?%?p? Post:%p?%?b? Inc:%b?%?l? %l?]---(%s/%S)-%>-(%P)" 	# Status format to used in macros.
+# }}
+
+# Connection {{
+	#set sendmail = "/usr/bin/env msmtp -a gmail"	# Use msmtp with the gmail-account. NOTE using postfix now.
+	set mbox_type = Maildir				# Mailbox type.
+	set folder = ~/.mail				# Mail root folder.
+	set spoolfile = "+inbox"			# Inbox.
+	set mbox = "+archive"				# mbox archive.
+	set postponed = "+drafts"			# Drafts folder.
+	mailboxes +inbox +lists				# Mailboxes to monitor for changes.
+	mailboxes $my_local_mbox			# System local mailbox.
+	save-hook . +postponed				# Default save folder.
+	unset record					# Required to prevent duplicates in +sent.
+	set check_new					# Check open mailboxes for new mails.
+	set mail_check = 0				# Check for mail always (in seconds).
+	#set timeout = 300				# Timeout when when mutt waits for input.
+	set confirmcreate				# Confirm saving to new mailboxes.
+	ignore *					# Ignore all headers in pager.
+	unhdr_order *					# Clear possibly system-wide set ordering.
+	unignore from: to: cc: date: subject:		# Show only these...
+	hdr_order from: to: cc: date: subject:		# and in this order.
+	alternates $my_addr_default			# Addresses I recieve mails to.
+	alternates $my_addr_westrup
+	alternates $my_addr_dsek
+
+	# Use mutt's built in IMAP, for gmail.
+	# set imap_user = "erik.westrup@gmail.com"	# IMAP user.
+	# set imap_pass = ""				# Password. Escape it!
+	# SMTP url.
+	# set smtp_url = "smtp://erik.westrup@smtp.gmail.com:587/"
+	# set smtp_pass = ""				# Password. Escape it!
+	# set folder = "imaps://imap.gmail.com:993"	# IMAP root folder.
+	# set spoolfile = "+INBOX"			# Inbox spool file.
+	# set imap_check_subscribed			# Fetch folders and add to as mailboxes.
+	# set hostname = gmail.com			# DNS-domain.
+	# set imap_keepalive = 300			# Max time until poll (in seconds).
+	# set postponed = "+[Gmail]/Drafts"		# Drafts folder.
+	# set record = "+[Gmail]/Sent Mail"		# Append sent mails.
+	# set net_inc=5					# Show download progress every 5KiB.
+# }}
+
+# Crypt {{
+	source ~/.muttrc.gpg						# Use GnuPG commands. Original is in /usr/share/doc/packages/mutt/samples/gpg.rc
+	#source /etc/Muttrc.gpg.dist
+	set pgp_sign_as=AD610036					# Default ID to sign with.
+	set crypt_autosmime						# Use S/MIME format.
+	unset crypt_autosign						# Don't sign all outgoing messages.
+	unset crypt_autoencrypt						# Don't encrypt all outgoing messages.
+	set crypt_replysign						# Sign replies to encrypted messages.
+	set crypt_replyencrypt						# Encrypt replies to encrypted messages.
+	set crypt_replysignencrypted					# Encrypt and sign replies to encrypted and signed messages.
+	set crypt_timestamp						# Include a time stamp.
+	set crypt_verify_sig						# Try to verify signatures.
+	#set pgp_mime_signature_filename="signature.asc"		# Name signature file. Requires Vineet Kumar's patch.
+	#set pgp_mime_signature_description="Digital signature"		# Signature description. Requires Vineet Kumar's patch.
+	set pgp_timeout=600						# Number of seconds the an enetered passphrase will be remembered.
+# }}
+
+# General {{
+	set charset = "utf-8"					# Charset used in terminal.
+	set send_charset = "utf-8:iso-8859-1"			# Charset for sending.
+	set signature="~/bin/siggen.sh|"			# Mail signature.
+	unset sig_dashes					# Don't put two dashed above the .sig.
+	#set edit_headers = yes					# Edit mail headers in the editor.
+	set query_command="goobook query '%s'"			# Query Google contacts.
+	set realname = "Erik Westrup"				# My real name.
+	set use_from						# Generate From:.
+	set from = $my_addr_default				# From-address.
+	unset abort_nosubject					# Allow skipping subject.
+	set use_envelope_from					# Same return address ad "From:" header.
+	set fast_reply						# Skip To: and Subject promt.
+	set include = yes					# Include a copy of the mail being replied to.
+	set fcc_attach						# Save attachments with the body.
+	set mime_forward = yes					# Forward attachments.
+	set mime_forward_rest = yes				# Forward attachments.
+	set indent_string = '>'					# Dont use default indentation '> '.
+	#set attribution = "On %d, %n wrote:"			# Default attribution line.
+	set attribution = "On %{%a %Y-%m-%d}, %n wrote:"	# A less verbose attribution line.
+	set forward_format = "Fwd: %s"				# Forwarding header subject.
+	set forward_quote					# Indent message with $indent_string.
+	set header_cache=~/.mutt/cache/headers			# Cache headers for faster lookup.
+	set message_cachedir=~/.mutt/cache/bodies		# Cache bodies for faster viewing. Not needed since I'm using Maildir?
+	set editor = "vim --cmd 'let mutt_mode=1'"		# Text editor for mail composing.
+	set save_history = 50					# Number of items per category to save.
+	set history_file = ~/.mutt/mutthistory			# File to store history in.
+	set certificate_file = ~/.mutt/certificates		# Location of trusted certs.
+	unset score						# Don't bother scores.
+	my_hdr X-URL: http://2r.se/				# A custom URL-header.
+	my_hdr X-Mailer: Mutt					# The User-Agent header standard has not been adopted enough.
+	# XFace avatar.
+	my_hdr X-Face: B)SR@fKAeV\;wi8C7qN^wdeCXJbM}c)6\;(36^7IS]\\\#(F\;s\$OYz\;|)/b^k_eO_01[z\;2~4u(e6:F,f\\%z|Nn\\\'OjG^0l|wl3kRZVO
+	# Regexp for matching reply subjects.
+	set reply_regexp = "^(re([\[0-9\]+])*|aw|sv):[ \t]*"
+	set status_format="$my_format_status<$my_addr_default>"
+
+#  }}
+
+# UI {{
+	set sort = threads				# Sort mails by threads.
+	set sort_aux = reverse-last-date-received	# Ordering in threads.
+	set sort_re					# Thread based on reply_regexp
+	unset move					# Don't move read mails.
+	set delete					# Don't ask, just do
+	unset confirmappend				# Don't ask, just do!
+	set quit = ask-yes				# Ask before quitting.
+	set beep_new					# Terminal bell on new mails.
+	#set pager = less				# Use less as the pager.
+	#unset prompt_after				# If external pager is used - don't promt when returning.
+	set pager_stop					# Don't go to next message automatically.
+	set menu_scroll					# Scroll in menus
+	set smart_wrap					# Don't split words
+	set tilde					# Pad with ~ on emty lines at the bottom like Vi.
+	unset markers					# Don't indicate wrapped lines.
+	set pager_index_lines = 11			# Number - 1 of index (mail) lines to show in pager.
+	alternative_order text/plain text/html *	# Prefered order of child MIME parts.
+	auto_view text/html application/msword		# Use mailcap to view these MIME-types.
+
+	# Use ISO 8601 in index.
+	set index_format="%4C %Z %{%Y-%m-%d} %-15.15L (%?l?%4l&%4c?) %s"
+
+	#color header brightblue black from:		# Color from row.
+	#color header brightred black subject:		# Color subject row.
+	#color hdrdefault brightwhite black
+	#color quoted brightgreen black
+	#color status black cyan
+	#color indicator default green
+
+	# Use the solarized colorscheme.
+	#source ~/.mutt/colors/mutt-colors-solarized/mutt-colors-solarized-dark-256.muttrc
+	source ~/.mutt/colors/mutt-colors-solarized/mutt-colors-solarized-dark-256_newsbeuter.muttrc
+# }}
+
+# Bindings {{
+	bind editor <Tab> complete-query		# Complete address with query.
+	bind editor ^T complete				# Complete filename or alias.
+# }}
+
+# Macros {{
+	# Remember: GMail is special; d will delete message localy but GMail keeps a copy in All mail unitl you move it to Trash explicity.
+	macro index,pager	a 	"<pipe-message>goobook add<return>"		"add the sender address to Google contacts"
+	macro index,pager	<f5>	"<shell-escape>~/bin/offlineimap.sh<enter>"	"run OfflineIMAP"
+	macro index,pager	D	"<save-message>+trash<enter>"			"move message to the trash (auto-delete after 30 days in Gmail)"
+	macro index,pager	A	"<save-message>+archive<enter>"			"archive message"
+	macro index,pager	S	"<save-message>+spam<enter>"			"mark message as spam"
+	macro index,pager	M 	"T.*\n;WN"					"mark all messages in this folder as read"
+	macro index,pager	N	"<search-opposite>"				"next backwards search match"
+	macro index,pager	\eN	"<toggle-new>"					"toggle a message's'new' flag"
+	macro index,pager	r	"<group-reply>"					"reply to all by default"
+	macro index,pager	R	"<reply>"					"reply"
+	macro index,pager	\em	"<recall-message>"				"recall a postponed message"
+	macro index,pager	\es	"<pipe-message>cat > ~/tmp/"			"pipe message to cat"
+	macro index,pager	 U	"<mark-as-new>"					"toggle mark as read flag"
+	macro index,pager	\er	":source ~/.muttrc<enter>"			"reload mutt config"
+	macro attach		s	"<save-entry><bol>~/dl/<eol>"			"save attachment in download directory"
+	macro index,pager	\ef	"|~/bin/mutt/view-x-face.sh<enter>"		"display the X-Face included in the mail"
+	macro index,pager	\Cw	"<pipe-message>~/bin/mutt/mutt2task.sh<enter> <save-message>+postponed<enter>"	"add mail to taskwarrior"
+	macro index,pager,attach,compose \co "\
+<enter-command> set my_pipe_decode=\$pipe_decode pipe_decode<Enter>\
+<pipe-message> urlscan<Enter>\
+<enter-command> set pipe_decode=\$my_pipe_decode; unset my_pipe_decode<Enter>" \
+"call urlview|urlscan to extract URLs out of a message"
+
+	# Change folders {{
+		macro index,pager	goa	"c+archive<enter>"				"change to folder +archive"
+		macro index,pager	god	"c+drafts<enter>"				"change to folder +drafts"
+		macro index,pager	goi	"c+inbox<enter>"				"change to folder +inbox"
+		macro index,pager	gol	"c+lists<enter>"				"change to folder +lists"
+		macro index,pager	gop	"c+postponed<enter>"				"change to folder +postponed"
+		macro index,pager	gos	"c+sent<enter>"					"change to folder +sent"
+		macro index,pager	goS	"c+spam<enter>"					"change to folder +spam"
+		macro index,pager	got	"c+trash<enter>"				"change to folder +trash"
+		macro index,pager	gow	"c+work<enter>"					"change to folder +work"
+		macro index,pager	gom	"c+music<enter>"				"change to folder +music"
+		macro index,pager	goM	"c$my_local_mbox<enter>"			"change to local mbox."
+	# }}
+
+	# Navigation {{
+		macro index,pager,browser	\Cf	"<next-page>"					"scroll to the next page"
+		macro index,pager,browser	\Cb	"<previous-page>"				"scroll to the previous page"
+		macro index,pager,browser	\Cd	"<half-down>"					"scroll down 1/2 page"
+		macro index,pager,browser	\Cu	"<half-up>"					"scroll up 1/2 page"
+		macro index,pager		\Ce	"<next-line>"					"scroll down one line"
+		macro index,pager		\Cy	"<previous-line>"				"scroll up one line"
+		macro index,browser		G	"<last-entry>"					"jump to the last entry"
+		macro index,browser		gg	"<first-entry>"					"jump to the first entry"
+		macro pager			G	"<bottom>"					"jump to the bottom of the message"
+		macro pager			gg	"<top>"						"jump to the top of the message"
+	# }}
+
+	# Identities {{
+	macro index,pager id0 \
+		":set from=\"$my_addr_default\"<enter>:set signature=\"~/bin/siggen.sh|\"<enter>:set status_format=\"$my_format_status<$my_addr_default>\"<enter>" \
+		"switch identity: Erikw (default)"
+	macro index,pager id1 \
+		":set from=\"$my_addr_westrup\"<enter>:set signature=\"~/bin/siggen.sh '' '$my_addr_westrup'|\"<enter>:set status_format=\"$my_format_status<$my_addr_westrup>\"<enter>" \
+		"switch identity: Erikw(westrup.se)"
+	macro index,pager id2 \
+		":set from=\"$my_addr_dsek\"<enter>:set signature=\"~/bin/siggen.sh 'Datatekniksektionen' '$my_addr_dsek'|\"<enter>:set status_format=\"$my_format_status<$my_addr_dsek>\"<enter>" \
+		"switch identity: Dsek"
+	# }}
+# }}
+
+# Mailing lists {{
+	subscribe @lists.debian.org
+	subscribe vim-announce@vim.org
+	subscribe linux-kernel@vger.kernel.org
+	subscribe arch-announce@archlinux.org
+# }}
+
+# Aliases {{
+	set alias_file = ~/.mutt/aliases	# External alias file.
+	set sort_alias = alias			# Sort by alias name.
+	set reverse_alias = yes			# Translate emailaddr -> alias names.
+	source $alias_file			# Source, for autocompletion.
+# }}
+
+# Plugins/patches {{
+	# Sidebar-patch {{
+		#set sidebar_width=16		# Width of the sidebar.
+		#set nosidebar_visible		# Default visibility.
+		#set sidebar_sort=yes		# Sort the folders alphabetically.
+		#set sidebar_shortpath		# Trunace path names like /var/spool/mail/$USER.
+		##set sidebar_delim='|'		# Window delimiter.
+		## Mailboxes to show.
+		#mailboxes =inbox =sent =archive =postponed =work =lists =drafts
+
+		##color sidebar_new yellow default# Color new mails in #fg #bg.
+		#color sidebar_new red color234	# Color new mails in solarized #fg #bg.
+
+		## Toggle visibility.
+		#macro index,pager B '<enter-command>toggle sidebar_visible<enter>'
+
+		## Navigation.
+		#bind index,pager \CN sidebar-next
+		#bind index,pager \CP sidebar-prev
+		#bind index,pager \e<Return> sidebar-open
+		##bind pager CP sidebar-prev
+		##bind pager CN sidebar-next
+		##bind pager CO sidebar-open
+	# }}
+
+	# notmuch-mutt {{
+		macro index,pager  "<enter-command>unset wait_key<enter><shell-escape>notmuch-mutt -r --prompt search<enter><change-folder-readonly>~/.cache/notmuch/mutt/results<enter>" "notmuch: search mail"
+		macro index,pager <F9> "<enter-command>unset wait_key<enter><pipe-message>notmuch-mutt -r thread<enter><change-folder-readonly>~/.cache/notmuch/mutt/results<enter><enter-command>set wait_key<enter>" "notmuch: reconstruct thread"
+		#macro index <F6> "<enter-command>unset wait_key<enter><pipe-message>notmuch-mutt tag -- -inbox<enter>" "notmuch: remove message from inbox"
+	# }}
+# }}

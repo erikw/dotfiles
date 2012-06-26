@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# Behead email or Usenet article. Modified version of Jerry Peek's version of Arthur David Olsons original.
+
+sed_cmd="sed '1,/^$/d'"
+
+case $# in
+	0) eval "$sed_cmd" ;;
+	*) for i; do
+			eval "${sed_cmd} ${i}"
+		done
+		;;
+esac

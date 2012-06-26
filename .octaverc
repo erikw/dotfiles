@@ -1,0 +1,4 @@
+# Octave configuration
+# See https://wiki.octave.org/.octaverc
+
+format long	# Don't round numbers but display more decimals.

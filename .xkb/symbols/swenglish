@@ -1,0 +1,13 @@
+// US layout but with Swedish keys baked in and other convenient stuff.
+// Symbol names are defined in /usr/include/X11/keysymdef.h
+
+default partial alphanumeric_keys modifier_keys
+xkb_symbols "default" {
+	name[Group1]= "Swenglish";
+	include "us(altgr-intl)"
+
+	// Swedish characters.
+	key <AD11> { [ bracketleft, braceleft, aring, Aring ] };		// åÅ
+	key <AC11> { [ apostrophe, quotedbl, adiaeresis, Adiaeresis ] };	// äÄ
+	key <AC10> { [ semicolon, colon, odiaeresis, Odiaeresis ] };		// öÖ
+};

@@ -1,0 +1,78 @@
+# Erik Westrup's newsbeuter configuration.
+
+# Modeline {
+#	 vi: foldmarker={,} foldmethod=marker foldlevel=0: tabstop=8:
+# }
+
+# Feeds {
+	urls-source "googlereader"				# Sync with Google Reader.
+	googlereader-login "erik.westrup@gmail.com"		# Google account name.
+	googlereader-password "GIT-CENSORED"		# Google password.
+# }
+
+# Environment {
+	cookie-cache "~/.newsbeuter/cookies.txt"	# Cache for cookies.
+	error-log "~/.newsbeuter/error.log"		# Log defunct feeds.
+	save-path "~/tmp"	 			# Default save path.
+# }
+
+# Settings {
+	refresh-on-startup yes				# Refresh when starting.
+	reload-time  10					# Minutes between auto reloads.
+	reload-threads 3				# Parallel reload threads.
+	auto-reload yes					# Auto reload feeds on start.
+	#mark-as-read-on-hover yes			# Mark touched articles as read.
+	confirm-exit yes				# Confirm quit.
+	browser firefox -new-tab			# Webbrowser to use.
+	notify-screen no 				# Notify on new articles in Screen.
+	googlereader-show-special-feeds yes 		# Show special feeds.
+	googlereader-flag-star "s"			# Tag for Google Reader starred item.
+	googlereader-flag-share "S"			# Tag foe Goole Reader shared item.
+# }
+
+# UI {
+	#include "~/.newsbeuter/colors/cyanism"		# Colorscheme to use.
+	include "~/.newsbeuter/colors/solarized-dark"	# Colorscheme to use.
+	text-width 80					# Text with to use when rendering HTML.
+	#html-renderer "w3m -dump -T text/html" 	# External HTML renderer.
+	#show-read-feeds no 				# Don't show empty feeds.
+	datetime-format "%Y-%m-%d"			# Use ISO 8601.
+	show-read-articles no 				# Only show unread articles.
+# }
+
+# Bindings {
+	unbind-key A					# Unbind to avoid confusion.
+	unbind-key C					# Unbind to avoid confusion.
+	#bind-key ^O open-in-browser			# Open URL in browser. The 'O' is actually lowercase some how.
+	bind-key ^O open-in-browser-and-mark-read	# Open URL in browser. The 'O' is actually lowercase some how.
+	#bind-key o open-in-browser-and-mark-read	# Open URL in browser and mark as read.
+	bind-key O open-in-browser-and-mark-read	# Open URL in browser and mark as read.
+	bind-key o open-in-browser			# Open URL in browser.
+	#bind-key O open-in-browser			# Open URL in browser.
+	bind-key m mark-feed-read 			# Mark current feed as read.
+	bind-key M mark-all-feeds-read 			# Mark all feeds as read.
+	#bind-key A bookmark				# Bookmark current item.
+	bind-key c clear-filter				# Clear currently set filter.
+	#bind-key F5 reload-all				# Reload all feeds.
+	bind-key BACKSPACE quit				# Quit to previous dialog. Enables one-hand navigation.
+
+	# Navigation {
+		bind-key J next-feed articlelist	# Next feed item.
+		bind-key K prev-feed articlelist	# Previous feed item.
+		#bind-key j next			# Next article.
+		#bind-key k prev			# Previous article.
+
+		bind-key j down				# Down one item in the list.
+		bind-key k up				# Up one item in the list.
+		bind-key ^F pagedown			# One page down in the list.
+		bind-key ^B pageup			# One page up in the list.
+	# }
+# }
+
+# Macros {
+	macro a	clear-tag ENTER				# Clear tags. Show all feeds.
+	macro e	select-tag "entertainment" ENTER	# Open misc-tagged feeds.
+	macro n	select-tag "news" ENTER			# Open news-tagged feeds.
+	macro m	select-tag "music" ENTER		# Open music-tagged feeds.
+	macro t	select-tag "tech" ENTER			# Open tech-tagged feeds.
+# }

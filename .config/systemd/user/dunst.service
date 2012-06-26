@@ -1,0 +1,10 @@
+[Unit]
+Description=Dunst notification daemon
+After=xorg.target
+
+[Service]
+ExecStart=/usr/bin/dunst
+Type=forking
+
+[Install]
+WantedBy=xinitrc.target

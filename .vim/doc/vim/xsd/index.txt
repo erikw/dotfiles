@@ -1,0 +1,11 @@
+*vim-xsd-index*
+
+
+Xsd
+***
+
+- Xsd Validation ()
+  - Configuration (#configuration)
+- Xsd Validation (|vim-xsd-validate|)
+
+vim:ft=eclimhelp

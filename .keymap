@@ -1,0 +1,10 @@
+# Loadkeys keymap.
+# get keycodes with `dumpkeys | less` or `showkey`.
+
+# Translate Caps Lock key to Escape.
+keycode 58 = Escape
+# Put Caps Lock on Pause key.
+keycode 119 = Caps_Lock
+
+# Compose key on left super key.
+keycode 125 = Compose

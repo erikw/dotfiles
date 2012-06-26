@@ -1,0 +1,51 @@
+{
+	"segments": {
+		"left": [
+			{
+				"function": "powerline.segments.common.net.hostname"
+			},
+			{
+				"function": "powerline.segments.common.net.internal_ip"
+			},
+			{
+				"function": "powerline.segments.common.net.external_ip",
+				"args": {
+					"update_first": false
+				}
+			}
+		],
+		"right": [
+			{
+				"function": "powerline.segments.common.vcs.branch",
+				"priority": 70
+			},
+			{
+				"function": "powerline.segments.common.sys.system_load",
+				"priority": 80
+			},
+			{
+				"function": "powerline.segments.common.wthr.weather",
+				"priority": 50,
+				"args": {
+					"unit": "C",
+					"location_query": "Berlin, Germany"
+				}
+			},
+			{
+				"function": "powerline.segments.common.bat.battery",
+				"priority": 10
+			},
+			{
+				"function": "powerline.segments.common.time.date"
+			},
+			{
+				"function": "powerline.segments.common.time.date",
+				"name": "time",
+				"args": {
+					"format": "%H:%M",
+					"istime": true
+				}
+			}
+		]
+	}
+}

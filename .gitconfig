@@ -1,0 +1,83 @@
+[user]
+	name = Erik Westrup
+	email = erik.westrup@gmail.com
+	signingkey = AD610036
+	editor = vim
+[github]
+	user = erikw
+[core]
+	excludesfile = ~/.gitignore_global
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+	ui = auto
+	page = true
+[core]
+[help]
+	;browser = firefox -new-tab
+	browser = lynx
+[svn]
+	rmdir = true
+[alias]
+	br = branch
+	ci = commit
+	cia = commit --amend
+	cl = clone
+	co = checkout
+	cp = cherry-pick
+	desc0= describe --abbrev=0
+	desc= describe
+	desct0= describe --tags --abbrev=0  ; Include all tags, not only annotated ones.
+	desct= describe --tags
+	di = diff
+	dic = diff --cached
+	diffc = diff --cached
+	ft = fetch
+	gvimerge = mergetool -t gvimdiff
+	h = help
+	l = log
+	log1 = log --pretty=oneline
+	logs = log --stat
+	logself = !sh -c 'git log --author=$(git config user.email)'
+	lol = log --graph --decorate --pretty=oneline --abbrev-commit
+	lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+	ls = ls-files
+	mb = merge-base
+	originurl = config --get remote.origin.url
+	pu = push
+	rb = rebase
+	st = status
+	stashshow0 = stash show -p stash@{0}
+	stat = status
+	sub = submodule
+	svn-status = diff --name-status remotes/git-svn
+	vimerge = mergetool -t vimdiff
+[credential]
+	helper = cache
+[push]
+	default = upstream
+[merge]
+	log = true
+[pager]
+	branch = false ; Don't use pager for git-branch.
+[diff "odf"]
+	textconv = odt2txt
+[gerrit]
+	createChangeId = true
+
+; https://github.com/motemen/ghq
+[ghq]
+	root = ~/src
+
+; Companies using proxy needs a proto rewrite (set env https?_proxy too).
+;[url "https://"]
+	;insteadOf = git://
+
+
+; Conditional config
+; Available for git >=v2.13
+[includeIf "gitdir:~/work/"]
+	path = .gitconfig-work
+
+;;;;;;; Append computer specific overrides below. ;;;;;;

@@ -1,0 +1,83 @@
+# vi: ft=sh foldmarker={,} foldmethod=marker foldlevel=0:
+# Set up of lazily loaded set-up code
+# See https://github.com/benvan/sandboxd
+
+source $HOME/.shell_functions.d/sourceifexists.sh
+
+# Ruby Version Manager
+# Is sandboxed because
+# 1) It's slow to source
+# 2) Activating RVM causes a zsh tab-completion bug to appear.
+#    A coredump is created when for example doing $(git checkout <tab>).
+#    So to only activate RVM when we really needs it avoids the problem in most cases.
+#    Bug report: https://github.com/rvm/rvm/issues/4214
+#
+# List installed versions: $ rvm list
+# Change to a new one: $ rvm use <version>
+sandbox_init_rvm(){
+	# Load RVM into a shell session *as a function*.
+	# Also adds installed gems to PATH.
+	sourceifexists $HOME/.rvm/scripts/rvm
+}
+
+# GVM: Go Version Manager
+sandbox_init_gvm(){
+	sourceifexists $HOME/.gvm/scripts/gvm
+}
+
+# SDK manager
+sandbox_init_sdk(){
+	export SDKMAN_DIR=$HOME/.sdkman
+	sourceifexists $SDKMAN_DIR/bin/sdkman-init.sh
+}
+sandbox_hook sdk gradle
+
+# jump bookmarks
+sandbox_init_jump(){
+	if type jump-bin >/dev/null 2>&1; then
+		source $(jump-bin --${my_shell}-integration)
+		test ${my_shell} = 'zsh' && compctl -K _jump -S '' g	# Add completion to 'g' alias.
+	fi
+}
+
+# Virtualenvwrapper
+sandbox_init_virtualenvwrapper(){
+	shell_is_macos && virtenv_path=/usr/local/bin/virtualenvwrapper.sh || virtenv_path=/usr/bin/virtualenvwrapper_lazy.sh
+	if [ -e $virtenv_path ]; then
+		source $virtenv_path
+		export WORKON_HOME=$HOME/.virtualenvs
+		export PROJECT_HOME=$HOME/dev
+	fi
+}
+virtualenv_functions=(add2virtualenv allvirtualenv cdproject cdsitepackages cdvirtualenv cpvirtualenv lssitepackages lsvirtualenv mkproject mktmpenv mkvirtualenv rmvirtualenv setvirtualenvproject showvirtualenv toggleglobalsitepackages virtualenv wipenv workon)
+for venv_func in "${virtualenv_functions[@]}"; do
+	eval "sandbox_hook virtualenvwrapper ${venv_func}"
+done
+
+# JAVA_HOME
+sandbox_init_java-home(){
+	if [ -x /usr/libexec/java_home ]; then
+		export JAVA_HOME=$(/usr/libexec/java_home)
+	fi
+}
+sandbox_hook java-home java
+sandbox_hook java-home javac
+sandbox_hook java-home javadoc
+sandbox_hook java-home jar
+
+# pyenv python version manager
+# TODO maybe not a good idea to sandbox python, as only interactive termnials will get this, not scripts?
+sandbox_init_pyenv(){
+	if type pyenv >/dev/null 2>&1; then
+		eval "$(pyenv init -)"
+	fi
+}
+sandbox_hook pyenv easy_install
+sandbox_hook pyenv pip
+sandbox_hook pyenv pip3
+sandbox_hook pyenv pydoc
+sandbox_hook pyenv pydoc3
+sandbox_hook pyenv python
+sandbox_hook pyenv python-config
+sandbox_hook pyenv python3
+sandbox_hook pyenv python3-config

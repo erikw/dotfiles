@@ -1,0 +1,56 @@
+" FileName: zenburn.penta
+" Author: zouyang
+" Last Updated: Sat 08 Jan 2011 09:46:19 PM CST
+hi Cmd background-color:#313633; font-size:9pt;
+hi -a StatusLineNormal      color:#ccdc90; background-color:#313633 !important; margin-bottom:-2px; font-size:9pt;
+
+hi -l StatusLineNormal StatusLineSecure         color:#87af87;
+hi -l StatusLineNormal StatusLineBroken         color:#ffa0a0;
+hi -l StatusLineNormal StatusLineExtended       color:#a0ffa0;
+hi -a String                color:#cc9393;
+hi -a Boolean               color:#dca3a3;
+hi -a Function              color:#efef8f;
+hi -a Number                color:#8cd0d3;
+hi WarningMsg            color:#ffffff; background-color:#333333 !important; font-weight:bold;
+hi -l WarningMsg StatusWarningMsg
+hi -l WarningMsg CmdWarningMsg
+hi ErrorMsg              color:#80d4aa !important; background-color:#2f2f2f !important; font-weight:bold; font-size:9pt;
+hi -l ErrorMsg StatusErrorMsg
+hi -l ErrorMsg CmdErrorMsg
+hi -a ModeMsg               color:#ffcfaf; background-color:transparent !important;
+hi -l ModeMsg StatusModeMsg
+hi -l ModeMsg CmdModeMsg
+hi -a MoreMsg               color:#ffffff !important; background-color:inherit !important; font-weight:bold;
+hi -l MoreMsg StatusMoreMsg
+hi -l MoreMsg CmdMoreMsg
+hi -l Cmd InfoMsg               color:#cccccc !important;
+hi -l InfoMsg StatusInfoMsg
+hi -l InfoMsg CmdInfoMsg
+hi Question              color:#ffffff !important; background-color:inherit !important; font-weight:bold;
+hi -l Question StatusQuestion
+hi -l Question CmdQuestion
+hi -a Tag                   color:#e89393; font-weight:bold;
+hi -a CmdLine               font-weight:normal; padding:0 3px;
+hi -a NonText               color:#404040; font-weight:bold;
+hi Normal                color:#dcdccc !important; background-color:#313633 !important; font-size:9pt;
+hi -l Normal CmdNormal
+hi -l Normal StatusNormal
+hi -a Title                 color:#efefef; background-color:inherit; font-weight:bold;
+hi -a CompItem[selected]    color:#cbecd0; background-color:#2c302d !important;
+hi -a CompMore              margin-bottom:0;margin-top:.5ex;
+hi -a CompMore::after       content:"\02c7"
+hi -a CompLess              margin-top:.5ex;margin-bottom:1ex;
+hi -a CompLess::after       content:"\02c6"
+hi -a CompTitle             color:lightblue; background-color:transparent;
+hi -a CompTitleSep          background:-moz-linear-gradient(60deg, lightblue, white); height:1px;
+hi -a Filter                font-style:italic; text-decoration:underline;
+hi -a Keyword               color:#f0dfaf; font-weight:bold;
+hi -a URL                   text-decoration:none; color:#9ECE9E; background-color:inherit;
+hi -a URL:hover             text-decoration:underline; cursor: pointer;
+hi -a LineNr                color:#9fafaf; background-color:#262626;
+
+" plugin styles
+hi -a BufTabSelected        color:#2e3330; background-color:#88b090; padding:0 4px;
+hi -a BufTabs               margin:0 4px; overflow:hidden;
+hi -a BufTab                padding:0 2px;
+" vim: set ft=pentadactyl:ts=4:sw=4:tw=0:

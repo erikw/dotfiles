@@ -1,0 +1,309 @@
+#!/usr/bin/env bash
+# Install the macOS apps I use, using brew, cask and pip.
+# Modeline {
+#	vi: foldmarker={,} foldmethod=marker foldlevel=0: tabstop=8:
+# }
+
+# TODO replace this script with homebrew-bundler? https://github.com/Homebrew/homebrew-bundle
+
+make_1line() {
+	echo "$1" | tr '\n' ' '
+}
+
+# Brew lists {
+read -r -d '' brew_apps_default <<'EOAPPS'
+	ack
+	aspell
+	bashdb
+	cloc
+	cmatrix
+	coreutils
+	cowsay
+	cscope
+	ctags
+	curl
+	dfc
+	dos2unix
+	elinks
+	emacs
+	gawk
+	ghq
+	git
+	gnu-getopt
+	gnupg
+	graphviz
+	htop
+	httpie
+	imagemagick
+	ipython
+	jsonlint
+	knock
+	links
+	mercurial
+	mosh
+	ncdu
+	netcat
+	octave
+	pdfgrep
+	peco
+	pidof
+	python
+	python@2
+	readline
+	sl
+	source-highlight
+	task
+	tasksh
+	tig
+	tmux
+	tree
+	urlview
+	vim
+	watch
+	wego
+	wget
+	zsh
+	zsh-syntax-highlighting
+EOAPPS
+brew_apps_default=$(make_1line "$brew_apps_default")
+
+read -r -d '' brew_apps_default_gnu <<'EOAPPS'
+	findutils
+	gnu-indent
+	gnu-sed
+	gnu-tar
+	gnutls
+	grep
+EOAPPS
+brew_apps_default_gnu=$(make_1line "$brew_apps_default_gnu")
+
+
+read -r -d '' brew_apps_additional <<'EOAPPS'
+	ffmpeg2theora
+	irssi
+	jq
+	postgresql
+	pyenv
+	pyenv-virtualenvwrapper
+	reattach-to-user-namespace
+	swiftlint
+EOAPPS
+brew_apps_additional=$(make_1line "$brew_apps_additional")
+
+# }
+
+# Cask lists {
+read -r -d '' cask_apps_default <<'EOAPPS'
+	amethyst
+	appcleaner
+	awareness
+	caffeine
+	cheatsheet
+	clipy
+	cyberduck
+	dropbox
+	electric-sheep
+	firefox
+	flux
+	freshback
+	gimp
+	google-chrome
+	icultus
+	iterm2
+	libreoffice
+	macvim
+	name-mangler
+	postman
+	qr-journal
+	spectacle
+	spotify
+	spotify-notifications
+	the-unarchiver
+	vlc
+	wireshark
+EOAPPS
+cask_apps_default=$(make_1line "$cask_apps_default")
+
+
+read -r -d '' cask_apps_additional <<'EOAPPS'
+	adium
+	atom
+	burn
+	chicken
+	clamxav
+	colloquy
+	dash
+	eclipse-ide
+	flip4mac
+	google-backup-and-sync
+	google-drive
+	gpgtools
+	handbrake
+	insomnia
+	intellij-idea-ce
+	jing
+	keepassxc
+	livereload
+	mactex
+	max
+	perian
+	pycharm-ce
+	robo-3t
+	skim
+	skype
+	slack
+	switch
+	thunderbird
+	torbrowser
+	transmission
+	veracrypt
+	virtualbox
+	xee
+	yasu
+EOAPPS
+cask_apps_additional=$(make_1line "$cask_apps_additional")
+
+# }
+
+# Python lists {
+# virtualenvwrapper needs to be installed for brew's pyenv-virtualenvwrapper, python2, it seems :O
+read -r -d '' pip2_pkgs <<'EOAPPS'
+	virtualenvwrapper
+EOAPPS
+pip2_pkgs=$(make_1line "$pip2_pkgs")
+
+read -r -d '' pip3_pkgs <<'EOAPPS'
+	ipdb
+	ipython
+	powerline-status
+	pudb
+	ropevim
+EOAPPS
+pip3_pkgs=$(make_1line "$pip3_pkgs")
+
+# }
+
+# Install {
+# Install homebrew.
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+brew install $brew_apps_default
+
+# Use default names for some gnu programs (which supports it), and don't get the 'g' prefix in the name.
+brew install --with-default-names $brew_apps_default_gnu
+
+#brew install $brew_apps_additional
+
+# Make homebrew zsh default shell.
+# Reference: https://rick.cogley.info/post/use-homebrew-zsh-instead-of-the-osx-default/
+sudo dscl . -create /Users/$USER UserShell /usr/local/bin/zsh
+
+# Install rmtree for removing brew package's dependencies with $(brew rmtree <package>).
+brew tap beeftornado/rmtree
+
+
+# Install cask.
+brew tap caskroom/cask
+brew cask install $cask_apps_default
+#brew cask install $cask_apps_additional
+
+# Install older versions of apps.
+brew tap caskroom/versions
+
+# Install cask upgrade command ($ brew cu):
+brew tap buo/cask-upgrade
+
+
+
+
+# Macstore automation
+# https://github.com/mas-cli/mas
+brew install mas
+# mas signin <appleId>
+# Unfortunately this <appleiId> must have manually downloaded all apps one time before they can be installed with mas
+# $ mas search WeatherBug
+# $ mas install <id>
+# To install:
+# 1059074180 WeatherBug - Weather Forecasts and Alerts
+# 585829637 Todoist: Organize your life
+
+
+
+# Make a backup of installed brewe packages with:
+# brew bundle dump
+
+# Install python packages.
+pip2 install --user $pip2_pkgs
+pip3 install --user $pip3_pkgs
+
+
+# Programs to install manually:
+# * easytag
+# * RVM: https://rvm.io/rvm/install
+# * XVim: https://github.com/XVimProject/XVim, https://github.com/XVimProject/XVim/blob/master/INSTALL_Xcode8.md
+
+# Install tmux session on login.
+# Reference: http://www.launchd.info/
+cp $HOME/bin/com.user.irctor.plist $HOME/Library/LaunchAgents/
+launchctl load -w $HOME/Library/LaunchAgents/com.user.irctor
+launchctl start com.user.irctor
+#launchctl list | grep com.user.irctor
+#launchctl unload -W $HOME/Library/LaunchAgents/com.user.irctor
+
+# }
+
+# Custom/Config {
+
+# Amethys
+# Give Amethys acessability access according to: https://ianyh.com/amethyst
+# Then go to Amethys Preferences
+# * Uncheck "Enable Layout HUD on Space Change".
+# * Set the following layouts to be used: tall, wide, fullscreen, floating.
+
+# Clipy
+# * Set the history keyboard shortcut to CTRL+Shift+F13 or Ctrl+Shift+Insert (external keyboard).
+
+# FreshBackMac
+# * Add to auto start in Settings > Users & Groups > Login items.
+
+# Spotify Notifications
+# * Set shortcut to show current playing to: Ctrl+Opt+Shift+p or Opt+F13(print screen) or F14 (scroll lock).
+
+# Powerline
+# Install either
+# * Powerline Terminus font: https://gist.github.com/creaktive/5004950#file-terminusmedium-dfont
+# * Powerline Source Code Pro, Fontsize 14pt: https://github.com/powerline/fonts
+
+
+# MacVim
+# Make the app quit when the last buffer is closed: " MacVim > Preferences > After the last window closes: QuitMacVim.
+
+# iterm2
+# * Make Option key an Meta key, so e.g. tmux binding works:
+# Preferences > Pofiles > Keys: set "Left option key acts as" "+Esc".
+
+
+# Automator command for starting screen saver.
+# 1. Open automator
+# 2. Create a new service
+# 3. Choose "Run AppleScript"
+# 4. In the top of the window, select for "Service receives selected" to "no input" and "in any application".
+# 5. Paste contents of ~/bin/macos_start_screensaver.command so it basically becomes:
+#on run {input, parameters}
+	#do shell script "/System/Library/CoreServices/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine"
+	#return input
+#end run
+# 5. Save with the name "start_screensaver.
+# 6. Open System Peferences>Keyboard>Shortcuts>Services>General and assign start_screensaver the shortcutl CTRL+CMD+L.
+# If start_screensaver save did not show up, try logging in and out or restarting the computer.
+#
+#
+#
+# #Open text files with MacVim
+# * Find any .txt file > cmd+i on it > Open with > MacVim > Change for all
+#
+# # Update Keynote, Pages, Numbers & iMovie in App Store
+# If these apps came preinstalled on the macbook they won't update some times as the "purchase" was made with another account. Fix with:
+# 1. Create a new Apple account in App Store. Chose "None" when asked for credit card.
+# 2. Uninstall all these apps from Applications expose.
+# 3. Go to App Store and install all of them again, now signed in with the newly created account.
+# }

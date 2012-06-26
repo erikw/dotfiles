@@ -1,0 +1,4 @@
+# The Little Brother's Database coniguration file.
+MODULES_PATH="$HOME/.lbdb/modules"
+METHODS="m_google"
+

@@ -1,0 +1,145 @@
+# Erik Westrup's MPD configuration.
+
+# Modeline {{
+#	 vi: foldmarker={{,}} foldmethod=marker foldlevel=0: tabstop=8:
+# }}
+
+# Connection {{
+	# Port to run on.
+	port				"6600"
+	# Password for everything.
+	password                        "GIT-CENSORED@read,add,control,admin"
+	# Bind to address (IPv[46]. Don't use if you want to connect from outside.
+	#bind_to_address                 "::1"
+	#bind_to_address                 "127.0.0.1"
+	# Run daemon as user.
+	user				"erikw"
+	# Run as group.
+	group				"users"
+	# Enable Zeroconf publishing.
+	zeroconf_enabled		"no"
+	# Unique networkname.
+	zeroconf_name			"Erikw's MPD"
+	# Connection timeout.
+	connection_timeout		"60"
+	# Simultanius connections.
+	max_connections			"16"
+
+# }}
+
+# Paths {{
+	# Music root directory.
+	music_directory				"/home/erikw/media/music/"
+	# Where to store playlists.
+	playlist_directory			"/home/erikw/.mpd/playlists/"
+	# Where to store the database.
+	db_file					"/home/erikw/.mpd/mpd.db"
+	# PID file.
+	pid_file				"/home/erikw/.mpd/mpd.pid"
+	# Save state.
+	state_file				"/home/erikw/.mpd/mpdstate"
+	# Where to store dynamic information.
+	sticker_file				"/home/erikw/.mpd/sticker.sql"
+	# Where to put the log.
+	log_file				"/home/erikw/.mpd/mpd.log"
+	# Use absolute paths in playlists.
+	save_absolute_paths_in_playlists	"no"
+	# Follow symlinks in and out of music_directory.
+	follow_outside_symlinks			"yes"
+	follow_inside_symlinks			"yes"
+	# Use UTF-8.
+	filesystem_charset			"UTF-8"
+# }}
+
+# General options {{
+	# Data to be extracted during discovery process.
+	metadata_to_use	"artist,album,title,track,name,genre,date"
+	# Auto update whehn music_directory is changed.
+	auto_update				"yes"
+
+# }}
+
+# Audio output {{
+	# PulseAudio {{
+		audio_output {
+			type    "pulse"
+			name    "MPD PulseAudio Output"
+			#server  "localhost"   # optional
+			#sink    "alsa_output" # optional
+			device  "pulse"
+			mixer_control  "Master"
+		}
+        # }}
+
+	# Alsa {{
+		#audio_output {
+			#type		"alsa"
+			#name		"Irvine ALSA Device"
+			##device		"hw:0,0"	# optional, will break dmix and block others.
+			#format		"44100:16:2"	# optional
+			#mixer_type      "hardware"	# optional
+			#mixer_device	"default"	# optional
+			#mixer_control	"PCM"		# optional
+			#mixer_index	"0"		# optional
+		#}
+	# }}
+
+	# HTTP streaming {{
+		#audio_output {
+			#type		"httpd"
+			#name		"Irvine HTTP stream"
+			#encoder		"lame"		# optional, vorbis or lame
+			#port		"8001"
+			##quality	"5.0"		# do not define if bitrate is defined
+			#bitrate		"128"		# do not define if quality is defined
+			#format		"44100:16:2"
+		#}
+	# }}
+
+	# Icecast {{
+		#audio_output {
+				#type        "shout"
+
+				## Ogg
+				##encoding    "ogg"
+				##mount       "/mpd.ogg"
+
+				## MP3
+				#encoding    "mp3"
+				#encoder	    "lame"
+				#mount       "/mpd.mp3"
+
+				#name        "Irvine Icecast stream"
+				#host        "localhost"
+				#port        "8000"
+				#user        "source"
+				## This is the source password in icecast.xml
+				#password    "GIT-CENSORED"
+
+				## Set either quality or bitrate
+				##quality     "5.0"
+				#bitrate     "64"
+				#format      "44100:16:2"
+
+				## Optional Paramters
+				#description "Erik Westrup's private MPD stream."
+		#}
+	# }}
+
+	# FIFO visualizer {{
+		 #audio_output {
+			#type            "fifo"
+			#name            "My FIFO"
+			#path            "/tmp/mpd.fifo"
+			#format          "44100:16:1"
+		 #}
+	  # }}
+# }}
+
+# Playback {{
+	# Use ReplayGain.
+	replaygain			"album"
+	# Normalize output volume.
+	volume_normalization		"no"
+
+# }}

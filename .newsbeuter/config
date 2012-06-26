@@ -1,0 +1,2 @@
+# Wrapper file for configuration sincw I prefer having the rc in ~/.
+include "~/.newsbeuterrc"

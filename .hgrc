@@ -1,0 +1,19 @@
+# Mercurial configuration file.
+
+[ui]
+editor = vim
+username = erik.westrup@gmail.com
+verbose = true
+
+[extensions]
+color =
+pager =
+graphlog =
+# Enable queue extenstion.
+hgext.mq =
+purge =
+
+[pager]
+pager = LESS='FRX' less
+# Empty value enables the pager for all commands.
+attend = annotate, cat, diff, export, glog, log, qdiff, help, status

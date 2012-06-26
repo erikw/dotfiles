@@ -1,0 +1,68 @@
+# Erik Westrup's GNU Readline configuration.
+
+# Modeline {
+#	 vi: foldmarker={,} foldmethod=marker foldlevel=0: tabstop=8:
+# }
+
+# Settings {
+	# Ring the bells?
+	#set bell-style audible
+	set bell-style none
+
+	# Ignore case in completion.
+	set completion-ignore-case On
+
+	# With completion-ignore-case on, this treas '-' and '_' as equivalents in completion.
+	#set completion-map-case on
+
+	# Show lines that have been modified with an asterisk.
+	#set mark-modified-lines on
+
+	# Append file's type on completion. e.g. @ for symlinks.
+	set visible-stats on
+
+	# Expand tilde with tab.
+	set expand-tilde off
+
+	# Path complete symlinks to directories with '/' as it would be a normal directory.
+	set mark-symlinked-directories on
+
+	# Show completion alternativies on first <tab>.
+	set show-all-if-ambiguous
+# }
+
+# Bindings {
+	# Use Vi key bindings.
+	set editing-mode vi
+
+	# The vi mode key bindings after this will apply to.
+	set keymap vi-insert
+
+	# Cycle through completions.
+	#bind '"\t":menu-complete'
+
+	# Expand !-shorthands with space.
+	$if Bash
+		Space: magic-space
+	$endif
+
+	# Let ^L clear the screen.
+	Control-L: clear-screen
+
+	# Paste last argument from previous command with Alt-p.
+	"\ep": yank-last-arg
+
+	# The vi mode key bindings after this will apply to.
+	set keymap vi-command
+
+	# Let ^L clear the screen.
+	Control-L: clear-screen
+
+	# Paste last argument from previous command with Alt-p.
+	"\ep": yank-last-arg
+
+	# Let up/down arrow do a shell history prefix-search (if input was typed alredy).
+	"\e[A": history-search-backward
+	"\e[B": history-search-forward
+# }
+

@@ -1,0 +1,36 @@
+# Makefile for X-Faces headers, built after instructions from
+# http://www.dairiki.org/xface/xface.php
+#
+# (c) 2004 Christoph Berg <cb@df7cb.de>
+# This program is free software covered by the GNU GPL.
+# 2004-06-13 cb: initial version
+
+myon48.jpg: myon.jpg
+	convert -geometry 48x48 $< $@
+
+myon.pnm: myon48.jpg
+	jpegtopnm $< > $@
+
+myon.pgm: myon.pnm
+	ppmtopgm $< > $@
+
+myon_norm.pgm: myon.pgm
+	pgmnorm $< > $@
+# or: pnmhisteq
+
+myon_enh.pgm: myon_norm.pgm Makefile
+	pgmenhance -7 $< > $@
+# -N [1-9]
+
+myon_edge.pgm: myon_enh.pgm
+	pgmedge $< > $@
+
+myon.pbm: myon_enh.pgm
+	pgmtopbm $< > $@
+
+myon_clean.pbm: myon.pbm
+	pbmclean $< > $@
+
+myon.face: myon_clean.pbm
+	echo -n "X-Face:" > $@
+	pbmtoxbm $< | compface >> $@

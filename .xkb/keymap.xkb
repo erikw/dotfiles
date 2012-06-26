@@ -1,0 +1,40 @@
+// XKB settings.
+// See /usr/share/X11/xkb/ for default files and examples.
+// Inspiraton: http://hack.org/mc/writings/xkb.html
+// Reference: http://www.charvolant.org/~doug/xkb/html/node5.html
+
+xkb_keymap "erikwkbrd" {
+	xkb_keycodes  { include "evdev+aliases(qwerty)" };
+	xkb_types     { include "complete" };
+	xkb_compat    { include "complete" };
+
+	// Old solution merging us+sv. Abandoned because having both us and sv and just toggle between them is just as good with group(switch).
+	//xkb_symbols   { include "pc+swenglish+hacks+inet(evdev)+terminate(ctrl_alt_bksp)+capslock(escape)+compose(rwin)" };
+
+	//xkb_symbols   {
+	//	include "pc"				// Typical PC keys inc. CTRL, Shift...
+	//	include "us(basic)"			// Default language.
+	//	include "se(basic):2"			// Secondary language. Use temporary with `switch` or change to with `menu_toggle`.
+	//	include "de(basic):3"			// Ternary language. Change to with `menu_toggle`.
+	//	include "hacks"				// My remaps inc. Caps Lock to Pause.
+	//	include "inet(evdev)"			// Standard aux keys.
+	//	include "group(switch)"			// Switch layouts (us,sv) as long as ralt is pressed.
+	//	include "group(menu_toggle)"		// Toggle language on menu key (en->sv->de->en...).
+	//	include "capslock(escape)"		// Make Caps Lock an additonal Escape.
+	//	//include "ctrl(nocaps)"			// Make Caps Lock an additinal Control. Then use $(xcape -e 'Control_L=Escape') to make single press of key generate Escape, and when combined with some other key to generate CTRL+otherkey.
+	//	include "compose(rwin)"			// compose(rwin): Make rwin the compose key.
+	//	include "terminate(ctrl_alt_bksp)"	// Restart X server.
+	//};
+
+	// Note: To type a German "ü", press: 		compose + " + u
+	// Note: To type an Euro sign "€", press:	compose + e + =
+	// Note: To type a paragraph letter "§", press:	compose + s + o
+
+	// Need to use the condensed version because xkblayout-state coredumps otherwise.
+	xkb_symbols{include"pc+us(basic)+se(basic):2+de(basic):3+hacks+inet(evdev)+group(switch)+group(menu_toggle)+capslock(escape)+compose(rwin)+terminate(ctrl_alt_bksp)"};
+
+	// To achive the most basic keymap, do this in a terminal
+	// $ setxkbmap -layout us -option "caps:escape"
+
+	xkb_geometry  { include "pc(pc104)" };
+};

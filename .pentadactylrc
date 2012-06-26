@@ -1,0 +1,153 @@
+" Erik Westrup's Pentadactyl configuration.
+
+" Modeline {{
+"	 vi: foldmarker={{,}} foldmethod=marker foldlevel=0: tabstop=8: filetype=pentadactyl:
+" }}
+
+" Environment {{
+	" The namespace to use below.
+	group user
+	" Set runtime path, "current directory".
+	set runtimepath=~/.pentadactyl/
+	" Set character encoding for the buffer.
+	set encoding="UTF-8"
+	" Encoding for files read and written by Vimperator.
+	set fileencoding="UTF-8"
+	" Set external editor.
+	set editor='gvim -f'
+	" Load plugins with matching filenames.
+	set loadplugins='\.(js|penta)$'
+" }}
+
+" General {{
+	" Always work online.
+	set online
+	" Open popups in new tabs.
+	set popups=tab
+	" What tabs that will be activated when created. Dont focus on diverted so that urlview-tabs can be opened in the background.
+	set activate=addons,bookmarks,downloads,extoptions,help,homepage,quickmark,tabopen,paste
+	" Number of commands to save to command-line history,
+	set history=500
+	" Use autocompletion
+	set autocomplete=.*
+	" How to use wildmode.
+	set wildmode="list:full"
+	" Maximum nbr of suggestions.
+	set maxitems=10
+	" Default search engine keyword.
+	set defsearch=g
+	" Search engine used for completion.
+	set suggestengines="ggl"
+	" Incremental search.
+	set incfind
+	" Highlight previous search pattern matches.
+	set hlfind
+	" Ignore case, all text and regular expression search.
+	set findflags=cLr
+	" Items which are completed at the :open prompts.
+	set complete=search,bookmark,location,suggestion
+	" Defautl timespan for the sanitize commands.
+	set sanitizetimespan=all
+	" What to sanitize with ':sanitize!'. Skip cookies,sessions & sitesettings.
+	set sanitizeitems=cache,commandline,downloads,formdata,history,host,marks,messages,offlineapps,options,registers,sessions
+	" Items to sanitize on shutdown.
+	set sanitizeshutdown=downloads,registers
+	" Don't enter insert mode when loading a page.
+	"set strictfocus=despotic
+	" Forbid sites (Wikipedia) from grabbing keyboard shortcuts
+	set! ui.key.contentAccess=3
+	" Timeout in ms before following a non unique matching link. Default is 0.
+	set hinttimeout=1500
+
+" }}
+
+" UI {{
+	" Color theme to use. The default is 'default'.
+	colorscheme default
+	" Set a custom window title.
+	set titlestring="Pentadactyl"
+	" Page info items.
+	set pageinfo=gfm
+	" What GUI-elements to show.
+	set guioptions=Cns
+	" Use visual bell.
+	set visualbell
+	" Turn off error bells.
+	set noerrorbells
+	" Overide dactyls bell-function (disable it).
+	javascript dactyl.beep = function() { return false; }
+	" Show what mode you are in.
+	set showmode=caret,output_multiline,!normal,base,operator
+	"Show link destinations in the status bar.
+	set showstatuslinks=status
+" }}
+
+" Mappings {{
+	" Go back in tabs.
+	map -builtin K gT
+	map -builtin <Left> gT
+	" Go forward in tabs.
+	map -builtin J gt
+	map -builtin <Right> gt
+	" Quick word lookup from selection.
+	"nmap <silent> ` Y:!xclip -o | sed 's/[^a-zA-Z]\\+/ /g' | xclip -i <CR>t t <S-insert><CR>
+	nmap <silent> ` Y:!xclip -o | grep -Pzoi "[a-zA-Z-]*" | xclip -i <CR>t t <S-insert><CR>
+	" Disable annoying Google search.
+	nmap <C-k> <Nop>
+	nmap <C-j> <Nop>
+	imap <silent> <C-f> <ESC>
+	" Open bookmarks in sidebar.
+	map -ex <silent> <A-b> sidebar! Bookmarks
+	" Disable default close tab.
+	map <C-w> <silent> <Nop>
+	" Move up in command history.
+	cmap -builtin <C-P> <Up>
+	" Move down i command history.
+	cmap -builtin <C-N> <Down>
+	" Unhighlight search results.
+	map -builtin <C-/> :nohlfind<CR>
+	" I need no help.
+	map <F1> <NOP>
+	" Open downloads.
+	nmap -builtin <A-d> :downloads<CR>
+
+	" Mappings like Vimperator {{
+		imap <C-v> <Pass>
+		map -builtin i <C-v>
+		map <S-esc> <C-z>
+		map -builtin c i
+	" }}
+" }}
+
+" Quickmarks {{
+	silent qmark c https://www.google.com/contacts
+	silent qmark d http://www.dsek.lth.se/
+	silent qmark f http://www.facebook.com/
+	silent qmark g https://github.com/
+	silent qmark G https://gmail.com/
+	silent qmark l chrome://lastpass/content/home2.xul
+	silent qmark L https://lifesum.com/
+	silent qmark r https://cloud.feedly.com/
+	silent qmark s https://internetbank.swedbank.se/bviPrivat/privat?ns=1
+	silent qmark p https://getpocket.com/
+" }}
+
+" Plugins {{
+	" Load plugins.
+	" NOTE flashblock currently does not work (at least on soundcloud).
+	"loadplugins
+	" Enable flashblocking.
+	"set flashblock
+	" Use a whitelist.
+	"set fbwhitelist=youtube.com,vimeo.com,maps.google.com,dsek.lth.se,dsek.se,facebook.com,tyda.se,howjsay.com,svtplay.se,playrapport.se,tv4play.se,kanal5play.se,fz.se,lifehacker.com,grooveshark.com,lth.se,lu.se,sydsvenskan.se,github.com,8bc.org,ekort.swedbank.se,imdb.com,bredbandskollen.se,loopia.se,last.fm,bankofamerica.com,play.google.com,soundcloud.com,mixing.dj,wikipedia.org,beatport.com,google.com/maps,zippyshare.com,dropbox.com,mixcloud.com,codeschool.com,play.spotify.com,dancingastronaut.com,sf.se,styrkeprogrammet.se
+
+	" FeedSomeKeys3 {{
+		"fmaps -u='mail\.google\.com/mail' c / j k n p e x s r a # [ ] ? gi gs gd ga gc
+		"fmaps -u='mail\.google\.com/mail/.*/[0-9a-f]+$' c / j,n k,p n,j p,k e x s r a # [ ] ? gi gs gd ga gc
+		"fmaps -u='www\.google\.com/reader.*' -events=vkeypress j k n p m s v A r S N P X O ga gs gu u / ? J K
+	" }}
+" }}
+
+" Source local {{
+	source! ~/.pentadactylrc.local
+" }}
