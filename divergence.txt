@@ -1,0 +1,3 @@
+A dummy file to create a branch on remote that is different from a local branch with the same name, to prevent accidental push.
+
+Also set branch protection on this to prevent force-push.
