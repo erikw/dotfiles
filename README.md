@@ -101,6 +101,9 @@ Passwords and other secretes are censored. To find these and substitue them for 
 $ grep -nr GIT-CENSORED . | grep -v README.md
 ```
 
+
+Set `DESKTYPE` in `~/.shell_commons`.
+
 If the host system is macOS, then at some places manual configuration is needed. Find where by looking for the macOS tag:
 ```bash
 $ grep -nr MACOS-CONFIG . | grep -v README.md
