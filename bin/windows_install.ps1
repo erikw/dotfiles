@@ -216,6 +216,7 @@ New-ItemProperty -Path Registry::HKLM\SYSTEM\CurrentControlSet\Control\TimeZoneI
 #  * Configure a puTTY profile
 #  	* Session:
 #  		* Enter host name and profile name
+#  	* Window > Apparence > select font; get a powerlinefont from https://github.com/powerline/fonts
 #  	* Connection:
 #  		* Data: Enter name for "Auto-login username"
 #  		* SSH
