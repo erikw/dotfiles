@@ -213,12 +213,14 @@ New-ItemProperty -Path Registry::HKLM\SYSTEM\CurrentControlSet\Control\TimeZoneI
 # * Run puttygen.exe
 # 	* Generate a new key.
 # 	* Save public and private key to file.
-#  * Configure a PuTTY profile
+#  * Configure a puTTY profile
 #  	* Session:
 #  		* Enter host name and profile name
 #  	* Connection:
 #  		* Data: Enter name for "Auto-login username"
-#  		* SSH > Auth: Select "Private key file for authentication" and chose the private .ppk file. 
+#  		* SSH
+#  			* "Remote command": tmux attach || tmux new-session
+#  			* > Auth: Select "Private key file for authentication" and chose the private .ppk file. 
 #
 # }
 
