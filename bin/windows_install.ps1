@@ -200,6 +200,19 @@ cp ~/.dotfiles/.vimperatorrc ~/
 # Ref: http://stackoverflow.com/questions/26719206/powershell-create-registry-path-one-liner
 New-ItemProperty -Path Registry::HKLM\SYSTEM\CurrentControlSet\Control\TimeZoneInformation -Name RealTimeIsUniversal -Value 1 -Force | Out-Null
 
+
+# PuTTY
+# To set up login with ssh keys
+# * Run puttygen.exe
+# 	* Generate a new key.
+# 	* Save public and private key to file.
+#  * Configure a PuTTY profile
+#  	* Session:
+#  		* Enter host name and profile name
+#  	* Connection:
+#  		* Data: Enter name for "Auto-login username"
+#  		* SSH > Auth: Select "Private key file for authentication" and chose the private .ppk file. 
+#
 # }
 
 
