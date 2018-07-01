@@ -209,7 +209,7 @@ New-ItemProperty -Path Registry::HKLM\SYSTEM\CurrentControlSet\Control\TimeZoneI
 
 
 # PuTTY
-# To set up login with ssh keys
+## To set up login with ssh keys
 # * Run puttygen.exe
 # 	* Generate a new key.
 # 	* Save public and private key to file.
@@ -221,6 +221,9 @@ New-ItemProperty -Path Registry::HKLM\SYSTEM\CurrentControlSet\Control\TimeZoneI
 #  		* SSH
 #  			* "Remote command": tmux attach || tmux new-session
 #  			* > Auth: Select "Private key file for authentication" and chose the private .ppk file. 
+## Solarized
+# Edit .reg file and insert name of my session on line 3, then run the file.
+# https://github.com/altercation/solarized/tree/master/putty-colors-solarized
 #
 # }
 
