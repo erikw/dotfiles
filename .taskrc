@@ -32,7 +32,7 @@ include /usr/share/doc/task/rc/solarized-dark-256.theme
 # MACOS-CONFIG
 #include /usr/local/share/doc/task/rc/solarized-dark-256.theme
 
-# Aliases 
+# Aliases
 alias.rm=delete                        # Alias for the delete command
 
 ## Reports
@@ -60,10 +60,19 @@ report.tomorrow.columns=id,project,tags,priority,due,description
 report.tomorrow.filter=status:pending due:tomorrow
 report.tomorrow.sort=id+
 
-#Inthe.AM sync
+# taskd server: Inthe.AM
 #taskd.trust=ignore hostname
-#taskd.certificate=GIT-CENSORED
-#taskd.key=GIT-CENSORED
-#taskd.ca=GIT-CENSORED
+#taskd.certificate=~/.task/certs/intheam/private.certificate.pem
+#taskd.key=~/.task/certs/intheam/private.key.pem
+#taskd.ca=~/.task/certs/intheam/ca.cert.pem
 #taskd.server=taskwarrior.inthe.am:53589
+#taskd.credentials=GIT-CENSORED
+
+# taskd server: Compton
+#taskd.trust=ignore hostname
+#taskd.certificate=~/.task/certs/compton/erikw.cert.pem
+#taskd.key=~/.task/certs/compton/erikw.key.pem
+#taskd.ca=~/.task/certs/compton/ca.cert.pem
+##taskd.server=compton.2r.se:53589
+#taskd.server=xxx.yyy.zzz.vvv:53589
 #taskd.credentials=GIT-CENSORED
