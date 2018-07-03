@@ -19,6 +19,9 @@ due=7					# Task is considered due in 7 days
 # Linux
 include /usr/share/doc//task/rc/holidays.sv-SE.rc
 include /usr/share/doc//task/rc/holidays.de-DE.rc
+# FREEBSD-CONFIG
+#include /usr/local/share/taskwarrior/rc/holidays.sv-SE.rc
+#include /usr/local/share/taskwarrior/rc/holidays.de-DE.rc
 # MACOS-CONFIG
 #include /usr/local/share/doc/task/rc/holidays.sv-SE.rc
 #include /usr/local/share/doc/task/rc/holidays.de-DE.rc
@@ -29,6 +32,8 @@ color=on					# Enable color
 # Themes.
 # Linux
 include /usr/share/doc/task/rc/solarized-dark-256.theme
+# FREEBSD-CONFIG
+#include /usr/local/share/taskwarrior/rc/solarized-dark-256.theme
 # MACOS-CONFIG
 #include /usr/local/share/doc/task/rc/solarized-dark-256.theme
 

@@ -109,6 +109,11 @@ If the host system is macOS, then at some places manual configuration is needed.
 $ grep -nr MACOS-CONFIG . | grep -v README.md
 ```
 
+same for FreeBSD:
+```bash
+$ grep -nr FREEBSD-CONFIG . | grep -v README.md
+```
+
 ## Install ghq
 Make it easier to organize all git clones that will follow soon, by using the exxellent tool [ghq](https://github.com/motemen/ghq)!
 
