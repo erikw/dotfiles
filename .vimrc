@@ -657,6 +657,8 @@ if s:use_plugins
 			set rtp+=$POWERLINE_ROOT/bindings/vim
 			"let g:powerline_pycmd="py3"
 			if has('python3')
+				" NOTE there is a current bug in vim that it does not work well with newer pyhons. https://github.com/powerline/powerline/issues/1925
+				" NOTE temporary macOS fix: recompile vim with python2 instead:  brew reinstall vim --with-python@2
 				" Pre-req: $(pip3 install powerline-status).
 				python3 from powerline.vim import setup as powerline_setup
 				python3 powerline_setup()
