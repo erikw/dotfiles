@@ -13,5 +13,6 @@ fi
 
 if [ $host = irvine ]; then
 	type startx >/dev/null 2>&1
-	[[ -z $DISPLAY && $XDG_VTNR -eq 1 && "$?" -eq 0 ]] && exec startx
+	# End with cons, so the status code is not 1 when sourcing this.
+	[[ -z $DISPLAY && $XDG_VTNR -eq 1 && "$?" -eq 0 ]] && exec startx || :
 fi
