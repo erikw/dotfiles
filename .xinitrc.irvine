@@ -196,6 +196,9 @@
 	# Discord chat app.
 	#discord &
 
+	# Signal messenger app.
+	signal-desktop -use-tray-icon --start-in-tray &
+
 	# Mutli-chat app
 	franz &
 
