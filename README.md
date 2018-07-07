@@ -216,7 +216,7 @@ Update `~/.tmux.conf` to use xclip for linux and pbcopy/pbpaste for macOS and th
 
 Install for both:
  * [seebi/dircolors-solarized](https://github.com/seebi/dircolors-solarized) (only for Linux systems)
- * [GNU source-highlight](https://www.gnu.org/software/src-highlite/source-highlight.html)
+ * [GNU source-highlight](https://www.gnu.org/software/src-highlite/source-highlight.html) for less(1).
  * [jrunning/source-highlight-solarized](https://github.com/jrunning/source-highlight-solarized)
  * [flavio/jump](https://github.com/flavio/jump)
 ```bash
