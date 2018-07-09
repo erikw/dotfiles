@@ -66,18 +66,18 @@ sandbox_hook java-home javadoc
 sandbox_hook java-home jar
 
 # pyenv python version manager
-# TODO maybe not a good idea to sandbox python, as only interactive termnials will get this, not scripts?
-sandbox_init_pyenv(){
-	if type pyenv >/dev/null 2>&1; then
-		eval "$(pyenv init -)"
-	fi
-}
-sandbox_hook pyenv easy_install
-sandbox_hook pyenv pip
-sandbox_hook pyenv pip3
-sandbox_hook pyenv pydoc
-sandbox_hook pyenv pydoc3
-sandbox_hook pyenv python
-sandbox_hook pyenv python-config
-sandbox_hook pyenv python3
-sandbox_hook pyenv python3-config
+# NOTE only interactive termnials will get this, not scripts.
+#sandbox_init_pyenv(){
+#	if type pyenv >/dev/null 2>&1; then
+#		eval "$(pyenv init -)"
+#	fi
+#}
+#sandbox_hook pyenv easy_install
+#sandbox_hook pyenv pip
+#sandbox_hook pyenv pip3
+#sandbox_hook pyenv pydoc
+#sandbox_hook pyenv pydoc3
+#sandbox_hook pyenv python
+#sandbox_hook pyenv python-config
+#sandbox_hook pyenv python3
+#sandbox_hook pyenv python3-config
