@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+
+cd $HOME/.dotfiles
+git stash
+git checkout personal
+git fetch
+git rebase origin/personal
+git co local
+git rebase personal
+git stash pop
