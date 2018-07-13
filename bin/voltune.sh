@@ -22,6 +22,7 @@ if [ "$#" -eq 0 ]; then
 fi
 
 # getopts documentation: https://www.gnu.org/software/libc/manual/html_node/Using-Getopt.html
+# "An option character in this string can be followed by a colon (‘:’) to indicate that it takes a required argument."
 while getopts ":c:i:m:h?" opt; do
 	case "$opt" in
 		c) cmd="$OPTARG";;
