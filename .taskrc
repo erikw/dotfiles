@@ -79,5 +79,6 @@ report.tomorrow.sort=id+
 #taskd.key=~/.task/certs/compton/erikw.key.pem
 #taskd.ca=~/.task/certs/compton/ca.cert.pem
 ##taskd.server=compton.2r.se:53589
+##taskd.server=localhost:53589
 #taskd.server=cpt:53589
 #taskd.credentials=GIT-CENSORED
