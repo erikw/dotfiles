@@ -14,10 +14,10 @@ servers = (
     address = "irc.quakenet.org";
     chatnet = "QuakeNet";
     port = "6667";
-    autoconnect = "no";
+    autoconnect = "yes";
   },
   {
-    address = "efnet.xs4all.nl";
+    address = "efnet.portlane.se";
     chatnet = "EFNet";
     port = "6667";
     autoconnect = "yes";
@@ -48,7 +48,7 @@ servers = (
   },
   {
     address = "127.0.0.1";
-    chatnet = "zncFreenode";
+    chatnet = "znc_local_freenode";
     port = "6677";
     use_ssl = "yes";
     ssl_verify = "no";
@@ -57,7 +57,7 @@ servers = (
   },
   {
     address = "127.0.0.2";
-    chatnet = "zncQuakenet";
+    chatnet = "znc_local_Quakenet";
     port = "6677";
     use_ssl = "yes";
     ssl_verify = "no";
@@ -66,7 +66,7 @@ servers = (
   },
   {
     address = "127.0.0.3";
-    chatnet = "zncEFNet";
+    chatnet = "znc_local_efnet";
     port = "6677";
     use_ssl = "yes";
     ssl_verify = "no";
@@ -75,7 +75,7 @@ servers = (
   },
   {
     address = "127.0.0.4";
-    chatnet = "zncBitlbee";
+    chatnet = "znc_local_bitlbee";
     port = "6677";
     use_ssl = "yes";
     ssl_verify = "no";
@@ -83,8 +83,8 @@ servers = (
     password = "GIT-CENSORED";
   },
   {
-    address = "ljunghusen.2r.se";
-    chatnet = "zncFreenodeRemote";
+    address = "compton.2r.se";
+    chatnet = "znc_remote_freenode";
     port = "6677";
     use_ssl = "yes";
     ssl_verify = "no";
@@ -92,8 +92,8 @@ servers = (
     password = "GIT-CENSORED";
   },
   {
-    address = "ljunghusen.2r.se";
-    chatnet = "zncQuakenetRemote";
+    address = "compton.2r.se";
+    chatnet = "znc_remote_quakenet";
     port = "6677";
     use_ssl = "yes";
     ssl_verify = "no";
@@ -101,8 +101,8 @@ servers = (
     password = "GIT-CENSORED";
   },
   {
-    address = "ljunghusen.2r.se";
-    chatnet = "zncEFNetRemote";
+    address = "compton.2r.se";
+    chatnet = "znc_remote_efnet";
     port = "6677";
     use_ssl = "yes";
     ssl_verify = "no";
@@ -110,25 +110,11 @@ servers = (
     password = "GIT-CENSORED";
   },
   {
-    address = "ljunghusen.2r.se";
-    chatnet = "zncBitlbeeRemote";
+    address = "compton.2r.se";
+    chatnet = "znc_remote_bitlbee";
     port = "6677";
     use_ssl = "yes";
     ssl_verify = "no";
-    autoconnect = "no";
-    password = "GIT-CENSORED";
-  },
-  {
-    address = "ljunghusen.2r.se";
-    chatnet = "CPTQuakeNet";
-    port = "6671";
-    autoconnect = "no";
-    password = "GIT-CENSORED";
-  },
-  {
-    address = "ljunghusen.2r.se";
-    chatnet = "CPTEFNet";
-    port = "6672";
     autoconnect = "no";
     password = "GIT-CENSORED";
   }
@@ -145,7 +131,7 @@ chatnets = {
   };
   QuakeNet = {
     type = "IRC";
-    autosendcmd = "/^msg Q@CServe.quakenet.org auth erikwestrup GIT-CENSORED;/mode erikw +C";
+    autosendcmd = "/^msg Q@CServe.quakenet.org auth erikw GIT-CENSORED;/mode erikw +C";
     max_kicks = "1";
     max_msgs = "3";
     max_whois = "30";
@@ -170,25 +156,22 @@ chatnets = {
   };
   Mozilla = { type = "IRC"; };
   Oftc = { type = "IRC"; };
-  zncFreenode = { type = "IRC"; username = "freenode"; };
-  zncQuakenet = { type = "IRC"; username = "quakenet"; };
-  zncEFNet = { type = "IRC"; username = "efnet"; };
-  zncBitlbee = { type = "IRC"; username = "bitlbee"; };
-  zncFreenodeRemote = { type = "IRC"; username = "freenode"; };
-  zncQuakenetRemote = { type = "IRC"; username = "quakenet"; };
-  zncEFNetRemote = { type = "IRC"; username = "efnet"; };
-  zncBitlbeeRemote = { type = "IRC"; username = "bitlbee"; };
-  CPTBitlBee = { type = "IRC"; };
-  CPTFreenode = { type = "IRC"; };
-  CPTQuakeNet = { type = "IRC"; };
-  CPTEFNet = { type = "IRC"; };
+  znc_local_freenode = { type = "IRC"; username = "freenode"; };
+  znc_local_quakenet = { type = "IRC"; username = "quakenet"; };
+  znc_local_efnet = { type = "IRC"; username = "efnet"; };
+  znc_local_bitlbee = { type = "IRC"; username = "bitlbee"; };
+  znc_remote_freenode = { type = "IRC"; username = "erikw/freenode"; };
+  znc_remote_quakenet = { type = "IRC"; username = "erikw/quakenet"; };
+  znc_remote_efnet = { type = "IRC"; username = "erikw/efnet"; };
+  znc_remote_bitlbee = { type = "IRC"; username = "bitlbee"; };
 };
 
 channels = (
   { name = "##kodapor"; chatnet = "freenode"; autojoin = "yes"; },
   { name = "#archlinux"; chatnet = "freenode"; autojoin = "no"; },
-  { name = "##linux"; chatnet = "freenode"; autojoin = "yes"; },
-  { name = "#vim"; chatnet = "freenode"; autojoin = "yes"; },
+  { name = "#freebsd"; chatnet = "freenode"; autojoin = "no"; },
+  { name = "##linux"; chatnet = "freenode"; autojoin = "no"; },
+  { name = "#vim"; chatnet = "freenode"; autojoin = "no"; },
   { name = "#taskwarrior"; chatnet = "freenode"; autojoin = "no"; },
   { name = "#blausoffan"; chatnet = "efnet"; autojoin = "yes"; },
   { name = "#dwww"; chatnet = "efnet"; autojoin = "yes"; }
