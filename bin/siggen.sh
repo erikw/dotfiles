@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Generates a sig file from parameters.
 # $siggen.sh "role" "email"
 
