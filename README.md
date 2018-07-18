@@ -95,6 +95,7 @@ $ cd ~/.dotfiles
 $ git checkout -b local
 ```
 
+## Host specific configuration
 Passwords and other secretes are censored. To find these and substitue them for the real thing, do
 
 ```bash
