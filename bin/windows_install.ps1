@@ -66,8 +66,8 @@ $choco_apps =
 "autohotkey " +
 "bleachbit " +
 "cygwin " +
-"discord" +
 "deluge " +
+"discord" +
 "ditto " +
 "f.lux " +
 "firefox " +
@@ -77,6 +77,7 @@ $choco_apps =
 "javaruntime " +
 "libreoffice " +
 "putty " +
+"signal" +
 "skype " +
 "spotify " +
 "steam " +
@@ -94,8 +95,11 @@ $choco_apps_additional =
 "virtualclonedrive " +
 ""
 
-# Whatsapp
-# Is installed in %USER%\AppData\Local\Whatsapp, make a shortcut to the desktop self.
+# Windows Desktop shortcuts:
+# * Whatsapp: Is installed in %USER%\AppData\Local\Whatsapp
+# * ~/.dotfiles/bin/windows_install.ps1
+# * Lenovo vantage: to upgrade firmwares
+# * Windows Upgrade: Right click on desktop > New > Shortcut > Location: "ms-settings:windowsupdate" > Name: Windows Upgrade.
 
 
 Invoke-Expression "choco install $choco_apps"
