@@ -76,6 +76,7 @@ $choco_apps =
 "googlechrome " +
 "javaruntime " +
 "libreoffice " +
+"openhardwaremonitor" +
 "putty " +
 "signal" +
 "skype " +
@@ -210,6 +211,16 @@ cp ~/.dotfiles/.vimperatorrc ~/
 # Ref: http://lifehacker.com/5742148/fix-windows-clock-issues-when-dual-booting-with-os-x
 # Ref: http://stackoverflow.com/questions/26719206/powershell-create-registry-path-one-liner
 New-ItemProperty -Path Registry::HKLM\SYSTEM\CurrentControlSet\Control\TimeZoneInformation -Name RealTimeIsUniversal -Value 1 -Force | Out-Null
+
+
+# Create desktop shortcut to OpenHardwareMonitor, as the chocolatey installed does not add desktop or start menu shortcuts.
+# Reference: https://www.pdq.com/blog/pdq-deploy-and-powershell/
+$TargetFile = "C:\ProgramData\chocolatey\lib\OpenHardwareMonitor\tools\OpenHardwareMonitor\OpenHardwareMonitor.exe"
+$ShortcutFile = "$env:Public\Desktop\OpenHardwareMonitor.lnk"
+$WScriptShell = New-Object -ComObject WScript.Shell
+$Shortcut = $WScriptShell.CreateShortcut($ShortcutFile)
+$Shortcut.TargetPath = $TargetFile
+$Shortcut.Save()
 
 
 # PuTTY
