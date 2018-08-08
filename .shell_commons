@@ -288,7 +288,7 @@ source $HOME/.shell_functions
 	elif shell_is_bsd; then
 		export POWERLINE_ROOT=/usr/local/lib/python3.6/site-packages/powerline
 	elif shell_is_linux; then
-		export POWERLINE_ROOT=/usr/lib/python3.6/site-packages/powerline
+		export POWERLINE_ROOT=/usr/lib/python3.7/site-packages/powerline
 	fi
 
 	if program_is_in_path powerline-daemon; then
