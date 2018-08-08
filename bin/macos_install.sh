@@ -98,7 +98,6 @@ read -r -d '' cask_apps_default <<'EOAPPS'
 	appcleaner
 	awareness
 	caffeine
-	cheatsheet
 	clipy
 	cyberduck
 	dropbox
@@ -108,7 +107,7 @@ read -r -d '' cask_apps_default <<'EOAPPS'
 	freshback
 	gimp
 	google-chrome
-	icultus
+	itsycal
 	iterm2
 	libreoffice
 	macvim
@@ -129,6 +128,7 @@ read -r -d '' cask_apps_additional <<'EOAPPS'
 	adium
 	atom
 	burn
+	cheatsheet
 	chicken
 	clamxav
 	colloquy
