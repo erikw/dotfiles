@@ -29,3 +29,7 @@ __tm_command() {
 ssh() {
     __tm_command ssh "$@"
 }
+
+mosh() {
+    __tm_command mosh "$@"
+}
