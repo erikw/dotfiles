@@ -57,7 +57,7 @@
 # Crypt {{
 	source ~/.muttrc.gpg						# Use GnuPG commands. Original is in /usr/share/doc/packages/mutt/samples/gpg.rc
 	#source /etc/Muttrc.gpg.dist
-	set pgp_sign_as=AD610036					# Default ID to sign with.
+	set pgp_sign_as=D5EFDF013574AE9BE8343C327C16B1148E432F36	# Default ID to sign with. Beware of e.g. offlineimap syncing draft messages not yet encrypted.
 	set crypt_autosmime						# Use S/MIME format.
 	unset crypt_autosign						# Don't sign all outgoing messages.
 	unset crypt_autoencrypt						# Don't encrypt all outgoing messages.
