@@ -9,6 +9,9 @@
 # 5. Right click on it at "Run as Administrator" to run update.
 # Reference: https://stackoverflow.com/questions/10137146/is-there-any-way-to-make-powershell-script-work-by-double-clicking-ps1-file
 
+Write-Output "> Outdated chocolately apps."
+choco outdated
+Write-Output "> Outdated chocolately apps. - DONE"
 Write-Output "> Upgrading chocolately apps."
 choco upgrade all
 Write-Output "> Upgrading chocolately apps. - DONE"
