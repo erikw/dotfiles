@@ -59,6 +59,11 @@ export cdw >/dev/null
 # Time conversions.
 epoch2iso8601() {
 	local epoch="$1"
+	local len=$(echo -n $epoch | wc -m)
+	# Assume that a longer string means we have ms or ns - simply strip down to seconds.
+	if [ $len -gt 10 ]; then
+		epoch=$(echo $epoch | cut -c 1-10)
+	fi
 	date -d @$epoch +%Y-%m-%dT%H:%M:%S%z
 }
 export epoch2iso8601 >/dev/null
