@@ -107,8 +107,9 @@ read -r -d '' cask_apps_default <<'EOAPPS'
 	freshback
 	gimp
 	google-chrome
-	itsycal
 	iterm2
+	itsycal
+	lastpass
 	libreoffice
 	macvim
 	name-mangler

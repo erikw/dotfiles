@@ -75,6 +75,7 @@ $choco_apps =
 "git " +
 "googlechrome " +
 "javaruntime " +
+"lastpass" +
 "libreoffice " +
 "openhardwaremonitor" +
 "putty " +
