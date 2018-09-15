@@ -200,7 +200,8 @@
 	signal-desktop -use-tray-icon --start-in-tray &
 
 	# Mutli-chat app
-	franz &
+	#franz &
+	franz4-bin &
 
 	# Firefox
 	firefox &
