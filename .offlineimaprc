@@ -56,8 +56,8 @@ remotepass = GIT-CENSORED
 # Use SSL. Implicit for type = Gmail.
 #ssl=yes
 # Gmail's cert fingerprint. Using sslcacert option failes to verify even though `openssl` can use it for verification. http://docs.offlineimap.org/en/latest/FAQ.html#how-do-i-generate-an-sslcacertfile-file
-#cert_fingerprint=f3043dd689a2e7dddfbef82703a6c65ea9b634c1
-sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+cert_fingerprint=4cf1c747da7f62335273a00328e92b8f3cd9cd2cb5832ef58fdc78da11e84f245dde107b5b666f7230b5a705b2e3e9d28bd9b91322ea6267eee9b55e1737fa6d
+#sslcacertfile = /etc/ssl/certs/ca-certificates.crt
 # FREEBSD-CONFIG
 #sslcacertfile = /usr/local/share/certs/ca-root-nss.crt
 # Use more connections to speed up.
