@@ -22,12 +22,10 @@
 
 	" Github {
 		"Plugin 'Rip-Rip/clang_complete'
-		"Plugin 'altercation/vim-colors-solarized'
 		"Plugin 'chrisbra/CheckAttach'
 		"Plugin 'maxbrunsfeld/vim-yankstack'
 		"Plugin 'mbbill/undotree'
 		"Plugin 'mhinz/vim-startify'
-		"Plugin 'omtcvxyz/vim-colors-solarized'
 		"Plugin 'rhysd/vim-clang-format'
 		"Plugin 'tpope/vim-unimpaired'
 		Plugin 'AndrewRadev/sideways.vim'
@@ -36,6 +34,7 @@
 		Plugin 'Rykka/lastbuf.vim'
 		Plugin 'Townk/vim-autoclose'
 		Plugin 'airblade/vim-gitgutter'
+		Plugin 'altercation/vim-colors-solarized'
 		Plugin 'artur-shaik/vim-javacomplete2'
 		Plugin 'bkad/CamelCaseMotion'
 		Plugin 'chazy/cscope_maps'
@@ -48,7 +47,6 @@
 		Plugin 'erikw/jcommenter.vim'
 		Plugin 'erikw/snipmate-snippets'
 		Plugin 'erikw/vim-unimpaired'
-		Plugin 'ethanpailes/vim-colors-solarized'
 		Plugin 'fatih/vim-go'
 		Plugin 'fidian/hexmode'
 		Plugin 'fisadev/vim-isort'
