@@ -49,6 +49,10 @@ fi
 	# Refresh tab completion from PATH automatically, so hash(1) does not need to be called after installing a new program.
 	zstyle ':completion:*' rehash true
 
+	# Turn off URL completions for the open command, like "file: ftp:// gopher:// http:// https://"
+	# Reference: https://github.com/mpv-player/mpv/issues/2892
+	zstyle ':completion:*:*:open:*' tag-order '!urls'
+
 	# Use colors in tabcompletion
 	shell_is_macos && zstyle ':completion:*:default' list-colors ''
 
