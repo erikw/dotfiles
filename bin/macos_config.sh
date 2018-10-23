@@ -129,6 +129,10 @@ defaults write com.apple.dock persistent-apps -array-add '{tile-data={}; tile-ty
 # Sharing
 # Set "Computer Name"
 
+# Language & Region
+## Advanced
+### Dates
+# * Update the "Full" format to include the week number: <day>, <month> <dayno>, W<weekno>, <year>. Now the week will be visible when clicking the clock in the macOS menubar. Reference: https://www.456bereastreet.com/archive/201104/week_numbers_in_mac_os_x/
 
 # }
 
