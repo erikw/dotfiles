@@ -245,10 +245,16 @@ pip3 install --user $pip3_pkgs
 # Install tmux session on login.
 # Reference: http://www.launchd.info/
 cp $HOME/bin/com.user.irctor.plist $HOME/Library/LaunchAgents/
-launchctl load -w $HOME/Library/LaunchAgents/com.user.irctor
+launchctl load -w $HOME/Library/LaunchAgents/com.user.irctor.plist
 launchctl start com.user.irctor
 #launchctl list | grep com.user.irctor
 #launchctl unload -W $HOME/Library/LaunchAgents/com.user.irctor
+
+
+# Start iterm.app with tmux session loaded.
+cp $HOME/bin/com.user.iterm.plist $HOME/Library/LaunchAgents/
+launchctl load -w $HOME/Library/LaunchAgents/com.user.iterm.plist
+launchctl start com.user.iterm
 
 # }
 
