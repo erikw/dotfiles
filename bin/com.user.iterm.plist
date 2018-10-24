@@ -10,6 +10,9 @@
             <string>/Users/erikw/bin/iterm.sh</string>
             <string>irctor</string>
         </array>
+        <!-- Working directory for tmux is / if not set. -->
+        <key>WorkingDirectory</key>
+	<string>/Users/erikw/</string>
         <key>RunAtLoad</key>
         <true/>
     </dict>
