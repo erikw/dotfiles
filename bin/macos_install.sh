@@ -287,6 +287,10 @@ launchctl start com.user.iterm
 # iterm2
 # * Make Option key an Meta key, so e.g. tmux binding works:
 # Preferences > Pofiles > Keys: set "Left option key acts as" "+Esc".
+# * Make it easier to restart/poweroff by not confirming closing multiple windows - I always use tmux so it's not a problem
+# Perferences > General > uncheck
+# 	- Confirm closing multiple sessions.
+# 	- 'Confirm "iTerm2 (#Q)" if windows open"'.
 
 
 # Automator command for starting screen saver.
