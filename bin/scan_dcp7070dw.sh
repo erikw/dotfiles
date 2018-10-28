@@ -14,13 +14,14 @@ convert2type() {
 	local scan_name="$1"
 	local from="$2"
 	local to="$3"
+	# NOTE for convert version < 9.25, a workaround is needed: https://stackoverflow.com/questions/52861946/imagemagick-not-authorized-to-convert-pdf-to-an-image/52863413#52863413
 	convert -quality 75 "${scan_name}.${from}" "${scan_name}.${to}"
 	rm "${scan_name}.${from}"
 }
 
 copy_path_to_xclipboard() {
 	local path="$1"
-	echo  "$path" | xclip -i
+	echo "$path" | xclip -i
 }
 
 compress=true
