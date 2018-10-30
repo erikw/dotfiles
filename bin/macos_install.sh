@@ -109,7 +109,6 @@ read -r -d '' cask_apps_default <<'EOAPPS'
 	google-chrome
 	iterm2
 	itsycal
-	lastpass
 	libreoffice
 	macvim
 	name-mangler
@@ -271,6 +270,9 @@ launchctl start com.user.iterm
 
 # FreshBackMac
 # * Add to auto start in Settings > Users & Groups > Login items.
+
+# Binary lastpass version, for copy-and-paste:
+# https://lastpass.com/installer/?lang=en-US
 
 # Spotify Notifications
 # * Set shortcut to show current playing to: Ctrl+Opt+Shift+p or Opt+F13(print screen) or F14 (scroll lock).
