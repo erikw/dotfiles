@@ -203,7 +203,8 @@
 
 	# Mutli-chat app
 	#franz &
-	franz4-bin &
+	#franz4-bin &
+	rambox &
 
 	# Firefox
 	firefox &
