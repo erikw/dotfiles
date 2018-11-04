@@ -8,3 +8,4 @@ git rebase origin/personal
 git co local
 git rebase personal
 git stash pop
+dfm install
