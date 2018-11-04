@@ -19,7 +19,7 @@ fi
 # Set --pos to align with external monitor. Found by exporting config from arandr(1).
 args_lvds1="--output LVDS1 --primary --mode 1600x900 --pos 0x300 "
 case "$monitor" in
-	"dell24") # Dell 24" monitor.
+	"dell24") # Dell 24" monitor. Dell UltraSharp U2412M e-IPS 24" - black
 		if [ "$action" == "enable" ]; then
 			#ext_monargs="--output HDMI2 --mode 1920x1200 --right-of LVDS1"
 			# Set alignment, found by exporting config from arandr(1)
