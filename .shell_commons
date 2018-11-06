@@ -133,6 +133,9 @@ source $HOME/.shell_functions
 	# pkgfile "command not found" hook.
 	sourceifexists /usr/share/doc/pkgfile/command-not-found.$my_shell
 
+	# iTerm2 shell integration. Reference: https://www.iterm2.com/documentation-shell-integration.html
+	sourceifexists $HOME/.iterm2_shell_integration.$my_shell
+
 
 	# Tell gPodder to reside in multimedia directory. KDE4 uses ~/.kde4/env/
 	export GPODDER_HOME=$HOME/media/music/gPodder
