@@ -76,7 +76,7 @@ source $HOME/.shell_functions
 		export _JAVA_AWT_WM_NONREPARENTING=1
 	fi
 
-	# A better compiler for C lang.
+	# A better compiler for C langs.
 	if program_is_in_path clang; then
 		export CC=clang
 		export CXX=clang++
