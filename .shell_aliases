@@ -145,6 +145,9 @@ fi
 	#alias pm-suspend='sudo pm-suspend'
 	#alias pm-hibernate='sudo pm-hibernate'
 	alias sudo='sudo '			# Bring my aliases with me.
+	if shell_is_freebsd; then
+		alias sudo='sudo -u toor ' # Use toor by default.
+	fi
 # }
 
 # Navigation {
