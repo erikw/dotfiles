@@ -250,7 +250,7 @@ launchctl start com.user.irctor
 #launchctl unload -W $HOME/Library/LaunchAgents/com.user.irctor
 
 
-# Start iterm.app with tmux session loaded.
+# Start iterm2.app with tmux session loaded.
 cp $HOME/bin/com.user.iterm.plist $HOME/Library/LaunchAgents/
 launchctl load -w $HOME/Library/LaunchAgents/com.user.iterm.plist
 launchctl start com.user.iterm
@@ -293,6 +293,15 @@ launchctl start com.user.iterm
 # Perferences > General > uncheck
 # 	- Confirm closing multiple sessions.
 # 	- 'Confirm "iTerm2 (#Q)" if windows open"'.
+# * Create shortcuts to toggle between solarized dark & light:
+# 	* Preferences > Profiles > Default > Keys
+# 	* Press + >
+# 		- Shortcut: Opt + Cmd + s
+# 		- Action: "Load Color Preset" > "Solarized Light"
+# 	* Press + >
+# 		- Shortcut: Opt + Cmd + shift + s
+# 		- Action: "Load Color Preset" > "Solarized Dark"
+#
 
 
 # Automator command for starting screen saver.
