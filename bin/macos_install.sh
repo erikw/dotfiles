@@ -136,7 +136,7 @@ read -r -d '' cask_apps_additional <<'EOAPPS'
 	eclipse-ide
 	flip4mac
 	google-backup-and-sync
-	google-drive
+	google-drive-file-stream
 	gpgtools
 	handbrake
 	insomnia
