@@ -59,6 +59,7 @@ chflags hidden ~/Public
 
 # Add a space separator in dock, to organize icons to correspond to which monitor I want them to be open on. Let them be order by the Spaces order too.
 defaults write com.apple.dock persistent-apps -array-add '{tile-data={}; tile-type="spacer-tile";}'
+killall Dock
 
 
 # Install iTerm2 shell integration
