@@ -65,8 +65,9 @@ Host *github.com
 Upload the public key to your [Github profile](https://github.com/settings/keys)
 
 ```bash
+# Linux:
 $ xclip ~/.ssh/identityfiles/github_id_rsa.pub
-$ # -or-
+$ # or, macOS:
 $ pbcopy <  ~/.ssh/identityfiles/github_id_rsa.pub
 ```
 
@@ -115,8 +116,16 @@ same for FreeBSD:
 $ grep -nr FREEBSD-CONFIG . | grep -v README.md
 ```
 
+
+For macOS, install homebrew and run configs:
+
+```bash
+~/bin/macos_config.sh
+~/bin/macos_install.sh
+```
+
 ## Install ghq
-Make it easier to organize all git clones that will follow soon, by using the exxellent tool [ghq](https://github.com/motemen/ghq)!
+Make it easier to organize all git clones that will follow soon, by using the exellent tool [ghq](https://github.com/motemen/ghq)!
 
 ```bash
 $ go get github.com/motemen/ghq
