@@ -4,10 +4,20 @@
 #	vi: foldmarker={,} foldmethod=marker foldlevel=0: tabstop=8:
 # }
 
+
+
+if [ $# -ne 1 ]; then
+	echo "Provide computer hostname to set as argument" >&2
+	exit 1
+fi
+new_hostname=$1
+
+
+set -ex 
+
 # Change screenshot destination from Desktop to something sane.
 mkdir -p $HOME/media/images/screenshots
 defaults write com.apple.screencapture location $HOME/media/images/screenshots
-
 
 # Dim hidden apps (CMD+H) in the dock.
 defaults write com.apple.Dock showhidden -boolean yes; killall Dock
@@ -25,6 +35,7 @@ sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.locate.plist
 #sudo /usr/libexec/locate.updatedb
 sudo -s -- <<EOF
 cd /
+echo "Running locate.updatedb; it will take a while..."
 /usr/libexec/locate.updatedb
 EOF
 
@@ -32,8 +43,8 @@ EOF
 #chsh -s $(which zsh)
 chsh -s /bin/zsh
 
-# Set computers hostname. UDPATE NAME HERE before executing.
-sudo scutil --set HostName $USER-computer-xyz
+# Set computers hostname. 
+sudo scutil --set HostName $new_hostname
 
 
 # ALlow apps to be installed from anywhere (System Preferences > Security & Privacy).
@@ -57,7 +68,8 @@ chflags hidden ~/Pictures
 chflags hidden ~/Public
 
 
-# Add a space separator in dock, to organize icons to correspond to which monitor I want them to be open on. Let them be order by the Spaces order too.
+# Add two space separators in dock, to organize icons to correspond to which monitor I want them to be open on. Let them be order by the Spaces order too.
+defaults write com.apple.dock persistent-apps -array-add '{tile-data={}; tile-type="spacer-tile";}'
 defaults write com.apple.dock persistent-apps -array-add '{tile-data={}; tile-type="spacer-tile";}'
 killall Dock
 
