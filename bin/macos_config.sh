@@ -13,7 +13,7 @@ fi
 new_hostname=$1
 
 
-set -ex 
+set -er
 
 # Change screenshot destination from Desktop to something sane.
 mkdir -p $HOME/media/images/screenshots
@@ -43,16 +43,16 @@ EOF
 #chsh -s $(which zsh)
 chsh -s /bin/zsh
 
-# Set computers hostname. 
+# Set computers hostname.
 sudo scutil --set HostName $new_hostname
 
 
-# ALlow apps to be installed from anywhere (System Preferences > Security & Privacy).
+# Allow apps to be installed from anywhere (System Preferences > Security & Privacy).
 sudo spctl --master-disable
 
 # Make the cursor speed even faster than possible in System Preferences.
 # Reference: https://stackoverflow.com/questions/4489885/how-can-i-increase-the-cursor-speed-in-terminal
-defaults write NSGlobalDomain KeyRepeat -int 0
+defaults write nsglobaldomain keyrepeat -int 0
 
 
 # Allow a sudo session to last 5 minutes.
@@ -83,68 +83,25 @@ curl -L https://iterm2.com/misc/install_shell_integration.sh | bash
 #sudo /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport prefs DisconnectOnLogout
 
 # System Preferences {
-
-# Keyboard
-## Keyboard
-# * Make Time to adjust short
-# * Make Key Repeat fast
-## Modifier Keys
-# 1. Go to Preferences > Keyboard > Modifier Keys
-# 2. Check "Use F1, F2,.. as standard function keys
-# 3. For internal keyboard:
-#    - Set Caps Lock -> Escape
-# 4. For external keyboard,
-#    - Set Caps Lock -> Escape
-#    (unless the keyboard is an Apple keyboard or has a "mac-switch" toggle)
-#    - Set Option -> Command
-#    - Set Command -> Option
-
-## Input Sources
-# * Add Swedish & German. Check "Show Input menu in menu bar".
-## Shortcuts
-# * Go to Input Sources: Add shortcuts for toggling with CTRL+SHIFT+Space and CTRL+ALT+SHIFT+Space.
-# * Go to Mission Control:
-# 1. Set shortcut for showing notificatons menu to F13(Print screen).
-# 2. Enable shortcuts Ctrl+[1-5] for switching to Desktops.
-
-## Text
-# * Click "Spelling" dropdown >  chose "Set up" > uncheck British English and check US English.
 #
-#
+# General
+# * Set Dark theme
+
 # Desktop & Screensaver
 ## Screensaver
 # * Set Hot corners:
-## upper left: app windows
-## right upper: spaces
-## lower left: show desktop
+## upper left: Application Windows
+## right upper: Mission Control
+## lower left: Desktop
 ## lower right: applications # nope, very annoyting if having monitor to the right. Keep Launchapd in dock instead.
+
+# Dock
+# * Uncheck "Show recent applications in Dock"
 
 
 # Mission Control
-# * Unckeck "Automatically rearrange Spaces..."
+# * Unckeck "Automatically rearrange Spaces based on most recent use"
 
-# Date & Time
-## Clock
-# * Check "Show date"
-#
-#
-# # Profile
-# * Drag`n'drop a picture of me on to my profile.
-#
-# # Bluetooth
-# Turn off bluetooth.
-#
-# Internet Accounts
-# * Add Google account to get: Calendar, Contacts, mail etc.
-# * Add sign in with an Apple account to use: keychain, Find my mac, Back to my mac
-
-
-# Notifications
-# * Check "Turn on Do Not Disturbe: When the display is sleeping", to not leak notifications.
-# * Uncheck "Show notification on lock screen" for all apps, to not leak notifications.
-
-# Sharing
-# Set "Computer Name"
 
 # Language & Region
 ## Advanced
@@ -152,9 +109,89 @@ curl -L https://iterm2.com/misc/install_shell_integration.sh | bash
 # * Currencty: Euro
 # * Measurement units: Metric
 ### Dates
-# * Update the "Full" format to include the week number: <day>, <month> <dayno>, W<weekno>, <year>. Now the week will be visible when clicking the clock in the macOS menubar. Reference: https://www.456bereastreet.com/archive/201104/week_numbers_in_mac_os_x/
+# * Update the "Full" format to include the week number: <day>, <dayno> <month>, W<weekno>, <year>. Now the week will be visible when clicking the clock in the macOS menubar. Reference: https://www.456bereastreet.com/archive/201104/week_numbers_in_mac_os_x/
+
+
+# Security & Privacy
+# * Enable FileVault, with recovery key.
+# * Turn on firewall. Turn on "Block all incoming connections"
+
+# Notifications
+# * Check "Turn on Do Not Disturbe: When the display is sleeping", to not leak notifications.
+# * Uncheck "Show notification on lock screen" for all apps, to not leak notifications.
+
+
+# Keyboard
+## Keyboard
+# * Make Delay Until Repeat short
+# * Make Key Repeat fast
+### Modifier Keys
+# * Turn off backlit after 5m
+# * Check "Use F1, F2,.. as standard function keys
+# * Modifier Keys
+#	 * For internal keyboard:
+#	    - Set Caps Lock -> Escape
+#	 * For external keyboard,
+#	    - Set Caps Lock -> Escape
+#	    (unless the keyboard is an Apple keyboard or has a "mac-switch" toggle)
+#	    - Set Option -> Command
+#	    - Set Command -> Option
+## Input Sources
+# * Add US, Swedish & German. Check "Show Input menu in menu bar".
+## Shortcuts
+# * Go to Input Sources: Enable shortcuts for cycling input sources forward with CTRL+SHIFT+Space and backwards CTRL+ALT+SHIFT+Space.
+# * Go to Mission Control:
+# 1. Set shortcut for showing notificatons menu to F13(Print screen).
+# 2. Enable shortcuts Ctrl+[1-5] for switching to Desktops.
+## Text
+# * Click "Spelling" dropdown >  chose "Set up" > uncheck British English and check US English.
+
+
+# Mouse
+# * Uncheck "Scroll Direction: Natural. NOPE use scroll-reverser instead.
+
+
+# Trackpad
+## Point & Click
+# * Check "Tap to click"
+## More Gestures
+# * Check App Expose
+
+
+# Sound
+# * Check "Show volume in menu bar"
+
+
+# iCloud
+# * Login and enable
+
+
+# Internet Accounts
+# * Add Google account to get: Calendar, Contacts, mail etc.
+
+# Software Update
+# * Check "Automatically keep my Mac up to date".
+
+# Bluetooth
+# Turn off bluetooth.
+
+# Users & Groups
+# * Drag`n'drop a picture of me on to my profile.
+
+# Date & Time
+## Clock
+# * Check "Show date"
+
+
+
+# Sharing
+# Set "Computer Name"
+
 
 # }
+
+
+
 
 # Finder {
 # * Remove crap folders from sidebar
@@ -168,3 +205,6 @@ curl -L https://iterm2.com/misc/install_shell_integration.sh | bash
 #
 #
 # }
+#
+#
+# * Battery icon in menu bar > Show Percentage.

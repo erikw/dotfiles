@@ -4,14 +4,17 @@
 #	vi: foldmarker={,} foldmethod=marker foldlevel=0: tabstop=8:
 # }
 
-# TODO replace this script with homebrew-bundler? https://github.com/Homebrew/homebrew-bundle
+# TODO possibly replace this script with homebrew-bundler? https://github.com/Homebrew/homebrew-bundle
+
+
+set -x
 
 make_1line() {
 	echo "$1" | tr '\n' ' '
 }
 
 # Brew lists {
-read -r -d '' brew_apps_default <<'EOAPPS'
+read -r -d '' brew_apps_default <<-'EOAPPS'
 	ack
 	aspell
 	bashdb
@@ -67,7 +70,7 @@ read -r -d '' brew_apps_default <<'EOAPPS'
 EOAPPS
 brew_apps_default=$(make_1line "$brew_apps_default")
 
-read -r -d '' brew_apps_default_gnu <<'EOAPPS'
+read -r -d '' brew_apps_default_gnu <<-'EOAPPS'
 	findutils
 	gnu-indent
 	gnu-sed
@@ -78,7 +81,7 @@ EOAPPS
 brew_apps_default_gnu=$(make_1line "$brew_apps_default_gnu")
 
 
-read -r -d '' brew_apps_additional <<'EOAPPS'
+read -r -d '' brew_apps_additional <<-'EOAPPS'
 	ffmpeg2theora
 	irssi
 	jq
@@ -93,12 +96,13 @@ brew_apps_additional=$(make_1line "$brew_apps_additional")
 # }
 
 # Cask lists {
-read -r -d '' cask_apps_default <<'EOAPPS'
+read -r -d '' cask_apps_default <<-'EOAPPS'
 	amethyst
 	appcleaner
 	awareness
 	caffeine
 	clipy
+	scroll-reverser
 	cyberduck
 	dropbox
 	electric-sheep
@@ -124,7 +128,7 @@ EOAPPS
 cask_apps_default=$(make_1line "$cask_apps_default")
 
 
-read -r -d '' cask_apps_additional <<'EOAPPS'
+read -r -d '' cask_apps_additional <<-'EOAPPS'
 	adium
 	atom
 	burn
@@ -137,7 +141,7 @@ read -r -d '' cask_apps_additional <<'EOAPPS'
 	flip4mac
 	google-backup-and-sync
 	google-drive-file-stream
-	gpgtools
+	gpg-suite
 	handbrake
 	insomnia
 	intellij-idea-ce
@@ -154,7 +158,7 @@ read -r -d '' cask_apps_additional <<'EOAPPS'
 	slack
 	switch
 	thunderbird
-	torbrowser
+	tor-browser
 	transmission
 	veracrypt
 	virtualbox
@@ -167,12 +171,12 @@ cask_apps_additional=$(make_1line "$cask_apps_additional")
 
 # Python lists {
 # virtualenvwrapper needs to be installed for brew's pyenv-virtualenvwrapper, python2, it seems :O
-read -r -d '' pip2_pkgs <<'EOAPPS'
+read -r -d '' pip2_pkgs <<-'EOAPPS'
 	virtualenvwrapper
 EOAPPS
 pip2_pkgs=$(make_1line "$pip2_pkgs")
 
-read -r -d '' pip3_pkgs <<'EOAPPS'
+read -r -d '' pip3_pkgs <<-'EOAPPS'
 	ipdb
 	ipython
 	powerline-status
@@ -184,6 +188,7 @@ pip3_pkgs=$(make_1line "$pip3_pkgs")
 # }
 
 # Install {
+set -e # Must be after var defs.
 # Install homebrew.
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 brew install $brew_apps_default
@@ -236,13 +241,23 @@ pip2 install --user $pip2_pkgs
 pip3 install --user $pip3_pkgs
 
 
+# SSHFS
+# Reference: https://www.digitalocean.com/community/tutorials/how-to-use-sshfs-to-mount-remote-file-systems-over-ssh
+brew cask install osxfuse
+brew install sshfs
+# Now you can mount like this:
+# $ sudo mkdir -p /mnt/sshfs
+# $ sudo sshfs -o allow_other,defer_permissions user@host:/ /mnt/sshfs
+
+
 # Programs to install manually:
 # * easytag
 # * RVM: https://rvm.io/rvm/install
-# * XVim: https://github.com/XVimProject/XVim, https://github.com/XVimProject/XVim/blob/master/INSTALL_Xcode8.md
+# * xcode XVim: https://github.com/XVimProject/XVim, https://github.com/XVimProject/XVim/blob/master/INSTALL_Xcode8.md
 
 # Install tmux session on login.
 # Reference: http://www.launchd.info/
+mkdir -p $HOME/Library/LaunchAgents
 cp $HOME/bin/com.user.irctor.plist $HOME/Library/LaunchAgents/
 launchctl load -w $HOME/Library/LaunchAgents/com.user.irctor.plist
 launchctl start com.user.irctor
@@ -286,6 +301,9 @@ launchctl start com.user.iterm
 # MacVim
 # Make the app quit when the last buffer is closed: " MacVim > Preferences > After the last window closes: QuitMacVim.
 
+# Scroll Reerse
+# Enable reverse only for Mouse, and disable from menubar.
+
 # iterm2
 # * Make Option key an Meta key, so e.g. tmux binding works:
 # Preferences > Pofiles > Keys: set "Left option key acts as" "+Esc".
@@ -328,4 +346,11 @@ launchctl start com.user.iterm
 # 1. Create a new Apple account in App Store. Chose "None" when asked for credit card.
 # 2. Uninstall all these apps from Applications expose.
 # 3. Go to App Store and install all of them again, now signed in with the newly created account.
+
+
+
+
+## rEFInd bootloader
+# * Download .zip file at https://www.rodsbooks.com/refind/getting.html
+
 # }
