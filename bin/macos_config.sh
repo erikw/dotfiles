@@ -191,8 +191,6 @@ curl -L https://iterm2.com/misc/install_shell_integration.sh | bash
 # }
 
 
-
-
 # Finder {
 # * Remove crap folders from sidebar
 # * Add
@@ -205,6 +203,6 @@ curl -L https://iterm2.com/misc/install_shell_integration.sh | bash
 #
 #
 # }
-#
-#
-# * Battery icon in menu bar > Show Percentage.
+
+
+# * Battery icon in menu bar > Show Percentages.
