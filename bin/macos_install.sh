@@ -233,7 +233,7 @@ brew install mas
 
 
 
-# Make a backup of installed brewe packages with:
+# Make a backup of installed brew packages with:
 # brew bundle dump
 
 # Install python packages.
@@ -270,21 +270,30 @@ cp $HOME/bin/com.user.iterm.plist $HOME/Library/LaunchAgents/
 launchctl load -w $HOME/Library/LaunchAgents/com.user.iterm.plist
 launchctl start com.user.iterm
 
+
 # }
 
 # Custom/Config {
 
-# Amethys
+# Amethyst
 # Give Amethys acessability access according to: https://ianyh.com/amethyst
 # Then go to Amethys Preferences
 # * Uncheck "Enable Layout HUD on Space Change".
 # * Set the following layouts to be used: tall, wide, fullscreen, floating.
 
 # Clipy
+## General
+# * Max clipboard size: 60
+## Menu
+# * Number of items to place inline: 20
+# * Number of items to place inside a folder: 40
+## Shortcuts
 # * Set the history keyboard shortcut to CTRL+Shift+F13 or Ctrl+Shift+Insert (external keyboard).
 
 # FreshBackMac
 # * Add to auto start in Settings > Users & Groups > Login items.
+# * Set daily refresh
+# * Turn off desktop notifications.
 
 # Binary lastpass version, for copy-and-paste:
 # https://lastpass.com/installer/?lang=en-US
@@ -348,9 +357,13 @@ launchctl start com.user.iterm
 # 3. Go to App Store and install all of them again, now signed in with the newly created account.
 
 
+# Set up ~/bin/macos_start_screensaver.command according to instructions inside.
 
 
-## rEFInd bootloader
-# * Download .zip file at https://www.rodsbooks.com/refind/getting.html
+# * Denon PMA-50 (amplifier). Reference: http://manuals.denon.com/PMA50/EU/EN/WBSPSYknckyjju.php#WBSPMLurphubft
+# 	* Connect via USB
+# 	* Open Audio MIDI Setup app
+# 	* Right click on PMA-50 and check "Use this Device for Sound Output"
+# 	* Set format to: “192 kHz” and “2ch-24 bit Interger”.
 
 # }
