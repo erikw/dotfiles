@@ -194,15 +194,19 @@ curl -L https://iterm2.com/misc/install_shell_integration.sh | bash
 # Finder {
 # * Remove crap folders from sidebar
 # * Add
+#  - ~/doc/
 #  - ~/dl/
 #  - ~/tmp/
 #  - ~/media/images/screenshots/
 #  - Desktop
 #  - Applicatons
 #  - /tmp
-#
+#  * Copy icon from Downloads -> DL in CMD+i dialog.
 #
 # }
 
+# Dock {
+# * Add ~/  and ~/dl/to dock.
+# }
 
 # * Battery icon in menu bar > Show Percentages.
