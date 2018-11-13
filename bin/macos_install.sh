@@ -283,10 +283,11 @@ launchctl start com.user.iterm
 
 # Clipy
 ## General
-# * Max clipboard size: 60
+# * Max clipboard size: 100
 ## Menu
-# * Number of items to place inline: 20
-# * Number of items to place inside a folder: 40
+# * Number of items to place inline: 25
+# * Number of items to place inside a folder: 75
+# * Number of characters in the menu: 100
 ## Shortcuts
 # * Set the history keyboard shortcut to CTRL+Shift+F13 or Ctrl+Shift+Insert (external keyboard).
 
