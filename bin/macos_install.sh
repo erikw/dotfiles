@@ -153,6 +153,7 @@ read -r -d '' cask_apps_additional <<-'EOAPPS'
 	perian
 	pycharm-ce
 	robo-3t
+	signal
 	skim
 	skype
 	slack
@@ -309,18 +310,20 @@ launchctl start com.user.iterm
 
 
 # MacVim
-# Make the app quit when the last buffer is closed: " MacVim > Preferences > After the last window closes: QuitMacVim.
+# * Make the app quit when the last buffer is closed: " MacVim > Preferences > After the last window closes: QuitMacVim.
+# * Open text files with MacVim
+# 	* Find any .txt file > cmd+i on it > Open with > MacVim > Change for all
 
 # Scroll Reerse
 # Enable reverse only for Mouse, and disable from menubar.
 
-# iterm2
+# iTerm2
 # * Make Option key an Meta key, so e.g. tmux binding works:
 # Preferences > Pofiles > Keys: set "Left option key acts as" "+Esc".
 # * Make it easier to restart/poweroff by not confirming closing multiple windows - I always use tmux so it's not a problem
 # Perferences > General > uncheck
 # 	- Confirm closing multiple sessions.
-# 	- 'Confirm "iTerm2 (#Q)" if windows open"'.
+# 	- Confirm "iTerm2 (#Q)" if windows open"
 # * Create shortcuts to toggle between solarized dark & light:
 # 	* Preferences > Profiles > Default > Keys
 # 	* Press + >
@@ -333,7 +336,7 @@ launchctl start com.user.iterm
 
 
 # Automator command for starting screen saver.
-# 1. Open automator
+# 1. Open automatos
 # 2. Create a new service
 # 3. Choose "Run AppleScript"
 # 4. In the top of the window, select for "Service receives selected" to "no input" and "in any application".
@@ -348,8 +351,6 @@ launchctl start com.user.iterm
 #
 #
 #
-# #Open text files with MacVim
-# * Find any .txt file > cmd+i on it > Open with > MacVim > Change for all
 #
 # # Update Keynote, Pages, Numbers & iMovie in App Store
 # If these apps came preinstalled on the macbook they won't update some times as the "purchase" was made with another account. Fix with:
