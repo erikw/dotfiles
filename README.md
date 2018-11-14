@@ -104,7 +104,7 @@ $ grep -nr GIT-CENSORED . | grep -v README.md
 ```
 
 
-Set `DESKTYPE` in `~/.shell_commons`.
+Set `DESKTYPE` in `~/.shell_commons`, unless system is macos.
 
 If the host system is macOS, then at some places manual configuration is needed. Find where by looking for the macOS tag:
 ```bash
