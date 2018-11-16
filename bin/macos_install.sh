@@ -102,7 +102,6 @@ read -r -d '' cask_apps_default <<-'EOAPPS'
 	awareness
 	caffeine
 	clipy
-	scroll-reverser
 	cyberduck
 	dropbox
 	electric-sheep
@@ -118,6 +117,8 @@ read -r -d '' cask_apps_default <<-'EOAPPS'
 	name-mangler
 	postman
 	qr-journal
+	scroll-reverser
+	sensiblesidebuttons
 	spectacle
 	spotify
 	spotify-notifications

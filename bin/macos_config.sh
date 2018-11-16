@@ -121,6 +121,9 @@ curl -L https://iterm2.com/misc/install_shell_integration.sh | bash
 # * Uncheck "Show notification on lock screen" for all apps, to not leak notifications.
 
 
+# Display
+# * Move the white menu bar to the main monitor, so notifications etc. comes on it.
+
 # Keyboard
 ## Keyboard
 # * Make Delay Until Repeat short
@@ -189,7 +192,6 @@ curl -L https://iterm2.com/misc/install_shell_integration.sh | bash
 
 
 # }
-
 
 # Finder {
 # * Remove crap folders from sidebar
