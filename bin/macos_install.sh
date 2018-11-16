@@ -151,6 +151,7 @@ read -r -d '' cask_apps_additional <<-'EOAPPS'
 	mactex
 	max
 	perian
+	prey
 	pycharm-ce
 	robo-3t
 	signal
@@ -231,6 +232,9 @@ brew install mas
 # To install:
 # 1059074180 WeatherBug - Weather Forecasts and Alerts
 # 585829637 Todoist: Organize your life
+# 1147396723  WhatsApp Desktop
+# 897118787  Shazam
+# 405399194  Kindle
 
 
 
@@ -367,5 +371,10 @@ launchctl start com.user.iterm
 # 	* Open Audio MIDI Setup app
 # 	* Right click on PMA-50 and check "Use this Device for Sound Output"
 # 	* Set format to: “192 kHz” and “2ch-24 bit Interger”.
+
+
+# Logitech G700s drivers
+# * https://support.logitech.com/en_us/product/g700s-rechargable-wireless-gaming-mouse/downloads#
+
 
 # }
