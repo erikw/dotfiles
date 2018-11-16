@@ -82,9 +82,15 @@ fi
 # UI {
 	autoload -U colors && colors
 
-	#autoload -Uz promptinit
-	#promptinit
-	#prompt suse	# Prompt theme.
+	# Prompt settings.
+	if [ -n "$POWERLINE_ROOT" ] && [ -d $POWERLINE_ROOT ]; then
+		source $POWERLINE_ROOT/bindings/zsh/powerline.zsh
+	else
+		autoload -Uz promptinit
+		promptinit
+		prompt suse	# Prompt theme.
+	fi
+
 
 	# Fish like syntax highlighting on command line.
 	zsh_syntax_path=
@@ -197,12 +203,6 @@ fi
 	if [ -d $HOME/src/github.com/simonwhitaker/gibo ]; then
 		PATH="$HOME/src/github.com/simonwhitaker/gibo:$PATH"
 		#source $HOME/src/github.com/simonwhitaker/gibo/gibo-completion.zsh
-	fi
-# }
-
-# Powerline {
-	if [ -n "$POWERLINE_ROOT" ] && [ -d $POWERLINE_ROOT ]; then
-		source $POWERLINE_ROOT/bindings/zsh/powerline.zsh
 	fi
 # }
 
