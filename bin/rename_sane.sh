@@ -11,9 +11,12 @@ IFS=$'\n'
 for dir in $(find $path -type d | tac); do
 	echo "$dir"
 	cd "$dir"
-	# TODO on macOS, case-only rename is not allowed. Need to rename file to temporay name first.
-	# https://stackoverflow.com/questions/7787029/how-do-i-rename-all-files-to-lowercase
-	rename.pl 's/(.*)/lc($1)/e' *
+	# On macOS, case-only rename is not allowed. Need to rename file to temporay name first.
+	# Reference: https://stackoverflow.com/questions/7787029/how-do-i-rename-all-files-to-lowercase
+	#rename.pl 's/(.*)/lc($1)/e' *
+	for f in *; do
+		mv "$f" "$f.tmp"; mv "$f.tmp" "`echo $f | tr "[:upper:]" "[:lower:]"`"
+	done
 	rename.pl 's/ /_/g' *
 	cd - >/dev/null
 done
