@@ -112,6 +112,7 @@ read -r -d '' cask_apps_default <<-'EOAPPS'
 	google-chrome
 	iterm2
 	itsycal
+	karabiner-elements
 	libreoffice
 	macvim
 	name-mangler
@@ -377,5 +378,12 @@ launchctl start com.user.iterm
 # Logitech G700s drivers
 # * https://support.logitech.com/en_us/product/g700s-rechargable-wireless-gaming-mouse/downloads#
 
+# Karabiner elements
+# Karabiner elements works much better than built-in opt<->cmd swap in system preferences because this bult-in swap does not work properly in iTerm, as alt key is only working on laptop keyboard and not on external.
+# * For all keyboard
+# 	* caps_lock -> escape
+# * For external keyboard
+#	* left_command -> left_option
+#	* left_option -> left_command
 
 # }
