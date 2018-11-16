@@ -40,25 +40,30 @@ sub notify {
     $message = sanitize($message);
 
     #my $cmd = "EXEC - " .
-	#"dbus-send --session /org/irssi/Irssi org.irssi.Irssi.IrssiNotify" .
-	#" string:'" . $summary . "'" .
-	#" string:'" . $message . "'";
+    #"dbus-send --session /org/irssi/Irssi org.irssi.Irssi.IrssiNotify" .
+    #" string:'" . $summary . "'" .
+    #" string:'" . $message . "'";
 
     # Above command stoped working since ~/bin/notify-listener.py is b0rken. Use legacy notify-send instead,
     #my $cmd = "EXEC - notify-send --app-name 'irssi_notify.pl' 'irssi: $summary' '$message'";
-    # Transient makes the notification to not stack up in gmome3
-    my $cmd = "EXEC - notify-send --hint=int:transient:1 --app-name 'irssi_notify.pl' 'irssi: $summary' '$message'";
+    my $cmd ="";
+    if (-e '/usr/bin/notify-send' && -x _) {
+        # Transient makes the notification to not stack up in gmome3
+        $cmd = "EXEC - notify-send --hint=int:transient:1 --app-name 'irssi_notify.pl' 'irssi: $summary' '$message'";
+    } elsif (-e '/usr/bin/osascript' && -x _) {
+            $cmd = "EXEC - /usr/bin/osascript -e 'display notification \"$message\" with title \"$summary\"'";
+    }
 
 
     $server->command($cmd);
 
     my $remote = Irssi::settings_get_str('notify_remote');
     if ($remote ne '') {
-	my $cmd = "EXEC - ssh -q " . $remote .
-	    " \"dbus-send --session /org/irssi/Irssi org.irssi.Irssi.IrssiNotify" .
-	    " string:'" . $summary . "'" .
-	    " string:'" . $message . "'\"";
-	$server->command($cmd);
+    my $cmd = "EXEC - ssh -q " . $remote .
+        " \"dbus-send --session /org/irssi/Irssi org.irssi.Irssi.IrssiNotify" .
+        " string:'" . $summary . "'" .
+        " string:'" . $message . "'\"";
+    $server->command($cmd);
     }
 
 }

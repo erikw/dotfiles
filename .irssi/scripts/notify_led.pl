@@ -19,6 +19,11 @@ $VERSION = "0.1";
 );
 
 sub notify_led_blink {
+		if (!(-e '/usr/bin/setleds' && -x _)) {
+			return;
+		}
+
+
 		my $tty = `tty`;
 		my $cmd_blink_on = '';
 		my $cmd_blink_off = '';
