@@ -34,6 +34,7 @@ read -r -d '' brew_apps_default <<-'EOAPPS'
 	git
 	gnu-getopt
 	gnupg
+	go
 	graphviz
 	htop
 	httpie
@@ -277,6 +278,8 @@ cp $HOME/bin/com.user.iterm.plist $HOME/Library/LaunchAgents/
 launchctl load -w $HOME/Library/LaunchAgents/com.user.iterm.plist
 launchctl start com.user.iterm
 
+# wego from brew is not recognizing forecast.io backend.
+go get -u github.com/schachmat/wego
 
 # }
 
