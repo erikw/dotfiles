@@ -1,7 +1,13 @@
 #!/usr/bin/env sh
 # Overlay to daemonize that does not require absolute path to the program to start.
 
+source $HOME/.shell_functions
+
 prog=$(which "$1")
 shift
 args="$@"
-/usr/sbin/daemonize $prog $args
+if shell_is_macos; then
+	/usr/local/sbin/daemonize $prog $args
+else
+	/usr/sbin/daemonize $prog $args
+fi

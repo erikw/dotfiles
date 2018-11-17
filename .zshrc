@@ -26,6 +26,11 @@ fi
 
 	# Function paths.
 	fpath=(~/.zsh_funcs $fpath)
+
+	# Extra zsh completions not in core zsh: https://github.com/zsh-users/zsh-completions
+	if [ -d /usr/local/share/zsh-completions ]; then
+		fpath=(/usr/local/share/zsh-completions $fpath)
+	fi
 # }
 
 # Completion {

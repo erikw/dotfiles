@@ -82,6 +82,18 @@ curl -L https://iterm2.com/misc/install_shell_integration.sh | bash
 # Reference: https://gist.github.com/jyore/aae1d0e6e482b4d152a4bcf5b5749eed
 #sudo /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport prefs DisconnectOnLogout
 
+
+# Track /etc in git
+sudo -s -- <<EOF
+cd /etc
+git init
+touch .gitignore
+git add .
+git config --global user.email "erik.westrup@gmail.com"
+git config --global user.name "Erik Westrup"
+git commit -m "Initital commit"
+EOF
+
 # System Preferences {
 #
 # General
@@ -93,7 +105,7 @@ curl -L https://iterm2.com/misc/install_shell_integration.sh | bash
 ## upper left: Application Windows
 ## right upper: Mission Control
 ## lower left: Desktop
-## lower right: applications # nope, very annoyting if having monitor to the right. Keep Launchapd in dock instead.
+## lower right: Launchpad # nope, very annoyting if having monitor to the right. Keep Launchapd in dock instead.
 
 # Dock
 # * Uncheck "Show recent applications in Dock"
@@ -209,6 +221,21 @@ curl -L https://iterm2.com/misc/install_shell_integration.sh | bash
 
 # Dock {
 # * Add ~/  and ~/dl/to dock.
+# }
+
+# Mail.app {
+# * The default keyboard shortcut for archive an email, ^+cmd+a, conflicts with Todoist. Add another one.
+# 	- Reference: https://www.lifewire.com/archive-keyboard-shortcut-os-x-mail-1172749
+# 	- System Preferences > Shortcuts > App Shortcuts > + >
+# 		- Application: Maill.app
+# 		- Menu Title: Archive
+# 		- Keyboard shortcut: Opt+a
+## Accounts
+# * Disable iCloud
+## Composing
+# * Message format: plain text
+## Signatures
+# * Add new signature "Standard".
 # }
 
 # * Battery icon in menu bar > Show Percentages.
