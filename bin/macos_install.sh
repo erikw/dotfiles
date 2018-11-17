@@ -86,6 +86,7 @@ read -r -d '' brew_apps_additional <<-'EOAPPS'
 	ffmpeg2theora
 	irssi
 	jq
+	mutt
 	postgresql
 	pyenv
 	pyenv-virtualenvwrapper
@@ -327,21 +328,29 @@ go get -u github.com/schachmat/wego
 # Enable reverse only for Mouse, and disable from menubar.
 
 # iTerm2
+## General
+# * Make it easier to restart/poweroff by not confirming closing multiple windows - I always use tmux so it's not a problem.  Unckeck:
+# - Confirm closing multiple sessions.
+# - Confirm "iTerm2 (#Q)" if windows open"
+# * iterm.sh: If iterm2.app is closed, 2 windows will be opended by this script. To prevent this:
+# 	- Startup > Select "Only Restore Hotkey Window"
+## Profiles
+### Colors
+# * Select color preset "Solarized Dark".
+### Text
+# * Set font to Source Code Pro for Powerline, 14pt.
+### Terminal
+# * Check "Unlimited Scrollback"
+### Keys
 # * Make Option key an Meta key, so e.g. tmux binding works:
-# Preferences > Pofiles > Keys: set "Left option key acts as" "+Esc".
-# * Make it easier to restart/poweroff by not confirming closing multiple windows - I always use tmux so it's not a problem
-# Perferences > General > uncheck
-# 	- Confirm closing multiple sessions.
-# 	- Confirm "iTerm2 (#Q)" if windows open"
+#   - set "Left option key acts as" "+Esc". NOTE need karabiner-elements to get left alt to work on external keyboard.
 # * Create shortcuts to toggle between solarized dark & light:
-# 	* Preferences > Profiles > Default > Keys
-# 	* Press + >
+# 	- Press the '+' button:>
 # 		- Shortcut: Opt + Cmd + s
 # 		- Action: "Load Color Preset" > "Solarized Light"
-# 	* Press + >
+# 	- Press the '+' button:>
 # 		- Shortcut: Opt + Cmd + shift + s
 # 		- Action: "Load Color Preset" > "Solarized Dark"
-#
 
 
 # Automator command for starting screen saver.

@@ -145,7 +145,7 @@ Install latest [ruby version environment](https://rvm.io/rvm/install). The pro o
 ```bash
 $ \curl -sSL https://get.rvm.io | bash -s stable --ruby
 $ #rvm install ruby --latest # already done by the curl-install.
-$ rvm use
+$ rvm list
 ```
 
 
@@ -162,25 +162,6 @@ $ ruby extconf.rb
 $ make   # FreeBSD: use gmake.
 ````
 
-### jedi-vim
-```bash
-$ cd ~/.vim/bundle/jedi-vim/
-$ git submodule update --init
-````
-
-### rope
-```bash
-$ pip3 install --user ropevim
-$ cat >> ~/.zshrc
-export PYTHONPATH="$PYTHONPATH:$HOME/Library/Python/3.5/lib/python/site-packages"
-^D
-````
-
-### isort
-```bash
-$ pip3 install --user isort
-````
-
 ### jcommenter
 The plugin uses DOS line endings; convert it.
 ```bash
@@ -192,6 +173,30 @@ $ dos2unix ~/.vim/bundle/jcommenter.vim/plugin/jcommenter.vim
 $ sudo npm -g install instant-markdown-d
 ````
 
+### Python development
+#### jedi-vim
+```bash
+$ cd ~/.vim/bundle/jedi-vim/
+$ git submodule update --init
+````
+
+#### rope
+```bash
+$ pip3 install --user ropevim
+$ cat >> ~/.zshrc
+export PYTHONPATH="$PYTHONPATH:$HOME/Library/Python/3.5/lib/python/site-packages"
+^D
+````
+
+#### isort
+```bash
+$ pip3 install --user isort
+````
+
+
+
+
+
 ## MacVim
 * Install [Inconsolata](https://github.com/google/fonts/tree/master/ofl/inconsolata) font which my [.gvimrc](.gvimrc) is set up with.
 
@@ -199,7 +204,7 @@ $ sudo npm -g install instant-markdown-d
 
 Install:
 
- * [powerline](https://github.com/powerline/powerline)
+ * [powerline](https://powerline.readthedocs.io/en/latest/installation.html)
  * urlview(1)
  * [seebi/tmux-colors-solarized](https://github.com/seebi/tmux-colors-solarized)
  ```bash
@@ -228,6 +233,15 @@ Install for both:
  * [seebi/dircolors-solarized](https://github.com/seebi/dircolors-solarized) (only for Linux systems)
  * [GNU source-highlight](https://www.gnu.org/software/src-highlite/source-highlight.html) for less(1).
  * [jrunning/source-highlight-solarized](https://github.com/jrunning/source-highlight-solarized)
+
+```bash
+$ ghq get git@github.com:jrunning/source-highlight-solarized.git
+$ datadir=$(yes n | source-highlight-settings | grep "current datadir" | sed -e 's/^.*: //')
+$ cp ~/src/github.com/jrunning/source-highlight-solarized/esc-solarized.* $datadir
+$ echo "esc-solarized = esc-solarized.outlang" >> $datadir/outlang.map
+````
+
+
  * [flavio/jump](https://github.com/flavio/jump)
 ```bash
 $ gem install --user-install jump
@@ -270,6 +284,7 @@ Back the installed ones up with:
 ```bash
 $ apm list --installed --bare > ~/.atom/apm_packages_bakup.txt
 ```
+
 
 
 
