@@ -255,7 +255,7 @@ source $HOME/.shell_functions
 	# $PYTHONPATH is a PATH-formatted list of additional directories where python should look for modules when importing ones. Don't mix py2 and py3 paths in it.
 	if shell_is_macos; then
 		macos_py2path=$HOME/Library/Python/2.7
-		macos_py3path=$HOME/Library/Python/3.6
+		macos_py3path=$HOME/Library/Python/3.7
 		if [ -d $macos_py2path ]; then
 			PATH="$macos_py2path/bin:$PATH"
 			# Python path must be set for ropevim to find rope.
@@ -310,7 +310,7 @@ source $HOME/.shell_functions
 		stty dsusp undef
 	fi
 
-	# RubyGems package manager
+	# RVM - RubyGems package manager
 	# Add installed $(gem install ...) binaries to path
 	# Reference: http://guides.rubygems.org/faqs/
 	# NOTE -rubygems is deprecated and removed in modern versions, see https://bbs.archlinux.org/viewtopic.php?id=233309
