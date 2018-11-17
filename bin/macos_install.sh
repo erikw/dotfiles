@@ -16,57 +16,80 @@ make_1line() {
 # Brew lists {
 read -r -d '' brew_apps_default <<-'EOAPPS'
 	ack
+	antiword
 	aspell
 	bashdb
 	cloc
 	cmatrix
+	colordiff
+	colormake
 	coreutils
 	cowsay
 	cscope
 	ctags
 	curl
+	daemonize
 	dfc
 	dos2unix
 	elinks
 	emacs
 	gawk
 	ghq
+	gist
 	git
 	gnu-getopt
 	gnupg
 	go
 	graphviz
+	grip
 	htop
 	httpie
+	iftop
 	imagemagick
+	ipcalc
 	ipython
 	jsonlint
 	knock
 	links
 	mercurial
 	mosh
+	multitail
 	ncdu
+	ncftp
 	netcat
+	nmap
 	octave
 	pdfgrep
+	pdftotext
 	peco
 	pidof
+	pv
 	python
 	python@2
 	readline
+	rsync
 	sl
 	source-highlight
 	task
 	tasksh
+	telnet
+	the_silver_searcher
 	tig
 	tmux
 	tree
+	unrar
+	unzip
 	urlview
 	vim
+	w3m
 	watch
 	wego
 	wget
+	xz
+	zenity
+	zip
 	zsh
+	zsh-completions
 	zsh-syntax-highlighting
 EOAPPS
 brew_apps_default=$(make_1line "$brew_apps_default")
@@ -83,15 +106,24 @@ brew_apps_default_gnu=$(make_1line "$brew_apps_default_gnu")
 
 
 read -r -d '' brew_apps_additional <<-'EOAPPS'
+	cgdb
+	checkbashisms
+	colorsvn
+	cpanminus
+	cryfs
 	ffmpeg2theora
 	irssi
 	jq
 	mutt
+	notmuch
+	offlineimap
+	pastebinit
 	postgresql
 	pyenv
 	pyenv-virtualenvwrapper
 	reattach-to-user-namespace
 	swiftlint
+	valgrind
 EOAPPS
 brew_apps_additional=$(make_1line "$brew_apps_additional")
 
@@ -125,6 +157,7 @@ read -r -d '' cask_apps_default <<-'EOAPPS'
 	spectacle
 	spotify
 	spotify-notifications
+	terminus
 	the-unarchiver
 	vlc
 	wireshark
@@ -148,6 +181,7 @@ read -r -d '' cask_apps_additional <<-'EOAPPS'
 	gpg-suite
 	handbrake
 	insomnia
+	insync
 	intellij-idea-ce
 	jing
 	keepassxc
@@ -156,7 +190,9 @@ read -r -d '' cask_apps_additional <<-'EOAPPS'
 	max
 	perian
 	prey
+	puddletag
 	pycharm-ce
+	rambox
 	robo-3t
 	signal
 	skim
@@ -190,6 +226,11 @@ read -r -d '' pip3_pkgs <<-'EOAPPS'
 	ropevim
 EOAPPS
 pip3_pkgs=$(make_1line "$pip3_pkgs")
+
+read -r -d '' pip3_pkgs_additional <<-'EOAPPS'
+	goobook
+EOAPPS
+pip3_pkgs=$(make_1line "$pip3_pkgs_additional")
 
 # }
 
@@ -281,6 +322,9 @@ launchctl start com.user.iterm
 
 # wego from brew is not recognizing forecast.io backend.
 go get -u github.com/schachmat/wego
+
+# zsh-completions: prevent "zsh compinit: insecure directories" on $(compinit)
+chmod go-w '/usr/local/share'
 
 # }
 
