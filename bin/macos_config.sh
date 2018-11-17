@@ -238,4 +238,6 @@ EOF
 # * Add new signature "Standard".
 # }
 
+# Media shortcuts for external keyboard: follow instructions in ~/bin/macos_media_control/info.txt
+
 # * Battery icon in menu bar > Show Percentages.
