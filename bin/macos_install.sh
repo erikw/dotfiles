@@ -280,6 +280,7 @@ brew install mas
 # 1147396723  WhatsApp Desktop
 # 897118787  Shazam
 # 405399194  Kindle
+# 912659472  Brother ScannerApp (Image Capture.app does not work for Brother DCP-7070DW)
 
 
 
@@ -325,6 +326,13 @@ go get -u github.com/schachmat/wego
 
 # zsh-completions: prevent "zsh compinit: insecure directories" on $(compinit)
 chmod go-w '/usr/local/share'
+
+# Brother DCP-7070dw printer & scanner driver: https://support.brother.com/g/b/downloadtop.aspx?c=eu_ot&lang=en&prod=dcp7070dw_eu
+# Add by Bonjour discovery on network.
+
+
+# Antivirus: Avast Security for Mac
+# https://www.avast.com/en-us/free-mac-security
 
 # }
 
