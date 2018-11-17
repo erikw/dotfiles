@@ -10,15 +10,18 @@ Most of my personal dotfiles can be found in this branch. I use dfm (dot file ma
     + [Generate a pair of new SSH keys.](#generate-a-pair-of-new-ssh-keys)
     + [Upload keys](#upload-keys)
   * [Install DFM](#install-dfm)
+  * [Host specific configuration](#host-specific-configuration)
+  * [Install ghq](#install-ghq)
   * [General](#general)
   * [rvm](#rvm)
   * [Vim](#vim)
     + [Compile command-t](#compile-command-t)
-    + [jedi-vim](#jedi-vim)
-    + [rope](#rope)
-    + [isort](#isort)
     + [jcommenter](#jcommenter)
     + [vim-instant-markdown](#vim-instant-markdown)
+    + [Python development](#python-development)
+      - [jedi-vim](#jedi-vim)
+      - [rope](#rope)
+      - [isort](#isort)
   * [MacVim](#macvim)
   * [Tmux](#tmux)
   * [ZSH/Bash](#zshbash)
@@ -293,5 +296,5 @@ The table of contents was generated using [markdown-toc](https://github.com/jons
 ```bash
 $ sudo npm install -g markdown-toc
 $ # add toc marker to README.md
-$ markdown-toc -i README.md
+$ markdown-toc -i ~/.dotfiles/README.md
 ```
