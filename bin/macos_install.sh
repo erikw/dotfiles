@@ -446,6 +446,8 @@ chmod go-w '/usr/local/share'
 # Karabiner elements works much better than built-in opt<->cmd swap in system preferences because this bult-in swap does not work properly in iTerm, as alt key is only working on laptop keyboard and not on external.
 # * For all keyboard
 # 	* caps_lock -> escape
+# 	* fn -> left_control
+# 	* left_control -> fn
 # * For external keyboard
 #	* left_command -> left_option
 #	* left_option -> left_command
