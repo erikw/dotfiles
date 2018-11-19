@@ -184,10 +184,10 @@
 
 	# Start Dropbox.
 	# Start with a delay as dropbox some times does a massively CPU intensive file indexing on launch, which slows down the whole system.
-	(sleep 30s && dropbox start) &
+	#(sleep 30s && dropbox start) &
 
 	# Start GDrive syncer.
-	(sleep 50s && insync start) &
+	#(sleep 50s && insync start) &
 
 	# Facebook Messenger for desktop.
 	#messengerfordesktop --os-startup &
