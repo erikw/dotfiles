@@ -1,18 +1,21 @@
 //  Apply plugins globally to all gradle projects.
 // Documentation: https://github.com/dvoiss/global-gradle-plugin
 
-initscript {
-    repositories {
-        maven {
-            url "https://plugins.gradle.org/m2/"
-        }
-    }
-    dependencies {
-        classpath "gradle.plugin.com.dvoiss.globalplugins:global-gradle-plugin:1.0"
-    }
-}
+// NOTE this is disabled, as it caused build problems by pulling in an older version of groovy:
+// Conflicting module versions. Module [groovy-all is loaded in version 2.4.4 and you are trying to load version 2.4.15
 
-apply plugin: com.dvoiss.globalplugins.GlobalDependencyPlugin
+//initscript {
+//    repositories {
+//        maven {
+//            url "https://plugins.gradle.org/m2/"
+//        }
+//    }
+//    dependencies {
+//        classpath "gradle.plugin.com.dvoiss.globalplugins:global-gradle-plugin:1.0"
+//    }
+//}
+//
+//apply plugin: com.dvoiss.globalplugins.GlobalDependencyPlugin
 
 
 
@@ -20,21 +23,21 @@ apply plugin: com.dvoiss.globalplugins.GlobalDependencyPlugin
 // Add the gradle-syntastic-plugin to all gradle projects
 // See: https://github.com/Scuilion/gradle-syntastic-plugin
 // After this you can run $(./gradlew syntastic) to generate the syntastic class path configuration file.
-allprojects {
-    globalDependencies {
-        // Use the repos block to add the repos needed for the plugins: jcenter, maven, mavenLocal, etc.
-        repos {
-            //jcenter()
-            // syntastic resides in the maven repo
-            maven {
-                url "https://plugins.gradle.org/m2/"
-            }
-        }
-
-        // Pass the plugin's classpath and plugin ID to the add method and it will now be used in every project.
-        //add "de.hannesstruss:godot:+", 'de.hannesstruss.godot'
-
-        // syntatic class path found here: https://plugins.gradle.org/plugin/com.scuilion.syntastic
-        add "com.scuilion.syntastic:gradle-syntastic-plugin:0.3.8", 'com.scuilion.syntastic'
-    }
-}
+//allprojects {
+//    globalDependencies {
+//        // Use the repos block to add the repos needed for the plugins: jcenter, maven, mavenLocal, etc.
+//        repos {
+//            //jcenter()
+//            // syntastic resides in the maven repo
+//            maven {
+//                url "https://plugins.gradle.org/m2/"
+//            }
+//        }
+//
+//        // Pass the plugin's classpath and plugin ID to the add method and it will now be used in every project.
+//        //add "de.hannesstruss:godot:+", 'de.hannesstruss.godot'
+//
+//        // syntatic class path found here: https://plugins.gradle.org/plugin/com.scuilion.syntastic
+//        add "com.scuilion.syntastic:gradle-syntastic-plugin:0.3.8", 'com.scuilion.syntastic'
+//    }
+//}
