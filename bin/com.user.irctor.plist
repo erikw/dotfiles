@@ -17,7 +17,7 @@
             <key>PATH</key>
             <string>/bin:/usr/bin:/usr/local/bin:/Users/erikw/Library/Python/3.6/bin</string>
             <key>POWERLINE_ROOT</key>
-            <string>/Users/erikw/Library/Python/3.6/lib/python/site-packages/powerline</string>
+            <string>/Users/erikw/Library/Python/3.7/lib/python/site-packages/powerline</string>
             <key>LC_ALL</key>
             <string>en_US.UTF-8</string>
             <key>LANG</key>

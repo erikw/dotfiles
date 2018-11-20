@@ -39,9 +39,14 @@ echo "Running locate.updatedb; it will take a while..."
 /usr/libexec/locate.updatedb
 EOF
 
-# Make zsh default shell.
+# Make zsh default shell for local user.
 #chsh -s $(which zsh)
 chsh -s /bin/zsh
+
+
+# Give root some better powers with bash.
+sudo chsh -s /bin/bash
+
 
 # Set computers hostname.
 sudo scutil --set HostName $new_hostname
