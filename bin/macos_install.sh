@@ -150,6 +150,7 @@ read -r -d '' cask_apps_default <<-'EOAPPS'
 	libreoffice
 	macvim
 	name-mangler
+	openvpn
 	postman
 	qr-journal
 	scroll-reverser
@@ -202,6 +203,7 @@ read -r -d '' cask_apps_additional <<-'EOAPPS'
 	thunderbird
 	tor-browser
 	transmission
+	tunnelblick
 	veracrypt
 	virtualbox
 	xee
@@ -386,6 +388,8 @@ chmod go-w '/usr/local/share'
 # - Confirm "iTerm2 (#Q)" if windows open"
 # * iterm.sh: If iterm2.app is closed, 2 windows will be opended by this script. To prevent this:
 # 	- Startup > Select "Only Restore Hotkey Window"
+# * Enable automatic tmux copy to GUI clipboard on selection
+# - Check "Applications in terminal may access clipboard"
 ## Profiles
 ### Colors
 # * Select color preset "Solarized Dark".
