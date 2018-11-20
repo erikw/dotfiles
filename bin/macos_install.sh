@@ -122,6 +122,7 @@ read -r -d '' brew_apps_additional <<-'EOAPPS'
 	pyenv
 	pyenv-virtualenvwrapper
 	reattach-to-user-namespace
+	restic
 	swiftlint
 	valgrind
 EOAPPS
@@ -199,6 +200,7 @@ read -r -d '' cask_apps_additional <<-'EOAPPS'
 	skim
 	skype
 	slack
+	steam
 	switch
 	thunderbird
 	tor-browser
