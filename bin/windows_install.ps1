@@ -1,5 +1,5 @@
-# Install script for my Windows setup.
-# Run this in an administrative prompt (for chocolately).
+﻿# Install script for my Windows setup.
+# Run this in an administrative Powershell prompt (for chocolately).
 # To download-and-execute:
 # $ iex (new-object net.webclient).downloadstring('https://raw.githubusercontent.com/erikw/dotfiles/personal/bin/windows_install.ps1')
 
@@ -43,7 +43,7 @@ $scoop_prgs =
 Invoke-Expression "scoop install $scoop_prgs"
 
 # Theme powershell.
-concfg import solarized small
+concfg import solarized-dark
 
 # Pimp up the powershell prompt
 scoop install pshazz
@@ -67,19 +67,18 @@ $choco_apps =
 "bleachbit " +
 "cygwin " +
 "deluge " +
-"discord" +
+"discord " +
 "ditto " +
 "f.lux " +
 "firefox " +
-"flashplayerplugin " +
 "git " +
 "googlechrome " +
 "javaruntime " +
-"lastpass" +
+"lastpass " +
 "libreoffice " +
-"openhardwaremonitor" +
+"openhardwaremonitor " +
 "putty " +
-"signal" +
+"signal " +
 "skype " +
 "spotify " +
 "steam " +
@@ -92,14 +91,14 @@ $choco_apps =
 ""
 
 $choco_apps_additional =
-"crashplan" +
 "dropbox " +
+"flashplayerplugin " +
 "virtualclonedrive " +
 ""
 
-# Windows Desktop shortcuts:
+# Windows Desktop shortcuts to add:
 # * Whatsapp: Is installed in %USER%\AppData\Local\Whatsapp
-# * ~/.dotfiles/bin/windows_install.ps1
+# * ~/.dotfiles/bin/windows_update.ps1
 # * Lenovo vantage: to upgrade firmwares
 # * Windows Upgrade: Right click on desktop > New > Shortcut > Location: "ms-settings:windowsupdate" > Name: Windows Upgrade.
 
@@ -158,11 +157,8 @@ Invoke-Expression "choco install $choco_apps"
 # git-bash$ git clone git@github.com:erikw/dotfiles.git ~/.dotfiles
 # git-bash$ cd ~/.dotfiles
 # git-bash$ git checkout -b local
-# git-bash$ git config --global user.name "Erik Westrup"
-# git-bash$ git config --global user.email erik.westrup@gmail.com
-#
 # Because bin/dfm does not work on Windows (infinite recursions), instead in a privilegied powershell install some symlinks:
-# pwrshl$  New-Item -Path ~/.vimperatorrc -ItemType SymbolicLink -Value ~/.dotfiles/.vimperatorrc
+:# pwrshl$  New-Item -Path ~/.vimperatorrc -ItemType SymbolicLink -Value ~/.dotfiles/.vimperatorrc
 # pwrshl$  New-Item -Path ~/.gitconfig -ItemType SymbolicLink -Value ~/.dotfiles/.gitconfig
  
 
@@ -204,7 +200,7 @@ Invoke-Expression "choco install $choco_apps"
 
 
 # Vimperator:
-cp ~/.dotfiles/.vimperatorrc ~/
+#cp ~/.dotfiles/.vimperatorrc ~/
 
 
 # Linux, OSX and sane OSes store and interpret the hwclock as UTC time, while Windoze insists on it being in the local timezone...
@@ -214,7 +210,7 @@ cp ~/.dotfiles/.vimperatorrc ~/
 New-ItemProperty -Path Registry::HKLM\SYSTEM\CurrentControlSet\Control\TimeZoneInformation -Name RealTimeIsUniversal -Value 1 -Force | Out-Null
 
 
-# Create desktop shortcut to OpenHardwareMonitor, as the chocolatey installed does not add desktop or start menu shortcuts.
+# Create desktop shortcut to openHardwareMonitor, as the chocolatey installed does not add desktop or start menu shortcuts.
 # Reference: https://www.pdq.com/blog/pdq-deploy-and-powershell/
 $TargetFile = "C:\ProgramData\chocolatey\lib\OpenHardwareMonitor\tools\OpenHardwareMonitor\OpenHardwareMonitor.exe"
 $ShortcutFile = "$env:Public\Desktop\OpenHardwareMonitor.lnk"
