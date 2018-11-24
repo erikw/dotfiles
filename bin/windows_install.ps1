@@ -96,11 +96,6 @@ $choco_apps_additional =
 "virtualclonedrive " +
 ""
 
-# Windows Desktop shortcuts to add:
-# * Whatsapp: Is installed in %USER%\AppData\Local\Whatsapp
-# * ~/.dotfiles/bin/windows_update.ps1
-# * Lenovo vantage: to upgrade firmwares
-# * Windows Upgrade: Right click on desktop > New > Shortcut > Location: "ms-settings:windowsupdate" > Name: Windows Upgrade.
 
 
 Invoke-Expression "choco install $choco_apps"
@@ -113,6 +108,8 @@ Invoke-Expression "choco install $choco_apps"
 
 
 # Manually install {
+
+
 # * Drivers. For Thinkpad, download  http://pcsupport.lenovo.com/de/en/products/Laptops-and-## netbooks/ThinkPad-T-Series-laptops/ThinkPad-T430/downloads)
 # * Lenovo ThinkVantage System Update utility, 
 # * Lenovo Power Manager Driver
@@ -160,6 +157,20 @@ Invoke-Expression "choco install $choco_apps"
 # Because bin/dfm does not work on Windows (infinite recursions), instead in a privilegied powershell install some symlinks:
 :# pwrshl$  New-Item -Path ~/.vimperatorrc -ItemType SymbolicLink -Value ~/.dotfiles/.vimperatorrc
 # pwrshl$  New-Item -Path ~/.gitconfig -ItemType SymbolicLink -Value ~/.dotfiles/.gitconfig
+
+
+
+# Windows Desktop shortcuts to add:
+# * Whatsapp: Is installed in %USER%\AppData\Local\Whatsapp
+# * ~/.dotfiles/bin/windows_update.ps1: Right click on Desktop > New > Shortcut > Enter: powershell.exe -command "& 'C:\Users\erikw\.dotfiles\bin\windows_update.ps1'"
+# * Lenovo vantage: to upgrade firmwares
+# * Windows Upgrade: Right click on desktop > New > Shortcut > Location: "ms-settings:windowsupdate" > Name: Windows Upgrade.
+# * Power Shell
+# * git-bash
+# * putty. To make it start a specific profile, append this to the "taraget path": -load "profilename"
+
+
+
  
 
 
@@ -176,6 +187,7 @@ Invoke-Expression "choco install $choco_apps"
 # 3. Enter the user's name as name.
 # 4. Drag the shortcut to the task bar.
 # 5. Delete the shortcut from the desktop.
+# Also drag C:\Users\erikw to the Explorer shortcut left column.
 
 # Windows explorer
 # * View > Options > Change folder & view options > view
@@ -195,7 +207,7 @@ Invoke-Expression "choco install $choco_apps"
 
 # Ditto
 # * Right click on taskbar icon > Options
-# * General > Past entries expires after: 1 day
+# * General > Paste entries expires after: 1 day
 # * Keyboard Shortcuts > Activate Ditto: Ctrl + Shift + Insert
 
 
@@ -224,7 +236,7 @@ $Shortcut.Save()
 ## To set up login with ssh keys
 # * Run puttygen.exe
 # 	* Generate a new key.
-# 	* Save public and private key to file.
+# 	* Save public and private key to file to ~/.ssh/identity_files/
 #  * Configure a puTTY profile
 #  	* Session:
 #  		* Enter host name and profile name
@@ -238,6 +250,8 @@ $Shortcut.Save()
 # Edit .reg file and insert name of my session on line 3, then run the file.
 # https://github.com/altercation/solarized/tree/master/putty-colors-solarized
 #
+## Set up remote
+# Open the public key saved, concatenate all lines in the middle and prepend "ssh-rsa " and upload it to server's authorized_keys
 # }
 
 
@@ -249,8 +263,6 @@ $Shortcut.Save()
 # ==Display
 # * Set extended dual screen.
 
-# ==Apps & features
-# * Uninstall all crap apps.
 
 # ==Power & sleep
 # * Never turn off computer on AC
@@ -282,7 +294,12 @@ $Shortcut.Save()
 
 #  ==Taskbar
 # * Enable "use small taskbar buttons
-# * Select which icons appear on the taskbar
+# * Select which icons appear on the taskbar > add Flux
+
+
+# =Apps
+# ==Apps & features
+# * Uninstall all crap apps.
 
 
 # =Accounts
