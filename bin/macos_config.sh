@@ -61,7 +61,7 @@ defaults write nsglobaldomain keyrepeat -int 0
 
 
 # Allow a sudo session to last 5 minutes.
-sudo sh -c 'echo Defaults timestamp_timeout=5 > /etc/sudoers.d/my_settings'
+sudo sh -c 'echo Defaults timestamp_timeout=10 > /etc/sudoers.d/99_my_settings'
 
 # Hide default un-hidable folders in home directory from Finder.
 # Reset with $ chflags nohidden <dir>
@@ -110,7 +110,7 @@ EOF
 ## upper left: Application Windows
 ## right upper: Mission Control
 ## lower left: Desktop
-## lower right: Launchpad # nope, very annoyting if having monitor to the right. Keep Launchapd in dock instead.
+## lower right: Sleep Monitors # nope, very annoyting if having monitor to the right.
 
 # Dock
 # * Uncheck "Show recent applications in Dock"

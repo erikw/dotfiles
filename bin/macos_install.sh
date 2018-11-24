@@ -285,6 +285,7 @@ brew install mas
 # 897118787  Shazam
 # 405399194  Kindle
 # 912659472  Brother ScannerApp (Image Capture.app does not work for Brother DCP-7070DW)
+# 497799835  Xcode
 
 
 
