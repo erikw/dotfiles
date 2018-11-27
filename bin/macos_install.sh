@@ -446,6 +446,8 @@ chmod go-w '/usr/local/share'
 # 	* Set format to: “192 kHz” and “2ch-24 bit Interger”.
 
 
+# Serato DJ Pro: https://serato.com/dj/pro/downloads
+
 # Logitech G700s drivers
 # * https://support.logitech.com/en_us/product/g700s-rechargable-wireless-gaming-mouse/downloads#
 
