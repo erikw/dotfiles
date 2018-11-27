@@ -60,8 +60,14 @@ sudo spctl --master-disable
 defaults write nsglobaldomain keyrepeat -int 0
 
 
-# Allow a sudo session to last 5 minutes.
-sudo sh -c 'echo Defaults timestamp_timeout=10 > /etc/sudoers.d/99_my_settings'
+# Allow a sudo session to last a bit longer, across terminals.
+sudo sh -c " cat >/etc/sudoers.d/99_my_settings" << EOF
+# Set cached password timeout in minutes.
+Defaults:USER_NAME timestamp_timeout=16
+# Single password cache for user.
+Defaults !tty_tickets
+EOF
+
 
 # Hide default un-hidable folders in home directory from Finder.
 # Reset with $ chflags nohidden <dir>
