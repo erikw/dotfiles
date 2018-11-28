@@ -92,6 +92,7 @@ $choco_apps =
 
 $choco_apps_additional =
 "dropbox " +
+"origin " +
 "flashplayerplugin " +
 "virtualclonedrive " +
 ""
@@ -220,6 +221,12 @@ Invoke-Expression "choco install $choco_apps"
 # Ref: http://lifehacker.com/5742148/fix-windows-clock-issues-when-dual-booting-with-os-x
 # Ref: http://stackoverflow.com/questions/26719206/powershell-create-registry-path-one-liner
 New-ItemProperty -Path Registry::HKLM\SYSTEM\CurrentControlSet\Control\TimeZoneInformation -Name RealTimeIsUniversal -Value 1 -Force | Out-Null
+
+
+
+# Disable PIN login for security. Reference: https://www.top-password.com/blog/disable-pin-login-in-windows-10-8/
+#New-ItemProperty -Path Registry::HKLM\SOFTWARE\Microsoft\PolicyManager\default\Settings\AllowSignInOptions -Name value -Value 0 -Force
+# NOPE that does not work. Simply dismiss the PIN code creation.
 
 
 # Create desktop shortcut to openHardwareMonitor, as the chocolatey installed does not add desktop or start menu shortcuts.
