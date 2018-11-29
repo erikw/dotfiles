@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
-# Wrapper for spotify-backup https://github.com/bitsofpancake/spotify-backup
+# Wrapper for spotify-backup https://github.com/caseychu/spotify-backup
+# Requirements: jshon(1)
+
 
 spot_username=GIT-CENSORED
 
@@ -8,31 +10,31 @@ outdest=$HOME/bak/spotify
 outfile="$outdest/${spot_username}_${date}"
 outtxt=$outfile.txt
 outjson=$outfile.json
-backupper=/home/erikw/dev/spotify-backup/spotify-backup.py
+backupper=$HOME/src/github.com/caseychu/spotify-backup/spotify-backup.py
+
+
+exec_with_retry() {
+	local n_tries="$1"
+	shift
+	local cmd="$@"
+
+	local is_done=0
+	while [ $is_done -ne 1 ] && [ $n_tries -ge 0 ]; do
+		echo "> ${n_tries} tries left."
+		eval $cmd
+		[ $? -eq 0 ] && is_done=1
+		n_tries=$((n_tries-1))
+	done
+}
+
 
 [ -d $outdest ] || mkdir -p $outdest
-
-echo "Backing up to .txt"
-# Script fails some times...
-txtdone=0
-n_tries=5
-while [ $txtdone -ne 1 ] && [ $n_tries -ge 0 ]; do
-	echo "${n_tries} tries left."
-	$backupper --format txt $outtxt
-	[ $? -eq 0 ] && txtdone=1
-	n_tries=$((n_tries-1))
-done
+echo "> Backing up to $outtxt"
+exec_with_retry 2 $backupper --format txt $outtxt
 
 echo -e "\n\n\n\n"
 
-echo "Backing up to .json"
-jsondone=0
-n_tries=5
-while [ $jsondone -ne 1 ] && [ $n_tries -ge 0 ]; do
-	echo "${n_tries} tries left."
-	$backupper --format json $outjson.ugly
-	[ $? -eq 0 ] && jsondone=1
-	n_tries=$((n_tries-1))
-done
+echo "> Backing up to $outjson"
+exec_with_retry 2 $backupper --format json $outjson.ugly
 jshon < $outjson.ugly > $outjson
 rm -f $outjson.ugly
