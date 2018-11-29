@@ -48,6 +48,7 @@ read -r -d '' brew_apps_default <<-'EOAPPS'
 	imagemagick
 	ipcalc
 	ipython
+	jshon
 	jsonlint
 	knock
 	links
@@ -159,7 +160,6 @@ read -r -d '' cask_apps_default <<-'EOAPPS'
 	spectacle
 	spotify
 	spotify-notifications
-	terminus
 	the-unarchiver
 	vlc
 	wireshark
@@ -268,6 +268,11 @@ brew tap caskroom/versions
 # Install cask upgrade command ($ brew cu):
 brew tap buo/cask-upgrade
 
+
+
+# Let's get some fonts!
+brew tap homebrew/cask-fonts
+brew cask install font-terminus
 
 
 
