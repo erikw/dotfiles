@@ -140,6 +140,9 @@ Invoke-Expression "choco install $choco_apps"
 # * In a administrative powershell: $ Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
 # * Then go to Microsoft Store and download a Linux Distribution.
 # Reference: https://docs.microsoft.com/en-us/windows/wsl/install-win10
+
+
+# Hamachi by Logmein, for LAN play: https://www.vpn.net/
 # }
 
 
@@ -302,6 +305,7 @@ $Shortcut.Save()
 #  ==Taskbar
 # * Enable "use small taskbar buttons
 # * Select which icons appear on the taskbar > add Flux
+# * Disable "Show contacts on taskbar".
 
 
 # =Apps
