@@ -662,9 +662,9 @@ if s:use_plugins
 				" NOTE temporary macOS fix #2: run python3 silently first, then the error is not issued the second time.
 				"silent! python3 1
 				" NOTE temporary macOS fix #3: preprend the first import command with silent!
-				silent! python3 from powerline.vim import setup as powerline_setup
+				"silent! python3 from powerline.vim import setup as powerline_setup
 
-				"python3 from powerline.vim import setup as powerline_setup
+				python3 from powerline.vim import setup as powerline_setup
 				python3 powerline_setup()
 				python3 del powerline_setup
 			elseif has('python')
