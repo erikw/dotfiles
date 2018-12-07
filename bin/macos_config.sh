@@ -232,6 +232,7 @@ EOF
 
 # Dock {
 # * Add ~/  and ~/dl/to dock.
+# * For dual monitors: For all applications in dock: Right click > Option > assign to correct monitor and desktop.
 # }
 
 # Mail.app {
