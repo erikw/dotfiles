@@ -152,8 +152,6 @@ read -r -d '' cask_apps_default <<-'EOAPPS'
 	libreoffice
 	macvim
 	name-mangler
-	openvpn
-	postman
 	qr-journal
 	scroll-reverser
 	sensiblesidebuttons
@@ -190,7 +188,9 @@ read -r -d '' cask_apps_additional <<-'EOAPPS'
 	livereload
 	mactex
 	max
+	openvpn
 	perian
+	postman
 	prey
 	puddletag
 	pycharm-ce
