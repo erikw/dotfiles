@@ -66,7 +66,18 @@ sudo sh -c " cat >/etc/sudoers.d/99_my_settings" << EOF
 Defaults:USER_NAME timestamp_timeout=16
 # Single password cache for user.
 Defaults !tty_tickets
+
+# Command groups.
+Cmnd_Alias CMDS_POWER = /sbin/halt, /sbin/poweroff, /sbin/shutdown, /sbin/reboot
+
+# Let power users issue power commands.
+%power ALL = NOPASSWD: CMDS_POWER
 EOF
+
+
+# Create power group and add user.
+sudo dseditgroup -o create power
+sudo dseditgroup -o edit -u $USER -p -a $USER -t user power
 
 
 # Hide default un-hidable folders in home directory from Finder.
