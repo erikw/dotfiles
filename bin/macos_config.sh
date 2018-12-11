@@ -19,6 +19,10 @@ set -er
 mkdir -p $HOME/media/images/screenshots
 defaults write com.apple.screencapture location $HOME/media/images/screenshots
 
+# Disable the thumbnail preview that delays saving the screenshot to disk.
+# Reference: https://apple.stackexchange.com/questions/340170/turn-off-macos-mojave-screenshot-preview-thumbnails-with-defaults-write-command
+defaults write com.apple.screencapture show-thumbnail -bool FALSE
+
 # Dim hidden apps (CMD+H) in the dock.
 defaults write com.apple.Dock showhidden -boolean yes; killall Dock
 
