@@ -275,6 +275,9 @@ brew tap homebrew/cask-fonts
 brew cask install font-terminus
 
 
+# Developer for Gimp can't be verified, so we need to remove an attribute that enables this check:
+# Reference: https://apple.stackexchange.com/questions/216188/apps-not-opening-verifying
+xattr -d com.apple.quarantine /Applications/GIMP-*.app/
 
 # Macstore automation
 # https://github.com/mas-cli/mas
