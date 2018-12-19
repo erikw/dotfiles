@@ -125,8 +125,6 @@
 if shell_is_macos; then
     # GNU ls from coreutils on macOS does not work with colors, at least not now.
     alias ls='/bin/ls $LS_OPTIONS'
-    # GNU locate does not read the default locate database on macOS.
-    alias locate='/usr/bin/locate'
 fi
 # }
 

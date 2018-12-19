@@ -52,6 +52,10 @@ source $HOME/.shell_functions
 		PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 		MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 	fi
+	if [ -d /usr/local/Cellar/findutils/4.6.0/ ]; then
+		PATH="/usr/local/Cellar/findutils/4.6.0/bin:$PATH"
+		MANPATH="/usr/local/Cellar/findutils/4.6.0/man:$MANPATH"
+	fi
 
 	# Source aliases.
 	sourceifexists $HOME/.shell_aliases

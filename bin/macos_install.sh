@@ -337,6 +337,18 @@ go get -u github.com/schachmat/wego
 # zsh-completions: prevent "zsh compinit: insecure directories" on $(compinit)
 chmod go-w '/usr/local/share'
 
+
+
+# Update gnu locate database on schedule by appending crontab.
+newtab="*/30 * * * * /usr/local/Cellar/findutils/4.6.0/bin/updatedb >/dev/null 2>&1"
+oldtab=$(sudo crontab -l)
+if [ -n "$oldtab" ]; then
+	newtab=$(printf "%s\n%s\n" "$oldtab" "$newtab")
+fi
+sudo sh -c "echo \"$newtab\" | crontab -"
+
+
+
 # Brother DCP-7070dw printer & scanner driver: https://support.brother.com/g/b/downloadtop.aspx?c=eu_ot&lang=en&prod=dcp7070dw_eu
 # Add by Bonjour discovery on network.
 
