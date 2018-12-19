@@ -343,7 +343,7 @@ chmod go-w '/usr/local/share'
 
 
 # Update gnu locate database on schedule by appending crontab.
-newtab="*/30 * * * * /usr/local/Cellar/findutils/4.6.0/bin/updatedb >/dev/null 2>&1"
+newtab="* */2 * * * /usr/local/Cellar/findutils/4.6.0/bin/updatedb >/dev/null 2>&1"
 oldtab=$(sudo crontab -l)
 if [ -n "$oldtab" ]; then
 	newtab=$(printf "%s\n%s\n" "$oldtab" "$newtab")
