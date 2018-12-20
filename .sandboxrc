@@ -42,6 +42,7 @@ sandbox_init_jump(){
 
 # Virtualenvwrapper
 sandbox_init_virtualenvwrapper(){
+	local virtenv_path
 	shell_is_macos && virtenv_path=/usr/local/bin/virtualenvwrapper.sh || virtenv_path=/usr/bin/virtualenvwrapper_lazy.sh
 	if [ -e $virtenv_path ]; then
 		source $virtenv_path
