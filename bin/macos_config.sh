@@ -266,6 +266,11 @@ EOF
 # * Add new signature "Standard".
 # }
 
+# iMessge.app {
+# * Turn off associattion to my mobile phone number, so it won't steal text messages from iPhones
+# Settings > Unlink my AppleID
+# }
+
 # Media shortcuts for external keyboard: follow instructions in ~/bin/macos_media_control/info.txt
 
 # * Battery icon in menu bar > Show Percentages.
