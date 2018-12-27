@@ -163,6 +163,10 @@ EOF
 # Display
 # * Move the white menu bar to the main monitor, so notifications etc. comes on it.
 
+# Energy Saver
+## Power Adapter
+# * Uncheck "Enable Power Nap while plugged in", because during wake-up, cronjobs can start but will fail as power goes down soon again (happended with my restic_backup.se).
+
 # Keyboard
 ## Keyboard
 # * Make Delay Until Repeat short
