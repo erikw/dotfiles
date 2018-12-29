@@ -152,8 +152,11 @@ EOF
 
 
 # Security & Privacy
+## FileVault
 # * Enable FileVault, with recovery key.
+## Firewall
 # * Turn on firewall. Turn on "Block all incoming connections"
+# 	* NOPE turn that off, and uncheck everything and add Chrome as an expcetion to allow incoming traffic, so Videostream chromecast app works.
 
 # Notifications
 # * Check "Turn on Do Not Disturbe: When the display is sleeping", to not leak notifications.
