@@ -232,6 +232,11 @@ EOF
 # * Check "Show date"
 
 
+# Accessibility
+## Zoom
+# * Check "Use keyboard shortcuts to zoom".
+# * Select Zoom style: Picture-in-picture
+# ** Options > Uncheck "Hold Ctrl+Opt to temporarily toggle zoom" as this interferece with shortcut to toggle input language, and leave mouse cursor hidden after toggling input source.
 
 # Sharing
 # Set "Computer Name"
