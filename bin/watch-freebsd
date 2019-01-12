@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# Poor mans implementation of GNU watch fro FreeBSD.
+# See http://www.stevekamerman.com/2008/07/freebsd-watch-command-is-not-gnulinux-watch-command/
+
+wait=1
+if [ "$1" = "-n" ]; then
+	wait="$2"
+shift 2
+fi
+
+cmd="$@"
+
+while :; do
+	clear
+	date
+	echo ------------------------------------
+	eval "$cmd"
+	sleep $wait
+done
