@@ -71,7 +71,10 @@
 		#alias ls="ls ${ls_options} --color=always"
 		#alias dir='ls --color=auto --format=vertical'
 		#alias vdir='ls --color=auto --format=long'
-		LS_OPTIONS="$LS_OPTIONS --color=auto"
+
+		if ! shell_is_macos; then
+			LS_OPTIONS="$LS_OPTIONS --color=auto"
+		fi
 
 		# Highligt matches when output is on the terminal.
 		#export GREP_OPTIONS='--color=always'
@@ -84,7 +87,7 @@
 
 		# Colored cows, yeah!
 		if program_is_in_path cower; then
-		    alias cower='cower --color=auto'
+			alias cower='cower --color=auto'
 		fi
 
 		# Use colored diff if it can be found.
@@ -110,12 +113,12 @@
 
 		# Compile with dem colors. TODO detect when $(gcc -v) >= 4.9?
 		if program_is_in_path gcc; then
-		    alias gcc="gcc -fdiagnostics-color=auto"
+			alias gcc="gcc -fdiagnostics-color=auto"
 		fi
 
 		# Global BSD/macOS util colors support.
 		if shell_is_bsd; then
-		    export CLICOLOR=yes
+			export CLICOLOR=yes
 		fi
 	fi
 
@@ -128,8 +131,8 @@
 # GNU coreutils on macOS {
 # Some override of GNU utils with macOS default BSD utils are problematic, so reverse those.
 if shell_is_macos; then
-    # GNU ls from coreutils on macOS does not work with colors, at least not now.
-    alias ls='/bin/ls $LS_OPTIONS'
+	# GNU ls from coreutils homebrew package on macOS does not work with colors, at least not now.
+	alias ls='/bin/ls $LS_OPTIONS'
 fi
 # }
 
@@ -160,11 +163,11 @@ fi
 # }
 
 # jump {
-    # Bashmark style aliases for https://github.com/flavio/jump
-    alias g="jump"
-    alias s="jump --add"
-    alias d="jump --del"
-    alias l="jump --list"
+	# Bashmark style aliases for https://github.com/flavio/jump
+	alias g="jump"
+	alias s="jump --add"
+	alias d="jump --del"
+	alias l="jump --list"
 # }
 
 # Libreoffice {
@@ -263,10 +266,10 @@ fi
 
 
 	if shell_is_macos; then
-	    alias intellijopen='open -a IntelliJ\ IDEA\ CE'  	# Open Intellij with a path as an argument.
-	    alias pycharmopen='open -a PyCharm\ CE'  	# Open Pycharm with a path as an argument.
-	    alias phpstormopen='open -a PhpStorm'  		# Open PhpStorm with a path as an argument.
-        fi
+		alias intellijopen='open -a IntelliJ\ IDEA\ CE'  	# Open Intellij with a path as an argument.
+		alias pycharmopen='open -a PyCharm\ CE'  	# Open Pycharm with a path as an argument.
+		alias phpstormopen='open -a PhpStorm'  		# Open PhpStorm with a path as an argument.
+	fi
 # }
 
 # Mounts {
@@ -275,9 +278,9 @@ fi
 
 	alias cryfs_mount='history-off && cryfs ~/dropbox/priv ~/priv'	# Decrypt & mount CryFS folder.
 	if shell_is_macos; then
-	    alias cryfs_umount='umount  ~/priv'				# Umount CryFS folder.
+		alias cryfs_umount='umount  ~/priv'				# Umount CryFS folder.
 	else
-	    alias cryfs_umount='fusermount -u ~/priv'			# Umount CryFS folder.
+		alias cryfs_umount='fusermount -u ~/priv'			# Umount CryFS folder.
 	fi
 # }
 
