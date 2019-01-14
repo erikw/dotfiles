@@ -240,6 +240,8 @@ fi
 	alias reload_zsh='source $HOME/.zshrc'				# Reload zsh configuration.
 	alias reload_bash='source $HOME/.bashrc'			# Reload bash configuration.
 	alias remove_swap_files='find . -name "*.sw[op]" -delete'	# Delete all swap files in current path recursively.
+	alias wol_local_cpt='wakeonlan -i 10.255.255.255 GIT-CENSORED'	# Wake up on the local net broadcast address and cpt's MAC addr.
+	alias wol_remote_cpt='wakeonlan -i cpt.2r.se GIT-CENSORED'	# Wake up from remote.
 
 
 	#alias x-proxy='ssh x -L 8080:x.com:123 -N'				# Start SSH tunnel web proxy to some server.
