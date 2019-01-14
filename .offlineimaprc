@@ -55,6 +55,8 @@ remoteuser = erik.westrup@gmail.com
 remotepass = GIT-CENSORED
 # Use SSL. Implicit for type = Gmail.
 #ssl=yes
+# Settings ssl version is now needed explicity: https://github.com/OfflineIMAP/offlineimap/issues/573
+ssl_version = tls1_2
 # Gmail's cert fingerprint. Using sslcacert option failes to verify even though `openssl` can use it for verification. http://docs.offlineimap.org/en/latest/FAQ.html#how-do-i-generate-an-sslcacertfile-file
 cert_fingerprint=4cf1c747da7f62335273a00328e92b8f3cd9cd2cb5832ef58fdc78da11e84f245dde107b5b666f7230b5a705b2e3e9d28bd9b91322ea6267eee9b55e1737fa6d
 #sslcacertfile = /etc/ssl/certs/ca-certificates.crt
