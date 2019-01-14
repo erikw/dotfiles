@@ -111,7 +111,6 @@ read -r -d '' brew_apps_additional <<-'EOAPPS'
 	checkbashisms
 	colorsvn
 	cpanminus
-	cryfs
 	ffmpeg2theora
 	irssi
 	jq
@@ -136,6 +135,7 @@ read -r -d '' cask_apps_default <<-'EOAPPS'
 	amethyst
 	appcleaner
 	awareness
+	background-music
 	caffeine
 	clipy
 	cyberduck
@@ -274,6 +274,9 @@ brew tap buo/cask-upgrade
 brew tap homebrew/cask-fonts
 brew cask install font-terminus
 
+brew tap colindean/fonts-nonfree
+brew cask install font-microsoft-office
+
 
 # Developer for Gimp can't be verified, so we need to remove an attribute that enables this check:
 # Reference: https://apple.stackexchange.com/questions/216188/apps-not-opening-verifying
@@ -312,6 +315,12 @@ brew install sshfs
 # Now you can mount like this:
 # $ sudo mkdir -p /mnt/sshfs
 # $ sudo sshfs -o allow_other,defer_permissions user@host:/ /mnt/sshfs
+
+
+# Additional: cryfs
+# Reference: https://www.cryfs.org/#download
+# brew cask install osxfuse
+# brew install cryfs
 
 
 # Programs to install manually:
