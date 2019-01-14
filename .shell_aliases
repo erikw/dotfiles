@@ -228,12 +228,6 @@ fi
 	alias tiga='tig --all'									# Show all branches in tig.
 	alias mkcscope_c='find . -name "*.[ch]" > cscope.files'		# Gen cscope file for C programs.
 	alias wlan_quality='iwconfig wlan | grep Quality'		# Display the signal quality and strength of WLAN. Alternatively use wavemon(1).
-	alias cryfs_mount='history-off && cryfs ~/dropbox/priv ~/priv'	# Decrypt & mount CryFS folder.
-	if shell_is_macos; then
-	    alias cryfs_umount='umount  ~/priv'				# Umount CryFS folder.
-	else
-	    alias cryfs_umount='fusermount -u ~/priv'			# Umount CryFS folder.
-	fi
 	alias mkdirtoday='_today=$(date -I) && mkdir -p $_today && echo "Created $_today" && unset _today'	# Create a directory in CWD with today's date.
 	alias reload_zsh='source $HOME/.zshrc'				# Reload zsh configuration.
 	alias reload_bash='source $HOME/.bashrc'			# Reload bash configuration.
@@ -273,6 +267,13 @@ fi
 # Mounts {
 	alias mount-newport='jmtpfs /media/newport/'
 	alias umount-newport='fusermount -u /media/newport/'
+
+	alias cryfs_mount='history-off && cryfs ~/dropbox/priv ~/priv'	# Decrypt & mount CryFS folder.
+	if shell_is_macos; then
+	    alias cryfs_umount='umount  ~/priv'				# Umount CryFS folder.
+	else
+	    alias cryfs_umount='fusermount -u ~/priv'			# Umount CryFS folder.
+	fi
 # }
 
 # Permutation aliases {
