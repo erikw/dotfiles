@@ -8,6 +8,7 @@
 # Suppress alias expansion:: $ \aliasname || 'aliasname'
 # Print alias definition: alias <aliasname>
 
+
 # Desktop Environment specific {
 	# Defaults.
 	alias open='xdg-open'						# Open files.
@@ -60,17 +61,17 @@
 # Color support {
 	LS_OPTIONS=
 	shell_is_linux && LS_OPTIONS="$LS_OPTIONS --time-style=long-iso -F"
-	if [ "$TERM" != "dumb" ] && (type dircolors &>/dev/null || shell_is_macos); then
-		if shell_is_linux; then
+	if [ "$TERM" != dumb ]; then
+		if shell_is_linux && program_is_in_path dircolors; then
 			eval "`dircolors -b`"
-			# Colors when output is terminal.
-			#alias ls="ls ${ls_options} --color=auto"
-			# Force colors to all stdouts.
-			#alias ls="ls ${ls_options} --color=always"
-			#alias dir='ls --color=auto --format=vertical'
-			#alias vdir='ls --color=auto --format=long'
-			LS_OPTIONS="$LS_OPTIONS --color=auto"
 		fi
+		# Colors when output is terminal.
+		#alias ls="ls ${ls_options} --color=auto"
+		# Force colors to all stdouts.
+		#alias ls="ls ${ls_options} --color=always"
+		#alias dir='ls --color=auto --format=vertical'
+		#alias vdir='ls --color=auto --format=long'
+		LS_OPTIONS="$LS_OPTIONS --color=auto"
 
 		# Highligt matches when output is on the terminal.
 		#export GREP_OPTIONS='--color=always'
@@ -82,40 +83,44 @@
 		alias egrepc='egrep --color=always'
 
 		# Colored cows, yeah!
-		alias cower='cower --color=auto'
+		if program_is_in_path cower; then
+		    alias cower='cower --color=auto'
+		fi
 
 		# Use colored diff if it can be found.
-		if type colordiff >/dev/null 2>&1; then
+		if program_is_in_path colordiff ; then
 			#alias cdiff='colordiff'
 			alias diff='colordiff'
 		fi
 
 		# Use colored du if exists.
-		hash cdu 2>/dev/null
-		if [ "$?" -eq 0 ]; then
+		if program_is_in_path cdu ; then
 			alias du='cdu -idh'
 		fi
 
 		# Colorize SVN.
-		if type colorsvn >/dev/null 2>&1; then
+		if program_is_in_path colorsvn; then
 			alias svn='colorsvn'
 		fi
 
 		# Make colors.
-		if type colormake >/dev/null 2>&1; then
+		if program_is_in_path colormake; then
 			alias make='colormake'
 		fi
 
 		# Compile with dem colors. TODO detect when $(gcc -v) >= 4.9?
-		alias gcc="gcc -fdiagnostics-color=auto"
+		if program_is_in_path gcc; then
+		    alias gcc="gcc -fdiagnostics-color=auto"
+		fi
+
+		# Global BSD/macOS util colors support.
+		if shell_is_bsd; then
+		    export CLICOLOR=yes
+		fi
 	fi
 
 	alias ls="ls $LS_OPTIONS"
 
-	# Global BSD util colors support.
-	if [ "$TERM" != "dumb" ] && shell_is_macos; then
-	    export CLICOLORS=1
-	fi
 
 
 # }
