@@ -143,11 +143,13 @@ fi
 # }
 
 # Sudo {
-	alias loadkeys='sudo loadkeys'
-	alias poweroff='sudo poweroff'
-	alias halt='sudo halt'
-	alias shutdown='sudo shutdown'
-	alias reboot='sudo reboot'
+	# Prefix these sudo aliases with \ so that e.g. the freebsd sudo alias is not used here, as sudoers POWER group command does not work then.
+	alias loadkeys='\sudo loadkeys'
+	alias poweroff='\sudo poweroff'
+	alias halt='\sudo halt'
+	alias shutdown='\sudo shutdown'
+	alias reboot='\sudo reboot'
+
 	#alias pm-suspend='sudo pm-suspend'
 	#alias pm-hibernate='sudo pm-hibernate'
 	alias sudo='sudo '			# Bring my aliases with me.
