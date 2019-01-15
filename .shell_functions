@@ -259,3 +259,12 @@ function mkdirtodaycd() {
 pman() {
     man -t ${@} | open -f -a /Applications/Preview.app/
 }
+
+
+# Connect ssh and start tmux e.g.
+# $ ssh_tmux <host>
+# Reference: https://stackoverflow.com/a/27614878/265508
+sshmux () {
+	local args="$@"
+	ssh -t $args "tmux attach || tmux new-session"
+}
