@@ -73,7 +73,7 @@ Defaults:USER_NAME timestamp_timeout=16
 Defaults !tty_tickets
 
 # Command groups.
-Cmnd_Alias CMDS_POWER = /sbin/halt, /sbin/poweroff, /sbin/shutdown, /sbin/reboot
+Cmnd_Alias CMDS_POWER = /sbin/halt, /sbin/shutdown, /sbin/reboot
 
 # Let power users issue power commands.
 %power ALL = NOPASSWD: CMDS_POWER
