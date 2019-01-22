@@ -38,7 +38,9 @@ fi
 	# Don't put duplicate commands in the history.
 	export HISTCONTROL="erasedups:ignoreboth"
 	# Commands to ignore in history.
-	export HISTIGNORE="&:[ ]*:exit:halt:poweroff:shutdown:reboot:xlogout:pm-hibernate:pm-suspend"
+	# & - Ignore repeated commands.
+	# [\s\t]* - Ignore command starting with a space characters.
+	export HISTIGNORE="&:[\s\t]*:exit:halt:poweroff:shutdown:reboot:xlogout:pm-hibernate:pm-suspend"
 	# Append instead of overwrite history on exit.
 	shopt -s histappend
 	# Allow multiline commands as one command.
