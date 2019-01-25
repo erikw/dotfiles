@@ -244,6 +244,7 @@ fi
 	alias remove_swap_files='find . -name "*.sw[op]" -delete'	# Delete all swap files in current path recursively.
 	alias wol_local_cpt='wakeonlan -i 10.255.255.255 GIT-CENSORED'	# Wake up on the local net broadcast address and cpt's MAC addr.
 	alias wol_remote_cpt='wakeonlan -i cpt.2r.se GIT-CENSORED'	# Wake up from remote.
+	alias goaccess_nginx='goaccess --log-format=COMBINED /var/log/nginx/access.log'	# Get web server stats based on log file.
 
 
 	#alias x-proxy='ssh x -L 8080:x.com:123 -N'				# Start SSH tunnel web proxy to some server.
