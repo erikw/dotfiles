@@ -107,6 +107,7 @@ brew_apps_default_gnu=$(make_1line "$brew_apps_default_gnu")
 
 
 read -r -d '' brew_apps_additional <<-'EOAPPS'
+	ableton-live-intro
 	cgdb
 	checkbashisms
 	colorsvn
