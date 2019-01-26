@@ -262,9 +262,15 @@ pman() {
 
 
 # Connect ssh and start tmux e.g.
-# $ ssh_tmux <host>
+# $ sshmux <host>
 # Reference: https://stackoverflow.com/a/27614878/265508
 sshmux () {
 	local args="$@"
 	ssh -t $args "tmux attach || tmux new-session"
+}
+
+# Connect mosh and start tmux.
+moshmux () {
+	local args="$@"
+	mosh $args -- sh -c "tmux attach || tmux new-session"
 }
