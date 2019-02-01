@@ -188,7 +188,7 @@ EOF
 ## Input Sources
 # * Add US, Swedish & German. Check "Show Input menu in menu bar".
 ## Shortcuts
-# * Go to Input Sources: Enable shortcuts for cycling input sources forward with CTRL+SHIFT+Space and backwards CTRL+ALT+SHIFT+Space.
+# * Go to Input Sources: Enable shortcuts for cycling input sources forward with CTRL+OPT+Space and backwards CTRL+OPT+SHIFT+Space.
 # * Go to Mission Control:
 # 1. Set shortcut for showing notificatons menu to F13(Print screen).
 # 2. Enable shortcuts Ctrl+[1-5] for switching to Desktops.
