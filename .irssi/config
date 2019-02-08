@@ -47,7 +47,7 @@ servers = (
     autoconnect = "no";
   },
   {
-    address = "compton.2r.se";
+    address = "compton.erikw.me";
     chatnet = "znc_freenode";
     port = "6677";
     use_ssl = "yes";
@@ -56,7 +56,7 @@ servers = (
     password = "GIT-CENSORED";
   },
   {
-    address = "compton.2r.se";
+    address = "compton.erikw.me";
     chatnet = "znc_quakenet";
     port = "6677";
     use_ssl = "yes";
@@ -65,7 +65,7 @@ servers = (
     password = "GIT-CENSORED";
   },
   {
-    address = "compton.2r.se";
+    address = "compton.erikw.me";
     chatnet = "znc_efnet";
     port = "6677";
     use_ssl = "yes";
@@ -74,7 +74,7 @@ servers = (
     password = "GIT-CENSORED";
   },
   {
-    address = "compton.2r.se";
+    address = "compton.erikw.me";
     chatnet = "znc_bitlbee";
     port = "6677";
     use_ssl = "yes";
