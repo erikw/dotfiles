@@ -4,5 +4,5 @@
 # Get current ip adress
 newip=`curl -s dns.loopia.se/checkip/checkip.php | sed 's/^.*: \([^<]*\).*$/\1/'`
 
-# Update cpt.2r.se
-curl -s --user '2r.se:GIT-CENSORED' "https://dns.loopia.se/XDynDNSServer/XDynDNS.php?hostname=hood.2r.se&myip="$newip; echo
+# Update cpt.erikw.me
+curl -s --user 'erikw.me:GIT-CENSORED' "https://dns.loopia.se/XDynDNSServer/XDynDNS.php?hostname=hood.erikw.me&myip="$newip; echo

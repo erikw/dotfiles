@@ -243,7 +243,7 @@ fi
 	alias reload_bash='source $HOME/.bashrc'			# Reload bash configuration.
 	alias remove_swap_files='find . -name "*.sw[op]" -delete'	# Delete all swap files in current path recursively.
 	alias wol_local_cpt='wakeonlan -i 10.255.255.255 GIT-CENSORED'	# Wake up on the local net broadcast address and cpt's MAC addr.
-	alias wol_remote_cpt='wakeonlan -i cpt.2r.se GIT-CENSORED'	# Wake up from remote.
+	alias wol_remote_cpt='wakeonlan -i cpt.erikw.me GIT-CENSORED'	# Wake up from remote.
 	alias goaccess_nginx='goaccess --log-format=COMBINED /var/log/nginx/access.log'	# Get web server stats based on log file.
 
 

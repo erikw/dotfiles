@@ -100,7 +100,7 @@
 	set history_file = ~/.mutt/mutthistory			# File to store history in.
 	set certificate_file = ~/.mutt/certificates		# Location of trusted certs.
 	unset score						# Don't bother scores.
-	my_hdr X-URL: http://2r.se/				# A custom URL-header.
+	my_hdr X-URL: http://erikw.me/				# A custom URL-header.
 	my_hdr X-Mailer: Mutt					# The User-Agent header standard has not been adopted enough.
 	# XFace avatar.
 	my_hdr X-Face: B)SR@fKAeV\;wi8C7qN^wdeCXJbM}c)6\;(36^7IS]\\\#(F\;s\$OYz\;|)/b^k_eO_01[z\;2~4u(e6:F,f\\%z|Nn\\\'OjG^0l|wl3kRZVO
