@@ -62,18 +62,19 @@
 	set searchurls.w http://en.wikipedia.org/wiki/Special:Search?search=%s
 	set searchurls.ws http://sv.wikipedia.org/wiki/Special:Search?search=%s
 	set searchurls.y http://www.youtube.com/results?search_query=%s
+	set searchurls.osm https://www.openstreetmap.org/search?query=%s
 " }}
 
 " Bindings {{
 " }}
 
-
 " Quickmarks {{
+	quickmark F http://fritz.box/
 	quickmark c https://contacts.google.com/
+	quickmark C https://contacts.google.com/
 	quickmark e https://erikw.me/
 	quickmark f https://cloud.feedly.com/
 	quickmark g https://gmail.com/
-	quickmark l chrome://lastpass/content/home2.xul
 	quickmark n https://my.n26.com/
 	quickmark p https://photos.google.com/
 " }}
