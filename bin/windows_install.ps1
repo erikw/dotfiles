@@ -159,7 +159,8 @@ Invoke-Expression "choco install $choco_apps"
 # git-bash$ cd ~/.dotfiles
 # git-bash$ git checkout -b local
 # Because bin/dfm does not work on Windows (infinite recursions), instead in a privilegied powershell install some symlinks:
-:# pwrshl$  New-Item -Path ~/.vimperatorrc -ItemType SymbolicLink -Value ~/.dotfiles/.vimperatorrc
+# pwrshl$  New-Item -Path ~/.vimperatorrc -ItemType SymbolicLink -Value ~/.dotfiles/.vimperatorrc
+# pwrshl$  New-Item -Path ~/.tridactylrc -ItemType SymbolicLink -Value ~/.dotfiles/.tridactylrc
 # pwrshl$  New-Item -Path ~/.gitconfig -ItemType SymbolicLink -Value ~/.dotfiles/.gitconfig
 
 
