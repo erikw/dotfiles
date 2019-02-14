@@ -136,7 +136,6 @@ read -r -d '' cask_apps_default <<-'EOAPPS'
 	amethyst
 	appcleaner
 	awareness
-	background-music
 	caffeine
 	clipy
 	cyberduck
@@ -169,6 +168,7 @@ cask_apps_default=$(make_1line "$cask_apps_default")
 read -r -d '' cask_apps_additional <<-'EOAPPS'
 	adium
 	atom
+	background-music
 	burn
 	cheatsheet
 	chicken
@@ -177,6 +177,7 @@ read -r -d '' cask_apps_additional <<-'EOAPPS'
 	dash
 	eclipse-ide
 	flip4mac
+	franz
 	google-backup-and-sync
 	google-drive-file-stream
 	gpg-suite
