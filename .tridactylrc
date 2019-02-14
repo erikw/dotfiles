@@ -5,7 +5,6 @@
 "	 vi: foldmarker={{,}} foldmethod=marker foldlevel=0: tabstop=8: filetype=vim:
 " }}
 
-
 " General {{
 	set searchengine duckduckgo
 	set theme dark
