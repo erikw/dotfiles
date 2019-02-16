@@ -65,7 +65,7 @@
 " }}
 
 " Bindings {{
-	unmap F1	" F1 closes Tree Style Tabs sidebar.
+	unbind <F1>	" F1 closes Tree Style Tabs sidebar.
 " }}
 
 " Quickmarks {{
