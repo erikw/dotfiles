@@ -135,7 +135,6 @@ brew_apps_additional=$(make_1line "$brew_apps_additional")
 read -r -d '' cask_apps_default <<-'EOAPPS'
 	amethyst
 	appcleaner
-	awareness
 	caffeine
 	clipy
 	cyberduck
@@ -168,6 +167,7 @@ cask_apps_default=$(make_1line "$cask_apps_default")
 read -r -d '' cask_apps_additional <<-'EOAPPS'
 	adium
 	atom
+	awareness
 	background-music
 	burn
 	cheatsheet
