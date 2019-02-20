@@ -292,13 +292,14 @@ brew install mas
 # $ mas search WeatherBug
 # $ mas install <id>
 # To install:
-# 1059074180 WeatherBug - Weather Forecasts and Alerts
 # 585829637 Todoist: Organize your life
 # 1147396723  WhatsApp Desktop
 # 897118787  Shazam
 # 405399194  Kindle
 # 912659472  Brother ScannerApp (Image Capture.app does not work for Brother DCP-7070DW)
 # 497799835  Xcode
+# List of previously installed
+# 1059074180 WeatherBug - Weather Forecasts and Alerts
 
 
 
