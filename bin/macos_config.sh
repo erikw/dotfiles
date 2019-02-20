@@ -283,6 +283,10 @@ EOF
 # Settings > Unlink my AppleID
 # }
 
+# Sidebar {
+# Set up the weather widget to show current location (better to use this thant the WeatherBug tray icon consuming power and visual space)
+# }
+
 # Media shortcuts for external keyboard: follow instructions in ~/bin/macos_media_control/info.txt
 
 # * Battery icon in menu bar > Show Percentages.
