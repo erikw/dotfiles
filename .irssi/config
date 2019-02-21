@@ -360,28 +360,18 @@ settings = {
     irssiproxy_ports = "Freenode=6670 QuakeNet=6671 EFNet=6672 BitlBee=6673";
   };
   "perl/core/scripts" = {
-    #awl_display_key = "$Q%K|%n$H$C$S";
-    #awl_block = "-15";
-    awl_block = "1";
-
-    # For Solarized adv_windowlist.pl script
-    awl_display_key_active = "%k%2[$Q=$N:$C]%n";
-    awl_display_nokey_active = "%k%2[$N:$C]%n";
-    awl_display_key = "[$Q:$H$C$S]";
-    awl_display_nokey = "[$N:$H$C$S]";
-
-    # For Solarized trackbar.pl script
+    awl_shared_sbar = "OFF";
+    awl_viewer = "yes";
+    awl_maxcolumns = "4";
+    awl_block = "32";
+    awl_placement = "bottom";
+    awl_viewer_tmux_position = "left";
     trackbar_style = "%B";
-
-    #nicklist
     nicklist_width = "22";
     nicklist_automode = "fifo";
-
-    awl_columns = "1";
     chansort_autosort = "yes";
-    awl_prefer_name = "yes";
-    tmux_away_active = "yes";
     nicklist_height = "48";
+    awl_prefer_name = "yes";
   };
 };
 logs = { };
