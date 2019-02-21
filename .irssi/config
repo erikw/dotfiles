@@ -292,10 +292,17 @@ statusbar = {
     };
     prompt = {
       items = {
-        uberprompt = { priority = "-1"; };
         input = { priority = "10"; };
+        uberprompt = { priority = "-1"; };
       };
       position = "100";
+    };
+    awl_0 = {
+      items = {
+        barstart = { priority = "100"; };
+        awl_0 = { };
+        barend = { priority = "100"; alignment = "right"; };
+      };
     };
   };
 };
@@ -372,6 +379,8 @@ settings = {
     chansort_autosort = "yes";
     nicklist_height = "48";
     awl_prefer_name = "yes";
+    tmux_away_active = "yes";
+    trackbar_print_timestamp = "yes";
   };
 };
 logs = { };
