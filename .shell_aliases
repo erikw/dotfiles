@@ -282,11 +282,13 @@ fi
 	alias umount-newport='fusermount -u /media/newport/'
 
 	alias cryfs_mount='history-off && cryfs ~/dropbox/priv ~/priv'	# Decrypt & mount CryFS folder.
-	if shell_is_macos; then
-		alias cryfs_umount='umount  ~/priv'				# Umount CryFS folder.
-	else
-		alias cryfs_umount='fusermount -u ~/priv'			# Umount CryFS folder.
-	fi
+	alias cryfs_umount='cryfs-unmount ~/priv' 			# Umount CryFS folder.
+	# The old way.
+	#if shell_is_macos; then
+		#alias cryfs_umount='umount ~/priv'				# Umount CryFS folder.
+	#else
+		#alias cryfs_umount='fusermount -u ~/priv'			# Umount CryFS folder.
+	#fi
 # }
 
 # Permutation aliases {
