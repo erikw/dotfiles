@@ -46,7 +46,7 @@
 	set searchurls.d http://www.dict.cc/?s=%s
 	set searchurls.duck https://duckduckgo.com/?q=%s
 	set searchurls.duckduckgo https://duckduckgo.com/?q=%s
-	set searchurls.ducki https://duckduckgo.com/?iax=images&ia=images&q=%s
+	set searchurls.di https://duckduckgo.com/?iax=images&ia=images&q=%s
 	set searchurls.g https://www.google.com/search?hl=en&q=%s
 	set searchurls.gd https://www.google.de/search?hl=de&q=%s
 	set searchurls.gi http://google.com/search?hl=en&tbm=isch&q=%s
