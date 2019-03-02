@@ -134,7 +134,7 @@ channels = (
   { name = "#vim"; chatnet = "freenode"; autojoin = "no"; },
   { name = "#taskwarrior"; chatnet = "freenode"; autojoin = "no"; },
   { name = "#blausoffan"; chatnet = "efnet"; autojoin = "yes"; },
-  { name = "#dwww"; chatnet = "efnet"; autojoin = "yes"; }
+  { name = "#dwww"; chatnet = "efnet"; autojoin = "no"; }
 );
 
 aliases = {
