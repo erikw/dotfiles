@@ -65,6 +65,7 @@ $choco_apps =
 "7zip " +
 "autohotkey " +
 "bleachbit " +
+"choco-cleaner" +
 "cygwin " +
 "deluge " +
 "discord " +
