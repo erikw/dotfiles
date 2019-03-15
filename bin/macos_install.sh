@@ -190,6 +190,7 @@ read -r -d '' cask_apps_additional <<-'EOAPPS'
 	livereload
 	mactex
 	max
+	mp3tag
 	openvpn
 	perian
 	postman

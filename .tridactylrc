@@ -41,7 +41,7 @@
 	set searchurls.youtube ""
 
 	set searchurls.ali https://www.aliexpress.com/wholesale?SearchText=%s
-	set searchurls.amazons http://www.amazon.de/s/field-keywords=%s
+	set searchurls.amazons https://www.amazon.de/s?k=%s
 	set searchurls.aur https://aur.archlinux.org/packages/?K=%s
 	set searchurls.d http://www.dict.cc/?s=%s
 	set searchurls.duck https://duckduckgo.com/?q=%s
