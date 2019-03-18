@@ -188,10 +188,13 @@ EOF
 ## Input Sources
 # * Add US, Swedish & German. Check "Show Input menu in menu bar".
 ## Shortcuts
-# * Go to Input Sources: Enable shortcuts for cycling input sources _backwards_ with CTRL+OPT+Space. Reason for only having forward is because of keyboard shorcut clash on SHIFT+OPT with Amethyst's cycle layout.
-# * Go to Mission Control:
-# 1. Set shortcut for showing notificatons menu to F13(Print screen).
-# 2. Enable shortcuts Ctrl+[1-5] for switching to Desktops.
+### Input Sources
+# * Enable shortcuts for cycling input sources _backwards_ with CTRL+OPT+Space. Reason for only having forward is because of keyboard shorcut clash on SHIFT+OPT with Amethyst's cycle layout.
+### Mission Control:
+# * Show Notification Center: F13 (Print screen).
+# * Enable shortcuts Ctrl+[1-5] for switching to Desktops.
+# * Do not Distrurb on/off: Cmd+Shift+F12
+#
 ## Text
 # * Click "Spelling" dropdown >  chose "Set up" > uncheck British English and check US English.
 
