@@ -10,6 +10,12 @@
 	set theme dark
 	"set newtab about:newtab		" Don't use Tridactyl's startpage. NOTE not working; https://github.com/tridactyl/tridactyl/issues/384
 	set homepages ["about:newtab"]
+
+	" Temporary command window performance fix, until these are resolved:
+	" https://github.com/tridactyl/tridactyl/issues/1092
+	" https://github.com/tridactyl/tridactyl/issues/1208
+	unbind --mode=ex <Space>
+	bind --mode=ex <C-y> ex.insert_space_or_completion
 " }}
 
 " Search {{
