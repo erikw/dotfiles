@@ -331,6 +331,10 @@ brew install sshfs
 # * easytag
 # * RVM: https://rvm.io/rvm/install
 # * xcode XVim: https://github.com/XVimProject/XVim, https://github.com/XVimProject/XVim/blob/master/INSTALL_Xcode8.md
+# * https://www.akaipro.com/productregistration/customer/
+# - Akai MPC Essentials Software  -
+# - Akai MPKmini MK2 Editor - https://www.akaipro.com/productregistration/customer/
+# - Air Hybrid synth
 
 # Install tmux session on login.
 # Reference: http://www.launchd.info/
