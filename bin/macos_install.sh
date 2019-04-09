@@ -204,6 +204,7 @@ read -r -d '' cask_apps_additional <<-'EOAPPS'
 	skype
 	slack
 	steam
+	stretchly
 	switch
 	thunderbird
 	tor-browser
@@ -299,6 +300,7 @@ brew install mas
 # 405399194  Kindle
 # 912659472  Brother ScannerApp (Image Capture.app does not work for Brother DCP-7070DW)
 # 497799835  Xcode
+# 402592703  Time Out - Break Reminders (2.5)
 # List of previously installed
 # 1059074180 WeatherBug - Weather Forecasts and Alerts
 

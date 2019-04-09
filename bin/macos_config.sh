@@ -193,7 +193,7 @@ EOF
 ### Mission Control:
 # * Show Notification Center: F13 (Print screen).
 # * Enable shortcuts Ctrl+[1-5] for switching to Desktops.
-# * Do not Distrurb on/off: Cmd+Shift+F12
+# * Do not Distrurb on/off: Cmd+F12
 #
 ## Text
 # * Click "Spelling" dropdown >  chose "Set up" > uncheck British English and check US English.
