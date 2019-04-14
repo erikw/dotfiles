@@ -99,6 +99,14 @@ $ cd ~/.dotfiles
 $ git checkout -b local
 ```
 
+Untrack `~/.irssi/config` for local changes.
+
+```bash
+$ source ~/.shell_aliases
+$ dotf_irssiconf_untrack
+```
+
+
 ## Host specific configuration
 Passwords and other secretes are censored. To find these and substitue them for the real thing, do
 
