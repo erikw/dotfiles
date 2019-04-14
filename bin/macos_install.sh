@@ -337,6 +337,7 @@ brew install sshfs
 # - Akai MPC Essentials Software  -
 # - Akai MPKmini MK2 Editor - https://www.akaipro.com/productregistration/customer/
 # - Air Hybrid synth
+# * Audacity: https://www.audacityteam.org/download/mac/
 
 # Install tmux session on login.
 # Reference: http://www.launchd.info/
