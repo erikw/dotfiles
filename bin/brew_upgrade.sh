@@ -37,7 +37,7 @@ _print() {
 
 _exec "Updating brew formulas" brew update
 
-outdated=$(brew outdated -v)
+outdated=$(brew outdated -v | grep -v "\[pinned at .*\]" || :)
 if [ -n "$outdated" ]; then
 	_print "These packages are outdated: "
 	echo "$outdated"
@@ -49,7 +49,7 @@ if [ -n "$outdated" ]; then
 		([ -z "$upgrade" ] || [ "$upgrade" = y ] || [ "$upgrade" = Y ] || [ "$upgrade" = n ]) && break
 	done
 	if [ "$upgrade" != n ]; then
-		_exec "Upgrading brew" brew upgrade
+		_exec "Upgrading brew" brew upgrade --ignore-pinned
 		_exec "The brew doctor says" brew doctor || :		# Sneak around $(set -e) as the doctor command return error code.
 	fi
 fi
