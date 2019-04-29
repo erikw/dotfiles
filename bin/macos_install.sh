@@ -301,6 +301,7 @@ brew install mas
 # 912659472  Brother ScannerApp (Image Capture.app does not work for Brother DCP-7070DW)
 # 497799835  Xcode
 # 402592703  Time Out - Break Reminders (2.5)
+# 865500966  feedly. Read more, know more. (0.2)
 # List of previously installed
 # 1059074180 WeatherBug - Weather Forecasts and Alerts
 
