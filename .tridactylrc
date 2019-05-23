@@ -8,7 +8,7 @@
 " General {{
 	set searchengine duckduckgo
 	set theme dark
-	"set newtab about:newtab		" Don't use Tridactyl's startpage. NOTE not working; https://github.com/tridactyl/tridactyl/issues/384
+	set newtab about:newtab		" Don't use Tridactyl's startpage.
 	set homepages ["about:newtab"]
 
 	" Temporary command window performance fix, until these are resolved:
