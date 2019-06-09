@@ -45,8 +45,9 @@ defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 #EOF
 
 # Make zsh default shell for local user.
+# NOTE not needed since macos 10.15 Catalina. https://apple.slashdot.org/story/19/06/04/1645240/apple-replaces-bash-with-zsh-as-the-default-shell-in-macos-catalina?utm_source=rss1.0mainlinkanon&utm_medium=feed
 #chsh -s $(which zsh)
-chsh -s /bin/zsh
+#chsh -s /bin/zsh
 
 
 # Give root some better powers with bash.
