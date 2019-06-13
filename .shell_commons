@@ -13,7 +13,7 @@ source $HOME/.shell_functions
 	export PATH
 
 	# Include system binaries.
-	PATH="$PATH:/sbin:/usr/sbin:/usr/local/sbin"
+	PATH="/usr/local/bin:/usr/local/sbin:/sbin:/usr/sbin:$PATH"
 	# Include binaries in home directory.
 	PATH="$HOME/bin:$PATH"
 
