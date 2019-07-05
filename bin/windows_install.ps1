@@ -264,6 +264,15 @@ $Shortcut.Save()
 #
 ## Set up remote
 # Open the public key saved, concatenate all lines in the middle and prepend "ssh-rsa " and upload it to server's authorized_keys
+
+
+
+# Logitech F710 Gaming Pad
+# The official drivers from
+# https://support.logi.com/hc/en-us/articles/360023465553-Logitech-Wireless-Gamepad-F710-Technical-Specifications
+# will work with D mode (DirectX) only. To get the more modern Xinput to work, we must use Xbox 360 driver as the driver is not updated for windows 10.
+# Reference: https://www.reddit.com/r/Windows10/comments/3f0y3j/logitech_f710_driver/
+# Open Device Manager > right click on your unknown F710 device > Update Driver >  "Browse my computer > "Let me select from a list" > find Xbox 360 Controllers on the list > select "Xbox 360 Controller for Windows" >  "Use driver anyway" if you get a warning. This should do the trick.
 # }
 
 
