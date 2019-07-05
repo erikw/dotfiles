@@ -16,12 +16,12 @@ Write-Output "> Upgrading chocolately apps."
 choco upgrade all
 Write-Output "> Upgrading chocolately apps. - DONE"
 
-write-Output "`n`n`n`n"
-write-Output "> Updating scoop."
-scoop update
-write-Output "> Updating scoop. - DONE"
+#write-Output "`n`n`n`n"
+#write-Output "> Updating scoop."
+#scoop update
+#write-Output "> Updating scoop. - DONE"
 
-write-Output "`n`n`n`n"
-write-Output "> Updating scoop programs."
-scoop update *
-write-Output "> Updating scoop programs. - DONE"
+#write-Output "`n`n`n`n"
+#write-Output "> Updating scoop programs."
+#scoop update *
+#write-Output "> Updating scoop programs. - DONE"
