@@ -154,7 +154,6 @@ read -r -d '' cask_apps_default <<-'EOAPPS'
 	qr-journal
 	scroll-reverser
 	sensiblesidebuttons
-	spectacle
 	spotify
 	spotify-notifications
 	the-unarchiver
@@ -203,6 +202,7 @@ read -r -d '' cask_apps_additional <<-'EOAPPS'
 	skim
 	skype
 	slack
+	spectacle
 	steam
 	stretchly
 	switch
@@ -504,5 +504,10 @@ sudo sh -c "echo \"$newtab\" | crontab -"
 # * For external keyboard
 #	* left_command -> left_option
 #	* left_option -> left_command
+
+
+# Itsycal
+# Preferences Save space by hiding built-in time in System Preferences > Date & Time > Clock > uncheck "Show date & time in menu bar".
+## * Datetime pattern: HH:mm.
 
 # }
