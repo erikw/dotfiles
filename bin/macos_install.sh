@@ -508,6 +508,7 @@ sudo sh -c "echo \"$newtab\" | crontab -"
 
 # Itsycal
 # Preferences Save space by hiding built-in time in System Preferences > Date & Time > Clock > uncheck "Show date & time in menu bar".
-## * Datetime pattern: HH:mm.
+## * Check "Show day of week in the icon".
+## * Datetime pattern: HH:mm
 
 # }
