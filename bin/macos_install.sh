@@ -71,8 +71,6 @@ read -r -d '' brew_apps_default <<-'EOAPPS'
 	rsync
 	sl
 	source-highlight
-	task
-	tasksh
 	telnet
 	the_silver_searcher
 	tig
@@ -125,6 +123,8 @@ read -r -d '' brew_apps_additional <<-'EOAPPS'
 	reattach-to-user-namespace
 	restic
 	swiftlint
+	task
+	tasksh
 	valgrind
 EOAPPS
 brew_apps_additional=$(make_1line "$brew_apps_additional")
