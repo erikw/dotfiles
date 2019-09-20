@@ -24,9 +24,7 @@ do_start() {
 		#tmux new-window -t "$session_name":2 ncmpcpp
 		#tmux set-window-option -t "$session_name":2 monitor-activity off
 
-		#tmux new-window -t "$session_name":2 -n "torr/oct" rtorrent
-		#tmux split-window -t "$session_name":2 -h octave
-		tmux new-window -t "$session_name":2 -n "torr/oct" octave-cli
+		tmux new-window -t "$session_name":2 -n "octave" octave-cli
 		tmux set-window-option -t "$session_name":2 monitor-activity off
 
 		tmux new-window -t "$session_name":3
