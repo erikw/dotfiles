@@ -269,6 +269,11 @@ EOF
 #  - Applicatons
 #  - /tmp
 #  * Copy icon from Downloads -> DL in CMD+i dialog.
+# * Preferences
+# ** General
+# *** Show on desktop: connected servers
+# ** Sidebar
+# *** Hide things like Airdrop, iCould, Recents
 #
 # }
 
