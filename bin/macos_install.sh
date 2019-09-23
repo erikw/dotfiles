@@ -135,7 +135,6 @@ brew_apps_additional=$(make_1line "$brew_apps_additional")
 read -r -d '' cask_apps_default <<-'EOAPPS'
 	amethyst
 	appcleaner
-	caffeine
 	clipy
 	cyberduck
 	dropbox
@@ -150,7 +149,6 @@ read -r -d '' cask_apps_default <<-'EOAPPS'
 	karabiner-elements
 	libreoffice
 	macvim
-	name-mangler
 	qr-journal
 	scroll-reverser
 	sensiblesidebuttons
@@ -169,6 +167,7 @@ read -r -d '' cask_apps_additional <<-'EOAPPS'
 	awareness
 	background-music
 	burn
+	caffeine
 	cheatsheet
 	chicken
 	clamxav
@@ -190,6 +189,7 @@ read -r -d '' cask_apps_additional <<-'EOAPPS'
 	mactex
 	max
 	mp3tag
+	name-mangler
 	openvpn
 	perian
 	postman
@@ -302,6 +302,8 @@ brew install mas
 # 497799835  Xcode
 # 402592703  Time Out - Break Reminders (2.5)
 # 865500966  feedly. Read more, know more. (0.2)
+# 410628904  Wunderlist: To-Do List & Tasks
+# 1274495053 Microsoft To Do (2.0)
 # List of previously installed
 # 1059074180 WeatherBug - Weather Forecasts and Alerts
 
