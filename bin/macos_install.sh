@@ -140,7 +140,6 @@ read -r -d '' cask_apps_default <<-'EOAPPS'
 	dropbox
 	electric-sheep
 	firefox
-	flux
 	freshback
 	gimp
 	google-chrome
@@ -164,6 +163,7 @@ cask_apps_default=$(make_1line "$cask_apps_default")
 read -r -d '' cask_apps_additional <<-'EOAPPS'
 	adium
 	atom
+	flux
 	awareness
 	background-music
 	burn

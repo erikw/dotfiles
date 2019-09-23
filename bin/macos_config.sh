@@ -176,6 +176,8 @@ EOF
 
 # Display
 # * Move the white menu bar to the main monitor, so notifications etc. comes on it.
+## Night SHift
+# * Schedule: Sunset to Sunrise
 
 # Energy Saver
 ## Power Adapter
