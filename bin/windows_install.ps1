@@ -70,7 +70,6 @@ $choco_apps =
 "deluge " +
 "discord " +
 "ditto " +
-"f.lux " +
 "firefox " +
 "git " +
 "googlechrome " +
@@ -93,6 +92,7 @@ $choco_apps =
 
 $choco_apps_additional =
 "dropbox " +
+"f.lux " +
 "origin " +
 "flashplayerplugin " +
 "virtualclonedrive " +
@@ -283,7 +283,8 @@ $Shortcut.Save()
 # =System
 # ==Display
 # * Set extended dual screen.
-
+# * Enable Light Light > Night Light settings > Enable from Sunset to sunrise.
+# ** This can be toggled in the right bar quick-settings.
 
 # ==Power & sleep
 # * Never turn off computer on AC
