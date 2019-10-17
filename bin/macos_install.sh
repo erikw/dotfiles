@@ -52,7 +52,6 @@ read -r -d '' brew_apps_default <<-'EOAPPS'
 	jsonlint
 	knock
 	links
-	mercurial
 	mosh
 	multitail
 	ncdu
@@ -113,6 +112,7 @@ read -r -d '' brew_apps_additional <<-'EOAPPS'
 	ffmpeg2theora
 	irssi
 	jq
+	mercurial
 	mutt
 	notmuch
 	offlineimap
