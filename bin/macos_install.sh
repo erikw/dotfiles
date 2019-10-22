@@ -169,7 +169,6 @@ read -r -d '' cask_apps_additional <<-'EOAPPS'
 	burn
 	caffeine
 	cheatsheet
-	chicken
 	clamxav
 	colloquy
 	dash
