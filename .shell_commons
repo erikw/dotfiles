@@ -259,24 +259,22 @@ source $HOME/.shell_functions
 	# $PYTHONPATH is a PATH-formatted list of additional directories where python should look for modules when importing ones. Don't mix py2 and py3 paths in it.
 	if shell_is_macos; then
 		macos_py2path=$HOME/Library/Python/2.7
-		macos_py3path=$HOME/Library/Python/3.7
 		if [ -d $macos_py2path ]; then
 			PATH="$macos_py2path/bin:$PATH"
 			# Python path must be set for ropevim to find rope.
 			#export PYTHONPATH="$macos_py2path/lib/python/site-packages:$PYTHONPATH"
-			# To really use only python2 from homebrew, so "python" refers to this version too, then (found with brew info python)
-			# export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 		fi
+		macos_py3path=$HOME/Library/Python/3.6
 		if [ -d $macos_py3path ]; then
 			PATH="$macos_py3path/bin:$PATH"
 			#export PYTHONPATH="$macos_py3path/lib/python/site-packages:$PYTHONPATH"
 		fi
-		if [ -n "$PYTHONPATH" ]; then
-			# Pip in virtualenv does not work with PYTHONPATH set.
-			alias pip='PYTHONPATH= pip'
-			alias pip2='PYTHONPATH= pip2'
-			alias pip3='PYTHONPATH= pip3'
-		fi
+		#if [ -n "$PYTHONPATH" ]; then
+			## Pip in virtualenv does not work with PYTHONPATH set.
+			#alias pip='PYTHONPATH= pip'
+			#alias pip2='PYTHONPATH= pip2'
+			#alias pip3='PYTHONPATH= pip3'
+		#fi
 	fi
 
 	#if program_is_in_path pyenv; then
@@ -285,6 +283,12 @@ source $HOME/.shell_functions
 		# Full config. NOTE is sandboxed
 		#eval "$(pyenv init -)"
 	#fi
+
+	# When using pyenv, normal virtual env can't be used for python <3.3.
+	# See https://github.com/pyenv/pyenv-virtualenv and https://www.freecodecamp.org/news/manage-multiple-python-versions-and-virtual-environments-venv-pyenv-pyvenv-a29fb00c296f/
+	if program_is_in_path pyenv-virtualenv; then
+		eval "$(pyenv virtualenv-init -)"
+	fi
 
 
 	# Powerline plugin.
