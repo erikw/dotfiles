@@ -185,6 +185,27 @@ $ sudo npm -g install instant-markdown-d
 ````
 
 ### Python development
+### pyenv
+Be more flexible with what python version to use with pyenv.
+macOS: `$ brew install pyenv`
+
+Remember that when using pyenv, normal virtualenv can't be used for python <3.3 projects. One should use [pyenv-virtualenv](https://github.com/pyenv/pyenv-virtualenv) instead. See [this](https://www.freecodecamp.org/news/manage-multiple-python-versions-and-virtual-environments-venv-pyenv-pyvenv-a29fb00c296f/) article and [this](https://realpython.com/intro-to-pyenv/).
+```bash
+$ pyenv virtualenv 2.7.10 my-virtual-env-2.7.10
+````
+
+
+
+```bash
+$ pyenv versions
+$ pyenv install 3.x.y
+$ pyenv global 3.x.y
+$ python --version
+$ which python
+````
+
+
+
 #### jedi-vim
 ```bash
 $ cd ~/.vim/bundle/jedi-vim/

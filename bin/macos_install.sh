@@ -65,7 +65,6 @@ read -r -d '' brew_apps_default <<-'EOAPPS'
 	pidof
 	pv
 	python
-	python@2
 	readline
 	rsync
 	sl
@@ -78,7 +77,6 @@ read -r -d '' brew_apps_default <<-'EOAPPS'
 	unrar
 	unzip
 	urlview
-	vim
 	w3m
 	watch
 	wego
@@ -103,6 +101,8 @@ EOAPPS
 brew_apps_default_gnu=$(make_1line "$brew_apps_default_gnu")
 
 
+# NOTE typicall just pyenv is okay. pyenv-virtualenvwrapper is only needed for projects with python <3.3
+# see https://www.freecodecamp.org/news/manage-multiple-python-versions-and-virtual-environments-venv-pyenv-pyvenv-a29fb00c296f/
 read -r -d '' brew_apps_additional <<-'EOAPPS'
 	ableton-live-intro
 	cgdb
@@ -120,6 +120,7 @@ read -r -d '' brew_apps_additional <<-'EOAPPS'
 	postgresql
 	pyenv
 	pyenv-virtualenvwrapper
+	python@2
 	reattach-to-user-namespace
 	restic
 	swiftlint
@@ -219,11 +220,9 @@ cask_apps_additional=$(make_1line "$cask_apps_additional")
 # }
 
 # Python lists {
-# virtualenvwrapper needs to be installed for brew's pyenv-virtualenvwrapper, python2, it seems :O
-read -r -d '' pip2_pkgs <<-'EOAPPS'
-	virtualenvwrapper
-EOAPPS
-pip2_pkgs=$(make_1line "$pip2_pkgs")
+#read -r -d '' pip2_pkgs <<-'EOAPPS'
+#EOAPPS
+#pip2_pkgs=$(make_1line "$pip2_pkgs")
 
 read -r -d '' pip3_pkgs <<-'EOAPPS'
 	ipdb
@@ -231,6 +230,7 @@ read -r -d '' pip3_pkgs <<-'EOAPPS'
 	powerline-status
 	pudb
 	ropevim
+	virtualenvwrapper
 EOAPPS
 pip3_pkgs=$(make_1line "$pip3_pkgs")
 
@@ -264,6 +264,10 @@ brew tap beeftornado/rmtree
 brew tap caskroom/cask
 brew cask install $cask_apps_default
 #brew cask install $cask_apps_additional
+
+# NOTE only install cask macvim and not brew package vim, as they conflict. macvim provides both cli and gui
+# However it seems like symlinks are not written by default, thus link
+brew link macvim
 
 # Install older versions of apps.
 brew tap caskroom/versions
@@ -312,7 +316,7 @@ brew install mas
 # brew bundle dump
 
 # Install python packages.
-pip2 install --user $pip2_pkgs
+#pip2 install --user $pip2_pkgs
 pip3 install --user $pip3_pkgs
 
 
