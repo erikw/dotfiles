@@ -264,7 +264,7 @@ source $HOME/.shell_functions
 			# Python path must be set for ropevim to find rope.
 			#export PYTHONPATH="$macos_py2path/lib/python/site-packages:$PYTHONPATH"
 		fi
-		macos_py3path=$HOME/Library/Python/3.6
+		macos_py3path=$HOME/Library/Python/3.7
 		if [ -d $macos_py3path ]; then
 			PATH="$macos_py3path/bin:$PATH"
 			#export PYTHONPATH="$macos_py3path/lib/python/site-packages:$PYTHONPATH"
