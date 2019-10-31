@@ -52,6 +52,7 @@ read -r -d '' brew_apps_default <<-'EOAPPS'
 	jsonlint
 	knock
 	links
+	macvim
 	mosh
 	multitail
 	ncdu
@@ -89,6 +90,16 @@ read -r -d '' brew_apps_default <<-'EOAPPS'
 	zsh-syntax-highlighting
 EOAPPS
 brew_apps_default=$(make_1line "$brew_apps_default")
+
+# NOTE install formual macvim because
+# * it provides MacVim.app in /usr/local/Cellar/macvim/<version number>/. See https://arophix.com/2018/01/24/install-vim-on-macos-high-sierra/
+# * cask macvim includes only dynamically lined python. $(vim --version) gives +python3/dyn and that does not find powerline.
+# * formular macvim has $(vim --version) "+python3"
+# * macOS search (cmd+space) still find MacVim.app in the Cellar
+# * formular vim does not include MacVim.app
+# * having both formula vim/macvim + cask macvim causes symlink overwrite problems on upgrade ($brew link vim/macvim).
+
+
 
 read -r -d '' brew_apps_default_gnu <<-'EOAPPS'
 	findutils
@@ -148,7 +159,6 @@ read -r -d '' cask_apps_default <<-'EOAPPS'
 	itsycal
 	karabiner-elements
 	libreoffice
-	macvim
 	qr-journal
 	scroll-reverser
 	sensiblesidebuttons
@@ -159,7 +169,6 @@ read -r -d '' cask_apps_default <<-'EOAPPS'
 	wireshark
 EOAPPS
 cask_apps_default=$(make_1line "$cask_apps_default")
-
 
 read -r -d '' cask_apps_additional <<-'EOAPPS'
 	adium
@@ -264,10 +273,6 @@ brew tap beeftornado/rmtree
 brew tap caskroom/cask
 brew cask install $cask_apps_default
 #brew cask install $cask_apps_additional
-
-# NOTE only install cask macvim and not brew package vim, as they conflict. macvim provides both cli and gui
-# However it seems like symlinks are not written by default, thus link
-brew link macvim
 
 # Install older versions of apps.
 brew tap caskroom/versions
