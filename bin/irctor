@@ -25,6 +25,7 @@ do_start() {
 		#tmux set-window-option -t "$session_name":2 monitor-activity off
 
 		tmux new-window -t "$session_name":2 -n "octave" octave-cli
+		#tmux new-window -t "$session_name":2 -n "bc" bc
 		tmux set-window-option -t "$session_name":2 monitor-activity off
 
 		tmux new-window -t "$session_name":3
