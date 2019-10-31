@@ -14,7 +14,7 @@ make_1line() {
 }
 
 # Brew lists {
-read -r -d '' brew_apps_default <<-'EOAPPS'
+read -r -d '' brew_formulae_default <<-'EOAPPS'
 	ack
 	antiword
 	aspell
@@ -66,6 +66,7 @@ read -r -d '' brew_apps_default <<-'EOAPPS'
 	pidof
 	pv
 	python
+	python@2
 	readline
 	rsync
 	sl
@@ -89,19 +90,21 @@ read -r -d '' brew_apps_default <<-'EOAPPS'
 	zsh-completions
 	zsh-syntax-highlighting
 EOAPPS
-brew_apps_default=$(make_1line "$brew_apps_default")
+brew_formulae_default=$(make_1line "$brew_formulae_default")
 
-# NOTE install formual macvim because
-# * it provides MacVim.app in /usr/local/Cellar/macvim/<version number>/. See https://arophix.com/2018/01/24/install-vim-on-macos-high-sierra/
-# * cask macvim includes only dynamically lined python. $(vim --version) gives +python3/dyn and that does not find powerline.
-# * formular macvim has $(vim --version) "+python3"
-# * macOS search (cmd+space) still find MacVim.app in the Cellar
-# * formular vim does not include MacVim.app
-# * having both formula vim/macvim + cask macvim causes symlink overwrite problems on upgrade ($brew link vim/macvim).
+# Formulae notes
+# * macvim - install formual macvim because
+# ** it provides MacVim.app in /usr/local/Cellar/macvim/<version number>/. See https://arophix.com/2018/01/24/install-vim-on-macos-high-sierra/
+# ** cask macvim includes only dynamically lined python. $(vim --version) gives +python3/dyn and that does not find powerline.
+# ** formular macvim has $(vim --version) "+python3"
+# ** macOS search (cmd+space) still find MacVim.app in the Cellar
+# ** formular vim does not include MacVim.app
+# ** having both formula vim/macvim + cask macvim causes symlink overwrite problems on upgrade ($brew link vim/macvim).
+# * python@2 - needed for ~/bin/com.user.iterm.plist to be able to start powerline for tmux. Even though powerline-status py package is installed for python3 only, it's still needed somehow.
 
 
 
-read -r -d '' brew_apps_default_gnu <<-'EOAPPS'
+read -r -d '' brew_formulae_default_gnu <<-'EOAPPS'
 	findutils
 	gnu-indent
 	gnu-sed
@@ -109,12 +112,12 @@ read -r -d '' brew_apps_default_gnu <<-'EOAPPS'
 	gnutls
 	grep
 EOAPPS
-brew_apps_default_gnu=$(make_1line "$brew_apps_default_gnu")
+brew_formulae_default_gnu=$(make_1line "$brew_formulae_default_gnu")
 
 
 # NOTE typicall just pyenv is okay. pyenv-virtualenvwrapper is only needed for projects with python <3.3
 # see https://www.freecodecamp.org/news/manage-multiple-python-versions-and-virtual-environments-venv-pyenv-pyvenv-a29fb00c296f/
-read -r -d '' brew_apps_additional <<-'EOAPPS'
+read -r -d '' brew_formulae_additional <<-'EOAPPS'
 	ableton-live-intro
 	cgdb
 	checkbashisms
@@ -131,7 +134,6 @@ read -r -d '' brew_apps_additional <<-'EOAPPS'
 	postgresql
 	pyenv
 	pyenv-virtualenvwrapper
-	python@2
 	reattach-to-user-namespace
 	restic
 	swiftlint
@@ -139,12 +141,12 @@ read -r -d '' brew_apps_additional <<-'EOAPPS'
 	tasksh
 	valgrind
 EOAPPS
-brew_apps_additional=$(make_1line "$brew_apps_additional")
+brew_formulae_additional=$(make_1line "$brew_formulae_additional")
 
 # }
 
 # Cask lists {
-read -r -d '' cask_apps_default <<-'EOAPPS'
+read -r -d '' brew_casks_default <<-'EOAPPS'
 	amethyst
 	appcleaner
 	clipy
@@ -168,9 +170,9 @@ read -r -d '' cask_apps_default <<-'EOAPPS'
 	vlc
 	wireshark
 EOAPPS
-cask_apps_default=$(make_1line "$cask_apps_default")
+brew_casks_default=$(make_1line "$brew_casks_default")
 
-read -r -d '' cask_apps_additional <<-'EOAPPS'
+read -r -d '' brew_casks_additional <<-'EOAPPS'
 	adium
 	atom
 	flux
@@ -224,7 +226,7 @@ read -r -d '' cask_apps_additional <<-'EOAPPS'
 	xee
 	yasu
 EOAPPS
-cask_apps_additional=$(make_1line "$cask_apps_additional")
+brew_casks_additional=$(make_1line "$brew_casks_additional")
 
 # }
 
@@ -254,12 +256,12 @@ pip3_pkgs=$(make_1line "$pip3_pkgs_additional")
 set -e # Must be after var defs.
 # Install homebrew.
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-brew install $brew_apps_default
+brew install $brew_formulae_default
 
 # Use default names for some gnu programs (which supports it), and don't get the 'g' prefix in the name.
-brew install --with-default-names $brew_apps_default_gnu
+brew install --with-default-names $brew_formulae_default_gnu
 
-#brew install $brew_apps_additional
+#brew install $brew_formulae_additional
 
 # Make homebrew zsh default shell.
 # Reference: https://rick.cogley.info/post/use-homebrew-zsh-instead-of-the-osx-default/
@@ -271,8 +273,8 @@ brew tap beeftornado/rmtree
 
 # Install cask.
 brew tap caskroom/cask
-brew cask install $cask_apps_default
-#brew cask install $cask_apps_additional
+brew cask install $brew_casks_default
+#brew cask install $brew_casks_additional
 
 # Install older versions of apps.
 brew tap caskroom/versions
