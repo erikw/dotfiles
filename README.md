@@ -236,7 +236,6 @@ $ pip3 install --user isort
 
 Install:
 
- * [powerline](https://powerline.readthedocs.io/en/latest/installation.html)
  * urlview(1)
  * [seebi/tmux-colors-solarized](https://github.com/seebi/tmux-colors-solarized)
  ```bash

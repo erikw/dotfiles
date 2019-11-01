@@ -11,13 +11,15 @@
             <string>start</string>
         </array>
         <key>EnvironmentVariables</key>
-        <!-- Need to set PATH so tmux and powerline-daemon can be found.-->
+        <!-- Need to set PATH so tmux and powerline-daemon can be found. Prepend /Users/erikw/Library/Python/3.7/bin: to PATH-->
         <!-- ~/.shell_commons is not read so need to set the same related tmux-powerline variables as set there. -->
         <dict>
             <key>PATH</key>
-            <string>/Users/erikw/Library/Python/3.7/bin:/usr/local/bin:/usr/bin:/bin</string>
+            <string>/usr/local/bin:/usr/bin:/bin</string>
+	    <!--
             <key>POWERLINE_ROOT</key>
             <string>/Users/erikw/Library/Python/3.7/lib/python/site-packages/powerline</string>
+            -->
             <key>LC_ALL</key>
             <string>en_US.UTF-8</string>
             <key>LANG</key>

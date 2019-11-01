@@ -66,7 +66,6 @@ read -r -d '' brew_formulae_default <<-'EOAPPS'
 	pidof
 	pv
 	python
-	python@2
 	readline
 	rsync
 	sl
@@ -134,6 +133,7 @@ read -r -d '' brew_formulae_additional <<-'EOAPPS'
 	postgresql
 	pyenv
 	pyenv-virtualenvwrapper
+	python@2
 	reattach-to-user-namespace
 	restic
 	swiftlint
@@ -236,19 +236,19 @@ brew_casks_additional=$(make_1line "$brew_casks_additional")
 #pip2_pkgs=$(make_1line "$pip2_pkgs")
 
 read -r -d '' pip3_pkgs <<-'EOAPPS'
-	ipdb
 	ipython
-	powerline-status
-	pudb
-	ropevim
 	virtualenvwrapper
 EOAPPS
 pip3_pkgs=$(make_1line "$pip3_pkgs")
 
 read -r -d '' pip3_pkgs_additional <<-'EOAPPS'
 	goobook
+	ipdb
+	powerline-status
+	pudb
+	ropevim
 EOAPPS
-pip3_pkgs=$(make_1line "$pip3_pkgs_additional")
+pip3_pkgs_additional=$(make_1line "$pip3_pkgs_additional")
 
 # }
 
@@ -286,7 +286,7 @@ brew tap buo/cask-upgrade
 
 # Let's get some fonts!
 brew tap homebrew/cask-fonts
-brew cask install font-terminus
+brew cask install font-terminus font-source-code-pro
 
 brew tap colindean/fonts-nonfree
 brew cask install font-microsoft-office
@@ -325,6 +325,7 @@ brew install mas
 # Install python packages.
 #pip2 install --user $pip2_pkgs
 pip3 install --user $pip3_pkgs
+#pip3 install --user $pip3_pkgs_additional
 
 
 # SSHFS
@@ -451,7 +452,10 @@ sudo sh -c "echo \"$newtab\" | crontab -"
 ### Colors
 # * Select color preset "Solarized Dark".
 ### Text
-# * Set font to Source Code Pro for Powerline, 14pt.
+# * Set font to either
+# ** Source Code Pro for Powerline, 14pt.
+# ** Source Code Pro, Regular, 14pt
+# ** Terminus, Medium, 16pt
 ### Terminal
 # * Check "Unlimited Scrollback"
 ### Keys
