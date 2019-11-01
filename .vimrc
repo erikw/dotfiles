@@ -16,91 +16,93 @@
 	" let Vundle manage Vundle, required
 	Plugin 'VundleVim/Vundle.vim'
 
-	" Git {
-		"Plugin 'git://git.wincent.com/command-t.git'
-	"}
 
-	" Github {
-		"Plugin 'Rip-Rip/clang_complete'
-		"Plugin 'chrisbra/CheckAttach'
-		"Plugin 'maxbrunsfeld/vim-yankstack'
-		"Plugin 'mbbill/undotree'
-		"Plugin 'mhinz/vim-startify'
-		"Plugin 'rhysd/vim-clang-format'
-		"Plugin 'tpope/vim-unimpaired'
-		Plugin 'AndrewRadev/sideways.vim'
-		Plugin 'LaTeX-Box-Team/LaTeX-Box'
-		Plugin 'MarcWeber/vim-addon-mw-utils'
-		Plugin 'Rykka/lastbuf.vim'
+	" Formats {
+	" Git:
+		"Plugin 'git://git.wincent.com/command-t.git'
+	" Github:
+		"Plugin 'AndrewRadev/sideways.vim'
+	" vim-scripts.org (https://github.com/vim-scripts/):
+		"Plugin 'ConflictMotions'
+	" }
+
+	" UI {
+		Plugin 'ScrollColors'
+		Plugin 'altercation/vim-colors-solarized'
+		Plugin 'flazz/vim-colorschemes'
+	"}
+	" Navigation {
+		Plugin 'FuzzyFinder'
+		Plugin 'L9'			" Required for FuzzyFinder.
+		Plugin 'wincent/command-t'
+	"}
+	" Development: General {
+		"Plugin 'AndrewRadev/sideways.vim'
+		Plugin 'ConflictMotions'
+		Plugin 'tmhedberg/matchit'
+		Plugin 'majutsushi/tagbar'
+		Plugin 'ingo-library'		" Required for ConflictMotions.
+		Plugin 'CountJump'             	" Required for ConflictMotions.
 		Plugin 'Townk/vim-autoclose'
 		Plugin 'airblade/vim-gitgutter'
-		Plugin 'altercation/vim-colors-solarized'
-		Plugin 'artur-shaik/vim-javacomplete2'
-		Plugin 'bkad/CamelCaseMotion'
+		Plugin 'argtextobj.vim'
+		Plugin 'editorconfig/editorconfig-vim'
+	"}
+	" Development: C/C++ {
+		"Plugin 'Rip-Rip/clang_complete'
+		"Plugin 'rhysd/vim-clang-format'
+		Plugin 'autoload_cscope.vim'
 		Plugin 'chazy/cscope_maps'
 		Plugin 'craigemery/vim-autotag'
+	"}
+	" Development: Java {
+		"Plugin 'artur-shaik/vim-javacomplete2'
+		"Plugin 'erikw/jcommenter.vim'
+	"}
+	" Development: Python {
+		"Plugin 'davidhalter/jedi-vim'
+		"Plugin 'python-rope/ropevim'
+		"Plugin 'fisadev/vim-isort'
+	"}
+	" Development: Swift {
+		"Plugin 'keith/swift.vim'
+	"}
+	" mutt {
+		Plugin 'lbdbq'
+	"}
+	" General {
+		"Plugin 'git://git.wincent.com/command-t.git'
+		"Plugin 'tpope/vim-unimpaired'
+		"Plugin 'easymotion/vim-easymotion'
+		"Plugin 'terryma/vim-multiple-cursors'
+		"Plugin 'sjl/gundo.vim' " Not updated for python3
+		Plugin 'LaTeX-Box-Team/LaTeX-Box'
+		Plugin 'buffergrep'
 		Plugin 'danro/rename.vim'
-		Plugin 'davidhalter/jedi-vim'
 		Plugin 'dhruvasagar/vim-table-mode'
-		Plugin 'easymotion/vim-easymotion'
-		Plugin 'editorconfig/editorconfig-vim'
-		Plugin 'erikw/jcommenter.vim'
 		Plugin 'erikw/snipmate-snippets'
 		Plugin 'erikw/vim-unimpaired'
 		Plugin 'fatih/vim-go'
 		Plugin 'fidian/hexmode'
-		Plugin 'fisadev/vim-isort'
-		Plugin 'flazz/vim-colorschemes'
 		Plugin 'garbas/vim-snipmate'
+		Plugin 'MarcWeber/vim-addon-mw-utils' " Required for  garbas/vim-snipmate.
 		Plugin 'godlygeek/tabular'
-		Plugin 'kana/vim-operator-user'
-		Plugin 'kana/vim-textobj-function'
-		Plugin 'kana/vim-textobj-user'
-		Plugin 'keith/swift.vim'
-		Plugin 'majutsushi/tagbar'
 		Plugin 'mattn/gist-vim'
-		Plugin 'mattn/webapi-vim'
 		Plugin 'michaeljsmith/vim-indent-object'
 		Plugin 'ntpeters/vim-better-whitespace'
-		Plugin 'python-rope/ropevim'
 		Plugin 'rbonvall/snipmate-snippets-bib'
-		Plugin 'rhysd/vim-clang-format'
 		Plugin 'salsifis/vim-transpose'
 		Plugin 'scrooloose/nerdcommenter'
 		Plugin 'scrooloose/nerdtree'
 		Plugin 'scrooloose/syntastic'
-		Plugin 'sjl/gundo.vim'
 		Plugin 'suan/vim-instant-markdown'
-		Plugin 'terryma/vim-multiple-cursors'
-		Plugin 'tmhedberg/matchit'
 		Plugin 'tmux-plugins/vim-tmux'
-		Plugin 'tomtom/tlib_vim'
 		Plugin 'tpope/vim-capslock'
 		Plugin 'tpope/vim-fugitive'
 		Plugin 'tpope/vim-markdown.git'
 		Plugin 'tpope/vim-repeat'
 		Plugin 'tpope/vim-speeddating'
 		Plugin 'tpope/vim-surround'
-		Plugin 'wincent/command-t'
-	"}
-
-	" Github, vim-scripts.org {
-		"Plugin 'LanguageTool'
-		"Plugin 'OmniCppComplete' " Incompaitble with clang_complete.
-		"Plugin 'TaskList.vim'
-		"Plugin 'last_edit_marker.vim'
-		"Plugin 'taglist.vim'
-		"Plugin 'jcommenter.vim'	" I forked it as it has windows line endings which does not work on *nix.
-		Plugin 'ConflictMotions'
-		Plugin 'CountJump'             	" Required for ConflictMotions.
-		Plugin 'FuzzyFinder'
-		Plugin 'L9'			" Required for FuzzyFinder.
-		Plugin 'ScrollColors'
-		Plugin 'argtextobj.vim'
-		Plugin 'autoload_cscope.vim'
-		Plugin 'buffergrep'
-		Plugin 'ingo-library'		" Required for ConflictMotions.
-		Plugin 'lbdbq'
 	"}
 
 	call vundle#end()            " required
@@ -585,9 +587,9 @@ if s:use_plugins
 	" }
 
 	" Gundo {
-		nmap <silent> <F4> :GundoToggle<CR>		" Toggle Gundo.
-		let g:gundo_close_on_revert=1			" Automatically close on revert.
-		let g:gundo_preview_bottom=1			" Draw preview below current window.
+		"nmap <silent> <F4> :GundoToggle<CR>		" Toggle Gundo.
+		"let g:gundo_close_on_revert=1			" Automatically close on revert.
+		"let g:gundo_preview_bottom=1			" Draw preview below current window.
 	" }
 
 	" Javacomplete2 {
