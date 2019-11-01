@@ -243,7 +243,7 @@ Install:
  $ git clone git@github.com:seebi/tmux-colors-solarized.git
  ```
  * ~~`brew install reattach-to-user-namespace` if on OSX~~
- * [tpm](https://github.com/tmux-plugins/tpm)
+ * --[tpm](https://github.com/tmux-plugins/tpm)--
 ```bash
 $ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 ````
