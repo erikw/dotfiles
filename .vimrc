@@ -81,6 +81,7 @@
 		Plugin 'danro/rename.vim'
 		Plugin 'dhruvasagar/vim-table-mode'
 		Plugin 'erikw/snipmate-snippets'
+		Plugin 'tomtom/tlib_vim'	" Required for garbas/vim-snipmate
 		Plugin 'erikw/vim-unimpaired'
 		Plugin 'fatih/vim-go'
 		Plugin 'fidian/hexmode'
@@ -120,20 +121,9 @@
 	set tags+=./tags;/				" Look for tags in current directory or search up until found.
 	set encoding=utf-8				" Use Unicode inside Vim's registers, viminfo, buffers ...
 
-	if s:use_plugins
-		"call yankstack#setup()			" Allow own yank mappings by calling this before.
-		"call pathogen#infect()			" Set up pathogen.
-		"call pathogen#helptags()		" Generate help tags for all bundles.
-	endif
-
 	" Also use $HOME/.vim in Windows
 	if has('win32') || has('win64')
 		set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
-	endif
-
-	let s:helper_funcs="~/.vim/helper-functions.vim"
-	if filereadable(expand(s:helper_funcs))
-		execute "source" . s:helper_funcs
 	endif
 " }
 
@@ -179,7 +169,7 @@
 	if has("unix")
 		let s:uname = system("uname -s")
 		if s:uname == "Darwin"
-			set clipboard=unnamed			" Make copy to clipboard work under macos.
+			set clipboard=unnamed		" Make copy to clipboard work under macOS.
 		endif
 	endif
 
@@ -213,7 +203,6 @@
 	else
 		colorscheme default				" Use default color scheme.
 	endif
-	hi StatusLine ctermbg=LightGray ctermfg=LightRed
 
 	"set t_Co=16						" Set number of colors.
 	set t_Co=256						" Set number of colors.
@@ -249,7 +238,6 @@
 	set splitbelow						" Open horizontal split below.
 	set splitright						" Open vertical split to the right.
 	set foldenable						" Use folding.
-	"set gdefault						" Use global by default on :s
 	set showcmd						" Show incomplete commands in the lower right corner.
 	set ruler						" Show current cursor position in the lower right corner.
 	set laststatus=2					" Always show the status line.
@@ -288,30 +276,30 @@
 " }
 
 " Searching {
-	set hlsearch						" Highlight search.
-	set incsearch						" Incremental search.
-	set ignorecase						" Case insensitive search.
-	set smartcase						" Smart case search.
-	set nowrapscan						" Don't wrap search around file.
+	set hlsearch		" Highlight search.
+	set incsearch		" Incremental search.
+	set ignorecase		" Case insensitive search.
+	set smartcase		" Smart case search.
+	set nowrapscan		" Don't wrap search around file.
 " }
 
 " Formatting {
-	set wrap					" Wrap long lines.
-	set linebreak					" Wrap on 'breakat'-chars.
-	"set showbreak=>				" Indicate wrapped lines.
-	set showbreak=…					" Indicate wrapped lines.
-	set autoindent					" Auto indent lines.
-	set smartindent					" Indent smart on C-like files.
-	set preserveindent				" Try to preserve indent structure on changes of current line.
-	set copyindent					" Copy indentstructure from existing lines.
-	set tabstop=8					" Let a tab be 8 spaces wide.
-	set shiftwidth=8				" Tab width for auto indent and >> shifting.
-	"set softtabstop=8				" Number of spaces to count a tab for on ops like BS and tab.
-	set noexpandtab					" Do not expand tabs to spaces!
-	set matchpairs+=<:>				" Also match <> with %.
-	set formatoptions=tcroqwnl			" Formatting options.
-	set cinoptions+=g=				" Left-indent C++ access labels.
-	"set pastetoggle  = <Leader>p     		" Toggle 'paste' for sane pasting.
+	set wrap			" Wrap long lines.
+	set linebreak			" Wrap on 'breakat'-chars.
+	"set showbreak=>		" Indicate wrapped lines.
+	set showbreak=…			" Indicate wrapped lines.
+	set autoindent			" Auto indent lines.
+	set smartindent			" Indent smart on C-like files.
+	set preserveindent		" Try to preserve indent structure on changes of current line.
+	set copyindent			" Copy indentstructure from existing lines.
+	set tabstop=8			" Let a tab be 8 spaces wide.
+	set shiftwidth=8		" Tab width for auto indent and >> shifting.
+	"set softtabstop=8		" Number of spaces to count a tab for on ops like BS and tab.
+	set noexpandtab			" Do not expand tabs to spaces!
+	set matchpairs+=<:>		" Also match <> with %.
+	set formatoptions=tcroqwnl	" Formatting options.
+	set cinoptions+=g=		" Left-indent C++ access labels.
+	"set pastetoggle  = <Leader>p    " Toggle 'paste' for sane pasting.
 " }
 
 " Commands {
@@ -323,17 +311,10 @@
 	command! Wmake update | silent !make >/dev/null
 	" See buffer and file diff.
 	command! Wdiff w !diff % -
-	" Close tabs.
-	command! Qt tabc
 
 	" Change to directory of current file.
 	command! Cdpwd cd %:p:h
 	command! Lcdpwd lcd %:p:h
-
-	" Write to temporary yank ring -- a low tech copy-paste.
-	command! Wr w! /tmp/vim_erikw_yankring.txt
-	" Read from temporary yank ring.
-	command! Rr r /tmp/vim_erikw_yankring.txt
 
 	command! -nargs=* Wrap set wrap linebreak nolist	" Set softwrap correctly.
 	autocmd BufWinLeave * silent! mkview			" Save fold views.
@@ -347,7 +328,6 @@
 	"nmap <silent> <C-_> :let @/=""<CR>						" Clear search matches highlighting. (Ctrl+/ => ^_)
 	nmap <silent> <Leader>v :source $MYVIMRC<CR>					" Source vimrc.
 	nmap <silent> <Leader>V :tabe $MYVIMRC<CR>					" Edit vimrc.
-	"nmap Y y$									" Consistency with C and D. Does not work with YankRing.
 	"nmap <silent> <Leader>d "=strftime("%Y-%m-%d")<CR>P 				" Insert the current date.
 	noremap <silent> <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>		" Open tags definition in a new tab.
         "noremap <silent> <M-\> :vsp<CR>:exec("tag ".expand("<cword>"))<CR>      		" Open tags definition in a vertical split.
@@ -357,28 +337,18 @@
 	nnoremap <silent> gfv :vertical wincmd f<CR>					" Open path under cursor in a vertical split.
 	nnoremap <silent> gft :tab wincmd f<CR>						" Open path under cursor in a tab.
 	nnoremap <silent> gV `[v`]							" Visually select the text that was last edited/pasted.
-	nnoremap <Leader>ct :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>	" Generate tags file (for OmniCppComplete).
 	nnoremap g^t :tabfirst<CR>							" Go to first tab.
 	nnoremap g$t :tablast<CR>							" Go to last tab.
 	noremap Yf :let @" = expand("%")<CR>						" Yank current file name.
 	noremap YF :let @" = expand("%:p")<CR>						" Yank current (fully expanded) file name.
 	nnoremap <silent> <Leader>R :checktime<CR>						" Reload buffers from file if changed.
 
-	" XKCD 1806: Scroll through time instead of space.
-	"nnoremap <ScrollWheelUp> u
-	"nnoremap <ScrollWheelDown> <C-R>
-
-	" Redraw window so search terms are centered.
+	" Redraw window so that search terms are centered.
 	nnoremap n nzz
 	nnoremap N Nzz
 
-	" Insert one chracter.
-	nmap <Space>i i_<Esc>r
-	" Insert one chracter after the cursor.
-	nmap <Space>a a_<Esc>r
-
-	" Calculate current Word.
-	inoremap <C-c> <C-O>yiW<End>=<C-R>=<C-R>0<CR>
+	" Calculate current Word e.g type 1+2 and press ^c.
+	inoremap <C-c> <C-O>yiW<End>=<C-R>=<C-R>0<CR>=
 
 	" Enable ^d and ^u movement in completion dialog.
 	inoremap <expr> <C-d> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<C-d>"
@@ -387,15 +357,6 @@
 	if &l:term  =~ "screen.*"
 		noremap <silent> <C-x>x <C-x>						" Decrement for consistency with GNU Screen.
 	endif
-
-	" Movements {
-		nnoremap <silent> <C-j> gj						" Down one visual line (wrapped).
-		nnoremap <silent> <C-k> gk						" Up one visual line (wrapped).
-		"nmap <silent> <Left> gT						" Change tab to the left.
-		"nmap <silent> <Right> gt						" Change tab to the right.
-		"nmap <silent> <C-p> gT							" Change tab to the left.
-		"nmap <silent> <C-n> gt							" Change tab to the right.
-	" }
 
 	" Toggles {
 		noremap <silent> <Leader>w :set wrap!<CR>:set wrap?<CR>				" Toggle line wrapping.
@@ -492,7 +453,7 @@
 
 " Abbreviations {
 	" Expand my name.
-	iabbrev ew Erik Westrup
+	"iabbrev ew Erik Westrup
 " }
 
 " Plugins {
@@ -503,47 +464,37 @@ if s:use_plugins
 
 	" }
 
-	" CheckAttach {
-	"	" Add swedish words to check for.
-		"let g:attach_check_keywords =',bifogat,bifogar,bifogad'
-	" }
-
 	" Clang Complete {
-		let g:clang_auto_select = 1				" Select first entry but don't insert.
-		let g:clang_complete_copen = 1				" Open quickfix on error.
-		"let g:clang_periodic_quickfix = 1			" Periodically update quickfix window.
-		"let g:clang_snippets = 1				" Do snippet magic.
-		"let g:clang_snippets_engine = 'snipmate'		" Use snipmate for snippets.
-		let g:clang_close_preview = 1				" Close preview after completion.
-		let g:clang_user_options = '2>/dev/null || exit 0'	" Ignore clang errors.
-		let g:clang_complete_macros = 1				" Complete preprocessor macros and constants.
-		let g:clang_complete_patterns = 1			" Complete code patters e.g. loop constructs.
-		"let g:clang_jumpto_declaration_key = "" 		" Disable ctags jump override.
+		"let g:clang_auto_select = 1				" Select first entry but don't insert.
+		"let g:clang_complete_copen = 1				" Open quickfix on error.
+		"let g:clang_close_preview = 1				" Close preview after completion.
+		"let g:clang_user_options = '2>/dev/null || exit 0'	" Ignore clang errors.
+		"let g:clang_complete_macros = 1				" Complete preprocessor macros and constants.
+		"let g:clang_complete_patterns = 1			" Complete code patters e.g. loop constructs.
 	" }
 
 	" Clang Format {
-		let g:clang_format#auto_format = 0			" Auto format on save.
-		let g:clang_format#auto_formatexpr = 1			" Let vim's formatexpr be set to clang-format (format with gq).
-		autocmd FileType c,cpp,objc map <buffer><Leader>x <Plug>(operator-clang-format)
+		"let g:clang_format#auto_format = 0			" Auto format on save.
+		"let g:clang_format#auto_formatexpr = 1			" Let vim's formatexpr be set to clang-format (format with gq).
+		"autocmd FileType c,cpp,objc map <buffer><Leader>x <Plug>(operator-clang-format)
 
-		" Git pull request for this: https://github.com/rhysd/vim-clang-format/pull/17
-		function! ClangFormatAutoToggleFunc()
-			if !exists("g:clang_format#auto_format") || g:clang_format#auto_format == 0
-				let g:clang_format#auto_format = 1
-				echo "Auto clang-format: enabled"
-			else
-				let g:clang_format#auto_format = 0
-				echo "Auto clang-format: disabled"
-			endif
-		endfunction
-		" Toggle auto clang-format.
-		command! ClangFormatAutoToggle call ClangFormatAutoToggleFunc()
-		nmap <Leader>C :ClangFormatAutoToggle<CR>
+		"" Git pull request for this: https://github.com/rhysd/vim-clang-format/pull/17
+		"function! ClangFormatAutoToggleFunc()
+			"if !exists("g:clang_format#auto_format") || g:clang_format#auto_format == 0
+				"let g:clang_format#auto_format = 1
+				"echo "Auto clang-format: enabled"
+			"else
+				"let g:clang_format#auto_format = 0
+				"echo "Auto clang-format: disabled"
+			"endif
+		"endfunction
+		"" Toggle auto clang-format.
+		"command! ClangFormatAutoToggle call ClangFormatAutoToggleFunc()
+		"nmap <Leader>C :ClangFormatAutoToggle<CR>
 	"}
 
 	" Eclim {
-		"let g:EclimXmlValidate=0			" Don't validate XML-files on write.
-		let g:EclimFileTypeValidate = 0			" Set to 0 when syntatic should be used instead of eclim. Both can't be used at the same time. See http://eclim.org/vim/java/validate.html
+		"let g:EclimFileTypeValidate = 0			" Set to 0 when syntatic should be used instead of eclim. Both can't be used at the same time. See http://eclim.org/vim/java/validate.html
 	" }
 
 	" Fugative {
@@ -593,42 +544,31 @@ if s:use_plugins
 	" }
 
 	" Javacomplete2 {
-		" Required setting
-		autocmd FileType java setlocal omnifunc=javacomplete#Complete
+		"" Required setting
+		"autocmd FileType java setlocal omnifunc=javacomplete#Complete
 
-		" Auto-import symbol under cursor.
-		autocmd FileType java nmap <F10> <Plug>(JavaComplete-Imports-AddSmart)
-		autocmd FileType java imap <F10> <Plug>(JavaComplete-Imports-AddSmart)
+		"" Auto-import symbol under cursor.
+		"autocmd FileType java nmap <F10> <Plug>(JavaComplete-Imports-AddSmart)
+		"autocmd FileType java imap <F10> <Plug>(JavaComplete-Imports-AddSmart)
 
-		" Add all missing imports.
-		autocmd FileType java nmap <F11> <Plug>(JavaComplete-Imports-AddMissing)
-		autocmd FileType java imap <F11> <Plug>(JavaComplete-Imports-AddMissing)
+		"" Add all missing imports.
+		"autocmd FileType java nmap <F11> <Plug>(JavaComplete-Imports-AddMissing)
+		"autocmd FileType java imap <F11> <Plug>(JavaComplete-Imports-AddMissing)
 
-		" Remove all unused imports.
-		autocmd FileType java nmap <F12> <Plug>(JavaComplete-Imports-RemoveUnused)
-		autocmd FileType java imap <F12> <Plug>(JavaComplete-Imports-RemoveUnused)
-
+		"" Remove all unused imports.
+		"autocmd FileType java nmap <F12> <Plug>(JavaComplete-Imports-RemoveUnused)
+		"autocmd FileType java imap <F12> <Plug>(JavaComplete-Imports-RemoveUnused)
 	" }
 
 	" Jcommenter {
-		command! Jcomment call JCommentWriter()		" A command that calls the function for what is under the cursor.
-		" Set default values for file level comments.
-		autocmd FileType java let b:jcommenter_class_author='Erik Westrup <erik.westrup@gmail.com>'
-		autocmd FileType java let b:jcommenter_file_author='Erik Westrup <erik.westrup@gmail.com>'
-
+		"command! Jcomment call JCommentWriter()		" A command that calls the function for what is under the cursor.
+		"" Set default values for file level comments.
+		"autocmd FileType java let b:jcommenter_class_author='Erik Westrup <erik.westrup@gmail.com>'
+		"autocmd FileType java let b:jcommenter_file_author='Erik Westrup <erik.westrup@gmail.com>'
 	" }
 
 	" Jedi {
-		"let g:jedi#auto_initialization = 0  " Don't autoload jedi.
-		let g:jedi#use_tabs_not_buffers = 1  " Go to a tab when opening a definition.
-		"let g:jedi#popup_on_dot = 0	" Do't autostart completion when typing a periond.
-		"let g:jedi#show_call_signatures = 1	" 0 = now signature preview, 1 = signature in split buffer, 2 = ?
-
-
-	" }
-
-	" LanguageTool {
-		"let g:languagetool_jar='/usr/share/java/languagetool/languagetool-commandline.jar'
+		"let g:jedi#use_tabs_not_buffers = 1  " Go to a tab when opening a definition.
 	" }
 
 	" NERDCommenter {
@@ -647,10 +587,6 @@ if s:use_plugins
 	" OmniCppComplete {
 		"let OmniCpp_ShowPrototypeInAbbr = 1 	" Show whole prototype (inc. parameters).
 		"let OmniCpp_ShowScopeInAbbr = 1 	" Show the scope.
-	" }
-
-	" Pathogen {
-		nmap <silent> <Leader>H :call pathogen#helptags()<CR>		" Generate help tags for all bundles.
 	" }
 
 	" Powerline {
@@ -681,20 +617,17 @@ if s:use_plugins
 	" }
 
 	" Rope {
-		" Remappings done in ~/.vim/ftplugin/python/maps.vim
-		let g:ropevim_guess_project = 1			" Try to guess project to open.
-		let g:ropevim_enable_autoimport = 1 		" Enable the RopeAutoImport command.
-		let g:ropevim_autoimport_underlineds = 1	" Also cache names beginning with underline with Autoimport.
-		" Which modules to generate cache for with the :RopeGenerateAutoimportCache command.
-		let g:ropevim_autoimport_modules = ["__future__", "__main__", "_dummy_thread", "_thread", "abc", "aifc", "argparse", "array", "ast", "asynchat", "asyncio", "asyncore", "atexit", "audioop", "base64", "bdb", "binascii", "binhex", "bisect", "builtins", "bz2", "cProfile", "calendar", "cgi", "cgitb", "chunk", "cmath", "cmd", "code", "codecs", "codeop", "collections", "colorsys", "compileall", "concurrent", "configparser", "contextlib", "copy", "copyreg", "crypt", "csv", "ctypes", "curses", "datetime", "dbm", "decimal", "difflib", "dis", "distutils", "doctest", "dummy_threading", "email", "encodings", "ensurepip", "enum", "errno", "faulthandler", "fcntl", "filecmp", "fileinput", "fnmatch", "formatter", "fpectl", "fractions", "ftplib", "functools", "gc", "getopt", "getpass", "gettext", "glob", "grp", "gzip", "hashlib", "heapq", "hmac", "html", "http", "imaplib", "imghdr", "imp", "importlib", "inspect", "io", "ipaddress", "itertools", "json", "keyword", "lib2to3", "linecache", "locale", "logging", "lzma", "macpath", "mailbox", "mailcap", "marshal", "math", "mimetypes", "mmap", "modulefinder", "msilib", "msvcrt", "multiprocessing", "netrc", "nis", "nntplib", "numbers", "operator", "optparse", "os", "ossaudiodev", "parser", "pathlib", "pdb", "pickle", "pickletools", "pipes", "pkgutil", "platform", "plistlib", "poplib", "posix", "pprint", "profile", "pstats", "pty", "pwd", "py_compile", "pyclbr", "pydoc", "queue", "quopri", "random", "re", "readline", "reprlib", "resource", "rlcompleter", "runpy", "sched", "select", "selectors", "shelve", "shlex", "shutil", "signal", "site", "smtpd", "smtplib", "sndhdr", "socket", "socketserver", "spwd", "sqlite3", "ssl", "stat", "statistics", "string", "stringprep", "struct", "subprocess", "sunau", "symbol", "symtable", "sys", "sysconfig", "syslog", "tabnanny", "tarfile", "telnetlib", "tempfile", "termios", "test", "textwrap", "threading", "time", "timeit", "tkinter", "token", "tokenize", "trace", "traceback", "tracemalloc", "tty", "turtle", "turtledemo", "types", "typing", "unicodedata", "unittest", "urllib", "uu", "uuid", "venv", "warnings", "wave", "weakref", "webbrowser", "winreg", "winsound", "wsgiref", "xdrlib", "xml", "xmlrpc", "zipapp", "zipfile", "zipimport", "zlib"]
-
-
-
+		"" Remappings done in ~/.vim/ftplugin/python/maps.vim
+		"let g:ropevim_guess_project = 1			" Try to guess project to open.
+		"let g:ropevim_enable_autoimport = 1 		" Enable the RopeAutoImport command.
+		"let g:ropevim_autoimport_underlineds = 1	" Also cache names beginning with underline with Autoimport.
+		"" Which modules to generate cache for with the :RopeGenerateAutoimportCache command.
+		"let g:ropevim_autoimport_modules = ["__future__", "__main__", "_dummy_thread", "_thread", "abc", "aifc", "argparse", "array", "ast", "asynchat", "asyncio", "asyncore", "atexit", "audioop", "base64", "bdb", "binascii", "binhex", "bisect", "builtins", "bz2", "cProfile", "calendar", "cgi", "cgitb", "chunk", "cmath", "cmd", "code", "codecs", "codeop", "collections", "colorsys", "compileall", "concurrent", "configparser", "contextlib", "copy", "copyreg", "crypt", "csv", "ctypes", "curses", "datetime", "dbm", "decimal", "difflib", "dis", "distutils", "doctest", "dummy_threading", "email", "encodings", "ensurepip", "enum", "errno", "faulthandler", "fcntl", "filecmp", "fileinput", "fnmatch", "formatter", "fpectl", "fractions", "ftplib", "functools", "gc", "getopt", "getpass", "gettext", "glob", "grp", "gzip", "hashlib", "heapq", "hmac", "html", "http", "imaplib", "imghdr", "imp", "importlib", "inspect", "io", "ipaddress", "itertools", "json", "keyword", "lib2to3", "linecache", "locale", "logging", "lzma", "macpath", "mailbox", "mailcap", "marshal", "math", "mimetypes", "mmap", "modulefinder", "msilib", "msvcrt", "multiprocessing", "netrc", "nis", "nntplib", "numbers", "operator", "optparse", "os", "ossaudiodev", "parser", "pathlib", "pdb", "pickle", "pickletools", "pipes", "pkgutil", "platform", "plistlib", "poplib", "posix", "pprint", "profile", "pstats", "pty", "pwd", "py_compile", "pyclbr", "pydoc", "queue", "quopri", "random", "re", "readline", "reprlib", "resource", "rlcompleter", "runpy", "sched", "select", "selectors", "shelve", "shlex", "shutil", "signal", "site", "smtpd", "smtplib", "sndhdr", "socket", "socketserver", "spwd", "sqlite3", "ssl", "stat", "statistics", "string", "stringprep", "struct", "subprocess", "sunau", "symbol", "symtable", "sys", "sysconfig", "syslog", "tabnanny", "tarfile", "telnetlib", "tempfile", "termios", "test", "textwrap", "threading", "time", "timeit", "tkinter", "token", "tokenize", "trace", "traceback", "tracemalloc", "tty", "turtle", "turtledemo", "types", "typing", "unicodedata", "unittest", "urllib", "uu", "uuid", "venv", "warnings", "wave", "weakref", "webbrowser", "winreg", "winsound", "wsgiref", "xdrlib", "xml", "xmlrpc", "zipapp", "zipfile", "zipimport", "zlib"]
 	" }
 
 	" Sideways.vim {
-		nnoremap <silent> <a :SidewaysLeft<CR>		" Move function argument to the left.
-		nnoremap <silent> >a :SidewaysRight<CR>		" Move function argument to the right.
+		"nnoremap <silent> <a :SidewaysLeft<CR>		" Move function argument to the left.
+		"nnoremap <silent> >a :SidewaysRight<CR>		" Move function argument to the right.
 	" }
 
 	" Solarized {
@@ -775,10 +708,6 @@ if s:use_plugins
 		"let g:Tlist_Exit_OnlyWindow         = 1			" Close Vim if only Tlist open.
 	" }
 
-	" Tasklist {
-		nmap <Leader>T <Plug>TaskList		" Open TaskList. Default mapping interferes with Command-T.
-	" }
-
 	" Vim Better Whitespace {
 		" Use same command is the old ~/.vim/plugin/stripspaces.vim
 		" Need to wrap the command in a function as we can't chain
@@ -790,42 +719,11 @@ if s:use_plugins
 		command! Ws call StripWhitespaceWrapper()|update
 	" }
 
-	" YankRing {
-		"nmap <silent> <Leader>y :YRShow<CR>		" Toggle YankRing.
-		"let g:yankring_enabled = 1 			" Enable the yankring.
-		"let g:yankring_max_history = 128		" Number of items to save.
-		"let g:yankring_share_between_instances = 1	" Reuse the ring.
-		"let g:yankring_window_auto_close = 1		" Close YR after action.
-		"let g:yankring_window_use_horiz = 1		" Use horizontal split
-		"let g:yankring_window_height = 10		" The window heigth.
-		"let g:yankring_window_use_bottom = 1		" Split to bottom.
-		"let g:yankring_manage_numbered_reg = 1		" Still update the default registers.
-		"let g:yankring_history_dir = '~/.vim/'		" Where to put the yankfile.
-		"let g:yankring_history_file = 'yankring'	" Filename of the yankfile.
-		"let g:yankring_default_menu_mode = 3		" Let alt+y activate the menu.
-
-		"let g:yankring_paste_using_g = 0		" Don't remap gp and gP.
-		"let g:yankring_replace_n_pkey = "[p"		" Cycle backwards in yankring on paste.
-		"let g:yankring_replace_n_nkey = "]p"		" Cycle forwards in yankring on paste.
-
-		" Not used anymore
-		"let g:yankring_clipboard_monitor = 1		" YR and Vim X-connection does not work. Start with -X
-		"set clipboard=exclude:.*			" X is incompatible with YankRing at the moment.
-	" }
-
-	" YankStack {
-		"let g:yankstack_map_keys = 0		" Don't make mappings for me.
-		"nmap [p    <Plug>yankstack_substitute_older_paste
-		"nmap ]p    <Plug>yankstack_substitute_newer_paste
-		"imap <M-y> <Plug>yankstack_substitute_older_paste
-		"imap <M-Y> <Plug>yankstack_substitute_newer_paste
-		""imap <C-y> <Plug>yankstack_insert_mode_paste
-	"}
 endif
 " }
 
 " Source local {
-	if filereadable(expand("~/.vimrc.local"))
-		source ~/.vimrc.local
-	endif
+	"if filereadable(expand("~/.vimrc.local"))
+		"source ~/.vimrc.local
+	"endif
 " }
