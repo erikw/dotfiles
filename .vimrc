@@ -211,6 +211,8 @@
 	else
 		colorscheme default				" Use default color scheme.
 	endif
+	hi StatusLine ctermbg=LightGray ctermfg=LightRed
+
 	"set t_Co=16						" Set number of colors.
 	set t_Co=256						" Set number of colors.
 	"hi Normal ctermbg=NONE                                 " Transparent background.
@@ -258,28 +260,28 @@
 	"hi CursorColumn cterm=NONE ctermbg=LightGray ctermfg=Black guibg=LightGray guifg=Black
 
 	" Statusline {
-		" Not needed now when I use powerline.
-		"set statusline=%t       					" Tail of the filename.
-		"set statusline+=%m     					" Modified flag.
-		"set statusline+=\ [%{strlen(&fenc)?&fenc:'none'},	 	" File encoding.
-		"set statusline+=%{&ff}]					" File format.
-		"set statusline+=%h     					" Help file flag.
-		"set statusline+=%r     					" Read only flag.
-		"set statusline+=%y     					" Filetype.
-		""set statusline+=['%{getline('.')[col('.')-1]}'\ \%b\ 0x%B] 	" Value of byte under cursor.
-		"if s:use_plugins
-			"set statusline+=%#StatusLineNC#			" Change highlight group
-			"set statusline+=%{fugitive#statusline()}		" Show current branch.
-			"set statusline+=%*
-			"set statusline+=%{tagbar#currenttag('[#%s]','')}	" Current tag.
-		"endif
-		"set statusline+=%=     					" Left/right-aligned separator.
-		""set statusline+=[\%b\ 0x%B]\  				" Value of byte under cursor.
-		""set statusline+=[0x%O]\ 					" Byte offset from start.
-		"set statusline+=%l/%L, 					" Cursor line/total lines.
-		"set statusline+=%c    						" Cursor column.
-		"set statusline+=\ %P   					" Percent through file.
-		"set statusline+=\ 0x%B						" Character valur under cursor.
+		" Comment these out when using powerline statusbar.
+		set statusline=%t       				" Tail of the filename.
+		set statusline+=%m     					" Modified flag.
+		set statusline+=\ [%{strlen(&fenc)?&fenc:'none'},	" File encoding.
+		set statusline+=%{&ff}]					" File format.
+		set statusline+=%h     					" Help file flag.
+		set statusline+=%r     					" Read only flag.
+		set statusline+=%y     					" Filetype.
+		"set statusline+=['%{getline('.')[col('.')-1]}'\ \%b\ 0x%B] 	" Value of byte under cursor.
+		if s:use_plugins
+			set statusline+=%#StatusLineNC#				" Change highlight group
+			set statusline+=%{fugitive#statusline()}		" Show current branch.
+			set statusline+=%*
+			set statusline+=%{tagbar#currenttag('[#%s]','')}	" Current tag.
+		endif
+		set statusline+=%=     					" Left/right-aligned separator.
+		"set statusline+=[\%b\ 0x%B]\  				" Value of byte under cursor.
+		"set statusline+=[0x%O]\ 				" Byte offset from start.
+		set statusline+=%l/%L, 					" Cursor line/total lines.
+		set statusline+=%c    					" Cursor column.
+		set statusline+=\ %P   					" Percent through file.
+		set statusline+=\ 0x%B					" Character valur under cursor.
 	" }
 " }
 
@@ -650,30 +652,30 @@ if s:use_plugins
 	" }
 
 	" Powerline {
-		" Check if vim plugin exists, e.g. debian's powerline does not currently have it.
-		if isdirectory($POWERLINE_ROOT . "/bindings/vim") && (has('python') || has('python3'))
-			set rtp+=$POWERLINE_ROOT/bindings/vim
-			"let g:powerline_pycmd="py3"
-			if has('python3')
-				" Pre-req: $(pip3 install powerline-status).
+		"" Check if vim plugin exists, e.g. debian's powerline does not currently have it.
+		"if isdirectory($POWERLINE_ROOT . "/bindings/vim") && (has('python') || has('python3'))
+			"set rtp+=$POWERLINE_ROOT/bindings/vim
+			""let g:powerline_pycmd="py3"
+			"if has('python3')
+				"" Pre-req: $(pip3 install powerline-status).
 
-				" NOTE there is a current bug in vim that it does not work well with newer pythons. https://github.com/powerline/powerline/issues/1925
-				" NOTE temporary macOS fix #1: recompile vim with python2 instead:  brew reinstall vim --with-python@2
-				" NOTE temporary macOS fix #2: run python3 silently first, then the error is not issued the second time.
-				"silent! python3 1
-				" NOTE temporary macOS fix #3: preprend the first import command with silent!
-				"silent! python3 from powerline.vim import setup as powerline_setup
+				"" NOTE there is a current bug in vim that it does not work well with newer pythons. https://github.com/powerline/powerline/issues/1925
+				"" NOTE temporary macOS fix #1: recompile vim with python2 instead:  brew reinstall vim --with-python@2
+				"" NOTE temporary macOS fix #2: run python3 silently first, then the error is not issued the second time.
+				""silent! python3 1
+				"" NOTE temporary macOS fix #3: preprend the first import command with silent!
+				""silent! python3 from powerline.vim import setup as powerline_setup
 
-				python3 from powerline.vim import setup as powerline_setup
-				python3 powerline_setup()
-				python3 del powerline_setup
-			elseif has('python')
-				" Pre-req: $(pip2 install powerline-status).
-				python from powerline.vim import setup as powerline_setup
-				python powerline_setup()
-				python del powerline_setup
-			endif
-		endif
+				"python3 from powerline.vim import setup as powerline_setup
+				"python3 powerline_setup()
+				"python3 del powerline_setup
+			"elseif has('python')
+				"" Pre-req: $(pip2 install powerline-status).
+				"python from powerline.vim import setup as powerline_setup
+				"python powerline_setup()
+				"python del powerline_setup
+			"endif
+		"endif
 	" }
 
 	" Rope {
@@ -738,10 +740,10 @@ if s:use_plugins
 		" Reference: https://github.com/Scuilion/gradle-syntastic-plugin
 
 		" Recommended settings to show errors in the statusline.
-		" Disabled since I use powerline statusbar.
-		"set statusline+=%#warningmsg#
-		"set statusline+=%{SyntasticStatuslineFlag()}
-		"set statusline+=%*
+		" Disabled these when using powerline statusbar.
+		set statusline+=%#warningmsg#
+		set statusline+=%{SyntasticStatuslineFlag()}
+		set statusline+=%*
 	" }
 
 	" Tagbar {
