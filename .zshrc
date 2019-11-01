@@ -27,7 +27,7 @@ fi
 	# Function paths.
 	# - .zsh_funcs - custom functions
 	# - .zprompts - custom prompt themes
-	fpath=(~/.zsh_funcs ~/.zprompts $fpath)
+	fpath=(~/.zsh_funcs $fpath)
 
 	# Extra zsh completions not in core zsh: https://github.com/zsh-users/zsh-completions
 	if [ -d /usr/local/share/zsh-completions ]; then
@@ -113,7 +113,7 @@ fi
 	precmd () { vcs_info }
 	#PROMPT='%* %F{5}[%F{2}%n@%m%F{5}] %F{3}%3~ ${vcs_info_msg_0_}%{$reset_color%}> '
 	# Less colorful version. Looks more like ~/.bash_ps1
-	PROMPT='%* %n@%m %F{3}%3~ ${vcs_info_msg_0_}%{$reset_color%}> '
+	PROMPT='%D{%H:%M:%S} %n@%m %F{3}%3~ ${vcs_info_msg_0_}%{$reset_color%}> '
 
 
 	# Fish like syntax highlighting on command line.

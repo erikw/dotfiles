@@ -1,7 +1,7 @@
 # Erik Westrup's custom prompt
 # See formatting options in manpage zshmisc(1) under the section SIMPLE PROMPT ESCAPES.
 prompt_erikw_setup () {
-  PS1="%* %n@%m:%~/ > "
+  PS1="%D{%H:%M:%S} %n@%m:%~/ > "
   PS2="> "
 
   prompt_opts=( cr percent )
