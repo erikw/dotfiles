@@ -6,7 +6,6 @@
 
 # TODO possibly replace this script with homebrew-bundler? https://github.com/Homebrew/homebrew-bundle
 
-
 set -x
 
 make_1line() {
@@ -276,9 +275,6 @@ brew tap caskroom/cask
 brew cask install $brew_casks_default
 #brew cask install $brew_casks_additional
 
-# Install older versions of apps.
-brew tap caskroom/versions
-
 # Install cask upgrade command ($ brew cu):
 brew tap buo/cask-upgrade
 
@@ -378,12 +374,13 @@ chmod go-w '/usr/local/share'
 
 # Update gnu locate database on schedule by appending crontab.
 #newtab="* */2 * * * /usr/local/Cellar/findutils/4.6.0/bin/updatedb --prunepaths='/tmp' >/dev/null 2>&1"
-newtab="* */2 * * * /usr/local/Cellar/findutils/4.6.0/bin/updatedb --localpaths='/etc $HOME' >/dev/null 2>&1"
-oldtab=$(sudo crontab -l)
-if [ -n "$oldtab" ]; then
-	newtab=$(printf "%s\n%s\n" "$oldtab" "$newtab")
-fi
-sudo sh -c "echo \"$newtab\" | crontab -"
+# NOTE disabled as updatedb takes too much CPU on macOS, making other work hard.
+#newtab="* */2 * * * /usr/local/Cellar/findutils/4.6.0/bin/updatedb --localpaths='/etc $HOME' >/dev/null 2>&1"
+#oldtab=$(sudo crontab -l)
+#if [ -n "$oldtab" ]; then
+	#newtab=$(printf "%s\n%s\n" "$oldtab" "$newtab")
+#fi
+#sudo sh -c "echo \"$newtab\" | crontab -"
 
 
 
