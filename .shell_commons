@@ -257,6 +257,7 @@ source $HOME/.shell_functions
 	# macOS python
 	# Add macOS python binary folders to the path (the binaries from homebrew pyhon are already included from /usr/local/bin)
 	# $PYTHONPATH is a PATH-formatted list of additional directories where python should look for modules when importing ones. Don't mix py2 and py3 paths in it.
+	# TODO remove this when Apple stops shipping Python with macOS. Then using standard homebrew shoudl work with no extra configuration in shell files.
 	if shell_is_macos; then
 		macos_py2path=$HOME/Library/Python/2.7
 		if [ -d $macos_py2path ]; then
@@ -269,12 +270,6 @@ source $HOME/.shell_functions
 			PATH="$macos_py3path/bin:$PATH"
 			#export PYTHONPATH="$macos_py3path/lib/python/site-packages:$PYTHONPATH"
 		fi
-		#if [ -n "$PYTHONPATH" ]; then
-			## Pip in virtualenv does not work with PYTHONPATH set.
-			#alias pip='PYTHONPATH= pip'
-			#alias pip2='PYTHONPATH= pip2'
-			#alias pip3='PYTHONPATH= pip3'
-		#fi
 	fi
 
 	#if program_is_in_path pyenv; then
@@ -292,21 +287,22 @@ source $HOME/.shell_functions
 
 
 	# Powerline plugin.
-	if shell_is_macos; then
-		export POWERLINE_ROOT=$macos_py3path/lib/python/site-packages/powerline
-		export LC_ALL=en_US.UTF-8
-		export LANG=en_US.UTF-8
-	elif shell_is_bsd; then
-		export POWERLINE_ROOT=/usr/local/lib/python3.6/site-packages/powerline
-	elif shell_is_linux; then
-		export POWERLINE_ROOT=/usr/lib/python3.7/site-packages/powerline
-	fi
+	#if shell_is_macos; then
+		#export POWERLINE_ROOT=$macos_py3path/lib/python/site-packages/powerline
+		#export LC_ALL=en_US.UTF-8
+		#export LANG=en_US.UTF-8
+	#elif shell_is_bsd; then
+		#export POWERLINE_ROOT=/usr/local/lib/python3.6/site-packages/powerline
+	#elif shell_is_linux; then
+		#export POWERLINE_ROOT=/usr/lib/python3.7/site-packages/powerline
+	#fi
 
-	if program_is_in_path powerline-daemon; then
-		powerline-daemon -q
-	fi
+	#if program_is_in_path powerline-daemon; then
+		#powerline-daemon -q
+	#fi
 
 	# Lets remove these guys..
+	# TODO remove this when Apple stops shipping Python with macOS. Then using standard homebrew shoudl work with no extra configuration in shell files.
 	if shell_is_macos; then
 		unset macos_py2path macos_py3path
 	fi

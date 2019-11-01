@@ -52,11 +52,11 @@ fi
 	sourceifexists "$HOME/.bash_ps1"
 
 	# Powerline
-	if [ -n "$POWERLINE_ROOT" ] && [ -d $POWERLINE_ROOT ]; then
-		POWERLINE_BASH_CONTINUATION=1
-		POWERLINE_BASH_SELECT=1
-		source $POWERLINE_ROOT/bindings/bash/powerline.sh
-	fi
+	#if [ -n "$POWERLINE_ROOT" ] && [ -d $POWERLINE_ROOT ]; then
+		#POWERLINE_BASH_CONTINUATION=1
+		#POWERLINE_BASH_SELECT=1
+		#source $POWERLINE_ROOT/bindings/bash/powerline.sh
+	#fi
 
 	# Check the window size after each command and, if necessary, update the values of LINES and COLUMNS.
 	shopt -s checkwinsize

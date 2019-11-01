@@ -1,6 +1,87 @@
 # Set up the bash PS1 line.
 # vi: ft=sh
 
+# Get a trimmed PWD.
+ps1_pwd_trimmed() {
+	# How many characters of the $PWD should be kept
+	local pwdmaxlen=25
+	# Indicate that there has been dir truncation
+	local trunc_symbol=".."
+	local dir=${PWD##*/}
+	pwdmaxlen=$(( ( pwdmaxlen < ${#dir} ) ? ${#dir} : pwdmaxlen ))
+	local NEW_PWD=${PWD/#$HOME/\~}
+	local pwdoffset=$(( ${#NEW_PWD} - pwdmaxlen ))
+	if [ ${pwdoffset} -gt "0" ]; then
+		NEW_PWD=${NEW_PWD:$pwdoffset:$pwdmaxlen}
+		NEW_PWD=${trunc_symbol}/${NEW_PWD#*/}
+	fi
+	echo "$NEW_PWD"
+}
+
+# Get number of backround jobs.
+ps1_nbr_bg_jobs() {
+	njobs=`jobs | wc -l`
+	if [ "$njobs" -gt 0 ]; then
+		echo " (%${njobs})"
+	fi
+}
+
+# Get git banch.
+ps1_parse_git_branch() {
+	#git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ \[\1\]/'
+	if !type git >/dev/null 2>&1; then
+		return
+	fi
+
+	# Quit if this is not a Git repo.
+	#branch=$(git symbolic-ref HEAD 2>/dev/null)
+	branch="$(git rev-parse --symbolic-full-name --abbrev-ref HEAD 2>/dev/null)"
+	if [ "$?" -ne 0 ]; then
+		return
+	fi
+	if [ "$branch" == "HEAD" ]; then
+		branch="detached $branch"
+	fi
+
+	echo -n " [${branch}]"
+}
+
+
+# Get SVN branch.
+ps1_parse_svn_branch() {
+	if type svn >/dev/null 2>&1; then
+		return
+	fi
+
+	local svn_info=$(svn info 2>/dev/null)
+	if [ -z "${svn_info}" ]; then
+		return
+	fi
+
+
+	local svn_root=$(echo "${svn_info}" | sed -ne 's#^Repository Root: ##p')
+	local svn_url=$(echo "${svn_info}" | sed -ne 's#^URL: ##p')
+
+	local branch=$(echo "${svn_url}" | egrep -o '[^/]+$')
+	echo -n " [${branch}]"
+}
+
+# Get mercurial branch.
+ps1_parse_hg_branch() {
+	if type hg >/dev/null 2>&1; then
+		return
+	fi
+
+	summary=$(hg summary 2>/dev/null)
+	if [ "$?" -ne 0 ]; then
+		return
+	fi
+
+	local branch=$(echo "$summary" | grep 'branch:' | cut -d ' ' -f2)
+	echo -e " [${branch}]"
+}
+
+
 # Import colors.
 . $HOME/bin/bash_colors.sh
 
@@ -25,92 +106,12 @@ PS1="${PS1}\A "
 #PS1="${PS1}\u@\h:\w"
 PS1="${PS1}\u@\h"
 
-# Get a trimmed PWD.
-ps1_pwd_trimmed() {
-	# How many characters of the $PWD should be kept
-	local pwdmaxlen=25
-	# Indicate that there has been dir truncation
-	local trunc_symbol=".."
-	local dir=${PWD##*/}
-	pwdmaxlen=$(( ( pwdmaxlen < ${#dir} ) ? ${#dir} : pwdmaxlen ))
-	local NEW_PWD=${PWD/#$HOME/\~}
-	local pwdoffset=$(( ${#NEW_PWD} - pwdmaxlen ))
-	if [ ${pwdoffset} -gt "0" ]; then
-		NEW_PWD=${NEW_PWD:$pwdoffset:$pwdmaxlen}
-		NEW_PWD=${trunc_symbol}/${NEW_PWD#*/}
-	fi
-	echo "$NEW_PWD"
-}
 PS1="${PS1}:\$(ps1_pwd_trimmed)"
-
-# Get number of backround jobs.
-ps1_nbr_bg_jobs() {
-	njobs=`jobs | wc -l`
-	if [ "$njobs" -gt 0 ]; then
-		echo " (%${njobs})"
-	fi
-}
-PS1="${PS1}\$(ps1_nbr_bg_jobs)"
-
-# Get git banch.
-ps1_parse_git_branch() {
-	#git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ \[\1\]/'
-	if type git >/dev/null 2>&1; then
-		return
-	fi
-
-	# Quit if this is not a Git repo.
-	#branch=$(git symbolic-ref HEAD 2>/dev/null)
-	branch="$(git rev-parse --symbolic-full-name --abbrev-ref HEAD 2>/dev/null)"
-	if [ "$?" -ne 0 ]; then
-		return
-	fi
-	if [ "$branch" == "HEAD" ]; then
-		branch="detached $branch"
-	fi
-
-	echo -n " [${branch}]"
-}
+#PS1="${PS1}\$(ps1_nbr_bg_jobs)"
 PS1="${PS1}${C_FG_MAGENTA}\$(ps1_parse_git_branch)${C_RESET}"
-
-# Get SVN branch.
-ps1_parse_svn_branch() {
-	if type svn >/dev/null 2>&1; then
-		return
-	fi
-
-	local svn_info=$(svn info 2>/dev/null)
-	if [ -z "${svn_info}" ]; then
-		return
-	fi
-
-
-	local svn_root=$(echo "${svn_info}" | sed -ne 's#^Repository Root: ##p')
-	local svn_url=$(echo "${svn_info}" | sed -ne 's#^URL: ##p')
-
-	local branch=$(echo "${svn_url}" | egrep -o '[^/]+$')
-	echo -n " [${branch}]"
-}
 PS1="${PS1}${C_FG_YELLOW}\$(ps1_parse_svn_branch)${C_RESET}"
-
-# Get mercurial branch.
-ps1_parse_hg_branch() {
-	if type hg >/dev/null 2>&1; then
-		return
-	fi
-
-	summary=$(hg summary 2>/dev/null)
-	if [ "$?" -ne 0 ]; then
-		return
-	fi
-
-	local branch=$(echo "$summary" | grep 'branch:' | cut -d ' ' -f2)
-	echo -e " [${branch}]"
-}
 PS1="${PS1}${C_FG_BLUE}\$(ps1_parse_hg_branch)${C_RESET}"
-
 # End marker.
-#PS1="${PS1}$ "
 PS1="${PS1}> "
 
 # Export to subshells.
