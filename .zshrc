@@ -25,7 +25,9 @@ fi
 	#path=(~/tmp $path)
 
 	# Function paths.
-	fpath=(~/.zsh_funcs $fpath)
+	# - .zsh_funcs - custom functions
+	# - .zprompts - custom prompt themes
+	fpath=(~/.zsh_funcs ~/.zprompts $fpath)
 
 	# Extra zsh completions not in core zsh: https://github.com/zsh-users/zsh-completions
 	if [ -d /usr/local/share/zsh-completions ]; then
@@ -88,13 +90,30 @@ fi
 	autoload -U colors && colors
 
 	# Prompt settings.
-	if [ -n "$POWERLINE_ROOT" ] && [ -d $POWERLINE_ROOT ]; then
-		source $POWERLINE_ROOT/bindings/zsh/powerline.zsh
-	else
-		autoload -Uz promptinit
-		promptinit
-		prompt suse	# Prompt theme.
-	fi
+	#if [ -n "$POWERLINE_ROOT" ] && [ -d $POWERLINE_ROOT ]; then
+		#source $POWERLINE_ROOT/bindings/zsh/powerline.zsh
+	#else
+		#autoload -Uz promptinit
+		#promptinit
+		#prompt suse	# Prompt theme.
+	#fi
+	autoload -Uz promptinit
+	promptinit
+
+	# Prompt theme. Explore with $(prompt -l)
+	#prompt suse
+	#prompt erikw
+
+	# Set prompt with git branch.
+	# Modified version of https://stackoverflow.com/a/12935606/265508
+	setopt prompt_subst
+	autoload -Uz vcs_info
+	zstyle ':vcs_info:*' formats '%F{5}[%F{2}%b%F{5}] %F{2}%c%F{3}%u%f'
+	zstyle ':vcs_info:*' enable git cvs svn
+	precmd () { vcs_info }
+	#PROMPT='%* %F{5}[%F{2}%n@%m%F{5}] %F{3}%3~ ${vcs_info_msg_0_}%{$reset_color%}> '
+	# Less colorful version. Looks more like ~/.bash_ps1
+	PROMPT='%* %n@%m %F{3}%3~ ${vcs_info_msg_0_}%{$reset_color%}> '
 
 
 	# Fish like syntax highlighting on command line.
