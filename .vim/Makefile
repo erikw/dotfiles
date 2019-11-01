@@ -1,4 +1,4 @@
-# Makefile gor cleaning .vim.
+# Makefile for cleaning .vim.
 
 # Not file targets.
 .PHONY: clean help list tar tar-src
