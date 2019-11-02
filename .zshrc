@@ -213,11 +213,6 @@ fi
 	# NOTE moved to ~/.sandboxrc
 	#if type jump-bin >/dev/null 2>&1; then
 		#source $(jump-bin --zsh-integration)
-		## Bashmark style aliases
-		#alias g="jump"
-		#alias s="jump --add"
-		#alias d="jump --del"
-		#alias l="jump --list"
 
 		# Add completion to 'g' alias.
 		#compctl -K _jump -S '' g
@@ -228,9 +223,20 @@ fi
 		PATH="$HOME/src/github.com/simonwhitaker/gibo:$PATH"
 		#source $HOME/src/github.com/simonwhitaker/gibo/gibo-completion.zsh
 	fi
+
+	# bookmark shell paths. No dependencies like jump needs ruby.
+	# See aliases in ~.shell_aliases.
+	# See ~/.cdbookmark for saved aliases
+	if [ -d ~/src/github.com/mollifier/cd-bookmark ]; then
+		fpath=(~/src/github.com/mollifier/cd-bookmark(N-/) $fpath)
+		autoload -Uz cd-bookmark
+	fi
 # }}
 
-sourceifexists $HOME/.shell_startx
+
+
+
+#sourceifexists $HOME/.shell_startx
 
 #if [[ "$PROFILE_STARTUP" == true ]]; then
     #unsetopt xtrace
