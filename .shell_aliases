@@ -165,11 +165,21 @@ fi
 # }
 
 # jump {
-	# Bashmark style aliases for https://github.com/flavio/jump
-	alias g="jump"
-	alias s="jump --add"
-	alias d="jump --del"
-	alias l="jump --list"
+    # Bashmark style aliases for https://github.com/flavio/jump
+    #alias g="jump"
+    #alias s="jump --add"
+    #alias d="jump --del"
+    #alias l="jump --list"
+# }
+
+# cd-bookmark {
+    # Bashmark style aliases for https://github.com/flavio/jump
+    alias g='cd-bookmark -c'
+    alias s='cd-bookmark -a'
+    alias l='cd-bookmark -l'
+    alias e='cd-bookmark -e'
+    alias p='cd-bookmark -p'
+    alias h='cd-bookmark -h'
 # }
 
 # Libreoffice {

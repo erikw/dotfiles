@@ -150,15 +150,13 @@ $ cd ~/src
 $ git clone git@github.com:altercation/solarized.git
 ````
 
-
-## rvm
-Install latest [ruby version environment](https://rvm.io/rvm/install). The pro of doing this is that `~/.shell_commons` adds the installed GEMs to PATH e.g. flavio/jump.
+## rvm (optional)
+Install latest [ruby version environment](https://rvm.io/rvm/install). 
 ```bash
 $ \curl -sSL https://get.rvm.io | bash -s stable --ruby
 $ #rvm install ruby --latest # already done by the curl-install.
 $ rvm list
 ```
-
 
 ## Vim
 
@@ -215,17 +213,24 @@ Install for both:
  * [GNU source-highlight](https://www.gnu.org/software/src-highlite/source-highlight.html) for less(1). To make it work on macOS, run `source-highlight-settings(1)` and create a new data dir at the path `/usr/local/share/source-highlight`.
 
 
- * [flavio/jump](https://github.com/flavio/jump)
+## ZSH
+* [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
+
+* [mollifier/cd-bookmark](https://github.com/mollifier/cd-bookmark)
 ```bash
-$ gem install --user-install jump
+$ ghq clone https://github.com/mollifier/cd-bookmark.git
 $ cd ~/.dotfiles
 $ s dot
 $ cd ~/dl/
 $ s dl
 ````
 
-## ZSH
-* [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
+## Bash
+* [huyng/bashmarks](https://github.com/huyng/bashmarks)
+```bash
+$ ghq-get https://github.com/huyng/bashmarks.git
+$ make install
+````
 
 
 ## Xcode

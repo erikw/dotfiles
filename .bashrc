@@ -64,17 +64,12 @@ fi
 
 # Programs {
 	# Sorce bashmarks.
-	#sourceifexists $HOME/.local/bin/bashmarks.sh
+	sourceifexists $HOME/.local/bin/bashmarks.sh
 
 	# Jump shell bookmarks.
 	# NOTE moved to ~/.sandboxrc
 	#if type jump-bin >/dev/null 2>&1; then
 		#source $(jump-bin --bash-integration)/shell_driver
-		## Bashmark style aliases
-		#alias g="jump"
-		#alias s="jump --add"
-		#alias d="jump --del"
-		#alias l="jump --list"
 	#fi
 
 	# Gitignore boiler plate.
@@ -85,7 +80,7 @@ fi
 # }
 
 
-sourceifexists $HOME/.shell_startx
+#sourceifexists $HOME/.shell_startx
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
