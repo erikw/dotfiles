@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-# Make manual
-groff -Tascii -man "$1"
