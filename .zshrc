@@ -4,17 +4,19 @@
 #	vi: foldmarker={,} filetype=zsh foldmethod=marker foldlevel=0: tabstop=4 shiftwidth=4:
 # }}
 
-#PROFILE_STARTUP=true
+PROFILE_STARTUP=true
+# After running this, inspect result of current shell with:
+# $ ~/bin/parse_zsh_startup.py startuplog.$$
 # Source: https://kev.inburke.com/kevin/profiling-zsh-startup-time/
-#if [[ "$PROFILE_STARTUP" == true ]]; then
-    ## http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html
-    #PS4=$'%D{%M%S%.} %N:%i> '
-    #exec 3>&2 2>$HOME/tmp/startlog.$$
-    #setopt xtrace prompt_subst
-#fi
+if [[ "$PROFILE_STARTUP" == true ]]; then
+	# http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html
+	PS4=$'%D{%M%S%.} %N:%i> '
+	exec 3>&2 2>$HOME/tmp/startlog.$$
+	setopt xtrace prompt_subst
+fi
 
 # Common shell settings.
-if [[ -f $HOME/.shell_commons && -r $HOME/.shell_commons ]]; then
+if [ -f $HOME/.shell_commons ]; then
 	export my_shell=zsh
 	export completion_func=compctl
 	source $HOME/.shell_commons
@@ -126,6 +128,7 @@ fi
 	if [ -n "$zsh_syntax_path" ] && [ -f $zsh_syntax_path ]; then
 		source $zsh_syntax_path
 	fi
+	unset zsh_syntax_path
 # }}
 
 # Options {{
@@ -199,11 +202,11 @@ fi
 # }}
 
 # zsh extras {{
-	# Enable help command for zsh functions.
-	autoload -U run-help
-	autoload run-help-git run-help-svn run-help-svk
-	#unalias run-help
-	alias help=run-help
+	## Enable help command for zsh functions.
+	#autoload -U run-help
+	#autoload run-help-git run-help-svn run-help-svk
+	##unalias run-help
+	#alias help=run-help
 # }}
 
 # Programs {{
@@ -219,10 +222,10 @@ fi
 	#fi
 
 	# Gitignore boiler plate.
-	if [ -d $HOME/src/github.com/simonwhitaker/gibo ]; then
-		PATH="$HOME/src/github.com/simonwhitaker/gibo:$PATH"
-		#source $HOME/src/github.com/simonwhitaker/gibo/gibo-completion.zsh
-	fi
+	#if [ -d $HOME/src/github.com/simonwhitaker/gibo ]; then
+		#PATH="$HOME/src/github.com/simonwhitaker/gibo:$PATH"
+		##source $HOME/src/github.com/simonwhitaker/gibo/gibo-completion.zsh
+	#fi
 
 	# bookmark shell paths. No dependencies like jump needs ruby.
 	# See aliases in ~.shell_aliases.
@@ -235,15 +238,14 @@ fi
 
 
 
-
 #sourceifexists $HOME/.shell_startx
 
-#if [[ "$PROFILE_STARTUP" == true ]]; then
-    #unsetopt xtrace
-    #exec 2>&3 3>&-
-#fi
 
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change (WHY?).
+#export PATH="$PATH:$HOME/.rvm/bin"
 
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+# Must be at the end!
+if [[ "$PROFILE_STARTUP" == true ]]; then
+	unsetopt xtrace
+	exec 2>&3 3>&-
+fi
