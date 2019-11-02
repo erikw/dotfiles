@@ -178,50 +178,6 @@ $ make   # FreeBSD: use gmake.
 $ sudo npm -g install instant-markdown-d
 ````
 
-### Python development
-### pyenv
-Be more flexible with what python version to use with pyenv.
-macOS: `$ brew install pyenv`
-
-Remember that when using pyenv, normal virtualenv can't be used for python <3.3 projects. One should use [pyenv-virtualenv](https://github.com/pyenv/pyenv-virtualenv) instead. See [this](https://www.freecodecamp.org/news/manage-multiple-python-versions-and-virtual-environments-venv-pyenv-pyvenv-a29fb00c296f/) article and [this](https://realpython.com/intro-to-pyenv/).
-```bash
-$ pyenv virtualenv 2.7.10 my-virtual-env-2.7.10
-````
-
-
-
-```bash
-$ pyenv versions
-$ pyenv install 3.x.y
-$ pyenv global 3.x.y
-$ python --version
-$ which python
-````
-
-
-
-#### jedi-vim
-```bash
-$ cd ~/.vim/bundle/jedi-vim/
-$ git submodule update --init
-````
-
-#### rope
-```bash
-$ pip3 install --user ropevim
-$ cat >> ~/.zshrc
-export PYTHONPATH="$PYTHONPATH:$HOME/Library/Python/3.5/lib/python/site-packages"
-^D
-````
-
-#### isort
-```bash
-$ pip3 install --user isort
-````
-
-
-
-
 
 ## MacVim
 * Install [Inconsolata](https://github.com/google/fonts/tree/master/ofl/inconsolata) font which my [.gvimrc](.gvimrc) is set up with. `macos_install.sh` already installs it.
@@ -287,9 +243,6 @@ Edit `~/.taskrc` to chose path for holiday files and set up remote sync server.
 ## Firefox
 Import minimal search-keyword bookmarks from [.bookmarks_minimal.html](.bookmarks_minimal.html) to Firefox.
 
-## SDK manager
-Install [SDKMan](http://sdkman.io/install.html)
-
 
 ## Atom
 As suggested from [Stackoverflow](https://stackoverflow.com/questions/30006827/how-to-save-atom-editor-config-and-list-of-packages-installed), install frozen packages:
@@ -301,6 +254,54 @@ Back the installed ones up with:
 ```bash
 $ apm list --installed --bare > ~/.atom/apm_packages_bakup.txt
 ```
+
+
+## Java Development
+* Install [SDKMan](http://sdkman.io/install.html) to go between version of java and java tools.
+
+
+## Python Development
+### pyenv
+Be more flexible with what python version to use with pyenv.
+macOS: `$ brew install pyenv`
+
+Remember that when using pyenv, normal virtualenv can't be used for python <3.3 projects. One should use [pyenv-virtualenv](https://github.com/pyenv/pyenv-virtualenv) instead. See [this](https://www.freecodecamp.org/news/manage-multiple-python-versions-and-virtual-environments-venv-pyenv-pyvenv-a29fb00c296f/) article and [this](https://realpython.com/intro-to-pyenv/).
+```bash
+$ pyenv virtualenv 2.7.10 my-virtual-env-2.7.10
+````
+
+
+```bash
+$ pyenv versions
+$ pyenv install 3.x.y
+$ pyenv global 3.x.y
+$ python --version
+$ which python
+````
+
+
+
+#### jedi-vim
+```bash
+$ cd ~/.vim/bundle/jedi-vim/
+$ git submodule update --init
+````
+
+#### rope
+```bash
+$ pip3 install --user ropevim
+$ cat >> ~/.zshrc
+export PYTHONPATH="$PYTHONPATH:$HOME/Library/Python/3.5/lib/python/site-packages"
+^D
+````
+
+#### isort
+```bash
+$ pip3 install --user isort
+````
+
+
+
 
 
 

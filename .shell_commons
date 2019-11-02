@@ -171,16 +171,6 @@ source $HOME/.shell_functions
 		PATH="$PATH:$HOME/src/github.com/AlDanial/cloc"
 	fi
 
-	# svtget
-	if [ -d "$HOME/src/github.com/smgt/svtget/" ]; then
-		PATH="$PATH:$HOME/src/github.com/smgt/svtget/"
-	fi
-
-	# youtube2mp3.sh
-	if [ -d "/opt/youtube2mp3/" ]; then
-		PATH="$PATH:/opt/youtube2mp3/"
-	fi
-
 	# Add ANSI color output to ant.
 	if program_is_in_path ant; then
 		export ANT_ARGS='-logger org.apache.tools.ant.listener.AnsiColorLogger'
@@ -273,18 +263,18 @@ source $HOME/.shell_functions
 		fi
 	fi
 
-	#if program_is_in_path pyenv; then
+	if program_is_in_path pyenv; then
 		# Light-weight version:
 		#PATH="$(pyenv root)/shims:$PATH"
 		# Full config. NOTE is sandboxed
-		#eval "$(pyenv init -)"
-	#fi
+		eval "$(pyenv init -)"
+	fi
 
 	# When using pyenv, normal virtual env can't be used for python <3.3.
 	# See https://github.com/pyenv/pyenv-virtualenv and https://www.freecodecamp.org/news/manage-multiple-python-versions-and-virtual-environments-venv-pyenv-pyvenv-a29fb00c296f/
-	if program_is_in_path pyenv-virtualenv; then
-		eval "$(pyenv virtualenv-init -)"
-	fi
+	#if program_is_in_path pyenv-virtualenv; then
+		#eval "$(pyenv virtualenv-init -)"
+	#fi
 
 
 	# Powerline plugin.
