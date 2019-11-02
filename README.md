@@ -13,25 +13,26 @@ Most of my personal dotfiles can be found in this branch. I use dfm (dot file ma
   * [Host specific configuration](#host-specific-configuration)
   * [Install ghq](#install-ghq)
   * [General](#general)
-  * [rvm](#rvm)
+  * [rvm (optional)](#rvm-optional)
   * [Vim](#vim)
     + [Compile command-t](#compile-command-t)
-    + [jcommenter](#jcommenter)
     + [vim-instant-markdown](#vim-instant-markdown)
-    + [Python development](#python-development)
-      - [jedi-vim](#jedi-vim)
-      - [rope](#rope)
-      - [isort](#isort)
-  * [MacVim](#macvim)
+    + [MacVim](#macvim)
   * [Tmux](#tmux)
-  * [ZSH/Bash](#zshbash)
-  * [ZSH](#zsh)
+  * [Shell](#shell)
+    + [ZSH](#zsh)
+    + [Bash](#bash)
   * [Xcode](#xcode)
   * [Intellij/PyCharm/PhpStorm](#intellijpycharmphpstorm)
   * [Taskwarrior](#taskwarrior)
   * [Firefox](#firefox)
-  * [SDK manager](#sdk-manager)
   * [Atom](#atom)
+  * [Java Development](#java-development)
+  * [Python Development](#python-development)
+    + [pyenv](#pyenv)
+    + [jedi-vim](#jedi-vim)
+    + [rope](#rope)
+    + [isort](#isort)
 - [Table of Contents generation](#table-of-contents-generation)
 
 <!-- tocstop -->
@@ -177,7 +178,7 @@ $ sudo npm -g install instant-markdown-d
 ````
 
 
-## MacVim
+### MacVim
 * Install [Inconsolata](https://github.com/google/fonts/tree/master/ofl/inconsolata) font which my [.gvimrc](.gvimrc) is set up with. `macos_install.sh` already installs it.
 
 ## Tmux
@@ -206,14 +207,14 @@ and press `prefix-I` to install tpm plugins.
 Update `~/.tmux.conf` to use xclip for linux and pbcopy/pbpaste for macOS and the default-command option.
 
 
-## ZSH/Bash
+## Shell
 
-Install for both:
+Install for both zsh and bash:
  * [seebi/dircolors-solarized](https://github.com/seebi/dircolors-solarized) (only for Linux systems)
  * [GNU source-highlight](https://www.gnu.org/software/src-highlite/source-highlight.html) for less(1). To make it work on macOS, run `source-highlight-settings(1)` and create a new data dir at the path `/usr/local/share/source-highlight`.
 
 
-## ZSH
+### ZSH
 * [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
 
 * [mollifier/cd-bookmark](https://github.com/mollifier/cd-bookmark)
@@ -225,7 +226,7 @@ $ cd ~/dl/
 $ s dl
 ````
 
-## Bash
+### Bash
 * [huyng/bashmarks](https://github.com/huyng/bashmarks)
 ```bash
 $ ghq-get https://github.com/huyng/bashmarks.git
@@ -286,13 +287,13 @@ $ which python
 
 
 
-#### jedi-vim
+### jedi-vim
 ```bash
 $ cd ~/.vim/bundle/jedi-vim/
 $ git submodule update --init
 ````
 
-#### rope
+### rope
 ```bash
 $ pip3 install --user ropevim
 $ cat >> ~/.zshrc
@@ -300,7 +301,7 @@ export PYTHONPATH="$PYTHONPATH:$HOME/Library/Python/3.5/lib/python/site-packages
 ^D
 ````
 
-#### isort
+### isort
 ```bash
 $ pip3 install --user isort
 ````
