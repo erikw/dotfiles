@@ -3,7 +3,6 @@
 
 
 # Import ~/.shell_functions.d/ {
-
 if [ -d $HOME/.shell_functions.d ]; then
 	for funcfile in $HOME/.shell_functions.d/*.sh; do
 		source $funcfile
@@ -77,18 +76,6 @@ iso86012epoch() {
 export iso86012epoch >/dev/null
 
 
-# Countdown with given amount of seconds
-# Source: http://superuser.com/questions/611538/is-there-a-way-to-display-a-countdown-or-stopwatch-timer-in-a-terminal
-countdown() {
-	date1=$(($(date +%s) + $1));
-	while [ "$date1" -ge `date +%s` ]; do
-		## Is this more than 24h away?
-		days=$(($(($(( $date1 - $(date +%s))) * 1 ))/86400))
-		echo -ne "$days day(s) and $(date -u --date @$(($date1 - $(date +%s))) +%H:%M:%S)\r";
-		sleep 0.1
-	done
-}
-
 # Stopwatch, press enter to time.
 # Source: http://superuser.com/questions/611538/is-there-a-way-to-display-a-countdown-or-stopwatch-timer-in-a-terminal
 stopwatch() {
@@ -102,9 +89,9 @@ stopwatch() {
 
 
 # Visual countdown with voice announcing that the time is up.
-termdownsay() {
-	termdown -b -q 1 $@ && espeak -v en -s 130 -a 120 "Time has ended"
-}
+#termdownsay() {
+	#termdown -b -q 1 $@ && espeak -v en -s 130 -a 120 "Time has ended"
+#}
 
 
 # Git overlay which adds a command to cd to the root of a git repo.
@@ -146,59 +133,6 @@ _dev_log() {
 	echo "🔨 > $message..."
 }
 
-# Start development with virtualenv. Creates if does not exist yet.
-# Assumes that PWD is in the project root dir.
-py_dev() {
-	proj=${PWD#$HOME/dev/}
-	if ! lsvirtualenv | grep -q $proj;  then
-		_dev_log "Creating virtualenv $proj"
-		mkvirtualenv $proj -p python3
-	else
-		_dev_log "Switching to virtualenv $proj"
-		workon $proj
-	fi
-}
-
-# Set up python development environment. Assumes that PWD is in the project root dir.
-py_fix_dev() {
-	py_dev
-
-	_dev_log "Installing python requirements"
-	[ -e requirements.txt ] && pip install -r requirements.txt
-	[ -e requirements_testing.txt ] && pip install -r requirements_testing.txt
-
-	# Generate tags for all modules found in the python library path and current directory.
-	_dev_log "Generating tags file"
-	ctags -R -f ./tags $(python -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())") >/dev/null 2>&1
-
-	_dev_log "Generating cscope DB"
-	find . -name '*.py' >cscope.files
-	cscope -b -q
-
-	# Rope-vim support.
-	pip list &>/dev/null | grep -q ropevim
-	if [ "$?" -ne 0 ]; then
-		_dev_log "Installing ropevim"
-		pip install ropevim
-	fi
-	_dev_log "Generating Rope import cache"
-	vim -c RopeGenerateAutoimportCache -c q ropefiximport.py  # Need to open a buffer for a python file to activate Rope plugin.
-}
-
-
-
-# Set up java development environment. Assumes that PWD is in the project root dir.
-java_fix_dev() {
-	# Generate tags for all modules found in the python library path and current directory.
-	_dev_log "Generating tags file"
-	ctags-jdk # From ~/.shell_aliases
-	# TODO find a way to include dependencies from a gradle/maven project in the tags file.
-
-	_dev_log "Generating cscope DB"
-	find . -name '*.java' >cscope.files
-	cscope -b -q
-}
-
 
 # Encrypt file with a symmetric cipher.
 encryptf() {
@@ -232,14 +166,6 @@ decryptf() {
 	printf "Decrypted %s to %s\n" "$filecrypt" "$file"
 }
 
-# Swap file name of two files.
-function mv_swap() {
-    local tmpf=tmp.$$
-    mv "$1" $tmpf
-    mv "$2" "$1"
-    mv $tmpf "$2"
-}
-
 # Cd in to newly created direcotry.
 function mkdircd() {
 	local dir="$1"
@@ -252,14 +178,6 @@ function mkdirtodaycd() {
 	local today=$(date -I)
 	mkdircd "$today"
 }
-
-# Open man page in Preview.app
-# Example: $ pman ls
-# Source: https://www.devopsderek.com/blog/2013/03/10/view-man-pages-with-preview-on-mac-os-x/
-pman() {
-    man -t ${@} | open -f -a /Applications/Preview.app/
-}
-
 
 # Connect ssh and start tmux e.g.
 # $ sshmux <host>

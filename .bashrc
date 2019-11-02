@@ -12,7 +12,7 @@ if [ -f /etc/profile ] && [ -r /etc/profile ]; then
 fi
 
 
-if [ -f $HOME/.shell_commons ] && [ -r $HOME/.shell_commons ]; then
+if [ -f $HOME/.shell_commons ]; then
 	my_shell=bash
 	export completion_func=complete
 	source $HOME/.shell_commons
@@ -74,14 +74,14 @@ fi
 	#fi
 
 	# Gitignore boiler plate.
-	if [ -d $HOME/src/github.com/simonwhitaker/gibo ]; then
-		PATH="$HOME/src/github.com/simonwhitaker/gibo:$PATH"
-		source $HOME/src/github.com/simonwhitaker/gibo/gibo-completion.bash
-	fi
+	#if [ -d $HOME/src/github.com/simonwhitaker/gibo ]; then
+		#PATH="$HOME/src/github.com/simonwhitaker/gibo:$PATH"
+		#source $HOME/src/github.com/simonwhitaker/gibo/gibo-completion.bash
+	#fi
 # }
 
 
 #sourceifexists $HOME/.shell_startx
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
+#export PATH="$PATH:$HOME/.rvm/bin"

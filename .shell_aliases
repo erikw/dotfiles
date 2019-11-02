@@ -11,7 +11,7 @@
 
 # Desktop Environment specific {
 	# Defaults.
-	alias open='xdg-open'						# Open files.
+	alias open='xdg-open'				# Open files.
 	alias afk='xscreensaver-command -lock'		# Start screensaver.
 
 	case $DESKTYPE in
@@ -86,15 +86,15 @@
 		alias egrepc='egrep --color=always'
 
 		# Colored cows, yeah!
-		if program_is_in_path cower; then
-			alias cower='cower --color=auto'
-		fi
+		#if program_is_in_path cower; then
+			#alias cower='cower --color=auto'
+		#fi
 
 		# Use colored diff if it can be found.
-		if program_is_in_path colordiff ; then
-			#alias cdiff='colordiff'
-			alias diff='colordiff'
-		fi
+		#if program_is_in_path colordiff ; then
+			##alias cdiff='colordiff'
+			#alias diff='colordiff'
+		#fi
 
 		# Use colored du if exists.
 		if program_is_in_path cdu ; then
@@ -102,14 +102,14 @@
 		fi
 
 		# Colorize SVN.
-		if program_is_in_path colorsvn; then
-			alias svn='colorsvn'
-		fi
+		#if program_is_in_path colorsvn; then
+			#alias svn='colorsvn'
+		#fi
 
 		# Make colors.
-		if program_is_in_path colormake; then
-			alias make='colormake'
-		fi
+		#if program_is_in_path colormake; then
+			#alias make='colormake'
+		#fi
 
 		# Compile with dem colors. TODO detect when $(gcc -v) >= 4.9?
 		if program_is_in_path gcc; then
@@ -158,12 +158,6 @@ fi
 	fi
 # }
 
-# Navigation {
-	alias -- +='pushd'
-	alias -- ++='pushd .'
-	alias -- -='popd'
-# }
-
 # jump {
     # Bashmark style aliases for https://github.com/flavio/jump
     #alias g="jump"
@@ -183,11 +177,11 @@ fi
 # }
 
 # Libreoffice {
-	alias lbase='libreoffice --base'			# Writer.
-	alias lcalc='libreoffice --calc'			# Calc.
-	alias ldraw='libreoffice --draw'			# Draw.
+	alias lbase='libreoffice --base'		# Writer.
+	alias lcalc='libreoffice --calc'		# Calc.
+	alias ldraw='libreoffice --draw'		# Draw.
 	alias limpress='libreoffice --impress'		# Impress.
-	alias lmath='libreoffice --math'			# Math.
+	alias lmath='libreoffice --math'		# Math.
 	alias lwriter='libreoffice --writer'		# Writer.
 # }
 
@@ -204,7 +198,7 @@ fi
 	alias octave='octave-cli --silent'				# Run in terminal without greeting message.
 	alias xoctave='\octave'						# Default X version.
 	alias matlab='matlab -nodesktop -nosplash'			# Run in terminal with no splash screen.
-	alias xmatlab='\matlab'						# Default X version.
+	#alias xmatlab='\matlab'						# Default X version.
 	alias gimp='gimp --no-splash'					# Splash screens are just annoying.
 	alias dmenu="dmenu -i"						# Ignore case.
 	alias cal='cal --monday'					# Monday IS the first day of the week.
@@ -220,7 +214,6 @@ fi
 # }
 
 # Short-hands {
-	alias cls='clear'					# Old DOS habit...
 	alias vi='vim'						# Be IMproved.
 	alias view='vim -R'					# Not all distributions of vim provide the readonly bin.
 	alias vidiff='vimdiff'
@@ -228,26 +221,19 @@ fi
 	alias vibclean="vim -u NONE -i NONE -c 'set number backup'"	# Same, but write local backup file.
 	#alias t='task'
 	#alias c='gcalcli'
-	alias gcal='gcalcli'
 	alias vboxmanage='VBoxManage'							# Who likes caps?- I don't.
 	alias ll='ls -l'										# I don't use it but aliens on my systems presumes its existence.
 	#unalias l &>/dev/null									# I use bashmarks.
-	alias lsc="ls ${LS_OPTIONS} --color=always"				# Force color.
-	alias agdbtui='arm-none-eabi-gdbtui'					# So tired of typing that...
 	alias shredzr='shred --zero --remove'					# Zero out and delete file.
 	alias sysc='systemctl'									# The length of a name should correspond to its importance, see vi.
 	alias syscu='systemctl --user'							# Systemd user sessions.
 	alias journal='journalctl'
 	# Take a screenshot of selected window.
-	alias scrot-win="scrot --quality 80 --count --delay --border --delay 3 --select $HOME/media/images/screenshots/screenshot_%Y-%m-%d-%H%M%S.png"
-	# Run JUnit on a test class.
-	alias junitx="java -cp /usr/share/java/junit.jar:bin org.junit.runner.JUnitCore"
 	alias pkillf="pkill -9 -f"								# Force kill full name matched process.
 	alias iperl="perl -de 0"								# Interactive perl.
 	alias catu="cat -vet"									# A cat that likes unprintable characters.
 	alias tiga='tig --all'									# Show all branches in tig.
 	alias mkcscope_c='find . -name "*.[ch]" > cscope.files'		# Gen cscope file for C programs.
-	alias wlan_quality='iwconfig wlan | grep Quality'		# Display the signal quality and strength of WLAN. Alternatively use wavemon(1).
 	alias mkdirtoday='_today=$(date -I) && mkdir -p $_today && echo "Created $_today" && unset _today'	# Create a directory in CWD with today's date.
 	alias reload_zsh='source $HOME/.zshrc'				# Reload zsh configuration.
 	alias reload_bash='source $HOME/.bashrc'			# Reload bash configuration.
@@ -264,10 +250,6 @@ fi
 	#alias x-proxy='ssh x -L 8080:x.com:123 -N'				# Start SSH tunnel web proxy to some server.
 	#alias chromium-xproxy='chromium --proxy-server="http://localhost:8080"'	# Starts Chromium that uses X proxy tunnel.
 
-	# Stop limiting battery charge level.
-	alias lenovo-charge='sudo tpacpi-bat -s stopThreshold 0 99'
-	alias lenovo-limitcharge='sudo tpacpi-bat -s stopThreshold 0 80'
-
 	if type ack-grep >/dev/null 2>&1; then
 		alias ack='ack-grep'	# Debain renames ack.
 	fi
@@ -281,7 +263,7 @@ fi
 	# $ ghq get http://hg.openjdk.java.net/jdk8/jdk8
 	# Reference: http://blog.vinceliu.com/2007/08/vim-tips-for-java-2-using-exuberant.html
 	# Reference: https://stackoverflow.com/questions/20457107/how-to-clone-the-openjdk-java-8-repository
-	alias ctags-jdk='ctags -R --language-force=java ~/src/hg.openjdk.java.net/jdk8/jdk8/jdk/src/share/'
+	#alias ctags-jdk='ctags -R --language-force=java ~/src/hg.openjdk.java.net/jdk8/jdk8/jdk/src/share/'
 
 
 	if shell_is_macos; then
@@ -292,51 +274,35 @@ fi
 # }
 
 # Mounts {
-	alias mount-newport='jmtpfs /media/newport/'
-	alias umount-newport='fusermount -u /media/newport/'
-
 	alias cryfs_mount='history-off && cryfs ~/dropbox/priv ~/priv'	# Decrypt & mount CryFS folder.
 	alias cryfs_umount='cryfs-unmount ~/priv' 			# Umount CryFS folder.
-	# The old way.
-	#if shell_is_macos; then
-		#alias cryfs_umount='umount ~/priv'				# Umount CryFS folder.
-	#else
-		#alias cryfs_umount='fusermount -u ~/priv'			# Umount CryFS folder.
-	#fi
 # }
 
 # Permutation aliases {
 	# From $(bin/permute_aliases.sh cmd > $HOME/.shell_aliases_cmd)
-	sourceifexists "$HOME/.shell_aliases_make"
-	sourceifexists "$HOME/.shell_aliases_git"
+	#sourceifexists "$HOME/.shell_aliases_make"
+	#sourceifexists "$HOME/.shell_aliases_git"
 # }
 
 # Virtualenvwrapper {
 	# Pesky virtulaenvwrapper does not prefix their shell functions...
-	virtualenv_functions=(add2virtualenv allvirtualenv cdproject cdsitepackages cdvirtualenv cpvirtualenv lssitepackages lsvirtualenv mkproject mktmpenv mkvirtualenv rmvirtualenv setvirtualenvproject showvirtualenv toggleglobalsitepackages virtualenv wipenv workon)
-	for venv_func in "${virtualenv_functions[@]}"; do
-		eval "alias venv_${venv_func}='${venv_func}'"
-	done
+	#virtualenv_functions=(add2virtualenv allvirtualenv cdproject cdsitepackages cdvirtualenv cpvirtualenv lssitepackages lsvirtualenv mkproject mktmpenv mkvirtualenv rmvirtualenv setvirtualenvproject showvirtualenv toggleglobalsitepackages virtualenv wipenv workon)
+	#for venv_func in "${virtualenv_functions[@]}"; do
+		#eval "alias venv_${venv_func}='${venv_func}'"
+	#done
 
 # }
 
 # Misc {
 	alias psg='ps aux | grep -i '					# List matching processes.
 	alias dusch='du -sch'							# The best file size calculator is a shower.
-	alias rehash='hash -r'							# Reload PATH caches or something similar. It works!
 	alias beep='echo -en "\007"'					# Whoop whoop'
-	alias bygg='make -f Byggfil'					# New standard?
-	alias webshare='python -m SimpleHTTPServer'			# Start webshare on port 8000 in CWD.
 	alias image_dim="identify -format '%w %h\n'"			# Get dimmensions of an image.
 	alias git-root='cd $(git rev-parse --show-cdup)'		# Go to the root of a git.
 	alias cursh="ps -p \$\$ | tail -1 | awk '{print \$NF}' | sed -e 's/^-//g'| tr -d '()'"		# Current shell.
 	alias history-off='unset HISTFILE'				# Disable command history for the current shell.
 	# Simple network speed test.
-	alias speed_check='wget -O/dev/null ftp://ftp.port80.se/100M'
-	# Unmount my key.
-	alias uk='umount /dev/key1 2>/dev/null && echo "Key umounted." || echo "Umount failed." 1>&2'
 	# ZO RELAXEN
-	alias blinkenlichten='while true; do xset led 3; sleep 0.2s; xset -led 3; sleep 0.3s; done'
 	alias whatismyip='curl ifconfig.me'			# Get external IP-address
 	#alias whatismyip='curl ifconfig.co'			# Get external IP-address
 # }

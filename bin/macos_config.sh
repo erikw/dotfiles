@@ -110,7 +110,7 @@ killall Dock
 
 # Install iTerm2 shell integration
 # Reference: https://www.iterm2.com/documentation-shell-integration.html
-curl -L https://iterm2.com/misc/install_shell_integration.sh | bash
+#curl -L https://iterm2.com/misc/install_shell_integration.sh | bash
 
 # Optional: keep network connections alive during sleep
 # Reference: https://gist.github.com/jyore/aae1d0e6e482b4d152a4bcf5b5749eed
