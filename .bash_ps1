@@ -83,7 +83,7 @@ ps1_parse_hg_branch() {
 
 
 # Import colors.
-. $HOME/bin/bash_colors.sh
+. $HOME/.bash_colors
 
 # Reset default values.
 PS1=''
