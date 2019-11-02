@@ -1,8 +1,8 @@
 # Erik Westrup's zshrc.
 
-# Modeline {
+# Modeline {{
 #	vi: foldmarker={,} filetype=zsh foldmethod=marker foldlevel=0: tabstop=4 shiftwidth=4:
-# }
+# }}
 
 #PROFILE_STARTUP=true
 # Source: https://kev.inburke.com/kevin/profiling-zsh-startup-time/
@@ -20,7 +20,7 @@ if [[ -f $HOME/.shell_commons && -r $HOME/.shell_commons ]]; then
 	source $HOME/.shell_commons
 fi
 
-# Environment {
+# Environment {{
 	typeset -U path		# Don't add entry to path if it's already present.
 	#path=(~/tmp $path)
 
@@ -33,9 +33,9 @@ fi
 	if [ -d /usr/local/share/zsh-completions ]; then
 		fpath=(/usr/local/share/zsh-completions $fpath)
 	fi
-# }
+# }}
 
-# Completion {
+# Completion {{
 	zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate
 	zstyle ':completion:*' max-errors 3 numeric
 	# Visualize and selecting with arrow keys in completion.
@@ -70,9 +70,9 @@ fi
 
 	autoload -Uz compinit
 	compinit -C
-# }
+# }}
 
-# History {
+# History {{
 	export HISTFILE=~/.zsh_histfile		# Where to save history.
 	export HISTSIZE=1000000				# How many lines in the current session to remember.
 	export SAVEHIST=1000000				# How many lines to save to disk. Must be <=HISTSIZE.
@@ -84,9 +84,9 @@ fi
 	setopt histignorespace		# Ignore commands starting with space.
 	setopt extendedhistory		# Save command time start and exec time in seconds.
 	setopt histreduceblanks		# Strip redundant spaces.
-# }
+# }}
 
-# UI {
+# UI {{
 	autoload -U colors && colors
 
 	# Prompt settings.
@@ -126,41 +126,41 @@ fi
 	if [ -n "$zsh_syntax_path" ] && [ -f $zsh_syntax_path ]; then
 		source $zsh_syntax_path
 	fi
-# }
+# }}
 
-# Options {
+# Options {{
 	# Manual & categories: http://zsh.sourceforge.net/Doc/Release/Options.html
 
-	# Changing Directories {
+	# Changing Directories {{
 		setopt autopushd				# Add prev PWD to directory stack.
 		setopt pushdignoredups			# No duplicates in dirs stack.
 		setopt pushdignoredups			# Do not record immediate duplicates.
 		setopt pushdtohome				# pushd with no args pushes $HOME.
 		setopt interactivecomments		# Enable bash-like comments by prefixing a command with '#' to make it a comment.
 		#setopt chaselinks		# Go to full destination of symlinks.
-	# }
+	# }}
 
-	# Input/Output {
+	# Input/Output {{
 		unsetopt correct correctall 	# Do not encourage sloppy typing.
 		#setopt nohashdirs		# No need for rehash to find new binaries.
 		#setopt printexitvalue 		# Print abnormal exit status.
-	# }
+	# }}
 
-	# Job Control {
+	# Job Control {{
 		setopt longlistjobs		# Display PID when suspending processes.
-	# }
+	# }}
 
-	# Shell Emulation # {
+	# Shell Emulation # {{
 		#setopt ksharrays		# Array are 0-indexed. NOTE breaks zsh functions, plugins, etc...
 		setopt shnullcmd		# Truncate like in bash e.g. $(>file).
-	# }
+	# }}
 
-	# ZLE {
+	# ZLE {{
 		setopt nobeep			# No beeps thanks!
-	#}
-# }
+	# }}
+# }}
 
-# Bindings {
+# Bindings {{
 	# View binding namespaces with $(bindkey -l). Then view bindkings for a ns with $(bindkey -m <ns>)
 	bindkey -v								# vi command editing mode.
 	export KEYTIMEOUT=1						# Set ESC to normal mode timout to 10 ms. Default is 40ms.
@@ -183,9 +183,9 @@ fi
 		bindkey "^[[3~"  delete-char
 		bindkey "^[3;5~" delete-char
 	fi
-# }
+# }}
 
-# ZLE {
+# ZLE {{
 	# Let / search in vi mode. Defined in ~/.zsh_funcs/vi-search-fix
 	# Reference: http://superuser.com/questions/476532/how-can-i-make-zshs-vi-mode-behave-more-like-bashs-vi-mode
 	autoload vi-search-fix
@@ -196,17 +196,17 @@ fi
 	autoload -U edit-command-line
 	zle -N edit-command-line
 	bindkey -M vicmd v edit-command-line
-# }
+# }}
 
-# zsh extras {
+# zsh extras {{
 	# Enable help command for zsh functions.
 	autoload -U run-help
 	autoload run-help-git run-help-svn run-help-svk
 	#unalias run-help
 	alias help=run-help
-# }
+# }}
 
-# Programs {
+# Programs {{
 	# Shell bookmarks with jump. https://github.com/flavio/jump
 
 	# Jump shell bookmarks.
@@ -228,7 +228,7 @@ fi
 		PATH="$HOME/src/github.com/simonwhitaker/gibo:$PATH"
 		#source $HOME/src/github.com/simonwhitaker/gibo/gibo-completion.zsh
 	fi
-# }
+# }}
 
 sourceifexists $HOME/.shell_startx
 
@@ -238,6 +238,6 @@ sourceifexists $HOME/.shell_startx
 #fi
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-#export PATH="$PATH:$HOME/.rvm/bin"
+export PATH="$PATH:$HOME/.rvm/bin"
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
