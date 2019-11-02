@@ -64,6 +64,7 @@ fi
 
 # Programs {
 	# Sorce bashmarks.
+	# See saved marks in ~/.sdirs
 	sourceifexists $HOME/.local/bin/bashmarks.sh
 
 	# Jump shell bookmarks.
