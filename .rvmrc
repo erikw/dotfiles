@@ -1,2 +1,0 @@
-# Ignore start-up warning about RVM not being first in PATH.
-rvm_silence_path_mismatch_check_flag=1
