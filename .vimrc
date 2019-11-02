@@ -19,11 +19,11 @@
 
 	" Formats {
 	" Git:
-		"Plugin 'git://git.wincent.com/command-t.git'
+		"Plugin 'git://git.domain.com/project.git'
 	" Github:
-		"Plugin 'AndrewRadev/sideways.vim'
+		"Plugin 'username/project.vim'
 	" vim-scripts.org (https://github.com/vim-scripts/):
-		"Plugin 'ConflictMotions'
+		"Plugin 'ProjectName'
 	" }
 
 	" UI {

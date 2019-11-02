@@ -217,16 +217,17 @@ source $HOME/.shell_functions
 			#export LESSOPEN="| src-hilite-lesspipe.sh %s"
 		#fi
 
-		# Solarized version, as the normal version does not work (hidden text) when solarized terminal background is used.
-		# https://github.com/jrunning/source-highlight-solarized
 		if program_is_in_path source-highlight; then
-			export LESSOPEN="| source-highlight --failsafe -f esc-solarized --style-file=esc-solarized.style -i %s -o STDOUT"
+			export LESSOPEN="| /usr/local/bin/src-hilite-lesspipe.sh %s"
+			# Solarized version, as the normal version does not work (hidden text) when solarized terminal background is used.
+			# https://github.com/jrunning/source-highlight-solarized
+			#export LESSOPEN="| source-highlight --failsafe -f esc-solarized --style-file=esc-solarized.style -i %s -o STDOUT"
 		fi
 
 		LESS=		# Debians /etc/zsh/zshenv sets LESS to values that quits less when hitting the bottom.
-		#LESS="$LESS --no-lessopen"		# Disable usage of LESSOPEN.
+		#LESS="$LESS --no-lessopen"			# Disable usage of LESSOPEN.
 		LESS="$LESS --RAW-CONTROL-CHARS"	# Display colors.
-		LESS="$LESS --ignore-case"		# Case insensitive search. However using capital letter(s) will enable case sensitive search.
+		LESS="$LESS --ignore-case"			# Case insensitive search. However using capital letter(s) will enable case sensitive search.
 		LESS="$LESS --status-column"		# Status column with number of lines etc.
 		#LESS="$LESS --LINE-NUMBERS"		# Show line numbers.
 		#LESS="$LESS --mouse-support"		# TODO Some lessess seems to have this option. What does it do?
@@ -234,9 +235,9 @@ source $HOME/.shell_functions
 	# }
 
 	# Android SDK
-	if [ -d "$HOME/src/android-sdk-linux/" ]; then
-		PATH="$HOME/src/android-sdk-linux/tools/:$HOME/src/android-sdk-linux/platform-tools/:$PATH"
-	fi
+	#if [ -d "$HOME/src/android-sdk-linux/" ]; then
+		#PATH="$HOME/src/android-sdk-linux/tools/:$HOME/src/android-sdk-linux/platform-tools/:$PATH"
+	#fi
 
 	# Perl local libraries.
 	# Reference: http://search.cpan.org/~haarg/local-lib-2.000015/lib/local/lib.pm http://www.perladvent.org/2009/3/

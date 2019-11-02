@@ -173,12 +173,6 @@ $ ruby extconf.rb
 $ make   # FreeBSD: use gmake.
 ````
 
-### jcommenter
-The plugin uses DOS line endings; convert it.
-```bash
-$ dos2unix ~/.vim/bundle/jcommenter.vim/plugin/jcommenter.vim
-````
-
 ### [vim-instant-markdown](https://github.com/suan/vim-instant-markdown)
 ```bash
 $ sudo npm -g install instant-markdown-d
@@ -230,7 +224,7 @@ $ pip3 install --user isort
 
 
 ## MacVim
-* Install [Inconsolata](https://github.com/google/fonts/tree/master/ofl/inconsolata) font which my [.gvimrc](.gvimrc) is set up with.
+* Install [Inconsolata](https://github.com/google/fonts/tree/master/ofl/inconsolata) font which my [.gvimrc](.gvimrc) is set up with. `macos_install.sh` already installs it.
 
 ## Tmux
 
@@ -262,15 +256,7 @@ Update `~/.tmux.conf` to use xclip for linux and pbcopy/pbpaste for macOS and th
 
 Install for both:
  * [seebi/dircolors-solarized](https://github.com/seebi/dircolors-solarized) (only for Linux systems)
- * [GNU source-highlight](https://www.gnu.org/software/src-highlite/source-highlight.html) for less(1).
- * [jrunning/source-highlight-solarized](https://github.com/jrunning/source-highlight-solarized)
-
-```bash
-$ ghq get git@github.com:jrunning/source-highlight-solarized.git
-$ datadir=$(yes n | source-highlight-settings | grep "current datadir" | sed -e 's/^.*: //')
-$ cp ~/src/github.com/jrunning/source-highlight-solarized/esc-solarized.* $datadir
-$ echo "esc-solarized = esc-solarized.outlang" >> $datadir/outlang.map
-````
+ * [GNU source-highlight](https://www.gnu.org/software/src-highlite/source-highlight.html) for less(1). To make it work on macOS, run `source-highlight-settings(1)` and create a new data dir at the path `/usr/local/share/source-highlight`.
 
 
  * [flavio/jump](https://github.com/flavio/jump)

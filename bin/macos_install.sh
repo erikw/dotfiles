@@ -282,7 +282,7 @@ brew tap buo/cask-upgrade
 
 # Let's get some fonts!
 brew tap homebrew/cask-fonts
-brew cask install font-terminus font-source-code-pro
+brew cask install font-terminus font-source-code-pro font-inconsolata
 
 brew tap colindean/fonts-nonfree
 brew cask install font-microsoft-office
