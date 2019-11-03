@@ -4,7 +4,7 @@
 #	vi: foldmarker={,} filetype=zsh foldmethod=marker foldlevel=0: tabstop=4 shiftwidth=4:
 # }}
 
-PROFILE_STARTUP=true
+#PROFILE_STARTUP=true
 # After running this, inspect result of current shell with:
 # $ ~/bin/parse_zsh_startup.py startuplog.$$
 # Source: https://kev.inburke.com/kevin/profiling-zsh-startup-time/
@@ -113,9 +113,15 @@ fi
 	zstyle ':vcs_info:*' formats '%F{5}[%F{2}%b%F{5}] %F{2}%c%F{3}%u%f'
 	zstyle ':vcs_info:*' enable git cvs svn
 	precmd () { vcs_info }
-	#PROMPT='%* %F{5}[%F{2}%n@%m%F{5}] %F{3}%3~ ${vcs_info_msg_0_}%{$reset_color%}> '
-	# Less colorful version. Looks more like ~/.bash_ps1
-	PROMPT='%D{%H:%M:%S} %n@%m %F{3}%3~ ${vcs_info_msg_0_}%{$reset_color%}> '
+	# See formatting options in manpage zshmisc(1) under the section SIMPLE PROMPT ESCAPES.
+	# Mimics the lookg of my ~/.bash_ps1
+	PROMPT="%D{%H:%M:%S}"								# Date with seconds
+	PROMPT="$PROMPT %n@%m"								# Current user and hostname
+	PROMPT="$PROMPT %F{3}%3~/%{$reset_color%}"			# Truncated CWD.
+	PROMPT="$PROMPT \${vcs_info_msg_0_}"				# Current VCS branch, as configured above. $ is escaped so this part is not evaluated yet (breaks then).
+	PROMPT="$PROMPT%1(j:[%j]:)"						# Number of background jobs (if >=1).
+	PROMPT="$PROMPT%(?::%F{red}{%?}%{$reset_color%})"	# Last exit code if !=0
+	PROMPT="$PROMPT> "									# EOL
 
 
 	# Fish like syntax highlighting on command line.
@@ -245,7 +251,7 @@ fi
 #export PATH="$PATH:$HOME/.rvm/bin"
 
 # Must be at the end!
-if [[ "$PROFILE_STARTUP" == true ]]; then
-	unsetopt xtrace
-	exec 2>&3 3>&-
-fi
+#if [[ "$PROFILE_STARTUP" == true ]]; then
+	#unsetopt xtrace
+	#exec 2>&3 3>&-
+#fi
