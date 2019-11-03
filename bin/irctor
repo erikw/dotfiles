@@ -10,11 +10,8 @@ do_start() {
 	if [ "$?" -ne "0" ]; then
 		# Should not bee needed if stop() is correctly implemented and a session is always quited via the stop function.
 		do_clean_files
-		#tmux new-session -d -x 287 -y 41 -s "$session_name" -n "mutt/news" mutt
 		tmux new-session -d -x 287 -y 41 -s "$session_name" -n "mutt" mutt
-		#tmux send-keys -t "$session_name":0 mutt C-m
-		#tmux split-window -t "$session_name":0 -h newsbeuter # Disalbed since Greader is closed, find alternative.
-		tmux set-window-option -t "$session_name":0 monitor-activity off
+		#tmux set-window-option -t "$session_name":0 monitor-activity off
 
 		tmux new-window -t "$session_name":1 -n "irssi" irssi
 		tmux set-window-option -t "$session_name":1 monitor-activity off
