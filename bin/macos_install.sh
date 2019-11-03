@@ -30,11 +30,9 @@ read -r -d '' brew_formulae_default <<-'EOAPPS'
 	daemonize
 	dfc
 	dos2unix
-	elinks
 	emacs
 	gawk
 	ghq
-	gist
 	git
 	gnu-getopt
 	gnupg
@@ -50,7 +48,6 @@ read -r -d '' brew_formulae_default <<-'EOAPPS'
 	jshon
 	jsonlint
 	knock
-	links
 	macvim
 	mosh
 	multitail
@@ -61,9 +58,7 @@ read -r -d '' brew_formulae_default <<-'EOAPPS'
 	octave
 	pdfgrep
 	pdftotext
-	peco
 	pidof
-	pv
 	python
 	readline
 	rsync
@@ -121,15 +116,19 @@ read -r -d '' brew_formulae_additional <<-'EOAPPS'
 	checkbashisms
 	colorsvn
 	cpanminus
+	elinks
 	ffmpeg2theora
 	irssi
 	jq
 	mercurial
 	mutt
+	nethogs
 	notmuch
 	offlineimap
 	pastebinit
+	peco
 	postgresql
+	pv
 	pyenv
 	pyenv-virtualenvwrapper
 	python@2
