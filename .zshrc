@@ -117,7 +117,7 @@ fi
 	# Mimics the lookg of my ~/.bash_ps1
 	PROMPT="%D{%H:%M:%S}"								# Date with seconds
 	PROMPT="$PROMPT %n@%m"								# Current user and hostname
-	PROMPT="$PROMPT %F{3}%3~/%{$reset_color%}"			# Truncated CWD.
+	PROMPT="$PROMPT %F{3}%5~/%{$reset_color%}"			# CWD, truncated to 5 components (directory depth).
 	PROMPT="$PROMPT \${vcs_info_msg_0_}"				# Current VCS branch, as configured above. $ is escaped so this part is not evaluated yet (breaks then).
 	PROMPT="$PROMPT%1(j:[%j]:)"						# Number of background jobs (if >=1).
 	PROMPT="$PROMPT%(?::%F{red}{%?}%{$reset_color%})"	# Last exit code if !=0
