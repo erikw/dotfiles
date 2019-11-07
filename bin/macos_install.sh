@@ -174,8 +174,8 @@ brew_casks_default=$(make_1line "$brew_casks_default")
 
 read -r -d '' brew_casks_additional <<-'EOAPPS'
 	adium
+	android-platform-tools
 	atom
-	flux
 	awareness
 	background-music
 	burn
@@ -186,6 +186,7 @@ read -r -d '' brew_casks_additional <<-'EOAPPS'
 	dash
 	eclipse-ide
 	flip4mac
+	flux
 	franz
 	google-backup-and-sync
 	google-drive-file-stream
