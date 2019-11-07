@@ -26,10 +26,12 @@ __tm_command() {
     command "$@"
 }
 
-ssh() {
-    __tm_command ssh "$@"
-}
+# Disabled by default
+#ssh() {
+    #__tm_command ssh "$@"
+#}
 
-mosh() {
-    __tm_command mosh "$@"
-}
+# Disabled by default
+#mosh() {
+    #__tm_command mosh "$@"
+#}
