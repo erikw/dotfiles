@@ -15,9 +15,7 @@ make_1line() {
 # Brew lists {
 read -r -d '' brew_formulae_default <<-'EOAPPS'
 	ack
-	antiword
 	aspell
-	bashdb
 	cloc
 	cmatrix
 	colordiff
@@ -27,7 +25,6 @@ read -r -d '' brew_formulae_default <<-'EOAPPS'
 	cscope
 	ctags
 	curl
-	daemonize
 	dfc
 	dos2unix
 	emacs
@@ -40,19 +37,15 @@ read -r -d '' brew_formulae_default <<-'EOAPPS'
 	graphviz
 	grip
 	htop
-	httpie
 	iftop
 	imagemagick
 	ipcalc
-	ipython
 	jshon
 	jsonlint
 	knock
 	macvim
 	mosh
-	multitail
 	ncdu
-	ncftp
 	netcat
 	nmap
 	octave
@@ -65,7 +58,6 @@ read -r -d '' brew_formulae_default <<-'EOAPPS'
 	sl
 	source-highlight
 	telnet
-	the_silver_searcher
 	tig
 	tmux
 	tree
@@ -112,16 +104,24 @@ brew_formulae_default_gnu=$(make_1line "$brew_formulae_default_gnu")
 # see https://www.freecodecamp.org/news/manage-multiple-python-versions-and-virtual-environments-venv-pyenv-pyvenv-a29fb00c296f/
 read -r -d '' brew_formulae_additional <<-'EOAPPS'
 	ableton-live-intro
+	antiword
+	bashdb
 	cgdb
 	checkbashisms
+	cmake
 	colorsvn
 	cpanminus
+	daemonize
 	elinks
 	ffmpeg2theora
+	httpie
+	ipython
 	irssi
 	jq
 	mercurial
+	multitail
 	mutt
+	ncftp
 	nethogs
 	notmuch
 	offlineimap
@@ -137,7 +137,9 @@ read -r -d '' brew_formulae_additional <<-'EOAPPS'
 	swiftlint
 	task
 	tasksh
+	the_silver_searcher
 	valgrind
+	wakeonlan
 EOAPPS
 brew_formulae_additional=$(make_1line "$brew_formulae_additional")
 
