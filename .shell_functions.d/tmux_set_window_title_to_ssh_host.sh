@@ -1,5 +1,5 @@
 # NOTE stolen and modified version of https://gist.github.com/javipolo/62eb953f817a9a2f63b8127ff5f60788
-# The only downside to this that I've seen so far is that if there are many panes in a single window, the ssh hostname will overwide those. Normall the window title will reflerct the active pane's command.
+# The only downside to this that I've seen so far is that if there are many panes in a single window, the ssh hostname will overwide those. Normally the window title will reflect the active pane's command.
 
 # Make short hostname only if its not an IP address
 __tm_get_hostname(){
