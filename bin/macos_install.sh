@@ -448,6 +448,8 @@ chmod go-w '/usr/local/share'
 # * Enable automatic tmux copy to GUI clipboard on selection
 # - Check "Applications in terminal may access clipboard"
 ## Profiles
+### General
+# * If a new login shell with zsh gives $?=1, avoid this by chaning Command to "zsh" instead of "Login Shell". TODO remove this when the mysterious bug has disappeared.
 ### Colors
 # * Select color preset "Solarized Dark".
 ### Text
