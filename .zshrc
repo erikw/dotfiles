@@ -115,6 +115,7 @@ fi
 	precmd () { vcs_info }
 	# See formatting options in manpage zshmisc(1) under the section SIMPLE PROMPT ESCAPES.
 	# Mimics the lookg of my ~/.bash_ps1
+	# NOTE virtualenvwrapper prepends the active venv name in the generated bin/activate script.
 	PROMPT="%D{%H:%M:%S}"								# Date with seconds
 	PROMPT="$PROMPT %n@%m"								# Current user and hostname
 	PROMPT="$PROMPT %F{3}%5~/%{$reset_color%}"			# CWD, truncated to 5 components (directory depth).
