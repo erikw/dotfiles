@@ -1,7 +1,0 @@
-#!/usr/bin/env sh
-# This file is in the beginning of a X user session but before a window manager is started by at least GDM and KDM.
-
-# Window composition.
-#xcompmgr -cC -t -5 -l 5 -r 4.2 -o.55 &
-#xcompmgr -c -C  &
-compton -bc
