@@ -8,12 +8,12 @@
 # After running this, inspect result of current shell with:
 # $ ~/bin/parse_zsh_startup.py startuplog.$$
 # Source: https://kev.inburke.com/kevin/profiling-zsh-startup-time/
-if [[ "$PROFILE_STARTUP" == true ]]; then
-	# http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html
-	PS4=$'%D{%M%S%.} %N:%i> '
-	exec 3>&2 2>$HOME/tmp/startlog.$$
-	setopt xtrace prompt_subst
-fi
+#if [[ "$PROFILE_STARTUP" == true ]]; then
+	## http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html
+	#PS4=$'%D{%M%S%.} %N:%i> '
+	#exec 3>&2 2>$HOME/tmp/startlog.$$
+	#setopt xtrace prompt_subst
+#fi
 
 # Common shell settings.
 if [ -f $HOME/.shell_commons ]; then
