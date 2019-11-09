@@ -161,7 +161,6 @@ read -r -d '' brew_casks_default <<-'EOAPPS'
 	itsycal
 	karabiner-elements
 	libreoffice
-	qr-journal
 	scroll-reverser
 	sensiblesidebuttons
 	spotify
@@ -208,6 +207,7 @@ read -r -d '' brew_casks_additional <<-'EOAPPS'
 	prey
 	puddletag
 	pycharm-ce
+	qr-journal
 	rambox
 	robo-3t
 	signal
