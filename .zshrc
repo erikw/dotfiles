@@ -118,9 +118,10 @@ fi
 	# NOTE virtualenvwrapper prepends the active venv name in the generated bin/activate script.
 	PROMPT="%D{%H:%M:%S}"								# Date with seconds
 	PROMPT="$PROMPT %n@%m"								# Current user and hostname
+	test  -n "$SSH_CLIENT" && PROMPT="$PROMPT %F{blue}[SSH]%{$reset_color%}"								# Highlight when loggied in via SSH.
 	PROMPT="$PROMPT %F{3}%5~/%{$reset_color%}"			# CWD, truncated to 5 components (directory depth).
 	PROMPT="$PROMPT \${vcs_info_msg_0_}"				# Current VCS branch, as configured above. $ is escaped so this part is not evaluated yet (breaks then).
-	PROMPT="$PROMPT%1(j:[%j]:)"						# Number of background jobs (if >=1).
+	PROMPT="$PROMPT%1(j:[%j]:)"							# Number of background jobs (if >=1).
 	PROMPT="$PROMPT%(?::%F{red}{%?}%{$reset_color%})"	# Last exit code if !=0
 	PROMPT="$PROMPT> "									# EOL
 
