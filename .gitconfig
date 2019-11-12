@@ -25,6 +25,7 @@
 	cia = commit --amend
 	cl = clone
 	co = checkout
+	committers = shortlog -s -n --all
 	cp = cherry-pick
 	desc0= describe --abbrev=0
 	desc= describe
