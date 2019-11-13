@@ -6,9 +6,8 @@
 
 # Variables {{
 	# Addresses {{
-		set my_addr_default	=	"erik.westrup@gmail.com" 	# My default mail address.
-		set my_addr_westrup	=	"erik@westrup.se"		# Fancy address thanks to Anders Westrup.
-		set my_addr_dsek	=	"erikw@dsek.lth.se"		# Mailalias for me at Dsek.
+		set my_addr_default	=	"GIT-CENSORED" 		# My default mail address.
+		set my_addr_westrup	=	"GIT-CENSORED"		# Fancy address.
 	# }}
 
 	set my_local_mbox = "/var/spool/mail/erikw"		# The system local mailbox.
@@ -36,13 +35,12 @@
 	hdr_order from: to: cc: date: subject:		# and in this order.
 	alternates $my_addr_default			# Addresses I recieve mails to.
 	alternates $my_addr_westrup
-	alternates $my_addr_dsek
 
 	# Use mutt's built in IMAP, for gmail.
-	# set imap_user = "erik.westrup@gmail.com"	# IMAP user.
+	# set imap_user = "GIT-CENSORED"	# IMAP user.
 	# set imap_pass = ""				# Password. Escape it!
 	# SMTP url.
-	# set smtp_url = "smtp://erik.westrup@smtp.gmail.com:587/"
+	# set smtp_url = "smtp://GIT-CENSORED@smtp.gmail.com:587/"
 	# set smtp_pass = ""				# Password. Escape it!
 	# set folder = "imaps://imap.gmail.com:993"	# IMAP root folder.
 	# set spoolfile = "+INBOX"			# Inbox spool file.
@@ -209,9 +207,6 @@
 	macro index,pager id1 \
 		":set from=\"$my_addr_westrup\"<enter>:set signature=\"~/bin/siggen.sh '' '$my_addr_westrup'|\"<enter>:set status_format=\"$my_format_status<$my_addr_westrup>\"<enter>" \
 		"switch identity: Erikw(westrup.se)"
-	macro index,pager id2 \
-		":set from=\"$my_addr_dsek\"<enter>:set signature=\"~/bin/siggen.sh 'Datatekniksektionen' '$my_addr_dsek'|\"<enter>:set status_format=\"$my_format_status<$my_addr_dsek>\"<enter>" \
-		"switch identity: Dsek"
 	# }}
 # }}
 

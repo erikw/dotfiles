@@ -1,6 +1,6 @@
 [gcalcli]
-# Google account name.
-user: erik.westrup@gmail.com
+# Google account email.
+user: GIT-CENSORED
 # Google password token.
 pw: GIT-CENSORED
 # Calendars to show.

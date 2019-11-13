@@ -30,8 +30,8 @@ path=/home/erikw/.mail
 #
 [user]
 name=Erik Westrup
-primary_email=erik.westrup@gmail.com
-other_email=erik@westrup.se;ada09ewe@student.lu.se;erik.westrup.335@student.lu.se;ewestrup@uci.edu;
+primary_email=GIT-CENSORED
+other_email=GIT-CENSORED;
 
 # Configuration for "notmuch new"
 #

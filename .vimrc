@@ -560,13 +560,6 @@ if s:use_plugins
 		"autocmd FileType java imap <F12> <Plug>(JavaComplete-Imports-RemoveUnused)
 	" }
 
-	" Jcommenter {
-		"command! Jcomment call JCommentWriter()		" A command that calls the function for what is under the cursor.
-		"" Set default values for file level comments.
-		"autocmd FileType java let b:jcommenter_class_author='Erik Westrup <erik.westrup@gmail.com>'
-		"autocmd FileType java let b:jcommenter_file_author='Erik Westrup <erik.westrup@gmail.com>'
-	" }
-
 	" Jedi {
 		"let g:jedi#use_tabs_not_buffers = 1  " Go to a tab when opening a definition.
 	" }
