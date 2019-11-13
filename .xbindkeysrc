@@ -129,7 +129,7 @@
 		"voltune.sh -c mute"
 			Control + F12
 
-		# Toggle mic mute. TODO when the MIC_MUTE button with keycode 248 works and X can handle the new XF86MIC_MUTE (or what the will call it).
+		# Toggle mic mute. 
 		"amixer set Capture toggle"
 			Control + F9
 	# }
