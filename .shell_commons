@@ -291,26 +291,8 @@ source $HOME/.shell_functions
 	#fi
 
 
-
-	# tig
-	# On OSX, ^Y in tig suspends the application. Source: https://github.com/jonas/tig/issues/214
-	# TODO not anymore it seems. Remove tis after a while.
-	#if program_is_in_path tig && shell_is_macos; then
-		#stty dsusp undef
-	#fi
-
-	# RVM - RubyGems package manager
-	# Add installed $(gem install ...) binaries to path
-	# Reference: http://guides.rubygems.org/faqs/
-	# NOTE -rubygems is deprecated and removed in modern versions, see https://bbs.archlinux.org/viewtopic.php?id=233309
-	# TODO conider sandboxing this, as it's slow.
-	#if which ruby >/dev/null && which gem >/dev/null; then
-		#PATH="$(ruby -e 'puts Gem.user_dir')/bin:$PATH"
-	#fi
-
 	# Load custom keymap
 	# NOTE allow me or %wheeler to issue loadkeys with no password.
-	# TODO make this better!
 	#if shell_is_linux && [ -f "$HOME/.keymap" ]; then
 		#sudo loadkeys -q $HOME/.keymap &>/dev/null
 	#fi

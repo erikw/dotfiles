@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 # Control dual screens. Alternatively use arandr GUI tool.
 # Get information with $(xrandr -q).
-# TODO detect prefered resolution from $(xrandr -q) and try that (if that is not the default behaviour already).
 
 if [ "$#" -eq 2 ]; then
 	monitor="$1"

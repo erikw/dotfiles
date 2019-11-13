@@ -157,7 +157,6 @@
 	#skype &
 
 	# Start skyped hopefully after Skype is loaded.
-	# TODO is this sleep still needed?
 	#(sleep 10s && skyped) &
 
 	# Start auto mounter. Needs a running notification systen daemon.
@@ -175,11 +174,10 @@
 	# Clipboard manager.
 	parcellite &
 
-	# Bluetooth applet. TODO broken in AUR, find replacement.
+	# Bluetooth applet.
 	#blueman-applet &
 
 	# Lock screen when my phone is too far away.
-	# TODO is it proximity who causes kernel oops?
 	#start_proximity.sh &
 
 	# Start Dropbox.

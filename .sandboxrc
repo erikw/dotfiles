@@ -14,11 +14,11 @@ source $HOME/.shell_functions.d/sourceifexists.sh
 #
 # List installed versions: $ rvm list
 # Change to a new one: $ rvm use <version>
-sandbox_init_rvm(){
-	# Load RVM into a shell session *as a function*.
-	# Also adds installed gems to PATH.
-	sourceifexists $HOME/.rvm/scripts/rvm
-}
+#sandbox_init_rvm(){
+	## Load RVM into a shell session *as a function*.
+	## Also adds installed gems to PATH.
+	#sourceifexists $HOME/.rvm/scripts/rvm
+#}
 
 # GVM: Go Version Manager
 sandbox_init_gvm(){

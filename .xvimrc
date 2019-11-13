@@ -38,8 +38,4 @@
 
 	" Use <space>cm to toggle comments for the selection
 	nmap <space>cm :xccmd commentAndUncommentCurrentLines<CR>
-
-	" Clear search matches highlighting. (Ctrl+/ => ^_)
-	" TODO does this work?
-	"nmap <C-_> :nohlsearch<CR>
 " }

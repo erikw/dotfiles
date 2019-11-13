@@ -1,5 +1,5 @@
 # Temporary fix as the default URL has been (301) moved.
-# TODO uncomment this when the snapper package is updated.
+# NOTE uncomment this when the snapper package is updated.
 #AURURL='https://aur.archlinux.org'
 
 # Don't check vote status.

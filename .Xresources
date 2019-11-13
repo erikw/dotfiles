@@ -15,8 +15,6 @@ XTerm.termName: xterm-256color
 ! Put the scrollbar to the right as customary.
 XTerm.rightScrollBar: true
 ! Default window size.
-! TODO The mouse menues does not work when changing the geometry :S
-!XTerm.geometry: 80x24
 ! Bell style
 XTerm.visualBell: on
 ! Color of the cursor.
