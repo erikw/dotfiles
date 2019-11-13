@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Watch Maildir inboxes for new mails and send a summary notification with notify-send. Tested and "works perfectly" with dunst.
-# Author: Erik Westrup <erik.westrup@gmail.com>
+# Author: Erik Westrup https://erikw.me/
 # Dependencies:
 # - inotifywait: from inotify-tools package
 # - email_parse.py: Does a better job of parsing emails than shell hackery.

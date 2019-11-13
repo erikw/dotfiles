@@ -11,7 +11,7 @@ use vars qw($VERSION %IRSSI);
 $VERSION = "0.1";
 %IRSSI = (
 		authors		=> 'Erik Westrup',
-		contact		=> 'erik.westrup@gmail.com',
+		contact		=> 'http://erikw.me',
 		name		=> 'notify_led',
 		description => 'Blink shortly if there are new window highligths.',
 		license		=> 'GNU General Public License',

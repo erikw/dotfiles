@@ -3,6 +3,6 @@
 -- 
 Erik Westrup
 http://erikw.me
-<erik.westrup@gmail.com>
+<GIT-CENSORED>
 --------------------------------------
 This email is encrypted with 2ROT-13.

@@ -49,8 +49,8 @@ nametrans = lambda folder: \
 [Repository Gmail-Remote]
 # Use Gmail specific IMAP with hard-coded remotehost, remoteport, tunnel and ssl.
 type = Gmail
-# Gmail username.
-remoteuser = erik.westrup@gmail.com
+# Gmail email..
+remoteuser = GIT-CENSORED
 # Gmail password token. Generate at https://myaccount.google.com/apppasswords
 remotepass = GIT-CENSORED
 # Use SSL. Implicit for type = Gmail.

@@ -3,14 +3,14 @@
 # $siggen.sh "role" "email"
 
 role=
-email="erik.westrup@gmail.com"
+email="GIT-CENSORED"
 [[ -n "$1" ]] && role=", ${1}"
 [[ -n "$2" ]] && email=$2
 
 # Swedish address
 #read -d '' out  <<-EOF
 read -d '' out  <<EOF
--- 
+--
 Erik Westrup${role}
 http://erikw.me
 <${email}>
