@@ -1,4 +1,5 @@
 # Loadkeys keymap.
+# Load this file like: $ sudo loadkeys -q $HOME/.keymap
 # get keycodes with `dumpkeys | less` or `showkey`.
 
 # Translate Caps Lock key to Escape.
