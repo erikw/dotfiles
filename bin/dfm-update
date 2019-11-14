@@ -1,5 +1,7 @@
 #!/usr/bin/env sh
 
+set -e	# Exit on error
+
 cd $HOME/.dotfiles
 git stash
 git checkout personal
