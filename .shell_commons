@@ -57,6 +57,12 @@ source $HOME/.shell_functions
 		MANPATH="/usr/local/Cellar/findutils/4.6.0/man:$MANPATH"
 	fi
 
+	# Add MacTex binaries (macos).
+	# Reference: http://rkrug.github.io/LMS-test/downloads/UpdatingForElCapitan.pdf
+	if [ -e /Library/TeX/texbin ]; then
+		PATH="/Library/TeX/texbin:$PATH"
+	fi
+
 	# Source aliases.
 	sourceifexists $HOME/.shell_aliases
 
@@ -93,7 +99,6 @@ source $HOME/.shell_functions
 	if [ -e $HOME/.sandboxd/sandboxd ]; then
 		source $HOME/.sandboxd/sandboxd
 	fi
-
 # }
 
 # UI {
