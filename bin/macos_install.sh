@@ -40,8 +40,8 @@ read -r -d '' brew_formulae_default <<-'EOAPPS'
 	iftop
 	imagemagick
 	ipcalc
+	jq
 	jshon
-	jsonlint
 	knock
 	macvim
 	mosh
@@ -66,7 +66,6 @@ read -r -d '' brew_formulae_default <<-'EOAPPS'
 	urlview
 	w3m
 	watch
-	wego
 	wget
 	xz
 	zenity
@@ -117,7 +116,7 @@ read -r -d '' brew_formulae_additional <<-'EOAPPS'
 	httpie
 	ipython
 	irssi
-	jq
+	jsonlint
 	mercurial
 	multitail
 	mutt
@@ -140,6 +139,7 @@ read -r -d '' brew_formulae_additional <<-'EOAPPS'
 	the_silver_searcher
 	valgrind
 	wakeonlan
+	wego
 EOAPPS
 brew_formulae_additional=$(make_1line "$brew_formulae_additional")
 
