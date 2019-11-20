@@ -27,7 +27,6 @@ read -r -d '' brew_formulae_default <<-'EOAPPS'
 	curl
 	dfc
 	dos2unix
-	emacs
 	gawk
 	ghq
 	git
@@ -112,6 +111,7 @@ read -r -d '' brew_formulae_additional <<-'EOAPPS'
 	cpanminus
 	daemonize
 	elinks
+	emacs
 	ffmpeg2theora
 	httpie
 	ipython
