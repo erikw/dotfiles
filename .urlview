@@ -7,9 +7,9 @@
 # REGEXP  (((https?|ftp|gopher)://|(mailto|file|news):)[^' \t<>"]+|(www|web|w3)\.[-a-z0-9.]+)[^' \t.,;<>"\):]
 # COMMAND url_handler.sh %s
 
-# linux
-COMMAND url_handler.sh %s
+# LINUX-CONFIG
+#COMMAND url_handler.sh %s
 
 # MACOS-CONFIG
 # Reference: https://www.jstorimer.com/blogs/workingwithcode/7766135-using-mutt-with-gmail-on-osx
-#COMMAND open --background %s
+COMMAND open --background %s

@@ -43,6 +43,8 @@ source $HOME/.shell_functions
 	if shell_is_macos; then
 		export DESKTYPE=macos
 	else
+		# LINUX-CONFIG
+		# FREEBSD-CONFIG
 		export DESKTYPE=dwm
 	fi
 

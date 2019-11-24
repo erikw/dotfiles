@@ -118,14 +118,13 @@ $ grep -nr GIT-CENSORED . | grep -v README.md
 
 Set `DESKTYPE` in `~/.shell_commons`, unless system is macos.
 
-If the host system is macOS, then at some places manual configuration is needed. Find where by looking for the macOS tag:
-```bash
-$ grep -nr MACOS-CONFIG . | grep -v README.md
-```
 
-same for FreeBSD:
+Default desktop is assumed to be macOS. Go through host-specific manual settings by searching for the corresponding tag.
+
 ```bash
-$ grep -nr FREEBSD-CONFIG . | grep -v README.md
+$ grep -nr MACOS-CONFIG . 2>/dev/null | grep -v README.md
+$ grep -nr LINUX-CONFIG . 2>/dev/null | grep -v README.md
+$ grep -nr FREEBSD-CONFIG . 2>/dev/null | grep -v README.md
 ```
 
 
