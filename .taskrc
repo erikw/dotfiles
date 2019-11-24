@@ -16,26 +16,26 @@ displayweeknumber=yes			# Show week numbers on calendar
 due=7					# Task is considered due in 7 days
 
 # Calendar controls
-# Linux
-include /usr/share/doc//task/rc/holidays.sv-SE.rc
-include /usr/share/doc//task/rc/holidays.de-DE.rc
+# LINUX-CONFIG
+#include /usr/share/doc//task/rc/holidays.sv-SE.rc
+#include /usr/share/doc//task/rc/holidays.de-DE.rc
 # FREEBSD-CONFIG
 #include /usr/local/share/taskwarrior/rc/holidays.sv-SE.rc
 #include /usr/local/share/taskwarrior/rc/holidays.de-DE.rc
 # MACOS-CONFIG
-#include /usr/local/share/doc/task/rc/holidays.sv-SE.rc
-#include /usr/local/share/doc/task/rc/holidays.de-DE.rc
+include /usr/local/share/doc/task/rc/holidays.sv-SE.rc
+include /usr/local/share/doc/task/rc/holidays.de-DE.rc
 
 # UI
 color=on					# Enable color
 
 # Themes.
-# Linux
-include /usr/share/doc/task/rc/solarized-dark-256.theme
+# LINUX-CONFIG
+#include /usr/share/doc/task/rc/solarized-dark-256.theme
 # FREEBSD-CONFIG
 #include /usr/local/share/taskwarrior/rc/solarized-dark-256.theme
 # MACOS-CONFIG
-#include /usr/local/share/doc/task/rc/solarized-dark-256.theme
+include /usr/local/share/doc/task/rc/solarized-dark-256.theme
 
 # Aliases
 alias.rm=delete                        # Alias for the delete command
