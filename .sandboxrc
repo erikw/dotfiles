@@ -69,9 +69,9 @@ sandbox_hook java-home jar
 # pyenv python version manager
 # NOTE only interactive termnials will get this, not scripts.
 #sandbox_init_pyenv(){
-#	if type pyenv >/dev/null 2>&1; then
-#		eval "$(pyenv init -)"
-#	fi
+	#if type pyenv >/dev/null 2>&1; then
+		#eval "$(pyenv init -)"
+	#fi
 #}
 #sandbox_hook pyenv easy_install
 #sandbox_hook pyenv pip

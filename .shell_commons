@@ -268,12 +268,12 @@ source $HOME/.shell_functions
 		unset macos_py2path macos_py3path
 	fi
 
-	if program_is_in_path pyenv; then
+	#if program_is_in_path pyenv; then
 		# Light-weight version:
 		#PATH="$(pyenv root)/shims:$PATH"
 		# Full config. NOTE is sandboxed
-		eval "$(pyenv init -)"
-	fi
+		#eval "$(pyenv init -)"
+	#fi
 
 	# When using pyenv, normal virtual env can't be used for python <3.3.
 	# See https://github.com/pyenv/pyenv-virtualenv and https://www.freecodecamp.org/news/manage-multiple-python-versions-and-virtual-environments-venv-pyenv-pyvenv-a29fb00c296f/
