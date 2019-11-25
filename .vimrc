@@ -3,6 +3,12 @@
 "	vi: foldmarker={,} foldmethod=marker foldlevel=0: tabstop=8:
 " }
 
+" Profiling {
+" $ vim --startuptime /tmp/vim.log
+" $ vim --startuptime /dev/stdout +qall
+" Reference: https://stackoverflow.com/questions/1687799/profiling-vim-startup-time
+" }
+
 " Vundle {
 	let s:using_vundle = 1		" Vundle will break default behaviour of spellfile. Let others know when using Vundle.
 
@@ -32,8 +38,8 @@
 		Plugin 'flazz/vim-colorschemes'
 	"}
 	" Navigation {
-		Plugin 'FuzzyFinder'
-		Plugin 'L9'			" Required for FuzzyFinder.
+		"Plugin 'FuzzyFinder'		" Disabled, as it has high startup time
+		"Plugin 'L9'			" Required for FuzzyFinder.
 		Plugin 'wincent/command-t'
 	"}
 	" Development: General {
@@ -71,23 +77,22 @@
 		Plugin 'lbdbq'
 	"}
 	" General {
-		"Plugin 'git://git.wincent.com/command-t.git'
-		"Plugin 'tpope/vim-unimpaired'
 		"Plugin 'easymotion/vim-easymotion'
-		"Plugin 'terryma/vim-multiple-cursors'
+		"Plugin 'git://git.wincent.com/command-t.git'
+		"Plugin 'godlygeek/tabular'		" Disabled: not used and have some startup time.
 		"Plugin 'sjl/gundo.vim' " Not updated for python3
+		"Plugin 'terryma/vim-multiple-cursors'
+		"Plugin 'tpope/vim-unimpaired'
 		Plugin 'LaTeX-Box-Team/LaTeX-Box'
+		Plugin 'MarcWeber/vim-addon-mw-utils' " Required for  garbas/vim-snipmate.
 		Plugin 'buffergrep'
 		Plugin 'danro/rename.vim'
 		Plugin 'dhruvasagar/vim-table-mode'
 		Plugin 'erikw/snipmate-snippets'
-		Plugin 'tomtom/tlib_vim'	" Required for garbas/vim-snipmate
 		Plugin 'erikw/vim-unimpaired'
 		Plugin 'fatih/vim-go'
 		Plugin 'fidian/hexmode'
 		Plugin 'garbas/vim-snipmate'
-		Plugin 'MarcWeber/vim-addon-mw-utils' " Required for  garbas/vim-snipmate.
-		Plugin 'godlygeek/tabular'
 		Plugin 'mattn/gist-vim'
 		Plugin 'michaeljsmith/vim-indent-object'
 		Plugin 'ntpeters/vim-better-whitespace'
@@ -98,6 +103,7 @@
 		Plugin 'scrooloose/syntastic'
 		Plugin 'suan/vim-instant-markdown'
 		Plugin 'tmux-plugins/vim-tmux'
+		Plugin 'tomtom/tlib_vim'	" Required for garbas/vim-snipmate
 		Plugin 'tpope/vim-capslock'
 		Plugin 'tpope/vim-fugitive'
 		Plugin 'tpope/vim-markdown.git'
@@ -502,29 +508,29 @@ if s:use_plugins
 	" }
 
 	" FuzzyFinder {
-		let g:fuf_dataDir = '~/.vim/fuf-data'		" Where to put stored data.
-		let g:fuf_keyNextMode = '<C-u>'			" How to switch seach mode. Remapped from default <C-v>
-		let g:fuf_keyPrevMode = '<C-i>'			" How to switch seach mode. Remapped from default <C-y>
-  	  	let g:fuf_keyPrevPattern = '<C-r>'		" Recall previous pattern. Remapp from default <C-s>
+		"let g:fuf_dataDir = '~/.vim/fuf-data'		" Where to put stored data.
+		"let g:fuf_keyNextMode = '<C-u>'			" How to switch seach mode. Remapped from default <C-v>
+		"let g:fuf_keyPrevMode = '<C-i>'			" How to switch seach mode. Remapped from default <C-y>
+                    "let g:fuf_keyPrevPattern = '<C-r>'		" Recall previous pattern. Remapp from default <C-s>
 
-		" Open files with same keybindings as command-t.
-		let g:fuf_keyOpenSplit = '<C-d>'		" How to open file in split. Does not work to use <C-s> even if keyPrevPattern is remapped, somehow.
-		let g:fuf_keyOpenVsplit = '<C-v>'		" Open file in vertical split.
-		let g:fuf_keyOpenTabpage = '<C-t>'		" Open in new tab.
+		"" Open files with same keybindings as command-t.
+		"let g:fuf_keyOpenSplit = '<C-d>'		" How to open file in split. Does not work to use <C-s> even if keyPrevPattern is remapped, somehow.
+		"let g:fuf_keyOpenVsplit = '<C-v>'		" Open file in vertical split.
+		"let g:fuf_keyOpenTabpage = '<C-t>'		" Open in new tab.
 
-		" Comments can't be after the mapping, that starts the fuzzyview in normal mode.
-		" Launch File-mode.
-		noremap <silent> ,f :FufFile<CR>
-		" Launch Buffer-mode.
-		noremap <silent> ,b :FufBuffer<CR>
-		" Launch Dir-mode.
-		noremap <silent> ,d :FufDir<CR>
-		" Launch Tag-mode
-		noremap <silent> ,t :FufTag<CR>
-		" Launch Tag-mode with current word.
-		noremap <silent> ,tw :FufTagWithCursorWord<CR>
-		" Launch with Filecoverage-mode.
-		noremap <silent> ,c :FufCoverageFile<CR>
+		"" Comments can't be after the mapping, that starts the fuzzyview in normal mode.
+		"" Launch File-mode.
+		"noremap <silent> ,f :FufFile<CR>
+		"" Launch Buffer-mode.
+		"noremap <silent> ,b :FufBuffer<CR>
+		"" Launch Dir-mode.
+		"noremap <silent> ,d :FufDir<CR>
+		"" Launch Tag-mode
+		"noremap <silent> ,t :FufTag<CR>
+		"" Launch Tag-mode with current word.
+		"noremap <silent> ,tw :FufTagWithCursorWord<CR>
+		"" Launch with Filecoverage-mode.
+		"noremap <silent> ,c :FufCoverageFile<CR>
 	" }
 
 	" Gist {
