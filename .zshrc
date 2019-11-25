@@ -4,11 +4,11 @@
 #	vi: foldmarker={,} filetype=zsh foldmethod=marker foldlevel=0: tabstop=4 shiftwidth=4:
 # }}
 
-#PROFILE_STARTUP=true
 # After running this, inspect result of current shell with:
 # $ ~/bin/parse_zsh_startup.py startuplog.$$
 # Source: https://kev.inburke.com/kevin/profiling-zsh-startup-time/
-#if [[ "$PROFILE_STARTUP" == true ]]; then
+#PROFILE_STARTUP=true
+#if [ "$PROFILE_STARTUP" = true ]; then
 	## http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html
 	#PS4=$'%D{%M%S%.} %N:%i> '
 	#exec 3>&2 2>$HOME/tmp/startlog.$$
@@ -255,8 +255,9 @@ fi
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change (WHY?).
 #export PATH="$PATH:$HOME/.rvm/bin"
 
+
 # Must be at the end!
-#if [[ "$PROFILE_STARTUP" == true ]]; then
-	#unsetopt xtrace
-	#exec 2>&3 3>&-
+#if [ "$PROFILE_STARTUP" = true ]; then
+   ##unsetopt xtrace
+   ##exec 2>&3 3>&-
 #fi
