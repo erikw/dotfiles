@@ -117,7 +117,7 @@ fi
 	# Mimics the lookg of my ~/.bash_ps1
 	# NOTE virtualenvwrapper prepends the active venv name in the generated bin/activate script.
 	PROMPT="%D{%H:%M:%S}"								# Date with seconds
-	PROMPT="$PROMPT %n@%m"								# Current user and hostname
+	PROMPT="$PROMPT %F{blue}%n%{$reset_color%}@%m"								# Current user and hostname
 	if [ -n "$SSH_CLIENT" ] && ! ([ -n "$TMUX" ] || [[ "$TERM" == "screen-"* ]] ); then
 		# Highlight when loggied in via SSH. But not in screen/tmux, that does not make sense.
 		PROMPT="$PROMPT %F{blue}[SSH]%{$reset_color%}"
@@ -254,7 +254,6 @@ fi
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change (WHY?).
 #export PATH="$PATH:$HOME/.rvm/bin"
-
 
 # Must be at the end!
 #if [ "$PROFILE_STARTUP" = true ]; then
