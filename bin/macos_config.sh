@@ -194,6 +194,8 @@ EOF
 #	    (unless the keyboard is an Apple keyboard or has a "mac-switch" toggle)
 #	    - Set Option -> Command
 #	    - Set Command -> Option
+## Text
+# * Set word expansions based on ~/doc/tech/word_expansions.txt
 ## Input Sources
 # * Add US, Swedish & German. Check "Show Input menu in menu bar".
 ## Shortcuts
