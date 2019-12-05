@@ -123,8 +123,8 @@ cd /etc
 git init
 touch .gitignore
 git add .
-git config --global user.email "GIT-CENSORED"
-git config --global user.name "Erik Westrup"
+git config --global user.email "$USER@HOST"
+git config --global user.name "$(id -un)"
 git commit -m "Initital commit"
 EOF
 
