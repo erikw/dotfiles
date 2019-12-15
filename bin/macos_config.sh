@@ -269,7 +269,13 @@ EOF
 #  - Applicatons
 #  - /tmp
 #  * Copy icon from Downloads -> DL in CMD+i dialog.
-# * Preferences
+## View
+# ** Show Path Bar
+# ** Show Status Bar
+### Show View Options
+# * First make sure to be in List view before entering this menu
+# * Check "Always open in list view" > Use as default
+## Preferences
 # ** General
 # *** Show on desktop: connected servers
 # ** Sidebar
