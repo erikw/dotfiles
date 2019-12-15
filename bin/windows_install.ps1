@@ -94,6 +94,7 @@ $choco_apps_additional =
 "dropbox " +
 "f.lux " +
 "origin " +
+"epicgameslauncher" +
 "flashplayerplugin " +
 "virtualclonedrive " +
 ""
