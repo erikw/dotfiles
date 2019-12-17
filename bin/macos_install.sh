@@ -515,6 +515,8 @@ chmod go-w '/usr/local/share'
 # * Disable all custom modifier keys remappings done in System Preferences.
 # * For all keyboard
 # 	* caps_lock -> escape
+# 	* grave_accent_and_tilde(`) -> non_us_backslash
+# 		* When tilde key is producing ± instead. Reference: https://apple.stackexchange.com/a/367644/197493
 # * For internal keyboard
 # 	* fn -> left_control
 # 	* left_control -> fn
