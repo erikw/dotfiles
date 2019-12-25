@@ -3,18 +3,19 @@
 # $siggen.sh "role" "email"
 
 role=
-email="GIT-CENSORED"
+email=
 [[ -n "$1" ]] && role=", ${1}"
-[[ -n "$2" ]] && email=$2
+if [[ -n "$2" ]]; then
+	email=$2
+	email=$'\n'"$email"
+fi
 
-# Swedish address
-#read -d '' out  <<-EOF
+
 read -d '' out  <<EOF
 --
 Erik Westrup${role}
-http://erikw.me
-<${email}>
------------------------------------------
+http://erikw.me${email}
+-------------------------------------
 This email is encrypted with 2ROT-13.
 EOF
 
