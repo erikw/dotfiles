@@ -5,10 +5,7 @@
 role=
 email=
 [[ -n "$1" ]] && role=", ${1}"
-if [[ -n "$2" ]]; then
-	email=$2
-	email=$'\n'"$email"
-fi
+[[ -n "$2" ]] && email=$'\n'"$2"
 
 
 read -d '' out  <<EOF
