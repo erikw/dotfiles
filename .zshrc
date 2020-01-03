@@ -117,7 +117,9 @@ fi
 	# Mimics the lookg of my ~/.bash_ps1
 	# NOTE virtualenvwrapper prepends the active venv name in the generated bin/activate script.
 	PROMPT="%D{%H:%M:%S}"								# Date with seconds
-	PROMPT="$PROMPT %F{blue}%n%{$reset_color%}@%F{cyan}%m%{$reset_color%}"		# Current user and hostname
+	[ $(id -u) -eq 0 ] && user_color=red || user_color=blue
+	PROMPT="$PROMPT %F{$user_color}%n%{$reset_color%}@%F{cyan}%m%{$reset_color%}"		# Current user and hostname
+	unset user_color
 	if [ -n "$SSH_CLIENT" ] && ! ([ -n "$TMUX" ] || [[ "$TERM" == "screen-"* ]] ); then
 		# Highlight when loggied in via SSH. But not in screen/tmux, that does not make sense.
 		PROMPT="$PROMPT %F{blue}[SSH]%{$reset_color%}"
