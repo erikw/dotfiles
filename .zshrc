@@ -71,7 +71,9 @@ fi
 	#compdef _path_files cd
 
 	autoload -Uz compinit
-	compinit -C
+	# -u: ignore check for comp files not owned by root or current user. Avoids problems on $(sudo -s).
+	# Reference: http://zsh.sourceforge.net/Doc/Release/Completion-System.html#Initialization
+	compinit -C -u
 # }}
 
 # History {{
