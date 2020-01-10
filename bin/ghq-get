@@ -1,8 +1,0 @@
-#!/usr/bin/env sh
-# Wrapper for ghq commons operations to clone and enter directory.
-
-
-url="$1"
-
-ghq get $url
-ghq look $url
