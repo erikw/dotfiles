@@ -36,6 +36,7 @@
 		Plugin 'ScrollColors'
 		Plugin 'altercation/vim-colors-solarized'
 		Plugin 'flazz/vim-colorschemes'
+		Plugin 'mkitt/tabline.vim'	" Only for terminal. gvim uses guilabel setting.
 	"}
 	" Navigation {
 		"Plugin 'FuzzyFinder'		" Disabled, as it has high startup time
