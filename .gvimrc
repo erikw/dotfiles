@@ -14,6 +14,10 @@ set guioptions=acegimLt
 " Disable (0) cursor blinking.
 set guicursor+=n-v-c:blinkon0
 
+" Show tabnumber and title in tab label. Referenced: https://github.com/mkitt/tabline.vim/issues/8
+set guitablabel=\[%N\]\ %t\ %M
+
+
 let s:os=GetRunningOS()
 if s:os == "linux"
 	"set guifont=Monospace\ 11
@@ -33,7 +37,6 @@ endif
 
 " Make shift-insert work like in xterm.
 map! <S-Insert> <MiddleMouse>
-
 
 " Source gvimrc on write.
 autocmd! BufWritePost .gvimrc source ~/.gvimrc
