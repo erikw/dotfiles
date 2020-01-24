@@ -196,11 +196,12 @@ Invoke-Expression "choco install $choco_apps"
 # 5. Delete the shortcut from the desktop.
 # Also drag C:\Users\erikw to the Explorer shortcut left column.
 
-# Windows explorer
+# Windows Explorer
 # * View > Options > Change folder & view options > view
 # - check: Display full path in the title bar
 # - check: Show hidden files, folders, and drives
 # - uncheck: Hide extentions for known file types
+# * My Computer > right click > Add a network location > \\<local-smb-server-ip\pub
 
 
 # CTRL+ALT+ESC > Startup, disable all but the essentials.
