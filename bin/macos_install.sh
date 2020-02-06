@@ -190,6 +190,7 @@ read -r -d '' brew_casks_additional <<-'EOAPPS'
 	google-backup-and-sync
 	google-drive-file-stream
 	gpg-suite
+	gramps
 	handbrake
 	insomnia
 	insync
@@ -529,5 +530,8 @@ chmod go-w '/usr/local/share'
 # Preferences Save space by hiding built-in time in System Preferences > Date & Time > Clock > uncheck "Show date & time in menu bar".
 ## * Check "Show day of week in the icon".
 ## * Datetime pattern: HH:mm
+
+# Mullvad
+# https://mullvad.net/en/download/
 
 # }
