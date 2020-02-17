@@ -1,8 +1,7 @@
 ;; Erik Westrup's GNU Emacs configuration.
-;; TODO TAB/C-I is b0rked again...
 
 ;;; Environment
-(add-to-list 'load-path "~/.emacs.d")		 		;; Add folder to load path.
+(add-to-list 'load-path "~/.emacs.d/lisp")		 	;; Add lisp plugin folder to load path.
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")	;; Theme path.
 
 ;;; Keyboard shortcuts
@@ -94,5 +93,3 @@
 ;; Column marker.
 (require 'column-marker)
 (add-hook 'c-mode-hook (lambda () (interactive) (column-marker-1 81))) ;; Mark the 81st column in c-mode.
-
-(require 'minimap)				;; Graphical minimap over the buffer.

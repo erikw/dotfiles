@@ -224,7 +224,6 @@ source $HOME/.shell_functions
 		LESS="$LESS --ignore-case"			# Case insensitive search. However using capital letter(s) will enable case sensitive search.
 		LESS="$LESS --status-column"		# Status column with number of lines etc.
 		#LESS="$LESS --LINE-NUMBERS"		# Show line numbers.
-		#LESS="$LESS --mouse-support"		# TODO Some lessess seems to have this option. What does it do?
 		export LESS
 	# }
 
@@ -252,7 +251,7 @@ source $HOME/.shell_functions
 	# macOS python
 	# Add macOS python binary folders to the path (the binaries from homebrew pyhon are already included from /usr/local/bin)
 	# $PYTHONPATH is a PATH-formatted list of additional directories where python should look for modules when importing ones. Don't mix py2 and py3 paths in it.
-	# TODO Can I remove this when Apple stops shipping Python with macOS? At least python2 part.
+	# TODO Can I remove this when Apple stops shipping Python with macOS? At least python2 part. https://developer.apple.com/documentation/macos_release_notes/macos_catalina_10_15_release_notes
 	if shell_is_macos; then
 		macos_py2path=$HOME/Library/Python/2.7
 		if [ -d $macos_py2path ]; then
