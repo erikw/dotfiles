@@ -83,7 +83,6 @@ $choco_apps =
 "spotify " +
 "steam " +
 "sumatrapdf " +
-"vim " +
 "vlc " +
 "whatsapp " +
 "windirstat " +
@@ -103,6 +102,9 @@ $choco_apps_additional =
 
 Invoke-Expression "choco install $choco_apps"
 #Invoke-Expression "choco install $choco_apps_additional"
+
+# Chcos with installoptions
+Invoke-Expression "choco install vim --params /NoDesktopShortcuts"
 
 # Upgrade system with
 # $ choco upgrade all
