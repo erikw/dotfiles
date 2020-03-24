@@ -56,6 +56,7 @@ read -r -d '' brew_formulae_default <<-'EOAPPS'
 	rsync
 	sl
 	source-highlight
+	switchaudio-osx
 	telnet
 	tig
 	tmux
@@ -473,8 +474,8 @@ chmod go-w '/usr/local/share'
 
 
 # Automator command for starting screen saver.
-# 1. Open automatos
-# 2. Create a new service
+# 1. Open automator
+# 2. Create a new service (now named Quick Action)
 # 3. Choose "Run AppleScript"
 # 4. In the top of the window, select for "Service receives selected" to "no input" and "in any application".
 # 5. Paste contents of ~/bin/macos_start_screensaver.command so it basically becomes:
@@ -485,6 +486,22 @@ chmod go-w '/usr/local/share'
 # 5. Save with the name "start_screensaver.
 # 6. Open System Peferences>Keyboard>Shortcuts>Services>General and assign start_screensaver the shortcutl CTRL+CMD+L.
 # If start_screensaver save did not show up, try logging in and out or restarting the computer.
+#
+#
+#
+#
+#
+#
+#
+# Automator command to cycle output devices:
+# 1. Open automator
+# 2. Create a new service (now named Quick Action)
+# 3. Choose "Run AppleScript"
+# 4. In the top of the window, select for "Service receives selected" to "no input" and "in any application".
+# 5. Paste contents of ~/bin/macos_media_control/sound_output_device_cycle.command
+# 5. Save with the name "cycle_audio_outputs".
+# 6. Open System Peferences>Keyboard>Shortcuts>Services>General and assign cycle_audio_outputs the shortcutl OPT+CMD+F9.
+#
 #
 #
 #
