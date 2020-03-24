@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# Inspired by http://apetronix.com/switch-audio-outputs-with-a-keyboard-shortcut-on-os-x/
+# brew dependencies: switchaudio-osx
 
 set -x
 output=$(/usr/local/bin/SwitchAudioSource -t output -n)
