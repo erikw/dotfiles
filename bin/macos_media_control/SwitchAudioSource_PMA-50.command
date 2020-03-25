@@ -1,3 +1,3 @@
 #!/usr/bin/env osascript
 
-do shell script "/Users/ewestrup/bin/macos_media_control/SwitchAudioSource.sh 'PMA-50'"
+do shell script "/Users/$USER/bin/macos_media_control/SwitchAudioSource.sh 'PMA-50'"
