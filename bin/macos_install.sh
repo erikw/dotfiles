@@ -291,6 +291,13 @@ brew cask install font-terminus font-source-code-pro font-inconsolata
 brew tap colindean/fonts-nonfree
 brew cask install font-microsoft-office
 
+# Automatic upgrades
+# Reference: https://github.com/DomT4/homebrew-autoupdate
+brew tap domt4/autoupdate
+brew install terminal-notifier
+# Start upgrade (including casks) every 12 hours.
+brew autoupdate --start 43200 --upgrade --cleanup --enable-notification
+brew autoupdate --status
 
 # Developer for Gimp can't be verified, so we need to remove an attribute that enables this check:
 # Reference: https://apple.stackexchange.com/questions/216188/apps-not-opening-verifying
