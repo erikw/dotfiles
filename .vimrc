@@ -79,6 +79,7 @@
 	"}
 	" General {
 		"Plugin 'easymotion/vim-easymotion'
+		"Plugin 'fatih/vim-go'
 		"Plugin 'git://git.wincent.com/command-t.git'
 		"Plugin 'godlygeek/tabular'		" Disabled: not used and have some startup time.
 		"Plugin 'sjl/gundo.vim' " Not updated for python3
@@ -91,7 +92,6 @@
 		Plugin 'dhruvasagar/vim-table-mode'
 		Plugin 'erikw/snipmate-snippets'
 		Plugin 'erikw/vim-unimpaired'
-		Plugin 'fatih/vim-go'
 		Plugin 'fidian/hexmode'
 		Plugin 'garbas/vim-snipmate'
 		Plugin 'mattn/gist-vim'

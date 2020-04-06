@@ -99,6 +99,11 @@ Switch to a local branch for secret changes:
 $ cd ~/.dotfiles
 $ git checkout -b local
 ```
+and after making some changes to the branch, star quashing to one commit
+```bash
+$ git comitt -m "SQUASHED passwords"
+```
+
 
 Untrack `~/.irssi/config` for local changes.
 
@@ -112,7 +117,7 @@ $ dotf_irssiconf_untrack
 Passwords and other secretes are censored. To find these and substitue them for the real thing, do
 
 ```bash
-$ grep -nr GIT-CENSORED . | grep -v README.md
+$ grep -nr GIT-CENSORED . | grep -v README.md | grep -v "/.git/"
 ```
 
 
