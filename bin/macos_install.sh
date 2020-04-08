@@ -41,7 +41,6 @@ read -r -d '' brew_formulae_default <<-'EOAPPS'
 	ipcalc
 	jq
 	jshon
-	knock
 	macvim
 	mosh
 	ncdu
@@ -118,6 +117,7 @@ read -r -d '' brew_formulae_additional <<-'EOAPPS'
 	ipython
 	irssi
 	jsonlint
+	knock
 	mercurial
 	multitail
 	mutt
