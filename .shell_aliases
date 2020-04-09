@@ -275,11 +275,6 @@ fi
 	fi
 # }
 
-# Mounts {
-	alias cryfs_mount='history-off && cryfs ~/dropbox/priv ~/priv'	# Decrypt & mount CryFS folder.
-	alias cryfs_umount='cryfs-unmount ~/priv' 			# Umount CryFS folder.
-# }
-
 # Permutation aliases {
 	# From $(bin/permute_aliases.sh cmd > $HOME/.shell_aliases_cmd)
 	#sourceifexists "$HOME/.shell_aliases_make"
