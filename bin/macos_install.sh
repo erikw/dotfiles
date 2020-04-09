@@ -125,6 +125,7 @@ read -r -d '' brew_formulae_additional <<-'EOAPPS'
 	nethogs
 	notmuch
 	offlineimap
+	openvpn
 	pastebinit
 	peco
 	postgresql
@@ -168,7 +169,6 @@ read -r -d '' brew_casks_default <<-'EOAPPS'
 	spotify-notifications
 	the-unarchiver
 	vlc
-	wireshark
 EOAPPS
 brew_casks_default=$(make_1line "$brew_casks_default")
 
@@ -203,7 +203,6 @@ read -r -d '' brew_casks_additional <<-'EOAPPS'
 	max
 	mp3tag
 	name-mangler
-	openvpn
 	perian
 	postman
 	prey
@@ -226,6 +225,7 @@ read -r -d '' brew_casks_additional <<-'EOAPPS'
 	tunnelblick
 	veracrypt
 	virtualbox
+	wireshark
 	xee
 	yasu
 EOAPPS
