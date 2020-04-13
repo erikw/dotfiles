@@ -86,7 +86,6 @@ $choco_apps =
 "vlc " +
 "whatsapp " +
 "windirstat " +
-"winscp " +
 ""
 
 $choco_apps_additional =
@@ -96,6 +95,7 @@ $choco_apps_additional =
 "epicgameslauncher" +
 "flashplayerplugin " +
 "virtualclonedrive " +
+"winscp " +
 ""
 
 
