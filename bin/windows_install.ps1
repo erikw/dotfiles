@@ -89,11 +89,12 @@ $choco_apps =
 ""
 
 $choco_apps_additional =
+"battle.net" +
 "dropbox " +
-"f.lux " +
-"origin " +
 "epicgameslauncher" +
+"f.lux " +
 "flashplayerplugin " +
+"origin " +
 "virtualclonedrive " +
 "winscp " +
 ""
