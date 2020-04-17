@@ -101,7 +101,7 @@ brew_formulae_default_gnu=$(make_1line "$brew_formulae_default_gnu")
 # NOTE typicall just pyenv is okay. pyenv-virtualenvwrapper is only needed for projects with python <3.3
 # see https://www.freecodecamp.org/news/manage-multiple-python-versions-and-virtual-environments-venv-pyenv-pyvenv-a29fb00c296f/
 read -r -d '' brew_formulae_additional <<-'EOAPPS'
-	ableton-live-intro
+	ableton-live-suite
 	antiword
 	bashdb
 	cgdb
