@@ -240,7 +240,7 @@ fi
 	alias remove_swap_files='find . -name "*.sw[op]" -delete'	# Delete all swap files in current path recursively.
 	alias wol_local_cpt='wakeonlan -i 10.255.255.255 GIT-CENSORED'	# Wake up on the local net broadcast address and cpt's MAC addr.
 	alias wol_remote_cpt='wakeonlan -i cpt.erikw.me GIT-CENSORED'	# Wake up from remote.
-	alias ghq-get='ghq get look' 					# Fetch and cd to repository.
+	alias ghq-get='ghq get --look' 					# Fetch and cd to repository.
 	alias goaccess_nginx='goaccess --log-format=COMBINED /var/log/nginx/access.log'	# Get web server stats based on log file.
 	alias goaccess_uberspace='goaccess --agent-list --config-file ~/etc/goaccess.conf --log-format=COMBINED --log-file ~/logs/webserver/access_log'
 	alias find_dropbox_conflicts='find ~/.dropbox-data/Dropbox/doc -name "*conflicted copy*"'	# Find conflicting synced dropbox files.
