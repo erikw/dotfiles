@@ -64,8 +64,12 @@ eval "$cmd_keygen"
 
 if ! [ -e $HOME/.ssh/config ]; then
 	cat << EOF > $HOME/.ssh/config
-# SSH config
+# ~${USER}'s ssh config
 # * How to apply the same settings for multiple hosts: https://unix.stackexchange.com/a/168460/19909
+# * Jumphost tunneling: https://wiki.gentoo.org/wiki/SSH_jump_host
+# * Send local LANG env to server. Note that the server must hav this variable AcceptEnv'd. ssh_config(5).
+#	Host *
+#		SendEnv LANG
 
 EOF
 fi
