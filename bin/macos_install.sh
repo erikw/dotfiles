@@ -514,6 +514,9 @@ chmod go-w '/usr/local/share'
 #
 #
 #
+# Automator command eject USB drives
+# * Create an automator Quick Action with AppleScript for the contents in ~/bin/macos_eject_external_disks.command
+# * Bind to shortcut CTRL+CMD+F12
 #
 #
 # # Update Keynote, Pages, Numbers & iMovie in App Store
