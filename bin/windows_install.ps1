@@ -302,6 +302,8 @@ $Shortcut.Save()
 # * Click "System Info", in the new window in the left menu click "System Protection". Configure 10% of C:// drive for restore points and create a first restore point.
 
 # =Devices
+# ==Mouse
+# * Set lines to scroll to 50 (50% of max)
 # ==Bluetooth
 # *Turn off bluetooth.
 
