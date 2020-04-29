@@ -233,6 +233,7 @@ fi
 	alias iperl="perl -de 0"								# Interactive perl.
 	alias catu="cat -vet"									# A cat that likes unprintable characters.
 	alias tiga='tig --all'									# Show all branches in tig.
+	alias brew_outdated='brew outdated -v | grep -v "\[pinned at .*\]" || :'		# Outdated brew packages.
 	alias mkcscope_c='find . -name "*.[ch]" > cscope.files'		# Gen cscope file for C programs.
 	alias mkdirtoday='_today=$(date -I) && mkdir -p $_today && echo "Created $_today" && unset _today'	# Create a directory in CWD with today's date.
 	alias reload_zsh='source $HOME/.zshrc'				# Reload zsh configuration.

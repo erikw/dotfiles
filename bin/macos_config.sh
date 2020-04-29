@@ -211,7 +211,9 @@ EOF
 
 
 # Mouse
-# * Uncheck "Scroll Direction: Natural. NOPE use scroll-reverser instead.
+# * Uncheck "Scroll Direction: Natural. NOPE use scroll-reverser app instead.
+# * Set Tracking Speed to 1/2
+# * Set Scrolling Speed to 3/4
 
 
 # Trackpad
