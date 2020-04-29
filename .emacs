@@ -84,8 +84,8 @@
 
 ;;; Solarized.
 ;; Theme path. Emacs 24 install assumed.
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/emacs-color-theme-solarize/")
-(load-theme 'solarized-dark t)			;; Load dark theme.
+;(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/emacs-color-theme-solarize/")
+;(load-theme 'solarized-dark t)			;; Load dark theme.
 ;(load-theme 'solarized-light t)		;; Load light theme.
 ;(setq solarized-termcolors 256)		;; Use degraded version using colors close to solarized.
 
