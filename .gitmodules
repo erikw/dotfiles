@@ -2,17 +2,17 @@
 	path = .vim/bundle/Vundle.vim
 	url = git@github.com:VundleVim/Vundle.vim.git
 	ignore = untracked	# Ignore changes (like .netrwhist).
-[submodule ".emacs.d/themes/emacs-color-theme-solarize"]
-	path = .emacs.d/themes/emacs-color-theme-solarize
-	url = git://github.com/sellout/emacs-color-theme-solarized.git
 [submodule ".sandboxd"]
 	path = .sandboxd
 	url = git@github.com:benvan/sandboxd.git
+#[submodule ".emacs.d/themes/emacs-color-theme-solarize"]
+	#path = .emacs.d/themes/emacs-color-theme-solarize
+	#url = git://github.com/sellout/emacs-color-theme-solarized.git
 
 # My repos.
-[submodule ".mutt/colors/mutt-colors-solarized"]
-	path = .mutt/colors/mutt-colors-solarized
-	url = git@github.com:erikw/mutt-colors-solarized.git
-[submodule ".irssi/scripts/irssi-bitlbee-facebook-rename"]
-	path = .irssi/scripts/irssi-bitlbee-facebook-rename
-	url = git@github.com:erikw/irssi-bitlbee-facebook-rename.git
+#[submodule ".mutt/colors/mutt-colors-solarized"]
+	#path = .mutt/colors/mutt-colors-solarized
+	#url = git@github.com:erikw/mutt-colors-solarized.git
+#[submodule ".irssi/scripts/irssi-bitlbee-facebook-rename"]
+	#path = .irssi/scripts/irssi-bitlbee-facebook-rename
+	#url = git@github.com:erikw/irssi-bitlbee-facebook-rename.git
