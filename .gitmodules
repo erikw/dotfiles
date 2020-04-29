@@ -1,10 +1,11 @@
+# Prefer t use https URLs instead of ssh, so that the computer where i clone my dotfiles does not need to have SSH keys set up to my Github account.
 [submodule ".vim/bundle/Vundle.vim"]
 	path = .vim/bundle/Vundle.vim
-	url = git@github.com:VundleVim/Vundle.vim.git
+	url = https://github.com/VundleVim/Vundle.vim.git
 	ignore = untracked	# Ignore changes (like .netrwhist).
 [submodule ".sandboxd"]
 	path = .sandboxd
-	url = git@github.com:benvan/sandboxd.git
+	url = https://github.com/benvan/sandboxd.git
 #[submodule ".emacs.d/themes/emacs-color-theme-solarize"]
 	#path = .emacs.d/themes/emacs-color-theme-solarize
 	#url = git://github.com/sellout/emacs-color-theme-solarized.git
