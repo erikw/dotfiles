@@ -10,13 +10,14 @@ do_start() {
 	if [ "$?" -ne "0" ]; then
 		# Should not bee needed if stop() is correctly implemented and a session is always quited via the stop function.
 		do_clean_files
-		tmux new-session -d -x 287 -y 41 -s "$session_name" -n "mutt" mutt
-		tmux set-window-option -t "$session_name":0 monitor-activity off
+		tmux new-session -d -x 287 -y 41 -s "$session_name"
+		#tmux set-window-option -t "$session_name":0 monitor-activity off
 
-		tmux new-window -t "$session_name":1 -n "irssi" irssi
-		tmux set-window-option -t "$session_name":1 monitor-activity off
-		tmux split-window -t "$session_name":1 -h -p 15 "cat $HOME/.irssi/nicklistfifo"
-		tmux select-pane -t "$session_name":1.0
+		#tmux new-session -d -x 287 -y 41 -s "$session_name" -n "irssi" irssi
+		#tmux new-window -t "$session_name":1 -n "irssi" irssi
+		#tmux set-window-option -t "$session_name":0 monitor-activity off
+		#tmux split-window -t "$session_name":0 -h -p 15 "cat $HOME/.irssi/nicklistfifo"
+		#tmux select-pane -t "$session_name":0.0
 
 		#tmux new-window -t "$session_name":2 ncmpcpp
 		#tmux set-window-option -t "$session_name":2 monitor-activity off
@@ -25,16 +26,16 @@ do_start() {
 		#tmux new-window -t "$session_name":2 -n "bc" bc
 		#tmux set-window-option -t "$session_name":2 monitor-activity off
 
-		tmux new-window -t "$session_name":2
+		#tmux new-window -t "$session_name":1
 
 		# Let this be the last window so I can quicky toggle.
 		#tmux select-window -t "$session_name":3
-		tmux select-window -t "$session_name":0
+		#tmux select-window -t "$session_name":0
 
 		# Set active window on start.
 		#tmux select-window -t "$session_name":0
 		#tmux select-pane -t "$session_name":0.0
-		tmux select-window -t "$session_name":2
+		#tmux select-window -t "$session_name":1
 		echo "Session ${session_name} started."
 	else
 		echo "Session ${session_name} already exists."
