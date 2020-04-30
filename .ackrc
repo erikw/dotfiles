@@ -9,3 +9,9 @@
 # Intellij project files (old=fileformat).
 --ignore-file=match:.*.(ipr|iml)
 --ignore-dir=.idea/
+
+# Java development
+# Ignore gradle build directories.
+#--ignore-dir=build/
+# Ignore gradle run log directory.
+#--ignore-dir=logs/
