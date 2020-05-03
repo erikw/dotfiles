@@ -431,7 +431,7 @@ chmod go-w '/usr/local/share'
 # https://lastpass.com/installer/?lang=en-US
 
 # Spotify Notifications
-# * Set shortcut to show current playing to: Cmd + F14 (scroll lock).
+# * Set shortcut to show current playing to: Ctrl + Opt + Cmd + p
 
 # Powerline
 # Install either
