@@ -551,7 +551,7 @@ chmod go-w '/usr/local/share'
 # * For internal keyboard
 # 	* fn -> left_control
 # 	* left_control -> fn
-# * For external keyboard
+# * For external keyboard (unless it's a proper Mac keyboard with comand and alt keys)
 #	* left_command -> left_option
 #	* left_option -> left_command
 
