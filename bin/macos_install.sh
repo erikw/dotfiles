@@ -420,7 +420,7 @@ chmod go-w '/usr/local/share'
 # * Number of items to place inside a folder: 75
 # * Number of characters in the menu: 50
 ## Shortcuts
-# * Set the history keyboard shortcut to CTRL+Shift+F13 or Ctrl+Shift+Insert (external keyboard).
+# * Set the history keyboard shortcut to Cmd+Shift+v.
 
 # FreshBackMac
 # * Add to auto start in Settings > Users & Groups > Login items.
