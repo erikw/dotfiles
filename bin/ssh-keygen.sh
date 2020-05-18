@@ -71,6 +71,9 @@ if ! [ -e $HOME/.ssh/config ]; then
 #	Host *
 #		SendEnv LANG
 
+# Avoid "Connection to $HOST closed." when disconnecting. Refer
+# Reference: https://unix.stackexchange.com/a/203346/19909
+LogLevel QUIET
 EOF
 fi
 
