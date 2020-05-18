@@ -184,7 +184,7 @@ EOF
 # * Make Delay Until Repeat short
 # * Make Key Repeat fast
 ### Modifier Keys
-# * Turn off backlit after 5m
+# * Turn off backlit after 1 minute.
 # * Check "Use F1, F2,.. as standard function keys
 # * Modifier Keys
 #	 * For internal keyboard:
