@@ -547,7 +547,7 @@ chmod go-w '/usr/local/share'
 # * For all keyboard
 # 	* caps_lock -> escape
 # 	* grave_accent_and_tilde(`) -> non_us_backslash
-# 		* When tilde key is producing ± instead. Reference: https://apple.stackexchange.com/a/367644/197493
+# 		* Only when having the problem that tilde key is producing ± instead. Reference: https://apple.stackexchange.com/a/367644/197493
 # * For internal keyboard
 # 	* fn -> left_control
 # 	* left_control -> fn
