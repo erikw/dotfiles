@@ -219,7 +219,7 @@ Invoke-Expression "choco install vim --params /NoDesktopShortcuts"
 # Ditto
 # * Right click on taskbar icon > Options
 # * General > Paste entries expires after: 1 day
-# * Keyboard Shortcuts > Activate Ditto: Ctrl + Shift + Insert
+# * Keyboard Shortcuts > Activate Ditto: Ctrl + Shift + v
 
 
 # Vimperator:
@@ -303,7 +303,7 @@ $Shortcut.Save()
 
 # =Devices
 # ==Mouse
-# * Set lines to scroll to 20
+# * Set lines to scroll to 50 (50% of max)
 # ==Bluetooth
 # *Turn off bluetooth.
 
