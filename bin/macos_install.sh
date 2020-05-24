@@ -164,6 +164,7 @@ read -r -d '' brew_casks_default <<-'EOAPPS'
 	karabiner-elements
 	libreoffice
 	scroll-reverser
+	semulov
 	sensiblesidebuttons
 	spotify
 	spotify-notifications
@@ -563,5 +564,15 @@ chmod go-w '/usr/local/share'
 
 # Mullvad
 # https://mullvad.net/en/download/
+
+
+# Semulov preferences
+## Interface
+# * Check "Show number of mounted in menubar"
+# * Check "Show Ejec All menu item" and set the shortcut to Ctrl+Cmd+F12
+## Ignore Volumes
+# * Enter "Recovery"
+## Miscellaneous
+# * Launch at login
 
 # }
