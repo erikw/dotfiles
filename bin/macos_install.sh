@@ -512,6 +512,7 @@ chmod go-w '/usr/local/share'
 #  cycle: OPT+CMD+F9.
 #  Built-in: OPT+CMD+F10.
 #  PMA-50: OPT+CMD+F11.
+#  USB Soundcard/headset: OPT+CMD+F12
 #
 #
 #
