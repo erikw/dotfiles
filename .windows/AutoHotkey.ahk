@@ -55,3 +55,10 @@ Pause::Capslock
 ^F10::Volume_Down
 ^F11::Volume_Up
 ^F12::Volume_Mute
+
+
+
+; MACOS-CONFIG
+; Swap Alt and Windows key on Mac keyboards.
+LWin & Tab::AltTab
+LWin::Send {LAlt}
