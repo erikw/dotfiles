@@ -303,7 +303,7 @@ $Shortcut.Save()
 
 # =Devices
 # ==Mouse
-# * Set lines to scroll to 50 (50% of max)
+# * Set lines to scroll to 20
 # ==Bluetooth
 # *Turn off bluetooth.
 
