@@ -60,5 +60,5 @@ Pause::Capslock
 
 ; MACOS-CONFIG
 ; Swap Alt and Windows key on Mac keyboards.
-LWin & Tab::AltTab
-LWin::Send {LAlt}
+LAlt::LWin
+LWin::LAlt
