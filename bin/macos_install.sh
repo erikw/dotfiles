@@ -180,6 +180,7 @@ read -r -d '' brew_casks_additional <<-'EOAPPS'
 	authy
 	awareness
 	background-music
+	bankid
 	burn
 	caffeine
 	cheatsheet
@@ -403,6 +404,11 @@ chmod go-w '/usr/local/share'
 
 # Antivirus: Avast Security for Mac
 # https://www.avast.com/en-us/free-mac-security
+
+
+# BankId på fil
+# Instructions: https://swedbank.se/privat/digitala-tjanster/mobilt-bankid/bankid-pa-kort-och-fil/bankid-pa-fil.html
+# Install: https://install.bankid.com/ or cask
 
 # }
 
