@@ -177,6 +177,7 @@ read -r -d '' brew_casks_additional <<-'EOAPPS'
 	adium
 	android-platform-tools
 	atom
+	authy
 	awareness
 	background-music
 	burn
