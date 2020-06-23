@@ -305,7 +305,9 @@ $Shortcut.Save()
 # ==Mouse
 # * Set lines to scroll to 20
 # ==Bluetooth
-# *Turn off bluetooth.
+# * Turn off bluetooth.
+# ==Keyboard
+# * Advanced Keyboard Settings > check "Use the desktop language bar when it's available"
 
 # =Network & Internet
 # ==Wi-Fi
