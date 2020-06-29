@@ -172,6 +172,7 @@ EOF
 
 # Display
 # * Move the white menu bar to the main monitor, so notifications etc. comes on it.
+# * Check "Show mirroring options in the menu bar when available".
 ## Night SHift
 # * Schedule: Sunset to Sunrise
 

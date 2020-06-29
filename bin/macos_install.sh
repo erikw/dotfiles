@@ -188,6 +188,7 @@ read -r -d '' brew_casks_additional <<-'EOAPPS'
 	colloquy
 	dash
 	eclipse-ide
+	epic-games
 	flip4mac
 	flux
 	franz
@@ -206,6 +207,7 @@ read -r -d '' brew_casks_additional <<-'EOAPPS'
 	max
 	mp3tag
 	name-mangler
+	origin
 	perian
 	postman
 	prey
@@ -219,6 +221,7 @@ read -r -d '' brew_casks_additional <<-'EOAPPS'
 	skype
 	slack
 	spectacle
+	steam
 	steam
 	stretchly
 	switch
@@ -326,6 +329,7 @@ brew install mas
 # 1274495053 Microsoft To Do (2.0)
 # List of previously installed
 # 1059074180 WeatherBug - Weather Forecasts and Alerts
+# 428799479 - GamePad Companion
 
 
 
