@@ -18,8 +18,8 @@ for dir in $(find $path -type d | tac); do
 	#rename.pl 's/(.*)/lc($1)/e' *
 	for f in *; do
 		#lower=$(echo $f | tr "[:upper:]" "[:lower:]")
-		# gnu tr is not internationalized, but gsed is: https://unix.stackexchange.com/questions/228558/how-to-make-tr-aware-of-non-asciiunicode-characters
-		lower=$(echo $f | sed -e 's/\(.*\)/\L\1/')
+		# gnu tr is not internationalized, but gawk is: https://unix.stackexchange.com/a/228570/19909
+		lower=$(echo $f | gawk '{print tolower($0)}')
 		mv "$f" "$f.tmp"
 		mv "$f.tmp" "$lower"
 	done
