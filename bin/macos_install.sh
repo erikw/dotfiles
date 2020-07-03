@@ -27,13 +27,19 @@ read -r -d '' brew_formulae_default <<-'EOAPPS'
 	curl
 	dfc
 	dos2unix
+	findutils
 	gawk
 	ghq
 	git
 	gnu-getopt
+	gnu-indent
+	gnu-sed
+	gnu-tar
 	gnupg
+	gnutls
 	go
 	graphviz
+	grep
 	grip
 	htop
 	iftop
@@ -85,17 +91,6 @@ brew_formulae_default=$(make_1line "$brew_formulae_default")
 # ** having both formula vim/macvim + cask macvim causes symlink overwrite problems on upgrade ($brew link vim/macvim).
 # * python@2 - needed for ~/bin/com.user.iterm.plist to be able to start powerline for tmux. Even though powerline-status py package is installed for python3 only, it's still needed somehow.
 
-
-
-read -r -d '' brew_formulae_default_gnu <<-'EOAPPS'
-	findutils
-	gnu-indent
-	gnu-sed
-	gnu-tar
-	gnutls
-	grep
-EOAPPS
-brew_formulae_default_gnu=$(make_1line "$brew_formulae_default_gnu")
 
 
 # NOTE typically just pyenv is okay. pyenv-virtualenvwrapper is only needed for projects with python <3.3
@@ -265,12 +260,8 @@ pip3_pkgs_additional=$(make_1line "$pip3_pkgs_additional")
 set -e # Must be after var defs.
 # Install homebrew.
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+# Note that some gnu pakcages comes with g-prefix in the bin names. The default names are set up in $PATH in ~/.shell_commons
 brew install $brew_formulae_default
-
-# Use default names for some gnu programs (which supports it), and don't get the 'g' prefix in the name.
-#brew install --with-default-names $brew_formulae_default_gnu
-# NOPE this has unexpected side effects. $(brew doctor): Warning: Putting non-prefixed coreutils in your path can cause gmp builds to fail.
-brew install $brew_formulae_default_gnu
 
 #brew install $brew_formulae_additional
 

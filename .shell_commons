@@ -50,13 +50,17 @@ source $HOME/.shell_functions
 
 	# Add homebrew coreutils with default names to PATH, and also to MANPATH.
 	# Instructions comes from the output of $(brew install coreutils).
-	if [ -d /usr/local/opt/coreutils/libexec/gnubin ]; then
-		PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-		MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
-	fi
-	if [ -d /usr/local/Cellar/findutils/4.6.0/ ]; then
-		PATH="/usr/local/Cellar/findutils/4.6.0/bin:$PATH"
-		MANPATH="/usr/local/Cellar/findutils/4.6.0/man:$MANPATH"
+	# NOTE this can have unexpected side effects. $(brew doctor): Warning: Putting non-prefixed coreutils in your path can cause gmp builds to fail.
+	if shell_is_macos; then
+		gnu_packages=(coreutils findutils gnu-indent gnu-sed gnu-tar grep)
+		for gnu_package in "${gnu_packages[@]}"; do
+			gpathbase=/usr/local/opt/${gnu_package}/libexec
+			if [ -d $gpathbase/gnubin ]; then
+				PATH="$gpathbase/gnubin:$PATH"
+				MANPATH="$gpathbase/gnuman:$MANPATH"
+			fi
+		done
+		unset gnu_packages gnu_package gpathbase
 	fi
 
 	# Add MacTex binaries (macos).
