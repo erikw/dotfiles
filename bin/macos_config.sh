@@ -257,6 +257,7 @@ EOF
 
 # Sharing
 # Set "Computer Name"
+# If want SMB file sharing: Check File Sharing, add ~/pub folder, Click Options and enable current user.
 
 
 # }
