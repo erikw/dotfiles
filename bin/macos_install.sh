@@ -76,12 +76,12 @@ EOAPPS
 brew_formulae_default=$(make_1line "$brew_formulae_default")
 
 # Formulae notes
-# * macvim - install formual macvim because
+# * macvim - install 'formulae macvim' because:
 # ** it provides MacVim.app in /usr/local/Cellar/macvim/<version number>/. See https://arophix.com/2018/01/24/install-vim-on-macos-high-sierra/
-# ** cask macvim includes only dynamically lined python. $(vim --version) gives +python3/dyn and that does not find powerline.
-# ** formular macvim has $(vim --version) "+python3"
+# ** 'cask macvim' includes only dynamically lined python. $(vim --version) gives +python3/dyn and that does not find powerline.
+# ** 'formulae macvim' has $(vim --version) "+python3"
 # ** macOS search (cmd+space) still find MacVim.app in the Cellar
-# ** formular vim does not include MacVim.app
+# ** 'formulae vim' does not include MacVim.app
 # ** having both formula vim/macvim + cask macvim causes symlink overwrite problems on upgrade ($brew link vim/macvim).
 # * python@2 - needed for ~/bin/com.user.iterm.plist to be able to start powerline for tmux. Even though powerline-status py package is installed for python3 only, it's still needed somehow.
 
@@ -98,7 +98,7 @@ EOAPPS
 brew_formulae_default_gnu=$(make_1line "$brew_formulae_default_gnu")
 
 
-# NOTE typicall just pyenv is okay. pyenv-virtualenvwrapper is only needed for projects with python <3.3
+# NOTE typically just pyenv is okay. pyenv-virtualenvwrapper is only needed for projects with python <3.3
 # see https://www.freecodecamp.org/news/manage-multiple-python-versions-and-virtual-environments-venv-pyenv-pyvenv-a29fb00c296f/
 read -r -d '' brew_formulae_additional <<-'EOAPPS'
 	ableton-live-suite
@@ -268,7 +268,9 @@ set -e # Must be after var defs.
 brew install $brew_formulae_default
 
 # Use default names for some gnu programs (which supports it), and don't get the 'g' prefix in the name.
-brew install --with-default-names $brew_formulae_default_gnu
+#brew install --with-default-names $brew_formulae_default_gnu
+# NOPE this has unexpected side effects. $(brew doctor): Warning: Putting non-prefixed coreutils in your path can cause gmp builds to fail.
+brew install $brew_formulae_default_gnu
 
 #brew install $brew_formulae_additional
 
