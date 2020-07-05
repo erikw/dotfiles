@@ -337,8 +337,8 @@ pip3 install --user $pip3_pkgs
 
 # SSHFS
 # Reference: https://www.digitalocean.com/community/tutorials/how-to-use-sshfs-to-mount-remote-file-systems-over-ssh
-brew cask install osxfuse
-brew install sshfs
+#brew cask install osxfuse
+#brew install sshfs
 # Now you can mount like this:
 # $ sudo mkdir -p /mnt/sshfs
 # $ sudo sshfs -o allow_other,defer_permissions user@host:/ /mnt/sshfs
