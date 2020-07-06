@@ -170,9 +170,10 @@ source $HOME/.shell_functions
 	#fi
 
 	# Dotfiles manager.
-	if [ -d "$HOME/.dotfiles/bin" ]; then
-		PATH="$PATH:$HOME/.dotfiles/bin"
-	fi
+	# Not needed; ~/bin/ already included
+	#if [ -d "$HOME/.dotfiles/bin" ]; then
+		#PATH="$PATH:$HOME/.dotfiles/bin"
+	#fi
 
 	# cloc.pl
 	if [ -d "$HOME/src/github.com/AlDanial/cloc" ]; then
