@@ -184,6 +184,7 @@ read -r -d '' brew_casks_additional <<-'EOAPPS'
 	dash
 	eclipse-ide
 	epic-games
+	ferdi
 	flip4mac
 	flux
 	franz
