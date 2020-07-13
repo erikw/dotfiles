@@ -323,7 +323,8 @@ brew install mas
 # 1274495053 Microsoft To Do (2.0)
 # List of previously installed
 # 1059074180 WeatherBug - Weather Forecasts and Alerts
-# 428799479 - GamePad Companion
+# 428799479  GamePad Companion
+# 953841977  SwordSoft Screenink Free
 
 
 
