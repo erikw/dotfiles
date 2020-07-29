@@ -26,3 +26,5 @@ cscope.in.out
 # Java Development
 # Ignore composite build file.
 composite.gradle
+# Intellj
+.idea/

@@ -171,6 +171,7 @@ brew_casks_default=$(make_1line "$brew_casks_default")
 read -r -d '' brew_casks_additional <<-'EOAPPS'
 	adium
 	android-platform-tools
+	android-studio
 	atom
 	authy
 	awareness
@@ -184,6 +185,7 @@ read -r -d '' brew_casks_additional <<-'EOAPPS'
 	dash
 	eclipse-ide
 	epic-games
+	eqmac
 	ferdi
 	flip4mac
 	flux
@@ -216,6 +218,7 @@ read -r -d '' brew_casks_additional <<-'EOAPPS'
 	skim
 	skype
 	slack
+	sound-control
 	spectacle
 	steam
 	steam
@@ -579,6 +582,7 @@ chmod go-w '/usr/local/share'
 # * Check "Show Ejec All menu item" and set the shortcut to Ctrl+Cmd+F12
 ## Ignore Volumes
 # * Enter "Recovery"
+# * Enter "Boot OS X"
 ## Miscellaneous
 # * Launch at login
 
