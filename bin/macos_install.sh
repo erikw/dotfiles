@@ -233,6 +233,7 @@ read -r -d '' brew_casks_additional <<-'EOAPPS'
 	wireshark
 	xee
 	yasu
+	zoomus
 EOAPPS
 brew_casks_additional=$(make_1line "$brew_casks_additional")
 
@@ -581,8 +582,9 @@ chmod go-w '/usr/local/share'
 # * Check "Show number of mounted in menubar"
 # * Check "Show Ejec All menu item" and set the shortcut to Ctrl+Cmd+F12
 ## Ignore Volumes
-# * Enter "Recovery"
-# * Enter "Boot OS X"
+#Recovery
+#Boot OS X
+#macOS Base System
 ## Miscellaneous
 # * Launch at login
 
