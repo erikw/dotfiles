@@ -368,18 +368,22 @@ pip3 install --user $pip3_pkgs
 
 # Install tmux session on login.
 # Reference: http://www.launchd.info/
-mkdir -p $HOME/Library/LaunchAgents
-cp $HOME/bin/com.user.irctor.plist $HOME/Library/LaunchAgents/
-launchctl load -w $HOME/Library/LaunchAgents/com.user.irctor.plist
-launchctl start com.user.irctor
+#mkdir -p $HOME/Library/LaunchAgents
+#cp $HOME/bin/com.user.irctor.plist $HOME/Library/LaunchAgents/
+#launchctl load -w $HOME/Library/LaunchAgents/com.user.irctor.plist
+#launchctl start com.user.irctor
 #launchctl list | grep com.user.irctor
 #launchctl unload -W $HOME/Library/LaunchAgents/com.user.irctor
+# NOPE starting tmux with launchctl makes it run with less access e.g. doing $(ls /volumes/somevolume) gives "Operation not permitted".
+# thus, instead go for a simpler solution: Autostart;
+# 1. Set Iterm.app to auto-start
+# 2. Set iterm 2 default profile to start irctor, and then have an additional profile that just runs zsh. see #irctorautostart below in the iterm section.
 
 
 # Start iterm2.app with tmux session loaded.
-cp $HOME/bin/com.user.iterm.plist $HOME/Library/LaunchAgents/
-launchctl load -w $HOME/Library/LaunchAgents/com.user.iterm.plist
-launchctl start com.user.iterm
+#cp $HOME/bin/com.user.iterm.plist $HOME/Library/LaunchAgents/
+#launchctl load -w $HOME/Library/LaunchAgents/com.user.iterm.plist
+#launchctl start com.user.iterm
 
 # wego from brew is not recognizing forecast.io backend.
 go get -u github.com/schachmat/wego
@@ -464,12 +468,14 @@ chmod go-w '/usr/local/share'
 # - Confirm closing multiple sessions.
 # - Confirm "iTerm2 (#Q)" if windows open"
 # * iterm.sh: If iterm2.app is closed, 2 windows will be opended by this script. To prevent this:
-# 	- Startup > Select "Only Restore Hotkey Window"
+# 	- Startup > Select "Only Restore Hotkey Window" NOPE don't do this anymore as of #irctorautostart
 # * Enable automatic tmux copy to GUI clipboard on selection
 # - Check "Applications in terminal may access clipboard"
 ## Profiles
+#* After configuring the default profile, clone it in to a profile called "zsh" and remove the "Send text at start" #irctorautostart
 ### General
-# * If a new login shell with zsh gives $?=1, avoid this by chaning Command to "zsh" instead of "Login Shell". TODO remove this when the mysterious bug has disappeared.
+# * Command: "zsh"      # If a new login shell with zsh gives $?=1, avoid this by chaning Command to "zsh" instead of "Login Shell". TODO remove this when the mysterious bug has disappeared.
+# * Send text at start: "irctor"   #irctorautostart
 ### Colors
 # * Select color preset "Solarized Dark".
 ### Text
