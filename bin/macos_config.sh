@@ -266,13 +266,13 @@ EOF
 # * Remove crap folders from sidebar
 # * Add
 #  - ~/doc/
-#  - ~/dl/
+#  - ~/dl/ - copy folder icon from ~/Downloads
 #  - ~/tmp/
 #  - ~/media/images/screenshots/
 #  - Desktop
 #  - Applicatons
 #  - /tmp
-#  * Copy icon from Downloads -> DL in CMD+i dialog.
+#  * OPTIONAL: Copy icon from Downloads -> DL in CMD+i dialog.
 ## View
 # ** Show Path Bar
 # ** Show Status Bar
