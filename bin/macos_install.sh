@@ -204,6 +204,7 @@ read -r -d '' brew_casks_additional <<-'EOAPPS'
 	mactex
 	max
 	mp3tag
+	mullvadvpn
 	name-mangler
 	origin
 	perian
@@ -578,10 +579,6 @@ chmod go-w '/usr/local/share'
 # Preferences Save space by hiding built-in time in System Preferences > Date & Time > Clock > uncheck "Show date & time in menu bar".
 ## * Check "Show day of week in the icon".
 ## * Datetime pattern: HH:mm
-
-# Mullvad
-# https://mullvad.net/en/download/
-
 
 # Semulov preferences
 ## Interface
