@@ -279,6 +279,7 @@ EOF
 ### Show View Options
 # * First make sure to be in List view before entering this menu
 # * Check "Always open in list view" > Use as default
+# * Also open this diealog while being in ~/, then check "Show Library Folder". Reference: https://appletoolbox.com/unhide-access-mac-library-folder/
 ## Preferences
 # ** General
 # *** Show on desktop: connected servers
