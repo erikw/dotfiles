@@ -588,6 +588,7 @@ chmod go-w '/usr/local/share'
 #Recovery
 #Boot OS X
 #macOS Base System
+#Macintosh HD - Data
 ## Miscellaneous
 # * Launch at login
 
