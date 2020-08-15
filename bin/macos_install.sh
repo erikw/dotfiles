@@ -200,11 +200,13 @@ read -r -d '' brew_casks_additional <<-'EOAPPS'
 	intellij-idea-ce
 	jing
 	keepassxc
+	kid3
 	livereload
 	mactex
 	max
 	mp3tag
 	mullvadvpn
+	musicbrainz-picard
 	name-mangler
 	origin
 	perian
@@ -315,19 +317,21 @@ brew install mas
 # Unfortunately this <appleiId> must have manually downloaded all apps one time before they can be installed with mas
 # $ mas search WeatherBug
 # $ mas install <id>
+
 # To install:
-# 585829637 Todoist: Organize your life
-# 1147396723  WhatsApp Desktop
-# 897118787  Shazam
+# 1302002064  djay Pro 2
 # 405399194  Kindle
-# 912659472  Brother ScannerApp (Image Capture.app does not work for Brother DCP-7070DW)
 # 497799835  Xcode
-# 402592703  Time Out - Break Reminders (2.5)
+# 585829637 Todoist: Organize your life
 # 865500966  feedly. Read more, know more. (0.2)
-# 410628904  Wunderlist: To-Do List & Tasks
-# 1274495053 Microsoft To Do (2.0)
-# List of previously installed
+# 897118787  Shazam
+# 912659472  Brother ScannerApp (Image Capture.app does not work for Brother DCP-7070DW)
+
+# Optional:
 # 1059074180 WeatherBug - Weather Forecasts and Alerts
+# 1147396723  WhatsApp Desktop
+# 1274495053 Microsoft To Do (2.0)
+# 402592703  Time Out - Break Reminders (2.5)
 # 428799479  GamePad Companion
 # 953841977  SwordSoft Screenink Free
 

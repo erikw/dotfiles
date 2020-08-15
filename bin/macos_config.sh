@@ -308,6 +308,12 @@ EOF
 # * Add new signature "Standard".
 # }
 
+# Music.app {
+## Files
+# * Add music folder.
+# * Uncheck "Keep music Media folder organized"
+# }
+
 # iMessge.app {
 # * Turn off associattion to my mobile phone number, so it won't steal text messages from iPhones
 # Settings > Unlink my AppleID
@@ -316,7 +322,6 @@ EOF
 # Sidebar {
 # Set up the weather widget to show current location (better to use this thant the WeatherBug tray icon consuming power and visual space)
 # }
-
 
 # Menubar {
 # * Arrange icons so that the least important ones are to the left, as they are chopped of when space becomes to little e.g. on the laoptop screen.
