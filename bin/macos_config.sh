@@ -303,7 +303,7 @@ EOF
 ## Accounts
 # * Disable iCloud
 ## Composing
-# * Message format: plain text
+# * Message format: plain text. NOPE use Rich Text, it's not the 90s anymore....
 ## Signatures
 # * Add new signature "Standard".
 # }
@@ -312,6 +312,11 @@ EOF
 ## Files
 # * Add music folder.
 # * Uncheck "Keep music Media folder organized"
+# }
+
+# Photos.app {
+## General
+# * Uncheck "Copy items to the photos library"
 # }
 
 # iMessge.app {
