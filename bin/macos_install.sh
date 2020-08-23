@@ -370,6 +370,7 @@ pip3 install --user $pip3_pkgs
 # - Akai MPKmini MK2 Editor - https://www.akaipro.com/productregistration/customer/
 # - Air Hybrid synth
 # * Audacity: https://www.audacityteam.org/download/mac/
+# * Mixedinkey: https://account.mixedinkey.com/
 
 # Install tmux session on login.
 # Reference: http://www.launchd.info/
