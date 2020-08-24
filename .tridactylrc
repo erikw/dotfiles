@@ -71,7 +71,7 @@
 " }}
 
 " Bindings {{
-	" F1 closes Tree Style Tabs sidebar.
+	" F1 closes Tree Style Tabs sidebar. https://github.com/tridactyl/tridactyl/issues/477
 	unbind <F1>
 	bind <ArrowLeft> tabprev
 	bind <ArrowRight> tabnext
