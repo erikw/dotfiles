@@ -285,7 +285,7 @@ source $HOME/.shell_functions
 		# Solution: make an alias for brew that excludes pyenv from PATH
 		# Reference: https://github.com/pyenv/pyenv/issues/106#issuecomment-625334706
 		#alias brew='env PATH="${PATH//$(pyenv root)\/shims:/}" brew'
-		# Combied with removal of gnubins from abov (make sure to comment the first alias out for speed)
+		# Combined with removal of gnubins from abov (make sure to comment the first alias out for speed)
 		#alias brew='env PATH="$(echo "$PATH" | sed -e "s/:\/usr\/local\/opt\/[^:]*://g" -e "s/:.*pyenv\/shims://g")" brew'
 
 	#fi
