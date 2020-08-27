@@ -277,6 +277,13 @@ source $HOME/.shell_functions
 		#PATH="$(pyenv root)/shims:$PATH"
 		# Full config. NOTE is sandboxed
 		#eval "$(pyenv init -)"
+
+		# Brew should use system default python when building packages $(brew doctor) compalines with
+		# "config" scripts exist outside your system or Homebrew directories.
+		# Solution: make an alias for brew that excludes pyenv from PATH
+		# Reference: https://github.com/pyenv/pyenv/issues/106#issuecomment-625334706
+		#alias brew='env PATH="${PATH//$(pyenv root)\/shims:/}" brew'
+
 	#fi
 
 	# When using pyenv, normal virtual env can't be used for python <3.3.
