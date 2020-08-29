@@ -96,7 +96,6 @@ brew_formulae_default=$(make_1line "$brew_formulae_default")
 # NOTE typically just pyenv is okay. pyenv-virtualenvwrapper is only needed for projects with python <3.3
 # see https://www.freecodecamp.org/news/manage-multiple-python-versions-and-virtual-environments-venv-pyenv-pyvenv-a29fb00c296f/
 read -r -d '' brew_formulae_additional <<-'EOAPPS'
-	ableton-live-suite
 	antiword
 	bashdb
 	cgdb
@@ -169,6 +168,7 @@ EOAPPS
 brew_casks_default=$(make_1line "$brew_casks_default")
 
 read -r -d '' brew_casks_additional <<-'EOAPPS'
+	ableton-live-suite
 	adium
 	android-platform-tools
 	android-studio
@@ -442,6 +442,9 @@ chmod go-w '/usr/local/share'
 # * Number of characters in the menu: 50
 ## Shortcuts
 # * Set the history keyboard shortcut to Cmd+Shift+v.
+# * Set the Snipets keyboard shortcut to Cmd+Shift+b.
+## Snippets
+# Create snipets for some common items in ~/doc/tech/word_expansions.txt
 
 # FreshBackMac
 # * Add to auto start in Settings > Users & Groups > Login items.
@@ -596,5 +599,9 @@ chmod go-w '/usr/local/share'
 #Macintosh HD - Data
 ## Miscellaneous
 # * Launch at login
+
+
+# The Unarchiever
+# Enable for most archives. Might have to change in Finder for it to be the default program for some files.
 
 # }
