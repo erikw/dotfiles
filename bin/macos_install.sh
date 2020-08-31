@@ -48,7 +48,6 @@ read -r -d '' brew_formulae_default <<-'EOAPPS'
 	jq
 	jshon
 	macvim
-	mosh
 	ncdu
 	netcat
 	nmap
@@ -113,6 +112,7 @@ read -r -d '' brew_formulae_additional <<-'EOAPPS'
 	jsonlint
 	knock
 	mercurial
+	mosh
 	multitail
 	mutt
 	ncftp
