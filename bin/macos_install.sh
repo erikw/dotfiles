@@ -590,7 +590,12 @@ chmod go-w '/usr/local/share'
 ## * Datetime pattern: HH:mm
 
 # Irvue
-# Shortcuts > Change wallpaper: Ctrl + Shift + Cmd + N (to be consistent with Freshbackmac)
+## General
+# * Folder for saved wallpaper: ~/media/images/wallpapers/usplash/
+# * Uncheck Notifications
+# * Check Load at startup:
+## Shortcuts
+#* Change wallpaper: Ctrl + Shift + Cmd + N (to be consistent with Freshbackmac)
 
 # Semulov preferences
 ## Interface
