@@ -150,7 +150,6 @@ read -r -d '' brew_casks_default <<-'EOAPPS'
 	dropbox
 	electric-sheep
 	firefox
-	freshback
 	gimp
 	google-chrome
 	iterm2
@@ -190,6 +189,7 @@ read -r -d '' brew_casks_additional <<-'EOAPPS'
 	flip4mac
 	flux
 	franz
+	freshback
 	google-backup-and-sync
 	google-drive-file-stream
 	gpg-suite
@@ -326,6 +326,7 @@ brew install mas
 # 865500966  feedly. Read more, know more. (0.2)
 # 897118787  Shazam
 # 912659472  Brother ScannerApp (Image Capture.app does not work for Brother DCP-7070DW)
+# 1039633667  Irvue
 
 # Optional:
 # 1059074180 WeatherBug - Weather Forecasts and Alerts
@@ -587,6 +588,9 @@ chmod go-w '/usr/local/share'
 # Preferences Save space by hiding built-in time in System Preferences > Date & Time > Clock > uncheck "Show date & time in menu bar".
 ## * Check "Show day of week in the icon".
 ## * Datetime pattern: HH:mm
+
+# Irvue
+# Shortcuts > Change wallpaper: Ctrl + Shift + Cmd + N (to be consistent with Freshbackmac)
 
 # Semulov preferences
 ## Interface
