@@ -595,7 +595,7 @@ chmod go-w '/usr/local/share'
 # * Uncheck Notifications
 # * Check Load at startup:
 ## Shortcuts
-#* Change wallpaper: Ctrl + Shift + Cmd + N (to be consistent with Freshbackmac)
+#* Change wallpaper: Ctrl + Shift + Cmd + W (to be consistent with Freshbackmac)
 
 # Semulov preferences
 ## Interface
