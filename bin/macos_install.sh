@@ -169,6 +169,7 @@ brew_casks_default=$(make_1line "$brew_casks_default")
 read -r -d '' brew_casks_additional <<-'EOAPPS'
 	ableton-live-suite
 	adium
+	android-file-transfer
 	android-platform-tools
 	android-studio
 	atom

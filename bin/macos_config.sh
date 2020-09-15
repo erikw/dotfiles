@@ -167,7 +167,7 @@ EOF
 
 # Notifications
 # * Check "Turn on Do Not Disturbe: When the display is sleeping", to not leak notifications.
-# * Uncheck "Show notification on lock screen" for all apps, to not leak notifications.
+# * Uncheck "Show notification on lock screen" for all apps individually, to not leak notifications.
 
 
 # Display
