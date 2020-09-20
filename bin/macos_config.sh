@@ -319,6 +319,10 @@ EOF
 # * Uncheck "Copy items to the photos library"
 # }
 
+# App Store {
+# * Uncheck "In-App Ratings & Reviews"
+# }
+
 # iMessge.app {
 # * Turn off associattion to my mobile phone number, so it won't steal text messages from iPhones
 # Settings > Unlink my AppleID

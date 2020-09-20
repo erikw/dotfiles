@@ -612,6 +612,29 @@ chmod go-w '/usr/local/share'
 
 
 # The Unarchiever
+## Archive formats
 # Enable for most archives. Might have to change in Finder for it to be the default program for some files.
+## Extraction
+# * Uncheck "Reveal expanded items in Finder".
+
+# Mixedinkey
+## Update Tags
+# * What to write: Write the key and energy level with the word Energy
+# * Where to write it: In front of the comments
+# * Check "Update Tempo tag"
+## Export cue points
+# Uncheck Traktor for fast export.
+
+
+# Musicbrainz Picard
+## Metadata
+# * Remove text from "Non-album track", to not tag wit this tag when there's no found Album.
+### Genres
+# * Check "Use genres from musicbrainz".
+## Plugins
+# * Install Amazon cover art, Wikidata genre
+## Advanced
+### Network
+# * Uncheck "Web Proxy"
 
 # }
