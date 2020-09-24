@@ -137,7 +137,7 @@ EOF
 ## Screensaver
 # * Set Hot corners:
 ## upper left: Application Windows
-## right upper: Mission Control
+## upper right: Mission Control
 ## lower left: Desktop
 ## lower right: Sleep Monitors # nope, very annoyting if having monitor to the right.
 
@@ -150,12 +150,20 @@ EOF
 
 
 # Language & Region
-## Advanced
+# * Add English (US), Swedish, German
+# * Set Region to Germany
+## Advanced (button)
 ### General
 # * Currencty: Euro
 # * Measurement units: Metric
 ### Dates
 # * Update the "Full" format to include the week number: <day>, <dayno> <month>, W<weekno>, <year>. Now the week will be visible when clicking the clock in the macOS menubar. Reference: https://www.456bereastreet.com/archive/201104/week_numbers_in_mac_os_x/
+
+
+
+# Notifications
+# * Check "Turn on Do Not Disturbe: When the display is sleeping", to not leak notifications.
+# * Uncheck "Show notification on lock screen" for all apps individually, to not leak notifications.
 
 
 # Security & Privacy
@@ -164,10 +172,9 @@ EOF
 ## Firewall
 # * Turn on firewall. Turn on "Block all incoming connections"
 # 	* NOPE turn that off, and uncheck everything and add Chrome as an expcetion to allow incoming traffic, so Videostream chromecast app works.
+## Privacy
+# * Advertising > check "Limit Ad Tracking".
 
-# Notifications
-# * Check "Turn on Do Not Disturbe: When the display is sleeping", to not leak notifications.
-# * Uncheck "Show notification on lock screen" for all apps individually, to not leak notifications.
 
 
 # Display
@@ -176,39 +183,43 @@ EOF
 ## Night SHift
 # * Schedule: Sunset to Sunrise
 
+
+
+
 # Energy Saver
 ## Power Adapter
 # * Uncheck "Enable Power Nap while plugged in", because during wake-up, cronjobs can start but will fail as power goes down soon again (happended with my restic_backup.se).
 
+
+
 # Keyboard
 ## Keyboard
-# * Make Delay Until Repeat short
-# * Make Key Repeat fast
-### Modifier Keys
+# * Make Delay Until Repeat short (2nd most right value)
+# * Make Key Repeat fast (fastest)
 # * Turn off backlit after 1 minute.
 # * Check "Use F1, F2,.. as standard function keys
-# * Modifier Keys
-#	 * For internal keyboard:
-#	    - Set Caps Lock -> Escape
-#	 * For external keyboard,
-#	    - Set Caps Lock -> Escape
-#	    (unless the keyboard is an Apple keyboard or has a "mac-switch" toggle)
-#	    - Set Option -> Command
-#	    - Set Command -> Option
+# * OR for touchbar MBPs, set for Press FN key to show F1, F2
+### Modifier Keys
+# * For internal keyboard:
+#    - Set Caps Lock -> Escape
+# * For external keyboard,
+#    - Set Caps Lock -> Escape
+#    (unless the keyboard is an Apple keyboard or has a "mac-switch" toggle)
+#    - Set Option -> Command
+#    - Set Command -> Option
 ## Text
 # * Set word expansions based on ~/doc/tech/word_expansions.txt
 ## Input Sources
 # * Add US, Swedish & German. Check "Show Input menu in menu bar".
+# * Click "Spelling" dropdown >  chose "Set up" > uncheck British English and check US English. NOPE let it be "Automatic by Language"
 ## Shortcuts
 ### Input Sources
-# * Enable shortcuts for cycling input sources _backwards_ with CTRL+OPT+Space. Reason for only having forward is because of keyboard shorcut clash on SHIFT+OPT with Amethyst's cycle layout.
+# * Enable shortcuts for cycling input sources _backwards_ ("Select the previous input source") with CTRL+OPT+Space. Reason for only having forward is because of keyboard shorcut clash on SHIFT+OPT with Amethyst's cycle layout.
 ### Mission Control:
 # * Show Notification Center: F13 (Print screen).
-# * Enable shortcuts Ctrl+[1-5] for switching to Desktops.
+# * Enable shortcuts Ctrl+[1-5] for switching to Desktops. (Need to open 5 spaces for this to show up)
 # * Do not Distrurb on/off: Cmd+F12
-#
 ## Text
-# * Click "Spelling" dropdown >  chose "Set up" > uncheck British English and check US English.
 
 
 # Mouse
@@ -227,11 +238,6 @@ EOF
 # Sound
 # * Check "Show volume in menu bar"
 
-
-# iCloud
-# * Login and enable
-
-
 # Internet Accounts
 # * Add Google account to get: Calendar, Contacts, mail etc.
 
@@ -239,7 +245,7 @@ EOF
 # * Check "Automatically keep my Mac up to date".
 
 # Bluetooth
-# Turn off bluetooth.
+# Check "Show Bluetooth in menu bar"
 
 # Users & Groups
 # * Drag`n'drop a picture of me on to my profile.
@@ -253,7 +259,8 @@ EOF
 ## Zoom
 # * Check "Use keyboard shortcuts to zoom".
 # * Select Zoom style: Picture-in-picture
-# ** Options > Uncheck "Hold Ctrl+Opt to temporarily toggle zoom" as this interferece with shortcut to toggle input language, and leave mouse cursor hidden after toggling input source.
+# ** Advanced > Controls tab > Uncheck "Hold Ctrl+Opt to temporarily toggle zoom" as this interferece with shortcut to toggle input language, and leave mouse cursor hidden after toggling input source.
+
 
 # Sharing
 # Set "Computer Name"
