@@ -53,6 +53,7 @@
 		alias mac_hibernate='sudo pmset -a hibernatemode'
 		alias mac_listhibernate='sudo pmset -g | grep hibernatemode'
 		alias mac_emptytrash='rm -rf ~/.Trash/*' 		# Empty trash bin.
+		alias mac_app_store_apps="find /Applications \-maxdepth 4 \-path '*Contents/_MASReceipt/receipt' -print |\sed 's#.app/Contents/_MASReceipt/receipt#.app#g; s#/Applications/##'"		# List apps installed from App Store.
 		alias afk='/System/Library/CoreServices/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine'
 		;;
 	esac
