@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-# Install the macOS apps I use, using brew, cask and pip.
 # Modeline {
 #	vi: foldmarker={,} foldmethod=marker foldlevel=0: tabstop=8:
 # }
@@ -53,7 +52,6 @@ read -r -d '' brew_formulae_default <<-'EOAPPS'
 	nmap
 	octave
 	pdfgrep
-	pdftotext
 	pidof
 	python
 	readline
@@ -118,6 +116,7 @@ read -r -d '' brew_formulae_additional <<-'EOAPPS'
 	ncftp
 	nethogs
 	notmuch
+	npm
 	offlineimap
 	openvpn
 	pastebinit
@@ -147,7 +146,6 @@ read -r -d '' brew_casks_default <<-'EOAPPS'
 	appcleaner
 	clipy
 	cyberduck
-	dropbox
 	electric-sheep
 	firefox
 	gimp
@@ -156,6 +154,7 @@ read -r -d '' brew_casks_default <<-'EOAPPS'
 	itsycal
 	karabiner-elements
 	libreoffice
+	pdftotext
 	scroll-reverser
 	semulov
 	sensiblesidebuttons
@@ -183,6 +182,7 @@ read -r -d '' brew_casks_additional <<-'EOAPPS'
 	clamxav
 	colloquy
 	dash
+	dropbox
 	eclipse-ide
 	epic-games
 	eqmac
@@ -268,7 +268,8 @@ pip3_pkgs_additional=$(make_1line "$pip3_pkgs_additional")
 # Install {
 set -e # Must be after var defs.
 # Install homebrew.
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+
 # Note that some gnu pakcages comes with g-prefix in the bin names. The default names are set up in $PATH in ~/.shell_commons
 brew install $brew_formulae_default
 
@@ -283,7 +284,7 @@ brew tap beeftornado/rmtree
 
 
 # Install cask.
-brew tap caskroom/cask
+brew tap homebrew/cask
 brew cask install $brew_casks_default
 #brew cask install $brew_casks_additional
 
@@ -432,7 +433,7 @@ chmod go-w '/usr/local/share'
 # Amethyst
 # Give Amethys acessability access according to: https://ianyh.com/amethyst
 # Then go to Amethys Preferences
-# * Uncheck "Enable Layout HUD on Space Change".
+# * Uncheck "Display layout when changing spaces".
 # * Set the following layouts to be used: tall, wide, fullscreen, floating.
 
 # Clipy
@@ -443,7 +444,7 @@ chmod go-w '/usr/local/share'
 # * Number of items to place inside a folder: 75
 # * Number of characters in the menu: 50
 ## Shortcuts
-# * Set the history keyboard shortcut to Cmd+Shift+v.
+# * Set the History keyboard shortcut to Cmd+Shift+v.
 # * Set the Snipets keyboard shortcut to Cmd+Shift+b.
 ## Snippets
 # Create snipets for some common items in ~/doc/tech/word_expansions.txt
@@ -454,6 +455,7 @@ chmod go-w '/usr/local/share'
 # * Turn off desktop notifications.
 
 # Binary lastpass version, for copy-and-paste:
+# NOTE not needed as of modern versions of browsers.
 # https://lastpass.com/installer/?lang=en-US
 
 # Spotify Notifications
@@ -466,20 +468,22 @@ chmod go-w '/usr/local/share'
 
 
 # MacVim
-# * Make the app quit when the last buffer is closed: " MacVim > Preferences > After the last window closes: QuitMacVim.
+# * Make the app quit when the last buffer is closee: " MacVim > Preferences > After the last window closes: QuitMacVim.
 # * Open text files with MacVim
 # 	* Find any .txt file > cmd+i on it > Open with > MacVim > Change for all
 
-# Scroll Reerse
+# Scroll Reverse
 # Enable reverse only for Mouse, and disable from menubar.
 
 # iTerm2
 ## General
+### Closing
 # * Make it easier to restart/poweroff by not confirming closing multiple windows - I always use tmux so it's not a problem.  Unckeck:
 # - Confirm closing multiple sessions.
 # - Confirm "iTerm2 (#Q)" if windows open"
 # * iterm.sh: If iterm2.app is closed, 2 windows will be opended by this script. To prevent this:
 # 	- Startup > Select "Only Restore Hotkey Window" NOPE don't do this anymore as of #irctorautostart
+### Selection
 # * Enable automatic tmux copy to GUI clipboard on selection
 # - Check "Applications in terminal may access clipboard"
 ## Profiles
@@ -506,6 +510,7 @@ chmod go-w '/usr/local/share'
 # 	- Press the '+' button:>
 # 		- Shortcut: Opt + Cmd + shift + s
 # 		- Action: "Load Color Preset" > "Solarized Dark"
+
 
 
 # Automator command for starting screen saver.
@@ -555,9 +560,6 @@ chmod go-w '/usr/local/share'
 # 3. Go to App Store and install all of them again, now signed in with the newly created account.
 
 
-# Set up ~/bin/macos_start_screensaver.command according to instructions inside.
-
-
 # * Denon PMA-50 (amplifier). Reference: http://manuals.denon.com/PMA50/EU/EN/WBSPSYknckyjju.php#WBSPMLurphubft
 # 	* Connect via USB
 # 	* Open Audio MIDI Setup app
@@ -569,6 +571,8 @@ chmod go-w '/usr/local/share'
 
 # Logitech G700s drivers
 # * https://support.logitech.com/en_us/product/g700s-rechargable-wireless-gaming-mouse/downloads#
+
+
 
 # Karabiner elements
 # Karabiner elements works much better than built-in opt<->cmd swap in system preferences because this bult-in swap does not work properly in iTerm, as alt key is only working on laptop keyboard and not on external.
@@ -587,8 +591,13 @@ chmod go-w '/usr/local/share'
 
 # Itsycal
 # Preferences Save space by hiding built-in time in System Preferences > Date & Time > Clock > uncheck "Show date & time in menu bar".
-## * Check "Show day of week in the icon".
-## * Datetime pattern: HH:mm
+## Appearance
+# * Check "Use outline icon"
+# * Check "Show day of week in the icon".
+# * Datetime pattern: HH:mm
+# * Check "Show event location"
+# * Check "Show calendar weeks"
+
 
 # Irvue
 ## General
@@ -597,6 +606,10 @@ chmod go-w '/usr/local/share'
 # * Check Load at startup:
 ## Shortcuts
 #* Change wallpaper: Ctrl + Shift + Cmd + W (to be consistent with Freshbackmac)
+
+
+# Sensiblesidebuttons
+# Just launch it one time to set right permissions needed.
 
 # Semulov preferences
 ## Interface

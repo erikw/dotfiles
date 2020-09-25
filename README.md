@@ -151,7 +151,8 @@ $ go get github.com/motemen/ghq
 
 * [altercation/solarized](https://github.com/altercation/solarized)
 ```bash
-$ cd ~/src
+$ mkdir -p ~/src/github.com
+$ cd !$
 $ git clone git@github.com:altercation/solarized.git
 ````
 
@@ -192,7 +193,7 @@ Install:
  * urlview(1)
  * [seebi/tmux-colors-solarized](https://github.com/seebi/tmux-colors-solarized)
  ```bash
- $ cd ~/src
+ $ cd ~/src/github.com
  $ git clone git@github.com:seebi/tmux-colors-solarized.git
  ```
  * ~~`brew install reattach-to-user-namespace` if on OSX~~

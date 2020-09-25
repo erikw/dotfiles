@@ -289,7 +289,8 @@ EOF
 # * Also open this diealog while being in ~/, then check "Show Library Folder". Reference: https://appletoolbox.com/unhide-access-mac-library-folder/
 ## Preferences
 # ** General
-# *** Show on desktop: connected servers
+# *** Show on desktop: connected servers, disks
+# *** New Finder window shows: ~/
 # ** Sidebar
 # *** Hide things like Airdrop, iCould, Recents
 #
@@ -348,5 +349,3 @@ EOF
 # }
 
 # Media shortcuts for external keyboard: follow instructions in ~/bin/macos_media_control/info.txt
-
-# * Battery icon in menu bar > Show Percentages.
