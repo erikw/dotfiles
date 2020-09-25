@@ -182,6 +182,7 @@ read -r -d '' brew_casks_additional <<-'EOAPPS'
 	clamxav
 	colloquy
 	dash
+	docker
 	dropbox
 	eclipse-ide
 	epic-games
@@ -374,6 +375,7 @@ pip3 install --user $pip3_pkgs
 # - Air Hybrid synth
 # * Audacity: https://www.audacityteam.org/download/mac/
 # * Mixedinkey: https://account.mixedinkey.com/
+# * SDKMan: https://sdkman.io/install
 
 # Install tmux session on login.
 # Reference: http://www.launchd.info/
@@ -609,7 +611,9 @@ chmod go-w '/usr/local/share'
 
 
 # Sensiblesidebuttons
-# Just launch it one time to set right permissions needed.
+# * Launch it one time to set right permissions needed.
+# * From menu bar icon: hide icon
+
 
 # Semulov preferences
 ## Interface
