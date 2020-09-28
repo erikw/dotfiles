@@ -199,6 +199,9 @@ EOF
 # * Turn off backlit after 1 minute.
 # * Check "Use F1, F2,.. as standard function keys
 # * OR for touchbar MBPs, set for Press FN key to show F1, F2
+### Customtize Control Strip (button)
+# * Most-right control strip buttons: Play/pause, Volume Slider, Mute, DnD
+# * To the expanded control strip: add Sleep button.
 ### Modifier Keys
 # * For internal keyboard:
 #    - Set Caps Lock -> Escape
