@@ -206,6 +206,10 @@ read -r -d '' brew_casks_additional <<-'EOAPPS'
 	livereload
 	mactex
 	max
+	microsoft-excel
+	microsoft-outlook
+	microsoft-powerpoint
+	microsoft-word
 	mp3tag
 	mullvadvpn
 	musicbrainz-picard
