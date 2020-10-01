@@ -145,7 +145,6 @@ read -r -d '' brew_casks_default <<-'EOAPPS'
 	amethyst
 	appcleaner
 	clipy
-	cyberduck
 	electric-sheep
 	firefox
 	gimp
@@ -181,6 +180,7 @@ read -r -d '' brew_casks_additional <<-'EOAPPS'
 	cheatsheet
 	clamxav
 	colloquy
+	cyberduck
 	dash
 	docker
 	dropbox
@@ -454,6 +454,11 @@ chmod go-w '/usr/local/share'
 # * Set the Snipets keyboard shortcut to Cmd+Shift+b.
 ## Snippets
 # Create snipets for some common items in ~/doc/tech/word_expansions.txt
+
+
+# Firefox
+## Firefox (menu bar) > Customize Touch Bar..
+# * Replace Share with Reading mode.
 
 # FreshBackMac
 # * Add to auto start in Settings > Users & Groups > Login items.
