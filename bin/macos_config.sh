@@ -136,10 +136,10 @@ EOF
 # Desktop & Screensaver
 ## Screensaver
 # * Set Hot corners:
-## upper left: Application Windows
+## upper left: -
 ## upper right: Mission Control
 ## lower left: Desktop
-## lower right: Sleep Monitors # nope, very annoyting if having monitor to the right.
+## lower right: Put Display to Sleep
 
 # Dock
 # * Uncheck "Show recent applications in Dock"
@@ -204,10 +204,10 @@ EOF
 # * To the expanded control strip: add Sleep button.
 ### Modifier Keys
 # * For internal keyboard:
-#    - Set Caps Lock -> Escape
+#    - Set Caps Lock -> Escape (prefer Karabiner, as it sets for all keyboards)
 # * For external keyboard,
-#    - Set Caps Lock -> Escape
-#    (unless the keyboard is an Apple keyboard or has a "mac-switch" toggle)
+#    - Set Caps Lock -> Escape (prefer Karabiner, as it sets for all keyboards)
+#    (unless the keyboard is an Apple keyboard or has a "mac-switch" toggle):
 #    - Set Option -> Command
 #    - Set Command -> Option
 ## Text
@@ -296,6 +296,7 @@ EOF
 # *** New Finder window shows: ~/
 # ** Sidebar
 # *** Hide things like Airdrop, iCould, Recents
+# View > Customize Control Strip > Add "New Folder" shortcut
 #
 # }
 
