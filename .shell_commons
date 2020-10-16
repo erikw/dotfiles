@@ -322,4 +322,12 @@ source $HOME/.shell_functions
 	# iTerm2 integration: https://iterm2.com/documentation-shell-integration.html
 	# Disabled. Not used and makes shell load slower
 	#test -e "${HOME}/.iterm2_shell_integration.${my_shell}" && source "${HOME}/.iterm2_shell_integration.${my_shell}"
+
+
+
+	# Must be at the end of shell init file. but here should do...
+	if program_is_in_path sdk; then
+		export SDKMAN_DIR="$HOME/.sdkman"
+		[[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]] && source "$SDKMAN_DIR/bin/sdkman-init.sh"
+	fi
 # }

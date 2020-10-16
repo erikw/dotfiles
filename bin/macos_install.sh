@@ -379,7 +379,6 @@ pip3 install --user $pip3_pkgs
 # - Air Hybrid synth
 # * Audacity: https://www.audacityteam.org/download/mac/
 # * Mixedinkey: https://account.mixedinkey.com/
-# * SDKMan: https://sdkman.io/install
 
 # Install tmux session on login.
 # Reference: http://www.launchd.info/
@@ -419,6 +418,11 @@ chmod go-w '/usr/local/share'
 #sudo sh -c "echo \"$newtab\" | crontab -"
 
 
+# Java/JVM development
+## SDKMan: https://sdkman.io/install
+# $ curl -s "https://get.sdkman.io" | bash
+# $ sdk install gradle x.y
+# $ sdk install java 15.0.0.hs-adpt
 
 # Brother DCP-7070dw printer & scanner driver: https://support.brother.com/g/b/downloadtop.aspx?c=eu_ot&lang=en&prod=dcp7070dw_eu
 # Add by Bonjour discovery on network.
