@@ -352,4 +352,8 @@ EOF
 # * Arrange icons so that the least important ones are to the left, as they are chopped of when space becomes to little e.g. on the laoptop screen.
 # }
 
+# Desktop {
+# * Right click > Sort By > Check "Snap to grid".
+# }
+
 # Media shortcuts for external keyboard: follow instructions in ~/bin/macos_media_control/info.txt
