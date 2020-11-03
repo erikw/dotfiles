@@ -200,6 +200,7 @@ read -r -d '' brew_casks_additional <<-'EOAPPS'
 	insomnia
 	insync
 	intellij-idea-ce
+	isyncr
 	jing
 	keepassxc
 	kid3
@@ -418,6 +419,7 @@ chmod go-w '/usr/local/share'
 #sudo sh -c "echo \"$newtab\" | crontab -"
 
 
+# Manual installs {
 # Java/JVM development
 ## SDKMan: https://sdkman.io/install
 # $ curl -s "https://get.sdkman.io" | bash
@@ -436,9 +438,12 @@ chmod go-w '/usr/local/share'
 # Instructions: https://swedbank.se/privat/digitala-tjanster/mobilt-bankid/bankid-pa-kort-och-fil/bankid-pa-fil.html
 # Install: https://install.bankid.com/ or cask
 
+# Launchkey 3
+# Additional software can be found at https://customer.novationmusic.com/en/support/downloads?brand=Novation&product_by_type=1431&download_type=software
+# }
 # }
 
-# Custom/Config {
+# Configuration {
 
 # Amethyst
 # Give Amethys acessability access according to: https://ianyh.com/amethyst
@@ -666,5 +671,9 @@ chmod go-w '/usr/local/share'
 ## Advanced
 ### Network
 # * Uncheck "Web Proxy"
+
+
+# iSyncr
+# Set-up guide at https://www.jrtstudio.com/iSyncr/Tutorials/WiFi
 
 # }
