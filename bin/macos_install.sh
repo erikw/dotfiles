@@ -439,7 +439,9 @@ chmod go-w '/usr/local/share'
 # Install: https://install.bankid.com/ or cask
 
 # Launchkey 3
-# Additional software can be found at https://customer.novationmusic.com/en/support/downloads?brand=Novation&product_by_type=1431&download_type=software
+# Additional software can be found at
+# * https://customer.novationmusic.com/en/my-software
+# * https://customer.novationmusic.com/en/support/downloads?brand=Novation&product_by_type=1431&download_type=software
 # }
 # }
 
@@ -626,6 +628,7 @@ chmod go-w '/usr/local/share'
 # * Check Load at startup:
 ## Shortcuts
 #* Change wallpaper: Ctrl + Shift + Cmd + W (to be consistent with Freshbackmac)
+#* Disable all other shortcuts as e.g. opt+cmd+r conflicts with Firefox reading mode.
 
 
 # Sensiblesidebuttons
@@ -676,4 +679,26 @@ chmod go-w '/usr/local/share'
 # iSyncr
 # Set-up guide at https://www.jrtstudio.com/iSyncr/Tutorials/WiFi
 
+# Ableton Live
+# root=/Volumes/toshiba_music/daw/ableton/
+## Look and Feel
+# * Zoom Display: 115%
+# * Theme: Dark
+## Library
+# * Location of User Library: $root/includes/user_library/
+# * Installation Folder for Packs: $root/includes/factory_packs/
+## Plug-Ins:
+# * Note, use the Custom Paths as my own install paths, while keeping manuals etc in $root/plugins/installers/
+# * Use VST2 Plug-In Custom Folder: true
+# * VST2 Plug-In Custom Folder: $root/plugins/VST/
+# * Use VST3 Plug-In Custom Folder: true
+# * VST3 Plug-In Custom Folder: $root/plugins/VST3/
+## Other
+# * Add these directories to the Ableton browser:
+# $root/../../music/samples/
+# $root/packs/
+# $root/templates/
+# $root/max/max_audio_effects/
+# $root/max/max_instruments/
+# $root/max/max_midi_effects/
 # }

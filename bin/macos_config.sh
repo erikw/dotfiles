@@ -282,6 +282,7 @@ EOF
 #  - Desktop
 #  - Applicatons
 #  - /tmp
+#  - /Volumes/toshiba_music/daw/ableton/
 #  * OPTIONAL: Copy icon from Downloads -> DL in CMD+i dialog.
 ## View
 # ** Show Path Bar
