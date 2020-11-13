@@ -327,7 +327,7 @@ brew install mas
 # $ mas install <id>
 
 # To install:
-# 1302002064  djay Pro 2
+# 450527929  djay - DJ App & AI Mixer
 # 405399194  Kindle
 # 497799835  Xcode
 # 585829637 Todoist: Organize your life
@@ -515,6 +515,8 @@ chmod go-w '/usr/local/share'
 # * Send text at start: "irctor"   #irctorautostart
 ### Colors
 # * Select color preset "Solarized Dark".
+### Terminal
+# * Check "Silence Bells"
 ### Text
 # * Set font to either
 # ** Source Code Pro for Powerline, 14pt.
@@ -616,7 +618,7 @@ chmod go-w '/usr/local/share'
 ## Appearance
 # * Check "Use outline icon"
 # * Check "Show day of week in the icon".
-# * Datetime pattern: HH:mm
+# * Datetime pattern: "" (as macOS clock can't be hidden starting from macOS 11).
 # * Check "Show event location"
 # * Check "Show calendar weeks"
 
@@ -680,25 +682,25 @@ chmod go-w '/usr/local/share'
 # Set-up guide at https://www.jrtstudio.com/iSyncr/Tutorials/WiFi
 
 # Ableton Live
-# root=/Volumes/toshiba_music/daw/ableton/
+# root=/Volumes/toshiba_music/daw/
 ## Look and Feel
 # * Zoom Display: 115%
 # * Theme: Dark
 ## Library
-# * Location of User Library: $root/includes/user_library/
-# * Installation Folder for Packs: $root/includes/factory_packs/
+# * Location of User Library: $root/ableton/includes/user_library/
+# * Installation Folder for Packs: $root/ableton/includes/factory_packs/
 ## Plug-Ins:
-# * Note, use the Custom Paths as my own install paths, while keeping manuals etc in $root/plugins/installers/
+# * Note, use the Custom Paths as my own install paths, while keeping manuals etc in $root/plugins/installers/. See https://help.ableton.com/hc/en-us/articles/209068929-Using-AU-and-VST-plug-ins-on-Mac
 # * Use VST2 Plug-In Custom Folder: true
 # * VST2 Plug-In Custom Folder: $root/plugins/VST/
 # * Use VST3 Plug-In Custom Folder: true
 # * VST3 Plug-In Custom Folder: $root/plugins/VST3/
 ## Other
 # * Add these directories to the Ableton browser:
-# $root/../../music/samples/
-# $root/packs/
-# $root/templates/
-# $root/max/max_audio_effects/
-# $root/max/max_instruments/
-# $root/max/max_midi_effects/
+# $root/../music/samples/
+# $root/ableton/packs/
+# $root/ableton/templates/
+# $root/ableton/max/max_audio_effects/
+# $root/ableton/max/max_instruments/
+# $root/ableton/max/max_midi_effects/
 # }

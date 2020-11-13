@@ -258,20 +258,14 @@ source $HOME/.shell_functions
 	# macOS python
 	# Add macOS python binary folders to the path (the binaries from homebrew pyhon are already included from /usr/local/bin)
 	# $PYTHONPATH is a PATH-formatted list of additional directories where python should look for modules when importing ones. Don't mix py2 and py3 paths in it.
-	# TODO Can I remove this when Apple stops shipping Python with macOS? At least python2 part. https://developer.apple.com/documentation/macos_release_notes/macos_catalina_10_15_release_notes
+	# TODO can I remove this when Apple stops shipping Python with macOS?
 	if shell_is_macos; then
-		macos_py2path=$HOME/Library/Python/2.7
-		if [ -d $macos_py2path ]; then
-			PATH="$macos_py2path/bin:$PATH"
-			# Python path must be set for ropevim to find rope.
-			#export PYTHONPATH="$macos_py2path/lib/python/site-packages:$PYTHONPATH"
-		fi
 		macos_py3path=$HOME/Library/Python/3.7
 		if [ -d $macos_py3path ]; then
 			PATH="$macos_py3path/bin:$PATH"
 			#export PYTHONPATH="$macos_py3path/lib/python/site-packages:$PYTHONPATH"
 		fi
-		unset macos_py2path macos_py3path
+		unset macos_py3path
 	fi
 
 	#if program_is_in_path pyenv; then
