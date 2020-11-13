@@ -141,8 +141,19 @@ EOF
 ## lower left: Desktop
 ## lower right: Put Display to Sleep
 
-# Dock
+# Dock & Menu Bar
 # * Uncheck "Show recent applications in Dock"
+# * Show  in Menu Bar
+#   - Do Not Distrub: always
+#   - Screen Mirroring: when active
+#   - Display: when active
+#   - Sound: always
+#   - Now Playing: when active
+#   - Battery: Menu Bar, Control center
+#   - Clock:
+#   	- Uncheck Show day of the week & Show date
+#   - Spotlight: turn off
+#   - Time machine: Menu bar
 
 
 # Mission Control
@@ -282,7 +293,7 @@ EOF
 #  - Desktop
 #  - Applicatons
 #  - /tmp
-#  - /Volumes/toshiba_music/daw/ableton/
+#  - /Volumes/toshiba_music/daw/
 #  * OPTIONAL: Copy icon from Downloads -> DL in CMD+i dialog.
 ## View
 # ** Show Path Bar
@@ -302,7 +313,7 @@ EOF
 # }
 
 # Menubar {
-# * Batter > Show Percentage
+# * On the notiffication/widget dropdown (click on clock), only keep Weather and what's next widet.
 # }
 
 # Dock {
