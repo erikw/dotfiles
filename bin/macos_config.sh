@@ -132,6 +132,7 @@ EOF
 #
 # General
 # * Set Dark theme
+# * Uncheck "Close windows when quitting an app"
 
 # Desktop & Screensaver
 ## Screensaver
@@ -250,6 +251,7 @@ EOF
 
 
 # Sound
+# * Uncheck "Play sound on startup"
 # * Check "Show volume in menu bar"
 
 # Internet Accounts
@@ -322,6 +324,7 @@ EOF
 # }
 
 # Mail.app {
+# * Drag my Gmail account to the top in the mailboxes left side list and collapse all other.
 # * The default keyboard shortcut for archive an email, ^+cmd+a, conflicts with Todoist. Add another one.
 # 	- Reference: https://www.lifewire.com/archive-keyboard-shortcut-os-x-mail-1172749
 # 	- System Preferences > Shortcuts > App Shortcuts > + >
