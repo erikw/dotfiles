@@ -145,7 +145,7 @@ EOF
 # Dock & Menu Bar
 # * Uncheck "Show recent applications in Dock"
 # * Show  in Menu Bar
-#   - Do Not Distrub: always
+#   - Do Not Distrub: when active
 #   - Screen Mirroring: when active
 #   - Display: when active
 #   - Sound: always
@@ -169,11 +169,12 @@ EOF
 # * Currencty: Euro
 # * Measurement units: Metric
 ### Dates
-# * Update the "Full" format to include the week number: <day>, <dayno> <month>, W<weekno>, <year>. Now the week will be visible when clicking the clock in the macOS menubar. Reference: https://www.456bereastreet.com/archive/201104/week_numbers_in_mac_os_x/
+# * Update the "Full" format to include the week number: <day>, <dayno> <month>, W<weekno>, <year>. Now the week will be visible when clicking the clock in the macOS menu bar. Reference: https://www.456bereastreet.com/archive/201104/week_numbers_in_mac_os_x/
 
 
 
 # Notifications
+# * Turn on DnD from 00:00 to 07:00.
 # * Check "Turn on Do Not Disturbe: When the display is sleeping", to not leak notifications.
 # * Uncheck "Show notification on lock screen" for all apps individually, to not leak notifications.
 
@@ -314,7 +315,7 @@ EOF
 #
 # }
 
-# Menubar {
+# Menu Bar {
 # * On the notiffication/widget dropdown (click on clock), only keep Weather and what's next widet.
 # }
 

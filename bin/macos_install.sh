@@ -438,7 +438,8 @@ chmod go-w '/usr/local/share'
 # Instructions: https://swedbank.se/privat/digitala-tjanster/mobilt-bankid/bankid-pa-kort-och-fil/bankid-pa-fil.html
 # Install: https://install.bankid.com/ or cask
 
-# Launchkey 3
+# Novation Launchkey 3
+# * Set up Ableton MIDI input/output according to ~/doc/man/music/novation_launchkey_mk3_manual_v1.03.pdf page 12.
 # Additional software can be found at
 # * https://customer.novationmusic.com/en/my-software
 # * https://customer.novationmusic.com/en/support/downloads?brand=Novation&product_by_type=1431&download_type=software
@@ -641,7 +642,7 @@ chmod go-w '/usr/local/share'
 # Semulov preferences
 ## Interface
 # * Check "Show number of mounted in menubar"
-# * Check "Show Ejec All menu item" and set the shortcut to Ctrl+Cmd+F12
+# * Check "Show Ejec All menu item" and set the shortcut to Ctrl+Cmd+F12 or Cmd+Opt+Shift+E
 ## Ignore Volumes
 #Recovery
 #Boot OS X
