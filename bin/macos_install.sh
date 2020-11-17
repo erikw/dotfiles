@@ -328,6 +328,7 @@ brew install mas
 
 # To install:
 # 450527929  djay - DJ App & AI Mixer
+# 1527105121  Neural Mix Pro
 # 405399194  Kindle
 # 497799835  Xcode
 # 585829637 Todoist: Organize your life
@@ -476,10 +477,6 @@ chmod go-w '/usr/local/share'
 # * Add to auto start in Settings > Users & Groups > Login items.
 # * Set daily refresh
 # * Turn off desktop notifications.
-
-# Binary lastpass version, for copy-and-paste:
-# NOTE not needed as of modern versions of browsers.
-# https://lastpass.com/installer/?lang=en-US
 
 # Spotify Notifications
 # * Set shortcut to show current playing to: Ctrl + Opt + Cmd + p
