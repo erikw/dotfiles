@@ -628,7 +628,7 @@ chmod go-w '/usr/local/share'
 # * Check Load at startup:
 ## Shortcuts
 #* Change wallpaper: Ctrl + Shift + Cmd + W (to be consistent with Freshbackmac)
-#* Disable all other shortcuts as e.g. opt+cmd+r conflicts with Firefox reading mode.
+#* Disable all other shortcuts as e.g. opt+cmd+r conflicts with Firefox reading mode, cmd+opt+s with iTerm solarized toggle.
 
 
 # Sensiblesidebuttons
