@@ -150,9 +150,9 @@ EOF
 #   - Display: when active
 #   - Sound: always
 #   - Now Playing: when active
-#   - Battery: Menu Bar, Control center
+#   - Battery: Menu Bar, Control center.
 #   - Clock:
-#   	- Uncheck Show day of the week & Show date
+#   	- Uncheck Show day of the week & Show date. NOPE itsycal removed, keep defaults.
 #   - Spotlight: turn off
 #   - Time machine: Menu bar
 
@@ -170,6 +170,7 @@ EOF
 # * Measurement units: Metric
 ### Dates
 # * Update the "Full" format to include the week number: <day>, <dayno> <month>, W<weekno>, <year>. Now the week will be visible when clicking the clock in the macOS menu bar. Reference: https://www.456bereastreet.com/archive/201104/week_numbers_in_mac_os_x/
+# ** NOPE since macos 11 Big Sur, these settings are overriden by the Menu Bar. It's possible to modify somewhat with https://github.com/tech-otaku/menu-bar-clock but not worth it.
 
 
 
@@ -232,7 +233,7 @@ EOF
 ### Input Sources
 # * Enable shortcuts for cycling input sources _backwards_ ("Select the previous input source") with CTRL+OPT+Space. Reason for only having forward is because of keyboard shorcut clash on SHIFT+OPT with Amethyst's cycle layout.
 ### Mission Control:
-# * Show Notification Center: F13 (Print screen).
+# * Show Notification Center: Cmd+F11
 # * Enable shortcuts Ctrl+[1-5] for switching to Desktops. (Need to open 5 spaces for this to show up)
 # * Do not Distrurb on/off: Cmd+F12
 ## Text
@@ -316,7 +317,9 @@ EOF
 # }
 
 # Menu Bar {
-# * On the notiffication/widget dropdown (click on clock), only keep Weather and what's next widet.
+# * On the notification/widget dropdown (click on clock), keep the following widgets
+# ** Calendar (m)
+# ** Weather (m)
 # }
 
 # Dock {
