@@ -150,7 +150,6 @@ read -r -d '' brew_casks_default <<-'EOAPPS'
 	gimp
 	google-chrome
 	iterm2
-	itsycal
 	karabiner-elements
 	libreoffice
 	pdftotext
@@ -158,7 +157,6 @@ read -r -d '' brew_casks_default <<-'EOAPPS'
 	semulov
 	sensiblesidebuttons
 	spotify
-	spotify-notifications
 	the-unarchiver
 	vlc
 EOAPPS
@@ -201,6 +199,7 @@ read -r -d '' brew_casks_additional <<-'EOAPPS'
 	insync
 	intellij-idea-ce
 	isyncr
+	itsycal
 	jing
 	keepassxc
 	kid3
@@ -230,6 +229,7 @@ read -r -d '' brew_casks_additional <<-'EOAPPS'
 	slack
 	sound-control
 	spectacle
+	spotify-notifications
 	steam
 	steam
 	stretchly
@@ -479,6 +479,7 @@ chmod go-w '/usr/local/share'
 # * Turn off desktop notifications.
 
 # Spotify Notifications
+# Replaced with native Now Playing Menu Bar.
 # * Set shortcut to show current playing to: Ctrl + Opt + Cmd + p
 
 # Powerline
@@ -546,34 +547,35 @@ chmod go-w '/usr/local/share'
 	#return input
 #end run
 # 5. Save with the name "start_screensaver.
-# 6. Open System Peferences>Keyboard>Shortcuts>Services>General and assign start_screensaver the shortcutl CTRL+CMD+L.
+# 6. Open System Peferences>Keyboard>Shortcuts>Services>General and assign this quick action the shortcutl CTRL+CMD+L.
 # If start_screensaver save did not show up, try logging in and out or restarting the computer.
 #
 #
 #
-#
-#
-#
-#
 # Automator command to cycle output devices. Do this for all ~/bin/macos_media_control/SwitchAudioSource*.command
-# 1. Open automator
-# 2. Create a new service (now named Quick Action)
-# 3. Choose "Run AppleScript"
-# 4. In the top of the window, select for "Service receives selected" to "no input" and "in any application".
-# 5. Paste contents of ~/bin/macos_media_control/SwitchAudioSource_cycle.command
-# 5. Save with the name "SwitchAudioSource_cycle".
-# 6. Open System Peferences>Keyboard>Shortcuts>Services>General and assign SwitchAudioSource_* to the shortcut
-#  cycle: OPT+CMD+F9.
-#  Built-in: OPT+CMD+F10.
-#  PMA-50: OPT+CMD+F11.
-#  USB Soundcard/headset: OPT+CMD+F12
-#
+# * Create an automator Quick Action named "SwitchAudioSource_cycle" with AppleScript for the contents in ~/bin/macos_media_control/SwitchAudioSource_cycle.command
+# * Bind to shortcuts like:
+#  - cycle: OPT+CMD+F9.
+#  - Built-in: OPT+CMD+F10.
+#  - PMA-50: OPT+CMD+F11.
+#  - USB Soundcard/headset: OPT+CMD+F12
 #
 #
 # Automator command eject USB drives
-# * Create an automator Quick Action with AppleScript for the contents in ~/bin/macos_eject_external_disks.command
+# * Create an automator Quick Action named "eject_external_disks" with AppleScript for the contents in ~/bin/macos_eject_external_disks.command
 # * Bind to shortcut CTRL+CMD+F12
 #
+#
+# Automator command for showing Control Center.
+# * Create an automator Quick Action named "open_controlcenter" with AppleScript for the contents in ~/bin/macos_open_controlcenter.command
+# * Bind to shortcut CMD+F10
+# * For this to work, System Preferences > Security & Privacy > Privacy > Accessibillity > allow System Preferences.app.
+#
+#
+# Automator command for showing Now Playing
+# * Create an automator Quick Action named "open_nowplaying" with AppleScript for the contents in ~/bin/macos_open_nowplaying.command
+# * Bind to shortcut CMD+F9
+# * For this to work, System Preferences > Security & Privacy > Privacy > Accessibillity > allow System Preferences.app.
 #
 # # Update Keynote, Pages, Numbers & iMovie in App Store
 # If these apps came preinstalled on the macbook they won't update some times as the "purchase" was made with another account. Fix with:
@@ -612,6 +614,7 @@ chmod go-w '/usr/local/share'
 
 
 # Itsycal
+# This is replaced with native Calendar widget!
 # Preferences Save space by hiding built-in time in System Preferences > Date & Time > Clock > uncheck "Show date & time in menu bar".
 ## Appearance
 # * Check "Use outline icon"
