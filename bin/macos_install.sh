@@ -150,7 +150,6 @@ read -r -d '' brew_casks_default <<-'EOAPPS'
 	gimp
 	google-chrome
 	iterm2
-	karabiner-elements
 	libreoffice
 	pdftotext
 	scroll-reverser
@@ -201,6 +200,7 @@ read -r -d '' brew_casks_additional <<-'EOAPPS'
 	isyncr
 	itsycal
 	jing
+	karabiner-elements
 	keepassxc
 	kid3
 	livereload
@@ -524,8 +524,8 @@ chmod go-w '/usr/local/share'
 ### Terminal
 # * Check "Unlimited Scrollback"
 ### Keys
-# * Make Option key an Meta key, so e.g. tmux binding works:
-#   - set "Left option key acts as" "+Esc". NOTE need karabiner-elements to get left alt to work on external keyboard.
+# * Make Option key an Meta key, so e.g. tmux binding works: TODO seems like this is not needed!
+#   - set "Left option key acts as" "+Esc". NOTE need karabiner-elements to get left alt to work on external PC keyboard.
 # * Create shortcuts to toggle between solarized dark & light:
 # 	- Press the '+' button:>
 # 		- Shortcut: Opt + Cmd + s
@@ -599,7 +599,8 @@ chmod go-w '/usr/local/share'
 
 
 # Karabiner elements
-# Karabiner elements works much better than built-in opt<->cmd swap in system preferences because this bult-in swap does not work properly in iTerm, as alt key is only working on laptop keyboard and not on external.
+# Karabiner elements works much better than built-in opt<->cmd swap in system preferences because this bult-in swap does not work properly in iTerm, as alt key is only working on laptop keyboard and not on external PC keyboard.
+## HOWEVER, only use if needed. If having an external mac keyboard, keep to System Preferences bindings!
 # * Disable all custom modifier keys remappings done in System Preferences.
 # * For all keyboard
 # 	* caps_lock -> escape
