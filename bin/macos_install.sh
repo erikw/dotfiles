@@ -640,6 +640,7 @@ chmod go-w '/usr/local/share'
 
 
 # Semulov preferences
+# Install again when https://github.com/kainjow/Semulov/issues/14 is solved, until then use ~/bin/macos_eject_external_disks.command
 ## Interface
 # * Check "Show number of mounted in menubar"
 # * Check "Show Ejec All menu item" and set the shortcut to Ctrl+Cmd+F12 or Cmd+Opt+Shift+E
