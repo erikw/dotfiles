@@ -18,7 +18,6 @@ read -r -d '' brew_formulae_default <<-'EOAPPS'
 	cloc
 	cmatrix
 	colordiff
-	colormake
 	coreutils
 	cowsay
 	cscope
@@ -98,6 +97,7 @@ read -r -d '' brew_formulae_additional <<-'EOAPPS'
 	cgdb
 	checkbashisms
 	cmake
+	colormake
 	colorsvn
 	cpanminus
 	daemonize
@@ -153,7 +153,6 @@ read -r -d '' brew_casks_default <<-'EOAPPS'
 	libreoffice
 	pdftotext
 	scroll-reverser
-	semulov
 	sensiblesidebuttons
 	spotify
 	the-unarchiver
@@ -223,6 +222,7 @@ read -r -d '' brew_casks_additional <<-'EOAPPS'
 	qr-journal
 	rambox
 	robo-3t
+	semulov
 	signal
 	skim
 	skype
@@ -518,13 +518,12 @@ chmod go-w '/usr/local/share'
 # * Check "Silence Bells"
 ### Text
 # * Set font to either
-# ** Source Code Pro for Powerline, 14pt.
 # ** Source Code Pro, Regular, 14pt
 # ** Terminus, Medium, 16pt
 ### Terminal
 # * Check "Unlimited Scrollback"
 ### Keys
-# * Make Option key an Meta key, so e.g. tmux binding works: TODO seems like this is not needed!
+# * Make Option key an Meta key, so e.g. tmux binding works on MBP internal keyboard.
 #   - set "Left option key acts as" "+Esc". NOTE need karabiner-elements to get left alt to work on external PC keyboard.
 # * Create shortcuts to toggle between solarized dark & light:
 # 	- Press the '+' button:>
@@ -626,13 +625,15 @@ chmod go-w '/usr/local/share'
 
 
 # Irvue
+# Prefer this to Freshbackmac as one can get info about the selected wallpaper.
 ## General
 # * Folder for saved wallpaper: ~/media/images/wallpapers/usplash/
 # * Uncheck Notifications
 # * Check Load at startup:
 ## Shortcuts
-#* Change wallpaper: Ctrl + Shift + Cmd + W (to be consistent with Freshbackmac)
-#* Disable all other shortcuts as e.g. opt+cmd+r conflicts with Firefox reading mode, cmd+opt+s with iTerm solarized toggle.
+# * Change wallpaper: Ctrl + Shift + Cmd + W (to be consistent with Freshbackmac)
+# * Disable all other shortcuts as e.g. opt+cmd+r conflicts with Firefox reading mode, cmd+opt+s with iTerm solarized toggle.
+# ** It's not enough to uncheck a shortcut, it's value has to be deleted otherwise it will be enabled again.
 
 
 # Sensiblesidebuttons
@@ -641,7 +642,7 @@ chmod go-w '/usr/local/share'
 
 
 # Semulov preferences
-# Install again when https://github.com/kainjow/Semulov/issues/14 is solved, until then use ~/bin/macos_eject_external_disks.command
+# NOTE Install again when https://github.com/kainjow/Semulov/issues/14 is solved, until then use ~/bin/macos_eject_external_disks.command
 ## Interface
 # * Check "Show number of mounted in menubar"
 # * Check "Show Ejec All menu item" and set the shortcut to Ctrl+Cmd+F12 or Cmd+Opt+Shift+E
