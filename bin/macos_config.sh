@@ -217,10 +217,11 @@ EOF
 # * Most-right control strip buttons: Play/pause, Volume Slider, Mute, DnD
 # * To the expanded control strip: add Sleep button.
 ### Modifier Keys
+# ** NOTE if need to swap fn and ctrl on internal keyboard, use karabiner-elements.
 # * For internal keyboard:
-#    - Set Caps Lock -> Escape (prefer Karabiner, as it sets for all keyboards)
+#    - Set Caps Lock -> Escape
 # * For external keyboard,
-#    - Set Caps Lock -> Escape (prefer Karabiner, as it sets for all keyboards)
+#    - Set Caps Lock -> Escape
 #    (unless the keyboard is an Apple keyboard or has a "mac-switch" toggle):
 #    - Set Option -> Command
 #    - Set Command -> Option
