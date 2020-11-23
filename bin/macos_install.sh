@@ -69,7 +69,6 @@ read -r -d '' brew_formulae_default <<-'EOAPPS'
 	watch
 	wget
 	xz
-	zenity
 	zip
 	zsh
 	zsh-completions
@@ -135,6 +134,7 @@ read -r -d '' brew_formulae_additional <<-'EOAPPS'
 	valgrind
 	wakeonlan
 	wego
+	zenity
 EOAPPS
 brew_formulae_additional=$(make_1line "$brew_formulae_additional")
 
