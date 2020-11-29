@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Concatenate accesslog so I can inspect with goaccess(1).
+# Concatenate accesslog so I can inspect with goaccess(1) (alias goaccess_uberspace).
 # To be run as a cronjob before midnight where logs are rotated:
 # 0     0     *     *     *      uberspace_collect_access_log.sh
 

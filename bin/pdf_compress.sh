@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Compress PDF files to smaller size.
-# Inspired by: https://askubuntu.com/questions/113544/how-can-i-reduce-the-file-size-of-a-scanned-pdf-file
+# Inspired by: https://askubuntu.com/a/256449/277752
 
 get_file_size() {
 	file="$1"
@@ -11,6 +11,7 @@ compress_pdf() {
 	pdf_input="$1"
 	pdf_settings="$2"
 	replace="$3"
+	open="$4"
 
 	basename=${1%%.pdf}
 	pdf_output="${basename}_compressed.pdf"
@@ -32,17 +33,20 @@ compress_pdf() {
 	fi
 
 	printf "Compressed %s from %s to %s at: %s\n" $ftype $size_before $size_after "$pdf_output"
-	test $replace = true  || printf "> Replace with:\nmv %s %s\n" "$pdf_output" "$pdf_input"
+	test $open = true && open "$pdf_output"
+	test $replace = true || printf "> Replace with:\nmv %s %s\n" "$pdf_output" "$pdf_input"
 }
 
 scriptname=${0##*/}
-usage="Usage: ${scriptname} [-r] [-s [default|screen*|ebook|prepress|printer]] <pdf>"
+usage="Usage: ${scriptname} [-r] [-o] [-s [default|screen*|ebook|prepress|printer]] <pdf>"
 
 pdf_settings=screen
 replace=false
-while getopts ":rs:h?" opt; do
+open=false
+while getopts ":ros:h?" opt; do
 	case "$opt" in
 		r) replace=true;;
+		o) open=true;;
 		s) case "$OPTARG" in
 				default|screen*|ebook|prepress|printer) pdf_settings="$OPTARG" ;;
 				*) echo "Invalid pdf settings" >&2 && exit 1 ;;
@@ -61,5 +65,5 @@ fi
 pdfs="$*"
 
 for pdf in $pdfs; do
-	compress_pdf "$pdf" "$pdf_settings" $replace
+	compress_pdf "$pdf" "$pdf_settings" $replace $open
 done
