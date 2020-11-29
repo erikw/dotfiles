@@ -176,6 +176,7 @@ read -r -d '' brew_casks_additional <<-'EOAPPS'
 	cheatsheet
 	clamxav
 	colloquy
+	cryptomator
 	cyberduck
 	dash
 	docker
@@ -566,12 +567,14 @@ chmod go-w '/usr/local/share'
 #
 #
 # Automator command for showing Control Center.
+# TODO replace this with native System Preferences shortcut when supported.
 # * Create an automator Quick Action named "open_controlcenter" with AppleScript for the contents in ~/bin/macos_open_controlcenter.command
 # * Bind to shortcut CMD+F10
 # * For this to work, System Preferences > Security & Privacy > Privacy > Accessibillity > allow System Preferences.app.
 #
 #
 # Automator command for showing Now Playing
+# TODO replace this with native System Preferences shortcut when supported.
 # * Create an automator Quick Action named "open_nowplaying" with AppleScript for the contents in ~/bin/macos_open_nowplaying.command
 # * Bind to shortcut CMD+F9
 # * For this to work, System Preferences > Security & Privacy > Privacy > Accessibillity > allow System Preferences.app.
