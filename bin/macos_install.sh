@@ -505,6 +505,8 @@ chmod go-w '/usr/local/share'
 # - Confirm "iTerm2 (#Q)" if windows open"
 # * iterm.sh: If iterm2.app is closed, 2 windows will be opended by this script. To prevent this:
 # 	- Startup > Select "Only Restore Hotkey Window" NOPE don't do this anymore as of #irctorautostart
+### Services
+# Uncheck "Check for updates automatically" as brew cask handles updates.
 ### Selection
 # * Enable automatic tmux copy to GUI clipboard on selection
 # - Check "Applications in terminal may access clipboard"
