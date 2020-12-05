@@ -151,7 +151,7 @@ killall Dock
 #   - Display: hide in menu bar
 #   - Sound: always
 #   - Now Playing: when active
-#   - Battery: Menu Bar, Control center.
+#   - Battery: Menu Bar, Control center. Show percentage
 #   - Clock:
 #   	- Uncheck Show day of the week & Show date. NOPE itsycal removed, keep defaults.
 #   - Spotlight: turn off
