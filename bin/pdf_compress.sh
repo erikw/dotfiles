@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 # Compress PDF files to smaller size.
+# Requirements: ghostscript
 # Inspired by: https://askubuntu.com/a/256449/277752
 
 get_file_size() {
