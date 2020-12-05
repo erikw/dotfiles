@@ -41,6 +41,7 @@ Most of my personal dotfiles can be found in this branch. I use dfm (dot file ma
 
  * Check out my vim configurations -- they are pretty cool!
  * [bin/](bin/) -- many handy and time saving scripts.
+   * [pdf_compress.sh](bin/pdf_compress.sh) -- compress file size of PDFs!
 
 # Installation
 

@@ -147,7 +147,7 @@ EOF
 # * Show  in Menu Bar
 #   - Do Not Distrub: when active
 #   - Screen Mirroring: when active
-#   - Display: when active
+#   - Display: hide in menu bar
 #   - Sound: always
 #   - Now Playing: when active
 #   - Battery: Menu Bar, Control center.
@@ -211,7 +211,7 @@ EOF
 # * Make Delay Until Repeat short (2nd most right value)
 # * Make Key Repeat fast (fastest)
 # * Turn off backlit after 1 minute.
-# * Check "Use F1, F2 etc. keys as standard function keys on external keyboards"
+# * NOPE - Check "Use F1, F2 etc. keys as standard function keys on external keyboards"
 # * OR for touchbar MBPs, set for Press FN key to show F1, F2
 ### Customtize Control Strip (button)
 # * Most-right control strip buttons: Play/pause, Volume Slider, Mute, DnD
