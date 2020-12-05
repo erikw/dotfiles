@@ -317,7 +317,8 @@ brew autoupdate --status
 
 # Developer for Gimp can't be verified, so we need to remove an attribute that enables this check:
 # Reference: https://apple.stackexchange.com/questions/216188/apps-not-opening-verifying
-xattr -d com.apple.quarantine /Applications/GIMP-*.app/
+# NOTE no longer needed.
+#xattr -d com.apple.quarantine /Applications/GIMP-*.app/
 
 # Macstore automation
 # https://github.com/mas-cli/mas
@@ -328,21 +329,19 @@ brew install mas
 # $ mas install <id>
 
 # To install:
-# 450527929  djay - DJ App & AI Mixer
-# 1527105121  Neural Mix Pro
-# 405399194  Kindle
 # 497799835  Xcode
 # 585829637 Todoist: Organize your life
-# 865500966  feedly. Read more, know more. (0.2)
 # 897118787  Shazam
 # 912659472  Brother ScannerApp (Image Capture.app does not work for Brother DCP-7070DW)
 # 1039633667  Irvue
 
 # Optional:
+# 450527929  djay - DJ App & AI Mixer
+# 1527105121  Neural Mix Pro
+# 405399194  Kindle
 # 1059074180 WeatherBug - Weather Forecasts and Alerts
 # 1147396723  WhatsApp Desktop
 # 1274495053 Microsoft To Do (2.0)
-# 402592703  Time Out - Break Reminders (2.5)
 # 428799479  GamePad Companion
 # 953841977  SwordSoft Screenink Free
 
@@ -371,17 +370,6 @@ pip3 install --user $pip3_pkgs
 # brew cask install osxfuse
 # brew install cryfs
 
-
-# Programs to install manually:
-# * easytag
-# * RVM: https://rvm.io/rvm/install
-# * xcode XVim: https://github.com/XVimProject/XVim, https://github.com/XVimProject/XVim/blob/master/INSTALL_Xcode8.md
-# * https://www.akaipro.com/productregistration/customer/
-# - Akai MPC Essentials Software  -
-# - Akai MPKmini MK2 Editor - https://www.akaipro.com/productregistration/customer/
-# - Air Hybrid synth
-# * Audacity: https://www.audacityteam.org/download/mac/
-# * Mixedinkey: https://account.mixedinkey.com/
 
 # Install tmux session on login.
 # Reference: http://www.launchd.info/
@@ -422,6 +410,20 @@ chmod go-w '/usr/local/share'
 
 
 # Manual installs {
+# General list
+# * Mixedinkey: https://account.mixedinkey.com/
+# * easytag
+# * RVM: https://rvm.io/rvm/install
+# * xcode XVim: https://github.com/XVimProject/XVim, https://github.com/XVimProject/XVim/blob/master/INSTALL_Xcode8.md
+# * Audacity: https://www.audacityteam.org/download/mac/
+
+
+# Akai MPKmini keyboard
+# * https://www.akaipro.com/productregistration/customer/
+# - Akai MPC Essentials Software  -
+# - Akai MPKmini MK2 Editor - https://www.akaipro.com/productregistration/customer/
+# - Air Hybrid synth
+
 # Java/JVM development
 ## SDKMan: https://sdkman.io/install
 # $ curl -s "https://get.sdkman.io" | bash
@@ -447,6 +449,9 @@ chmod go-w '/usr/local/share'
 # * https://customer.novationmusic.com/en/support/downloads?brand=Novation&product_by_type=1431&download_type=software
 # }
 # }
+
+
+
 
 # Configuration {
 

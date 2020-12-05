@@ -118,15 +118,16 @@ killall Dock
 
 
 # Track /etc in git
-sudo -s -- <<EOF
-cd /etc
-git init
-touch .gitignore
-git add .
-git config --global user.email "$USER@HOST"
-git config --global user.name "$(id -un)"
-git commit -m "Initital commit"
-EOF
+# NOTE skip this as it's almost only official distribution upgrades that modifies /etc on macOS.
+#sudo -s -- <<EOF
+#cd /etc
+#git init
+#touch .gitignore
+#git add .
+#git config --global user.email "$USER@HOST"
+#git config --global user.name "$(id -un)"
+#git commit -m "Initital commit"
+#EOF
 
 # System Preferences {
 #
@@ -185,16 +186,15 @@ EOF
 # * Enable FileVault, with recovery key.
 ## Firewall
 # * Turn on firewall. Turn on "Block all incoming connections"
-# 	* NOPE turn that off, and uncheck everything and add Chrome as an expcetion to allow incoming traffic, so Videostream chromecast app works.
 ## Privacy
-# * Advertising > check "Limit Ad Tracking".
+# * Apple Advertising > uncheck "Personalize Ads".
 
 
 
 # Display
 # * Move the white menu bar to the main monitor, so notifications etc. comes on it.
 # * Check "Show mirroring options in the menu bar when available".
-## Night SHift
+## Night Shift
 # * Schedule: Sunset to Sunrise
 
 
@@ -241,7 +241,7 @@ EOF
 
 
 # Mouse
-# * Uncheck "Scroll Direction: Natural. NOPE use scroll-reverser app instead.
+# * Uncheck "Scroll Direction: Natural. NOPE use scroll-reverser app instead, to have natural scroll with trackpad and normal scroll with external mouse.
 # * Set Tracking Speed to 1/2
 # * Set Scrolling Speed to 3/4
 
@@ -324,7 +324,7 @@ EOF
 # }
 
 # Dock {
-# * Add ~/  and ~/dl/to dock.
+# * Add ~/ (Stack: list)  and ~/dl/ (Stack: grid) to dock.
 # * For dual monitors: For all applications in dock: Right click > Option > assign to correct monitor and desktop.
 # }
 
