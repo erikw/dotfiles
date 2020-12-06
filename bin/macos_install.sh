@@ -459,7 +459,7 @@ chmod go-w '/usr/local/share'
 # Give Amethys acessability access according to: https://ianyh.com/amethyst
 # Then go to Amethys Preferences
 # * Uncheck "Display layout when changing spaces".
-# * Set the following layouts to be used: tall, wide, fullscreen, floating.
+# * Set the following layouts to be used: tall, fullscreen, floating.
 
 # Clipy
 ## General
