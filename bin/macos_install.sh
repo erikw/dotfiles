@@ -131,6 +131,7 @@ read -r -d '' brew_formulae_additional <<-'EOAPPS'
 	task
 	tasksh
 	the_silver_searcher
+	tigervnc-viewer
 	valgrind
 	wakeonlan
 	wego
