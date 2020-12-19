@@ -15,6 +15,7 @@ make_1line() {
 read -r -d '' brew_formulae_default <<-'EOAPPS'
 	ack
 	aspell
+	bash
 	cloc
 	cmatrix
 	colordiff
