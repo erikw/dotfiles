@@ -2,7 +2,7 @@
 # Interactively upgrade my homebrew system.
 # Usage: brew_upgrade.sh
 # Requirements:
-# - Install cask upgrade command with: $ brew tap buo/cask-upgrade
+# - Install cask upgrade command with: $ brew tap buo/cask-upgrade NOPE not anymore.
 
 # Exit script on SIGINT.
 set -e
@@ -35,7 +35,7 @@ _print() {
 }
 
 
-_exec "Updating brew formulas" brew update
+_exec "Updating brew" brew update
 
 outdated=$(brew outdated -v | grep -v "\[pinned at .*\]" || :)
 if [ -n "$outdated" ]; then
@@ -49,10 +49,7 @@ if [ -n "$outdated" ]; then
 		([ -z "$upgrade" ] || [ "$upgrade" = y ] || [ "$upgrade" = Y ] || [ "$upgrade" = n ]) && break
 	done
 	if [ "$upgrade" != n ]; then
-		_exec "Upgrading brew" brew upgrade --ignore-pinned
+		_exec "Upgrading brew" brew upgrade --cask --ignore-pinned
 		_exec "The brew doctor says" brew doctor || :		# Sneak around $(set -e) as the doctor command return error code.
 	fi
 fi
-
-_exec "Upgrade cask apps" brew cu --all
-_exec "The brew cask doctor says" brew cask doctor || :

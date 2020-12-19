@@ -245,7 +245,7 @@ read -r -d '' brew_casks_additional <<-'EOAPPS'
 	wireshark
 	xee
 	yasu
-	zoomus
+	zoom
 EOAPPS
 brew_casks_additional=$(make_1line "$brew_casks_additional")
 
@@ -297,7 +297,8 @@ brew cask install $brew_casks_default
 #brew cask install $brew_casks_additional
 
 # Install cask upgrade command ($ brew cu):
-brew tap buo/cask-upgrade
+# NOTE no longer needed, https://stackoverflow.com/a/31994862/265508
+#brew tap buo/cask-upgrade
 
 
 
@@ -392,7 +393,7 @@ pip3 install --user $pip3_pkgs
 #launchctl start com.user.iterm
 
 # wego from brew is not recognizing forecast.io backend.
-go get -u github.com/schachmat/wego
+#go get -u github.com/schachmat/wego
 
 # zsh-completions: prevent "zsh compinit: insecure directories" on $(compinit)
 chmod go-w '/usr/local/share'
@@ -451,9 +452,6 @@ chmod go-w '/usr/local/share'
 # }
 # }
 
-
-
-
 # Configuration {
 
 # Amethyst
@@ -504,6 +502,7 @@ chmod go-w '/usr/local/share'
 # Enable reverse only for Mouse, and disable from menubar.
 
 # iTerm2
+# * Load settings from Preferencs > General > Preferences tab > Load from custom folder or URL. Reference: https://stackoverflow.com/a/23356086/265508
 ## General
 ### Closing
 # * Make it easier to restart/poweroff by not confirming closing multiple windows - I always use tmux so it's not a problem.  Unckeck:
@@ -692,6 +691,11 @@ chmod go-w '/usr/local/share'
 ### Network
 # * Uncheck "Web Proxy"
 
+
+# Restic
+# * It seems like giving restic full disk access prevents problems like
+# "scan: Open: open /Users/$USER/Desktop: operation not permitted"
+# System Preferences > Security & Privacy > Privacy > Full Disk Access > add /usr/local/bin/restic
 
 # iSyncr
 # Set-up guide at https://www.jrtstudio.com/iSyncr/Tutorials/WiFi
