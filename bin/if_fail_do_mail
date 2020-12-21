@@ -2,7 +2,7 @@
 # Send email notification from systemd.
 # Source: https://serverfault.com/questions/876233/how-to-send-an-email-if-a-systemd-service-is-restarted
 # Source: https://wiki.archlinux.org/index.php/Systemd/Timers#MAILTO
-# Usage: systemd-email <recipinent-email> <failed-systemd-unit-name>
+# Usage: if_fail_do_mail <cmd>
 
 
 # According to
@@ -49,7 +49,7 @@ fi
 
 #recipinent=$1
 #shift
-recipinent=erik.westrup@gmail.com
+recipinent=GIT-CENSORED
 cmd="$@"
 
 
