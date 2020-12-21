@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+# Send macOS notification if commans fails. Similar to ./cron_mail_if_fail.
+# Requirements: terminal-notifier
+# Limitation: can't be run in root cron job, as it's not connected to a GUI session: https://apple.stackexchange.com/a/257550/197493
+
+cmd="$@"
+output=$(eval "$cmd" 2>&1)
+test $? -eq 0 || /usr/local/bin/terminal-notifier -title "$cmd" -message "$output"
