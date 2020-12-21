@@ -200,9 +200,10 @@ killall Dock
 
 
 
-# Energy Saver
+# Battery
 ## Power Adapter
 # * Uncheck "Enable Power Nap while plugged in", because during wake-up, cronjobs can start but will fail as power goes down soon again (happended with my restic_backup.se).
+# * Uncheck "Wake for network access" as I see my MBP waking up quite often an connect to bluetooth headphones....
 
 
 
