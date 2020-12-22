@@ -6,3 +6,4 @@
 cmd="$@"
 output=$(eval "$cmd" 2>&1)
 test $? -eq 0 || /usr/local/bin/terminal-notifier -title "$cmd" -message "$output"
+echo "$output"
