@@ -698,12 +698,16 @@ chmod go-w '/usr/local/share'
 # "scan: Open: open /Users/$USER/Desktop: operation not permitted"
 # System Preferences > Security & Privacy > Privacy > Full Disk Access > add /usr/local/bin/restic
 #sudo cp bin/cron_*_if_fail /usr/local/sbin/
-# Then install https://github.com/erikw/restic-systemd-automatic-backup, skipping email setup.
-# Add root crontab entries like
-# 30     19     *     *     *     restic_backup.sh 2>>/var/local/log/restic/stderr.log || echo "# STDERR^ from $(date)\n\n" >>/var/local/log/restic/stderr.log
-# @monthly                        restic_check.sh 2>>/var/local/log/restic/stderr.log || echo "# STDERR^ from $(date)\n\n" >>/var/local/log/restic/stderr.log
+# * Then install https://github.com/erikw/restic-systemd-automatic-backup
+# ** skipping email setup.
+# ** Use modified scripts in dotfiles bin/ for restic_*.sh
+# ** Use ~/.restic for the env files instead of /etc. Simply use the alias restic_env_b2.
+# ** Add erikw crontab entries like
+# Most likely that my laptop is turned on in the evening (need some time until deadline 21:00).
+#30     19     *     *     *    if_fail_do_notification restic_backup.sh
+#@monthly                       if_fail_do_notification restic_check.sh
 
-# and use the shell alias "restic_errs".
+
 
 # iSyncr
 # Set-up guide at https://www.jrtstudio.com/iSyncr/Tutorials/WiFi
