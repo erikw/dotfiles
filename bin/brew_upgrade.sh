@@ -49,7 +49,9 @@ if [ -n "$outdated" ]; then
 		([ -z "$upgrade" ] || [ "$upgrade" = y ] || [ "$upgrade" = Y ] || [ "$upgrade" = n ]) && break
 	done
 	if [ "$upgrade" != n ]; then
-		_exec "Upgrading brew" brew upgrade --cask --ignore-pinned
+		# --cask and --ignore-pinned are mutual exclusive.
+		_exec "Upgrading brew formulas" brew upgrade --formula --ignore-pinned
+		_exec "Upgrading brew casks" brew upgrade --cask
 		_exec "The brew doctor says" brew doctor || :		# Sneak around $(set -e) as the doctor command return error code.
 	fi
 fi
