@@ -731,6 +731,7 @@ chmod go-w '/usr/local/share'
 # $root/../music/samples/
 # $root/ableton/packs/
 # $root/ableton/templates/
+# $root/ableton/ableton_template_sets/
 # $root/ableton/max/max_audio_effects/
 # $root/ableton/max/max_instruments/
 # $root/ableton/max/max_midi_effects/
