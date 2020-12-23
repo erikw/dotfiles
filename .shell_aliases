@@ -298,7 +298,7 @@ fi
 
 # Misc {
 	alias psg='ps aux | grep -i '					# List matching processes.
-	alias dusch='du -sch'							# The best file size calculator is a shower.
+	alias dusch='du -sch'						# The best file size calculator is a shower.
 	alias beep='echo -en "\007"'					# Whoop whoop'
 	alias image_dim="identify -format '%w %h\n'"			# Get dimmensions of an image.
 	alias git-root='cd $(git rev-parse --show-cdup)'		# Go to the root of a git.
