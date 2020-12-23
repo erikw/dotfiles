@@ -735,4 +735,7 @@ chmod go-w '/usr/local/share'
 # $root/ableton/max/max_audio_effects/
 # $root/ableton/max/max_instruments/
 # $root/ableton/max/max_midi_effects/
+
+# Kontakt Player
+# Right-click on the Rack area > In the quickl-load, drag-and-drop /Volumes/toshiba_music/daw/kontakt_user_library/. Reference: https://vi-control.net/community/threads/how-do-i-add-libraries-in-kontakt-6.95343/
 # }
