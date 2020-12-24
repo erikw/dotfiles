@@ -55,8 +55,8 @@ cmd="$@"
 
 
 body=$(eval "$cmd" 2>&1)
-
-if [ $? -ne 0 ] && [ -n "$body" ]; then
+ecode=$?
+if [ $ecode -ne 0 ] && [ -n "$body" ]; then
 	sendmail -t <<ERRMAIL
 To: $recipinent
 From: cron <root@$HOSTNAME>
@@ -67,3 +67,4 @@ Content-Type: text/plain; charset=UTF-8
 $body
 ERRMAIL
 fi
+exit $ecode

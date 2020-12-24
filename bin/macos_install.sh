@@ -694,7 +694,7 @@ chmod go-w '/usr/local/share'
 
 
 # Restic
-# * It seems like giving restic full disk access prevents problems like
+# * If running restic on /, then it seems like giving restic full disk access prevents problems like
 # "scan: Open: open /Users/$USER/Desktop: operation not permitted"
 # System Preferences > Security & Privacy > Privacy > Full Disk Access > add /usr/local/bin/restic
 #sudo cp bin/cron_*_if_fail /usr/local/sbin/

@@ -1,9 +1,34 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 # Send macOS notification if commans fails. Similar to ./if_fail_do_notification
 # Requirements: terminal-notifier
 # Limitation: can't be run in root cron job, as it's not connected to a GUI session: https://apple.stackexchange.com/a/257550/197493
 
 cmd="$@"
-output=$(eval "$cmd" 2>&1)
-test $? -eq 0 || /usr/local/bin/terminal-notifier -title "$cmd" -message "$output"
-echo "$output"
+scriptname=${0##*/}
+file_stdout=$(mktemp -t ${scriptname}.XXXXXX)
+file_stderr=$(mktemp -t ${scriptname}.XXXXXX)
+
+
+exit_hook() {
+	echo "In exit_hook(), cleaning up files." >&2
+	rm $file_stdout $file_stderr
+}
+trap exit_hook INT TERM
+
+
+# Con: can't separate $cmd stdout from stderr in calle of this script.
+#eval "$cmd" 2>&1 | tee $file_stdout
+
+# Con: stderr and stdout order is not preserved in the cat merge for notification.
+# Reference: https://stackoverflow.com/a/692407/265508
+eval "$cmd" > >(tee -a $file_stdout) 2> >(tee -a $file_stderr >&2)
+
+
+ecode=$?
+#ecode=${PIPESTATUS[0]}
+
+#test $ecode -eq 0 || /usr/local/bin/terminal-notifier -title "$cmd" < $file_stdout
+test $ecode -eq 0 || cat $file_stderr $file_stdout | /usr/local/bin/terminal-notifier -title "$cmd"
+
+#rm $file_stdout $file_stderr
+exit $ecode
