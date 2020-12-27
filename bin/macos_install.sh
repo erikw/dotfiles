@@ -187,6 +187,7 @@ read -r -d '' brew_casks_additional <<-'EOAPPS'
 	epic-games
 	eqmac
 	ferdi
+	fl-studio
 	flip4mac
 	flux
 	franz
@@ -694,9 +695,9 @@ chmod go-w '/usr/local/share'
 
 
 # Restic
-# * If running restic on /, then it seems like giving restic full disk access prevents problems like
+# * If running restic from cron, then it seems like giving /usr/sbin/cron full disk access prevents problems like
 # "scan: Open: open /Users/$USER/Desktop: operation not permitted"
-# System Preferences > Security & Privacy > Privacy > Full Disk Access > add /usr/local/bin/restic
+# System Preferences > Security & Privacy > Privacy > Full Disk Access > add /usr/sbin/cron
 #sudo cp bin/cron_*_if_fail /usr/local/sbin/
 # * Then install https://github.com/erikw/restic-systemd-automatic-backup
 # ** skipping email setup.
