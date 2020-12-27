@@ -302,7 +302,8 @@ killall Dock
 #  - Desktop
 #  - Applicatons
 #  - /tmp
-#  - /Volumes/toshiba_music/daw/
+#  - /Volumes/toshiba_music/daw/plugins/
+#  - /Volumes/toshiba_music/music/samples/
 #  * OPTIONAL: Copy icon from Downloads -> DL in CMD+i dialog.
 ## View
 # ** Show Path Bar
