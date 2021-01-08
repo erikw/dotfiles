@@ -63,7 +63,6 @@ read -r -d '' brew_formulae_default <<-'EOAPPS'
 	tig
 	tmux
 	tree
-	unrar
 	unzip
 	urlview
 	w3m
@@ -133,6 +132,7 @@ read -r -d '' brew_formulae_additional <<-'EOAPPS'
 	tasksh
 	the_silver_searcher
 	tigervnc-viewer
+	unrar
 	valgrind
 	wakeonlan
 	wego
@@ -739,4 +739,8 @@ chmod go-w '/usr/local/share'
 
 # Kontakt Player
 # Right-click on the Rack area > In the quickl-load, drag-and-drop /Volumes/toshiba_music/daw/kontakt_user_library/. Reference: https://vi-control.net/community/threads/how-do-i-add-libraries-in-kontakt-6.95343/
+
+
+# Stretchly
+# * Turn off version update check in Preferences > About
 # }
