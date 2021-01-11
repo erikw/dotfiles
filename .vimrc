@@ -635,7 +635,6 @@ if s:use_plugins
 		call togglebg#map("<F5>")		" Toggle background with solarized.
 	" }
 
-
 	" Syntastic {
 		" NOTE See Eclim section above: set EclimFileTypeValidate=0 as only one of Eclim and Syntastic can be enabled at the same time.
 
@@ -653,7 +652,7 @@ if s:use_plugins
 		" passive_filetypes: files here are never checked even if the mode is active. Ignored when mode=passive.
 		let g:syntastic_mode_map = { 'mode': 'active',
 		                        \ 'active_filetypes': [],
-		                        \ 'passive_filetypes': ['python'] }
+		                        \ 'passive_filetypes': ['python', 'tex'] }
 		" Python, use prospector.
 		let g:syntastic_python_checkers = ['prospector']
 
