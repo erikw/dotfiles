@@ -342,9 +342,11 @@ $Shortcut.Save()
 # =Time & language
 # ==Date & time
 # * Check "Set time zone automatically"
-# * Change date and time formats, to ISO8601
-# * Additonal date, time & regional settings > Region > Formats tab > Additional settings... > Time tab > change "h" to "H"s to make 24h time.
 
-# =Region & langauge
+# =Region 
+# * Country: ..
+# * Regional format: English (United States)
+# * Click "Change date formats" > set everything to ISO8601.
+# =Langauge
 # * Add English US, Swedish and German.
 # }
