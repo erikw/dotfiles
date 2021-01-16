@@ -314,6 +314,8 @@ $Shortcut.Save()
 # * Disable Paid Wi-Fi services
 
 # =Personalization
+# ==Colors==
+# * Set dark mode
 # ==Lock screen
 # * Screen saver settings > Check "On, resume display logon screen".
 
