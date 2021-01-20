@@ -219,7 +219,7 @@ killall Dock
 # ** Check "Use F1, F2 etc. keys as standard function keys on external keyboards"
 ### Customtize Control Strip (button)
 # * Most-right control strip buttons: Play/pause, Volume Slider, Mute, DnD
-# * To the expanded control strip: add Sleep button.
+# * To the expanded control strip: replace Siri with Sleep button to the very far right.
 ### Modifier Keys
 # ** NOTE if need to swap fn and ctrl on internal keyboard, use karabiner-elements.
 # * For internal keyboard:
