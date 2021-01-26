@@ -726,7 +726,9 @@ chmod go-w '/usr/local/share'
 # * Use VST3 Plug-In Custom Folder: true
 # * VST3 Plug-In Custom Folder: $root/plugins/VST3/
 ## Files and Folders
-# * Create a new empty project and keep 1 MIDI track only, then in the preferences press Save on  "Save current Set as Default".
+# * Adjust the default empty project "Save current Set as Default" with a new project:
+#  1.  keep 1 MIDI track only
+#  2. Set master volume to -6dB as my headphones are very loud by default.
 ## Other
 # * Add these directories to the Ableton browser:
 # $root/../music/samples/
