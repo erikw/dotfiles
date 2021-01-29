@@ -350,7 +350,6 @@ brew install mas
 # 953841977  SwordSoft Screenink Free
 
 
-
 # Make a backup of installed brew packages with:
 # brew bundle dump
 
@@ -444,13 +443,23 @@ chmod go-w '/usr/local/share'
 
 # BankId på fil
 # Instructions: https://swedbank.se/privat/digitala-tjanster/mobilt-bankid/bankid-pa-kort-och-fil/bankid-pa-fil.html
-# Install: https://install.bankid.com/ or cask
+# Install: https://install.bankid.com/, prefer cask!
 
 # Novation Launchkey 3
 # * Set up Ableton MIDI input/output according to ~/doc/man/music/novation_launchkey_mk3_manual_v1.03.pdf page 12.
 # Additional software can be found at
 # * https://customer.novationmusic.com/en/my-software
 # * https://customer.novationmusic.com/en/support/downloads?brand=Novation&product_by_type=1431&download_type=software
+
+
+# Focusrite Scarlett 2i2
+# * Install Focusrite control https://focusrite.com/en/focusrite-control (https://customer.focusrite.com/en/getstarted/begin)
+# But prefer cask:
+#brew tap homebrew/cask-drivers
+#brew install focusrite-control
+# Bundled software at https://customer.focusrite.com/en/my-software (Nsame as https://customer.novationmusic.com/en/my-software, novation is a brand in Focusrite group).
+
+
 # }
 # }
 
@@ -716,6 +725,10 @@ chmod go-w '/usr/local/share'
 ## Look and Feel
 # * Zoom Display: 115%
 # * Theme: Dark
+## Audio
+# Use CoreAudio driver and Scarlette 2i2 for input/output, according to https://getstarted.focusrite.com/en/scarlett/set-your-input-and-output-device
+## Link MIDI
+# * Set up Ableton MIDI input/output according to ~/doc/man/music/novation_launchkey_mk3_manual_v1.03.pdf page 12.
 ## Library
 # * Location of User Library: $root/ableton/includes/user_library/
 # * Installation Folder for Packs: $root/ableton/includes/factory_packs/
@@ -728,7 +741,7 @@ chmod go-w '/usr/local/share'
 ## Files and Folders
 # * Adjust the default empty project "Save current Set as Default" with a new project:
 #  1.  keep 1 MIDI track only
-#  2. Set master volume to -6dB as my headphones are very loud by default.
+#  2. Set master volume to -8dB as my headphones are very loud by default.
 ## Other
 # * Add these directories to the Ableton browser:
 # $root/../music/samples/
@@ -746,4 +759,9 @@ chmod go-w '/usr/local/share'
 # Stretchly
 # * Turn off version update check in Preferences > About
 #   until it is marked as auto_updates $(brew info stretchly)
+
+# Dropbox
+## General
+# * Dropbox badge: Never show
+# * Open folders in: Finder
 # }
