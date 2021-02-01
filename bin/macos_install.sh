@@ -439,6 +439,8 @@ chmod go-w '/usr/local/share'
 
 # Antivirus: Avast Security for Mac
 # https://www.avast.com/en-us/free-mac-security
+# the cask brew does not work
+#brew install avast-security
 
 
 # BankId på fil
