@@ -169,6 +169,7 @@ read -r -d '' brew_casks_additional <<-'EOAPPS'
 	android-platform-tools
 	android-studio
 	atom
+	audio-hijack
 	authy
 	awareness
 	background-music
@@ -295,8 +296,8 @@ brew tap beeftornado/rmtree
 
 # Install cask.
 brew tap homebrew/cask
-brew cask install $brew_casks_default
-#brew cask install $brew_casks_additional
+brew install $brew_casks_default
+#brew install $brew_casks_additional
 
 # Install cask upgrade command ($ brew cu):
 # NOTE no longer needed, https://stackoverflow.com/a/31994862/265508
@@ -306,10 +307,10 @@ brew cask install $brew_casks_default
 
 # Let's get some fonts!
 brew tap homebrew/cask-fonts
-brew cask install font-terminus font-source-code-pro font-inconsolata
+brew install font-terminus font-source-code-pro font-inconsolata
 
 brew tap colindean/fonts-nonfree
-brew cask install font-microsoft-office
+brew install font-microsoft-office
 
 # Automatic upgrades
 # Reference: https://github.com/DomT4/homebrew-autoupdate
@@ -361,7 +362,7 @@ pip3 install --user $pip3_pkgs
 
 # SSHFS
 # Reference: https://www.digitalocean.com/community/tutorials/how-to-use-sshfs-to-mount-remote-file-systems-over-ssh
-#brew cask install osxfuse
+#brew install osxfuse
 #brew install sshfs
 # Now you can mount like this:
 # $ sudo mkdir -p /mnt/sshfs
@@ -370,7 +371,7 @@ pip3 install --user $pip3_pkgs
 
 # Additional: cryfs
 # Reference: https://www.cryfs.org/#download
-# brew cask install osxfuse
+# brew install osxfuse
 # brew install cryfs
 
 
