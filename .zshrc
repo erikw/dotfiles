@@ -155,13 +155,13 @@ fi
 		setopt pushdignoredups			# Do not record immediate duplicates.
 		setopt pushdtohome				# pushd with no args pushes $HOME.
 		setopt interactivecomments		# Enable bash-like comments by prefixing a command with '#' to make it a comment.
-		#setopt chaselinks		# Go to full destination of symlinks.
+		#setopt chaselinks				# Go to full destination of symlinks.
 	# }}
 
 	# Input/Output {{
 		unsetopt correct correctall 	# Do not encourage sloppy typing.
-		#setopt nohashdirs		# No need for rehash to find new binaries.
-		#setopt printexitvalue 		# Print abnormal exit status.
+		#setopt nohashdirs				# No need for rehash to find new binaries.
+		#setopt printexitvalue 			# Print abnormal exit status.
 	# }}
 
 	# Job Control {{
