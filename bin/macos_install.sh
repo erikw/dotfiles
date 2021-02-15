@@ -203,6 +203,7 @@ read -r -d '' brew_casks_additional <<-'EOAPPS'
 	intellij-idea-ce
 	isyncr
 	itsycal
+	jettison
 	jing
 	karabiner-elements
 	keepassxc
@@ -226,6 +227,7 @@ read -r -d '' brew_casks_additional <<-'EOAPPS'
 	pycharm-ce
 	qr-journal
 	rambox
+	rekordbox
 	robo-3t
 	semulov
 	signal
@@ -433,6 +435,10 @@ chmod go-w '/usr/local/share'
 # $ curl -s "https://get.sdkman.io" | bash
 # $ sdk install gradle x.y
 # $ sdk install java 15.0.0.hs-adpt
+# ## Brew
+# Reference: https://www.chrisjmendez.com/2018/10/14/how-to-install-java-on-osx-using-homebrew/
+# brew tap adoptopenjdk/openjdk
+# brew install java adoptopenjdk8
 
 # Brother DCP-7070dw printer & scanner driver: https://support.brother.com/g/b/downloadtop.aspx?c=eu_ot&lang=en&prod=dcp7070dw_eu
 # Add by Bonjour discovery on network.
@@ -613,6 +619,9 @@ chmod go-w '/usr/local/share'
 
 
 # Serato DJ Pro: https://serato.com/dj/pro/downloads
+# * Live stream setup: https://support.serato.com/hc/en-us/articles/360001784415-Getting-Serato-DJ-Pro-ready-to-Live-Stream
+#  brew install ishowu obs
+#  * Android setup: https://muddoo.com/tutorials/use-android-phone-as-a-camera-for-obs-how-to-guide/
 
 # Logitech G700s drivers
 # * https://support.logitech.com/en_us/product/g700s-rechargable-wireless-gaming-mouse/downloads#
@@ -767,4 +776,11 @@ chmod go-w '/usr/local/share'
 ## General
 # * Dropbox badge: Never show
 # * Open folders in: Finder
+
+# Jettison
+## Options
+# * Check Launch at start
+### Hotkeys
+# * Eject external disks: ctrl + opt + cmd + e
+# * Eject disks and sleep: ctrl + opt + cmd + s
 # }
