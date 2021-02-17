@@ -234,6 +234,7 @@ killall Dock
 #    - Set Command -> Option
 ## Text
 # * Set word expansions based on ~/doc/tech/word_expansions.txt
+# * Optionally change Spelling from "Automatic by Language" to "US English", as in some apps like Slack it selects Britishs spelling instead of US.
 ## Input Sources
 # * Add US, Swedish & German. Check "Show Input menu in menu bar".
 # * Click "Spelling" dropdown >  chose "Set up" > uncheck British English and check US English. NOPE let it be "Automatic by Language"

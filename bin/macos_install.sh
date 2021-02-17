@@ -194,7 +194,7 @@ read -r -d '' brew_casks_additional <<-'EOAPPS'
 	franz
 	freshback
 	google-backup-and-sync
-	google-drive-file-stream
+	google-drive
 	gpg-suite
 	gramps
 	handbrake
