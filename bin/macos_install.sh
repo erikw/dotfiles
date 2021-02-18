@@ -448,6 +448,10 @@ chmod go-w '/usr/local/share'
 # https://www.avast.com/en-us/free-mac-security
 # the cask brew does not work
 #brew install avast-security
+# NOPE too much pop-ups and upsells, instead
+# Antivirus: Avira: https://www.avira.com/en/free-antivirus-mac
+# the cask brew does not work with system extension
+#brew install avira-antivirus
 
 
 # BankId på fil
@@ -752,8 +756,9 @@ chmod go-w '/usr/local/share'
 # * VST3 Plug-In Custom Folder: $root/plugins/VST3/
 ## Files and Folders
 # * Adjust the default empty project "Save current Set as Default" with a new project:
-#  1.  keep 1 MIDI track only
+#  1. Keep 1 MIDI track only with brown color (drums).
 #  2. Set master volume to -8dB as my headphones are very loud by default.
+#  3. Set preview volume on master channels' mixer to -8dB for the same reason.
 ## Other
 # * Add these directories to the Ableton browser:
 # $root/../music/samples/
