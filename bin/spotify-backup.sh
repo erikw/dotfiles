@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 # Wrapper for spotify-backup https://github.com/caseychu/spotify-backup
 # Requirements: jshon(1)
+# Add a crontab entry like:
+# # Run every Sunday evening
+# 0     20     *     *     0      if_fail_do_notification spotify-backup.sh
 
 
 spot_username=GIT-CENSORED
@@ -11,6 +14,16 @@ outfile="$outdest/${spot_username}_${date}"
 outtxt=$outfile.txt
 outjson=$outfile.json
 backupper=$HOME/src/github.com/caseychu/spotify-backup/spotify-backup.py
+
+
+
+# Redirect stdout ( > ) into a named pipe ( >() ) running "tee" to a file, so we can observe the status by simply tailing the log file.
+me=$(basename "$0")
+log_dir=$HOME/.log/spotify-backup
+log_file="${log_dir}/${date}_${me}.$$.log"
+test -d $log_dir || mkdir -p $log_dir
+exec > >(tee -i $log_file)
+exec 2>&1
 
 
 exec_with_retry() {
