@@ -627,7 +627,11 @@ if s:use_plugins
 
 	" Sideways.vim {
 		"nnoremap <silent> <a :SidewaysLeft<CR>		" Move function argument to the left.
-		"nnoremap <silent> >a :SidewaysRight<CR>		" Move function argument to the right.
+		"nnoremap <silent> >a :SidewaysRight<CR>	" Move function argument to the right.
+	" }
+
+	" Snipmate {
+		let g:snipMate = { 'snippet_version' : 1 }	" Use the new parser (and surpress message about using the old parser).
 	" }
 
 	" Solarized {
