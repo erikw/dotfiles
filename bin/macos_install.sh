@@ -739,7 +739,7 @@ chmod go-w '/usr/local/share'
 # Ableton Live
 # root=/Volumes/toshiba_music/daw/
 ## Look and Feel
-# * Zoom Display: 115%
+# * Zoom Display: 115% NOPE leave as default.
 # * Theme: Dark
 ## Audio
 # Use CoreAudio driver and Scarlette 2i2 for input/output, according to https://getstarted.focusrite.com/en/scarlett/set-your-input-and-output-device
