@@ -248,6 +248,20 @@ fi
 	if [ -d ~/src/github.com/mollifier/cd-bookmark ]; then
 		fpath=(~/src/github.com/mollifier/cd-bookmark(N-/) $fpath)
 		autoload -Uz cd-bookmark
+
+		# Bashmark style aliases
+		alias g='cd-bookmark -c'
+		alias s='cd-bookmark -a'
+		alias l='cd-bookmark -l'
+		alias e='cd-bookmark -e'
+		alias p='cd-bookmark -p'
+		alias h='cd-bookmark -h'
+
+		# There's no build-in delete command.
+		function d() {
+			local name="$1"
+			sed -i "/^${name}|/d" $HOME/.cdbookmark
+		}
 	fi
 # }}
 
