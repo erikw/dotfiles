@@ -57,6 +57,9 @@
 	vimerge = mergetool -t vimdiff
 [credential]
 	helper = cache
+[pull]
+	rebase = true	; Only rebase when pulling, no mrege.
+	ff = only	; Allow only fast-forward (no merge comitt) rebase when pulling with rebase.
 [push]
 	default = upstream
 [merge]
