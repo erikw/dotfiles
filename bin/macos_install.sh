@@ -63,6 +63,7 @@ read -r -d '' brew_formulae_default <<-'EOAPPS'
 	tig
 	tmux
 	tree
+	unar
 	unzip
 	urlview
 	w3m
@@ -132,7 +133,6 @@ read -r -d '' brew_formulae_additional <<-'EOAPPS'
 	tasksh
 	the_silver_searcher
 	tigervnc-viewer
-	unrar
 	valgrind
 	wakeonlan
 	wego
