@@ -240,6 +240,7 @@ fi
 	alias find_large_files="find . -type f -size +5M -print0 | xargs -0 ls -lh | sort -k5,5 -h | awk '{print \$5, \$9}'"	# Find large files.
 	alias find_large_pdfs="find . -name \"*.pdf\" -type f -size +5M -print0 | xargs -0 ls -lh | sort -k5,5 -h | awk '{print \$5, \$9}'"	# Find large PDFs.
 	alias restic_env_b2='source $HOME/.restic/b2_env.sh' 		# Init restic env for B2.
+	alias git-top-contribs='git log | grep Author | sort | uniq -c | sort -n -r'	# Show top authors of a git repo.
 
 	# Enable/disable git change tracking on irssi conf. Have it off by default, as awl plugin keeps changing it all the time.
 	alias dotf_irssiconf_untrack='cd ~/.dotfiles && git update-index --assume-unchange .irssi/config'
