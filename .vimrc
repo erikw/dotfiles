@@ -719,8 +719,10 @@ if s:use_plugins
 		function! StripWhitespaceWrapper()
 			execute 'StripWhitespace'
 		endfunction
-		command! Ws call StripWhitespaceWrapper()|update
+		command! Ws call StripWhitespaceWrapper() | update
 
+		" Like :wq but strip whitespaces first.
+		command! Wqs call StripWhitespaceWrapper() | wq
 		" Like :wqa but strip whitespaces in each buffer first.
 		command! Wqas bufdo call StripWhitespaceWrapper() | wq
 	" }
