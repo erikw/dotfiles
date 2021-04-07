@@ -52,6 +52,7 @@ read -r -d '' brew_formulae_default <<-'EOAPPS'
 	nmap
 	octave
 	pdfgrep
+	peco
 	pidof
 	python
 	readline
@@ -120,7 +121,6 @@ read -r -d '' brew_formulae_additional <<-'EOAPPS'
 	offlineimap
 	openvpn
 	pastebinit
-	peco
 	postgresql
 	pv
 	pyenv
