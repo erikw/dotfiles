@@ -166,14 +166,14 @@ decryptf() {
 	printf "Decrypted %s to %s\n" "$filecrypt" "$file"
 }
 
-# Cd in to newly created direcotry.
+# cd in to newly created directory.
 function mkdircd() {
 	local dir="$1"
 	mkdir -p "$dir"
 	cd "$dir"
 }
 
-# Cd in to newly created direcotry.
+# cd in to newly created directory.
 function mkdirtodaycd() {
 	local today=$(date -I)
 	mkdircd "$today"
