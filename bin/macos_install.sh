@@ -230,6 +230,7 @@ read -r -d '' brew_casks_additional <<-'EOAPPS'
 	rekordbox
 	robo-3t
 	semulov
+	send-to-kindle
 	signal
 	skim
 	skype
