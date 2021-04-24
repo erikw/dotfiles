@@ -373,9 +373,9 @@ pip3 install --user $pip3_pkgs
 
 
 # Additional: cryfs
-# Reference: https://www.cryfs.org/#download
-# brew install osxfuse
-# brew install cryfs
+# Reference: https://www.cryfs.org/#download https://github.com/cryfs/cryfs
+#brew install --cask osxfuse
+#brew install cryfs/tap/cryfs
 
 
 # Install tmux session on login.
