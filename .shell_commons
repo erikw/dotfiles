@@ -325,4 +325,10 @@ source $HOME/.shell_functions
 		export SDKMAN_DIR="$HOME/.sdkman"
 		[[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]] && source "$SDKMAN_DIR/bin/sdkman-init.sh"
 	fi
+
+	# ghq
+	# https://github.com/motemen/ghq
+	# Set envvar to my github clones directory, use same base path as
+	# $(git config --global ghq.root)
+	export GITHUB=$HOME/src/github.com/erikw
 # }

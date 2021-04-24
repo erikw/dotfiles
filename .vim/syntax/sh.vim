@@ -1,1 +1,4 @@
-syntax keyword shTodo contained NOTE NOPE		" Extend /usr/share/vim/vim74/syntax/sh.vim's syntax group.
+" Extend /usr/share/vim/vim*/syntax/sh.vim's syntax group.
+
+source ~/.vim/syntax/my_todo.vim
+call ExtendTodoSyntaxWithCustom('shTodo')
