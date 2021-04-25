@@ -27,6 +27,7 @@ read -r -d '' brew_formulae_default <<-'EOAPPS'
 	dfc
 	dos2unix
 	findutils
+	fswatch
 	gawk
 	ghq
 	git
