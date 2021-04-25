@@ -46,7 +46,6 @@ read -r -d '' brew_formulae_default <<-'EOAPPS'
 	ipcalc
 	jq
 	jshon
-	macvim
 	ncdu
 	netcat
 	nmap
@@ -143,6 +142,8 @@ brew_formulae_additional=$(make_1line "$brew_formulae_additional")
 # }
 
 # Cask lists {
+# NOTE macvim should be installed as a cask and not formula, as the cask installs MacVim.app to /Applications, so that it can be indexed by Spotlight.
+# Reference: https://github.com/macvim-dev/macvim/issues/450#issuecomment-570202139
 read -r -d '' brew_casks_default <<-'EOAPPS'
 	amethyst
 	appcleaner
@@ -153,6 +154,7 @@ read -r -d '' brew_casks_default <<-'EOAPPS'
 	google-chrome
 	iterm2
 	libreoffice
+	macvim
 	pdftotext
 	scroll-reverser
 	sensiblesidebuttons
