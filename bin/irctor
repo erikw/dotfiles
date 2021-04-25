@@ -4,6 +4,15 @@ session_name=irctor
 
 tmux start-server
 
+# Set correc theme on start up.
+source $HOME/bin/solarized_toggle_lib.sh
+set_solarized_theme() {
+	mode=$(st_read_status)
+	declare -A opts_g=( [mode]=$mode [macos_update]=false)
+	st_set_tmux opts_g
+}
+
+
 # Start session if it does not exists and set up my windows and panes.
 do_start() {
 	tmux has-session -t "$session_name" 2>/dev/null
@@ -36,6 +45,7 @@ do_start() {
 		#tmux select-window -t "$session_name":0
 		#tmux select-pane -t "$session_name":0.0
 		#tmux select-window -t "$session_name":1
+		set_solarized_theme
 		echo "Session ${session_name} started."
 	else
 		echo "Session ${session_name} already exists."
