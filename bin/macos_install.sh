@@ -264,6 +264,7 @@ brew_casks_additional=$(make_1line "$brew_casks_additional")
 
 read -r -d '' pip3_pkgs <<-'EOAPPS'
 	ipython
+	iterm
 	virtualenvwrapper
 EOAPPS
 pip3_pkgs=$(make_1line "$pip3_pkgs")
@@ -396,6 +397,19 @@ pip3 install --user $pip3_pkgs
 #cp $HOME/bin/com.user.iterm.plist $HOME/Library/LaunchAgents/
 #launchctl load -w $HOME/Library/LaunchAgents/com.user.iterm.plist
 #launchctl start com.user.iterm
+
+
+# solarized_toggle.sh
+## solarized_toggle.sh require pip3 package iterm to be installed (above).
+## Start macos_appearance_monitor.sh on login.
+cp $HOME/bin/com.user.appearancemon.plist $HOME/Library/LaunchAgents/
+launchctl load -w $HOME/Library/LaunchAgents/com.user.appearancemon.plist
+launchctl start com.user.appearancemon
+## Automate command for toggling system appearance mode
+# * Create an automator Quick Action named "appearance_toggle" with AppleScript for the contents in ~/bin/macos_appearance_toggle.command
+# 	* NOPE use the build-in action "Change System Appearace" by dragging it in to the right, and set "Change Appearance" to "Toggle Light/Dark". This seems to go faster when toggling than the custom script.
+# * Bind to shortcut CTRL+OPT+CMD+t (shortcut used when feature was first introduced in the OS).
+
 
 # wego from brew is not recognizing forecast.io backend.
 #go get -u github.com/schachmat/wego
