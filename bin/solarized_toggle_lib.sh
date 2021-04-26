@@ -67,3 +67,12 @@ st_set_statusfile() {
 st_read_status() {
 	[ -e $ST_STATUSFILE ] && cat $ST_STATUSFILE || echo ""
 }
+
+st_set_all() {
+	local opts_var_name=$1
+	st_set_statusfile $opts_var_name
+	st_set_iterm2 $opts_var_name
+	st_set_tmux $opts_var_name
+	st_set_xrdb $opts_var_name
+	st_set_macos $opts_var_name
+}
