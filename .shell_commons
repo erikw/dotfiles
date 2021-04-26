@@ -283,7 +283,6 @@ source $HOME/.shell_functions
 		#alias brew='env PATH="${PATH//$(pyenv root)\/shims:/}" brew'
 		# Combined with removal of gnubins from abov (make sure to comment the first alias out for speed)
 		#alias brew='env PATH="$(echo "$PATH" | sed -e "s/:\/usr\/local\/opt\/[^:]*://g" -e "s/:.*pyenv\/shims://g")" brew'
-
 	#fi
 
 	# When using pyenv, normal virtual env can't be used for python <3.3.
