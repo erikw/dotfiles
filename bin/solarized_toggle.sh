@@ -34,8 +34,4 @@ else
 fi
 
 echo "${opts_g[mode]}"
-st_set_statusfile opts_g
-st_set_iterm2 opts_g
-st_set_tmux opts_g
-st_set_xrdb opts_g
-st_set_macos opts_g
+st_set_all opts_g
