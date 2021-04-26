@@ -267,7 +267,7 @@ brew_casks_additional=$(make_1line "$brew_casks_additional")
 
 read -r -d '' pip3_pkgs <<-'EOAPPS'
 	ipython
-	iterm
+	iterm2
 	virtualenvwrapper
 EOAPPS
 pip3_pkgs=$(make_1line "$pip3_pkgs")
@@ -403,7 +403,9 @@ pip3 install --user $pip3_pkgs
 
 
 # solarized_toggle.sh
-## solarized_toggle.sh require pip3 package iterm to be installed (above).
+## solarized_toggle.sh require
+# - pip3 package iterm to be installed (above).
+# - iterm2 prefernces enable Python API: General > Magic tab > Enable Python API: Require "automation" permission.
 ## Start macos_appearance_monitor.sh on login.
 cp $HOME/bin/com.user.appearancemon.plist $HOME/Library/LaunchAgents/
 launchctl load -w $HOME/Library/LaunchAgents/com.user.appearancemon.plist
