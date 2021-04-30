@@ -33,9 +33,9 @@
 	" }
 
 	" UI {
+		"Plugin 'flazz/vim-colorschemes'
 		Plugin 'ScrollColors'
 		Plugin 'altercation/vim-colors-solarized'
-		Plugin 'flazz/vim-colorschemes'
 		Plugin 'mkitt/tabline.vim'	" Only for terminal. gvim uses guilabel setting.
 	"}
 	" Navigation {
@@ -82,7 +82,7 @@
 		"Plugin 'fatih/vim-go'
 		"Plugin 'git://git.wincent.com/command-t.git'
 		"Plugin 'godlygeek/tabular'		" Disabled: not used and have some startup time.
-		"Plugin 'sjl/gundo.vim' " Not updated for python3
+		"Plugin 'sjl/gundo.vim' " Use mbbill/undotree instead, is better: https://vi.stackexchange.com/a/13863
 		"Plugin 'terryma/vim-multiple-cursors'
 		"Plugin 'tpope/vim-unimpaired'
 		Plugin 'LaTeX-Box-Team/LaTeX-Box'
@@ -95,6 +95,7 @@
 		Plugin 'fidian/hexmode'
 		Plugin 'garbas/vim-snipmate'
 		Plugin 'mattn/gist-vim'
+		Plugin 'mbbill/undotree'
 		Plugin 'michaeljsmith/vim-indent-object'
 		Plugin 'ntpeters/vim-better-whitespace'
 		Plugin 'rbonvall/snipmate-snippets-bib'
@@ -548,6 +549,11 @@ if s:use_plugins
 		"nmap <silent> <F4> :GundoToggle<CR>		" Toggle Gundo.
 		"let g:gundo_close_on_revert=1			" Automatically close on revert.
 		"let g:gundo_preview_bottom=1			" Draw preview below current window.
+
+		"" If using python3, need to set this var. Reference: https://vi.stackexchange.com/a/13863
+		"if has('python3')
+			"let g:gundo_prefer_python3 = 1
+		"endif
 	" }
 
 	" Javacomplete2 {
@@ -709,6 +715,12 @@ if s:use_plugins
 		"let g:Tlist_Use_Right_Window        = 1			" Display on the right.
 		""let g:Tlist_Display_Prototype      = 1			" Show prototypes instead of tags.
 		"let g:Tlist_Exit_OnlyWindow         = 1			" Close Vim if only Tlist open.
+	" }
+	"
+	" Undotree {
+		nmap <silent> <F4> :UndotreeToggle<CR>		" Toggle side pane.
+		let g:undotree_WindowLayout=2		 	" Set style to have diff window below.
+		let g:undotree_SetFocusWhenToggle=1		" Put cursor in undo window on open.
 	" }
 
 	" Vim Better Whitespace {
