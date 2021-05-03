@@ -193,6 +193,7 @@ fi
 	alias gimp='gimp --no-splash'					# Splash screens are just annoying.
 	alias dmenu="dmenu -i"						# Ignore case.
 	alias cal='cal --monday'					# Monday IS the first day of the week.
+	alias gpg='gpg --list-options no-show-photos'			# Don't open profile photos on listings - super annoying!
 	alias pdflatex='pdflatex -interaction=nonstopmode -halt-on-error' # Quit on error.
 
 	# Not needed anymore, installing with brew --with-default-names.

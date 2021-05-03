@@ -292,6 +292,22 @@ source $HOME/.shell_functions
 	#fi
 
 
+	# Homebrew ruby
+	if [ -d /usr/local/opt/ruby/bin ]; then
+		# Ruby & Gems binaries
+		# Correct gem dir is:
+		#GEMSDIR=$(gem environment gemdir)/bin
+		export PATH="/usr/local/opt/ruby/bin:/usr/local/lib/ruby/gems/3.0.0/bin:$PATH"
+
+		# For compilers to find ruby you may need to set:
+		#export LDFLAGS="-L/usr/local/opt/ruby/lib $LDFLAGS"
+		#export CPPFLAGS="-I/usr/local/opt/ruby/include $CPPFLAGS"
+
+		#For pkg-config to find ruby you may need to set:
+		#export PKG_CONFIG_PATH="/usr/local/opt/ruby/lib/pkgconfig:$PKG_CONFIG_PATH"
+	fi
+
+
 	# Powerline plugin.
 	#if shell_is_macos; then
 		#export POWERLINE_ROOT=$macos_py3path/lib/python/site-packages/powerline

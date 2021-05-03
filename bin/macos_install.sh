@@ -128,6 +128,7 @@ read -r -d '' brew_formulae_additional <<-'EOAPPS'
 	python@2
 	reattach-to-user-namespace
 	restic
+	ruby
 	swiftlint
 	task
 	tasksh
