@@ -52,6 +52,7 @@ st_set_macos() {
 	local -n opts=$1
 	[ "${opts[macos_update]}" == true ] || return
 	# Reference: https://brettterpstra.com/2018/09/26/shell-tricks-toggling-dark-mode-from-terminal/
+	# Alternative: https://github.com/sindresorhus/dark-mode
 	if [ "${opts[mode]}" =  dark ]; then
 		osascript -e 'tell app "System Events" to tell appearance preferences to set dark mode to true'
 	else

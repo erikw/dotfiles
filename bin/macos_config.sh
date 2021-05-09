@@ -136,6 +136,8 @@ killall Dock
 # * Uncheck "Close windows when quitting an app"
 
 # Desktop & Screensaver
+## Desktop
+# * Add all folders in ~/media/images/wallpapers/dynamic_mac/. See https://www.dynamicwallpaper.club/docs on how to use custom dynamic images.
 ## Screensaver
 # * Set Hot corners:
 ## upper left: -
