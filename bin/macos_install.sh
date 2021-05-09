@@ -683,6 +683,7 @@ chmod go-w '/usr/local/share'
 
 # Irvue
 # Prefer this to Freshbackmac as one can get info about the selected wallpaper.
+# NOTE switch to built-in dynamic wallpapers with dark/light mode.
 ## General
 # * Folder for saved wallpaper: ~/media/images/wallpapers/usplash/
 # * Uncheck Notifications
