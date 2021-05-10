@@ -1,0 +1,679 @@
+#compdef netlify ntl
+
+function _netlify {
+  local state
+  local -a commands
+
+  _arguments -s -w -S -C \
+    "1: :->command" \
+    "*::arg:->args"
+
+  case $state in
+    command)
+      commands=(
+        "addons:(Beta) Manage Netlify Add-ons"
+        "addons\:auth:Login to add-on provider"
+        "addons\:config:Configure add-on settings"
+        "addons\:create:Add an add-on extension to your site"
+        "addons\:delete:Remove an add-on extension to your site"
+        "addons\:list:List currently installed add-ons for site"
+        "api:Run any Netlify API method"
+        "build:(Beta) Build on your local machine"
+        "deploy:Create a new deploy from the contents of a folder"
+        "dev:Local dev server"
+        "dev\:exec:Exec command"
+        "dev\:trace:Trace command"
+        "env:(Beta) Control environment variables for the current site"
+        "env\:get:Get resolved value of specified environment variable (includes netlify.toml)"
+        "env\:import:Import and set environment variables from .env file"
+        "env\:list:Lists resolved environment variables for site (includes netlify.toml)"
+        "env\:set:Set value of environment variable"
+        "env\:unset:Unset an environment variable which removes it from the UI"
+        "functions:Manage netlify functions"
+        "functions\:build:Build functions locally"
+        "functions\:create:Create a new function locally"
+        "functions\:invoke:Trigger a function while in netlify dev with simulated data, good for testing function calls including Netlify's Event Triggered Functions"
+        "functions\:list:List functions that exist locally"
+        "functions\:serve:(Beta) Serve functions locally"
+        "init:Configure continuous deployment for a new or existing site"
+        "link:Link a local repo or project folder to an existing site on Netlify"
+        "lm:Handle Netlify Large Media operations"
+        "lm\:info:Show large media requirements information."
+        "lm\:install:Configures your computer to use Netlify Large Media."
+        "lm\:setup:Configures your site to use Netlify Large Media."
+        "lm\:uninstall:Uninstalls Netlify git credentials helper and cleans up any related configuration changes made by the install command."
+        "login:Login to your Netlify account"
+        "logout:Logout of your Netlify account"
+        "open:Open settings for the site linked to the current folder"
+        "open\:admin:Opens current site admin UI in Netlify"
+        "open\:site:Opens current site url in browser"
+        "sites:Handle various site operations"
+        "sites\:config:update a site"
+        "sites\:create:Create an empty site (advanced)"
+        "sites\:delete:Delete a site"
+        "sites\:list:List all sites you have access to"
+        "status:Print status information"
+        "status\:hooks:Print hook information of the linked site"
+        "switch:Switch your active Netlify account"
+        "unlink:Unlink a local folder from a Netlify site"
+        "watch:Watch for site deploy to finish"
+        "completion:Generate shell completion script"
+        "completion\:generate:Generates completion script"
+        "completion\:generate\:alias:Generates completion script for alias"
+        "plugins:list installed plugins"
+        "plugins\:inspect:displays installation properties of a plugin"
+        "plugins\:install:installs a plugin into the CLI"
+        "plugins\:link:links a plugin into the CLI for development"
+        "plugins\:uninstall:removes a plugin from the CLI"
+        "plugins\:update:update installed plugins"
+        "help:display help for <%= config.bin %>"
+      )
+      _describe "command" commands
+      ;;
+  esac
+
+  case "$words[1]" in
+    addons)
+      _netlify_addons
+      ;;
+    addons:auth)
+      _netlify_addons:auth
+      ;;
+    addons:config)
+      _netlify_addons:config
+      ;;
+    addons:create)
+      _netlify_addons:create
+      ;;
+    addons:delete)
+      _netlify_addons:delete
+      ;;
+    addons:list)
+      _netlify_addons:list
+      ;;
+    api)
+      _netlify_api
+      ;;
+    build)
+      _netlify_build
+      ;;
+    deploy)
+      _netlify_deploy
+      ;;
+    dev)
+      _netlify_dev
+      ;;
+    dev:exec)
+      _netlify_dev:exec
+      ;;
+    dev:trace)
+      _netlify_dev:trace
+      ;;
+    env)
+      _netlify_env
+      ;;
+    env:get)
+      _netlify_env:get
+      ;;
+    env:import)
+      _netlify_env:import
+      ;;
+    env:list)
+      _netlify_env:list
+      ;;
+    env:set)
+      _netlify_env:set
+      ;;
+    env:unset)
+      _netlify_env:unset
+      ;;
+    functions)
+      _netlify_functions
+      ;;
+    functions:build)
+      _netlify_functions:build
+      ;;
+    functions:create)
+      _netlify_functions:create
+      ;;
+    functions:invoke)
+      _netlify_functions:invoke
+      ;;
+    functions:list)
+      _netlify_functions:list
+      ;;
+    functions:serve)
+      _netlify_functions:serve
+      ;;
+    init)
+      _netlify_init
+      ;;
+    link)
+      _netlify_link
+      ;;
+    lm)
+      _netlify_lm
+      ;;
+    lm:info)
+      _netlify_lm:info
+      ;;
+    lm:install)
+      _netlify_lm:install
+      ;;
+    lm:setup)
+      _netlify_lm:setup
+      ;;
+    lm:uninstall)
+      _netlify_lm:uninstall
+      ;;
+    login)
+      _netlify_login
+      ;;
+    logout)
+      _netlify_logout
+      ;;
+    open)
+      _netlify_open
+      ;;
+    open:admin)
+      _netlify_open:admin
+      ;;
+    open:site)
+      _netlify_open:site
+      ;;
+    sites)
+      _netlify_sites
+      ;;
+    sites:config)
+      _netlify_sites:config
+      ;;
+    sites:create)
+      _netlify_sites:create
+      ;;
+    sites:delete)
+      _netlify_sites:delete
+      ;;
+    sites:list)
+      _netlify_sites:list
+      ;;
+    status)
+      _netlify_status
+      ;;
+    status:hooks)
+      _netlify_status:hooks
+      ;;
+    switch)
+      _netlify_switch
+      ;;
+    unlink)
+      _netlify_unlink
+      ;;
+    watch)
+      _netlify_watch
+      ;;
+    completion)
+      _netlify_completion
+      ;;
+    completion:generate)
+      _netlify_completion:generate
+      ;;
+    completion:generate:alias)
+      _netlify_completion:generate:alias
+      ;;
+    plugins)
+      _netlify_plugins
+      ;;
+    plugins:inspect)
+      _netlify_plugins:inspect
+      ;;
+    plugins:install)
+      _netlify_plugins:install
+      ;;
+    plugins:link)
+      _netlify_plugins:link
+      ;;
+    plugins:uninstall)
+      _netlify_plugins:uninstall
+      ;;
+    plugins:update)
+      _netlify_plugins:update
+      ;;
+    help)
+      _netlify_help
+      ;;
+  esac
+}
+
+function _netlify_addons {
+  
+}
+
+function _netlify_addons:auth {
+  _arguments -s -w -S -C "1: :( )" \
+    "--debug[Print debugging information]" \
+    "*--httpProxy=[Proxy server address to route requests through.]:httpProxy:" \
+    "*--httpProxyCertificateFilename=[Certificate file to use when connecting using a proxy server]:httpProxyCertificateFilename:"
+}
+
+function _netlify_addons:config {
+  _arguments -s -w -S -C "1: :( )" \
+    "--debug[Print debugging information]" \
+    "*--httpProxy=[Proxy server address to route requests through.]:httpProxy:" \
+    "*--httpProxyCertificateFilename=[Certificate file to use when connecting using a proxy server]:httpProxyCertificateFilename:"
+}
+
+function _netlify_addons:create {
+  _arguments -s -w -S -C "1: :( )" \
+    "--debug[Print debugging information]" \
+    "*--httpProxy=[Proxy server address to route requests through.]:httpProxy:" \
+    "*--httpProxyCertificateFilename=[Certificate file to use when connecting using a proxy server]:httpProxyCertificateFilename:"
+}
+
+function _netlify_addons:delete {
+  _arguments -s -w -S -C "1: :( )" \
+    "(--force -f)"{--force,-f}"[delete without prompting (useful for CI)]" \
+    "--debug[Print debugging information]" \
+    "*--httpProxy=[Proxy server address to route requests through.]:httpProxy:" \
+    "*--httpProxyCertificateFilename=[Certificate file to use when connecting using a proxy server]:httpProxyCertificateFilename:"
+}
+
+function _netlify_addons:list {
+  _arguments -s -w -S -C "--json[Output add-on data as JSON]" \
+    "--debug[Print debugging information]" \
+    "*--httpProxy=[Proxy server address to route requests through.]:httpProxy:" \
+    "*--httpProxyCertificateFilename=[Certificate file to use when connecting using a proxy server]:httpProxyCertificateFilename:"
+}
+
+function _netlify_api {
+  _arguments -s -w -S -C "1: :" \
+    "*--data=[Data to use]:data:" \
+    "*-d+[Data to use]:data:" \
+    "--list[List out available API methods]" \
+    "--debug[Print debugging information]" \
+    "*--httpProxy=[Proxy server address to route requests through.]:httpProxy:" \
+    "*--httpProxyCertificateFilename=[Certificate file to use when connecting using a proxy server]:httpProxyCertificateFilename:"
+}
+
+function _netlify_build {
+  _arguments -s -w -S -C "--dry[Dry run\: show instructions without running them]" \
+    "*--context=[Build context]:context:" \
+    "--debug[Print debugging information]" \
+    "*--httpProxy=[Proxy server address to route requests through.]:httpProxy:" \
+    "*--httpProxyCertificateFilename=[Certificate file to use when connecting using a proxy server]:httpProxyCertificateFilename:"
+}
+
+function _netlify_deploy {
+  _arguments -s -w -S -C "*--dir=[Specify a folder to deploy]:dir:" \
+    "*-d+[Specify a folder to deploy]:dir:" \
+    "*--functions=[Specify a functions folder to deploy]:functions:" \
+    "*-f+[Specify a functions folder to deploy]:functions:" \
+    "(--prod -p)"{--prod,-p}"[Deploy to production]" \
+    "--prodIfUnlocked[Deploy to production if unlocked, create a draft otherwise]" \
+    "*--alias=[Specifies the alias for deployment. Useful for creating predictable deployment URLs. Maximum 37 characters.]:alias:" \
+    "*--branch=[Serves the same functionality as --alias. Deprecated and will be removed in future versions]:branch:" \
+    "*-b+[Serves the same functionality as --alias. Deprecated and will be removed in future versions]:branch:" \
+    "(--open -o)"{--open,-o}"[Open site after deploy]" \
+    "*--message=[A short message to include in the deploy log]:message:" \
+    "*-m+[A short message to include in the deploy log]:message:" \
+    "*--auth=[Netlify auth token to deploy with]:auth:" \
+    "*-a+[Netlify auth token to deploy with]:auth:" \
+    "*--site=[A site ID to deploy to]:site:" \
+    "*-s+[A site ID to deploy to]:site:" \
+    "--json[Output deployment data as JSON]" \
+    "*--timeout=[Timeout to wait for deployment to finish]:timeout:" \
+    "--trigger[Trigger a new build of your site on Netlify without uploading local files]" \
+    "--build[Run build command before deploying]" \
+    "--debug[Print debugging information]" \
+    "*--httpProxy=[Proxy server address to route requests through.]:httpProxy:" \
+    "*--httpProxyCertificateFilename=[Certificate file to use when connecting using a proxy server]:httpProxyCertificateFilename:"
+}
+
+function _netlify_dev {
+  _arguments -s -w -S -C "*--command=[command to run]:command:" \
+    "*-c+[command to run]:command:" \
+    "*--port=[port of netlify dev]:port:" \
+    "*-p+[port of netlify dev]:port:" \
+    "*--targetPort=[port of target app server]:targetPort:" \
+    "*--staticServerPort=[port of the static app server used when no framework is detected]:staticServerPort:" \
+    "*--dir=[dir with static files]:dir:" \
+    "*-d+[dir with static files]:dir:" \
+    "*--functions=[specify a functions folder to serve]:functions:" \
+    "*-f+[specify a functions folder to serve]:functions:" \
+    "(--offline -o)"{--offline,-o}"[disables any features that require network access]" \
+    "(--live -l)"{--live,-l}"[start a public live session]" \
+    "(--edgeHandlers -e)"{--edgeHandlers,-e}"[activates the Edge Handlers runtime]" \
+    "(--trafficMesh -t)"{--trafficMesh,-t}"[(DEPRECATED\: use --edgeHandlers or -e instead) uses Traffic Mesh for proxying requests]" \
+    "*--locationDb=[specify the path to a local GeoIP location database in MMDB format]:locationDb:" \
+    "*-g+[specify the path to a local GeoIP location database in MMDB format]:locationDb:" \
+    "--debug[Print debugging information]" \
+    "*--httpProxy=[Proxy server address to route requests through.]:httpProxy:" \
+    "*--httpProxyCertificateFilename=[Certificate file to use when connecting using a proxy server]:httpProxyCertificateFilename:"
+}
+
+function _netlify_dev:exec {
+  _arguments -s -w -S -C "--debug[Print debugging information]" \
+    "*--httpProxy=[Proxy server address to route requests through.]:httpProxy:" \
+    "*--httpProxyCertificateFilename=[Certificate file to use when connecting using a proxy server]:httpProxyCertificateFilename:"
+}
+
+function _netlify_dev:trace {
+  _arguments -s -w -S -C "1: :( )" \
+    "*--request=[Specifies a custom request method [default\: GET]]:request:" \
+    "*-X+[Specifies a custom request method [default\: GET]]:request:" \
+    "*--cookie=[Request cookie, this flag can be used multiple times. Example\: \"nf_jwt=token\"]:cookie:" \
+    "*-b+[Request cookie, this flag can be used multiple times. Example\: \"nf_jwt=token\"]:cookie:" \
+    "*--header=[Request header, this flag can be used multiple times. Example\: \"Host\: netlify.test\"]:header:" \
+    "*-H+[Request header, this flag can be used multiple times. Example\: \"Host\: netlify.test\"]:header:" \
+    "*--watch=[Path to the publish directory]:watch:" \
+    "*-w+[Path to the publish directory]:watch:" \
+    "--debug[Print debugging information]"
+}
+
+function _netlify_env {
+  _arguments -s -w -S -C "--debug[Print debugging information]" \
+    "*--httpProxy=[Proxy server address to route requests through.]:httpProxy:" \
+    "*--httpProxyCertificateFilename=[Certificate file to use when connecting using a proxy server]:httpProxyCertificateFilename:"
+}
+
+function _netlify_env:get {
+  _arguments -s -w -S -C "1: :( )" \
+    "--debug[Print debugging information]" \
+    "*--httpProxy=[Proxy server address to route requests through.]:httpProxy:" \
+    "*--httpProxyCertificateFilename=[Certificate file to use when connecting using a proxy server]:httpProxyCertificateFilename:"
+}
+
+function _netlify_env:import {
+  _arguments -s -w -S -C "1: :( )" \
+    "(--replaceExisting -r)"{--replaceExisting,-r}"[Replace all existing variables instead of merging them with the current ones]" \
+    "--debug[Print debugging information]" \
+    "*--httpProxy=[Proxy server address to route requests through.]:httpProxy:" \
+    "*--httpProxyCertificateFilename=[Certificate file to use when connecting using a proxy server]:httpProxyCertificateFilename:"
+}
+
+function _netlify_env:list {
+  _arguments -s -w -S -C "--debug[Print debugging information]" \
+    "*--httpProxy=[Proxy server address to route requests through.]:httpProxy:" \
+    "*--httpProxyCertificateFilename=[Certificate file to use when connecting using a proxy server]:httpProxyCertificateFilename:"
+}
+
+function _netlify_env:set {
+  _arguments -s -w -S -C "1: :( )" \
+    "2: :" \
+    "--debug[Print debugging information]" \
+    "*--httpProxy=[Proxy server address to route requests through.]:httpProxy:" \
+    "*--httpProxyCertificateFilename=[Certificate file to use when connecting using a proxy server]:httpProxyCertificateFilename:"
+}
+
+function _netlify_env:unset {
+  _arguments -s -w -S -C "1: :( )" \
+    "--debug[Print debugging information]" \
+    "*--httpProxy=[Proxy server address to route requests through.]:httpProxy:" \
+    "*--httpProxyCertificateFilename=[Certificate file to use when connecting using a proxy server]:httpProxyCertificateFilename:"
+}
+
+function _netlify_functions {
+  
+}
+
+function _netlify_functions:build {
+  _arguments -s -w -S -C "*--functions=[Specify a functions directory to build to]:functions:" \
+    "*-f+[Specify a functions directory to build to]:functions:" \
+    "*--src=[Specify the source directory for the functions]:src:" \
+    "*-s+[Specify the source directory for the functions]:src:" \
+    "--debug[Print debugging information]" \
+    "*--httpProxy=[Proxy server address to route requests through.]:httpProxy:" \
+    "*--httpProxyCertificateFilename=[Certificate file to use when connecting using a proxy server]:httpProxyCertificateFilename:"
+}
+
+function _netlify_functions:create {
+  _arguments -s -w -S -C "1: :" \
+    "*--name=[function name]:name:" \
+    "*-n+[function name]:name:" \
+    "*--url=[pull template from URL]:url:" \
+    "*-u+[pull template from URL]:url:" \
+    "--debug[Print debugging information]" \
+    "*--httpProxy=[Proxy server address to route requests through.]:httpProxy:" \
+    "*--httpProxyCertificateFilename=[Certificate file to use when connecting using a proxy server]:httpProxyCertificateFilename:"
+}
+
+function _netlify_functions:invoke {
+  _arguments -s -w -S -C "1: :" \
+    "*--name=[function name to invoke]:name:" \
+    "*-n+[function name to invoke]:name:" \
+    "*--functions=[Specify a functions folder to parse, overriding netlify.toml]:functions:" \
+    "*-f+[Specify a functions folder to parse, overriding netlify.toml]:functions:" \
+    "*--querystring=[Querystring to add to your function invocation]:querystring:" \
+    "*-q+[Querystring to add to your function invocation]:querystring:" \
+    "*--payload=[Supply POST payload in stringified json, or a path to a json file]:payload:" \
+    "*-p+[Supply POST payload in stringified json, or a path to a json file]:payload:" \
+    "(--identity --no-identity)"{--identity,--no-identity}"[simulate Netlify Identity authentication JWT. pass --no-identity to affirm unauthenticated request]" \
+    "*--port=[Port where netlify dev is accessible. e.g. 8888]:port:" \
+    "--debug[Print debugging information]" \
+    "*--httpProxy=[Proxy server address to route requests through.]:httpProxy:" \
+    "*--httpProxyCertificateFilename=[Certificate file to use when connecting using a proxy server]:httpProxyCertificateFilename:"
+}
+
+function _netlify_functions:list {
+  _arguments -s -w -S -C "*--name=[name to print]:name:" \
+    "*-n+[name to print]:name:" \
+    "*--functions=[Specify a functions directory to list]:functions:" \
+    "*-f+[Specify a functions directory to list]:functions:" \
+    "--json[Output function data as JSON]" \
+    "--debug[Print debugging information]" \
+    "*--httpProxy=[Proxy server address to route requests through.]:httpProxy:" \
+    "*--httpProxyCertificateFilename=[Certificate file to use when connecting using a proxy server]:httpProxyCertificateFilename:"
+}
+
+function _netlify_functions:serve {
+  _arguments -s -w -S -C "*--functions=[Specify a functions directory to serve]:functions:" \
+    "*-f+[Specify a functions directory to serve]:functions:" \
+    "*--port=[Specify a port for the functions server]:port:" \
+    "*-p+[Specify a port for the functions server]:port:" \
+    "(--offline -o)"{--offline,-o}"[disables any features that require network access]" \
+    "--debug[Print debugging information]" \
+    "*--httpProxy=[Proxy server address to route requests through.]:httpProxy:" \
+    "*--httpProxyCertificateFilename=[Certificate file to use when connecting using a proxy server]:httpProxyCertificateFilename:"
+}
+
+function _netlify_init {
+  _arguments -s -w -S -C "(--manual -m)"{--manual,-m}"[Manually configure a git remote for CI]" \
+    "--force[Reinitialize CI hooks if the linked site is already configured to use CI]" \
+    "*--gitRemoteName=[Name of Git remote to use. e.g. \"origin\"]:gitRemoteName:" \
+    "--debug[Print debugging information]" \
+    "*--httpProxy=[Proxy server address to route requests through.]:httpProxy:" \
+    "*--httpProxyCertificateFilename=[Certificate file to use when connecting using a proxy server]:httpProxyCertificateFilename:"
+}
+
+function _netlify_link {
+  _arguments -s -w -S -C "*--id=[ID of site to link to]:id:" \
+    "*--name=[Name of site to link to]:name:" \
+    "*--gitRemoteName=[Name of Git remote to use. e.g. \"origin\"]:gitRemoteName:" \
+    "--debug[Print debugging information]" \
+    "*--httpProxy=[Proxy server address to route requests through.]:httpProxy:" \
+    "*--httpProxyCertificateFilename=[Certificate file to use when connecting using a proxy server]:httpProxyCertificateFilename:"
+}
+
+function _netlify_lm {
+  _arguments -s -w -S -C "--debug[Print debugging information]" \
+    "*--httpProxy=[Proxy server address to route requests through.]:httpProxy:" \
+    "*--httpProxyCertificateFilename=[Certificate file to use when connecting using a proxy server]:httpProxyCertificateFilename:"
+}
+
+function _netlify_lm:info {
+  _arguments -s -w -S -C "--debug[Print debugging information]" \
+    "*--httpProxy=[Proxy server address to route requests through.]:httpProxy:" \
+    "*--httpProxyCertificateFilename=[Certificate file to use when connecting using a proxy server]:httpProxyCertificateFilename:"
+}
+
+function _netlify_lm:install {
+  _arguments -s -w -S -C "(--force -f)"{--force,-f}"[Force the credentials helper installation]"
+}
+
+function _netlify_lm:setup {
+  _arguments -s -w -S -C "(--skip-install -s)"{--skip-install,-s}"[Skip the credentials helper installation check]" \
+    "(--force-install -f)"{--force-install,-f}"[Force the credentials helper installation]" \
+    "--debug[Print debugging information]" \
+    "*--httpProxy=[Proxy server address to route requests through.]:httpProxy:" \
+    "*--httpProxyCertificateFilename=[Certificate file to use when connecting using a proxy server]:httpProxyCertificateFilename:"
+}
+
+function _netlify_lm:uninstall {
+  _arguments -s -w -S -C "--debug[Print debugging information]" \
+    "*--httpProxy=[Proxy server address to route requests through.]:httpProxy:" \
+    "*--httpProxyCertificateFilename=[Certificate file to use when connecting using a proxy server]:httpProxyCertificateFilename:"
+}
+
+function _netlify_login {
+  _arguments -s -w -S -C "--new[Login to new Netlify account]" \
+    "--debug[Print debugging information]" \
+    "*--httpProxy=[Proxy server address to route requests through.]:httpProxy:" \
+    "*--httpProxyCertificateFilename=[Certificate file to use when connecting using a proxy server]:httpProxyCertificateFilename:"
+}
+
+function _netlify_logout {
+  _arguments -s -w -S -C "--debug[Print debugging information]" \
+    "*--httpProxy=[Proxy server address to route requests through.]:httpProxy:" \
+    "*--httpProxyCertificateFilename=[Certificate file to use when connecting using a proxy server]:httpProxyCertificateFilename:"
+}
+
+function _netlify_open {
+  _arguments -s -w -S -C "--debug[Print debugging information]" \
+    "*--httpProxy=[Proxy server address to route requests through.]:httpProxy:" \
+    "*--httpProxyCertificateFilename=[Certificate file to use when connecting using a proxy server]:httpProxyCertificateFilename:" \
+    "--site[Open site]" \
+    "--admin[Open Netlify site]"
+}
+
+function _netlify_open:admin {
+  _arguments -s -w -S -C "--debug[Print debugging information]" \
+    "*--httpProxy=[Proxy server address to route requests through.]:httpProxy:" \
+    "*--httpProxyCertificateFilename=[Certificate file to use when connecting using a proxy server]:httpProxyCertificateFilename:"
+}
+
+function _netlify_open:site {
+  _arguments -s -w -S -C "--debug[Print debugging information]" \
+    "*--httpProxy=[Proxy server address to route requests through.]:httpProxy:" \
+    "*--httpProxyCertificateFilename=[Certificate file to use when connecting using a proxy server]:httpProxyCertificateFilename:"
+}
+
+function _netlify_sites {
+  
+}
+
+function _netlify_sites:config {
+  _arguments -s -w -S -C "*--name=[name to print]:name:" \
+    "*-n+[name to print]:name:"
+}
+
+function _netlify_sites:create {
+  _arguments -s -w -S -C "*--name=[name of site]:name:" \
+    "*-n+[name of site]:name:" \
+    "*--account-slug=[account slug to create the site under]:account-slug:" \
+    "*-a+[account slug to create the site under]:account-slug:" \
+    "(--with-ci -c)"{--with-ci,-c}"[initialize CI hooks during site creation]" \
+    "(--manual -m)"{--manual,-m}"[Force manual CI setup.  Used --with-ci flag]" \
+    "--debug[Print debugging information]" \
+    "*--httpProxy=[Proxy server address to route requests through.]:httpProxy:" \
+    "*--httpProxyCertificateFilename=[Certificate file to use when connecting using a proxy server]:httpProxyCertificateFilename:"
+}
+
+function _netlify_sites:delete {
+  _arguments -s -w -S -C "1: :( )" \
+    "(--force -f)"{--force,-f}"[delete without prompting (useful for CI)]" \
+    "--debug[Print debugging information]" \
+    "*--httpProxy=[Proxy server address to route requests through.]:httpProxy:" \
+    "*--httpProxyCertificateFilename=[Certificate file to use when connecting using a proxy server]:httpProxyCertificateFilename:"
+}
+
+function _netlify_sites:list {
+  _arguments -s -w -S -C "--json[Output site data as JSON]" \
+    "--debug[Print debugging information]" \
+    "*--httpProxy=[Proxy server address to route requests through.]:httpProxy:" \
+    "*--httpProxyCertificateFilename=[Certificate file to use when connecting using a proxy server]:httpProxyCertificateFilename:"
+}
+
+function _netlify_status {
+  _arguments -s -w -S -C "--verbose[Output system info]" \
+    "--debug[Print debugging information]" \
+    "*--httpProxy=[Proxy server address to route requests through.]:httpProxy:" \
+    "*--httpProxyCertificateFilename=[Certificate file to use when connecting using a proxy server]:httpProxyCertificateFilename:"
+}
+
+function _netlify_status:hooks {
+  _arguments -s -w -S -C "--debug[Print debugging information]" \
+    "*--httpProxy=[Proxy server address to route requests through.]:httpProxy:" \
+    "*--httpProxyCertificateFilename=[Certificate file to use when connecting using a proxy server]:httpProxyCertificateFilename:"
+}
+
+function _netlify_switch {
+  _arguments -s -w -S -C "--debug[Print debugging information]" \
+    "*--httpProxy=[Proxy server address to route requests through.]:httpProxy:" \
+    "*--httpProxyCertificateFilename=[Certificate file to use when connecting using a proxy server]:httpProxyCertificateFilename:"
+}
+
+function _netlify_unlink {
+  _arguments -s -w -S -C "--debug[Print debugging information]" \
+    "*--httpProxy=[Proxy server address to route requests through.]:httpProxy:" \
+    "*--httpProxyCertificateFilename=[Certificate file to use when connecting using a proxy server]:httpProxyCertificateFilename:"
+}
+
+function _netlify_watch {
+  _arguments -s -w -S -C "--debug[Print debugging information]" \
+    "*--httpProxy=[Proxy server address to route requests through.]:httpProxy:" \
+    "*--httpProxyCertificateFilename=[Certificate file to use when connecting using a proxy server]:httpProxyCertificateFilename:"
+}
+
+function _netlify_completion {
+  _arguments -s -w -S -C "*--shell=[Name of shell]:shell:(bash fish zsh)" \
+    "*-s+[Name of shell]:shell:(bash fish zsh)"
+}
+
+function _netlify_completion:generate {
+  _arguments -s -w -S -C "*--shell=[Name of shell]:shell:(bash fish zsh)" \
+    "*-s+[Name of shell]:shell:(bash fish zsh)"
+}
+
+function _netlify_completion:generate:alias {
+  _arguments -s -w -S -C "1: :( )" \
+    "*--shell=[Name of shell]:shell:(bash fish)" \
+    "*-s+[Name of shell]:shell:(bash fish)"
+}
+
+function _netlify_plugins {
+  _arguments -s -w -S -C "--core[show core plugins]"
+}
+
+function _netlify_plugins:inspect {
+  _arguments -s -w -S -C "1: :( )" \
+    "(--help -h)"{--help,-h}"[show CLI help]" \
+    "(--verbose -v)"{--verbose,-v}"[]"
+}
+
+function _netlify_plugins:install {
+  _arguments -s -w -S -C "1: :( )" \
+    "(--help -h)"{--help,-h}"[show CLI help]" \
+    "(--verbose -v)"{--verbose,-v}"[]" \
+    "(--force -f)"{--force,-f}"[yarn install with force flag]"
+}
+
+function _netlify_plugins:link {
+  _arguments -s -w -S -C "1: :( )" \
+    "(--help -h)"{--help,-h}"[show CLI help]" \
+    "(--verbose -v)"{--verbose,-v}"[]"
+}
+
+function _netlify_plugins:uninstall {
+  _arguments -s -w -S -C "1: :" \
+    "(--help -h)"{--help,-h}"[show CLI help]" \
+    "(--verbose -v)"{--verbose,-v}"[]"
+}
+
+function _netlify_plugins:update {
+  _arguments -s -w -S -C "(--help -h)"{--help,-h}"[show CLI help]" \
+    "(--verbose -v)"{--verbose,-v}"[]"
+}
+
+function _netlify_help {
+  _arguments -s -w -S -C "1: :" \
+    "--all[see all commands in CLI]"
+}

@@ -116,6 +116,7 @@ read -r -d '' brew_formulae_additional <<-'EOAPPS'
 	mutt
 	ncftp
 	nethogs
+	node
 	notmuch
 	npm
 	offlineimap

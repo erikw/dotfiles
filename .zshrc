@@ -71,6 +71,7 @@ fi
 	#compdef _path_files cd
 
 	autoload -Uz compinit
+	# -C: ignore checking for new comp files. The dump file will only be created if there isn’t one already. Thus, for new files e.g. added to fpath, manually run $(compinit) once.
 	# -u: ignore check for comp files not owned by root or current user. Avoids problems on $(sudo -s).
 	# Reference: http://zsh.sourceforge.net/Doc/Release/Completion-System.html#Initialization
 	compinit -C -u
