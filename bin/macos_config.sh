@@ -137,7 +137,9 @@ killall Dock
 
 # Desktop & Screensaver
 ## Desktop
-# * Add all folders in ~/media/images/wallpapers/dynamic_mac/. See https://www.dynamicwallpaper.club/docs on how to use custom dynamic images.
+# * Add all folders in ~/media/images/wallpapers/dynamic_mac/.
+#   * See https://www.dynamicwallpaper.club/docs on how to use custom dynamic images.
+#   * See https://apple.stackexchange.com/questions/71070/how-to-change-desktop-wallpaper-for-all-virtual-desktops/415790#415790 on how to set wallpaper for all desktops.
 ## Screensaver
 # * Set Hot corners:
 ## upper left: -
