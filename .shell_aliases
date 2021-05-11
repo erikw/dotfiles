@@ -194,6 +194,7 @@ fi
 	alias dmenu="dmenu -i"						# Ignore case.
 	alias cal='cal --monday'					# Monday IS the first day of the week.
 	alias gpg='gpg --list-options no-show-photos'			# Don't open profile photos on listings - super annoying!
+	alias grip='grip --browser'					# Open new tab in browser, until this can be configured: https://github.com/joeyespo/grip/issues/340
 	alias pdflatex='pdflatex -interaction=nonstopmode -halt-on-error' # Quit on error.
 
 	# Not needed anymore, installing with brew --with-default-names.
