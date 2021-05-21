@@ -192,3 +192,10 @@ moshmux () {
 	local args="$@"
 	mosh $args -- sh -c "tmux attach || tmux new-session"
 }
+
+
+# cd(1) to installation of gem from bundle.
+bundlecd () {
+	local gem="$@"
+	cd $(bundle info --path "$gem")
+}
