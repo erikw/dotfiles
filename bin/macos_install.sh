@@ -537,7 +537,7 @@ chmod go-w '/usr/local/share'
 # Powerline
 # Install either
 # * Powerline Terminus font: https://gist.github.com/creaktive/5004950#file-terminusmedium-dfont
-# * Powerline Source Code Pro, Fontsize 14pt: https://github.com/powerline/fonts
+# * Powerline Source Code Pro, Fontsize 16pt: https://github.com/powerline/fonts
 
 
 # MacVim
