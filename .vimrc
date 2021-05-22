@@ -662,7 +662,7 @@ if s:use_plugins
 		" passive_filetypes: files here are never checked even if the mode is active. Ignored when mode=passive.
 		let g:syntastic_mode_map = { 'mode': 'active',
 		                        \ 'active_filetypes': [],
-		                        \ 'passive_filetypes': ['python', 'tex'] }
+		                        \ 'passive_filetypes': ['python', 'tex', 'html'] }
 		" Python, use prospector.
 		let g:syntastic_python_checkers = ['prospector']
 

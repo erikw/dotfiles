@@ -4,33 +4,38 @@
 #	vi: foldmarker={,} foldmethod=marker foldlevel=0: tabstop=8:
 # }
 
+# CLI conf {
+# Script Environment {
+set -er
 
+# From: https://github.com/mathiasbynens/dotfiles/blob/main/.macos
+# Close any open System Preferences panes, to prevent them from overriding
+# settings we’re about to change
+osascript -e 'tell application "System Preferences" to quit'
+# Ask for the administrator password upfront
+sudo -v
+# Keep-alive: update existing `sudo` time stamp until `.macos` has finished
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+# }
 
+# System {
+# Set computers hostname.
 if [ $# -ne 1 ]; then
 	echo "Provide computer hostname to set as argument" >&2
 	exit 1
 fi
 new_hostname=$1
+sudo scutil --set HostName $new_hostname
 
 
-set -er
+# Add a note to /etc/host to make it easier
+sudo sh -c " cat >>/etc/hosts" << EOF
 
-# Change screenshot destination from Desktop to something sane.
-mkdir -p $HOME/media/images/screenshots
-defaults write com.apple.screencapture location $HOME/media/images/screenshots
 
-# Disable the thumbnail preview that delays saving the screenshot to disk.
-# Reference: https://apple.stackexchange.com/questions/340170/turn-off-macos-mojave-screenshot-preview-thumbnails-with-defaults-write-command
-defaults write com.apple.screencapture show-thumbnail -bool FALSE
-
-# Dim hidden apps (CMD+H) in the dock.
-defaults write com.apple.Dock showhidden -boolean yes; killall Dock
-
-# Show hidden files in Finder.
-#defaults write com.apple.finder AppleShowAllFiles YES; killall Finder
-
-# Show all file extensions in Finder
-defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+# After editing this file, execute:
+# $ dscacheutil -flushcache; sudo killall -HUP mDNSResponder
+# Reference: https://www.tekrevue.com/tip/edit-hosts-file-mac-os-x/
+EOF
 
 # Enable locate(1).
 # NOTE disabled in favour for findutil's GNU locate which can find dot files.
@@ -50,17 +55,8 @@ defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 #chsh -s /bin/zsh
 
 
-# Set computers hostname.
-sudo scutil --set HostName $new_hostname
-
-
 # Allow apps to be installed from anywhere (System Preferences > Security & Privacy).
 sudo spctl --master-disable
-
-# Make the cursor speed even faster than possible in System Preferences.
-# Reference: https://stackoverflow.com/questions/4489885/how-can-i-increase-the-cursor-speed-in-terminal
-defaults write nsglobaldomain keyrepeat -int 0
-
 
 # Allow a sudo session to last a bit longer, across terminals.
 sudo sh -c " cat >/etc/sudoers.d/99_my_settings" << EOF
@@ -82,36 +78,6 @@ sudo dseditgroup -o create power
 sudo dseditgroup -o edit -u $USER -p -a $USER -t user power
 
 
-# Hide default un-hidable folders in home directory from Finder.
-# Reset with $ chflags nohidden <dir>
-chflags hidden ~/Documents
-chflags hidden ~/Downloads
-chflags hidden ~/Movies
-chflags hidden ~/Music
-chflags hidden ~/Pictures
-chflags hidden ~/Public
-
-
-# Add a note to /etc/host to make it easier
-sudo sh -c " cat >>/etc/hosts" << EOF
-
-
-# After editing this file, execute:
-# $ dscacheutil -flushcache; sudo killall -HUP mDNSResponder
-# Reference: https://www.tekrevue.com/tip/edit-hosts-file-mac-os-x/
-EOF
-
-
-# Add two space separators in dock, to organize icons to correspond to which monitor I want them to be open on. Let them be order by the Spaces order too.
-defaults write com.apple.dock persistent-apps -array-add '{tile-data={}; tile-type="spacer-tile";}'
-defaults write com.apple.dock persistent-apps -array-add '{tile-data={}; tile-type="spacer-tile";}'
-killall Dock
-
-
-# Install iTerm2 shell integration
-# Reference: https://www.iterm2.com/documentation-shell-integration.html
-#curl -L https://iterm2.com/misc/install_shell_integration.sh | bash
-
 # Optional: keep network connections alive during sleep
 # Reference: https://gist.github.com/jyore/aae1d0e6e482b4d152a4bcf5b5749eed
 #sudo /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport prefs DisconnectOnLogout
@@ -129,6 +95,116 @@ killall Dock
 #git commit -m "Initital commit"
 #EOF
 
+
+# }
+
+# UI {
+# Change screenshot destination from Desktop to something sane.
+mkdir -p $HOME/media/images/screenshots
+defaults write com.apple.screencapture location $HOME/media/images/screenshots
+
+# Make the cursor speed even faster than possible in System Preferences.
+# Reference: https://stackoverflow.com/questions/4489885/how-can-i-increase-the-cursor-speed-in-terminal
+defaults write nsglobaldomain keyrepeat -int 0
+
+# Automatically quit printer app once the print jobs complete
+defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
+
+# Disable the thumbnail preview that delays saving the screenshot to disk.
+# Reference: https://apple.stackexchange.com/questions/340170/turn-off-macos-mojave-screenshot-preview-thumbnails-with-defaults-write-command
+defaults write com.apple.screencapture show-thumbnail -bool FALSE
+
+
+
+
+# Hot corners
+# Possible values:
+#  0: no-op
+#  2: Mission Control
+#  3: Show application windows
+#  4: Desktop
+#  5: Start screen saver
+#  6: Disable screen saver
+#  7: Dashboard
+# 10: Put display to sleep
+# 11: Launchpad
+# 12: Notification Center
+# 13: Lock Screen
+# Top left screen corner → NOP
+defaults write com.apple.dock wvous-tl-corner -int 0
+defaults write com.apple.dock wvous-tl-modifier -int 0
+# Top right screen corner → Mission Control
+defaults write com.apple.dock wvous-tr-corner -int 2
+defaults write com.apple.dock wvous-tr-modifier -int 0
+# Bottom left screen corner → Desktop
+defaults write com.apple.dock wvous-bl-corner -int 4
+defaults write com.apple.dock wvous-bl-modifier -int 0
+# Bottom right screen corner → Put Display to Sleep
+defaults write com.apple.dock wvous-bl-corner -int 10
+defaults write com.apple.dock wvous-bl-modifier -int 0
+
+# }
+
+# Dock {
+# Dim hidden apps (CMD+H) in the dock.
+defaults write com.apple.Dock showhidden -boolean yes; killall Dock
+
+# Add two space separators in dock, to organize icons to correspond to which monitor I want them to be open on. Let them be order by the Spaces order too.
+defaults write com.apple.dock persistent-apps -array-add '{tile-data={}; tile-type="spacer-tile";}'
+defaults write com.apple.dock persistent-apps -array-add '{tile-data={}; tile-type="spacer-tile";}'
+killall Dock
+# }
+
+# Finder {
+# Show all file extensions in Finder
+defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+
+# Show hidden files in Finder.
+#defaults write com.apple.finder AppleShowAllFiles YES; killall Finder
+
+# Save to disk (not to iCloud) by default
+defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
+
+
+# Hide default un-hidable folders in home directory from Finder.
+# Reset with $ chflags nohidden <dir>
+chflags hidden ~/Documents
+chflags hidden ~/Downloads
+chflags hidden ~/Movies
+chflags hidden ~/Music
+chflags hidden ~/Pictures
+chflags hidden ~/Public
+# But do show the user Library
+chflags nohidden ~/Library
+
+# Show icons for hard drives, servers, and removable media on the desktop
+defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
+defaults write com.apple.finder ShowHardDrivesOnDesktop -bool true
+defaults write com.apple.finder ShowMountedServersOnDesktop -bool true
+defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
+
+# Show status bar
+defaults write com.apple.finder ShowStatusBar -bool true
+
+# Show path bar
+defaults write com.apple.finder ShowPathbar -bool true
+
+# Disable the warning when changing a file extension
+defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
+
+# }
+
+# Other {
+# iTerm2 shell integration
+# Reference: https://www.iterm2.com/documentation-shell-integration.html
+#curl -L https://iterm2.com/misc/install_shell_integration.sh | bash
+# }
+
+
+echo "Please logout or restart for all settings to take effect."
+#}
+
+# GUI conf {
 # System Preferences {
 #
 # General
@@ -390,3 +466,4 @@ killall Dock
 # }
 
 # Media shortcuts for external keyboard: follow instructions in ~/bin/macos_media_control/info.txt
+# }
