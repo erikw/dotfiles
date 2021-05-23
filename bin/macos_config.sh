@@ -1,30 +1,30 @@
 #!/usr/bin/env sh
-# Configure macOS to my linking
+# Configure macOS to my linking.
 # Modeline {
 #	vi: foldmarker={,} foldmethod=marker foldlevel=0: tabstop=8:
 # }
 
 # CLI conf {
 # Script Environment {
-set -er
+set -ex
 
 # From: https://github.com/mathiasbynens/dotfiles/blob/main/.macos
 # Close any open System Preferences panes, to prevent them from overriding
 # settings we’re about to change
 osascript -e 'tell application "System Preferences" to quit'
 # Ask for the administrator password upfront
-sudo -v
-# Keep-alive: update existing `sudo` time stamp until `.macos` has finished
+#sudo -v
+# Keep-alive: update existing `sudo` time stamp until this script has finished.
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 # }
 
 # System {
 # Set computers hostname.
-if [ $# -ne 1 ]; then
-	echo "Provide computer hostname to set as argument" >&2
-	exit 1
-fi
-new_hostname=$1
+new_hostname=
+while [ -z "$new_hostname" ]; do
+	echo -n "Enter new computer hostname: "
+	read new_hostname
+done;
 sudo scutil --set HostName $new_hostname
 
 
@@ -115,8 +115,6 @@ defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
 defaults write com.apple.screencapture show-thumbnail -bool FALSE
 
 
-
-
 # Hot corners
 # Possible values:
 #  0: no-op
@@ -147,52 +145,16 @@ defaults write com.apple.dock wvous-bl-modifier -int 0
 
 # Dock {
 # Dim hidden apps (CMD+H) in the dock.
-defaults write com.apple.Dock showhidden -boolean yes; killall Dock
+defaults write com.apple.Dock showhidden -boolean yes
 
 # Add two space separators in dock, to organize icons to correspond to which monitor I want them to be open on. Let them be order by the Spaces order too.
 defaults write com.apple.dock persistent-apps -array-add '{tile-data={}; tile-type="spacer-tile";}'
 defaults write com.apple.dock persistent-apps -array-add '{tile-data={}; tile-type="spacer-tile";}'
+
+# Make settings take effect.
 killall Dock
 # }
 
-# Finder {
-# Show all file extensions in Finder
-defaults write NSGlobalDomain AppleShowAllExtensions -bool true
-
-# Show hidden files in Finder.
-#defaults write com.apple.finder AppleShowAllFiles YES; killall Finder
-
-# Save to disk (not to iCloud) by default
-defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
-
-
-# Hide default un-hidable folders in home directory from Finder.
-# Reset with $ chflags nohidden <dir>
-chflags hidden ~/Documents
-chflags hidden ~/Downloads
-chflags hidden ~/Movies
-chflags hidden ~/Music
-chflags hidden ~/Pictures
-chflags hidden ~/Public
-# But do show the user Library
-chflags nohidden ~/Library
-
-# Show icons for hard drives, servers, and removable media on the desktop
-defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
-defaults write com.apple.finder ShowHardDrivesOnDesktop -bool true
-defaults write com.apple.finder ShowMountedServersOnDesktop -bool true
-defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
-
-# Show status bar
-defaults write com.apple.finder ShowStatusBar -bool true
-
-# Show path bar
-defaults write com.apple.finder ShowPathbar -bool true
-
-# Disable the warning when changing a file extension
-defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
-
-# }
 
 # Other {
 # iTerm2 shell integration
@@ -200,16 +162,18 @@ defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
 #curl -L https://iterm2.com/misc/install_shell_integration.sh | bash
 # }
 
-
 echo "Please logout or restart for all settings to take effect."
 #}
 
 # GUI conf {
 # System Preferences {
+# # Apple Id
+## Media & Purchases
+# * Free Downloads: Never Require
 #
 # General
-# * Set Dark theme
-# * Uncheck "Close windows when quitting an app"
+# * Appearance: Auto
+# * NOPE Uncheck "Close windows when quitting an app"
 
 # Desktop & Screensaver
 ## Desktop
@@ -377,6 +341,27 @@ echo "Please logout or restart for all settings to take effect."
 # }
 
 # Finder {
+
+## View
+# ** Show Path Bar
+defaults write com.apple.finder ShowPathbar -bool true
+# ** Show Status Bar
+defaults write com.apple.finder ShowStatusBar -bool true
+### Show View Options
+# * First make sure to be in List view before entering this menu
+# * Check "Always open in list view" > Use as default
+# * Also open this diealog while being in ~/, then check "Show Library Folder". Reference: https://appletoolbox.com/unhide-access-mac-library-folder/
+## Preferences
+# ** General
+# *** Show on desktop: connected servers, disks
+# *** New Finder window shows: ~/
+# ** Sidebar
+# *** Hide things like Airdrop, iCould, Recents
+# View > Customize Control Strip > Add "New Folder" shortcut
+
+
+
+## Misc
 # * Remove crap folders from sidebar
 # * Add
 #  - ~/doc/
@@ -389,21 +374,40 @@ echo "Please logout or restart for all settings to take effect."
 #  - /Volumes/toshiba_music/daw/plugins/
 #  - /Volumes/toshiba_music/music/samples/
 #  * OPTIONAL: Copy icon from Downloads -> DL in CMD+i dialog.
-## View
-# ** Show Path Bar
-# ** Show Status Bar
-### Show View Options
-# * First make sure to be in List view before entering this menu
-# * Check "Always open in list view" > Use as default
-# * Also open this diealog while being in ~/, then check "Show Library Folder". Reference: https://appletoolbox.com/unhide-access-mac-library-folder/
-## Preferences
-# ** General
-# *** Show on desktop: connected servers, disks
-# *** New Finder window shows: ~/
-# ** Sidebar
-# *** Hide things like Airdrop, iCould, Recents
-# View > Customize Control Strip > Add "New Folder" shortcut
-#
+
+# Disable the warning when changing a file extension
+defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
+
+# Show all file extensions in Finder
+defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+
+# Show hidden files in Finder.
+#defaults write com.apple.finder AppleShowAllFiles YES
+
+# Save to disk (not to iCloud) by default
+defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
+
+
+# Hide default un-hidable folders in home directory from Finder.
+# Reset with $ chflags nohidden <dir>
+chflags hidden ~/Documents
+chflags hidden ~/Downloads
+chflags hidden ~/Movies
+#chflags hidden ~/Musi
+chflags hidden ~/Pictures
+chflags hidden ~/Public
+# But do show the user Library
+chflags nohidden ~/Library
+
+# Show icons for hard drives, servers, and removable media on the desktop
+defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
+defaults write com.apple.finder ShowHardDrivesOnDesktop -bool true
+defaults write com.apple.finder ShowMountedServersOnDesktop -bool true
+defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
+
+
+# Make settings take effect.
+killall Finder
 # }
 
 # Menu Bar {
@@ -463,6 +467,12 @@ echo "Please logout or restart for all settings to take effect."
 
 # Desktop {
 # * Right click > Sort By > Check "Snap to grid".
+# }
+
+# Terminal.app {
+#Profiles
+## Shell
+# * When the shell exists: close if the shell exited cleanly
 # }
 
 # Media shortcuts for external keyboard: follow instructions in ~/bin/macos_media_control/info.txt

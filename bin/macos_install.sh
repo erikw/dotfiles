@@ -5,7 +5,7 @@
 
 # TODO possibly replace this script with homebrew-bundler? https://github.com/Homebrew/homebrew-bundle
 
-set -x
+set -ex
 
 make_1line() {
 	echo "$1" | tr '\n' ' '
@@ -286,7 +286,6 @@ pip3_pkgs_additional=$(make_1line "$pip3_pkgs_additional")
 # }
 
 # Install {
-set -e # Must be after var defs.
 # Install homebrew.
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 
