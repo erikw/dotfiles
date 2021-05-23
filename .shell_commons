@@ -72,6 +72,11 @@ source $HOME/.shell_functions
 		PATH="/Library/TeX/texbin:$PATH"
 	fi
 
+	# Location of Brewfile. Reference: https://docs.brew.sh/Manpage#bundle-subcommand
+	if shell_is_macos; then
+		export HOMEBREW_BUNDLE_FILE=$HOME/.brewfile
+	fi
+
 	# Source aliases.
 	sourceifexists $HOME/.shell_aliases
 

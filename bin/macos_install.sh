@@ -5,6 +5,9 @@
 
 # TODO possibly replace this script with homebrew-bundler? https://github.com/Homebrew/homebrew-bundle
 
+# Using Brewfile at $HOMEBREW_BUNDLE_FILE
+#brew bundle install
+
 set -ex
 
 make_1line() {
