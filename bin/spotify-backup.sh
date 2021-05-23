@@ -6,7 +6,7 @@
 # 0     20     *     *     0      if_fail_do_notification spotify-backup.sh
 
 
-spot_username=GIT-CENSORED
+spot_username=erikwestrup
 
 date=$(date --date "-1 sec" "+%Y-%m-%d-%H%M%S")
 outdest=$HOME/bak/spotify
