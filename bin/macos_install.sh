@@ -547,13 +547,16 @@ chmod go-w '/usr/local/share'
 # Scroll Reverse
 ## Scrolling
 # * Check: Enable Scroll Reverser
-# * Scrolling devices: only reverse Mouse
+# * Scrolling devices:
+#  - Check: Reverse Trackpad
+#  - Uncheck: Reverse Mouse
 ## App
 # * Check: Start at login
 # * Uncheck: Show in menu bar
 
 # iTerm2
 # * Load settings from Preferencs > General > Preferences tab > Load from custom folder or URL. Reference: https://stackoverflow.com/a/23356086/265508
+# * Give iterm2 full disk access: System Preferences > Security & Privacy > Privacy > Full Disk Access > add iTerm.app
 ## General
 ### Closing
 # * Make it easier to restart/poweroff by not confirming closing multiple windows - I always use tmux so it's not a problem.  Unckeck:
