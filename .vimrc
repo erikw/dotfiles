@@ -1,6 +1,6 @@
 " Erik Westrup's Vim configuration.
 " Modeline {
-"	vi: foldmarker={,} foldmethod=marker foldlevel=0: tabstop=8:
+"	vi: foldmarker={,} foldmethod=marker foldlevel=0 tabstop=8 :
 " }
 
 " Profiling {
@@ -86,6 +86,7 @@
 		"Plugin 'terryma/vim-multiple-cursors'
 		"Plugin 'tpope/vim-unimpaired'
 		Plugin 'LaTeX-Box-Team/LaTeX-Box'
+		Plugin 'bfontaine/Brewfile.vim'
 		Plugin 'MarcWeber/vim-addon-mw-utils' " Required for  garbas/vim-snipmate.
 		Plugin 'buffergrep'
 		Plugin 'danro/rename.vim'
@@ -163,6 +164,7 @@
 	set undofile					" Save undo to file in undodir.
 	set undolevels=2048				" Levels of undo to keep in memory.history.
 	"set nomodeline					" Turn off possibly malicious Ex command execution.
+	set modelines=5					" Number of lines from head of file to check for modelines. Setting this explicitly as on some system (like macos in /usr/share/vim/vimrc) disables modelined by default.
 	set ttyfast					" Smoother changes.
 	set clipboard+=unnamed				" Use register "* instead of unnamed register.
 	set timeoutlen=1500				" Timout (ms) for mappings and keycodes.

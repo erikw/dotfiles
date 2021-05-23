@@ -1,0 +1,17 @@
+# Brewfile for general systems.
+# Modeline {
+#	vi: foldmarker={,} foldmethod=marker foldlevel=0 tabstop=8 ft=brewfile:
+#	NOTE syntax highlight via vim plugin https://github.com/bfontaine/Brewfile.vim
+# }
+
+# Formula: default {
+# }
+#
+# Formula: optional {
+# }
+
+# Cask: default {
+# }
+#
+# Cask: optional {
+# }
