@@ -290,15 +290,11 @@ defaults write com.apple.dock showAppExposeGestureEnabled -bool true
 
 # Sound {
 # * Uncheck "Play sound on startup"
-# * Check "Show volume in menu bar"
 # }
-
 
 # Printers & Scanners {
 # Automatically quit printer app once the print jobs complete.
 defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
-# }
-
 # }
 
 # Internet Accounts {
@@ -310,7 +306,6 @@ defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
 # }
 
 # Bluetooth {
-# Check "Show Bluetooth in menu bar"
 # }
 
 # Users & Groups {
@@ -318,8 +313,6 @@ defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
 # }
 
 # Date & Time {
-## Clock
-# * Check "Show date"
 # }
 
 # Accessibility {
@@ -424,18 +417,20 @@ chflags hidden ~/Public
 
 # Menu Bar {
 # * On the notification/widget dropdown (click on clock), keep the following widgets
-# ** Calendar (m)
-# ** Weather (m)
+#  - Calendar (m)
+#  - Weather (m)
 # }
 
 # Mail.app {
 # * Drag my Gmail account to the top in the mailboxes left side list and collapse all other.
-# * The default keyboard shortcut for archive an email, ^+cmd+a, conflicts with Todoist. Add another one.
+# * The default keyboard shortcut for archive an email, ctrl+cmd+a, conflicts with Todoist. Add another one.
 # 	- Reference: https://www.lifewire.com/archive-keyboard-shortcut-os-x-mail-1172749
 # 	- System Preferences > Shortcuts > App Shortcuts > + >
 # 		- Application: Maill.app
 # 		- Menu Title: Archive
 # 		- Keyboard shortcut: Opt+a
+## General
+# * Downloads folder: ~/dl
 ## Accounts
 # * Disable iCloud
 ## Composing
@@ -444,10 +439,25 @@ chflags hidden ~/Public
 # * Add new signature "Standard".
 # }
 
+# Calendar.app {
+# * Sidebar: uncheck "Siri Suggestions" calendar
+## General:
+# * Default calendar: my default Google calendar
+## Accounts
+# * Disable iCloud account
+### Google
+# * Refresh Calendars: every 5 minutes
+## Advanced
+# * Check "Show events in year view"
+# * Check "Show week numbers"
+# }
+
 # Music.app {
 ## Files
 # * Add music folder.
 # * Uncheck "Keep music Media folder organized"
+## Advanced
+# * Check "Automatically update artwork"
 # }
 
 # Photos.app {
@@ -457,23 +467,6 @@ chflags hidden ~/Public
 
 # App Store {
 # * Uncheck "In-App Ratings & Reviews"
-# }
-
-# iMessge.app {
-# * Turn off associattion to my mobile phone number, so it won't steal text messages from iPhones
-# Settings > Unlink my AppleID
-# }
-
-# Sidebar {
-# Set up the weather widget to show current location (better to use this thant the WeatherBug tray icon consuming power and visual space)
-# }
-
-# Menubar {
-# * Arrange icons so that the least important ones are to the left, as they are chopped of when space becomes to little e.g. on the laoptop screen.
-# }
-
-# Desktop {
-# * Right click > Sort By > Check "Snap to grid".
 # }
 
 # Terminal.app {
