@@ -26,8 +26,6 @@ osascript -e 'tell application "System Preferences" to quit'
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 # }
 
-# CLI conf {
-
 # System {
 # Add a note to /etc/host to make it easier
 sudo sh -c " cat >>/etc/hosts" << EOF
@@ -89,28 +87,6 @@ sudo dseditgroup -o edit -u $USER -p -a $USER -t user power
 #EOF
 # }
 
-# UI {
-# Change screenshot destination from Desktop to something sane.
-mkdir -p $HOME/media/images/screenshots
-defaults write com.apple.screencapture location $HOME/media/images/screenshots
-
-# Disable the thumbnail preview that delays saving the screenshot to disk.
-# Reference: https://apple.stackexchange.com/questions/340170/turn-off-macos-mojave-screenshot-preview-thumbnails-with-defaults-write-command
-defaults write com.apple.screencapture show-thumbnail -bool FALSE
-
-# Automatically quit printer app once the print jobs complete
-defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
-
-# }
-
-# Other {
-# iTerm2 shell integration
-# Reference: https://www.iterm2.com/documentation-shell-integration.html
-#curl -L https://iterm2.com/misc/install_shell_integration.sh | bash
-# }
-
-#}
-
 # System Preferences {
 # Apple ID {
 ## Media & Purchases
@@ -119,7 +95,7 @@ defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
 
 # General {
 # * Appearance: Auto
-# * NOPE Uncheck "Close windows when quitting an app"
+# * NOPE  Uncheck "Close windows when quitting an app"
 # }
 
 # Desktop & Screensaver {
@@ -128,6 +104,7 @@ defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
 #   * See https://www.dynamicwallpaper.club/docs on how to use custom dynamic images.
 #   * See https://apple.stackexchange.com/questions/71070/how-to-change-desktop-wallpaper-for-all-virtual-desktops/415790#415790 on how to set wallpaper for all desktops.
 ## Screensaver
+# * Check "Show with clock"
 ###  Hot Corners:
 # Reference: https://blog.jiayu.co/2018/12/quickly-configuring-hot-corners-on-macos/
 # Possible values:
@@ -154,8 +131,6 @@ defaults write com.apple.dock wvous-bl-modifier -int 0
 # * Bottom Right corner: Put Display to Sleep
 defaults write com.apple.dock wvous-br-corner -int 10
 defaults write com.apple.dock wvous-br-modifier -int 0
-killall Dock # Needed or hot corners changes to be applied.
-
 # }
 
 # Dock & Menu Bar {
@@ -190,9 +165,6 @@ defaults write com.apple.Dock showhidden -boolean yes
 # Add two space separators in dock, to organize icons to correspond to which monitor I want them to be open on. Let them be order by the Spaces order too.
 defaults write com.apple.dock persistent-apps -array-add '{tile-data={}; tile-type="spacer-tile";}'
 defaults write com.apple.dock persistent-apps -array-add '{tile-data={}; tile-type="spacer-tile";}'
-
-# Make settings take effect.
-killall Dock
 # }
 # }
 
@@ -203,19 +175,16 @@ defaults write com.apple.dock mru-spaces -bool false
 
 # Language & Region {
 # * Add English (US), Swedish, German
-# * Set Region to Germany
-## Advanced (button)
-### General
-# * Currencty: Euro
-# * Measurement units: Metric
-### Dates
-# * Update the "Full" format to include the week number: <day>, <dayno> <month>, W<weekno>, <year>. Now the week will be visible when clicking the clock in the macOS menu bar. Reference: https://www.456bereastreet.com/archive/201104/week_numbers_in_mac_os_x/
-# ** NOPE since macos 11 Big Sur, these settings are overriden by the Menu Bar. It's possible to modify somewhat with https://github.com/tech-otaku/menu-bar-clock but not worth it.
+defaults write NSGlobalDomain AppleLanguages -array en-us sv-se de-de
+# * Region: Germany
+defaults write NSGlobalDomain AppleLocale en_DE
 # }
 
 # Notifications {
-# * Turn on DnD from 00:00 to 07:00.
-# * Check "Turn on Do Not Disturbe: When the display is sleeping", to not leak notifications.
+# * Turn of Do Not Disturb:
+#  - From 00:00 to 07:00
+#  -  When the display is sleeping
+#  -  When mirroring to TVs and projectors
 # * Uncheck "Show notification on lock screen" for all apps individually, to not leak notifications.
 # }
 
@@ -223,10 +192,16 @@ defaults write com.apple.dock mru-spaces -bool false
 ## General
 # * Allow apps downloaded from: Anywhere
 sudo spctl --master-disable
+# * Check: Require password <immediately> after sleep or screen saver begins
 ## FileVault
 # * Enable FileVault, with recovery key.
 ## Firewall
-# * Turn on firewall. Turn on "Block all incoming connections"
+# * Turn on firewall.
+# Reference: https://superuser.com/a/1641741
+sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setglobalstate on
+# * NOPE Turn on "Block all incoming connections"
+# Reference: https://superuser.com/a/1357550
+# sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setblockall on
 ## Privacy
 # * Apple Advertising > uncheck "Personalize Ads".
 # }
@@ -239,52 +214,56 @@ sudo spctl --master-disable
 # }
 
 # Battery {
+## Battery
+# * Turn display off after: 5 min
 ## Power Adapter
-### Power Adapter
-# * Sleep display after 30min
-# * Uncheck "Enable Power Nap while plugged in", because during wake-up, cronjobs can start but will fail as power goes down soon again (happended with my restic_backup.se).
-# 	NOPE don't uncheck this, as this prevents time machine backups from happening. Seems like there are some problems around power management and disks getting ejected automatically when sleeping the computer.
-# * Uncheck "Wake for network access" as I have not use case for this.
+# * Turn display off after: 30 min
 # }
 
 # Keyboard {
 ## Keyboard
-# * Make Delay Until Repeat short (2nd most right value)
-# * Make Key Repeat fast (fastest)
-#   * Make the cursor speed even faster than possible in System Preferences. Reference: https://stackoverflow.com/questions/4489885/how-can-i-increase-the-cursor-speed-in-terminal
-defaults write nsglobaldomain keyrepeat -int 0
+# * Key Repeat: fastest
+#  Could make it even faster than allowed in System Preferences by setting to 0 or 1, but that's too fast. Reference: https://stackoverflow.com/a/4490124
+defaults write NSGlobalDomain KeyRepeat -int 2
+# * Delay Until Repeat: short (2nd most right value)
+defaults write -g InitialKeyRepeat -int 25
 # * Turn off backlit after 1 minute.
-# * Non-touchbar MPBs:
+# Non-touchbar MPBs {
 # ** Uncheck "Use F1, F2 etc. keys as standard function keys".
-# * Touchbar MBPs:
+# }
+# Touchbar MBPs {
 # ** Press FN key to: Show F1, F2, etc Keys.
 # ** Check "Use F1, F2 etc. keys as standard function keys on external keyboards"
 ### Customtize Control Strip (button)
 # * Most-right control strip buttons: Play/pause, Volume Slider, Mute, DnD
 # * To the expanded control strip: replace Siri with Sleep button to the very far right.
+# }
 ### Modifier Keys
 # ** NOTE if need to swap fn and ctrl on internal keyboard, use karabiner-elements.
 # * For internal keyboard:
 #    - Set Caps Lock -> Escape
-# * For external keyboard,
+# * For external keyboard:
 #    - Set Caps Lock -> Escape
 #    (unless the keyboard is an Apple keyboard or has a "mac-switch" toggle):
 #    - Set Option -> Command
 #    - Set Command -> Option
 ## Text
 # * Set word expansions based on ~/doc/tech/word_expansions.txt
-# * Optionally change Spelling from "Automatic by Language" to "US English", as in some apps like Slack it selects Britishs spelling instead of US.
-## Input Sources
-# * Add US, Swedish & German. Check "Show Input menu in menu bar".
-# * Click "Spelling" dropdown >  chose "Set up" > uncheck British English and check US English. NOPE let it be "Automatic by Language"
+# * Spelling: Automatic by Language
+# * Click the "Spelling" dropdown > choose "Set up" > uncheck British English and check US English.
 ## Shortcuts
-### Input Sources
-# * Enable shortcuts for cycling input sources _backwards_ ("Select the previous input source") with CTRL+OPT+Space. Reason for only having forward is because of keyboard shorcut clash on SHIFT+OPT with Amethyst's cycle layout.
 ### Mission Control:
 # * Show Notification Center: Cmd+F11
 # * Enable shortcuts Ctrl+[1-5] for switching to Desktops. (Need to open 5 spaces for this to show up)
 # * Do not Distrurb on/off: Cmd+F12
-## Text
+### Input Sources
+# * Enable shortcuts for cycling input sources _backwards_ ("Select the previous input source") with CTRL+OPT+Space.
+# * Check "Select the *previous* input source: ctrl+opt+space.
+# * Uncheck "Select next source"
+# Reason: keyboard shorcut clash on SHIFT+OPT with Amethyst's cycle layout.
+## Input Sources
+# * Add US, Swedish & German. NOTE should have been automatically added after adding these languages in Language & Region (AppleLanguages)
+# * Check "Show Input menu in menu bar".
 # }
 
 # Mouse {
@@ -303,13 +282,23 @@ defaults write -g com.apple.mouse.doubleClickThreshold 0.8
 # Trackpad {
 ## Point & Click
 # * Check "Tap to click"
+defaults -currentHost write -globalDomain com.apple.mouse.tapBehavior -int 1
 ## More Gestures
 # * Check App Expose
+defaults write com.apple.dock showAppExposeGestureEnabled -bool true
 # }
 
 # Sound {
 # * Uncheck "Play sound on startup"
 # * Check "Show volume in menu bar"
+# }
+
+
+# Printers & Scanners {
+# Automatically quit printer app once the print jobs complete.
+defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
+# }
+
 # }
 
 # Internet Accounts {
@@ -431,10 +420,6 @@ chflags hidden ~/Movies
 #chflags hidden ~/Music
 chflags hidden ~/Pictures
 chflags hidden ~/Public
-
-
-# Make settings take effect.
-killall Finder
 # }
 
 # Menu Bar {
@@ -497,6 +482,22 @@ killall Finder
 # * When the shell exists: close if the shell exited cleanly
 # }
 
-# Media shortcuts for external keyboard: follow instructions in ~/bin/macos_media_control/info.txt
+# Misc {
+# Change screenshot destination from Desktop to something sane.
+mkdir -p $HOME/media/images/screenshots
+defaults write com.apple.screencapture location $HOME/media/images/screenshots
 
+# Disable the thumbnail preview that delays saving the screenshot to disk.
+# Reference: https://apple.stackexchange.com/questions/340170/turn-off-macos-mojave-screenshot-preview-thumbnails-with-defaults-write-command
+defaults write com.apple.screencapture show-thumbnail -bool FALSE
+
+
+# iTerm2 shell integration
+# Reference: https://www.iterm2.com/documentation-shell-integration.html
+#curl -L https://iterm2.com/misc/install_shell_integration.sh | bash
+
+# Media shortcuts for external keyboard: follow instructions in ~/bin/macos_media_control/info.txt
+# }
+
+killall Dock Finder
 echo "Please logout or restart for all settings to take effect."
