@@ -545,7 +545,12 @@ chmod go-w '/usr/local/share'
 # 	* Find any .txt file > cmd+i on it > Open with > MacVim > Change for all
 
 # Scroll Reverse
-# Enable reverse only for Mouse, and disable from menubar.
+## Scrolling
+# * Check: Enable Scroll Reverser
+# * Scrolling devices: only reverse Mouse
+## App
+# * Check: Start at login
+# * Uncheck: Show in menu bar
 
 # iTerm2
 # * Load settings from Preferencs > General > Preferences tab > Load from custom folder or URL. Reference: https://stackoverflow.com/a/23356086/265508

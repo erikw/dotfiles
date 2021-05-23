@@ -4,7 +4,15 @@
 #	vi: foldmarker={,} foldmethod=marker foldlevel=0: tabstop=8:
 # }
 
-# CLI conf {
+# Notes {
+# Find out key and values for settings by:
+# 1. $ defaults read > before
+# 2. Change a setting e.g. in System Preferences
+# 3. $ defaults read > after
+# 4. $ vimdiff before after
+# Reference: https://pawelgrzybek.com/change-macos-user-preferences-via-command-line/
+# }
+
 # Script Environment {
 set -ex
 
@@ -18,16 +26,9 @@ osascript -e 'tell application "System Preferences" to quit'
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 # }
 
+# CLI conf {
+
 # System {
-# Set computers hostname.
-new_hostname=
-while [ -z "$new_hostname" ]; do
-	echo -n "Enter new computer hostname: "
-	read new_hostname
-done;
-sudo scutil --set HostName $new_hostname
-
-
 # Add a note to /etc/host to make it easier
 sudo sh -c " cat >>/etc/hosts" << EOF
 
@@ -55,8 +56,6 @@ EOF
 #chsh -s /bin/zsh
 
 
-# Allow apps to be installed from anywhere (System Preferences > Security & Privacy).
-sudo spctl --master-disable
 
 # Allow a sudo session to last a bit longer, across terminals.
 sudo sh -c " cat >/etc/sudoers.d/99_my_settings" << EOF
@@ -73,15 +72,9 @@ Cmnd_Alias CMDS_POWER = /sbin/halt, /sbin/shutdown, /sbin/reboot
 EOF
 
 
-# Create power group and add user.
+# Create power group and add user for sudo rule above.
 sudo dseditgroup -o create power
 sudo dseditgroup -o edit -u $USER -p -a $USER -t user power
-
-
-# Optional: keep network connections alive during sleep
-# Reference: https://gist.github.com/jyore/aae1d0e6e482b4d152a4bcf5b5749eed
-#sudo /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport prefs DisconnectOnLogout
-
 
 # Track /etc in git
 # NOTE skip this as it's almost only official distribution upgrades that modifies /etc on macOS.
@@ -94,8 +87,6 @@ sudo dseditgroup -o edit -u $USER -p -a $USER -t user power
 #git config --global user.name "$(id -un)"
 #git commit -m "Initital commit"
 #EOF
-
-
 # }
 
 # UI {
@@ -103,19 +94,42 @@ sudo dseditgroup -o edit -u $USER -p -a $USER -t user power
 mkdir -p $HOME/media/images/screenshots
 defaults write com.apple.screencapture location $HOME/media/images/screenshots
 
-# Make the cursor speed even faster than possible in System Preferences.
-# Reference: https://stackoverflow.com/questions/4489885/how-can-i-increase-the-cursor-speed-in-terminal
-defaults write nsglobaldomain keyrepeat -int 0
-
-# Automatically quit printer app once the print jobs complete
-defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
-
 # Disable the thumbnail preview that delays saving the screenshot to disk.
 # Reference: https://apple.stackexchange.com/questions/340170/turn-off-macos-mojave-screenshot-preview-thumbnails-with-defaults-write-command
 defaults write com.apple.screencapture show-thumbnail -bool FALSE
 
+# Automatically quit printer app once the print jobs complete
+defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
 
-# Hot corners
+# }
+
+# Other {
+# iTerm2 shell integration
+# Reference: https://www.iterm2.com/documentation-shell-integration.html
+#curl -L https://iterm2.com/misc/install_shell_integration.sh | bash
+# }
+
+#}
+
+# System Preferences {
+# Apple ID {
+## Media & Purchases
+# * Free Downloads: Never Require
+# }
+
+# General {
+# * Appearance: Auto
+# * NOPE Uncheck "Close windows when quitting an app"
+# }
+
+# Desktop & Screensaver {
+## Desktop
+# * Add all folders in ~/media/images/wallpapers/dynamic_mac/.
+#   * See https://www.dynamicwallpaper.club/docs on how to use custom dynamic images.
+#   * See https://apple.stackexchange.com/questions/71070/how-to-change-desktop-wallpaper-for-all-virtual-desktops/415790#415790 on how to set wallpaper for all desktops.
+## Screensaver
+###  Hot Corners:
+# Reference: https://blog.jiayu.co/2018/12/quickly-configuring-hot-corners-on-macos/
 # Possible values:
 #  0: no-op
 #  2: Mission Control
@@ -128,22 +142,48 @@ defaults write com.apple.screencapture show-thumbnail -bool FALSE
 # 11: Launchpad
 # 12: Notification Center
 # 13: Lock Screen
-# Top left screen corner → NOP
+# * Top Left corner: NOP
 defaults write com.apple.dock wvous-tl-corner -int 0
 defaults write com.apple.dock wvous-tl-modifier -int 0
-# Top right screen corner → Mission Control
+# * Top Right corner: Mission Control
 defaults write com.apple.dock wvous-tr-corner -int 2
 defaults write com.apple.dock wvous-tr-modifier -int 0
-# Bottom left screen corner → Desktop
+# * Bottom Left corner: Desktop
 defaults write com.apple.dock wvous-bl-corner -int 4
 defaults write com.apple.dock wvous-bl-modifier -int 0
-# Bottom right screen corner → Put Display to Sleep
-defaults write com.apple.dock wvous-bl-corner -int 10
-defaults write com.apple.dock wvous-bl-modifier -int 0
+# * Bottom Right corner: Put Display to Sleep
+defaults write com.apple.dock wvous-br-corner -int 10
+defaults write com.apple.dock wvous-br-modifier -int 0
+killall Dock # Needed or hot corners changes to be applied.
 
 # }
 
-# Dock {
+# Dock & Menu Bar {
+# * Uncheck "Show recent applications in Dock"
+defaults write com.apple.dock show-recents -bool false
+# * Control Centre:
+# - Wi-Fi: uncheck
+# - Bluetooth: uncheck
+# - AirDrop: uncheck
+# - Do Not Distrub: when active
+# - Keyboard Brightness: uncheck
+# - Screen Mirroring: when active
+# - Display: uncheck
+# - Sound: always
+# - Now Playing: when active
+# * Other modules:
+# - Accessibility Shourtcuts: uncheck all
+# - Battery: Menu Bar, Control center. Show percentage
+# - Fast User Switching: uncheck all
+# * Menu Bar Only
+# - Clock: nop
+# - Spotlight: uncheck
+# - Siri: uncheck
+# - Time machine: Show in Menu Bar
+# Dock misc {
+# * Add ~/ (Stack, List)  and ~/dl/ (Stack, Grid) to dock.
+# * For dual monitors: For all applications in dock: Right click > Option > assign to correct monitor and desktop.
+
 # Dim hidden apps (CMD+H) in the dock.
 defaults write com.apple.Dock showhidden -boolean yes
 
@@ -154,59 +194,14 @@ defaults write com.apple.dock persistent-apps -array-add '{tile-data={}; tile-ty
 # Make settings take effect.
 killall Dock
 # }
-
-
-# Other {
-# iTerm2 shell integration
-# Reference: https://www.iterm2.com/documentation-shell-integration.html
-#curl -L https://iterm2.com/misc/install_shell_integration.sh | bash
 # }
 
-echo "Please logout or restart for all settings to take effect."
-#}
-
-# GUI conf {
-# System Preferences {
-# # Apple Id
-## Media & Purchases
-# * Free Downloads: Never Require
-#
-# General
-# * Appearance: Auto
-# * NOPE Uncheck "Close windows when quitting an app"
-
-# Desktop & Screensaver
-## Desktop
-# * Add all folders in ~/media/images/wallpapers/dynamic_mac/.
-#   * See https://www.dynamicwallpaper.club/docs on how to use custom dynamic images.
-#   * See https://apple.stackexchange.com/questions/71070/how-to-change-desktop-wallpaper-for-all-virtual-desktops/415790#415790 on how to set wallpaper for all desktops.
-## Screensaver
-# * Set Hot corners:
-## upper left: -
-## upper right: Mission Control
-## lower left: Desktop
-## lower right: Put Display to Sleep
-
-# Dock & Menu Bar
-# * Uncheck "Show recent applications in Dock"
-# * Show  in Menu Bar
-#   - Do Not Distrub: when active
-#   - Screen Mirroring: when active
-#   - Display: hide in menu bar
-#   - Sound: always
-#   - Now Playing: when active
-#   - Battery: Menu Bar, Control center. Show percentage
-#   - Clock:
-#   	- Uncheck Show day of the week & Show date. NOPE itsycal removed, keep defaults.
-#   - Spotlight: turn off
-#   - Time machine: Menu bar
-
-
-# Mission Control
+# Mission Control {
 # * Unckeck "Automatically rearrange Spaces based on most recent use"
+defaults write com.apple.dock mru-spaces -bool false
+# }
 
-
-# Language & Region
+# Language & Region {
 # * Add English (US), Swedish, German
 # * Set Region to Germany
 ## Advanced (button)
@@ -216,48 +211,48 @@ echo "Please logout or restart for all settings to take effect."
 ### Dates
 # * Update the "Full" format to include the week number: <day>, <dayno> <month>, W<weekno>, <year>. Now the week will be visible when clicking the clock in the macOS menu bar. Reference: https://www.456bereastreet.com/archive/201104/week_numbers_in_mac_os_x/
 # ** NOPE since macos 11 Big Sur, these settings are overriden by the Menu Bar. It's possible to modify somewhat with https://github.com/tech-otaku/menu-bar-clock but not worth it.
+# }
 
-
-
-# Notifications
+# Notifications {
 # * Turn on DnD from 00:00 to 07:00.
 # * Check "Turn on Do Not Disturbe: When the display is sleeping", to not leak notifications.
 # * Uncheck "Show notification on lock screen" for all apps individually, to not leak notifications.
+# }
 
-
-# Security & Privacy
+# Security & Privacy {
+## General
+# * Allow apps downloaded from: Anywhere
+sudo spctl --master-disable
 ## FileVault
 # * Enable FileVault, with recovery key.
 ## Firewall
 # * Turn on firewall. Turn on "Block all incoming connections"
 ## Privacy
 # * Apple Advertising > uncheck "Personalize Ads".
+# }
 
-
-
-# Display
+# Display {
 # * Move the white menu bar to the main monitor, so notifications etc. comes on it.
 # * Check "Show mirroring options in the menu bar when available".
 ## Night Shift
 # * Schedule: Sunset to Sunrise
+# }
 
-
-
-
-# Battery
+# Battery {
 ## Power Adapter
 ### Power Adapter
 # * Sleep display after 30min
 # * Uncheck "Enable Power Nap while plugged in", because during wake-up, cronjobs can start but will fail as power goes down soon again (happended with my restic_backup.se).
 # 	NOPE don't uncheck this, as this prevents time machine backups from happening. Seems like there are some problems around power management and disks getting ejected automatically when sleeping the computer.
 # * Uncheck "Wake for network access" as I have not use case for this.
+# }
 
-
-
-# Keyboard
+# Keyboard {
 ## Keyboard
 # * Make Delay Until Repeat short (2nd most right value)
 # * Make Key Repeat fast (fastest)
+#   * Make the cursor speed even faster than possible in System Preferences. Reference: https://stackoverflow.com/questions/4489885/how-can-i-increase-the-cursor-speed-in-terminal
+defaults write nsglobaldomain keyrepeat -int 0
 # * Turn off backlit after 1 minute.
 # * Non-touchbar MPBs:
 # ** Uncheck "Use F1, F2 etc. keys as standard function keys".
@@ -290,53 +285,77 @@ echo "Please logout or restart for all settings to take effect."
 # * Enable shortcuts Ctrl+[1-5] for switching to Desktops. (Need to open 5 spaces for this to show up)
 # * Do not Distrurb on/off: Cmd+F12
 ## Text
+# }
 
-
-# Mouse
+# Mouse {
 # * Uncheck "Scroll Direction: Natural. NOPE use scroll-reverser app instead, to have natural scroll with trackpad and normal scroll with external mouse.
-# * Set Tracking Speed to 1/2
-# * Set Scrolling Speed to 3/4
+defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
+# For setting a new speed, easiest is to set the value in System Preferences, then read desired value $(defaults read -g com.apple.mouse...)
+# * Tracking Speed: 1/2
+defaults write -g com.apple.mouse.scaling 0.875
+# * Scrolling speed: 3/4
+defaults write -g com.apple.scrollwheel.scaling 0.75
+# * Double-click speed: 3/4
+defaults write -g com.apple.mouse.doubleClickThreshold 0.8
 
+# }
 
-# Trackpad
+# Trackpad {
 ## Point & Click
 # * Check "Tap to click"
 ## More Gestures
 # * Check App Expose
+# }
 
-
-# Sound
+# Sound {
 # * Uncheck "Play sound on startup"
 # * Check "Show volume in menu bar"
+# }
 
-# Internet Accounts
+# Internet Accounts {
 # * Add Google account to get: Calendar, Contacts, mail etc.
+# }
 
-# Software Update
+# Software Update {
 # * Check "Automatically keep my Mac up to date".
+# }
 
-# Bluetooth
+# Bluetooth {
 # Check "Show Bluetooth in menu bar"
+# }
 
-# Users & Groups
-# * Drag`n'drop a picture of me on to my profile.
+# Users & Groups {
+# * Drag`n'drop a picture on to my profile.
+# }
 
-# Date & Time
+# Date & Time {
 ## Clock
 # * Check "Show date"
+# }
 
-
-# Accessibility
+# Accessibility {
 ## Zoom
 # * Check "Use keyboard shortcuts to zoom".
 # * Select Zoom style: Picture-in-picture
 # ** Advanced > Controls tab > Uncheck "Hold Ctrl+Opt to temporarily toggle zoom" as this interferece with shortcut to toggle input language, and leave mouse cursor hidden after toggling input source.
+# }
+
+# Sharing {
+# * Set "Computer Name". Unfortunately different from system hostname (below).
+# * Set computers hostname.
+new_hostname=
+while [ -z "$new_hostname" ]; do
+	echo -n "Enter new computer hostname: "
+	read new_hostname
+done;
+sudo scutil --set HostName $new_hostname
 
 
-# Sharing
-# Set "Computer Name"
-# If want SMB file sharing: Check File Sharing, add ~/pub folder, Click Options and enable current user.
-
+# * If want SMB file sharing:
+#  - Check File Sharing
+#  - add ~/pub folder
+#  - Click Options and enable current user
+# }
 
 # }
 
@@ -350,36 +369,48 @@ defaults write com.apple.finder ShowStatusBar -bool true
 ### Show View Options
 # * First make sure to be in List view before entering this menu
 # * Check "Always open in list view" > Use as default
-# * Also open this diealog while being in ~/, then check "Show Library Folder". Reference: https://appletoolbox.com/unhide-access-mac-library-folder/
+# Four-letter codes for the view modes: `icnv`, `Nlsv`, `clmv`, `glyv`
+defaults write com.apple.finder FXPreferredViewStyle -string "clmv"
+# * Also open this dialog while being in ~/, then check "Show Library Folder". Reference: https://appletoolbox.com/unhide-access-mac-library-folder/
+chflags nohidden ~/Library
 ## Preferences
-# ** General
+### General
 # *** Show on desktop: connected servers, disks
+#defaults write com.apple.finder ShowHardDrivesOnDesktop -bool true
+defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
+defaults write com.apple.finder ShowMountedServersOnDesktop -bool true
+defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
 # *** New Finder window shows: ~/
-# ** Sidebar
-# *** Hide things like Airdrop, iCould, Recents
+#defaults write com.apple.finder NewWindowTargetPath -string "file:///$HOME/"  # Does not work!
+### Tags
+# * Hide all
+### Sidebar
+# *** Hide: Recents, Airdrop, Documents, Downloads, Movies, Music, Pictures, Recent Tags
 # View > Customize Control Strip > Add "New Folder" shortcut
+### Advanced
+# * Check: Show all file extensions in Finder
+defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+# * Uncheck: Show warning before changing an extension.
+defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
+# * Keep folders on top: In windows when sorting by name
+defaults write com.apple.finder _FXSortFoldersFirst -bool true
 
 
 
 ## Misc
-# * Remove crap folders from sidebar
-# * Add
-#  - ~/doc/
-#  - ~/dl/ - copy folder icon from ~/Downloads
-#  - ~/tmp/
-#  - ~/media/images/screenshots/
-#  - Desktop
-#  - Applicatons
-#  - /tmp
-#  - /Volumes/toshiba_music/daw/plugins/
-#  - /Volumes/toshiba_music/music/samples/
-#  * OPTIONAL: Copy icon from Downloads -> DL in CMD+i dialog.
+# * Sidebar Favourites, add to make it
+# - ~/
+# - ~/doc/
+# - ~/dl/
+# - ~/media/images/screenshots/
+# - ~/tmp/
+# - /Applications
+# - ~/Desktop
+# - /private/tmp
+# - /Volumes/toshiba_music/daw/plugins/
+# - /Volumes/toshiba_music/music/samples/
+# * OPTIONAL: Copy icon from ~/Downloads to ~/dl in cmd+i dialog.
 
-# Disable the warning when changing a file extension
-defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
-
-# Show all file extensions in Finder
-defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 
 # Show hidden files in Finder.
 #defaults write com.apple.finder AppleShowAllFiles YES
@@ -387,23 +418,19 @@ defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 # Save to disk (not to iCloud) by default
 defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
 
+# Enable snap-to-grid for icons on the desktop and in other icon views
+/usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
+/usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
+/usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
 
 # Hide default un-hidable folders in home directory from Finder.
 # Reset with $ chflags nohidden <dir>
 chflags hidden ~/Documents
 chflags hidden ~/Downloads
 chflags hidden ~/Movies
-#chflags hidden ~/Musi
+#chflags hidden ~/Music
 chflags hidden ~/Pictures
 chflags hidden ~/Public
-# But do show the user Library
-chflags nohidden ~/Library
-
-# Show icons for hard drives, servers, and removable media on the desktop
-defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
-defaults write com.apple.finder ShowHardDrivesOnDesktop -bool true
-defaults write com.apple.finder ShowMountedServersOnDesktop -bool true
-defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
 
 
 # Make settings take effect.
@@ -414,11 +441,6 @@ killall Finder
 # * On the notification/widget dropdown (click on clock), keep the following widgets
 # ** Calendar (m)
 # ** Weather (m)
-# }
-
-# Dock {
-# * Add ~/ (Stack: list)  and ~/dl/ (Stack: grid) to dock.
-# * For dual monitors: For all applications in dock: Right click > Option > assign to correct monitor and desktop.
 # }
 
 # Mail.app {
@@ -476,4 +498,5 @@ killall Finder
 # }
 
 # Media shortcuts for external keyboard: follow instructions in ~/bin/macos_media_control/info.txt
-# }
+
+echo "Please logout or restart for all settings to take effect."
