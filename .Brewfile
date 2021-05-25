@@ -7,6 +7,7 @@
 
 # Taps {
 	tap 'beeftornado/rmtree' # rmtree: remove brew package's dependencies with $(brew rmtree <package>).
+	tap 'homebrew/autoupdate' # https://github.com/Homebrew/homebrew-autoupdate
 # }
 
 # Formula: default {

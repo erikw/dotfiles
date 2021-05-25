@@ -32,7 +32,6 @@
 	cask 'mactex'
 	cask 'mullvadvpn'
 	cask 'musicbrainz-picard'
-	cask 'puddletag'
 	cask 'signal'
 	cask 'skype'
 	cask 'transmission'
@@ -53,3 +52,5 @@
 
 # Misc {
 # }
+
+#exec 'ls'
