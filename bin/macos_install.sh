@@ -13,22 +13,14 @@ set -ex
 # Using Brewfile at $HOMEBREW_BUNDLE_FILE
 brew bundle install
 
-# Make homebrew zsh default shell.
-# Reference: https://rick.cogley.info/post/use-homebrew-zsh-instead-of-the-osx-default/
+brewfile_host_specific=$HOME/.Brewfile.$(hostname)
+if [ -e $brewfile_host_specific ]; then
+	brew bundle install --file $brewfile_host_specific
+fi
+
+# Make homebrew zsh default shell. Reference: https://rick.cogley.info/post/use-homebrew-zsh-instead-of-the-osx-default/
 sudo dscl . -create /Users/$USER UserShell /usr/local/bin/zsh
 
-# Install rmtree for removing brew package's dependencies with $(brew rmtree <package>).
-brew tap beeftornado/rmtree
-
-
-
-
-# Let's get some fonts!
-brew tap homebrew/cask-fonts
-brew install font-terminus font-source-code-pro font-inconsolata
-
-brew tap colindean/fonts-nonfree
-brew install font-microsoft-office
 
 # Automatic upgrades
 # Reference: https://github.com/DomT4/homebrew-autoupdate
@@ -37,32 +29,6 @@ brew install terminal-notifier
 # Start upgrade (including casks) every 12 hours.
 brew autoupdate --start 43200 --upgrade --cleanup --enable-notification
 brew autoupdate --status
-
-# Macstore automation
-# https://github.com/mas-cli/mas
-brew install mas
-# mas signin <appleId>
-# Unfortunately this <appleiId> must have manually downloaded all apps one time before they can be installed with mas
-# $ mas search WeatherBug
-# $ mas install <id>
-
-# To install:
-# 497799835  Xcode
-# 585829637 Todoist: Organize your life
-# 897118787  Shazam
-# 912659472  Brother ScannerApp (Image Capture.app does not work for Brother DCP-7070DW)
-# 1039633667  Irvue
-
-# Optional:
-# 450527929  djay - DJ App & AI Mixer
-# 1527105121  Neural Mix Pro
-# 405399194  Kindle
-# 1059074180 WeatherBug - Weather Forecasts and Alerts
-# 1147396723  WhatsApp Desktop
-# 1274495053 Microsoft To Do (2.0)
-# 428799479  GamePad Companion
-# 953841977  SwordSoft Screenink Free
-
 
 # TODO move to Pipfile? https://packaging.python.org/tutorials/managing-dependencies/
 # Python lists {
@@ -88,19 +54,6 @@ pip3 install --user $pip3_pkgs
 #pip3 install --user $pip3_pkgs_additional
 
 
-# SSHFS
-# Reference: https://www.digitalocean.com/community/tutorials/how-to-use-sshfs-to-mount-remote-file-systems-over-ssh
-#brew install osxfuse
-#brew install sshfs
-# Now you can mount like this:
-# $ sudo mkdir -p /mnt/sshfs
-# $ sudo sshfs -o allow_other,defer_permissions user@host:/ /mnt/sshfs
-
-
-# Additional: cryfs
-# Reference: https://www.cryfs.org/#download https://github.com/cryfs/cryfs
-#brew install --cask osxfuse
-#brew install cryfs/tap/cryfs
 
 
 # Install tmux session on login.

@@ -1,0 +1,55 @@
+# Brewfile for cypress
+# Modeline {
+#	vi: foldmarker={,} foldmethod=marker foldlevel=0 tabstop=8 ft=brewfile:
+# }
+
+# Taps {
+# }
+
+# Formula: default {
+	brew 'jshon' # TODO replace with jq in spotify-backup.sh
+	brew 'restic'
+# }
+#
+# Formula: optional {
+=begin
+=end
+# }
+
+# Cask: default {
+	cask 'ableton-live-suite'
+	cask 'android-file-transfer'
+	cask 'android-platform-tools'
+	cask 'authy'
+	cask 'cryptomator'
+	cask 'dropbox'
+	cask 'ferdi'
+	cask 'gramps'
+	cask 'insync'
+	cask 'isyncr'
+	cask 'jettison'
+	cask 'kid3'
+	cask 'mactex'
+	cask 'mullvadvpn'
+	cask 'musicbrainz-picard'
+	cask 'puddletag'
+	cask 'signal'
+	cask 'skype'
+	cask 'transmission'
+# }
+
+# Cask: optional {
+=begin
+=end
+# }
+
+# Mas: default {
+	mas 'djay', id: 450527929
+	mas 'Kindle', id: 405399194
+# }
+
+# Mas: optional {
+# }
+
+# Misc {
+# }

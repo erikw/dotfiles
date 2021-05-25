@@ -1,8 +1,12 @@
-# Brewfile for general systems.
+# Brewfile for general base systems. Host specifics can be found in .Brewfile.$HOSTNAME files.
 # Manual: https://docs.brew.sh/Manpage#bundle-subcommand
 # Modeline {
 #	vi: foldmarker={,} foldmethod=marker foldlevel=0 tabstop=8 ft=brewfile:
-#	NOTE syntax highlight via vim plugin https://github.com/bfontaine/Brewfile.vim
+#	The syntax highlight via vim plugin https://github.com/bfontaine/Brewfile.vim
+# }
+
+# Taps {
+	tap 'beeftornado/rmtree' # rmtree: remove brew package's dependencies with $(brew rmtree <package>).
 # }
 
 # Formula: default {
@@ -36,7 +40,6 @@
 	brew 'imagemagick'
 	brew 'ipcalc'
 	brew 'jq'
-	brew 'jshon' # TODO replace with jq in spotify-backup.sh
 	brew 'ncdu'
 	brew 'netcat'
 	brew 'nmap'
@@ -107,7 +110,6 @@
 	brew 'pyenv-virtualenvwrapper'
 	brew 'python@2'
 	brew 'reattach-to-user-namespace'
-	brew 'restic'
 	brew 'ruby'
 	brew 'swiftlint'
 	brew 'task'
@@ -122,114 +124,145 @@
 # }
 
 # Cask: default {
-	brew 'amethyst'
-	brew 'appcleaner'
-	brew 'clipy'
-	brew 'electric-sheep'
-	brew 'firefox'
-	brew 'gimp'
-	brew 'google-chrome'
-	brew 'iterm2'
-	brew 'libreoffice'
-	brew 'macvim'	# Prefer macvim cask to formula. Both provide MacVim.app but only the cask installs it to /Applications. Spotlight used to find both locations, but no only at /Applications. https://github.com/macvim-dev/macvim/issues/450#issuecomment-570202139
-	brew 'pdftotext'
-	brew 'scroll-reverser'
-	brew 'sensiblesidebuttons'
-	brew 'spotify'
-	brew 'the-unarchiver'
-	brew 'vlc'
+	cask 'amethyst'
+	cask 'appcleaner'
+	cask 'clipy'
+	cask 'electric-sheep'
+	cask 'firefox'
+	cask 'gimp'
+	cask 'google-chrome'
+	cask 'iterm2'
+	cask 'libreoffice'
+	cask 'macvim'	# Prefer macvim cask to formula. Both provide MacVim.app but only the cask installs it to /Applications. Spotlight used to find both locations, but no only at /Applications. https://github.com/macvim-dev/macvim/issues/450#issuecomment-570202139
+	cask 'scroll-reverser'
+	cask 'sensiblesidebuttons'
+	cask 'spotify'
+	cask 'the-unarchiver'
+	cask 'vlc'
 # }
-#
+
 # Cask: optional {
 =begin
-	brew 'ableton-live-suite'
-	brew 'adium'
-	brew 'android-file-transfer'
-	brew 'android-platform-tools'
-	brew 'android-studio'
-	brew 'atom'
-	brew 'audio-hijack'
-	brew 'authy'
-	brew 'awareness'
-	brew 'background-music'
-	brew 'bankid'
-	brew 'burn'
-	brew 'caffeine'
-	brew 'cheatsheet'
-	brew 'clamxav'
-	brew 'colloquy'
-	brew 'cryptomator'
-	brew 'cyberduck'
-	brew 'dash'
-	brew 'docker'
-	brew 'dropbox'
-	brew 'eclipse-ide'
-	brew 'epic-games'
-	brew 'eqmac'
-	brew 'ferdi'
-	brew 'fl-studio'
-	brew 'flip4mac'
-	brew 'flux'
-	brew 'franz'
-	brew 'freshback'
-	brew 'google-backup-and-sync'
-	brew 'google-drive'
-	brew 'gpg-suite'
-	brew 'gramps'
-	brew 'handbrake'
-	brew 'insomnia'
-	brew 'insync'
-	brew 'intellij-idea-ce'
-	brew 'isyncr'
-	brew 'itsycal'
-	brew 'jettison'
-	brew 'jing'
-	brew 'karabiner-elements'
-	brew 'keepassxc'
-	brew 'kid3'
-	brew 'livereload'
-	brew 'mactex'
-	brew 'max'
-	brew 'microsoft-excel'
-	brew 'microsoft-outlook'
-	brew 'microsoft-powerpoint'
-	brew 'microsoft-word'
-	brew 'mp3tag'
-	brew 'mullvadvpn'
-	brew 'musicbrainz-picard'
-	brew 'name-mangler'
-	brew 'origin'
-	brew 'perian'
-	brew 'postman'
-	brew 'prey'
-	brew 'puddletag'
-	brew 'pycharm-ce'
-	brew 'qr-journal'
-	brew 'rambox'
-	brew 'rekordbox'
-	brew 'robo-3t'
-	brew 'semulov'
-	brew 'send-to-kindle'
-	brew 'signal'
-	brew 'skim'
-	brew 'skype'
-	brew 'slack'
-	brew 'sound-control'
-	brew 'spectacle'
-	brew 'spotify-notifications'
-	brew 'steam'
-	brew 'steam'
-	brew 'stretchly'
-	brew 'switch'
-	brew 'thunderbird'
-	brew 'tor-browser'
-	brew 'transmission'
-	brew 'tunnelblick'
-	brew 'veracrypt'
-	brew 'virtualbox'
-	brew 'wireshark'
-	brew 'xee'
-	brew 'yasu'
-	brew 'zoom'
+	cask 'adium'
+	cask 'android-studio'
+	cask 'atom'
+	cask 'audio-hijack'
+	cask 'awareness'
+	cask 'background-music'
+	cask 'bankid'
+	cask 'burn'
+	cask 'caffeine'
+	cask 'cheatsheet'
+	cask 'clamxav'
+	cask 'colloquy'
+	cask 'cyberduck'
+	cask 'dash'
+	cask 'docker'
+	cask 'eclipse-ide'
+	cask 'epic-games'
+	cask 'eqmac'
+	cask 'fl-studio'
+	cask 'flip4mac'
+	cask 'flux'
+	cask 'franz'
+	cask 'freshback'
+	cask 'google-drive'
+	cask 'gpg-suite'
+	cask 'handbrake'
+	cask 'insomnia'
+	cask 'intellij-idea-ce'
+	cask 'itsycal'
+	cask 'jing'
+	cask 'karabiner-elements'
+	cask 'keepassxc'
+	cask 'livereload'
+	cask 'max'
+	cask 'microsoft-excel'
+	cask 'microsoft-outlook'
+	cask 'microsoft-powerpoint'
+	cask 'microsoft-word'
+	cask 'mp3tag'
+	cask 'name-mangler'
+	cask 'origin'
+	cask 'pdftotext'
+	cask 'perian'
+	cask 'postman'
+	cask 'prey'
+	cask 'pycharm-ce'
+	cask 'qr-journal'
+	cask 'rambox'
+	cask 'rekordbox'
+	cask 'robo-3t'
+	cask 'semulov'
+	cask 'send-to-kindle'
+	cask 'skim'
+	cask 'slack'
+	cask 'sound-control'
+	cask 'spectacle'
+	cask 'spotify-notifications'
+	cask 'steam'
+	cask 'stretchly'
+	cask 'switch'	 # Audio format converter
+	cask 'thunderbird'
+	cask 'tor-browser'
+	cask 'tunnelblick'
+	cask 'veracrypt'
+	cask 'virtualbox'
+	cask 'wireshark'
+	cask 'xee'
+	cask 'yasu'
+	cask 'zoom'
 =end
+# }
+
+# Mas: default {
+# https://github.com/mas-cli/mas
+# Format: mas "Human Readable Name Can Be Whatever", id:<id>
+# Unfortunately this <appleiId> must have manually downloaded all apps one time before they can be installed with mas. Find <id> with
+# $ mas search <app>
+	mas  'Brother ScannerApp', id: 912659472  # Image Capture.app does not work for Brother DCP-7070DW
+	mas  'Shazam', id: 897118787
+	mas  'Todoist', id: 585829637
+# }
+
+# Mas: optional {
+=begin
+	mas 'GamePad Companion', id: 428799479
+	mas 'Irvue', id: 1039633667
+	mas 'Microsoft To Do', id: 1274495053
+	mas 'Neural Mix Pro', id: 1527105121
+	mas 'SwordSoft Screenink Free', id: 953841977
+	mas 'WeatherBug', id: 1059074180
+	mas 'WhatsApp Desktop', id: 1147396723
+	mas 'Xcode', id: 497799835
+=end
+# }
+
+# Misc {
+# cryfs {
+# Reference: https://www.cryfs.org/#download https://github.com/cryfs/cryfs
+#cask 'osxfuse'
+#brew 'cryfs/tap/cryfs'
+# }
+
+# Fonts {
+	tap 'homebrew/cask-fonts'
+	cask 'font-terminus'
+	cask 'font-inconsolata'
+	brew 'svn' # Dependency for font'source-code-pro
+	cask 'font-source-code-pro'
+
+	tap 'colindean/fonts-nonfree'
+	cask 'font-microsoft-office'
+# }
+
+# SSHFS {
+# Reference: https://www.digitalocean.com/community/tutorials/how-to-use-sshfs-to-mount-remote-file-systems-over-ssh
+#brew 'osxfuse'
+#brew 'sshfs'
+# Now you can mount like this:
+# $ sudo mkdir -p /mnt/sshfs
+# $ sudo sshfs -o allow_other,defer_permissions user@host:/ /mnt/sshfs
+# }
+
 # }
