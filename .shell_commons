@@ -72,11 +72,6 @@ source $HOME/.shell_functions
 		PATH="/Library/TeX/texbin:$PATH"
 	fi
 
-	# Location of Brewfile. Reference: https://docs.brew.sh/Manpage#bundle-subcommand
-	if shell_is_macos; then
-		export HOMEBREW_BUNDLE_FILE=$HOME/.brewfile
-	fi
-
 	# Source aliases.
 	sourceifexists $HOME/.shell_aliases
 
@@ -99,6 +94,15 @@ source $HOME/.shell_functions
 		## Reference: https://wiki.archlinux.org/index.php/Dwm#Fixing_misbehaving_Java_applications
 		#export _JAVA_AWT_WM_NONREPARENTING=1
 	#fi
+
+	# Brew bundler
+	if shell_is_macos; then
+		# Location of Brewfile. Reference: https://docs.brew.sh/Manpage#bundle-subcommand
+		# Alternatively could use $(brew bundle -g) to use this file, but as I'm not dealing with other Brewfile, might as well make this one default.
+		export HOMEBREW_BUNDLE_FILE=$HOME/.Brewfile
+		# Not using the ~/.Brewfile.lock.json feature.
+		export HOMEBREW_BUNDLE_NO_LOCK=1
+	fi
 
 	# A better compiler for C langs.
 	if program_is_in_path clang; then
