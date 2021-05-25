@@ -3,299 +3,15 @@
 #	vi: foldmarker={,} foldmethod=marker foldlevel=0: tabstop=8:
 # }
 
-# TODO possibly replace this script with homebrew-bundler? https://github.com/Homebrew/homebrew-bundle
-
-# Using Brewfile at $HOMEBREW_BUNDLE_FILE
-#brew bundle install
-
 set -ex
 
-make_1line() {
-	echo "$1" | tr '\n' ' '
-}
 
-# Brew lists {
-read -r -d '' brew_formulae_default <<-'EOAPPS'
-	ack
-	aspell
-	bash
-	cloc
-	cmatrix
-	colordiff
-	coreutils
-	cowsay
-	cscope
-	ctags
-	curl
-	dfc
-	dos2unix
-	findutils
-	fswatch
-	gawk
-	ghq
-	git
-	gnu-getopt
-	gnu-indent
-	gnu-sed
-	gnu-tar
-	gnupg
-	gnutls
-	go
-	graphviz
-	grep
-	grip
-	htop
-	iftop
-	imagemagick
-	ipcalc
-	jq
-	jshon
-	ncdu
-	netcat
-	nmap
-	octave
-	pdfgrep
-	peco
-	pidof
-	python
-	readline
-	rsync
-	sl
-	source-highlight
-	switchaudio-osx
-	telnet
-	tig
-	tmux
-	tree
-	unar
-	unzip
-	urlview
-	w3m
-	watch
-	wget
-	xz
-	zip
-	zsh
-	zsh-completions
-	zsh-syntax-highlighting
-EOAPPS
-brew_formulae_default=$(make_1line "$brew_formulae_default")
-
-# Formulae notes
-# * macvim - install 'formulae macvim' because:
-# ** it provides MacVim.app in /usr/local/Cellar/macvim/<version number>/. See https://arophix.com/2018/01/24/install-vim-on-macos-high-sierra/
-# ** 'cask macvim' includes only dynamically lined python. $(vim --version) gives +python3/dyn and that does not find powerline.
-# ** 'formulae macvim' has $(vim --version) "+python3"
-# ** macOS search (cmd+space) still find MacVim.app in the Cellar
-# ** 'formulae vim' does not include MacVim.app
-# ** having both formula vim/macvim + cask macvim causes symlink overwrite problems on upgrade ($brew link vim/macvim).
-# * python@2 - needed for ~/bin/com.user.iterm.plist to be able to start powerline for tmux. Even though powerline-status py package is installed for python3 only, it's still needed somehow.
-
-
-
-# NOTE typically just pyenv is okay. pyenv-virtualenvwrapper is only needed for projects with python <3.3
-# see https://www.freecodecamp.org/news/manage-multiple-python-versions-and-virtual-environments-venv-pyenv-pyvenv-a29fb00c296f/
-read -r -d '' brew_formulae_additional <<-'EOAPPS'
-	antiword
-	bashdb
-	cgdb
-	checkbashisms
-	cmake
-	colormake
-	colorsvn
-	cpanminus
-	daemonize
-	elinks
-	emacs
-	ffmpeg2theora
-	httpie
-	ipython
-	irssi
-	jsonlint
-	knock
-	mercurial
-	mosh
-	multitail
-	mutt
-	ncftp
-	nethogs
-	node
-	notmuch
-	npm
-	offlineimap
-	openvpn
-	pastebinit
-	postgresql
-	pv
-	pyenv
-	pyenv-virtualenvwrapper
-	python@2
-	reattach-to-user-namespace
-	restic
-	ruby
-	swiftlint
-	task
-	tasksh
-	the_silver_searcher
-	tigervnc-viewer
-	valgrind
-	wakeonlan
-	wego
-	zenity
-EOAPPS
-brew_formulae_additional=$(make_1line "$brew_formulae_additional")
-
-# }
-
-# Cask lists {
-# NOTE macvim should be installed as a cask and not formula, as the cask installs MacVim.app to /Applications, so that it can be indexed by Spotlight.
-# Reference: https://github.com/macvim-dev/macvim/issues/450#issuecomment-570202139
-read -r -d '' brew_casks_default <<-'EOAPPS'
-	amethyst
-	appcleaner
-	clipy
-	electric-sheep
-	firefox
-	gimp
-	google-chrome
-	iterm2
-	libreoffice
-	macvim
-	pdftotext
-	scroll-reverser
-	sensiblesidebuttons
-	spotify
-	the-unarchiver
-	vlc
-EOAPPS
-brew_casks_default=$(make_1line "$brew_casks_default")
-
-read -r -d '' brew_casks_additional <<-'EOAPPS'
-	ableton-live-suite
-	adium
-	android-file-transfer
-	android-platform-tools
-	android-studio
-	atom
-	audio-hijack
-	authy
-	awareness
-	background-music
-	bankid
-	burn
-	caffeine
-	cheatsheet
-	clamxav
-	colloquy
-	cryptomator
-	cyberduck
-	dash
-	docker
-	dropbox
-	eclipse-ide
-	epic-games
-	eqmac
-	ferdi
-	fl-studio
-	flip4mac
-	flux
-	franz
-	freshback
-	google-backup-and-sync
-	google-drive
-	gpg-suite
-	gramps
-	handbrake
-	insomnia
-	insync
-	intellij-idea-ce
-	isyncr
-	itsycal
-	jettison
-	jing
-	karabiner-elements
-	keepassxc
-	kid3
-	livereload
-	mactex
-	max
-	microsoft-excel
-	microsoft-outlook
-	microsoft-powerpoint
-	microsoft-word
-	mp3tag
-	mullvadvpn
-	musicbrainz-picard
-	name-mangler
-	origin
-	perian
-	postman
-	prey
-	puddletag
-	pycharm-ce
-	qr-journal
-	rambox
-	rekordbox
-	robo-3t
-	semulov
-	send-to-kindle
-	signal
-	skim
-	skype
-	slack
-	sound-control
-	spectacle
-	spotify-notifications
-	steam
-	steam
-	stretchly
-	switch
-	thunderbird
-	tor-browser
-	transmission
-	tunnelblick
-	veracrypt
-	virtualbox
-	wireshark
-	xee
-	yasu
-	zoom
-EOAPPS
-brew_casks_additional=$(make_1line "$brew_casks_additional")
-
-# }
-
-# Python lists {
-#read -r -d '' pip2_pkgs <<-'EOAPPS'
-#EOAPPS
-#pip2_pkgs=$(make_1line "$pip2_pkgs")
-
-read -r -d '' pip3_pkgs <<-'EOAPPS'
-	ipython
-	iterm2
-	virtualenvwrapper
-EOAPPS
-pip3_pkgs=$(make_1line "$pip3_pkgs")
-
-read -r -d '' pip3_pkgs_additional <<-'EOAPPS'
-	goobook
-	ipdb
-	powerline-status
-	pudb
-	ropevim
-EOAPPS
-pip3_pkgs_additional=$(make_1line "$pip3_pkgs_additional")
-
-# }
 
 # Install {
 # Install homebrew.
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-
-# Note that some gnu pakcages comes with g-prefix in the bin names. The default names are set up in $PATH in ~/.shell_commons
-brew install $brew_formulae_default
-
-#brew install $brew_formulae_additional
+# Using Brewfile at $HOMEBREW_BUNDLE_FILE
+brew bundle install
 
 # Make homebrew zsh default shell.
 # Reference: https://rick.cogley.info/post/use-homebrew-zsh-instead-of-the-osx-default/
@@ -304,15 +20,6 @@ sudo dscl . -create /Users/$USER UserShell /usr/local/bin/zsh
 # Install rmtree for removing brew package's dependencies with $(brew rmtree <package>).
 brew tap beeftornado/rmtree
 
-
-# Install cask.
-brew tap homebrew/cask
-brew install $brew_casks_default
-#brew install $brew_casks_additional
-
-# Install cask upgrade command ($ brew cu):
-# NOTE no longer needed, https://stackoverflow.com/a/31994862/265508
-#brew tap buo/cask-upgrade
 
 
 
@@ -330,11 +37,6 @@ brew install terminal-notifier
 # Start upgrade (including casks) every 12 hours.
 brew autoupdate --start 43200 --upgrade --cleanup --enable-notification
 brew autoupdate --status
-
-# Developer for Gimp can't be verified, so we need to remove an attribute that enables this check:
-# Reference: https://apple.stackexchange.com/questions/216188/apps-not-opening-verifying
-# NOTE no longer needed.
-#xattr -d com.apple.quarantine /Applications/GIMP-*.app/
 
 # Macstore automation
 # https://github.com/mas-cli/mas
@@ -362,11 +64,26 @@ brew install mas
 # 953841977  SwordSoft Screenink Free
 
 
-# Make a backup of installed brew packages with:
-# brew bundle dump
+# TODO move to Pipfile? https://packaging.python.org/tutorials/managing-dependencies/
+# Python lists {
+read -r -d '' pip3_pkgs <<-'EOAPPS'
+	ipython
+	iterm2
+	virtualenvwrapper
+EOAPPS
+pip3_pkgs=$(make_1line "$pip3_pkgs")
 
+read -r -d '' pip3_pkgs_additional <<-'EOAPPS'
+	goobook
+	ipdb
+	powerline-status
+	pudb
+	ropevim
+EOAPPS
+pip3_pkgs_additional=$(make_1line "$pip3_pkgs_additional")
+
+# }
 # Install python packages.
-#pip2 install --user $pip2_pkgs
 pip3 install --user $pip3_pkgs
 #pip3 install --user $pip3_pkgs_additional
 
