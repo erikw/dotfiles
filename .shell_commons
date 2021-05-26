@@ -76,6 +76,9 @@ source $HOME/.shell_functions
 	sourceifexists $HOME/.shell_aliases
 
 
+	# Locale
+	export LANG=EN_US
+
 	# Let others know what underlying terminal emulator is used. This is needed since $TERM does not always represent the real terminal e.g. in tmux when you want colors.
 	shell_is_linux && program_is_in_path urxvt && export TERMEMU=urxvt
 
@@ -256,6 +259,11 @@ source $HOME/.shell_functions
 		#eval $(perl -I $perl_local/lib/perl5/ -Mlocal::lib=$perl_local)
 	#fi
 
+
+	# Python {
+	# Python pip binary installation directory (pip3 install --user)
+	PATH="$HOME/Library/Python//3.9/bin:$PATH"
+
 	# Virtualenvwrapper, installed with pip. NOTE Is sandboxed
 	#shell_is_macos && virtenv_path=/usr/local/bin/virtualenvwrapper.sh || virtenv_path=/usr/bin/virtualenvwrapper_lazy.sh
 	#if [ -e $virtenv_path ]; then
@@ -264,20 +272,6 @@ source $HOME/.shell_functions
 	#	export PROJECT_HOME=$HOME/dev
 	#fi
 
-
-	# macOS python
-	# Add macOS python binary folders to the path (the binaries from homebrew pyhon are already included from /usr/local/bin)
-	# $PYTHONPATH is a PATH-formatted list of additional directories where python should look for modules when importing ones. Don't mix py2 and py3 paths in it.
-	# TODO can I remove this when Apple stops shipping Python with macOS?
-	# NOTE seems not needed to do this include anymore when just using simple python3 from homebrew.
-	#if shell_is_macos; then
-		#macos_py3path=$HOME/Library/Python/3.7
-		#if [ -d $macos_py3path ]; then
-			#PATH="$macos_py3path/bin:$PATH"
-			##export PYTHONPATH="$macos_py3path/lib/python/site-packages:$PYTHONPATH"
-		#fi
-		#unset macos_py3path
-	#fi
 
 	#if program_is_in_path pyenv; then
 		# Light-weight version:
@@ -300,6 +294,7 @@ source $HOME/.shell_functions
 		#eval "$(pyenv virtualenv-init -)"
 	#fi
 
+	# }
 
 	# Homebrew ruby
 	if [ -d /usr/local/opt/ruby/bin ]; then

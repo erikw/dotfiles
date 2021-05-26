@@ -5,8 +5,6 @@
 
 set -ex
 
-
-
 # Install {
 # Install homebrew.
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
@@ -30,31 +28,43 @@ brew install terminal-notifier
 brew autoupdate --start 43200 --upgrade --cleanup --enable-notification
 brew autoupdate --status
 
-# TODO move to Pipfile? https://packaging.python.org/tutorials/managing-dependencies/
+# Python setup {
 # Python lists {
+ make_1line() {
+         echo "$1" | tr '\n' ' '
+}
 read -r -d '' pip3_pkgs <<-'EOAPPS'
 	ipython
 	iterm2
-	virtualenvwrapper
 EOAPPS
 pip3_pkgs=$(make_1line "$pip3_pkgs")
 
 read -r -d '' pip3_pkgs_additional <<-'EOAPPS'
 	goobook
 	ipdb
+	pipenv
 	powerline-status
 	pudb
+	pyenv
 	ropevim
+	virtualenvwrapper
 EOAPPS
 pip3_pkgs_additional=$(make_1line "$pip3_pkgs_additional")
-
 # }
-# Install python packages.
 pip3 install --user $pip3_pkgs
 #pip3 install --user $pip3_pkgs_additional
 
-
-
+# * If wanting different python version than given by brew, use pyenv(1).
+# * To manage project package dependences, use pipenv with Pipfile and virtualenvs
+# See https://towardsdatascience.com/python-environment-101-1d68bda3094d#39b6
+## Alternatives for global packages install
+# * pipenv with a Pipfile:
+#   - https://packaging.python.org/tutorials/managing-dependencies/
+#   - However this is more for project package dependencies. Global install is not working (from https://stackoverflow.com/a/54342856)
+# * Pipex: https://github.com/pipxproject/pipx
+#  - However not offering any real benefits for my setup, there's not Pipefile or such to specify packages or versions needed.
+# * https://miro.medium.com/max/577/1*w-gYboE96IYdDBUDR7QokQ.png
+# }
 
 # Install tmux session on login.
 # Reference: http://www.launchd.info/
@@ -93,10 +103,6 @@ launchctl start com.user.appearancemon
 
 # wego from brew is not recognizing forecast.io backend.
 #go get -u github.com/schachmat/wego
-
-# zsh-completions: prevent "zsh compinit: insecure directories" on $(compinit)
-chmod go-w '/usr/local/share'
-
 
 
 # Update gnu locate database on schedule by appending crontab.
