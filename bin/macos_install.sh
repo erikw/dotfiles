@@ -30,7 +30,8 @@ brew autoupdate --status
 
 # Python setup {
 # Python lists {
- make_1line() {
+set +e # Can't have -e while making these vars
+make_1line() {
          echo "$1" | tr '\n' ' '
 }
 read -r -d '' pip3_pkgs <<-'EOAPPS'
@@ -50,6 +51,7 @@ read -r -d '' pip3_pkgs_additional <<-'EOAPPS'
 	virtualenvwrapper
 EOAPPS
 pip3_pkgs_additional=$(make_1line "$pip3_pkgs_additional")
+set -e
 # }
 pip3 install --user $pip3_pkgs
 #pip3 install --user $pip3_pkgs_additional
