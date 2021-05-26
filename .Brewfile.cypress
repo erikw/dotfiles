@@ -39,6 +39,7 @@
 
 # Cask: optional {
 =begin
+	mixed-in-key	# If using latest version, which I'm not.
 =end
 # }
 

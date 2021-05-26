@@ -5,7 +5,7 @@
 
 set -ex
 
-# Install {
+# Installs: automated {
 # Install homebrew.
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 # Using Brewfile at $HOMEBREW_BUNDLE_FILE
@@ -120,13 +120,13 @@ ln -s $HOME/Library/Application\ Support Library/ApplicationSupport
 #sudo sh -c "echo \"$newtab\" | crontab -"
 
 
-# Manual installs {
-# General list
+# }
+
+# Installs: manual {
+# General manual install list
 # * Mixedinkey: https://account.mixedinkey.com/
 # * easytag
-# * RVM: https://rvm.io/rvm/install
 # * xcode XVim: https://github.com/XVimProject/XVim, https://github.com/XVimProject/XVim/blob/master/INSTALL_Xcode8.md
-# * Audacity: https://www.audacityteam.org/download/mac/
 
 
 # Akai MPKmini keyboard
@@ -145,8 +145,11 @@ ln -s $HOME/Library/Application\ Support Library/ApplicationSupport
 # brew tap adoptopenjdk/openjdk
 # brew install java adoptopenjdk8
 
-# Brother DCP-7070dw printer & scanner driver: https://support.brother.com/g/b/downloadtop.aspx?c=eu_ot&lang=en&prod=dcp7070dw_eu
-# Add by Bonjour discovery on network.
+# Brother DCP-7070dw
+# * Printer
+#   * Install driver from https://support.brother.com/g/b/downloadtop.aspx?c=eu_ot&lang=en&prod=dcp7070dw_eu
+#   * System Preferences > Printers & Scanners > + > Add by Bonjour discovery on network
+# * Scanner: user the "Brother iPrint&Scan" app from App Store, as the ICA driver (Image Capture.app) is not working.
 
 
 # Antivirus: Avast Security for Mac
@@ -163,42 +166,22 @@ ln -s $HOME/Library/Application\ Support Library/ApplicationSupport
 # Instructions: https://swedbank.se/privat/digitala-tjanster/mobilt-bankid/bankid-pa-kort-och-fil/bankid-pa-fil.html
 # Install: https://install.bankid.com/, prefer cask!
 
-# Novation Launchkey 3
-# * Set up Ableton MIDI input/output according to ~/doc/man/music/novation_launchkey_mk3_manual_v1.03.pdf page 12.
-# Additional software can be found at
-# * https://customer.novationmusic.com/en/my-software
-# * https://customer.novationmusic.com/en/support/downloads?brand=Novation&product_by_type=1431&download_type=software
-
-
-# Focusrite Scarlett 2i2
-# * Install Focusrite control https://focusrite.com/en/focusrite-control (https://customer.focusrite.com/en/getstarted/begin)
-# But prefer cask:
-#brew tap homebrew/cask-drivers
-#brew install focusrite-control
-# Bundled software at https://customer.focusrite.com/en/my-software (Nsame as https://customer.novationmusic.com/en/my-software, novation is a brand in Focusrite group).
-
-
-# }
-# }
-
-# Configuration {
-
 # Amethyst
-# Give Amethys acessability access according to: https://ianyh.com/amethyst
-# Then go to Amethys Preferences
+# Preferences:
 # * Uncheck "Display layout when changing spaces".
 # * Set the following layouts to be used: tall, fullscreen, floating.
 
 # Clipy
 ## General
-# * Max clipboard size: 85
+# * Max clipboard history size: 85
 ## Menu
 # * Number of items to place inline: 25
 # * Number of items to place inside a folder: 60
 # * Number of characters in the menu: 50
 ## Shortcuts
-# * Set the History keyboard shortcut to Cmd+Shift+v.
-# * Set the Snipets keyboard shortcut to Cmd+Shift+b.
+# * Menu>Main: NOP
+# * Menu>History: Cmd+Shift+v.
+# * Menu>Snipets: Cmd+Shift+b.
 ## Snippets
 # Create snipets for some common items in ~/doc/tech/word_expansions.txt
 
@@ -206,6 +189,7 @@ ln -s $HOME/Library/Application\ Support Library/ApplicationSupport
 # Firefox
 ## Firefox (menu bar) > Customize Touch Bar..
 # * Replace Share with Reading mode.
+# * Set up according to firefox.txt
 
 # FreshBackMac
 # * Add to auto start in Settings > Users & Groups > Login items.
@@ -483,6 +467,24 @@ ln -s $HOME/Library/Application\ Support Library/ApplicationSupport
 
 # Kontakt Player
 # Right-click on the Rack area > In the quickl-load, drag-and-drop /Volumes/toshiba_music/daw/kontakt_user_library/. Reference: https://vi-control.net/community/threads/how-do-i-add-libraries-in-kontakt-6.95343/
+
+
+
+# Novation Launchkey 3
+# * Set up Ableton MIDI input/output according to ~/doc/man/music/novation_launchkey_mk3_manual_v1.03.pdf page 12.
+# Additional software can be found at
+# * https://customer.novationmusic.com/en/my-software
+# * https://customer.novationmusic.com/en/support/downloads?brand=Novation&product_by_type=1431&download_type=software
+
+
+# Focusrite Scarlett 2i2
+# * Install Focusrite control https://focusrite.com/en/focusrite-control (https://customer.focusrite.com/en/getstarted/begin)
+# But prefer cask:
+#brew tap homebrew/cask-drivers
+#brew install focusrite-control
+# Bundled software at https://customer.focusrite.com/en/my-software (Nsame as https://customer.novationmusic.com/en/my-software, novation is a brand in Focusrite group).
+
+
 
 
 # Stretchly
