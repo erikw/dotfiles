@@ -36,13 +36,14 @@ make_1line() {
 }
 read -r -d '' pip3_pkgs <<-'EOAPPS'
 	ipython
-	iterm2
+	pip-autoremove
 EOAPPS
 pip3_pkgs=$(make_1line "$pip3_pkgs")
 
 read -r -d '' pip3_pkgs_additional <<-'EOAPPS'
 	goobook
 	ipdb
+	iterm2
 	pipenv
 	powerline-status
 	pudb
@@ -70,19 +71,18 @@ pip3 install --user $pip3_pkgs
 
 # Install tmux session on login.
 # Reference: http://www.launchd.info/
+# NOPE starting tmux with launchctl makes it run with less access e.g. doing $(ls /volumes/somevolume) gives "Operation not permitted".
+# thus, instead go for a simpler solution: Autostart;
+# 1. Set Iterm.app to auto-start
+# 2. Set iterm2 default profile to start irctor, and then have an additional profile that just runs zsh. see #irctorautostart below in the iterm section.
+# old below:
 #mkdir -p $HOME/Library/LaunchAgents
 #cp $HOME/bin/com.user.irctor.plist $HOME/Library/LaunchAgents/
 #launchctl load -w $HOME/Library/LaunchAgents/com.user.irctor.plist
 #launchctl start com.user.irctor
 #launchctl list | grep com.user.irctor
-#launchctl unload -W $HOME/Library/LaunchAgents/com.user.irctor
-# NOPE starting tmux with launchctl makes it run with less access e.g. doing $(ls /volumes/somevolume) gives "Operation not permitted".
-# thus, instead go for a simpler solution: Autostart;
-# 1. Set Iterm.app to auto-start
-# 2. Set iterm 2 default profile to start irctor, and then have an additional profile that just runs zsh. see #irctorautostart below in the iterm section.
-
-
-# Start iterm2.app with tmux session loaded.
+#launchctl unload -w $HOME/Library/LaunchAgents/com.user.irctor.plist
+# Start iterm2.app with tmux session loaded on login.
 #cp $HOME/bin/com.user.iterm.plist $HOME/Library/LaunchAgents/
 #launchctl load -w $HOME/Library/LaunchAgents/com.user.iterm.plist
 #launchctl start com.user.iterm
@@ -90,13 +90,15 @@ pip3 install --user $pip3_pkgs
 
 # solarized_toggle.sh
 ## solarized_toggle.sh require
-# - pip3 package iterm to be installed (above).
-# - iterm2 prefernces enable Python API: General > Magic tab > Enable Python API: Require "automation" permission.
+# - pip3 package iterm2 mus be installed (in python setup above)
+# - iterm2 preference enable Python API: General > Magic tab > Enable Python API: Require "automation" permission.
 # 	(if this is not enough Iterm2 > Scripts (menu) > Manager > Install runtime)
 ## Start macos_appearance_monitor.sh on login.
 cp $HOME/bin/com.user.appearancemon.plist $HOME/Library/LaunchAgents/
 launchctl load -w $HOME/Library/LaunchAgents/com.user.appearancemon.plist
 launchctl start com.user.appearancemon
+# Create symlink so that ~/bin/solarized_iterm2_set.py works.
+ln -s $HOME/Library/Application\ Support Library/ApplicationSupport
 ## Automate command for toggling system appearance mode
 # * Create an automator Quick Action named "appearance_toggle" with AppleScript for the contents in ~/bin/macos_appearance_toggle.command
 # 	* NOPE use the build-in action "Change System Appearace" by dragging it in to the right, and set "Change Appearance" to "Toggle Light/Dark". This seems to go faster when toggling than the custom script.

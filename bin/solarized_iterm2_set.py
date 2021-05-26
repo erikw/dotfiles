@@ -1,16 +1,11 @@
-#!/usr/bin/env python3
-# Requirements: $ pip3 install iterm2
+#!/Users/erikw/Library/ApplicationSupport/iTerm2/iterm2env/versions/3.8.6/bin/python3
+# For a while it did work to use homebrew's python and do $(pip3 install iterm2), but this broken (on websockets module import).
+# What does work is to use the python version installed by Iterm2 > Scripts > Manage.  I will also have the required package iterm2 installed.
+# Need to create symlink as there can't be space in shebang path:
+# $ ln -s $HOME/Library/Application\ Support Library/ApplicationSupport
+# Reference: https://iterm2.com/python-api/tutorial/running.html
 
 import sys
-#sys.path.append('/usr/local/lib/python3.9/site-packages')
-# sys.path.append('/usr/local/Cellar/python@3.9/3.9.4/Frameworks/Python.framework/Versions/3.9/lib/python39.zip')
-# sys.path.append('/usr/local/Cellar/python@3.9/3.9.4/Frameworks/Python.framework/Versions/3.9/lib/python3.9')
-# sys.path.append('/usr/local/Cellar/python@3.9/3.9.4/Frameworks/Python.framework/Versions/3.9/lib/python3.9/lib-dynload')
-# sys.path.append('/usr/local/lib/python3.9/site-packages')
-# sys.path.append('/usr/local/Cellar/protobuf/3.15.8/libexec/lib/python3.9/site-packages')
-# sys.path.append('/usr/local/Cellar/sip/6.0.3_1/libexec/lib/python3.9/site-packages')
-
-
 import argparse
 import iterm2
 
