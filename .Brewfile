@@ -147,6 +147,7 @@
 	cask 'adium'
 	cask 'android-studio'
 	cask 'atom'
+	cask 'audacity'
 	cask 'audio-hijack'
 	cask 'awareness'
 	cask 'background-music'
@@ -221,7 +222,7 @@
 # Format: mas "Human Readable Name Can Be Whatever", id:<id>
 # Unfortunately this <appleiId> must have manually downloaded all apps one time before they can be installed with mas. Find <id> with
 # $ mas search <app>
-	mas  'Brother ScannerApp', id: 912659472  # Image Capture.app does not work for Brother DCP-7070DW
+	mas  'Brother iPrint&Scan', id: 1193539993  # Image Capture.app does not work for Brother DCP-7070DW
 	mas  'Shazam', id: 897118787
 	mas  'Todoist', id: 585829637
 # }
