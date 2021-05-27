@@ -274,12 +274,12 @@ source $HOME/.shell_functions
 
 
 	#if program_is_in_path pyenv; then
-		# Light-weight version:
-		#PATH="$(pyenv root)/shims:$PATH"
-		# Full config. NOTE is sandboxed
+		#export PYENV_ROOT="$HOME/.pyenv"
+		#export PATH="$PYENV_ROOT/bin:$PATH"
+		#eval "$(pyenv init --path)"
 		#eval "$(pyenv init -)"
 
-		# Brew should use system default python when building packages $(brew doctor) compalines with
+		# Brew should use system default python when building packages $(brew doctor) complains with
 		# "config" scripts exist outside your system or Homebrew directories.
 		# Solution: make an alias for brew that excludes pyenv from PATH
 		# Reference: https://github.com/pyenv/pyenv/issues/106#issuecomment-625334706
