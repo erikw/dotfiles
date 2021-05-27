@@ -17,13 +17,13 @@
 	brew 'cloc'
 	brew 'cmatrix'
 	brew 'colordiff'
-	brew 'coreutils' # Note that some gnu pakcages comes with g-prefix in the bin names. The default names are set up in $PATH in ~/.shell_commons
+	brew 'coreutils'	# Note that some gnu pakcages comes with g-prefix in the bin names. The default names are set up in $PATH in ~/.shell_commons
 	brew 'cowsay'
 	brew 'curl'
 	brew 'dfc'
 	brew 'dos2unix'
 	brew 'findutils'
-	brew 'fswatch' # For macos_appearance_monitor.sh
+	brew 'fswatch'		# For macos_appearance_monitor.sh
 	brew 'gawk'
 	brew 'ghq'
 	brew 'git'
@@ -172,6 +172,7 @@
 	cask 'gpg-suite'
 	cask 'handbrake'
 	cask 'insomnia'
+	cask 'insync'
 	cask 'intellij-idea-ce'
 	cask 'itsycal'
 	cask 'jing'
@@ -198,6 +199,7 @@
 	cask 'semulov'
 	cask 'send-to-kindle'
 	cask 'skim'
+	cask 'skype'
 	cask 'slack'
 	cask 'sound-control'
 	cask 'spectacle'
