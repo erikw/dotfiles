@@ -74,6 +74,9 @@ if ! [ -e $HOME/.ssh/config ]; then
 # Avoid "Connection to $HOST closed." when disconnecting. Refer
 # Reference: https://unix.stackexchange.com/a/203346/19909
 LogLevel QUIET
+
+# Extra ~/.ssh/known_hosts file e.g. if updated automatically by a script.
+#UserKnownHostsFile=~/.ssh/known_host_extra
 EOF
 fi
 
