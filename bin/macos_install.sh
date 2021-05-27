@@ -5,7 +5,7 @@
 
 set -ex
 
-# Installs: automated {
+# Installs: Automated {
 # Install homebrew.
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 # Using Brewfile at $HOMEBREW_BUNDLE_FILE
@@ -122,7 +122,7 @@ ln -s $HOME/Library/Application\ Support Library/ApplicationSupport
 
 # }
 
-# Installs: manual {
+# Installs: Manual {
 # General manual install list
 # * Mixedinkey: https://account.mixedinkey.com/
 # * easytag
@@ -502,4 +502,11 @@ ln -s $HOME/Library/Application\ Support Library/ApplicationSupport
 ### Hotkeys
 # * Eject external disks: ctrl + opt + cmd + e
 # * Eject disks and sleep: ctrl + opt + cmd + s
+
+# restic_backup.sh
+# Add a user cron entry like:
+#
+
+
+
 # }

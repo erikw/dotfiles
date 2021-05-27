@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Wrapper for spotify-backup https://github.com/caseychu/spotify-backup
-# Requirements: jshon(1)
+# Requirements: jq(1)
 # Add a crontab entry like:
 # # Run every Sunday evening
 # 0     20     *     *     0      if_fail_do_notification spotify-backup.sh
@@ -49,5 +49,5 @@ echo -e "\n\n\n\n"
 
 echo "> Backing up to $outjson"
 exec_with_retry 2 $backupper --format json $outjson.ugly
-jshon < $outjson.ugly > $outjson
+jq < $outjson.ugly > $outjson
 rm -f $outjson.ugly

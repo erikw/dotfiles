@@ -7,7 +7,6 @@
 # }
 
 # Formula: default {
-	brew 'jshon' # TODO replace with jq in spotify-backup.sh
 	brew 'restic'
 # }
 #
@@ -25,7 +24,6 @@
 	cask 'dropbox'
 	cask 'ferdi'
 	cask 'gramps'
-	cask 'insync'
 	cask 'isyncr'
 	cask 'jettison'
 	cask 'kid3'
@@ -33,7 +31,6 @@
 	cask 'mullvadvpn'
 	cask 'musicbrainz-picard'
 	cask 'signal'
-	cask 'skype'
 	cask 'transmission'
 # }
 
