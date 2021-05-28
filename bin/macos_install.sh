@@ -119,31 +119,14 @@ ln -s $HOME/Library/Application\ Support Library/ApplicationSupport
 #fi
 #sudo sh -c "echo \"$newtab\" | crontab -"
 
-
 # }
 
 # Installs: Manual {
+# General System {
 # General manual install list
-# * Mixedinkey: https://account.mixedinkey.com/
 # * easytag
-# * xcode XVim: https://github.com/XVimProject/XVim, https://github.com/XVimProject/XVim/blob/master/INSTALL_Xcode8.md
+# * Xcode XVim: https://github.com/XVimProject/XVim, https://github.com/XVimProject/XVim/blob/master/INSTALL_Xcode8.md
 
-
-# Akai MPKmini keyboard
-# * https://www.akaipro.com/productregistration/customer/
-# - Akai MPC Essentials Software  -
-# - Akai MPKmini MK2 Editor - https://www.akaipro.com/productregistration/customer/
-# - Air Hybrid synth
-
-# Java/JVM development
-## SDKMan: https://sdkman.io/install
-# $ curl -s "https://get.sdkman.io" | bash
-# $ sdk install gradle x.y
-# $ sdk install java 15.0.0.hs-adpt
-# ## Brew
-# Reference: https://www.chrisjmendez.com/2018/10/14/how-to-install-java-on-osx-using-homebrew/
-# brew tap adoptopenjdk/openjdk
-# brew install java adoptopenjdk8
 
 # Brother DCP-7070dw
 # * Printer
@@ -192,26 +175,34 @@ ln -s $HOME/Library/Application\ Support Library/ApplicationSupport
 # * Set up according to firefox.txt
 
 # FreshBackMac
+# NOPE replace by Irvue
 # * Add to auto start in Settings > Users & Groups > Login items.
 # * Set daily refresh
 # * Turn off desktop notifications.
 
+# Irvue
+# Prefer this to Freshbackmac as one can get info about the selected wallpaper.
+# NOTE switch to built-in dynamic wallpapers with dark/light mode.
+## General
+# * Folder for saved wallpaper: ~/media/images/wallpapers/usplash/
+# * Uncheck Notifications
+# * Check Load at startup:
+## Shortcuts
+# * Change wallpaper: Ctrl + Shift + Cmd + W (to be consistent with Freshbackmac)
+# * Disable all other shortcuts as e.g. opt+cmd+r conflicts with Firefox reading mode, cmd+opt+s with iTerm solarized toggle.
+# ** It's not enough to uncheck a shortcut, it's value has to be deleted otherwise it will be enabled again.
+
+
 # Spotify Notifications
-# Replaced with native Now Playing Menu Bar.
+# NOPE Replaced with native Now Playing Menu Bar.
 # * Set shortcut to show current playing to: Ctrl + Opt + Cmd + p
-
-# Powerline
-# Install either
-# * Powerline Terminus font: https://gist.github.com/creaktive/5004950#file-terminusmedium-dfont
-# * Powerline Source Code Pro, Fontsize 16pt: https://github.com/powerline/fonts
-
 
 # MacVim
 # * Make the app quit when the last buffer is closee: " MacVim > Preferences > After the last window closes: QuitMacVim.
 # * Open text files with MacVim
-# 	* Find any .txt file > cmd+i on it > Open with > MacVim > Change for all
+# 	* Find any .txt file in Finder > cmd+i on it > Open with > MacVim > Change for all
 
-# Scroll Reverse
+# Scroll Reverser
 ## Scrolling
 # * Check: Enable Scroll Reverser
 # * Scrolling devices:
@@ -221,37 +212,37 @@ ln -s $HOME/Library/Application\ Support Library/ApplicationSupport
 # * Check: Start at login
 # * Uncheck: Show in menu bar
 
+# Sensiblesidebuttons
+# * Launch it one time to set right permissions needed.
+# * From menu bar icon: hide icon
+
 # iTerm2
 # * Load settings from Preferencs > General > Preferences tab > Load from custom folder or URL. Reference: https://stackoverflow.com/a/23356086/265508
 # * Give iterm2 full disk access: System Preferences > Security & Privacy > Privacy > Full Disk Access > add iTerm.app
 ## General
 ### Closing
-# * Make it easier to restart/poweroff by not confirming closing multiple windows - I always use tmux so it's not a problem.  Unckeck:
-# - Confirm closing multiple sessions.
-# - Confirm "iTerm2 (#Q)" if windows open"
+# * Make it easier to restart/poweroff by not confirming closing multiple windows - I always use tmux so it's not a problem.
+#   - Uncheck: Confirm closing multiple sessions.
+#   - Uncheck: Confirm "iTerm2 (#Q)" if windows open"
 # * iterm.sh: If iterm2.app is closed, 2 windows will be opended by this script. To prevent this:
 # 	- Startup > Select "Only Restore Hotkey Window" NOPE don't do this anymore as of #irctorautostart
-### Selection
-# * Enable automatic tmux copy to GUI clipboard on selection
-# - Check "Applications in terminal may access clipboard"
 ## Profiles
 #* After configuring the default profile, clone it in to a profile called "zsh" and remove the "Send text at start" #irctorautostart
 ### General
-# * Command: "zsh"      # If a new login shell with zsh gives $?=1, avoid this by chaning Command to "zsh" instead of "Login Shell". TODO remove this when the mysterious bug has disappeared.
 # * Send text at start: "irctor"   #irctorautostart
 ### Colors
 # * Select color preset "Solarized Dark".
-### Terminal
-# * Check "Silence Bells"
 ### Text
 # * Set font to either
 # ** Source Code Pro, Regular, 14pt
 # ** Terminus, Medium, 16pt
 ### Terminal
+# * Check "Silence Bells"
+### Terminal
 # * Check "Unlimited Scrollback"
 ### Keys
 # * Make Option key an Meta key, so e.g. tmux binding works on MBP internal keyboard.
-#   - set "Left option key acts as" "+Esc". NOTE need karabiner-elements to get left alt to work on external PC keyboard.
+#   - set "Left option key acts as" "Esc+". NOTE need karabiner-elements to get left alt to work on external PC keyboard.
 # * Create shortcuts to toggle between solarized dark & light:
 # 	- Press the '+' button:>
 # 		- Shortcut: Opt + Cmd + s
@@ -305,28 +296,10 @@ ln -s $HOME/Library/Application\ Support Library/ApplicationSupport
 # * Bind to shortcut CMD+F9
 # * For this to work, System Preferences > Security & Privacy > Privacy > Accessibillity > allow System Preferences.app.
 #
-# # Update Keynote, Pages, Numbers & iMovie in App Store
-# If these apps came preinstalled on the macbook they won't update some times as the "purchase" was made with another account. Fix with:
-# 1. Create a new Apple account in App Store. Chose "None" when asked for credit card.
-# 2. Uninstall all these apps from Applications expose.
-# 3. Go to App Store and install all of them again, now signed in with the newly created account.
 
-
-# * Denon PMA-50 (amplifier). Reference: http://manuals.denon.com/PMA50/EU/EN/WBSPSYknckyjju.php#WBSPMLurphubft
-# 	* Connect via USB
-# 	* Open Audio MIDI Setup app
-# 	* Right click on PMA-50 and check "Use this Device for Sound Output"
-# 	* Set format to: “192 kHz” and “2ch-24 bit Interger”.
-
-
-# Serato DJ Pro: https://serato.com/dj/pro/downloads
-# * Live stream setup: https://support.serato.com/hc/en-us/articles/360001784415-Getting-Serato-DJ-Pro-ready-to-Live-Stream
-#  brew install ishowu obs
-#  * Android setup: https://muddoo.com/tutorials/use-android-phone-as-a-camera-for-obs-how-to-guide/
 
 # Logitech G700s drivers
 # * https://support.logitech.com/en_us/product/g700s-rechargable-wireless-gaming-mouse/downloads#
-
 
 
 # Karabiner elements
@@ -346,7 +319,7 @@ ln -s $HOME/Library/Application\ Support Library/ApplicationSupport
 
 
 # Itsycal
-# This is replaced with native Calendar widget!
+# NOPE This is replaced with native Calendar widget!
 # Preferences Save space by hiding built-in time in System Preferences > Date & Time > Clock > uncheck "Show date & time in menu bar".
 ## Appearance
 # * Check "Use outline icon"
@@ -356,25 +329,8 @@ ln -s $HOME/Library/Application\ Support Library/ApplicationSupport
 # * Check "Show calendar weeks"
 
 
-# Irvue
-# Prefer this to Freshbackmac as one can get info about the selected wallpaper.
-# NOTE switch to built-in dynamic wallpapers with dark/light mode.
-## General
-# * Folder for saved wallpaper: ~/media/images/wallpapers/usplash/
-# * Uncheck Notifications
-# * Check Load at startup:
-## Shortcuts
-# * Change wallpaper: Ctrl + Shift + Cmd + W (to be consistent with Freshbackmac)
-# * Disable all other shortcuts as e.g. opt+cmd+r conflicts with Firefox reading mode, cmd+opt+s with iTerm solarized toggle.
-# ** It's not enough to uncheck a shortcut, it's value has to be deleted otherwise it will be enabled again.
-
-
-# Sensiblesidebuttons
-# * Launch it one time to set right permissions needed.
-# * From menu bar icon: hide icon
-
-
 # Semulov preferences
+# NOPE replaced by Jettison
 # NOTE Install again when https://github.com/kainjow/Semulov/issues/14 is solved, until then use ~/bin/macos_eject_external_disks.command
 ## Interface
 # * Check "Show number of mounted in menubar"
@@ -387,104 +343,37 @@ ln -s $HOME/Library/Application\ Support Library/ApplicationSupport
 ## Miscellaneous
 # * Launch at login
 
+# Jettison
+## Options
+# * Check Launch at start
+### Hotkeys
+# * Eject external disks: ctrl + opt + cmd + e
+# * Eject disks and sleep: ctrl + opt + cmd + s
 
-# The Unarchiever
+# The Unarchiver
 ## Archive formats
 # Enable for most archives. Might have to change in Finder for it to be the default program for some files.
 ## Extraction
 # * Uncheck "Reveal expanded items in Finder".
 
-# Mixedinkey
-## Update Tags
-# * What to write: Write the key and energy level with the word Energy
-# * Where to write it: In front of the comments
-# * Check "Update Tempo tag"
-## Export cue points
-# Uncheck Traktor for fast export.
 
-
-# Musicbrainz Picard
-## Metadata
-# * Remove text from "Non-album track", to not tag wit this tag when there's no found Album.
-### Genres
-# * Check "Use genres from musicbrainz".
-## Plugins
-# * Install Amazon cover art, Wikidata genre
-## Advanced
-### Network
-# * Uncheck "Web Proxy"
-
-
-# Restic
-# * If running restic from cron, then it seems like giving /usr/sbin/cron full disk access prevents problems like
+# restic_backup.sh
+# * If running restic from cron, then it seems like giving /usr/sbin/cron (and actually not restic(1)) full disk access prevents problems like
 # "scan: Open: open /Users/$USER/Desktop: operation not permitted"
 # System Preferences > Security & Privacy > Privacy > Full Disk Access > add /usr/sbin/cron
-#sudo cp bin/cron_*_if_fail /usr/local/sbin/
-# * Then install https://github.com/erikw/restic-systemd-automatic-backup
-# ** skipping email setup.
-# ** Use modified scripts in dotfiles bin/ for restic_*.sh
-# ** Use ~/.restic for the env files instead of /etc. Simply use the alias restic_env_b2.
-# ** Add erikw crontab entries like
-# Most likely that my laptop is turned on in the evening (need some time until deadline 21:00).
+## * Add an user crontab entries like:
+## Environment
+##SHELL=/bin/sh
+## ~/ works, but not $HOME strangely enough.
+#PATH=~/bin:/usr/local/bin:/usr/local/sbin:/sbin:/usr/sbin:/usr/bin:/bin
+## Reference: crontab(5).
+## Helper: https://crontab.guru/
+## Order of crontab fields
+## minute hour mday month wday	command
+#
+#
 #30     19     *     *     *    if_fail_do_notification restic_backup.sh
 #@monthly                       if_fail_do_notification restic_check.sh
-
-
-
-# iSyncr
-# Set-up guide at https://www.jrtstudio.com/iSyncr/Tutorials/WiFi
-
-# Ableton Live
-# root=/Volumes/toshiba_music/daw/
-## Look and Feel
-# * Zoom Display: 115% NOPE leave as default.
-# * Theme: Dark
-## Audio
-# Use CoreAudio driver and Scarlette 2i2 for input/output, according to https://getstarted.focusrite.com/en/scarlett/set-your-input-and-output-device
-## Link MIDI
-# * Set up Ableton MIDI input/output according to ~/doc/man/music/novation_launchkey_mk3_manual_v1.03.pdf page 12.
-## Library
-# * Location of User Library: $root/ableton/includes/user_library/
-# * Installation Folder for Packs: $root/ableton/includes/factory_packs/
-## Plug-Ins:
-# * Note, use the Custom Paths as my own install paths, while keeping manuals etc in $root/plugins/installers/. See https://help.ableton.com/hc/en-us/articles/209068929-Using-AU-and-VST-plug-ins-on-Mac
-# * Use VST2 Plug-In Custom Folder: true
-# * VST2 Plug-In Custom Folder: $root/plugins/VST/
-# * Use VST3 Plug-In Custom Folder: true
-# * VST3 Plug-In Custom Folder: $root/plugins/VST3/
-## Files and Folders
-# * Adjust the default empty project "Save current Set as Default" with a new project:
-#  1. Keep 1 MIDI track only with brown color (drums).
-#  2. Set master volume to -8dB as my headphones are very loud by default.
-#  3. Set preview volume on master channels' mixer to -8dB for the same reason.
-## Other
-# * Add these directories to the Ableton browser:
-# $root/../music/samples/
-# $root/ableton/packs/
-# $root/ableton/templates/
-# $root/ableton/ableton_template_sets/
-# $root/ableton/max/
-
-# Kontakt Player
-# Right-click on the Rack area > In the quickl-load, drag-and-drop /Volumes/toshiba_music/daw/kontakt_user_library/. Reference: https://vi-control.net/community/threads/how-do-i-add-libraries-in-kontakt-6.95343/
-
-
-
-# Novation Launchkey 3
-# * Set up Ableton MIDI input/output according to ~/doc/man/music/novation_launchkey_mk3_manual_v1.03.pdf page 12.
-# Additional software can be found at
-# * https://customer.novationmusic.com/en/my-software
-# * https://customer.novationmusic.com/en/support/downloads?brand=Novation&product_by_type=1431&download_type=software
-
-
-# Focusrite Scarlett 2i2
-# * Install Focusrite control https://focusrite.com/en/focusrite-control (https://customer.focusrite.com/en/getstarted/begin)
-# But prefer cask:
-#brew tap homebrew/cask-drivers
-#brew install focusrite-control
-# Bundled software at https://customer.focusrite.com/en/my-software (Nsame as https://customer.novationmusic.com/en/my-software, novation is a brand in Focusrite group).
-
-
 
 
 # Stretchly
@@ -496,17 +385,162 @@ ln -s $HOME/Library/Application\ Support Library/ApplicationSupport
 # * Dropbox badge: Never show
 # * Open folders in: Finder
 
-# Jettison
-## Options
-# * Check Launch at start
-### Hotkeys
-# * Eject external disks: ctrl + opt + cmd + e
-# * Eject disks and sleep: ctrl + opt + cmd + s
 
-# restic_backup.sh
-# Add a user cron entry like:
-#
+# Denon PMA-50 (amplifier). Reference: http://manuals.denon.com/PMA50/EU/EN/WBSPSYknckyjju.php#WBSPMLurphubft
+# * Connect via USB
+# * Open Audio MIDI Setup app
+# * Right click on PMA-50 and check "Use this Device for Sound Output"
+# * Set format to: “192 kHz” and “2ch-24 bit Interger”.
+
+# Crontab backup automation
+# Add to crontab an entry like:
+#@monthly                       if_fail_do_notification bak_crontab.sh
+# }
+
+# Development {
+# Java/JVM development
+## SDKMan: https://sdkman.io/install
+# $ curl -s "https://get.sdkman.io" | bash
+# $ sdk install gradle x.y
+# $ sdk install java 15.0.0.hs-adpt
+# ## Brew
+# Reference: https://www.chrisjmendez.com/2018/10/14/how-to-install-java-on-osx-using-homebrew/
+# brew tap adoptopenjdk/openjdk
+# brew install java adoptopenjdk8
+
+# }
+
+# DJing {
+# Serato DJ Pro:
+# * Download at https://serato.com/dj/pro/downloads
+# * Click the Rec buton > Set recording location to /Volumes/toshiba_music/music/sets/my_sets/serato_live_sets/
+## Preferences:
+### DJ Preferences
+# * Check: Track End Warning
+### Library + Display
+# * Check: Center on selected Song
+# * Played Track Color: Gray
+# * Library Text Size: Step 5 out of 8
+# * Check: Show Tempo Matching Display
+# * Check: EQ Colored Waveforms
+# * Check: Hi-Res Screen Display
+# * Uncheck: Show Streaming Services
+## Live stream setup: https://support.serato.com/hc/en-us/articles/360001784415-Getting-Serato-DJ-Pro-ready-to-Live-Stream
+#  brew install ishowu obs
+#  * Android setup: https://muddoo.com/tutorials/use-android-phone-as-a-camera-for-obs-how-to-guide/
+
+# Djay Pro AI
+## General
+# * Slide Range +-: 16%
+# * Uncheck: Reset (EQ, effect, controls)
+# * Stop time: 0,0 seconds
+## Devices:
+# * Mixer mode: external, and set Pioneer device for everything
+## Library:
+# * Check: Hide unavailalbe tracks
+## Appearance:
+# * Fontisze: 3/4
+# * Check: Show bar numbers
+# * Check: Show minute markers
+# * Check: Dim inactive deck
+
+# Musicbrainz Picard
+## Metadata
+# * Remove text from "Non-album track", to not tag wit this tag when there's no found Album.
+### Genres
+# * Check "Use genres from musicbrainz".
+## Plugins
+# * Install "Amazon cover art", "Wikidata genre"
+## Advanced
+
+
+# iSyncr
+# Set-up guide at https://www.jrtstudio.com/iSyncr/Tutorials/WiFi
+
+# Mixedinkey
+# * Download from https://account.mixedinkey.com/
+## Update Tags
+# * What to write: Write the key and energy level with the word Energy
+# * Where to write it: In front of the comments
+# * Check "Update Tempo tag"
+## Export cue points
+# Uncheck Traktor for fast export.
+
+# }
+
+# Music production {
+# Focusrite Scarlett 2i2
+# * Install Focusrite control https://focusrite.com/en/focusrite-control (https://customer.focusrite.com/en/getstarted/begin)
+# But prefer cask setup in Brewfile
+# Bundled software at https://customer.focusrite.com/en/my-software (Nsame as https://customer.novationmusic.com/en/my-software, novation is a brand in Focusrite group).
+
+# Akai MPKmini keyboard
+# * https://www.akaipro.com/productregistration/customer/
+# - Akai MPC Essentials Software  -
+# - Akai MPKmini MK2 Editor - https://www.akaipro.com/productregistration/customer/
+# - Air Hybrid synth
+
+
+# Novation Launchkey 3
+# * Set up Ableton MIDI input/output according to ~/doc/man/music/novation_launchkey_mk3_manual_v1.03.pdf page 12.
+# Additional software can be found at
+# * https://customer.novationmusic.com/en/my-software
+# * https://customer.novationmusic.com/en/support/downloads?brand=Novation&product_by_type=1431&download_type=software
 
 
 
+# Ableton Live
+# * Download from https://www.ableton.com/en/account/
+# root=/Volumes/toshiba_music/daw/
+## Look and Feel
+# * Theme: Dark
+## Audio
+# Use CoreAudio driver and Scarlette 2i2 for input/output, according to ~/doc/man/music/focusrite_scarlett-2i2-3rd_genuser-guide.pdf page 10, or   https://getstarted.focusrite.com/en/scarlett/set-your-input-and-output-device
+# * Driver Type: Core Audio
+# * Audio Input Device: Scarlette 2i2 USB
+# * Audio Output Device: Scarlette 2i2 USB
+# * IO Sample rate: 44100
+# * Default SR Conversion: High Quality
+# * Buffer size: 512 samples
+# * Driver Error Compensation: 0.0
+## Link MIDI
+# * Set up Ableton MIDI input/output according to ~/doc/man/music/novation_launchkey_mk3_manual_v1.03.pdf page 12.
+# * Control Surfaces, the 2 first rows should be
+#   - Control Surface: Launchkey MK3
+#   - Input: Launchkey MK3 37 (LKM3 DAW Output)
+#   - Output: Launchkey MK3 37 (LKM3 DAW Input)
+# * Takeover mode: pickup
+# * Control Surfaces:
+# - Input Launchkey MK3 37 (LKM3 MIDI Output):	Tack=On, Sync=Off, Remote=On
+# - Input Launchkey_MK3 Input (Lanuchkey):	Tack=On, Sync=Off, Remote=On
+# - Output Launchkey MK3 37 (LKM3 MIDI Input):	Tack=On, Sync=On, Remote=On
+# - Output Launchkey_MK3 Output (Launchkey):	Tack=On, Sync=Off, Remote=On
+## Files and Folders
+# * Adjust the default empty project "Save current Set as Default" with a new project:
+#  1. Keep 1 MIDI track only with brown color (drums).
+#  2. Set master volume to -8dB as my headphones are very loud by default.
+#  3. Set preview volume on master channels' mixer to -8dB for the same reason.
+## Library
+# * Location of User Library: $root/ableton/includes/user_library/
+# * Installation Folder for Packs: $root/ableton/includes/factory_packs/
+## Plug-Ins:
+# * Note, use the Custom Paths as my own install paths, while keeping manuals etc in $root/plugins/installers/. See https://help.ableton.com/hc/en-us/articles/209068929-Using-AU-and-VST-plug-ins-on-Mac
+# * Use VST2 Plug-In System Folder: true
+# * Use VST2 Plug-In Custom Folder: true
+# * VST2 Plug-In Custom Folder: $root/plugins/VST/
+# * Use VST3 Plug-In System Folder: true
+# * Use VST3 Plug-In Custom Folder: true
+# * VST3 Plug-In Custom Folder: $root/plugins/VST3/
+## Other
+# * Add these directories to the Ableton browser:
+# $root/../music/samples/
+# $root/ableton/packs/
+# $root/ableton/templates/
+# $root/ableton/ableton_template_sets/
+# $root/ableton/max/
+
+# Kontakt Player
+# Right-click on the Rack area > In the quick-load, drag-and-drop /Volumes/toshiba_music/daw/kontakt_user_library/. Reference: https://vi-control.net/community/threads/how-do-i-add-libraries-in-kontakt-6.95343/
+
+# }
 # }
