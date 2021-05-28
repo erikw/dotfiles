@@ -40,7 +40,7 @@ $ chmod 744 ssh-keygen.sh
 $ ./ssh-keygen.sh
 ```
 
-Add a config for Github, but don't borther about the values. Instead after this open up `~/.ssh/config` and remove the newly added github section and replace it with
+Add a config for Github, but don't bother about the values. Instead after this open up `~/.ssh/config` and remove the newly added github section and replace it with
 
 ```
 Host *github.com
@@ -59,6 +59,16 @@ Upload the public key to your [Github profile](https://github.com/settings/keys)
 $ xclip ~/.ssh/identityfiles/github_id_rsa.pub
 $ # or, macOS:
 $ pbcopy <  ~/.ssh/identityfiles/github_id_rsa.pub
+```
+
+## Git email
+Needs to be set for Github to associated commits: https://docs.github.com/en/github/setting-up-and-managing-your-github-user-account/managing-email-preferences/setting-your-commit-email-address
+
+```bash
+cat << EOF >>  ~/.gitconfig.local
+[user]
+	email = user@domain.tld
+EOF
 ```
 
 

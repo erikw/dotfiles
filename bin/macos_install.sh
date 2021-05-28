@@ -119,6 +119,17 @@ ln -s $HOME/Library/Application\ Support Library/ApplicationSupport
 #fi
 #sudo sh -c "echo \"$newtab\" | crontab -"
 
+# Git
+email=
+while [ -z "$email" ]; do
+	echo -n "Enter email address for ~/.gitconfig.local: "
+	read email
+done;
+cat << EOF >>  ~/.gitconfig.local
+[user]
+	email = $email
+EOF
+
 # Vim {
 # Install Vundle plugins
 vim -c BundleInstall
@@ -133,6 +144,7 @@ ruby extconf.rb
 make
 cd -
 # }
+
 
 # }
 
