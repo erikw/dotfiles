@@ -4,6 +4,7 @@
 # }
 
 # Taps {
+tap 'homebrew/cask-drivers' # For focusrite-control
 # }
 
 # Formula: default {
@@ -16,13 +17,13 @@
 # }
 
 # Cask: default {
-	cask 'ableton-live-suite'
 	cask 'android-file-transfer'
 	cask 'android-platform-tools'
 	cask 'authy'
 	cask 'cryptomator'
 	cask 'dropbox'
 	cask 'ferdi'
+	cask 'focusrite-control'
 	cask 'gramps'
 	cask 'isyncr'
 	cask 'jettison'
@@ -36,7 +37,8 @@
 
 # Cask: optional {
 =begin
-	mixed-in-key	# If using latest version, which I'm not.
+	cask 'ableton-live-suite' # If using latest version, which I'm not.
+	cask 'mixed-in-key'	# If using latest version, which I'm not.
 =end
 # }
 
