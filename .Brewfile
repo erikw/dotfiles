@@ -44,6 +44,7 @@
 	brew 'ncdu'
 	brew 'netcat'
 	brew 'nmap'
+	brew 'npm'
 	brew 'octave'
 	brew 'pdfgrep'
 	brew 'peco'

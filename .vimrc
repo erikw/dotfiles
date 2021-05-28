@@ -104,7 +104,7 @@
 		Plugin 'scrooloose/nerdcommenter'
 		Plugin 'scrooloose/nerdtree'
 		Plugin 'scrooloose/syntastic'
-		Plugin 'suan/vim-instant-markdown'
+		Plugin 'instant-markdown/vim-instant-markdown', {'rtp': 'after'}
 		Plugin 'tmux-plugins/vim-tmux'
 		Plugin 'tomtom/tlib_vim'	" Required for garbas/vim-snipmate
 		Plugin 'tpope/vim-capslock'
@@ -137,7 +137,7 @@
 " }
 
 " General {
-	filetype plugin indent on			" File type specific features.
+	"filetype plugin indent on			" File type specific features. Already set as part of Vundle setup.
 	syntax enable					" Syntax highlighting but keep current colors.
 	"syntax on					" Use default colors for syntax highlighting.
 	set mouse=a					" Enable mouse in all modes.

@@ -119,6 +119,21 @@ ln -s $HOME/Library/Application\ Support Library/ApplicationSupport
 #fi
 #sudo sh -c "echo \"$newtab\" | crontab -"
 
+# Vim {
+# Install Vundle plugins
+vim -c BundleInstall
+
+#  Instant Markdown Preview
+# https://github.com/instant-markdown/vim-instant-markdown
+npm -g install instant-markdown-d
+
+# command-t
+cd $HOME/.vim/bundle/command-t/ruby/command-t/ext/command-t
+ruby extconf.rb
+make
+cd -
+# }
+
 # }
 
 # Installs: Manual {
@@ -395,6 +410,16 @@ ln -s $HOME/Library/Application\ Support Library/ApplicationSupport
 # Crontab backup automation
 # Add to crontab an entry like:
 #@monthly                       if_fail_do_notification bak_crontab.sh
+
+# Taskwarrior
+# * Edit `~/.taskrc` to chose path for holiday files and set up remote sync server.
+
+# Atom
+# As suggested from [Stackoverflow](https://stackoverflow.com/questions/30006827/how-to-save-atom-editor-config-and-list-of-packages-installed), install frozen packages:
+#apm install --packages-file ~/.atom/apm_packages_bakup.txt
+# Back the installed ones up with:
+#apm list --installed --bare > ~/.atom/apm_packages_bakup.txt
+
 # }
 
 # Development {
@@ -408,6 +433,25 @@ ln -s $HOME/Library/Application\ Support Library/ApplicationSupport
 # brew tap adoptopenjdk/openjdk
 # brew install java adoptopenjdk8
 
+# Xcode
+#* [Xvim](http://xvim.org/) Vim keybindings. See Xcode 8 [instructions](https://github.com/XVimProject/XVim/blob/master/INSTALL_Xcode8.md)
+#* [stackia/solarized-xcode](https://github.com/stackia/solarized-xcode) for dark & light themes.
+#* [ArtSabintsev/Solarized-Dark-for-Xcode](https://github.com/ArtSabintsev/Solarized-Dark-for-Xcode) for a (better?) dark theme.
+
+# Python {
+## jedi-vim
+#cd ~/.vim/bundle/jedi-vim/
+#git submodule update --init
+
+## rope
+#pip3 install --user ropevim
+#cat >> ~/.zshrc
+#export PYTHONPATH="$PYTHONPATH:$HOME/Library/Python/3.5/lib/python/site-packages"
+#^D
+
+# isort
+#pip3 install --user isort
+# }
 # }
 
 # DJing {
@@ -468,7 +512,7 @@ ln -s $HOME/Library/Application\ Support Library/ApplicationSupport
 
 # }
 
-# Music production {
+# Music Production {
 # Focusrite Scarlett 2i2
 # * Install Focusrite control https://focusrite.com/en/focusrite-control (https://customer.focusrite.com/en/getstarted/begin)
 # But prefer cask setup in Brewfile
