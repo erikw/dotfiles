@@ -86,5 +86,3 @@
 ; Available for git >=v2.13
 [includeIf "gitdir:~/work/"]
 	path = .gitconfig-work
-
-;;;;;;; Append computer specific overrides below. ;;;;;;
