@@ -31,7 +31,8 @@ fi
 	# - .zprompts - custom prompt themes
 	fpath=(~/.zsh_funcs $fpath)
 
-	# Extra zsh completions not in core zsh: https://github.com/zsh-users/zsh-completions
+	# Homebrew zsh completions. Static path for faster shell startup, than solution from https://docs.brew.sh/Shell-Completion
+	# Some of the completion functions comes from https://github.com/zsh-users/zsh-completions
 	if [ -d /usr/local/share/zsh-completions ]; then
 		fpath=(/usr/local/share/zsh-completions $fpath)
 	fi

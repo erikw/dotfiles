@@ -52,4 +52,7 @@ tap 'homebrew/cask-drivers' # For focusrite-control
 # }
 
 # Misc {
+	# For Heroku cli tool. https://devcenter.heroku.com/articles/heroku-cli
+	tap 'heroku/brew'
+	brew 'heroku'
 # }
