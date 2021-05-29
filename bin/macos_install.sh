@@ -258,7 +258,7 @@ cd -
 ### General
 # * Send text at start: "irctor"   #irctorautostart
 ### Colors
-# * Select color preset "Solarized Dark".
+# * Select color preset "Solarized Ligt". With macOs appearance following the sun, it's much more likely to be day time and thus no need to switch color in irctor on start.
 ### Text
 # * Set font to either
 # ** Source Code Pro, Regular, 14pt
