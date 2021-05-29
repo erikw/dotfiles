@@ -75,7 +75,6 @@ iso86012epoch() {
 }
 export iso86012epoch >/dev/null
 
-
 # Stopwatch, press enter to time.
 # Source: http://superuser.com/questions/611538/is-there-a-way-to-display-a-countdown-or-stopwatch-timer-in-a-terminal
 stopwatch() {
@@ -127,12 +126,10 @@ vigrep() {
 	vim -p $(grep -Rl $@) -c 1 +/$search
 }
 
-
 _dev_log() {
 	local message="$@"
 	echo "🔨 > $message..."
 }
-
 
 # Encrypt file with a symmetric cipher.
 encryptf() {
@@ -193,9 +190,16 @@ moshmux () {
 	mosh $args -- sh -c "tmux attach || tmux new-session"
 }
 
-
 # cd(1) to installation of gem from bundle.
 bundlecd () {
 	local gem="$@"
 	cd $(bundle info --path "$gem")
+}
+
+# Swap two file's names. Reference: https://stackoverflow.com/a/1119738/265508
+swap() {
+    local TMPFILE=tmp.$$
+    mv "$1" $TMPFILE
+    mv "$2" "$1"
+    mv $TMPFILE "$2"
 }
