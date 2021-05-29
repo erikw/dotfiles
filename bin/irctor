@@ -4,12 +4,15 @@ session_name=irctor
 
 tmux start-server
 
-# Set correc theme on start up.
+set -x
+# Set correct theme on start up.
 source $HOME/bin/solarized_toggle_lib.sh
 set_solarized_theme() {
 	mode=$(st_read_status)
 	declare -A opts_g=( [mode]=$mode [macos_update]=false)
 	st_set_tmux opts_g
+	# Also set iTerm, as the mode might be wrong on launch of the application
+	st_set_iterm2 opts_g
 }
 
 
@@ -45,7 +48,6 @@ do_start() {
 		#tmux select-window -t "$session_name":0
 		#tmux select-pane -t "$session_name":0.0
 		#tmux select-window -t "$session_name":1
-		set_solarized_theme
 		echo "Session ${session_name} started."
 	else
 		echo "Session ${session_name} already exists."
@@ -88,6 +90,8 @@ do_clean_files() {
 	fi
 }
 
+# Do in background as setting iterm2 colors takes a bit.
+set_solarized_theme &
 case $1 in
 	attach | "")
 		do_attach

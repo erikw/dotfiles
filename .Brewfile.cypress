@@ -9,6 +9,7 @@ tap 'homebrew/cask-drivers' # For focusrite-control
 
 # Formula: default {
 	brew 'restic'
+	brew 'ruby'	# For Jekyll
 # }
 #
 # Formula: optional {
