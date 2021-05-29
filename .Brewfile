@@ -51,6 +51,7 @@
 	brew 'pidof'
 	brew 'python'
 	brew 'readline'
+	brew 'rename'		# aka rename.pl
 	brew 'rsync'
 	brew 'sl'
 	brew 'source-highlight'

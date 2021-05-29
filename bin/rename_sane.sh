@@ -1,5 +1,6 @@
 #!/usr/bin/env sh
 # Rename to sane file names.
+# Requirements: rename(.pl)
 
 #set -xe
 
@@ -15,7 +16,7 @@ for dir in $(find $path -type d | tac); do
 	cd "$dir"
 	# On macOS, case-only rename is not allowed. Need to rename file to temporay name first.
 	# Reference: https://stackoverflow.com/questions/7787029/how-do-i-rename-all-files-to-lowercase
-	#rename.pl 's/(.*)/lc($1)/e' *
+	#rename 's/(.*)/lc($1)/e' *
 	for f in *; do
 		#lower=$(echo $f | tr "[:upper:]" "[:lower:]")
 		# gnu tr is not internationalized, but gawk is: https://unix.stackexchange.com/a/228570/19909
@@ -23,6 +24,6 @@ for dir in $(find $path -type d | tac); do
 		mv "$f" "$f.tmp"
 		mv "$f.tmp" "$lower"
 	done
-	rename.pl 's/ /_/g' *
+	rename 's/ /_/g' *
 	cd - >/dev/null
 done
