@@ -253,6 +253,8 @@ cd -
 #   - Uncheck: Confirm "iTerm2 (#Q)" if windows open"
 # * iterm.sh: If iterm2.app is closed, 2 windows will be opended by this script. To prevent this:
 # 	- Startup > Select "Only Restore Hotkey Window" NOPE don't do this anymore as of #irctorautostart
+### Selection
+# * Check "Applications in terminal may access clipboard" so that I can e.g. copy from vim buffer to gui clipboard.
 ## Profiles
 #* After configuring the default profile, clone it in to a profile called "zsh" and remove the "Send text at start" #irctorautostart
 ### General

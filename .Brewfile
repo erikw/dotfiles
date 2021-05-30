@@ -62,7 +62,7 @@
 	brew 'tree'
 	brew 'unar'
 	brew 'unzip'
-	brew 'urlview'
+	brew 'urlview'		# for tmux link opening
 	brew 'w3m'
 	brew 'watch'
 	brew 'wget'
