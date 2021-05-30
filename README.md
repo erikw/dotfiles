@@ -51,6 +51,7 @@ Host *github.com
 	ServerAliveInterval 15
 ```
 
+
 ### Upload keys
 Upload the public key to your [Github profile](https://github.com/settings/keys)
 
@@ -62,13 +63,12 @@ $ pbcopy <  ~/.ssh/identityfiles/github_id_rsa.pub
 ```
 
 ## Git email
-Needs to be set for Github to associated commits: https://docs.github.com/en/github/setting-up-and-managing-your-github-user-account/managing-email-preferences/setting-your-commit-email-address
+Needs to be set for Github to [associate](https://docs.github.com/en/github/setting-up-and-managing-your-github-user-account/managing-email-preferences/setting-your-commit-email-address) commits.
 
-```bash
-cat << EOF >>  ~/.gitconfig.local
+Set up git user email address in `~/.gitconfig.local`:
+```
 [user]
-	email = user@domain.tld
-EOF
+	email = user@doman.tld
 ```
 
 
@@ -77,10 +77,13 @@ EOF
 ```bash
 $ git clone git@github.com:erikw/dotfiles.git ~/.dotfiles
 $ cd !$
+$ git remote add upstream git@github.com:justone/dotfiles.git
 $ git submodule init
 $ git submodule update
 $ bin/dfm install
 ```
+
+``
 
 Check what dotfiles that were overriden, and handle this with a merge or discard.
 
