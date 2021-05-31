@@ -32,7 +32,7 @@ Most of my personal dotfiles can be found in this branch. I use dfm (dot file ma
 
 ## Set up Github credentials
 
-### Generate a pair of new SSH keys.
+### Generate a pair of new SSH keys
 ```bash
 $ cd /tmp
 $ curl -O https://raw.githubusercontent.com/erikw/dotfiles/personal/bin/ssh-keygen.sh
