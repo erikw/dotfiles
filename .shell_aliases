@@ -60,11 +60,12 @@
 # }
 
 # Color support {
+	# NOTE see ~/.shell_commons for dircolors
 	LS_OPTIONS=
 	shell_is_linux && LS_OPTIONS="$LS_OPTIONS --time-style=long-iso -F"
 	if [ "$TERM" != dumb ]; then
 		if shell_is_linux && program_is_in_path dircolors; then
-			eval "`dircolors -b`"
+		    eval "$(dircolors -b)"
 		fi
 		# Colors when output is terminal.
 		#alias ls="ls ${ls_options} --color=auto"
@@ -73,7 +74,8 @@
 		#alias dir='ls --color=auto --format=vertical'
 		#alias vdir='ls --color=auto --format=long'
 
-		if ! shell_is_macos; then
+		# /bin/ls on mac does not accept --color, but ls from coreutils does!
+		if ! shell_is_macos || [ -e /usr/local/opt/coreutils/libexec/gnubin/ls ]; then
 			LS_OPTIONS="$LS_OPTIONS --color=auto"
 		fi
 
@@ -127,14 +129,6 @@
 
 
 
-# }
-
-# GNU coreutils on macOS {
-# Some override of GNU utils with macOS default BSD utils are problematic, so reverse those.
-if shell_is_macos; then
-	# GNU ls from coreutils homebrew package on macOS does not work with colors, at least not now.
-	alias ls='/bin/ls $LS_OPTIONS'
-fi
 # }
 
 # SSH agent {
