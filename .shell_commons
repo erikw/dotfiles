@@ -124,15 +124,17 @@ source $HOME/.shell_functions
 
 # UI {
 	# Solarized ls colors.
-	if shell_is_linux; then
-		dircolorstheme=$HOME/src/github.com/seebi/dircolors-solarized/dircolors.256dark
-		if [ -f $dircolorstheme ]; then
-			eval `dircolors $dircolorstheme`
-		elif [ -f "$HOME/.dircolorsrc" ]; then
-			eval `dircolors $HOME/.dircolorsrc`
+	if program_is_in_path dircolors; then
+		dircolorsdb=$HOME/src/github.com/seebi/dircolors-solarized/dircolors.256dark
+		if ! [ -f $dircolorsdb ]; then
+			dircolorsdb=$HOME/.dircolorsrc
 		fi
-	elif shell_is_bsd; then
-		export CLICOLOR=yes
+		eval "$(dircolors -b $dircolorsdb)"
+	fi
+
+	# Colorize ls(1) on BSD/Mac systems.
+	if shell_is_bsd; then
+		export CLICOLOR=1
 	fi
 
 	 # Use colorful terminal.
