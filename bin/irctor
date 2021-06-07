@@ -4,7 +4,6 @@ session_name=irctor
 
 tmux start-server
 
-set -x
 # Set correct theme on start up.
 source $HOME/bin/solarized_toggle_lib.sh
 set_solarized_theme() {
