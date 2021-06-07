@@ -21,6 +21,7 @@ if [ "$#" -eq 0 ]; then
 	exit 2
 fi
 
+# NOTE don't use this as a template no more, refer to https://github.com/erikw/templates/blob/master/bash/getopts.sh
 # getopts documentation: https://www.gnu.org/software/libc/manual/html_node/Using-Getopt.html
 # "An option character in this string can be followed by a colon (‘:’) to indicate that it takes a required argument."
 while getopts ":c:i:m:h?" opt; do
