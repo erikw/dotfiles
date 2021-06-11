@@ -434,6 +434,11 @@ cd -
 # Back the installed ones up with:
 #apm list --installed --bare > ~/.atom/apm_packages_bakup.txt
 
+
+# Custom fonts
+# * Open Font Book.app > File > Add Fonts > ~/media/fonts/
+#   * Skip all fonts with warnings/errors on
+
 # }
 
 # Development {
