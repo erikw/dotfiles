@@ -367,7 +367,7 @@ defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
 ### Tags
 # * Hide all
 ### Sidebar
-# *** Hide: Recents, Airdrop, Documents, Downloads, Movies, Music, Pictures, Recent Tags
+# *** Hide: Airdrop, Documents, Downloads, Movies, Music, Pictures, Recent Tags
 # View > Customize Control Strip > Add "New Folder" shortcut
 ### Advanced
 # * Check: Show all file extensions in Finder
@@ -385,6 +385,7 @@ defaults write com.apple.finder _FXSortFoldersFirst -bool true
 # - ~/doc/
 # - ~/dl/
 # - ~/media/images/screenshots/
+# - ~/src/github.com/
 # - ~/tmp/
 # - /Applications
 # - ~/Desktop
@@ -423,6 +424,7 @@ chflags hidden ~/Public
 
 # Mail.app {
 # * Drag my Gmail account to the top in the mailboxes left side list and collapse all other.
+# * Break out the  Archive button with space on both sides, to not misclick delete button.
 # * The default keyboard shortcut for archive an email, ctrl+cmd+a, conflicts with Todoist. Add another one.
 # 	- Reference: https://www.lifewire.com/archive-keyboard-shortcut-os-x-mail-1172749
 # 	- System Preferences > Shortcuts > App Shortcuts > + >

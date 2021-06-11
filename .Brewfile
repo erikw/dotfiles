@@ -103,7 +103,6 @@
 	brew 'nethogs'
 	brew 'node'
 	brew 'notmuch'
-	brew 'npm'
 	brew 'offlineimap'
 	brew 'openvpn'
 	brew 'pastebinit'
