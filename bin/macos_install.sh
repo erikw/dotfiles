@@ -177,9 +177,11 @@ cd -
 # Install: https://install.bankid.com/, prefer cask!
 
 # Amethyst
-# Preferences:
+## General
 # * Uncheck "Display layout when changing spaces".
 # * Set the following layouts to be used: tall, fullscreen, floating.
+## Floating
+# * Add Pixelmator Pro, as the mouse hover tooltips are treated as own windows.
 
 # Clipy
 ## General
@@ -438,6 +440,14 @@ cd -
 # Custom fonts
 # * Open Font Book.app > File > Add Fonts > ~/media/fonts/
 #   * Skip all fonts with warnings/errors on
+
+
+# Pixelmator Pro
+## General
+# * Appearance: Auto
+# * New Image contents: transparent
+## Extension
+# Select "Save to Pictures" instead of iCloud
 
 # }
 

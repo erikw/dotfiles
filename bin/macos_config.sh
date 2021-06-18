@@ -384,8 +384,9 @@ defaults write com.apple.finder _FXSortFoldersFirst -bool true
 # - ~/
 # - ~/doc/
 # - ~/dl/
-# - ~/media/images/screenshots/
+# - ~/media/
 # - ~/src/github.com/
+# - ~/media/images/screenshots/
 # - ~/tmp/
 # - /Applications
 # - ~/Desktop
@@ -475,6 +476,10 @@ chflags hidden ~/Public
 #Profiles
 ## Shell
 # * When the shell exists: close if the shell exited cleanly
+# }
+
+# Archive Utill.app {
+# * Uncheck "Reveal expanded items in Finder"
 # }
 
 # Misc {

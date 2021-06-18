@@ -46,6 +46,7 @@ tap 'homebrew/cask-drivers' # For focusrite-control
 # Mas: default {
 	mas 'djay', id: 450527929
 	mas 'Kindle', id: 405399194
+	mas 'Pixelmator Pro' 1289583905
 # }
 
 # Mas: optional {
