@@ -493,7 +493,7 @@ cd -
 ### Library + Display
 # * Check: Center on selected Song
 # * Played Track Color: Gray
-# * Library Text Size: Step 5 out of 8
+# * Library Text Size: Step 6 out of 8
 # * Check: Show Tempo Matching Display
 # * Check: EQ Colored Waveforms
 # * Check: Hi-Res Screen Display
