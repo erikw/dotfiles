@@ -65,6 +65,11 @@ st_set_statusfile() {
 	echo "${opts[mode]}" > $ST_STATUSFILE
 }
 
+# Updates status from macOS to cache, and then return value
+st_update_read_status() {
+	[ -e $ST_STATUSFILE ] && cat $ST_STATUSFILE || echo ""
+}
+
 st_read_status() {
 	[ -e $ST_STATUSFILE ] && cat $ST_STATUSFILE || echo ""
 }

@@ -2,6 +2,8 @@
 # Control irctor tmux session.
 session_name=irctor
 
+set -x
+
 tmux start-server
 
 # Set correct theme on start up.

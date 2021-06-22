@@ -19,3 +19,4 @@
 # Jekyll
 --ignore-dir=.jekyll-cache/
 --ignore-dir=_site/
+--ignore-dir=.git-metadata/

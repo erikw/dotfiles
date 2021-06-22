@@ -18,20 +18,20 @@ program_is_in_path() {
 }
 
 # Shell detect functions {
-	export SHELL_PLATFORM='unknown'
+	export SHELL_PLATFORM=unknown
 	#ostype() { echo $OSTYPE | tr '[:upper:]' '[:lower:]'; }
 	ostype() { echo $OSTYPE; } # tr is not built-in => expensive. See if this works in practive, to not lowercase.
 	case "$(ostype)" in
-		*'linux'*	) SHELL_PLATFORM='linux'	;;
-		*'darwin'*	) SHELL_PLATFORM='macos'	;;
-		*'freebsd'*	) SHELL_PLATFORM='freebsd'	;;
-		*'bsd'*		) SHELL_PLATFORM='bsd'		;;
+		*'linux'*	) SHELL_PLATFORM=linux	;;
+		*'darwin'*	) SHELL_PLATFORM=macos	;;
+		*'freebsd'*	) SHELL_PLATFORM=freebsd	;;
+		*'bsd'*		) SHELL_PLATFORM=bsd		;;
 	esac
 
-	shell_is_linux() { [ "$SHELL_PLATFORM" = 'linux' ]; }
-	shell_is_macos() { [ "$SHELL_PLATFORM" = 'macos' ]; }
-	shell_is_freebsd() { [ "$SHELL_PLATFORM" = 'freebsd' ]; }
-	shell_is_bsd() { [ "$SHELL_PLATFORM" = 'bsd' ] || [ "$SHELL_PLATFORM" = 'freebsd' ] || [ "$SHELL_PLATFORM" = 'macos' ]; }
+	shell_is_linux() { [ "$SHELL_PLATFORM" = linux ]; }
+	shell_is_macos() { [ "$SHELL_PLATFORM" = macos ]; }
+	shell_is_freebsd() { [ "$SHELL_PLATFORM" = freebsd ]; }
+	shell_is_bsd() { [ "$SHELL_PLATFORM" = bsd ] || [ "$SHELL_PLATFORM" = freebsd ] || [ "$SHELL_PLATFORM" = macos ]; }
 
 	# Test if the shell is interactive.
 	shell_is_interactive() {
