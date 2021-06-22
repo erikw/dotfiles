@@ -11,11 +11,7 @@ declare -A opts_g=( [mode]=unset [macos_update]=false)
 
 plist=$HOME/Library/Preferences/.GlobalPreferences.plist
 fswatch --one-per-batch --event Renamed $plist | while read change; do \
-	defaults read -g AppleInterfaceStyle >/dev/null 2>&1
-	case "$?" in
- 		0) mode=dark ;;
- 		*) mode=light ;;
-	esac
+	mode=$(st_read_macos_mode)
 	echo "macOS appearace set to $mode"
 
 	#$HOME/bin/solarized_toggle.sh -m $mode

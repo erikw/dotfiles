@@ -2,14 +2,12 @@
 # Control irctor tmux session.
 session_name=irctor
 
-set -x
-
 tmux start-server
 
 # Set correct theme on start up.
 source $HOME/bin/solarized_toggle_lib.sh
 set_solarized_theme() {
-	mode=$(st_read_status)
+	mode=$(st_read_macos_mode)
 	declare -A opts_g=( [mode]=$mode [macos_update]=false)
 	st_set_tmux opts_g
 	# Also set iTerm, as the mode might be wrong on launch of the application
@@ -71,17 +69,15 @@ do_attach() {
 	if ! tmux list-sessions -F "#{session_name}" | grep -q "${session_name}"; then
 		do_start
 	fi
+	# Do in background as setting iterm2 colors takes a bit of time.
+	set_solarized_theme &
+
 	echo "Attaching ${session_name}...  "
 	tmux -2 attach-session -t "$session_name"
 }
 
 # Delete files left by programs.
 do_clean_files() {
-	# Delete rtorrent.lock .
-	if [ -f $HOME/dl/.sessions/rtorrent.lock ]; then
-		rm -f $HOME/dl/.sessions/rtorrent.lock
-	fi
-
 	# Delete octave-core.
 	if [ -f $HOME/octave-core ]; then
 		rm -f $HOME/octave-core
@@ -91,8 +87,6 @@ do_clean_files() {
 	fi
 }
 
-# Do in background as setting iterm2 colors takes a bit.
-set_solarized_theme &
 case $1 in
 	attach | "")
 		do_attach
