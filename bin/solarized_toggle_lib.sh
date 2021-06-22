@@ -65,14 +65,32 @@ st_set_statusfile() {
 	echo "${opts[mode]}" > $ST_STATUSFILE
 }
 
-# Updates status from macOS to cache, and then return value
-st_update_read_status() {
-	[ -e $ST_STATUSFILE ] && cat $ST_STATUSFILE || echo ""
-}
-
 st_read_status() {
 	[ -e $ST_STATUSFILE ] && cat $ST_STATUSFILE || echo ""
 }
+
+
+
+
+
+# Read mode set by macOS
+st_read_macos_mode() {
+	local mode=
+	defaults read -g AppleInterfaceStyle >/dev/null 2>&1
+	case "$?" in
+		0) mode=dark ;;
+		*) mode=light ;;
+	esac
+	echo $mode
+}
+
+# Updates status from macOS to cache, and then return value
+st_update_status_from_macos() {
+	local mode=$(st_read_macos_mode)
+	declare -A opts_g=( [mode]=$mode )
+	st_set_statusfile opts_g
+}
+
 
 st_set_all() {
 	local opts_var_name=$1
