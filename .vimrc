@@ -252,7 +252,8 @@
 	set ruler						" Show current cursor position in the lower right corner.
 	set laststatus=2					" Always show the status line.
 	set nolist						" Don't show unprintable characters.
-	set listchars=eol:$,tab:>-,trail:¬,extends:>,precedes:<,nbsp:. 	" Characters to use for list.
+	"set listchars=eol:$,tab:>-,trail:¬,extends:>,precedes:<,nbsp:. 	" Characters to use for list.
+	set listchars=eol:$,space:·,tab:>-,trail:¬,extends:>,precedes:<,nbsp:. 	" Characters to use for list.
 	set cursorline						" Highlight the current line.
 	"set cursorcolumn					" Highlight the current column.
 	" Colors of the \cancel{hardstyle} CursorLine.
@@ -370,7 +371,7 @@
 
 	" Toggles {
 		noremap <silent> <Leader>w :set wrap!<CR>:set wrap?<CR>				" Toggle line wrapping.
-		noremap <silent> <Leader>` :set list!<CR>					" Toggle listing of characters.
+		noremap <silent> <Leader>` :set list!<CR>					" Toggle listing of characters. See listchars.
 		noremap <silent> <ESC>p :set paste! paste?<CR>					" Toggle 'paste' for sane pasting.
 		noremap <silent> <leader>p :set paste<CR>o<ESC>:normal "*p<CR>:set nopaste<CR>	" Paste on line after in paste-mode from register "*.
 		noremap <silent> <leader>P :set paste<CR>O<ESC>:normal "*P<CR>:set nopaste<CR>	" Paste on line before in paste-mode from register "*.
