@@ -68,6 +68,8 @@
 	branch = false ; Don't use pager for git-branch.
 [diff "odf"]
 	textconv = odt2txt
+[http]
+	postBuffer = 524288000	; Increase post byte size. Could also set this per project with $(git config http.postBuffer 524288000). Reference: https://stackoverflow.com/a/3605544/265508
 [gerrit]
 	createChangeId = true
 

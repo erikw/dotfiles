@@ -193,7 +193,8 @@ moshmux () {
 # cd(1) to installation of gem from bundle.
 bundlecd () {
 	local gem="$@"
-	cd $(bundle info --path "$gem")
+	local path=$(bundle info --path "$gem")
+	test $? -eq 0 && cd "$path"
 }
 
 # Swap two file's names. Reference: https://stackoverflow.com/a/1119738/265508
