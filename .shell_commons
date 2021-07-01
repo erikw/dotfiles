@@ -353,4 +353,7 @@ source $HOME/.shell_functions
 	# Set envvar to my github clones directory, use same base path as
 	# $(git config --global ghq.root)
 	export GITHUB=$HOME/src/github.com/erikw
+
+	# RVM
+	sourceifexists $HOME/.rvm/scripts/rvm
 # }
