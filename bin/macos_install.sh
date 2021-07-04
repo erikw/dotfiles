@@ -470,9 +470,9 @@ cd -
 # Ruby
 # Install RVM according to instructions at https://rvm.io/rvm/install
 # For the gpg command, currently fails as the keyserver is not being available. Use another: https://unix.stackexchange.com/a/617320
-# $ rvm list 
-# $ rvm install 3.0.0
-# $ rvm --default use 3.0.0
+# $ rvm list
+# $ rvm install 3.0.1
+# $ rvm --default use 3.0.1
 # Python {
 ## jedi-vim
 #cd ~/.vim/bundle/jedi-vim/

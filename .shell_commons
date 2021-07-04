@@ -120,6 +120,9 @@ source $HOME/.shell_functions
 	if [ -e $HOME/.sandboxd/sandboxd ]; then
 		source $HOME/.sandboxd/sandboxd
 	fi
+
+	# Try to use project local ack config. If there is none, $HOME/.ackrc will be used.
+	export ACKRC=".ackrc"
 # }
 
 # UI {
@@ -356,4 +359,8 @@ source $HOME/.shell_functions
 
 	# RVM
 	sourceifexists $HOME/.rvm/scripts/rvm
+
+
+	# Travis cli client. https://github.com/travis-ci/travis.rb
+	sourceifexists $HOME/.travis/travis.sh
 # }
