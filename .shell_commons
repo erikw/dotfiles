@@ -123,6 +123,9 @@ source $HOME/.shell_functions
 
 	# Try to use project local ack config. If there is none, $HOME/.ackrc will be used.
 	export ACKRC=".ackrc"
+
+	# Needed for gnupg's gpg(1) to work, thus for git commit signing.
+	export GPG_TTY=$(tty)
 # }
 
 # UI {
