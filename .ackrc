@@ -1,3 +1,6 @@
+# Global ack conf
+# It's possible to have project local conf via a hack of setting: ACKRC=".ackrc". Reference: http://rustyrazorblade.com/post/2012/making-better-use-of-your-ackrc-file/
+
 # Ignore these files by default. See man(1) grep section 'Defining your own types'.
 # Vim development
 --ignore-file=match:cscope.out
@@ -17,6 +20,7 @@
 #--ignore-dir=logs/
 
 # Jekyll
---ignore-dir=.jekyll-cache/
---ignore-dir=_site/
---ignore-dir=.git-metadata/
+#--jgnore-dir=.jekyll-cache/
+#
+#--ignore-dir=_site/
+#--ignore-dir=.git-metadata/

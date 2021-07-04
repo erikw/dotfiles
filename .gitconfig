@@ -55,6 +55,9 @@
 	sub = submodule
 	svn-status = diff --name-status remotes/git-svn
 	vimerge = mergetool -t vimdiff
+
+	# Pre-pend [skip ci] to HEAD's commit message. Reference: https://gist.github.com/jpalmieri/cb6271004127633a133e9606ddba58b1
+        skip-ci = !"git reset && COMMIT_MSG=$(git show -s --format=format:%B) && git commit --allow-empty --amend -m \"[skip ci] $COMMIT_MSG\""
 [credential]
 	helper = cache
 [pull]
