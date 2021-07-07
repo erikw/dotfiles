@@ -523,6 +523,24 @@ cd -
 # * Check: Show minute markers
 # * Check: Dim inactive deck
 
+# Rekordbox
+# * File browser: add Key and Comments column
+# * File browser > iTunes > All Audio >  select all files > right click > Reload Tags
+# * Mixer: Disable crossfader by unclicking the channels [1][2][3][4] so that it does not controll them.
+## View
+# * Browse - Font size: middle
+# * Browse - Line space: middle
+# * Layout - Tree View: keep  Related Tracks, iTunes, Explorer
+# * Waveform - Color: RGB
+## Controller
+### Recordings tab
+# * Location /Volumes/toshiba_music/music/sets/my_sets/rekordbox_live_sets/
+## Advanced
+### Database
+# * Database Management drive: /Volumes/toshiba_music/
+
+
+
 # Musicbrainz Picard
 ## Metadata
 # * Remove text from "Non-album track", to not tag wit this tag when there's no found Album.

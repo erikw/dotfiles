@@ -32,6 +32,7 @@ tap 'homebrew/cask-drivers' # For focusrite-control
 	cask 'mactex'
 	cask 'mullvadvpn'
 	cask 'musicbrainz-picard'
+	cask 'rekordbox'
 	cask 'signal'
 	cask 'transmission'
 # }
@@ -40,7 +41,6 @@ tap 'homebrew/cask-drivers' # For focusrite-control
 =begin
 	cask 'ableton-live-suite' # If using latest version, which I'm not.
 	cask 'mixed-in-key'	# If using latest version, which I'm not.
-	cask 'rekordbox'
 =end
 # }
 
