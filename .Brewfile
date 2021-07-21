@@ -235,6 +235,7 @@
 	mas 'GamePad Companion', id: 428799479
 	mas 'Irvue', id: 1039633667
 	mas 'Microsoft To Do', id: 1274495053
+	mas 'MuteMyMic', id: 456362093
 	mas 'Neural Mix Pro', id: 1527105121
 	mas 'SwordSoft Screenink Free', id: 953841977
 	mas 'WeatherBug', id: 1059074180
