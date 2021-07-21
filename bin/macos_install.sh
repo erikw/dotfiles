@@ -284,51 +284,6 @@ cd -
 
 
 
-# Automator command for starting screen saver.
-# 1. Open automator
-# 2. Create a new service (now named Quick Action)
-# 3. Choose "Run AppleScript"
-# 4. In the top of the window, select for "Service receives selected" to "no input" and "in any application".
-# 5. Paste contents of ~/bin/macos_start_screensaver.command so it basically becomes:
-#on run {input, parameters}
-	#do shell script "/System/Library/CoreServices/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine"
-	#return input
-#end run
-# 5. Save with the name "start_screensaver.
-# 6. Open System Peferences>Keyboard>Shortcuts>Services>General and assign this quick action the shortcutl CTRL+CMD+L.
-# If start_screensaver save did not show up, try logging in and out or restarting the computer.
-#
-#
-#
-# Automator command to cycle output devices. Do this for all ~/bin/macos_media_control/SwitchAudioSource*.command
-# * Create an automator Quick Action named "SwitchAudioSource_cycle" with AppleScript for the contents in ~/bin/macos_media_control/SwitchAudioSource_cycle.command
-# * Bind to shortcuts like:
-#  - cycle: OPT+CMD+F9.
-#  - Built-in: OPT+CMD+F10.
-#  - PMA-50: OPT+CMD+F11.
-#  - USB Soundcard/headset: OPT+CMD+F12
-#
-#
-# Automator command eject USB drives
-# * Create an automator Quick Action named "eject_external_disks" with AppleScript for the contents in ~/bin/macos_eject_external_disks.command
-# * Bind to shortcut CTRL+CMD+F12
-#
-#
-# Automator command for showing Control Center.
-# TODO replace this with native System Preferences shortcut when supported.
-# * Create an automator Quick Action named "open_controlcenter" with AppleScript for the contents in ~/bin/macos_open_controlcenter.command
-# * Bind to shortcut CMD+F10
-# * For this to work, System Preferences > Security & Privacy > Privacy > Accessibillity > allow System Preferences.app.
-#
-#
-# Automator command for showing Now Playing
-# TODO replace this with native System Preferences shortcut when supported.
-# * Create an automator Quick Action named "open_nowplaying" with AppleScript for the contents in ~/bin/macos_open_nowplaying.command
-# * Bind to shortcut CMD+F9
-# * For this to work, System Preferences > Security & Privacy > Privacy > Accessibillity > allow System Preferences.app.
-#
-
-
 # Logitech G700s drivers
 # * https://support.logitech.com/en_us/product/g700s-rechargable-wireless-gaming-mouse/downloads#
 
@@ -449,6 +404,55 @@ cd -
 ## Extension
 # Select "Save to Pictures" instead of iCloud
 
+# }
+
+# Automator Actions {
+# Automator command for starting screen saver.
+# 1. Open automator
+# 2. Create a new service (now named Quick Action)
+# 3. Choose "Run AppleScript"
+# 4. In the top of the window, select for "Service receives selected" to "no input" and "in any application".
+# 5. Paste contents of ~/bin/macos_start_screensaver.command so it basically becomes:
+#on run {input, parameters}
+	#do shell script "/System/Library/CoreServices/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine"
+	#return input
+#end run
+# 5. Save with the name "start_screensaver.
+# 6. Open System Peferences>Keyboard>Shortcuts>Services>General and assign this quick action the shortcutl CTRL+CMD+L.
+# If start_screensaver save did not show up, try logging in and out or restarting the computer.
+
+
+
+# Automator command to cycle output devices. Do this for all ~/bin/macos_media_control/SwitchAudioSource*.command
+# * Create an automator Quick Action named "SwitchAudioSource_cycle" with AppleScript for the contents in ~/bin/macos_media_control/SwitchAudioSource_cycle.command
+# * Bind to shortcuts like:
+#  - cycle: OPT+CMD+F9.
+#  - Built-in: OPT+CMD+F10.
+#  - PMA-50: OPT+CMD+F11.
+#  - USB Soundcard/headset: OPT+CMD+F12
+
+
+# Automator command eject USB drives
+# * Create an automator Quick Action named "eject_external_disks" with AppleScript for the contents in ~/bin/macos_eject_external_disks.command
+# * Bind to shortcut CTRL+CMD+F12
+
+
+# Automator command for showing Control Center.
+# TODO replace this with native System Preferences shortcut when supported.
+# * Create an automator Quick Action named "open_controlcenter" with AppleScript for the contents in ~/bin/macos_open_controlcenter.command
+# * Bind to shortcut CMD+F10
+# * For this to work, System Preferences > Security & Privacy > Privacy > Accessibillity > allow System Preferences.app.
+
+
+# Automator command for showing Now Playing
+# TODO replace this with native System Preferences shortcut when supported.
+# * Create an automator Quick Action named "open_nowplaying" with AppleScript for the contents in ~/bin/macos_open_nowplaying.command
+# * Bind to shortcut CMD+F9
+# * For this to work, System Preferences > Security & Privacy > Privacy > Accessibillity > allow System Preferences.app.
+
+# Automator command for toggling muting microphone input
+# * Create an automator Quick Action named "mic_mute_toggle" with AppleScript for the contents in ~/bin/macos_mic_mute_toggle.command
+# * Bind to shortcut Kinesis Freestyle2 button right arrow (cmd+rightArrow).
 # }
 
 # Development {
