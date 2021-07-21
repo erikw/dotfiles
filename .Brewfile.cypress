@@ -32,6 +32,7 @@ tap 'homebrew/cask-drivers' # For focusrite-control
 	cask 'mactex'
 	cask 'mullvadvpn'
 	cask 'musicbrainz-picard'
+	cask 'mutify'
 	cask 'rekordbox'
 	cask 'signal'
 	cask 'transmission'
