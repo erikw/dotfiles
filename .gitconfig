@@ -48,6 +48,7 @@
 	mb = merge-base
 	originurl = config --get remote.origin.url
 	pu = push
+	pushw = !"git push && netlify watch"
 	rb = rebase
 	st = status
 	stashshow0 = stash show -p stash@{0}

@@ -265,6 +265,7 @@
 		alias intellijopen='open -a IntelliJ\ IDEA\ CE'	# Open Intellij with a path as an argument.
 		alias pycharmopen='open -a PyCharm\ CE'		# Open Pycharm with a path as an argument.
 		alias phpstormopen='open -a PhpStorm'		# Open PhpStorm with a path as an argument.
+		alias pixelmator='open -a Pixelmator\ Pro'	# Open Pixelmator with a path as an argument.
 	fi
 # }
 
