@@ -477,6 +477,7 @@ cd -
 # $ rvm list
 # $ rvm install 3.0.1
 # $ rvm --default use 3.0.1
+
 # Python {
 ## jedi-vim
 #cd ~/.vim/bundle/jedi-vim/
