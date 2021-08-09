@@ -6,8 +6,8 @@ Session.vim
 .DS_Store
 
 # Ctags
-tags
-TAGS
+/tags
+/TAGS
 
 # Cscope
 cscope.files
