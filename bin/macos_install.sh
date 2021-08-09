@@ -160,7 +160,9 @@ cd -
 #   * Install driver from https://support.brother.com/g/b/downloadtop.aspx?c=eu_ot&lang=en&prod=dcp7070dw_eu
 #   * System Preferences > Printers & Scanners > + > Add by Bonjour discovery on network
 # * Scanner: user the "Brother iPrint&Scan" app from App Store, as the ICA driver (Image Capture.app) is not working.
-
+# * If not already the case, make sure lpr uses the default printer:
+# $ lpstat -p -d
+# $ lpoptions -d Brother_DCP_7070DW
 
 # Antivirus: Avast Security for Mac
 # https://www.avast.com/en-us/free-mac-security
