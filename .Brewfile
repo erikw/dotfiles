@@ -57,6 +57,7 @@
 	brew 'source-highlight'
 	brew 'switchaudio-osx'
 	brew 'telnet'
+	brew 'texlab' # Language server for LaTeX
 	brew 'tig'
 	brew 'tmux'
 	brew 'tree'
@@ -72,7 +73,7 @@
 	brew 'zsh-completions'
 	brew 'zsh-syntax-highlighting'
 # }
-#
+
 # Formula: optional {
 =begin
 	brew 'antiword'
@@ -91,7 +92,6 @@
 	brew 'ffmpeg2theora'
 	brew 'go'
 	brew 'httpie'
-	brew 'ipython'
 	brew 'irssi'
 	brew 'jsonlint'
 	brew 'knock'
@@ -110,7 +110,6 @@
 	brew 'pv'
 	brew 'pyenv'
 	brew 'pyenv-virtualenvwrapper'
-	brew 'python@2'
 	brew 'reattach-to-user-namespace'
 	brew 'ruby'
 	brew 'swiftlint'
@@ -124,6 +123,7 @@
 	brew 'zenity'
 =end
 # }
+
 
 # Cask: default {
 	cask 'amethyst'
@@ -243,6 +243,26 @@
 	mas 'Xcode', id: 497799835
 =end
 # }
+
+# Development: Java {
+=begin
+	brew 'java'
+	brew 'maven'
+	brew 'gradle'
+	brew 'ant'
+
+	tap 'adoptopenjdk/openjdk'
+	brew 'adoptopenjdk11'
+=end
+# }
+
+# Development: Python {
+=begin
+	brew 'ipython'
+	brew 'pyright' # Language Server for python https://langserver.org/
+	brew 'python@2'
+=end
+
 
 # Misc {
 # cryfs {

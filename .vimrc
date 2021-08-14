@@ -9,6 +9,8 @@
 " Reference: https://stackoverflow.com/questions/1687799/profiling-vim-startup-time
 " }
 
+let g:ale_completion_enabled = 1 " Must be set before ALE is loaded.
+
 " Vundle {
 	let s:using_vundle = 1		" Vundle will break default behaviour of spellfile. Let others know when using Vundle.
 
@@ -45,15 +47,18 @@
 	"}
 	" Development: General {
 		"Plugin 'AndrewRadev/sideways.vim'
+		"Plugin 'scrooloose/syntastic' " Replaced by ale
 		Plugin 'ConflictMotions'
-		Plugin 'tmhedberg/matchit'
-		Plugin 'majutsushi/tagbar'
-		Plugin 'ingo-library'		" Required for ConflictMotions.
 		Plugin 'CountJump'             	" Required for ConflictMotions.
 		Plugin 'Townk/vim-autoclose'
 		Plugin 'airblade/vim-gitgutter'
 		Plugin 'argtextobj.vim'
+		Plugin 'dense-analysis/ale'
 		Plugin 'editorconfig/editorconfig-vim'
+		Plugin 'ingo-library'		" Required for ConflictMotions.
+		Plugin 'majutsushi/tagbar'
+		Plugin 'tmhedberg/matchit'
+
 	"}
 	" Development: C/C++ {
 		"Plugin 'Rip-Rip/clang_complete'
@@ -86,8 +91,8 @@
 		"Plugin 'terryma/vim-multiple-cursors'
 		"Plugin 'tpope/vim-unimpaired'
 		Plugin 'LaTeX-Box-Team/LaTeX-Box'
-		Plugin 'bfontaine/Brewfile.vim'
 		Plugin 'MarcWeber/vim-addon-mw-utils' " Required for  garbas/vim-snipmate.
+		Plugin 'bfontaine/Brewfile.vim'
 		Plugin 'buffergrep'
 		Plugin 'danro/rename.vim'
 		Plugin 'dhruvasagar/vim-table-mode'
@@ -95,6 +100,7 @@
 		Plugin 'erikw/vim-unimpaired'
 		Plugin 'fidian/hexmode'
 		Plugin 'garbas/vim-snipmate'
+		Plugin 'instant-markdown/vim-instant-markdown', {'rtp': 'after'}
 		Plugin 'mattn/gist-vim'
 		Plugin 'mbbill/undotree'
 		Plugin 'michaeljsmith/vim-indent-object'
@@ -103,8 +109,6 @@
 		Plugin 'salsifis/vim-transpose'
 		Plugin 'scrooloose/nerdcommenter'
 		Plugin 'scrooloose/nerdtree'
-		Plugin 'scrooloose/syntastic'
-		Plugin 'instant-markdown/vim-instant-markdown', {'rtp': 'after'}
 		Plugin 'tmux-plugins/vim-tmux'
 		Plugin 'tomtom/tlib_vim'	" Required for garbas/vim-snipmate
 		Plugin 'tpope/vim-capslock'
@@ -155,7 +159,8 @@
 	set thesaurus+=~/.vim/thesaurus/mthesaur.txt    " Use a thesaurus file.
 	"set complete-=k complete+=k			" Put the dictionaries in the normal completion set.
 	set completeopt=longest,menu,preview		" Insert most common completion and show menu.
-	set omnifunc=syntaxcomplete#Complete		" Omni completion.
+	"set omnifunc=syntaxcomplete#Complete		" Let Omni completion (^x^o) use vim's builtin syntax files for language keywords.
+	set omnifunc=ale#completion#OmniFunc		" Use ALE for omnicompletion
 	set shortmess=filmnrxtToOI    			" Abbreviate messages.
 	set nrformats=alpha,octal,hex			" What to increment/decrement with ^A and ^X.
 	set hidden					" Work with hidden buffers more easily.
@@ -469,6 +474,21 @@
 
 " Plugins {
 if s:use_plugins
+	" ALE {
+		" Reference https://github.com/dense-analysis/ale/blob/master/doc/ale.txt
+		let g:ale_fixers = {
+		\   '*': ['remove_trailing_lines', 'trim_whitespace']
+		\}
+		" sh: " https://github.com/bash-lsp/bash-language-server#vim
+		let g:ale_linters = {
+    	    	    \ 'sh': ['language_server']
+    	    	    \ }
+		let g:ale_fix_on_save = 1
+
+		" Completion
+		let g:ale_completion_autoimport = 1
+	" }
+
 	" AutoClose {
 		"let g:AutoClosePairs = AutoClose#ParsePairs("() [] {} <> «» ` \" '") " Pairs to close. Does not seems to work with vundle.
 		let g:AutoCloseProtectedRegions = ["Comment", "String", "Character"]	" Syntax regions to ignore.
@@ -649,48 +669,48 @@ if s:use_plugins
 	" }
 
 	" Syntastic {
-		" NOTE See Eclim section above: set EclimFileTypeValidate=0 as only one of Eclim and Syntastic can be enabled at the same time.
+		"" NOTE See Eclim section above: set EclimFileTypeValidate=0 as only one of Eclim and Syntastic can be enabled at the same time.
 
-		noremap <silent> <F9> :SyntasticToggleMode<CR>					" Toggle syntastic checking.
+		"noremap <silent> <F9> :SyntasticToggleMode<CR>					" Toggle syntastic checking.
 
-		let g:syntastic_always_populate_loc_list = 1	" Always produce the error lists in the location list window.
-		let g:syntastic_auto_loc_list = 1		" Automatically open the location list showing where errors are.
-		let g:syntastic_check_on_open=0			" Don't automatically do syntax check on open buffers. Assume the file is good until write.
-		let g:syntastic_check_on_wq=0			" Don't check on write-quit..
+		"let g:syntastic_always_populate_loc_list = 1	" Always produce the error lists in the location list window.
+		"let g:syntastic_auto_loc_list = 1		" Automatically open the location list showing where errors are.
+		"let g:syntastic_check_on_open=0			" Don't automatically do syntax check on open buffers. Assume the file is good until write.
+		"let g:syntastic_check_on_wq=0			" Don't check on write-quit..
 
-		" Do syntax check on files with exceptions (the passive ones below).
-		" mode=active => files are checked when writing a buffer.
-		" mode=passive => files only checked on invokation of :SyntasticCheck.
-		" active_filetypes: files here are always checked even if the mode is passive. Ignored when mode=active.
-		" passive_filetypes: files here are never checked even if the mode is active. Ignored when mode=passive.
-		let g:syntastic_mode_map = { 'mode': 'active',
-		                        \ 'active_filetypes': [],
-		                        \ 'passive_filetypes': ['python', 'tex', 'html'] }
-		" Python, use prospector.
-		let g:syntastic_python_checkers = ['prospector']
+		"" Do syntax check on files with exceptions (the passive ones below).
+		"" mode=active => files are checked when writing a buffer.
+		"" mode=passive => files only checked on invokation of :SyntasticCheck.
+		"" active_filetypes: files here are always checked even if the mode is passive. Ignored when mode=active.
+		"" passive_filetypes: files here are never checked even if the mode is active. Ignored when mode=passive.
+		"let g:syntastic_mode_map = { 'mode': 'active',
+					"\ 'active_filetypes': [],
+					"\ 'passive_filetypes': ['python', 'tex', 'html'] }
+		"" Python, use prospector.
+		"let g:syntastic_python_checkers = ['prospector']
 
-		" Java; the http://checkstyle.sourceforge.net/ checker (aur:checkstyle) might be aster than javac for big projects.
-		" This requires a configuration file e.g.  http://checkstyle.sourceforge.net/google_style.html
-		"let g:syntastic_java_checkstyle_classpath = '/usr/share/checkstyle/checkstyle.jar'
-		"let g:syntastic_java_checkstyle_conf_file = '~/dev/google_checks.xml'
-		"let g:syntastic_java_checkers = ['checkstyle']
+		"" Java; the http://checkstyle.sourceforge.net/ checker (aur:checkstyle) might be aster than javac for big projects.
+		"" This requires a configuration file e.g.  http://checkstyle.sourceforge.net/google_style.html
+		""let g:syntastic_java_checkstyle_classpath = '/usr/share/checkstyle/checkstyle.jar'
+		""let g:syntastic_java_checkstyle_conf_file = '~/dev/google_checks.xml'
+		""let g:syntastic_java_checkers = ['checkstyle']
 
-		" For syntastic support in gradle projects:
-		" 1. Add to build.gradle:
-		" plugins {
-		"     id "org.gradle.java"
-		"     id "com.scuilion.syntastic" version "0.3.8"
-		" }
-		" 2. Run $(./gradlew syntastic) to generate the syntastic config.
-		" 3. Enable syntastic javac config file with:
-		let g:syntastic_java_javac_config_file_enabled = 1
-		" Reference: https://github.com/Scuilion/gradle-syntastic-plugin
+		"" For syntastic support in gradle projects:
+		"" 1. Add to build.gradle:
+		"" plugins {
+		""     id "org.gradle.java"
+		""     id "com.scuilion.syntastic" version "0.3.8"
+		"" }
+		"" 2. Run $(./gradlew syntastic) to generate the syntastic config.
+		"" 3. Enable syntastic javac config file with:
+		"let g:syntastic_java_javac_config_file_enabled = 1
+		"" Reference: https://github.com/Scuilion/gradle-syntastic-plugin
 
-		" Recommended settings to show errors in the statusline.
-		" Disabled these when using powerline statusbar.
-		set statusline+=%#warningmsg#
-		set statusline+=%{SyntasticStatuslineFlag()}
-		set statusline+=%*
+		"" Recommended settings to show errors in the statusline.
+		"" Disabled these when using powerline statusbar.
+		"set statusline+=%#warningmsg#
+		"set statusline+=%{SyntasticStatuslineFlag()}
+		"set statusline+=%*
 	" }
 
 	" Tagbar {

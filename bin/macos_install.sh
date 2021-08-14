@@ -458,32 +458,45 @@ cd -
 # }
 
 # Development {
-# Java/JVM development
+# Language servers {
+npm install -g bash-language-server
+npm install -g vim-language-server
+# Language Server for Go: https://github.com/golang/tools/tree/master/gopls
+# }
+
+# Java {
 ## SDKMan: https://sdkman.io/install
 # $ curl -s "https://get.sdkman.io" | bash
 # $ sdk install gradle x.y
 # $ sdk install java 15.0.0.hs-adpt
 # ## Brew
-# Reference: https://www.chrisjmendez.com/2018/10/14/how-to-install-java-on-osx-using-homebrew/
-# brew tap adoptopenjdk/openjdk
-# brew install java adoptopenjdk8
+# See ~/.Brewfile
+# }
 
-# Xcode
+# Xcode {
 #* [Xvim](http://xvim.org/) Vim keybindings. See Xcode 8 [instructions](https://github.com/XVimProject/XVim/blob/master/INSTALL_Xcode8.md)
 #* [stackia/solarized-xcode](https://github.com/stackia/solarized-xcode) for dark & light themes.
 #* [ArtSabintsev/Solarized-Dark-for-Xcode](https://github.com/ArtSabintsev/Solarized-Dark-for-Xcode) for a (better?) dark theme.
+# }
 
-# Ruby
+# Ruby {
 # Install RVM according to instructions at https://rvm.io/rvm/install
 # For the gpg command, currently fails as the keyserver is not being available. Use another: https://unix.stackexchange.com/a/617320
 # $ rvm list
 # $ rvm install 3.0.1
 # $ rvm --default use 3.0.1
 
+# Language Server https://langserver.org/
+#gem install solargraph
+# }
+
 # Python {
 ## jedi-vim
 #cd ~/.vim/bundle/jedi-vim/
 #git submodule update --init
+
+# Language server https://langserver.org/
+#brew install pyright
 
 ## rope
 #pip3 install --user ropevim

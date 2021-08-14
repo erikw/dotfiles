@@ -363,7 +363,12 @@ source $HOME/.shell_functions
 	# RVM
 	sourceifexists $HOME/.rvm/scripts/rvm
 
-
 	# Travis cli client. https://github.com/travis-ci/travis.rb
 	sourceifexists $HOME/.travis/travis.sh
+
+	# Java
+	#if [ -e /usr/libexec/java_home ] ; then
+		#export JAVA_HOME=$(/usr/libexec/java_home 2>/dev/null)
+		#test $? -eq 0 || unset JAVA_HOME
+	#fi
 # }
