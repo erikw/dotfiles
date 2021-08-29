@@ -530,11 +530,11 @@ npm install -g vim-language-server
 
 # Djay Pro AI
 ## General
-# * Slide Range +-: 16%
+# * Slide Range +-: 8% # Compromise of 6% or 10%. https://www.reddit.com/r/Beatmatch/comments/c9012w/pitch_control_6_or_10_my_thoughts_and_asking_for/
 # * Uncheck: Reset (EQ, effect, controls)
 # * Stop time: 0,0 seconds
 ## Devices:
-# * Mixer mode: external, and set Pioneer device for everything
+# * See ~/doc/music/djing/dj_setups.txt
 ## Library:
 # * Check: Hide unavailalbe tracks
 ## Appearance:
