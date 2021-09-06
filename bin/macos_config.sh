@@ -450,6 +450,10 @@ chflags hidden ~/Public
 # * Disable iCloud account
 ### Google
 # * Refresh Calendars: every 5 minutes
+## Alerts (for Google)
+# * Events: None
+# * All Day Events: None
+# * Birthdays: None
 ## Advanced
 # * Check "Show events in year view"
 # * Check "Show week numbers"

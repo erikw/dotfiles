@@ -406,6 +406,9 @@ cd -
 ## Extension
 # Select "Save to Pictures" instead of iCloud
 
+# Todoist
+# * Disable macOS spelling correction in search bar by right clicking in search bar > Spelling and Grammar > uncheck "Correct Spelling Automatically". Reference: https://osxdaily.com/2011/08/18/disable-spelling-auto-correct-safari-mac-os-x/
+
 # }
 
 # Automator Actions {
@@ -531,6 +534,7 @@ npm install -g vim-language-server
 # Djay Pro AI
 ## General
 # * Slide Range +-: 8% # Compromise of 6% or 10%. https://www.reddit.com/r/Beatmatch/comments/c9012w/pitch_control_6_or_10_my_thoughts_and_asking_for/
+#   * Do +6% for learning, the fader is so small
 # * Uncheck: Reset (EQ, effect, controls)
 # * Stop time: 0,0 seconds
 ## Devices:
