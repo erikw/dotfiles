@@ -136,6 +136,8 @@ defaults write com.apple.dock wvous-br-modifier -int 0
 # Dock & Menu Bar {
 # * Uncheck "Show recent applications in Dock"
 defaults write com.apple.dock show-recents -bool false
+* Prevent accidential change of dock size or position by locking
+defaults write com.apple.Dock position-immutable -bool true
 # * Control Centre:
 # - Wi-Fi: uncheck
 # - Bluetooth: uncheck
