@@ -33,9 +33,6 @@ RETENTION_YEARS=2
 # What to backup, and what to not
 BACKUP_PATHS="/Users/erikw/"
 BACKUP_EXCLUDES="--exclude-file $HOME/.backup_exclude"
-# TODO backup ext disk
-#BACKUP_PATHS="/Users/erikw/ /Volumes/toshiba_music/"
-#BACKUP_EXCLUDES="--exclude-file $HOME/.backup_exclude --exclude-file /Volumes/toshiba_music/.backup_exclude"
 BACKUP_TAG=cronjob
 
 
