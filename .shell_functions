@@ -1,7 +1,6 @@
 # Utility shell functions.
 # vi: foldmarker={,} filetype=sh foldmethod=marker foldlevel=0: tabstop=4 shiftwidth=4:
 
-
 # Import ~/.shell_functions.d/ {
 if [ -d $HOME/.shell_functions.d ]; then
 	for funcfile in $HOME/.shell_functions.d/*.sh; do
@@ -86,12 +85,10 @@ stopwatch() {
 	done
 }
 
-
 # Visual countdown with voice announcing that the time is up.
 #termdownsay() {
 	#termdown -b -q 1 $@ && espeak -v en -s 130 -a 120 "Time has ended"
 #}
-
 
 # Git overlay which adds a command to cd to the root of a git repo.
 git() {
@@ -203,4 +200,12 @@ swap() {
     mv "$1" $TMPFILE
     mv "$2" "$1"
     mv $TMPFILE "$2"
+}
+
+# Sleep random time within an interval.
+# Reference: https://serverfault.com/questions/347582/adding-a-random-delay-for-a-linux-command
+sleep_random() {
+	max_sleep_sec="$1"
+	#perl -e "sleep int(rand(${max_sleep_sec}))"
+	sleep $((RANDOM % $max_sleep_sec))
 }

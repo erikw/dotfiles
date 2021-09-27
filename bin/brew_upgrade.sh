@@ -52,6 +52,8 @@ if [ -n "$outdated" ]; then
 		# --cask and --ignore-pinned are mutual exclusive.
 		_exec "Upgrading brew formulas" brew upgrade --formula --ignore-pinned
 		_exec "Upgrading brew casks" brew upgrade --cask
+		_exec "Removing unused leaf packages" brew autoremove
+		_exec "Cleaning up caches" brew cleanup
 		_exec "The brew doctor says" brew doctor || :		# Sneak around $(set -e) as the doctor command return error code.
 	fi
 fi

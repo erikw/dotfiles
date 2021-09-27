@@ -384,11 +384,13 @@ defaults write com.apple.finder _FXSortFoldersFirst -bool true
 ## Misc
 # * Sidebar Favourites, add to make it
 # - ~/
+# - ~/Desktop/
 # - ~/doc/
 # - ~/dl/
 # - ~/media/
 # - ~/src/github.com/
 # - ~/media/images/screenshots/
+# - ~/media/music/production/
 # - ~/tmp/
 # - /Applications
 # - ~/Desktop

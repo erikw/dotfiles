@@ -179,6 +179,7 @@
 	cask 'jing'
 	cask 'karabiner-elements'
 	cask 'keepassxc'
+	cask 'keybase'
 	cask 'livereload'
 	cask 'max'
 	cask 'microsoft-excel'
