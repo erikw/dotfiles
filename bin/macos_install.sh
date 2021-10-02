@@ -408,6 +408,7 @@ cd -
 
 # Todoist
 # * Disable macOS spelling correction in search bar by right clicking in search bar > Spelling and Grammar > uncheck "Correct Spelling Automatically". Reference: https://osxdaily.com/2011/08/18/disable-spelling-auto-correct-safari-mac-os-x/
+# * Disable badge count on Dock icon: System Preferences > Notifications > Todoist > uncheck "Badge app icon"
 
 # }
 

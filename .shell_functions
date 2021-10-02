@@ -209,3 +209,10 @@ sleep_random() {
 	#perl -e "sleep int(rand(${max_sleep_sec}))"
 	sleep $((RANDOM % $max_sleep_sec))
 }
+
+# Sleep specified time and then shut down
+# Usage: sleep_shutdown 3h
+sleep_shutdown() {
+	time="$1"
+	sleep $time && shutdown -h now
+}

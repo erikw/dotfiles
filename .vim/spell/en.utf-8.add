@@ -455,3 +455,5 @@ gemspec
 gemfiles
 cli
 CLI
+htmlproofer
+Wooha

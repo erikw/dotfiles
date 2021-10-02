@@ -392,6 +392,7 @@ defaults write com.apple.finder _FXSortFoldersFirst -bool true
 # - ~/media/images/screenshots/
 # - ~/media/music/production/
 # - ~/tmp/
+# - ~/.---------./
 # - /Applications
 # - ~/Desktop
 # - /private/tmp
