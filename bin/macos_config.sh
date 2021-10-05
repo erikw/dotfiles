@@ -184,7 +184,7 @@ defaults write NSGlobalDomain AppleLocale en_DE
 
 # Notifications {
 # * Turn of Do Not Disturb:
-#  - From 00:00 to 07:00
+#  - From 22:00 to 08:00
 #  -  When the display is sleeping
 #  -  When mirroring to TVs and projectors
 # * Uncheck "Show notification on lock screen" for all apps individually, to not leak notifications.

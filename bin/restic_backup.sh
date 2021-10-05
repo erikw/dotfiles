@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Make backup my system with restic to Backblaze B2.
 # This script is typically run by: /etc/systemd/system/restic-backup.{service,timer}
+# NOTE can suspend with $(kill -TSTP [pid] and continued with $(kill -CONT [pid]. Reference: https://unix.stackexchange.com/a/2112
 
 # Exit on failure, pipe failure
 set -e -o pipefail -x
@@ -31,10 +32,17 @@ RETENTION_MONTHS=12
 RETENTION_YEARS=2
 
 # What to backup, and what to not
-BACKUP_PATHS="/Users/erikw/"
-BACKUP_EXCLUDES="--exclude-file $HOME/.backup_exclude"
-BACKUP_TAG=cronjob
+BACKUP_PATHS="${BACKUP_PATHS} /Volumes/toshiba_music/"
 
+BACKUP_EXCLUDES="--exclude-file $HOME/.backup_exclude"
+# restic will crash if not all exclude files specified are available.
+if [ -d /Volumes/toshiba_music/ ]; then
+	BACKUP_EXCLUDES="${BACKUP_EXCLUDES} --exclude-file /Volumes/toshiba_music/.backup_exclude"
+fi
+
+BACKUP_TAG=cronjob
+VERBOSITY_LEVEL=1
+#VERBOSITY_LEVEL=3
 
 # Set all environment variables like
 # B2_ACCOUNT_ID, B2_ACCOUNT_KEY, RESTIC_REPOSITORY etc.
@@ -42,6 +50,7 @@ source $HOME/.restic/b2_env.sh
 
 # How many network connections to set up to B2. Default is 5.
 B2_CONNECTIONS=50
+
 
 
 # NOTE start all commands in background and wait for them to finish.
@@ -58,7 +67,7 @@ wait $!
 # --one-file-system makes sure we only backup exactly those mounted file systems specified in $BACKUP_PATHS, and thus not directories like /dev, /sys etc.
 # --tag lets us reference these backups later when doing restic-forget.
 restic backup \
-	--verbose \
+	--verbose=${VERBOSITY_LEVEL} \
 	--one-file-system \
 	--tag $BACKUP_TAG \
 	--option b2.connections=$B2_CONNECTIONS \
@@ -70,7 +79,7 @@ wait $!
 # See restic-forget(1) or http://restic.readthedocs.io/en/latest/060_forget.html
 # --group-by only the tag and path, and not by hostname. This is because I create a B2 Bucket per host, and if this hostname accidentially change some time, there would now be multiple backup sets.
 restic forget \
-	--verbose \
+	--verbose=${VERBOSITY_LEVEL} \
 	--tag $BACKUP_TAG \
 	--group-by "paths,tags" \
 	--prune \

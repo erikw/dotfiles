@@ -126,6 +126,9 @@ source $HOME/.shell_functions
 
 	# Needed for gnupg's gpg(1) to work, thus for git commit signing.
 	export GPG_TTY=$(tty)
+
+	# Nice to have when fetching scanned documents
+	export SCANNED=$HOME/media/images/scanned/
 # }
 
 # UI {
@@ -371,4 +374,11 @@ source $HOME/.shell_functions
 		#export JAVA_HOME=$(/usr/libexec/java_home 2>/dev/null)
 		#test $? -eq 0 || unset JAVA_HOME
 	#fi
+
+	# broot - https://dystroy.org/broot/install-br/
+	sourceifexists $HOME/.config/broot/launcher/bash/br
+
+	# fzf https://github.com/junegunn/fzf#using-homebrew
+	sourceifexists $HOME/.fzf.${my_shell}
+
 # }

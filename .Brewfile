@@ -14,6 +14,7 @@
 	brew 'ack'
 	brew 'aspell'
 	brew 'bash'
+	brew 'broot'
 	brew 'cloc'
 	brew 'cmatrix'
 	brew 'colordiff'
@@ -24,6 +25,7 @@
 	brew 'dos2unix'
 	brew 'findutils'
 	brew 'fswatch'		# For macos_appearance_monitor.sh
+	brew 'fzf'
 	brew 'gawk'
 	brew 'ghq'
 	brew 'git'

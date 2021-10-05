@@ -267,6 +267,9 @@ fi
 			sed -i "/^${name}|/d" $HOME/.cdbookmark
 		}
 	fi
+
+	# Not working. Program only activated when interactivly sourced from shell for some reason.
+	#eval $(mcfly init zsh)
 # }}
 
 
