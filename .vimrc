@@ -87,7 +87,8 @@ let g:ale_completion_enabled = 1 " Must be set before ALE is loaded.
 		"Plugin 'fatih/vim-go'
 		"Plugin 'git://git.wincent.com/command-t.git'
 		"Plugin 'godlygeek/tabular'		" Disabled: not used and have some startup time.
-		"Plugin 'sjl/gundo.vim' " Use mbbill/undotree instead, is better: https://vi.stackexchange.com/a/13863
+		"Plugin 'scrooloose/nerdtree'		" Replaced by built-in netrw
+		"Plugin 'sjl/gundo.vim'			" Use mbbill/undotree instead; is better: https://vi.stackexchange.com/a/13863
 		"Plugin 'terryma/vim-multiple-cursors'
 		"Plugin 'tpope/vim-unimpaired'
 		Plugin 'LaTeX-Box-Team/LaTeX-Box'
@@ -108,7 +109,6 @@ let g:ale_completion_enabled = 1 " Must be set before ALE is loaded.
 		Plugin 'rbonvall/snipmate-snippets-bib'
 		Plugin 'salsifis/vim-transpose'
 		Plugin 'scrooloose/nerdcommenter'
-		Plugin 'scrooloose/nerdtree'
 		Plugin 'tmux-plugins/vim-tmux'
 		Plugin 'tomtom/tlib_vim'	" Required for garbas/vim-snipmate
 		Plugin 'tpope/vim-capslock'
@@ -600,6 +600,40 @@ if s:use_plugins
 		"let g:jedi#use_tabs_not_buffers = 1  " Go to a tab when opening a definition.
 	" }
 
+	" netrw {
+		" Ships by default with vim mostly.
+		" Reference: https://shapeshed.com/vim-netrw/
+		" Reference: " http://vimcasts.org/blog/2013/01/oil-and-vinegar-split-windows-and-project-drawer/
+		noremap <silent> <F2> :Lexplore<CR>	" Toggle the left vertical window
+		let g:netrw_liststyle = 3	" Default view: tree. Cycle with (i).
+		let g:netrw_banner = 0		" Remove space consuming top header text.
+		let g:netrw_browse_split = 4	" Open in previous window by default (like NERDTree).
+		let g:netrw_winsize = 20	" %-tage of window space to take in the respective open mode (vertical/horizontal).
+		"let g:netrw_altv = 1		" Supposedly needed to splitit to left. However not needed as I just use :LExplore?
+
+		" Auto close {
+		" Close after opening a file (which gets opened in another window)
+		" Reference: https://stackoverflow.com/a/69029703/265508
+		let g:netrw_fastbrowse = 0
+		autocmd FileType netrw setl bufhidden=wipe
+		function! CloseNetrw() abort
+			for bufn in range(1, bufnr('$'))
+				if bufexists(bufn) && getbufvar(bufn, '&filetype') ==# 'netrw'
+					silent! execute 'bwipeout ' . bufn
+					if getline(2) =~# '^" Netrw '
+						silent! bwipeout
+					endif
+					return
+				endif
+			endfor
+		endfunction
+		augroup closeOnOpen
+			autocmd!
+			autocmd BufWinEnter * if getbufvar(winbufnr(winnr()), "&filetype") != "netrw"|call CloseNetrw()|endif
+		aug END
+		" }
+	" }
+
 	" NERDCommenter {
 	" Swap invert comment toggle.
 		"map <silent> <Leader>c<Space> <plug>NERDCommenterInvert
@@ -607,10 +641,10 @@ if s:use_plugins
 	" }
 
 	" NERDTree {
-		noremap <silent> <F2> :NERDTreeToggle<CR>	" Toggle the NERDTree file browser.
-		let g:NERDTreeCaseSensitiveSort=1		" Sort case sensitive.
-		let g:NERDTreeMouseMode=3			" Single click opens folders and files.
-		let g:NERDTreeQuitOnOpen=1			" Close tree after open.
+		"noremap <silent> <F2> :NERDTreeToggle<CR>	" Toggle the NERDTree file browser.
+		"let g:NERDTreeCaseSensitiveSort=1		" Sort case sensitive.
+		"let g:NERDTreeMouseMode=3			" Single click opens folders and files.
+		"let g:NERDTreeQuitOnOpen=1			" Close tree after open.
 	" }
 
 	" OmniCppComplete {
