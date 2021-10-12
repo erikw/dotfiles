@@ -273,7 +273,9 @@ source $HOME/.shell_functions
 
 	# Python {
 	# Python pip binary installation directory (pip3 install --user)
-	PATH="$HOME/Library/Python//3.9/bin:$PATH"
+	if shell_is_macos; then
+		PATH="$HOME/Library/Python/3.9/bin:$PATH"
+	fi
 
 	# Virtualenvwrapper, installed with pip. NOTE Is sandboxed
 	#shell_is_macos && virtenv_path=/usr/local/bin/virtualenvwrapper.sh || virtenv_path=/usr/bin/virtualenvwrapper_lazy.sh
