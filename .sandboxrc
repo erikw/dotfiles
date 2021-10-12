@@ -20,10 +20,19 @@ source $HOME/.shell_functions.d/sourceifexists.sh
 	#sourceifexists $HOME/.rvm/scripts/rvm
 #}
 
+
+# rbenv
+# NOTE Does not work for some reason. Sandbox init conflicts with the rbenv-init?
+#sandbox_init_rbenv(){
+	#eval "$(rbenv init - zsh)"
+#}
+#sandbox_hook rbenv rbenv
+
 # GVM: Go Version Manager
 sandbox_init_gvm(){
 	sourceifexists $HOME/.gvm/scripts/gvm
 }
+sandbox_hook gvm gvm
 
 # SDK manager
 sandbox_init_sdk(){

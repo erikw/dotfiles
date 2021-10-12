@@ -113,7 +113,6 @@
 	brew 'pyenv'
 	brew 'pyenv-virtualenvwrapper'
 	brew 'reattach-to-user-namespace'
-	brew 'ruby'
 	brew 'swiftlint'
 	brew 'task'
 	brew 'tasksh'

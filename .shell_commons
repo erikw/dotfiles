@@ -366,7 +366,7 @@ source $HOME/.shell_functions
 	export GITHUB=$HOME/src/github.com/erikw
 
 	# RVM
-	sourceifexists $HOME/.rvm/scripts/rvm
+	#sourceifexists $HOME/.rvm/scripts/rvm
 
 	# Travis cli client. https://github.com/travis-ci/travis.rb
 	sourceifexists $HOME/.travis/travis.sh
@@ -383,4 +383,17 @@ source $HOME/.shell_functions
 	# fzf https://github.com/junegunn/fzf#using-homebrew
 	sourceifexists $HOME/.fzf.${my_shell}
 
+
+	# ruby-build: recommended build env.
+	# Reference: https://github.com/rbenv/ruby-build/wiki#suggested-build-environment
+	#export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+	if program_is_in_path ruby-build; then
+		export RUBY_CONFIGURE_OPTS="--with-openssl-dir=/usr/local/opt/openssl@1.1"
+	fi
+
+	# rbenv
+	# https://github.com/rbenv/rbenv
+	if program_is_in_path rbenv; then
+		eval "$(rbenv init - $my_shell)"
+	fi
 # }

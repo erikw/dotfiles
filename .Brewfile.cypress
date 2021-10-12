@@ -9,12 +9,19 @@ tap 'homebrew/cask-drivers' # For focusrite-control
 
 # Formula: default {
 	brew 'restic'
-	brew 'ruby'	# For Jekyll
 # }
 #
 # Formula: optional {
 =begin
 =end
+# }
+
+# Formula: ruby-dev {
+	#brew 'ruby'		# For Jekyll
+	brew 'rbenv'		# includes 'ruby-build' as dependency
+	brew 'ruby-build'
+	brew 'openssl@1.1'	# ruby-build dependency
+	brew 'readline'		# ruby-build dependency
 # }
 
 # Cask: default {

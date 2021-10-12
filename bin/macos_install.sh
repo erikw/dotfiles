@@ -161,8 +161,8 @@ cd -
 #   * System Preferences > Printers & Scanners > + > Add by Bonjour discovery on network
 # * Scanner: user the "Brother iPrint&Scan" app from App Store, as the ICA driver (Image Capture.app) is not working.
 # * If not already the case, make sure lpr uses the default printer:
-# $ lpstat -p -d
-# $ lpoptions -d Brother_DCP_7070DW
+#lpstat -p -d
+#lpoptions -d Brother_DCP_7070DW
 
 # Antivirus: Avast Security for Mac
 # https://www.avast.com/en-us/free-mac-security
@@ -470,9 +470,9 @@ npm install -g vim-language-server
 
 # Java {
 ## SDKMan: https://sdkman.io/install
-# $ curl -s "https://get.sdkman.io" | bash
-# $ sdk install gradle x.y
-# $ sdk install java 15.0.0.hs-adpt
+#curl -s "https://get.sdkman.io" | bash
+#sdk install gradle x.y
+#sdk install java 15.0.0.hs-adpt
 # ## Brew
 # See ~/.Brewfile
 # }
@@ -484,11 +484,26 @@ npm install -g vim-language-server
 # }
 
 # Ruby {
+## RVM
+# NOPE replaced by ruby-build + rbenv
 # Install RVM according to instructions at https://rvm.io/rvm/install
 # For the gpg command, currently fails as the keyserver is not being available. Use another: https://unix.stackexchange.com/a/617320
-# $ rvm list
-# $ rvm install 3.0.1
-# $ rvm --default use 3.0.1
+#rvm list
+#rvm install 3.0.1
+#rvm --default use 3.0.1
+
+
+## ruby-build + rbenv
+# ruby-build install and manage different ruby versions. https://github.com/rbenv/ruby-build
+# rbenv - switch to the right ruby version for projects. Autmatically uses ruby-build as install plugin. https://github.com/rbenv/rbenv
+# Note env requirements at https://github.com/rbenv/ruby-build/wiki#suggested-build-environment
+#brew install ruby-build rbenv readline openssl@1.1
+#rbenv init >> ~/.zshrc
+#rbenv install --list
+#rbenv install 3.0.2
+#rbenv global 3.0.2
+#
+
 
 # Language Server https://langserver.org/
 #gem install solargraph
