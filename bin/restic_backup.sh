@@ -5,7 +5,7 @@
 
 # Long-running job over night
 # $ (restic_backup.sh && shutdown -s now)
-# Note the parentehsis, so that ^Z suspends both commands and not only the first (in case of needing to pause during the day).
+# Note the spawning to subshell, so that ^Z suspends both commands and not only the first (in case of needing to pause during the day). https://stackoverflow.com/questions/41712192/how-do-i-suspend-and-resume-a-sequence-of-commands-in-bash
 
 # Exit on failure, pipe failure
 set -e -o pipefail -x
