@@ -3,6 +3,10 @@
 # This script is typically run by: /etc/systemd/system/restic-backup.{service,timer}
 # NOTE can suspend with $(kill -TSTP [pid] and continued with $(kill -CONT [pid]. Reference: https://unix.stackexchange.com/a/2112
 
+# Long-running job over night
+# $ (restic_backup.sh && shutdown -s now)
+# Note the parentehsis, so that ^Z suspends both commands and not only the first (in case of needing to pause during the day).
+
 # Exit on failure, pipe failure
 set -e -o pipefail -x
 
