@@ -48,7 +48,7 @@ set omnifunc=syntaxcomplete#Complete		" Let Omni completion (^x^o) use vim's bui
 " TODO ALE not needed as neovim has native LSP? https://neovim.io/doc/lsp/
 "set omnifunc=ale#completion#OmniFunc		" Use ALE for omnicompletion
 
-set shortmess=filmnrxtToOI    			" Abbreviate messages.
+set shortmess=filmnrxtToO    			" Abbreviate messages.
 set nrformats=alpha,bin,octal,hex			" What to increment/decrement with ^A and ^X.
 set hidden						" Work with hidden buffers more easily. Enables to leave buffer with unwritten changes (by :edit another buffer).
 set sessionoptions-=options		" Don't store global and local variables when saving sessions.
