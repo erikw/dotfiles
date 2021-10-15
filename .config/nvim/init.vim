@@ -47,3 +47,6 @@ set undolevels=2048				" Levels of undo to keep in memory.
 "set clipboard+=unnamed				" Use register "* instead of unnamed register. This means what is being yanked in vim gets put to external clipboard automatically.
 set timeoutlen=1500				" Timout (ms) for mappings and keycodes.
 " }
+
+
+
