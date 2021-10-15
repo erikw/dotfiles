@@ -22,6 +22,7 @@ tap 'homebrew/cask-drivers' # For focusrite-control
 	brew 'ruby-build'
 	brew 'openssl@1.1'	# ruby-build dependency
 	brew 'readline'		# ruby-build dependency
+	brew 'libyaml'		# Seems to be a runtime dependency for ruby from rbenv: https://stackoverflow.com/a/10958585/265508
 # }
 
 # Cask: default {

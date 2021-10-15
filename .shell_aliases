@@ -170,9 +170,25 @@
 	alias lwriter='libreoffice --writer'		# Writer.
 # }
 
+# vim {
+	#alias mvim='mvim -v'					# When macvim is the installed vim, make mvim open in terminal instead of GUI.
+	if program_is_in_path nvim; then
+	    alias vi='nvim'
+	    alias view='nvim -R'
+	    alias vidiff='nvimdiff'
+	    alias viclean="nvim -u NONE -i NONE"
+	    alias vibclean="nvim -u NONE -i NONE -c 'set number backup'"
+	else
+	    alias vi='vim'						# Be IMproved.
+	    alias view='vim -R'					# Not all distributions of vim provide the readonly bin.
+	    alias vidiff='vimdiff'
+	    alias viclean="vim -u NONE -i NONE"				# Start wiht without reading ~/.vimrc and using ~/.viminfo.
+	    alias vibclean="vim -u NONE -i NONE -c 'set number backup'"	# Same, but write local backup file.
+	fi
+# }
+
 # Program enhancements {
 	alias emacs='emacs --no-window-system'			# Emacs belongs to the terminal.
-	#alias mvim='mvim -v'					# When macvim is the installed vim, make mvim open in terminal instead of GUI.
 	alias gdb='gdb -q'					# Suppress legal info.
 	#alias gdb='gdb -q -x $GOPATH/.gdbinit'			# Suppress legal info + Go support.
 	alias cgdb='cgdb -q'					# Suppress legal info.
@@ -201,11 +217,6 @@
 # }
 
 # Short-hands {
-	alias vi='vim'						# Be IMproved.
-	alias view='vim -R'					# Not all distributions of vim provide the readonly bin.
-	alias vidiff='vimdiff'
-	alias viclean="vim -u NONE -i NONE"				# Start wiht without reading ~/.vimrc and using ~/.viminfo.
-	alias vibclean="vim -u NONE -i NONE -c 'set number backup'"	# Same, but write local backup file.
 	#alias t='task'
 	#alias c='gcalcli'
 	alias vboxmanage='VBoxManage'							# Who likes caps?- I don't.

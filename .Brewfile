@@ -44,6 +44,7 @@
 	brew 'ipcalc'
 	brew 'jq'
 	brew 'ncdu'
+	brew 'neovim'
 	brew 'netcat'
 	brew 'nmap'
 	brew 'npm'
@@ -124,7 +125,6 @@
 	brew 'zenity'
 =end
 # }
-
 
 # Cask: default {
 	cask 'amethyst'
