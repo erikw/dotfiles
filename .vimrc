@@ -234,9 +234,9 @@ let g:ale_completion_enabled = 1 " Must be set before ALE is loaded.
 		" Source:  http://benjamintan.io/blog/2014/04/10/switch-solarized-light-slash-dark-depending-on-the-time-of-day/
 		let s:hour = strftime("%H")
 		if 7 <= s:hour && s:hour < 18
-			set background=dark
-		else
 			set background=light
+		else
+			set background=dark
 		endif
 	endif
 	set number						" Show line numbers.
@@ -245,7 +245,6 @@ let g:ale_completion_enabled = 1 " Must be set before ALE is loaded.
 	set backspace=indent,eol,start				" Make backspace work like expected.
 	set linespace=0						" No line spacing.
 	set showmatch						" Shortly jump to a matching bracket when match.
-	set wildmenu						" Enable tab-completion menu.
 	set wildmode=full					" Full completion.
 	set wildignorecase					" Case insensitive filename completion.
 	set scrolljump=5 					" Lines to scroll when cursor leaves screen.
@@ -265,6 +264,7 @@ let g:ale_completion_enabled = 1 " Must be set before ALE is loaded.
 	"hi CursorLine cterm=NONE ctermbg=LightGray ctermfg=Black guibg=LightGray guifg=Black
 	"hi CursorColumn cterm=NONE ctermbg=LightGray ctermfg=Black guibg=LightGray guifg=Black
 
+"===============MIGRATION MARKER=========================
 	" Statusline {
 		" Comment these out when using powerline statusbar.
 		set statusline=%t       				" Tail of the filename.

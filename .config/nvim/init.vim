@@ -9,12 +9,21 @@
 " Reference: https://stackoverflow.com/questions/1687799/profiling-vim-startup-time
 " }
 
-" TODO migrate Vundle plugins, to a plugin manager. vim-plug? https://github.com/junegunn/vim-plug
 " TODO fix indentation of comments to be consistent in this file.
 
+" Plugins {
+" vim-plug data folder
+call plug#begin(stdpath('data') . '/plugged')
+
+" TODO migrate Vundle plugins from .vimrc
+Plug 'overcache/NeoSolarized'
+
+" Initialize plugin system
+call plug#end() 
+" }
 
 " Environment {
-set tags+=./tags;/	" Look for tags in current directory or search up until found.
+set tags+=./tags;/	" Look for tags in current directory or search up until found. TODO default would suffice?
 
 " Also use $HOME/.vim in Windows. TODO needed?
 "if has('win32') || has('win64')
@@ -49,5 +58,32 @@ set timeoutlen=1500				" Timout (ms) for mappings and keycodes.
 " }
 
 " UI {
+colorscheme NeoSolarized
 
+" Adjust colors to this background.
+if filereadable(expand("~/.solarizedtoggle/status"))
+	let &background = readfile(expand("~/.solarizedtoggle/status"), '', 1)[0]
+else
+	"set background=dark
+	" Lighter bg during night.
+	" Source:  http://benjamintan.io/blog/2014/04/10/switch-solarized-light-slash-dark-depending-on-the-time-of-day/
+	let s:hour = strftime("%H")
+	if 7 <= s:hour && s:hour < 18
+		set background=light
+	else
+		set background=dark
+	endif
+endif
+
+set termguicolors	" Enable 24-bit RGB. Required by NeoSolarized.
+set title			" Show title in console title bar.
+set number						" Show line numbers.
+set showmatch						" Shortly jump to a matching bracket when match.
+set cursorline						" Highlight the current line.
+"set cursorcolumn					" Highlight the current column.
+set wildignorecase					" Case insensitive filename completion.
+set scrolljump=5 					" Lines to scroll when cursor leaves screen.
+set scrolloff=3 					" Minimum lines to keep above and below cursor.  set splitbelow						" Open horizontal split below.
+set splitright						" Open vertical split to the right.
+set listchars=eol:$,space:·,tab:>-,trail:¬,extends:>,precedes:<,nbsp:. 	" Characters to use for :list.
 " }

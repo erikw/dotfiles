@@ -132,19 +132,27 @@ EOF
 
 # Vim {
 # Install Vundle plugins
-vim -c BundleInstall
+#vim -c BundleInstall
 
 #  Instant Markdown Preview
 # https://github.com/instant-markdown/vim-instant-markdown
-npm -g install instant-markdown-d
+#npm -g install instant-markdown-d
 
 # command-t
-cd $HOME/.vim/bundle/command-t/ruby/command-t/ext/command-t
-ruby extconf.rb
-make
-cd -
+#cd $HOME/.vim/bundle/command-t/ruby/command-t/ext/command-t
+#ruby extconf.rb
+#make
+#cd -
 # }
 
+# Neovim {
+# Install vim-plug: https://github.com/junegunn/vim-plug
+sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+nvim -c PlugInstall
+
+
+# }
 
 # }
 
