@@ -1,6 +1,6 @@
 " Erik Westrup's Vim configuration.
 " Modeline {
-"	vi: foldmarker={,} foldmethod=marker foldlevel=0 tabstop=8 :
+"	vi: foldmarker={,} foldmethod=marker foldlevel=0 tabstop=4 :
 " }
 
 " Profiling {
@@ -163,7 +163,7 @@ let g:ale_completion_enabled = 1 " Must be set before ALE is loaded.
 	set omnifunc=ale#completion#OmniFunc		" Use ALE for omnicompletion
 	set shortmess=filmnrxtToOI    			" Abbreviate messages.
 	set nrformats=alpha,octal,hex			" What to increment/decrement with ^A and ^X.
-	set hidden					" Work with hidden buffers more easily.
+	set hidden						" Work with hidden buffers more easily. Enables to leave buffer with unwritten changes (by :edit another buffer).
 	set autoread					" Autoreload buffer from file if not changed in vim, e.g. with the :checktime command.
 	set sessionoptions-=options			" Don't store global and local variables when saving sessions.
 	set undofile					" Save undo to file in undodir.
