@@ -2,6 +2,7 @@
 !.atom/config.cson
 !.config/dunst/
 !.config/khal/config
+!.config/nvim/
 !.config/parcellite/parcelliterc
 !.config/powerline/
 !.config/systemd/
