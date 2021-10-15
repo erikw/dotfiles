@@ -48,5 +48,6 @@ set undolevels=2048				" Levels of undo to keep in memory.
 set timeoutlen=1500				" Timout (ms) for mappings and keycodes.
 " }
 
+" UI {
 
-
+" }
