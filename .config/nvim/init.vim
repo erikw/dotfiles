@@ -161,23 +161,100 @@ autocmd BufWinEnter * silent! loadview				" Load fold views on start.
 " }
 
 " Mappings {
-	let mapleader = "\\"								" The key for <Leader>.
-	nmap <silent> <C-_> :nohlsearch<CR>						" Clear search matches highlighting. (Ctrl+/ => ^_)
+let mapleader = "\\"								" The key for <Leader>.
+nmap <silent> <C-_> :nohlsearch<CR>						" Clear search matches highlighting. (Ctrl+/ => ^_)
 nmap <silent> <Leader>v :source $MYVIMRC<CR>			" Source init.vim
-	nmap <silent> <Leader>V :tabe $MYVIMRC<CR>				" Edit init.vim
-	noremap <silent> <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>		" Open tags definition in a new tab.
-    noremap <silent> <Leader>] :vsp<CR>:exec("tag ".expand("<cword>"))<CR>      		" Open tags definition in a vertical split.
-	nnoremap g^t :tabfirst<CR>							" Go to first tab.
-	nnoremap g$t :tablast<CR>							" Go to last tab.
-	noremap Yf :let @" = expand("%")<CR>						" Yank current file name.
-	noremap YF :let @" = expand("%:p")<CR>						" Yank current (fully expanded) file name.
-	nnoremap <silent> <Leader>R :checktime<CR>						" Reload buffers from file if changed.
+nmap <silent> <Leader>V :tabe $MYVIMRC<CR>				" Edit init.vim
+noremap <silent> <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>		" Open tags definition in a new tab.
+noremap <silent> <Leader>] :vsp<CR>:exec("tag ".expand("<cword>"))<CR>      		" Open tags definition in a vertical split.
+nnoremap g^t :tabfirst<CR>							" Go to first tab.
+nnoremap g$t :tablast<CR>							" Go to last tab.
+noremap Yf :let @" = expand("%")<CR>						" Yank current file name.
+noremap YF :let @" = expand("%:p")<CR>						" Yank current (fully expanded) file name.
+nnoremap <silent> <Leader>R :checktime<CR>						" Reload buffers from file if changed.
+"nmap <silent> <Leader>d "=strftime("%Y-%m-%d")<CR>P 				" Insert the current date.
+"nmap <silent> <Leader>S :%s/\s\+$//ge<CR>					" Remove all trailing spaces.
 
-	nnoremap <silent> gfs :wincmd f<CR>						" Open path under cursor in a split.
-	nnoremap <silent> gfv :vertical wincmd f<CR>					" Open path under cursor in a vertical split.
-	nnoremap <silent> gft :tab wincmd f<CR>						" Open path under cursor in a tab.
-	nnoremap <silent> gV `[v`]							" Visually select the text that was last edited/pasted.
+nnoremap <silent> gfs :wincmd f<CR>						" Open path under cursor in a split.
+nnoremap <silent> gfv :vertical wincmd f<CR>					" Open path under cursor in a vertical split.
+nnoremap <silent> gft :tab wincmd f<CR>						" Open path under cursor in a tab.
+nnoremap <silent> gV `[v`]							" Visually select the text that was last edited/pasted.
 
-	"nmap <silent> <Leader>d "=strftime("%Y-%m-%d")<CR>P 				" Insert the current date.
-	"nmap <silent> <Leader>S :%s/\s\+$//ge<CR>					" Remove all trailing spaces.
+" Redraw window so that search terms are centered.
+nnoremap n nzz
+nnoremap N Nzz
+
+" Calculate current Word e.g. type 1+2 and press ^c.
+inoremap <C-c> <C-O>yiW<End>=<C-R>=<C-R>0<CR>=
+
+" Enable ^d and ^u movement in completion dialog.
+inoremap <expr> <C-d> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<C-d>"
+inoremap <expr> <C-u> pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<C-u>"
+
+if &l:term  =~ "screen.*"
+	noremap <silent> <C-x>x <C-x>						" Decrement for consistency with GNU Screen.
+endif
+
+" Toggles {
+noremap <silent> <Leader>w :set wrap!<CR>:set wrap?<CR>				" Toggle line wrapping.
+noremap <silent> <Leader>` :set list!<CR>					" Toggle listing of characters. See listchars.
+noremap <Leader>l :set relativenumber!<CR>					" Toggle :number between absolute and line relative.
+noremap <silent> <ESC>p :set paste! paste?<CR>					" Toggle 'paste' for sane pasting.
+noremap <silent> <leader>p :set paste<CR>o<ESC>:normal "*p<CR>:set nopaste<CR>	" Paste on line after in paste-mode from register "*.
+noremap <silent> <leader>P :set paste<CR>O<ESC>:normal "*P<CR>:set nopaste<CR>	" Paste on line before in paste-mode from register "*.
+
+" Toggle spell with a language. {
+function! ToggleSpell(lang)
+	if !exists("b:old_spelllang")
+		let b:old_spelllang = &spelllang
+		let b:old_spellfile = &spellfile
+		let b:old_dictionary = &dictionary
+	endif
+
+	let l:newMode = ""
+	if !&l:spell || a:lang != &l:spelllang
+		setlocal spell
+		let l:newMode = "spell, " . a:lang
+		execute "setlocal spelllang=" . a:lang
+		execute "setlocal spellfile=" . "~/.vim/spell/" . matchstr(a:lang, "[a-zA-Z][a-zA-Z]") . "." . &encoding . ".add"
+		execute "setlocal dictionary=" . "~/.vim/spell/" . a:lang . "." . &encoding . ".dic"
+	else
+		setlocal nospell
+		let l:newMode = "nospell"
+		execute "setlocal spelllang=" . b:old_spelllang
+		execute "setlocal spellfile=" . b:old_spellfile
+		execute "setlocal dictionary=" . b:old_dictionary
+	endif
+	return l:newMode
+endfunction
+" }
+nmap <silent> <F6> :echo ToggleSpell("en_us")<CR>			" Toggle English spell.
+nmap <silent> <F7> :echo ToggleSpell("sv")<CR>				" Toggle Swedish spell.
+nmap <silent> <F8> :echo ToggleSpell("de")<CR>				" Toggle German spell.
+
+" Toggle mouse {
+	function! ToggleMouse()
+		if &mouse == "a"
+			set mouse=
+		else
+			set mouse=a
+		endif
+		set mouse?
+	endfunction
+" }
+nmap <Leader>m :call ToggleMouse()<CR>					" Toggles mouse on and off.
+" }
+
+" Cmaps {
+" Prevent saving buffer to a file '\'.
+cmap w\ echoerr "Using a Swedish keyboard?"<CR>
+" }
+" }
+
+" Abbreviations {
+" Expand my name.
+"iabbrev ew Erik Westrup
+" }
+
+" Plugin Config {
 " }

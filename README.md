@@ -63,7 +63,7 @@ $ pbcopy <  ~/.ssh/identityfiles/github_id_rsa.pub
 ```
 
 ## Git email
-Needs to be set for Github to [associate](https://docs.github.com/en/github/setting-up-and-managing-your-github-user-account/managing-email-preferences/setting-your-commit-email-address) commits.
+Needs to be set for GitHub to [associate](https://docs.github.com/en/github/setting-up-and-managing-your-github-user-account/managing-email-preferences/setting-your-commit-email-address) commits.
 
 Set up git user email address in `~/.gitconfig.local`:
 ```

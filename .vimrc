@@ -335,7 +335,6 @@ let g:ale_completion_enabled = 1 " Must be set before ALE is loaded.
 	"autocmd! BufWritePost .vimrc source $MYVIMRC		" Source first found vimrc on change.
 " }
 
-"===============MIGRATION MARKER=========================
 " Mappings {
 	let mapleader = "\\"								" The key for <Leader>.
 	nmap <silent> <C-_> :nohlsearch<CR>						" Clear search matches highlighting. (Ctrl+/ => ^_)
@@ -360,7 +359,7 @@ let g:ale_completion_enabled = 1 " Must be set before ALE is loaded.
 	nnoremap n nzz
 	nnoremap N Nzz
 
-	" Calculate current Word e.g type 1+2 and press ^c.
+	" Calculate current Word e.g. type 1+2 and press ^c.
 	inoremap <C-c> <C-O>yiW<End>=<C-R>=<C-R>0<CR>=
 
 	" Enable ^d and ^u movement in completion dialog.
@@ -377,8 +376,6 @@ let g:ale_completion_enabled = 1 " Must be set before ALE is loaded.
 		noremap <silent> <ESC>p :set paste! paste?<CR>					" Toggle 'paste' for sane pasting.
 		noremap <silent> <leader>p :set paste<CR>o<ESC>:normal "*p<CR>:set nopaste<CR>	" Paste on line after in paste-mode from register "*.
 		noremap <silent> <leader>P :set paste<CR>O<ESC>:normal "*P<CR>:set nopaste<CR>	" Paste on line before in paste-mode from register "*.
-
-		noremap <silent> <Leader>ac :AutoCloseToggle<CR>				" Toggle AutoClose mode.
 
 		" Toggle spell with a language. {
 		function! ToggleSpell(lang)
@@ -489,6 +486,8 @@ if s:use_plugins
 	" AutoClose {
 		"let g:AutoClosePairs = AutoClose#ParsePairs("() [] {} <> «» ` \" '") " Pairs to close. Does not seems to work with vundle.
 		let g:AutoCloseProtectedRegions = ["Comment", "String", "Character"]	" Syntax regions to ignore.
+
+		noremap <silent> <Leader>ac :AutoCloseToggle<CR>				" Toggle vim-autoclose plugin mode.
 
 	" }
 
