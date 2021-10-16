@@ -9,15 +9,36 @@
 " Reference: https://stackoverflow.com/questions/1687799/profiling-vim-startup-time
 " }
 
+" TODO migrate Vundle plugins from .vimrc
 " TODO fix indentation of comments to be consistent in this file.
 " TODO order sections alphabetically?
+" TODO check all TODOs in .vimrc too
 
 " Plugins {
 " vim-plug data folder
 call plug#begin(stdpath('data') . '/plugged')
 
-" TODO migrate Vundle plugins from .vimrc
-Plug 'overcache/NeoSolarized'
+" UI {
+	"Plug 'vim-scripts/ScrollColors'
+	Plug 'overcache/NeoSolarized'
+	Plug 'mkitt/tabline.vim'	" More informative tabs. Only for terminal; gvim uses guilabel setting.
+"}
+
+" Navigation {
+	"Plugin 'wincent/command-t' TODO replace this with fzf!
+" }
+
+" Development: General {
+	"Plug 'dense-analysis/ale' TODO not needed, as Neovim has built-in LSP support?
+	"Plug 'preservim/tagbar'				" Sidepane showing info from tags file. Diabled as currently not using ctags.
+	Plug 'Townk/vim-autoclose'			" Automatically insert matching brace pairs.
+	Plug 'airblade/vim-gitgutter'		" Git modified status in sign column
+	Plug 'andymass/vim-matchup'			" Extend % matching. Replaces old the matchit plugin.
+	Plug 'editorconfig/editorconfig-vim'	" Standard .editorconfig file in shared projects.
+	Plug 'rhysd/conflict-marker.vim' 	" Navigate and edit VCS conflicts. Replace unmaintained 'vim-script/ConflictMotions'
+	Plug 'vim-scripts/argtextobj.vim'	" Make function arguments objects that can be operated on with.
+" }
+
 
 " Initialize plugin system
 call plug#end() 
@@ -82,30 +103,37 @@ set splitright						" Open vertical split to the right.
 set listchars=eol:$,space:·,tab:>-,trail:¬,extends:>,precedes:<,nbsp:. 	" Characters to use for :list.
 
 " Statusline {
-	" Comment these out when using powerline statusbar.
-	set statusline=%t       				" Tail of the filename.
-	set statusline+=%m     					" Modified flag.
-	set statusline+=\ [%{strlen(&fenc)?&fenc:'none'},	" File encoding.
-	set statusline+=%{&ff}]					" File format.
-	set statusline+=%h     					" Help file flag.
-	set statusline+=%r     					" Read only flag.
-	set statusline+=%y     					" Filetype.
-	"set statusline+=['%{getline('.')[col('.')-1]}'\ \%b\ 0x%B] 	" Value of byte under cursor.
+" Comment these out when using powerline statusbar.
+set statusline=%t       				" Tail of the filename.
+set statusline+=%m     					" Modified flag.
+set statusline+=\ [%{strlen(&fenc)?&fenc:'none'},	" File encoding.
+set statusline+=%{&ff}]					" File format.
+set statusline+=%h     					" Help file flag.
+set statusline+=%r     					" Read only flag.
+set statusline+=%y     					" Filetype.
+"set statusline+=['%{getline('.')[col('.')-1]}'\ \%b\ 0x%B] 	" Value of byte under cursor.
 
-	" TODO enable when fugitive is installed.
-	"set statusline+=%#StatusLineNC#				" Change highlight group
-	"set statusline+=%{fugitive#statusline()}		" Show current branch.
-	"set statusline+=%*
-	"set statusline+=%{tagbar#currenttag('[#%s]','')}	" Current tag.
+" TODO enable when fugitive is installed. Or use gitgutter below?
+"set statusline+=%#StatusLineNC#				" Change highlight group
+"set statusline+=%{fugitive#statusline()}		" Show current branch.
+"set statusline+=%*
+"set statusline+=%{tagbar#currenttag('[#%s]','')}	" Current tag.
 
-	set statusline+=%=     					" Left/right-aligned separator.
-	"set statusline+=[\%b\ 0x%B]\  				" Value of byte under cursor.
-	"set statusline+=[0x%O]\ 				" Byte offset from start.
-	set statusline+=%l/%L, 					" Cursor line/total lines.
-	set statusline+=%c    					" Cursor column.
-	set statusline+=\ %P   					" Percent through file.
-	set statusline+=\ 0x%B					" Character value under cursor.
-	set statusline+="apa"					" Character value under cursor.
+" vim-gitgutter
+"function! GitStatus()
+"	let [a,m,r] = GitGutterGetHunkSummary()
+"	return printf('+%d ~%d -%d', a, m, r)
+"endfunction
+"set statusline+=\ [%{GitStatus()}]
+
+
+set statusline+=%=     					" Left/right-aligned separator.
+"set statusline+=[\%b\ 0x%B]\  				" Value of byte under cursor.
+"set statusline+=[0x%O]\ 				" Byte offset from start.
+set statusline+=%l/%L, 					" Cursor line/total lines.
+set statusline+=%c    					" Cursor column.
+set statusline+=\ %P   					" Percent through file.
+set statusline+=\ 0x%B					" Character value under cursor.
 " }
 " }
 
@@ -257,4 +285,29 @@ cmap w\ echoerr "Using a Swedish keyboard?"<CR>
 " }
 
 " Plugin Config {
+" tagbar {
+"nmap <silent> <F3> :TagbarToggle<CR>		" Toggle the Tagbar window.
+"let g:tagbar_left		= 0		" Keep the window on the right side.
+"let g:tagbar_width		= 30		" Width of window.
+"let g:tagbar_autoclose		= 1		" Close tagbar when jumping to a tag.
+"let g:tagbar_autofocus		= 1		" Give tagbar focus when it's opened.
+"let g:tagbar_sort		= 1		" Sort tags alphabetically.
+"let g:tagbar_compact		= 1		" Omit the help text.
+"let g:tagbar_singleclick	= 1 		" Jump to tag with a single click.
+"let g:tagbar_autoshowtag	= 1		" Open folds if tag is not visible.
+" }
+
+" vim-autoclose {
+let g:AutoClosePairs = "() [] {} <> «» ` \" '"	" Pairs to auto-close.
+"let g:AutoCloseProtectedRegions = ["Comment", "String", "Character"]	" Syntax regions to ignore.
+
+noremap <silent> <Leader>ac :AutoCloseToggle<CR>				" Toggle vim-autoclose plugin mode.
+
+" }
+
+" vim-gitgutter {
+set updatetime=100		" Speedier update of file status.
+
+" }
+
 " }

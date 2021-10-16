@@ -60,6 +60,7 @@ let g:ale_completion_enabled = 1 " Must be set before ALE is loaded.
 		Plugin 'tmhedberg/matchit'
 
 	"}
+"===========MIGRATION MARKER================
 	" Development: C/C++ {
 		"Plugin 'Rip-Rip/clang_complete'
 		"Plugin 'rhysd/vim-clang-format'
@@ -85,7 +86,6 @@ let g:ale_completion_enabled = 1 " Must be set before ALE is loaded.
 	" General {
 		"Plugin 'easymotion/vim-easymotion'
 		"Plugin 'fatih/vim-go'
-		"Plugin 'git://git.wincent.com/command-t.git'
 		"Plugin 'godlygeek/tabular'		" Disabled: not used and have some startup time.
 		"Plugin 'scrooloose/nerdtree'		" Replaced by built-in netrw
 		"Plugin 'sjl/gundo.vim'			" Use mbbill/undotree instead; is better: https://vi.stackexchange.com/a/13863
@@ -466,6 +466,7 @@ let g:ale_completion_enabled = 1 " Must be set before ALE is loaded.
 	"iabbrev ew Erik Westrup
 " }
 
+" TODO migrate all settings needed here
 " Plugins {
 if s:use_plugins
 	" ALE {
