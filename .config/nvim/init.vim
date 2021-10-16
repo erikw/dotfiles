@@ -10,6 +10,7 @@
 " }
 
 " TODO fix indentation of comments to be consistent in this file.
+" TODO order sections alphabetically?
 
 " Plugins {
 " vim-plug data folder
@@ -33,21 +34,6 @@ set tags+=./tags;/	" Look for tags in current directory or search up until found
 
 " General {
 set undofile				" Save undo to file in undodir.
-set mouse=a					" Enable mouse in all modes.
-
-"set spell					" Enable spell highlighting and suggestions.
-set spelllang=en_us				" Languages to do spell checking for.
-set spellsuggest=best,10			" Limit spell suggestions.
-" Set spellfile dynamically. Shared with Vim.
-execute "set spellfile=" . "~/.vim/spell/" . matchstr(&spelllang, "[a-zA-Z][a-zA-Z]") . "." . &encoding . ".add"
-" TODO make this depend on 'spellang' if I can get files for Swedish and German.
-set thesaurus+=~/.vim/thesaurus/mthesaur.txt    " Use a thesaurus file.
-set completeopt=longest,menu,preview		" Insert most common completion and show menu.
-
-set omnifunc=syntaxcomplete#Complete		" Let Omni completion (^x^o) use vim's builtin syntax files for language keywords.
-" TODO ALE not needed as neovim has native LSP? https://neovim.io/doc/lsp/
-"set omnifunc=ale#completion#OmniFunc		" Use ALE for omnicompletion
-
 set shortmess=filmnrxtToO    			" Abbreviate messages.
 set nrformats=alpha,bin,octal,hex			" What to increment/decrement with ^A and ^X.
 set hidden						" Work with hidden buffers more easily. Enables to leave buffer with unwritten changes (by :edit another buffer).
@@ -55,6 +41,12 @@ set sessionoptions-=options		" Don't store global and local variables when savin
 set undolevels=2048				" Levels of undo to keep in memory.
 "set clipboard+=unnamed				" Use register "* instead of unnamed register. This means what is being yanked in vim gets put to external clipboard automatically.
 set timeoutlen=1500				" Timout (ms) for mappings and keycodes.
+
+" TODO break out to Completion section?
+set completeopt=longest,menu,preview		" Insert most common completion and show menu.
+set omnifunc=syntaxcomplete#Complete		" Let Omni completion (^x^o) use vim's builtin syntax files for language keywords.
+" TODO ALE not needed as neovim has native LSP? https://neovim.io/doc/lsp/
+"set omnifunc=ale#completion#OmniFunc		" Use ALE for omnicompletion
 " }
 
 " UI {
@@ -76,6 +68,7 @@ else
 endif
 
 set termguicolors	" Enable 24-bit RGB. Required by NeoSolarized.
+set mouse=a					" Enable mouse in all modes.
 set title			" Show title in console title bar.
 set number						" Show line numbers.
 set showmatch						" Shortly jump to a matching bracket when match.
@@ -84,6 +77,107 @@ set cursorline						" Highlight the current line.
 set wildignorecase					" Case insensitive filename completion.
 set scrolljump=5 					" Lines to scroll when cursor leaves screen.
 set scrolloff=3 					" Minimum lines to keep above and below cursor.  set splitbelow						" Open horizontal split below.
+set splitbelow						" Open horizontal split below.
 set splitright						" Open vertical split to the right.
 set listchars=eol:$,space:·,tab:>-,trail:¬,extends:>,precedes:<,nbsp:. 	" Characters to use for :list.
+
+" Statusline {
+	" Comment these out when using powerline statusbar.
+	set statusline=%t       				" Tail of the filename.
+	set statusline+=%m     					" Modified flag.
+	set statusline+=\ [%{strlen(&fenc)?&fenc:'none'},	" File encoding.
+	set statusline+=%{&ff}]					" File format.
+	set statusline+=%h     					" Help file flag.
+	set statusline+=%r     					" Read only flag.
+	set statusline+=%y     					" Filetype.
+	"set statusline+=['%{getline('.')[col('.')-1]}'\ \%b\ 0x%B] 	" Value of byte under cursor.
+
+	" TODO enable when fugitive is installed.
+	"set statusline+=%#StatusLineNC#				" Change highlight group
+	"set statusline+=%{fugitive#statusline()}		" Show current branch.
+	"set statusline+=%*
+	"set statusline+=%{tagbar#currenttag('[#%s]','')}	" Current tag.
+
+	set statusline+=%=     					" Left/right-aligned separator.
+	"set statusline+=[\%b\ 0x%B]\  				" Value of byte under cursor.
+	"set statusline+=[0x%O]\ 				" Byte offset from start.
+	set statusline+=%l/%L, 					" Cursor line/total lines.
+	set statusline+=%c    					" Cursor column.
+	set statusline+=\ %P   					" Percent through file.
+	set statusline+=\ 0x%B					" Character value under cursor.
+	set statusline+="apa"					" Character value under cursor.
+" }
+" }
+
+" Spelling {
+set spelllang=en_us				" Languages to do spell checking for.
+set spellsuggest=best,10			" Limit spell suggestions.
+" Set spellfile dynamically. Shared with Vim.
+execute "set spellfile=" . "~/.vim/spell/" . matchstr(&spelllang, "[a-zA-Z][a-zA-Z]") . "." . &encoding . ".add"
+
+" TODO make this depend on 'spellang' if I can get files for Swedish and German.
+set thesaurus+=~/.vim/thesaurus/mthesaur.txt    " Use a thesaurus file.
+" }
+
+" Searching {
+	set ignorecase		" Case insensitive search.
+	set smartcase		" Smart case search.
+	set nowrapscan		" Don't wrap search around file.
+" }
+
+" Formatting {
+set linebreak			" Wrap on 'breakat'-chars.
+"set showbreak=>		" Indicate wrapped lines.
+set showbreak=…			" Indicate wrapped lines.
+set smartindent			" Indent smart on C-like files.
+set preserveindent		" Try to preserve indent structure on changes of current line.
+set copyindent			" Copy indentstructure from existing lines.
+set tabstop=4			" Let a tab be 8 spaces wide.
+set shiftwidth=4		" Tab width for auto indent and >> shifting.
+"set softtabstop=4		" Number of spaces to count a tab for on ops like BS and tab.
+set matchpairs+=<:>		" Also match <> with %.
+set formatoptions=tcroqwnl	" How automatic formatting should happen.
+set cinoptions+=g=		" Left-indent C++ access labels.
+"set pastetoggle  = <Leader>p    " Toggle 'paste' for sane pasting.
+" }
+
+" Commands {
+" Sort words on the current line.
+command! Sortline call setline(line('.'),join(sort(split(getline('.'))), ' '))
+" Write with extended privileges.
+command! Wsudo silent w !sudo tee % > /dev/null
+" Update and run make.
+command! Wmake update | silent !make >/dev/null
+" See buffer and file diff.
+command! Wdiff w !diff % -
+
+" Change to directory of current file.
+command! Cdpwd cd %:p:h
+command! Lcdpwd lcd %:p:h
+
+command! -nargs=* Wrap set wrap linebreak nolist	" Set softwrap correctly.
+autocmd BufWinLeave * silent! mkview				" Save fold views.
+autocmd BufWinEnter * silent! loadview				" Load fold views on start.
+" }
+
+" Mappings {
+	let mapleader = "\\"								" The key for <Leader>.
+	nmap <silent> <C-_> :nohlsearch<CR>						" Clear search matches highlighting. (Ctrl+/ => ^_)
+nmap <silent> <Leader>v :source $MYVIMRC<CR>			" Source init.vim
+	nmap <silent> <Leader>V :tabe $MYVIMRC<CR>				" Edit init.vim
+	noremap <silent> <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>		" Open tags definition in a new tab.
+    noremap <silent> <Leader>] :vsp<CR>:exec("tag ".expand("<cword>"))<CR>      		" Open tags definition in a vertical split.
+	nnoremap g^t :tabfirst<CR>							" Go to first tab.
+	nnoremap g$t :tablast<CR>							" Go to last tab.
+	noremap Yf :let @" = expand("%")<CR>						" Yank current file name.
+	noremap YF :let @" = expand("%:p")<CR>						" Yank current (fully expanded) file name.
+	nnoremap <silent> <Leader>R :checktime<CR>						" Reload buffers from file if changed.
+
+	nnoremap <silent> gfs :wincmd f<CR>						" Open path under cursor in a split.
+	nnoremap <silent> gfv :vertical wincmd f<CR>					" Open path under cursor in a vertical split.
+	nnoremap <silent> gft :tab wincmd f<CR>						" Open path under cursor in a tab.
+	nnoremap <silent> gV `[v`]							" Visually select the text that was last edited/pasted.
+
+	"nmap <silent> <Leader>d "=strftime("%Y-%m-%d")<CR>P 				" Insert the current date.
+	"nmap <silent> <Leader>S :%s/\s\+$//ge<CR>					" Remove all trailing spaces.
 " }

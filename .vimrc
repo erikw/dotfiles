@@ -260,11 +260,10 @@ let g:ale_completion_enabled = 1 " Must be set before ALE is loaded.
 	set listchars=eol:$,space:·,tab:>-,trail:¬,extends:>,precedes:<,nbsp:. 	" Characters to use for list.
 	set cursorline						" Highlight the current line.
 	"set cursorcolumn					" Highlight the current column.
-	" Colors of the \cancel{hardstyle} CursorLine.
+	" Colors of the CursorLine.
 	"hi CursorLine cterm=NONE ctermbg=LightGray ctermfg=Black guibg=LightGray guifg=Black
 	"hi CursorColumn cterm=NONE ctermbg=LightGray ctermfg=Black guibg=LightGray guifg=Black
 
-"===============MIGRATION MARKER=========================
 	" Statusline {
 		" Comment these out when using powerline statusbar.
 		set statusline=%t       				" Tail of the filename.
@@ -300,11 +299,9 @@ let g:ale_completion_enabled = 1 " Must be set before ALE is loaded.
 " }
 
 " Formatting {
-	set wrap			" Wrap long lines.
 	set linebreak			" Wrap on 'breakat'-chars.
 	"set showbreak=>		" Indicate wrapped lines.
 	set showbreak=…			" Indicate wrapped lines.
-	set autoindent			" Auto indent lines.
 	set smartindent			" Indent smart on C-like files.
 	set preserveindent		" Try to preserve indent structure on changes of current line.
 	set copyindent			" Copy indentstructure from existing lines.
@@ -333,11 +330,12 @@ let g:ale_completion_enabled = 1 " Must be set before ALE is loaded.
 	command! Lcdpwd lcd %:p:h
 
 	command! -nargs=* Wrap set wrap linebreak nolist	" Set softwrap correctly.
-	autocmd BufWinLeave * silent! mkview			" Save fold views.
-	autocmd BufWinEnter * silent! loadview			" Load fold views on start.
+	autocmd BufWinLeave * silent! mkview				" Save fold views.
+	autocmd BufWinEnter * silent! loadview				" Load fold views on start.
 	"autocmd! BufWritePost .vimrc source $MYVIMRC		" Source first found vimrc on change.
 " }
 
+"===============MIGRATION MARKER=========================
 " Mappings {
 	let mapleader = "\\"								" The key for <Leader>.
 	nmap <silent> <C-_> :nohlsearch<CR>						" Clear search matches highlighting. (Ctrl+/ => ^_)
@@ -346,8 +344,7 @@ let g:ale_completion_enabled = 1 " Must be set before ALE is loaded.
 	nmap <silent> <Leader>V :tabe $MYVIMRC<CR>					" Edit vimrc.
 	"nmap <silent> <Leader>d "=strftime("%Y-%m-%d")<CR>P 				" Insert the current date.
 	noremap <silent> <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>		" Open tags definition in a new tab.
-        "noremap <silent> <M-\> :vsp<CR>:exec("tag ".expand("<cword>"))<CR>      		" Open tags definition in a vertical split.
-        noremap <silent> <Leader>] :vsp<CR>:exec("tag ".expand("<cword>"))<CR>      		" Open tags definition in a vertical split.
+    noremap <silent> <Leader>] :vsp<CR>:exec("tag ".expand("<cword>"))<CR>      		" Open tags definition in a vertical split.
 	"nmap <silent> <Leader>S :%s/\s\+$//ge<CR>					" Remove all trailing spaces.
 	nnoremap <silent> gfs :wincmd f<CR>						" Open path under cursor in a split.
 	nnoremap <silent> gfv :vertical wincmd f<CR>					" Open path under cursor in a vertical split.

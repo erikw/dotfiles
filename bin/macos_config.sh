@@ -219,7 +219,7 @@ sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setglobalstate on
 ## Battery
 # * Turn display off after: 5 min
 ## Power Adapter
-# * Turn display off after: 30 min
+# * Turn display off after: 60 min
 # }
 
 # Keyboard {
