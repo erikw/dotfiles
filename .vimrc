@@ -83,37 +83,37 @@ let g:ale_completion_enabled = 1 " Must be set before ALE is loaded.
 		Plugin 'lbdbq'
 	"}
 	" General {
+		"Plugin 'buffergrep'
+		"Plugin 'dhruvasagar/vim-table-mode'
 		"Plugin 'easymotion/vim-easymotion'
 		"Plugin 'fatih/vim-go'
 		"Plugin 'godlygeek/tabular'		" Disabled: not used and have some startup time.
+		"Plugin 'salsifis/vim-transpose'
 		"Plugin 'scrooloose/nerdtree'		" Replaced by built-in netrw
 		"Plugin 'sjl/gundo.vim'			" Use mbbill/undotree instead; is better: https://vi.stackexchange.com/a/13863
 		"Plugin 'terryma/vim-multiple-cursors'
+		"Plugin 'tmux-plugins/vim-tmux'
+		"Plugin 'tpope/vim-markdown.git'
 		"Plugin 'tpope/vim-unimpaired'
-"===========MIGRATION MARKER================
 		Plugin 'LaTeX-Box-Team/LaTeX-Box'
 		Plugin 'MarcWeber/vim-addon-mw-utils' " Required for  garbas/vim-snipmate.
 		Plugin 'bfontaine/Brewfile.vim'
-		Plugin 'buffergrep'
 		Plugin 'danro/rename.vim'
-		Plugin 'dhruvasagar/vim-table-mode'
-		Plugin 'erikw/snipmate-snippets'
 		Plugin 'erikw/vim-unimpaired'
 		Plugin 'fidian/hexmode'
 		Plugin 'garbas/vim-snipmate'
+		Plugin 'honza/vim-snippets'
 		Plugin 'instant-markdown/vim-instant-markdown', {'rtp': 'after'}
 		Plugin 'mattn/gist-vim'
+		Plugin 'mattn/webapi-vim' " Required for gist-vim
 		Plugin 'mbbill/undotree'
 		Plugin 'michaeljsmith/vim-indent-object'
 		Plugin 'ntpeters/vim-better-whitespace'
 		Plugin 'rbonvall/snipmate-snippets-bib'
-		Plugin 'salsifis/vim-transpose'
 		Plugin 'scrooloose/nerdcommenter'
-		Plugin 'tmux-plugins/vim-tmux'
 		Plugin 'tomtom/tlib_vim'	" Required for garbas/vim-snipmate
 		Plugin 'tpope/vim-capslock'
 		Plugin 'tpope/vim-fugitive'
-		Plugin 'tpope/vim-markdown.git'
 		Plugin 'tpope/vim-repeat'
 		Plugin 'tpope/vim-speeddating'
 		Plugin 'tpope/vim-surround'
@@ -466,7 +466,6 @@ let g:ale_completion_enabled = 1 " Must be set before ALE is loaded.
 	"iabbrev ew Erik Westrup
 " }
 
-" TODO migrate all settings needed here
 " Plugins {
 if s:use_plugins
 	" ALE {
@@ -526,7 +525,7 @@ if s:use_plugins
 	" }
 
 	" Fugative {
-		autocmd BufReadPost fugitive://* set bufhidden=delete	" Close Fugative buffers when leaving.
+		autocmd BufReadPost fugitive://* set bufhidden=delete	" Close Fugitive buffers when leaving.
 	" }
 
 	" FuzzyFinder {
@@ -629,12 +628,6 @@ if s:use_plugins
 			autocmd BufWinEnter * if getbufvar(winbufnr(winnr()), "&filetype") != "netrw"|call CloseNetrw()|endif
 		aug END
 		" }
-	" }
-
-	" NERDCommenter {
-	" Swap invert comment toggle.
-		"map <silent> <Leader>c<Space> <plug>NERDCommenterInvert
-		"map <silent> <Leader>ci <plug>NERDCommenterToggle
 	" }
 
 	" NERDTree {
@@ -770,7 +763,7 @@ if s:use_plugins
 		""let g:Tlist_Display_Prototype      = 1			" Show prototypes instead of tags.
 		"let g:Tlist_Exit_OnlyWindow         = 1			" Close Vim if only Tlist open.
 	" }
-	"
+
 	" Undotree {
 		nmap <silent> <F4> :UndotreeToggle<CR>		" Toggle side pane.
 		let g:undotree_WindowLayout=2		 	" Set style to have diff window below.
@@ -778,7 +771,7 @@ if s:use_plugins
 	" }
 
 	" Vim Better Whitespace {
-		" Use same command is the old ~/.vim/plugin/stripspaces.vim
+		" Use same command as in the old ~/.vim/plugin/stripspaces.vim
 		" Need to wrap the command in a function as we can't chain
 		" commands unless they were declared to support this.
 		" Reference: " https://unix.stackexchange.com/questions/144568/how-do-i-write-a-command-in-vim-to-run-multiple-commands
