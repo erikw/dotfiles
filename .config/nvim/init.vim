@@ -9,8 +9,6 @@
 " Reference: https://stackoverflow.com/questions/1687799/profiling-vim-startup-time
 " }
 
-" TODO fix indentation of comments to be consistent in this file.
-
 " Plugins {
 " vim-plug data folder
 call plug#begin(stdpath('data') . '/plugged')
@@ -25,8 +23,8 @@ call plug#begin(stdpath('data') . '/plugged')
 		"Plug 'vim-scripts/lbdbq' 	" Mutt: Query lbdb for recipinents.
 		Plug 'LaTeX-Box-Team/LaTeX-Box'	" TODO replace with https://github.com/latex-lsp/texlab
 		Plug 'bfontaine/Brewfile.vim', { 'for': 'brewfile' }	" Syntax for Brewfiles
-		Plug 'danro/rename.vim'			" Provides the :Rename command
-		Plug 'fidian/hexmode'			" Open binary files as a HEX dump with :Hexmode
+		Plug 'danro/rename.vim'					" Provides the :Rename command
+		Plug 'fidian/hexmode'					" Open binary files as a HEX dump with :Hexmode
 		Plug 'instant-markdown/vim-instant-markdown', {'for': 'markdown', 'do': 'yarn install'}	" Live preview markdown files in browser.
 		Plug 'mbbill/undotree'					" Navigate history in a sidebar.
 		Plug 'michaeljsmith/vim-indent-object'	" Operate on intendtation as text objects
@@ -37,33 +35,33 @@ call plug#begin(stdpath('data') . '/plugged')
 		Plug 'tpope/vim-repeat'					" Extend '.' repetition for plugins like vim-surround, vim-speeddating.
 		Plug 'tpope/vim-speeddating'			" Increment dates with C-a.
 		Plug 'tpope/vim-surround'				" Work on surrond delimiters or its content.
-		Plug 'tpope/vim-unimpaired'		"  Bracket mappings like [<space>
+		Plug 'tpope/vim-unimpaired'				"  Bracket mappings like [<space>
 
 " }
 
 " Development {
 " Development: General {
-	Plug 'neovim/nvim-lspconfig'		" Plug-n-play configurations for LSP server.
-	Plug 'Townk/vim-autoclose'			" Automatically insert matching brace pairs.
-	Plug 'airblade/vim-gitgutter'		" Git modified status in sign column
-	Plug 'andymass/vim-matchup'			" Extend % matching. Replaces old the matchit plugin.
+	Plug 'neovim/nvim-lspconfig'			" Plug-n-play configurations for LSP server.
+	Plug 'Townk/vim-autoclose'				" Automatically insert matching brace pairs.
+	Plug 'airblade/vim-gitgutter'			" Git modified status in sign column
+	Plug 'andymass/vim-matchup'				" Extend % matching. Replaces old the matchit plugin.
 	Plug 'editorconfig/editorconfig-vim'	" Standard .editorconfig file in shared projects.
-	Plug 'preservim/tagbar'				" Sidepane showing info from tags file.
-	Plug 'rhysd/conflict-marker.vim' 	" Navigate and edit VCS conflicts. Replace unmaintained 'vim-script/ConflictMotions'
-	Plug 'vim-scripts/argtextobj.vim'	" Make function arguments text objects that can be operated on with.
+	Plug 'preservim/tagbar'					" Sidepane showing info from tags file.
+	Plug 'rhysd/conflict-marker.vim' 		" Navigate and edit VCS conflicts. Replace unmaintained 'vim-script/ConflictMotions'
+	Plug 'vim-scripts/argtextobj.vim'		" Make function arguments text objects that can be operated on with.
 " }
 
 " Development: C/C++ {
 	"Plug 'Rip-Rip/clang_complete', { 'for': ['c', 'cpp'] }
-	"Plug 'chazy/cscope_maps'	" More macros than autoload_cscope.vom
+	"Plug 'chazy/cscope_maps'				" More macros than autoload_cscope.vom
 	"Plug 'rhysd/vim-clang-format', { 'for': ['c', 'cpp'] }
 	Plug 'vim-scripts/autoload_cscope.vim', { 'for': ['c', 'cpp'] } 	" Load cscope file and define macros for using it. https://github.com/vim-scripts/autoload_cscope.vim/blob/master/plugin/autoload_cscope.vim#L81-L88
-	Plug 'craigemery/vim-autotag'	" Autogenerate new tags file. Could replace with https://github.com/ludovicchabant/vim-gutentags
+	Plug 'craigemery/vim-autotag'			" Autogenerate new tags file. Could replace with https://github.com/ludovicchabant/vim-gutentags
 "}
 
 " Development: Java {
 	"Plugin 'artur-shaik/vim-javacomplete2', { 'for': 'java' }		" Omni-complete for Java
-	"Plugin 'erikw/jcommenter.vim', { 'for': 'java' } " Generate javadoc.
+	"Plugin 'erikw/jcommenter.vim', { 'for': 'java' } 				" Generate javadoc.
 "}
 
 " Development: Go {
@@ -71,8 +69,8 @@ call plug#begin(stdpath('data') . '/plugged')
 "}
 
 " Development: Python {
-	"Plugin 'davidhalter/jedi-vim', { 'for': 'python' }	" Autocompletion using jedi library.
-	"Plugin 'python-rope/ropevim', { 'for': 'python' }	" Refactoring with rope library.
+	"Plugin 'davidhalter/jedi-vim', { 'for': 'python' }		" Autocompletion using jedi library.
+	"Plugin 'python-rope/ropevim', { 'for': 'python' }		" Refactoring with rope library.
 	"Plugin 'fisadev/vim-isort', { 'for': 'python' }		" Sort imports
 "}
 
@@ -84,7 +82,7 @@ call plug#begin(stdpath('data') . '/plugged')
 " Snippets {
 " Snippet engine. Not very active. https://github.com/honza/vim-snippets list altenatives. neosnippet.vim seems nice, but require python provider.
 Plug 'garbas/vim-snipmate' | Plug 'MarcWeber/vim-addon-mw-utils' | Plug 'tomtom/tlib_vim'
-Plug 'honza/vim-snippets'				" Snippet library
+Plug 'honza/vim-snippets'								" Snippet library
 Plug 'rbonvall/snipmate-snippets-bib', { 'for': 'tex' }	" Bibtex snippets.
 " }
 
@@ -94,8 +92,8 @@ Plug 'rbonvall/snipmate-snippets-bib', { 'for': 'tex' }	" Bibtex snippets.
 
 " UI {
 	"Plug 'vim-scripts/ScrollColors'
-	Plug 'overcache/NeoSolarized'
-	Plug 'mkitt/tabline.vim'	" More informative tabs. Only for terminal; gvim uses guilabel setting.
+	Plug 'overcache/NeoSolarized'	" Solarized theme.
+	Plug 'mkitt/tabline.vim'		" More informative tabs. Only for terminal; gvim uses guilabel setting.
 "}
 
 " Initialize plugin system
@@ -103,16 +101,16 @@ call plug#end()
 " }
 
 " General {
-set undofile				" Save undo to file in undodir.
+set undofile							" Save undo to file in undodir.
 set shortmess=filmnrxtToO    			" Abbreviate messages.
-set nrformats=alpha,bin,octal,hex			" What to increment/decrement with ^A and ^X.
-set hidden						" Work with hidden buffers more easily. Enables to leave buffer with unwritten changes (by :edit another buffer).
-set sessionoptions-=options		" Don't store global and local variables when saving sessions.
-set undolevels=2048				" Levels of undo to keep in memory.
-"set clipboard+=unnamed				" Use register "* instead of unnamed register. This means what is being yanked in vim gets put to external clipboard automatically.
-set timeoutlen=1500				" Timout (ms) for mappings and keycodes.
-set completeopt=longest,menu,preview		" Insert most common completion and show menu.
-set omnifunc=syntaxcomplete#Complete		" Let Omni completion (^x^o) use vim's builtin syntax files for language keywords.
+set nrformats=alpha,bin,octal,hex		" What to increment/decrement with ^A and ^X.
+set hidden								" Work with hidden buffers more easily. Enables to leave buffer with unwritten changes (by :edit another buffer).
+set sessionoptions-=options				" Don't store global and local variables when saving sessions.
+set undolevels=2048						" Levels of undo to keep in memory.
+"set clipboard+=unnamed					" Use register "* instead of unnamed register. This means what is being yanked in vim gets put to external clipboard automatically.
+set timeoutlen=1500						" Timout (ms) for mappings and keycodes.
+set completeopt=longest,menu,preview	" Insert most common completion and show menu.
+set omnifunc=syntaxcomplete#Complete	" Let Omni completion (^x^o) use vim's builtin syntax files for language keywords.
 " }
 
 " Abbreviations {
@@ -140,18 +138,18 @@ autocmd BufWinEnter * silent! loadview				" Load fold views on start.
 " }
 
 " Formatting {
-set linebreak			" Wrap on 'breakat'-chars.
-"set showbreak=>		" Indicate wrapped lines.
-set showbreak=…			" Indicate wrapped lines.
-set smartindent			" Indent smart on C-like files.
-set preserveindent		" Try to preserve indent structure on changes of current line.
-set copyindent			" Copy indentstructure from existing lines.
-set tabstop=4			" Let a tab be 8 spaces wide.
-set shiftwidth=4		" Tab width for auto indent and >> shifting.
-"set softtabstop=4		" Number of spaces to count a tab for on ops like BS and tab.
-set matchpairs+=<:>		" Also match <> with %.
+set linebreak				" Wrap on 'breakat'-chars.
+"set showbreak=>			" Indicate wrapped lines.
+set showbreak=…				" Indicate wrapped lines.
+set smartindent				" Indent smart on C-like files.
+set preserveindent			" Try to preserve indent structure on changes of current line.
+set copyindent				" Copy indentstructure from existing lines.
+set tabstop=4				" Let a tab be 8 spaces wide.
+set shiftwidth=4			" Tab width for auto indent and >> shifting.
+"set softtabstop=4			" Number of spaces to count a tab for on ops like BS and tab.
+set matchpairs+=<:>			" Also match <> with %.
 set formatoptions=tcroqwnl	" How automatic formatting should happen.
-set cinoptions+=g=		" Left-indent C++ access labels.
+set cinoptions+=g=			" Left-indent C++ access labels.
 "set pastetoggle  = <Leader>p    " Toggle 'paste' for sane pasting.
 " }
 
@@ -225,7 +223,7 @@ EOF
 " }
 
 " Mappings {
-let mapleader = "\\"								" The key for <Leader>.
+let mapleader = "\\"									" The key for <Leader>.
 nmap <silent> <C-_> :nohlsearch<CR>						" Clear search matches highlighting. (Ctrl+/ => ^_)
 nmap <silent> <Leader>v :source $MYVIMRC<CR>			" Source init.vim
 nmap <silent> <Leader>V :tabe $MYVIMRC<CR>				" Edit init.vim
@@ -233,15 +231,15 @@ noremap <silent> <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>		" Open
 noremap <silent> <Leader>] :vsp<CR>:exec("tag ".expand("<cword>"))<CR>      		" Open tags definition in a vertical split.
 nnoremap g^t :tabfirst<CR>							" Go to first tab.
 nnoremap g$t :tablast<CR>							" Go to last tab.
-noremap Yf :let @" = expand("%")<CR>						" Yank current file name.
-noremap YF :let @" = expand("%:p")<CR>						" Yank current (fully expanded) file name.
-nnoremap <silent> <Leader>R :checktime<CR>						" Reload buffers from file if changed.
+noremap Yf :let @" = expand("%")<CR>				" Yank current file name.
+noremap YF :let @" = expand("%:p")<CR>				" Yank current (fully expanded) file name.
+nnoremap <silent> <Leader>R :checktime<CR>			" Reload buffers from file if changed.
 "nmap <silent> <Leader>d "=strftime("%Y-%m-%d")<CR>P 				" Insert the current date.
 "nmap <silent> <Leader>S :%s/\s\+$//ge<CR>					" Remove all trailing spaces.
 
-nnoremap <silent> gfs :wincmd f<CR>						" Open path under cursor in a split.
-nnoremap <silent> gfv :vertical wincmd f<CR>					" Open path under cursor in a vertical split.
-nnoremap <silent> gft :tab wincmd f<CR>						" Open path under cursor in a tab.
+nnoremap <silent> gfs :wincmd f<CR>					" Open path under cursor in a split.
+nnoremap <silent> gfv :vertical wincmd f<CR>		" Open path under cursor in a vertical split.
+nnoremap <silent> gft :tab wincmd f<CR>				" Open path under cursor in a tab.
 nnoremap <silent> gV `[v`]							" Visually select the text that was last edited/pasted.
 
 " Redraw window so that search terms are centered.
@@ -256,14 +254,14 @@ inoremap <expr> <C-d> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<C-d>"
 inoremap <expr> <C-u> pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<C-u>"
 
 if &l:term  =~ "screen.*"
-	noremap <silent> <C-x>x <C-x>						" Decrement for consistency with GNU Screen.
+	noremap <silent> <C-x>x <C-x>					" Decrement for consistency with GNU Screen.
 endif
 
 " Toggles {
-noremap <silent> <Leader>w :set wrap!<CR>:set wrap?<CR>				" Toggle line wrapping.
+noremap <silent> <Leader>w :set wrap!<CR>:set wrap?<CR>		" Toggle line wrapping.
 noremap <silent> <Leader>` :set list!<CR>					" Toggle listing of characters. See listchars.
 noremap <Leader>l :set relativenumber!<CR>					" Toggle :number between absolute and line relative.
-noremap <silent> <ESC>p :set paste! paste?<CR>					" Toggle 'paste' for sane pasting.
+noremap <silent> <ESC>p :set paste! paste?<CR>				" Toggle 'paste' for sane pasting.
 noremap <silent> <leader>p :set paste<CR>o<ESC>:normal "*p<CR>:set nopaste<CR>	" Paste on line after in paste-mode from register "*.
 noremap <silent> <leader>P :set paste<CR>O<ESC>:normal "*P<CR>:set nopaste<CR>	" Paste on line before in paste-mode from register "*.
 
@@ -295,9 +293,9 @@ function! ToggleSpell(lang)
 	return l:newMode
 endfunction
 " }
-nmap <silent> <F6> :echo ToggleSpell("en_us")<CR>			" Toggle English spell.
-nmap <silent> <F7> :echo ToggleSpell("sv")<CR>				" Toggle Swedish spell.
-nmap <silent> <F8> :echo ToggleSpell("de")<CR>				" Toggle German spell.
+nmap <silent> <F6> :echo ToggleSpell("en_us")<CR>		" Toggle English spell.
+nmap <silent> <F7> :echo ToggleSpell("sv")<CR>			" Toggle Swedish spell.
+nmap <silent> <F8> :echo ToggleSpell("de")<CR>			" Toggle German spell.
 
 " Toggle mouse {
 function! ToggleMouse()
@@ -321,7 +319,7 @@ function! ToggleBackgroundMode()
 	set background?
 endfunction
 " }
-nmap <silent> <F5> :call ToggleBackgroundMode()<CR>						" Toggle between light and dark background mode.
+nmap <silent> <F5> :call ToggleBackgroundMode()<CR>		" Toggle between light and dark background mode.
 " }
 
 " Cmaps {
@@ -338,7 +336,7 @@ cmap w\ echoerr "Using a Swedish keyboard?"<CR>
 
 " Spelling {
 set spelllang=en_us				" Languages to do spell checking for.
-set spellsuggest=best,10			" Limit spell suggestions.
+set spellsuggest=best,10		" Limit spell suggestions.
 " Set spellfile dynamically. Shared with Vim.
 execute "set spellfile=" . "~/.vim/spell/" . matchstr(&spelllang, "[a-zA-Z][a-zA-Z]") . "." . &encoding . ".add"
 " Use a thesaurus file. Could load all, but that makes lookup slower. Instead let ToggleSpell() set per language.
@@ -364,43 +362,43 @@ else
 endif
 
 set termguicolors	" Enable 24-bit RGB. Required by NeoSolarized.
-set mouse=a					" Enable mouse in all modes.
+set mouse=a			" Enable mouse in all modes.
 set title			" Show title in console title bar.
-set number						" Show line numbers.
-set showmatch						" Shortly jump to a matching bracket when match.
-set cursorline						" Highlight the current line.
-"set cursorcolumn					" Highlight the current column.
-set wildignorecase					" Case insensitive filename completion.
-set scrolljump=5 					" Lines to scroll when cursor leaves screen.
-set scrolloff=3 					" Minimum lines to keep above and below cursor.  set splitbelow						" Open horizontal split below.
-set splitbelow						" Open horizontal split below.
-set splitright						" Open vertical split to the right.
+set number			" Show line numbers.
+set showmatch		" Shortly jump to a matching bracket when match.
+set cursorline		" Highlight the current line.
+"set cursorcolumn	" Highlight the current column.
+set wildignorecase	" Case insensitive filename completion.
+set scrolljump=5 	" Lines to scroll when cursor leaves screen.
+set scrolloff=3 	" Minimum lines to keep above and below cursor.
+set splitbelow		" Open horizontal split below.
+set splitright		" Open vertical split to the right.
 set listchars=eol:$,space:·,tab:>-,trail:¬,extends:>,precedes:<,nbsp:. 	" Characters to use for :list.
 
 " Statusline {
 " Comment these out when using powerline statusbar.
-set statusline=%t       				" Tail of the filename.
-set statusline+=%m     					" Modified flag.
+set statusline=%t       						" Tail of the filename.
+set statusline+=%m     							" Modified flag.
 set statusline+=\ [%{strlen(&fenc)?&fenc:'none'},	" File encoding.
-set statusline+=%{&ff}]					" File format.
-set statusline+=%h     					" Help file flag.
-set statusline+=%r     					" Read only flag.
-set statusline+=%y     					" Filetype.
+set statusline+=%{&ff}]							" File format.
+set statusline+=%h     							" Help file flag.
+set statusline+=%r     							" Read only flag.
+set statusline+=%y     							" Filetype.
 "set statusline+=['%{getline('.')[col('.')-1]}'\ \%b\ 0x%B] 	" Value of byte under cursor.
 
 " vim-fugitive:
-set statusline+=%#StatusLineNC#				" Change highlight group
+set statusline+=%#StatusLineNC#					" Change highlight group
 set statusline+=%{fugitive#statusline()}		" Show current branch.
 set statusline+=%*
 set statusline+=%{tagbar#currenttag('[#%s]','')}	" Current tag.
 
-set statusline+=%=     					" Left/right-aligned separator.
-"set statusline+=[\%b\ 0x%B]\  				" Value of byte under cursor.
-"set statusline+=[0x%O]\ 				" Byte offset from start.
-set statusline+=%l/%L, 					" Cursor line/total lines.
-set statusline+=%c    					" Cursor column.
-set statusline+=\ %P   					" Percent through file.
-set statusline+=\ 0x%B					" Character value under cursor.
+set statusline+=%=     							" Left/right-aligned separator.
+"set statusline+=[\%b\ 0x%B]\  					" Value of byte under cursor.
+"set statusline+=[0x%O]\ 						" Byte offset from start.
+set statusline+=%l/%L, 							" Cursor line/total lines.
+set statusline+=%c    							" Cursor column.
+set statusline+=\ %P   							" Percent through file.
+set statusline+=\ 0x%B							" Character value under cursor.
 " }
 " }
 
@@ -410,7 +408,7 @@ set statusline+=\ 0x%B					" Character value under cursor.
 	"let g:clang_complete_copen = 1				" Open quickfix on error.
 	"let g:clang_close_preview = 1				" Close preview after completion.
 	"let g:clang_user_options = '2>/dev/null || exit 0'	" Ignore clang errors.
-	"let g:clang_complete_macros = 1				" Complete preprocessor macros and constants.
+	"let g:clang_complete_macros = 1			" Complete preprocessor macros and constants.
 	"let g:clang_complete_patterns = 1			" Complete code patters e.g. loop constructs.
 " }
 
@@ -425,11 +423,11 @@ set statusline+=\ 0x%B					" Character value under cursor.
 " Reference: https://shapeshed.com/vim-netrw/
 " Reference: " http://vimcasts.org/blog/2013/01/oil-and-vinegar-split-windows-and-project-drawer/
 noremap <silent> <F2> :Lexplore<CR>	" Toggle the left vertical window
-let g:netrw_liststyle = 3	" Default view: tree. Cycle with (i).
-let g:netrw_banner = 0		" Remove space consuming top header text.
+let g:netrw_liststyle = 3		" Default view: tree. Cycle with (i).
+let g:netrw_banner = 0			" Remove space consuming top header text.
 let g:netrw_browse_split = 4	" Open in previous window by default (like NERDTree).
-let g:netrw_winsize = 20	" %-tage of window space to take in the respective open mode (vertical/horizontal).
-"let g:netrw_altv = 1		" Supposedly needed to splitit to left. However not needed as I just use :LExplore?
+let g:netrw_winsize = 20		" %-tage of window space to take in the respective open mode (vertical/horizontal).
+"let g:netrw_altv = 1			" Supposedly needed to splitit to left. However not needed as I just use :LExplore?
 
 " Auto close {
 " Close after opening a file (which gets opened in another window)
@@ -455,15 +453,15 @@ aug END
 " }
 
 " tagbar {
-nmap <silent> <F3> :TagbarToggle<CR>		" Toggle the Tagbar window.
-let g:tagbar_left		= 0		" Keep the window on the right side.
-let g:tagbar_width		= 30		" Width of window.
-let g:tagbar_autoclose		= 1		" Close tagbar when jumping to a tag.
-let g:tagbar_autofocus		= 1		" Give tagbar focus when it's opened.
-let g:tagbar_sort		= 1		" Sort tags alphabetically.
-let g:tagbar_compact		= 1		" Omit the help text.
-let g:tagbar_singleclick	= 1 		" Jump to tag with a single click.
-let g:tagbar_autoshowtag	= 1		" Open folds if tag is not visible.
+nmap <silent> <F3> :TagbarToggle<CR>	" Toggle the Tagbar window.
+let g:tagbar_left = 0					" Keep the window on the right side.
+let g:tagbar_width = 30					" Width of window.
+let g:tagbar_autoclose = 1				" Close tagbar when jumping to a tag.
+let g:tagbar_autofocus = 1				" Give tagbar focus when it's opened.
+let g:tagbar_sort = 1					" Sort tags alphabetically.
+let g:tagbar_compact = 1				" Omit the help text.
+let g:tagbar_singleclick = 1 			" Jump to tag with a single click.
+let g:tagbar_autoshowtag = 1			" Open folds if tag is not visible.
 " }
 
 " vim-autoclose {
@@ -517,9 +515,9 @@ autocmd BufReadPost fugitive://* set bufhidden=delete	" Close Fugitive buffers w
 let g:gist_detect_filetype = 1				" Detect filetype from name.
 let g:gist_show_privates = 1				" Let Gist -l show private gists.
 "let g:gist_clip_command = 'xclip -selection clipboard'	" Copy command.
-"let g:gist_private = 1					" Make private the default for new Gists.
-"let g:gist_open_browser_after_post = 1			" Open in browser after post.
-"let g:gist_browser_command = 'w3m %URL%'		" Browser to use.
+"let g:gist_private = 1						" Make private the default for new Gists.
+"let g:gist_open_browser_after_post = 1		" Open in browser after post.
+"let g:gist_browser_command = 'w3m %URL%'	" Browser to use.
 let g:gist_browser_command = 'firefox  %URL%'		" Browser to use.
 " }
 
@@ -533,7 +531,7 @@ let g:snipMate = { 'snippet_version' : 1 }	" Use the new parser (and surpress me
 " }
 
 " undotree {
-nmap <silent> <F4> :UndotreeToggle<CR>		" Toggle side pane.
+nmap <silent> <F4> :UndotreeToggle<CR>	" Toggle side pane.
 let g:undotree_WindowLayout=2		 	" Set style to have diff window below.
 let g:undotree_SetFocusWhenToggle=1		" Put cursor in undo window on open.
 " }
