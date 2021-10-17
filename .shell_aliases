@@ -181,7 +181,7 @@
 	    alias nvimdiff='nvim -d'
 	    alias viclean="nvim -u NONE -i NONE"
 	    alias vibclean="nvim -u NONE -i NONE -c 'set number backup'"
-	    alias nvim_clean='rm -rf $XDG_DATA_HOME/nvim/{shada,swap,undo,view}/'		# It's a new-start!
+	    alias nvim_clean='rm -rf $XDG_DATA_HOME/nvim/{shada,swap,undo,view}/ $XDG_CACHE_HOME/nvim/'		# It's a new-start!
 	    alias vi_clean='nvim_clean'
 	else
 	    alias vi='vim'						# Be IMproved.
