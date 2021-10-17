@@ -132,36 +132,9 @@ set omnifunc=syntaxcomplete#Complete		" Let Omni completion (^x^o) use vim's bui
 "set omnifunc=ale#completion#OmniFunc		" Use ALE for omnicompletion
 " }
 
-" Formatting {
-set linebreak			" Wrap on 'breakat'-chars.
-"set showbreak=>		" Indicate wrapped lines.
-set showbreak=…			" Indicate wrapped lines.
-set smartindent			" Indent smart on C-like files.
-set preserveindent		" Try to preserve indent structure on changes of current line.
-set copyindent			" Copy indentstructure from existing lines.
-set tabstop=4			" Let a tab be 8 spaces wide.
-set shiftwidth=4		" Tab width for auto indent and >> shifting.
-"set softtabstop=4		" Number of spaces to count a tab for on ops like BS and tab.
-set matchpairs+=<:>		" Also match <> with %.
-set formatoptions=tcroqwnl	" How automatic formatting should happen.
-set cinoptions+=g=		" Left-indent C++ access labels.
-"set pastetoggle  = <Leader>p    " Toggle 'paste' for sane pasting.
-" }
-
-" Searching {
-	set ignorecase		" Case insensitive search.
-	set smartcase		" Smart case search.
-	set nowrapscan		" Don't wrap search around file.
-" }
-
-" Spelling {
-set spelllang=en_us				" Languages to do spell checking for.
-set spellsuggest=best,10			" Limit spell suggestions.
-" Set spellfile dynamically. Shared with Vim.
-execute "set spellfile=" . "~/.vim/spell/" . matchstr(&spelllang, "[a-zA-Z][a-zA-Z]") . "." . &encoding . ".add"
-
-" TODO make this depend on 'spellang' if I can get files for Swedish and German.
-set thesaurus+=~/.vim/thesaurus/mthesaur.txt    " Use a thesaurus file.
+" Abbreviations {
+" Expand my name.
+"iabbrev ew Erik Westrup
 " }
 
 " Commands {
@@ -181,6 +154,22 @@ command! Lcdpwd lcd %:p:h
 command! -nargs=* Wrap set wrap linebreak nolist	" Set softwrap correctly.
 autocmd BufWinLeave * silent! mkview				" Save fold views.
 autocmd BufWinEnter * silent! loadview				" Load fold views on start.
+" }
+
+" Formatting {
+set linebreak			" Wrap on 'breakat'-chars.
+"set showbreak=>		" Indicate wrapped lines.
+set showbreak=…			" Indicate wrapped lines.
+set smartindent			" Indent smart on C-like files.
+set preserveindent		" Try to preserve indent structure on changes of current line.
+set copyindent			" Copy indentstructure from existing lines.
+set tabstop=4			" Let a tab be 8 spaces wide.
+set shiftwidth=4		" Tab width for auto indent and >> shifting.
+"set softtabstop=4		" Number of spaces to count a tab for on ops like BS and tab.
+set matchpairs+=<:>		" Also match <> with %.
+set formatoptions=tcroqwnl	" How automatic formatting should happen.
+set cinoptions+=g=		" Left-indent C++ access labels.
+"set pastetoggle  = <Leader>p    " Toggle 'paste' for sane pasting.
 " }
 
 " Mappings {
@@ -286,9 +275,20 @@ cmap w\ echoerr "Using a Swedish keyboard?"<CR>
 " }
 " }
 
-" Abbreviations {
-" Expand my name.
-"iabbrev ew Erik Westrup
+" Searching {
+	set ignorecase		" Case insensitive search.
+	set smartcase		" Smart case search.
+	set nowrapscan		" Don't wrap search around file.
+" }
+
+" Spelling {
+set spelllang=en_us				" Languages to do spell checking for.
+set spellsuggest=best,10			" Limit spell suggestions.
+" Set spellfile dynamically. Shared with Vim.
+execute "set spellfile=" . "~/.vim/spell/" . matchstr(&spelllang, "[a-zA-Z][a-zA-Z]") . "." . &encoding . ".add"
+
+" TODO make this depend on 'spellang' if I can get files for Swedish and German.
+set thesaurus+=~/.vim/thesaurus/mthesaur.txt    " Use a thesaurus file.
 " }
 
 " UI {
