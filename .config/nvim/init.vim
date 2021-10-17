@@ -10,8 +10,6 @@
 " }
 
 " TODO fix indentation of comments to be consistent in this file.
-" TODO order sections alphabetically?
-" TODO on-demand loading https://github.com/junegunn/vim-plug#on-demand-loading-of-plugins
 
 " Plugins {
 " vim-plug data folder
@@ -26,9 +24,8 @@ call plug#begin(stdpath('data') . '/plugged')
 		"Plug 'scrooloose/nerdtree'		" Replaced by built-in netrw
 		"Plug 'sjl/gundo.vim'			" Use 'mbbill/undotree' instead; is better: https://vi.stackexchange.com/a/13863
 		"Plug 'vim-scripts/lbdbq' 	" Mutt: Query lbdb for recipinents.
-		Plug 'bfontaine/Brewfile.vim'	" Syntax for Brewfiles
+		Plug 'bfontaine/Brewfile.vim', { 'for': 'brewfile' }	" Syntax for Brewfiles
 		Plug 'danro/rename.vim'			" Provides the :Rename command
-		Plug 'erikw/vim-unimpaired'
 		Plug 'fidian/hexmode'			" Open binary files as a HEX dump with :Hexmode
 		Plug 'instant-markdown/vim-instant-markdown', {'for': 'markdown', 'do': 'yarn install'}	" Live preview markdown files in browser.
 		Plug 'mbbill/undotree'					" Navigate history in a sidebar.
@@ -40,6 +37,7 @@ call plug#begin(stdpath('data') . '/plugged')
 		Plug 'tpope/vim-repeat'					" Extend '.' repetition for plugins like vim-surround, vim-speeddating.
 		Plug 'tpope/vim-speeddating'			" Increment dates with C-a.
 		Plug 'tpope/vim-surround'				" Work on surrond delimiters or its content.
+		Plug 'tpope/vim-unimpaired'		"  Bracket mappings like [<space>
 
 " }
 
@@ -56,38 +54,38 @@ call plug#begin(stdpath('data') . '/plugged')
 " }
 
 " Development: C/C++ {
-	"Plug 'Rip-Rip/clang_complete'
+	"Plug 'Rip-Rip/clang_complete', { 'for': ['c', 'cpp'] }
 	"Plug 'chazy/cscope_maps'	" More macros than autoload_cscope.vom
-	"Plug 'rhysd/vim-clang-format'
-	Plug 'vim-scripts/autoload_cscope.vim'	" Load cscope file and define macros for using it. https://github.com/vim-scripts/autoload_cscope.vim/blob/master/plugin/autoload_cscope.vim#L81-L88
+	"Plug 'rhysd/vim-clang-format', { 'for': ['c', 'cpp'] }
+	Plug 'vim-scripts/autoload_cscope.vim', { 'for': ['c', 'cpp'] } 	" Load cscope file and define macros for using it. https://github.com/vim-scripts/autoload_cscope.vim/blob/master/plugin/autoload_cscope.vim#L81-L88
 	Plug 'craigemery/vim-autotag'	" Autogenerate new tags file.
 "}
 
 " Development: Java {
-	"Plugin 'artur-shaik/vim-javacomplete2'		" Omni-complete for Java
-	"Plugin 'erikw/jcommenter.vim' " Generate javadoc.
+	"Plugin 'artur-shaik/vim-javacomplete2', { 'for': 'java' }		" Omni-complete for Java
+	"Plugin 'erikw/jcommenter.vim', { 'for': 'java' } " Generate javadoc.
 "}
 
 " Development: Go {
-	"Plug 'fatih/vim-go'	" Compilation commands etc.
+	"Plug 'fatih/vim-go', { 'for': 'go' }	" Compilation commands etc.
 "}
 
 " Development: Python {
-	"Plugin 'davidhalter/jedi-vim'	" Autocompletion using jedi library.
-	"Plugin 'python-rope/ropevim'	" Refactoring with rope library.
-	"Plugin 'fisadev/vim-isort'		" Sort imports
+	"Plugin 'davidhalter/jedi-vim', { 'for': 'python' }	" Autocompletion using jedi library.
+	"Plugin 'python-rope/ropevim', { 'for': 'python' }	" Refactoring with rope library.
+	"Plugin 'fisadev/vim-isort', { 'for': 'python' }		" Sort imports
 "}
 
 " Development: Swift {
-	"Plugin 'keith/swift.vim'	" Syntax files for Switch
+	"Plugin 'keith/swift.vim', { 'for': 'switft' }	" Syntax files for Switch
 "}
 " }
 
 " Snippets {
 " Snippet engine. Not very active. https://github.com/honza/vim-snippets list altenatives. neosnippet.vim seems nice, but require python provider.
-Plug 'garbas/vim-snipmate' | Plug 'MarcWeber/vim-addon-mw-utils' |Plug 'tomtom/tlib_vim'
+Plug 'garbas/vim-snipmate' | Plug 'MarcWeber/vim-addon-mw-utils' | Plug 'tomtom/tlib_vim'
 Plug 'honza/vim-snippets'				" Snippet library
-Plug 'rbonvall/snipmate-snippets-bib'	" Bibtex snippets.
+Plug 'rbonvall/snipmate-snippets-bib', { 'for': 'tex' }	" Bibtex snippets.
 " }
 
 " Navigation {
@@ -99,8 +97,6 @@ Plug 'rbonvall/snipmate-snippets-bib'	" Bibtex snippets.
 	Plug 'overcache/NeoSolarized'
 	Plug 'mkitt/tabline.vim'	" More informative tabs. Only for terminal; gvim uses guilabel setting.
 "}
-
-
 
 " Initialize plugin system
 call plug#end()

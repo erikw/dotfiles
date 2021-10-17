@@ -1,0 +1,1 @@
+../autostrip_whitespaces.vim

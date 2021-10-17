@@ -99,7 +99,7 @@ let g:ale_completion_enabled = 1 " Must be set before ALE is loaded.
 		Plugin 'MarcWeber/vim-addon-mw-utils' " Required for  garbas/vim-snipmate.
 		Plugin 'bfontaine/Brewfile.vim'
 		Plugin 'danro/rename.vim'
-		Plugin 'erikw/vim-unimpaired'
+		"Plugin 'erikw/vim-unimpaired'
 		Plugin 'fidian/hexmode'
 		Plugin 'garbas/vim-snipmate'
 		Plugin 'honza/vim-snippets'
