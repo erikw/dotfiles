@@ -20,6 +20,7 @@
 	brew 'colordiff'
 	brew 'coreutils'	# Note that some gnu pakcages comes with g-prefix in the bin names. The default names are set up in $PATH in ~/.shell_commons
 	brew 'cowsay'
+	brew 'ctags'
 	brew 'curl'
 	brew 'dfc'
 	brew 'dos2unix'
@@ -88,7 +89,6 @@
 	brew 'colorsvn'
 	brew 'cpanminus'
 	brew 'cscope'
-	brew 'ctags'
 	brew 'daemonize'
 	brew 'elinks'
 	brew 'emacs'

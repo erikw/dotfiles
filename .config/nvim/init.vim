@@ -17,6 +17,12 @@
 " Plugins {
 " vim-plug data folder
 call plug#begin(stdpath('data') . '/plugged')
+" General {
+		"Plugin 'godlygeek/tabular'		" Create tables. Disabled: not used and have some startup time.
+		"Plugin 'scrooloose/nerdtree'		" Replaced by built-in netrw
+		"Plugin 'sjl/gundo.vim'			" Use 'mbbill/undotree' instead; is better: https://vi.stackexchange.com/a/13863
+		Plug 'erikw/vim-unimpaired'
+" }
 
 " UI {
 	"Plug 'vim-scripts/ScrollColors'
@@ -28,16 +34,47 @@ call plug#begin(stdpath('data') . '/plugged')
 	"Plugin 'wincent/command-t' TODO replace this with fzf!
 " }
 
+" mutt {
+	"Plugin 'vim-scripts/lbdbq' 	" Query lbdb for recipinents.
+"}
+
 " Development: General {
 	"Plug 'dense-analysis/ale' TODO not needed, as Neovim has built-in LSP support?
-	"Plug 'preservim/tagbar'				" Sidepane showing info from tags file. Diabled as currently not using ctags.
 	Plug 'Townk/vim-autoclose'			" Automatically insert matching brace pairs.
 	Plug 'airblade/vim-gitgutter'		" Git modified status in sign column
 	Plug 'andymass/vim-matchup'			" Extend % matching. Replaces old the matchit plugin.
 	Plug 'editorconfig/editorconfig-vim'	" Standard .editorconfig file in shared projects.
+	Plug 'preservim/tagbar'				" Sidepane showing info from tags file. 
 	Plug 'rhysd/conflict-marker.vim' 	" Navigate and edit VCS conflicts. Replace unmaintained 'vim-script/ConflictMotions'
 	Plug 'vim-scripts/argtextobj.vim'	" Make function arguments objects that can be operated on with.
 " }
+
+" Development: C/C++ {
+	"Plug 'Rip-Rip/clang_complete'
+	"Plug 'chazy/cscope_maps'	" More macros than autoload_cscope.vom
+	"Plug 'rhysd/vim-clang-format'
+	Plug 'vim-scripts/autoload_cscope.vim'	" Load cscope file and define macros for using it. https://github.com/vim-scripts/autoload_cscope.vim/blob/master/plugin/autoload_cscope.vim#L81-L88
+	Plug 'craigemery/vim-autotag'	" Autogenerate new tags file.
+"}
+
+" Development: Java {
+	"Plugin 'artur-shaik/vim-javacomplete2'		" Omni-complete for Java
+	"Plugin 'erikw/jcommenter.vim' " Generate javadoc.
+"}
+
+" Development: Go {
+	"Plug 'fatih/vim-go'	" Compilation commands etc.
+"}
+
+" Development: Python {
+	"Plugin 'davidhalter/jedi-vim'	" Autocompletion using jedi library.
+	"Plugin 'python-rope/ropevim'	" Refactoring with rope library.
+	"Plugin 'fisadev/vim-isort'		" Sort imports
+"}
+
+" Development: Swift {
+	"Plugin 'keith/swift.vim'	" Syntax files for Switch
+"}
 
 
 " Initialize plugin system
@@ -286,15 +323,15 @@ cmap w\ echoerr "Using a Swedish keyboard?"<CR>
 
 " Plugin Config {
 " tagbar {
-"nmap <silent> <F3> :TagbarToggle<CR>		" Toggle the Tagbar window.
-"let g:tagbar_left		= 0		" Keep the window on the right side.
-"let g:tagbar_width		= 30		" Width of window.
-"let g:tagbar_autoclose		= 1		" Close tagbar when jumping to a tag.
-"let g:tagbar_autofocus		= 1		" Give tagbar focus when it's opened.
-"let g:tagbar_sort		= 1		" Sort tags alphabetically.
-"let g:tagbar_compact		= 1		" Omit the help text.
-"let g:tagbar_singleclick	= 1 		" Jump to tag with a single click.
-"let g:tagbar_autoshowtag	= 1		" Open folds if tag is not visible.
+nmap <silent> <F3> :TagbarToggle<CR>		" Toggle the Tagbar window.
+let g:tagbar_left		= 0		" Keep the window on the right side.
+let g:tagbar_width		= 30		" Width of window.
+let g:tagbar_autoclose		= 1		" Close tagbar when jumping to a tag.
+let g:tagbar_autofocus		= 1		" Give tagbar focus when it's opened.
+let g:tagbar_sort		= 1		" Sort tags alphabetically.
+let g:tagbar_compact		= 1		" Omit the help text.
+let g:tagbar_singleclick	= 1 		" Jump to tag with a single click.
+let g:tagbar_autoshowtag	= 1		" Open folds if tag is not visible.
 " }
 
 " vim-autoclose {

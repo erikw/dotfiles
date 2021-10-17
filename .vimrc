@@ -60,12 +60,11 @@ let g:ale_completion_enabled = 1 " Must be set before ALE is loaded.
 		Plugin 'tmhedberg/matchit'
 
 	"}
-"===========MIGRATION MARKER================
 	" Development: C/C++ {
 		"Plugin 'Rip-Rip/clang_complete'
 		"Plugin 'rhysd/vim-clang-format'
+		"Plugin 'chazy/cscope_maps'
 		Plugin 'autoload_cscope.vim'
-		Plugin 'chazy/cscope_maps'
 		Plugin 'craigemery/vim-autotag'
 	"}
 	" Development: Java {
@@ -91,6 +90,7 @@ let g:ale_completion_enabled = 1 " Must be set before ALE is loaded.
 		"Plugin 'sjl/gundo.vim'			" Use mbbill/undotree instead; is better: https://vi.stackexchange.com/a/13863
 		"Plugin 'terryma/vim-multiple-cursors'
 		"Plugin 'tpope/vim-unimpaired'
+"===========MIGRATION MARKER================
 		Plugin 'LaTeX-Box-Team/LaTeX-Box'
 		Plugin 'MarcWeber/vim-addon-mw-utils' " Required for  garbas/vim-snipmate.
 		Plugin 'bfontaine/Brewfile.vim'
