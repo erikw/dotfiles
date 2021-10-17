@@ -153,6 +153,12 @@ set cinoptions+=g=			" Left-indent C++ access labels.
 "set pastetoggle  = <Leader>p    " Toggle 'paste' for sane pasting.
 " }
 
+" GUI {
+"if has('gui_running')
+" TBD vimr does not support any gui-settings at the moment.
+"endif
+" }
+
 " LSP {
 " NOTE remember to update servers array below when adding a new LSP config.
 lua << EOF

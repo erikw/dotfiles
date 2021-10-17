@@ -138,11 +138,11 @@
 	cask 'google-chrome'
 	cask 'iterm2'
 	cask 'libreoffice'
-	cask 'macvim'	# Prefer macvim cask to formula. Both provide MacVim.app but only the cask installs it to /Applications. Spotlight used to find both locations, but no only at /Applications. https://github.com/macvim-dev/macvim/issues/450#issuecomment-570202139
 	cask 'scroll-reverser'
 	cask 'sensiblesidebuttons'	# Need to manually add it to System Preferences > Users & Groups > Login items
 	cask 'spotify'
 	cask 'the-unarchiver'
+	cask 'vimr'
 	cask 'vlc'
 # }
 
@@ -184,6 +184,7 @@
 	cask 'keepassxc'
 	cask 'keybase'
 	cask 'livereload'
+	cask 'macvim'	# Prefer macvim cask to formula. Both provide MacVim.app but only the cask installs it to /Applications. Spotlight used to find both locations, but no only at /Applications. https://github.com/macvim-dev/macvim/issues/450#issuecomment-570202139
 	cask 'max'
 	cask 'microsoft-excel'
 	cask 'microsoft-outlook'
