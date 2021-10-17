@@ -43,7 +43,6 @@ call plug#begin(stdpath('data') . '/plugged')
 
 " Development {
 " Development: General {
-	"Plug 'dense-analysis/ale' TODO not needed, as Neovim has built-in LSP support?
 	Plug 'neovim/nvim-lspconfig'		" Plug-n-play configurations for LSP server.
 	Plug 'Townk/vim-autoclose'			" Automatically insert matching brace pairs.
 	Plug 'airblade/vim-gitgutter'		" Git modified status in sign column
@@ -103,15 +102,6 @@ Plug 'rbonvall/snipmate-snippets-bib', { 'for': 'tex' }	" Bibtex snippets.
 call plug#end()
 " }
 
-" Environment {
-set tags+=./tags;/	" Look for tags in current directory or search up until found. TODO default would suffice?
-
-" Also use $HOME/.vim in Windows. TODO needed?
-"if has('win32') || has('win64')
-"	set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
-"endif
-" }
-
 " General {
 set undofile				" Save undo to file in undodir.
 set shortmess=filmnrxtToO    			" Abbreviate messages.
@@ -121,12 +111,8 @@ set sessionoptions-=options		" Don't store global and local variables when savin
 set undolevels=2048				" Levels of undo to keep in memory.
 "set clipboard+=unnamed				" Use register "* instead of unnamed register. This means what is being yanked in vim gets put to external clipboard automatically.
 set timeoutlen=1500				" Timout (ms) for mappings and keycodes.
-
-" TODO break out to Completion section?
 set completeopt=longest,menu,preview		" Insert most common completion and show menu.
 set omnifunc=syntaxcomplete#Complete		" Let Omni completion (^x^o) use vim's builtin syntax files for language keywords.
-" TODO ALE not needed as neovim has native LSP? https://neovim.io/doc/lsp/
-"set omnifunc=ale#completion#OmniFunc		" Use ALE for omnicompletion
 " }
 
 " Abbreviations {
@@ -287,6 +273,7 @@ function! ToggleSpell(lang)
 		let b:old_spelllang = &spelllang
 		let b:old_spellfile = &spellfile
 		let b:old_dictionary = &dictionary
+		let b:old_thesaurus = &thesaurus
 	endif
 
 	let l:newMode = ""
@@ -296,12 +283,14 @@ function! ToggleSpell(lang)
 		execute "setlocal spelllang=" . a:lang
 		execute "setlocal spellfile=" . "~/.vim/spell/" . matchstr(a:lang, "[a-zA-Z][a-zA-Z]") . "." . &encoding . ".add"
 		execute "setlocal dictionary=" . "~/.vim/spell/" . a:lang . "." . &encoding . ".dic"
+		execute "setlocal thesaurus=" . "~/.vim/thesaurus/" . a:lang . ".txt"
 	else
 		setlocal nospell
 		let l:newMode = "nospell"
 		execute "setlocal spelllang=" . b:old_spelllang
 		execute "setlocal spellfile=" . b:old_spellfile
 		execute "setlocal dictionary=" . b:old_dictionary
+		execute "setlocal thesaurus=" . b:old_thesaurus
 	endif
 	return l:newMode
 endfunction
@@ -352,9 +341,8 @@ set spelllang=en_us				" Languages to do spell checking for.
 set spellsuggest=best,10			" Limit spell suggestions.
 " Set spellfile dynamically. Shared with Vim.
 execute "set spellfile=" . "~/.vim/spell/" . matchstr(&spelllang, "[a-zA-Z][a-zA-Z]") . "." . &encoding . ".add"
-
-" TODO make this depend on 'spellang' if I can get files for Swedish and German.
-set thesaurus+=~/.vim/thesaurus/mthesaur.txt    " Use a thesaurus file.
+" Use a thesaurus file. Could load all, but that makes lookup slower. Instead let ToggleSpell() set per language.
+execute "set thesaurus=" . "~/.vim/thesaurus/" . matchstr(&spelllang, "[a-zA-Z][a-zA-Z]") . ".txt"
 " }
 
 " UI {
