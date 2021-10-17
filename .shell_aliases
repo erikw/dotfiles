@@ -170,7 +170,7 @@
 	alias lwriter='libreoffice --writer'		# Writer.
 # }
 
-# vim {
+# Vim {
 	#alias mvim='mvim -v'					# When macvim is the installed vim, make mvim open in terminal instead of GUI.
 	if program_is_in_path nvim; then
 	    alias vi='nvim'
@@ -181,6 +181,8 @@
 	    alias nvimdiff='nvim -d'
 	    alias viclean="nvim -u NONE -i NONE"
 	    alias vibclean="nvim -u NONE -i NONE -c 'set number backup'"
+	    alias nvim_clean='rm -rf $XDG_DATA_HOME/nvim/{shada,swap,undo,view}/'		# It's a new-start!
+	    alias vi_clean='nvim_clean'
 	else
 	    alias vi='vim'						# Be IMproved.
 	    alias view='vim -R'					# Not all distributions of vim provide the readonly bin.
