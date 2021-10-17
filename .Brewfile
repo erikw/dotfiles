@@ -82,6 +82,7 @@
 =begin
 	brew 'antiword'
 	brew 'bashdb'
+	brew 'ccls'
 	brew 'cgdb'
 	brew 'checkbashisms'
 	brew 'cmake'
@@ -94,6 +95,7 @@
 	brew 'emacs'
 	brew 'ffmpeg2theora'
 	brew 'go'
+	brew 'gopls'
 	brew 'httpie'
 	brew 'irssi'
 	brew 'jsonlint'

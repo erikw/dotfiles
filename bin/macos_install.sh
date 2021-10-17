@@ -470,10 +470,22 @@ nvim -c PlugInstall
 # }
 
 # Development {
-# Language servers {
+# LSP Servers {
+#cargo install --git https://github.com/latex-lsp/texlab.git --locked
+#go get github.com/lighttiger2505/sqls
 npm install -g bash-language-server
 npm install -g vim-language-server
-# Language Server for Go: https://github.com/golang/tools/tree/master/gopls
+npm install -g vscode-langservers-extracted
+# }
+
+# C/C++ {
+# LSP server
+# brew install ccls
+# }
+
+# Go {
+# LSP server
+# brew install gopls
 # }
 
 # Java {
@@ -483,12 +495,10 @@ npm install -g vim-language-server
 #sdk install java 15.0.0.hs-adpt
 # ## Brew
 # See ~/.Brewfile
-# }
 
-# Xcode {
-#* [Xvim](http://xvim.org/) Vim keybindings. See Xcode 8 [instructions](https://github.com/XVimProject/XVim/blob/master/INSTALL_Xcode8.md)
-#* [stackia/solarized-xcode](https://github.com/stackia/solarized-xcode) for dark & light themes.
-#* [ArtSabintsev/Solarized-Dark-for-Xcode](https://github.com/ArtSabintsev/Solarized-Dark-for-Xcode) for a (better?) dark theme.
+# LSP server
+# No good one exist that are easily installable. https://microsoft.github.io/language-server-protocol/implementors/servers/
+# https://github.com/eclipse/eclipse.jdt.ls is clumsy. No brew. Only hack that is not working: https://github.com/edganiukov/homebrew
 # }
 
 # Ruby {
@@ -513,8 +523,8 @@ npm install -g vim-language-server
 #
 
 
-# Language Server https://langserver.org/
-#gem install solargraph
+# LSP server
+#gem install --user solargraph
 # }
 
 # Python {
@@ -522,7 +532,7 @@ npm install -g vim-language-server
 #cd ~/.vim/bundle/jedi-vim/
 #git submodule update --init
 
-# Language server https://langserver.org/
+# LSP server
 #brew install pyright
 
 ## rope
@@ -533,6 +543,12 @@ npm install -g vim-language-server
 
 # isort
 #pip3 install --user isort
+# }
+
+# Xcode {
+#* [Xvim](http://xvim.org/) Vim keybindings. See Xcode 8 [instructions](https://github.com/XVimProject/XVim/blob/master/INSTALL_Xcode8.md)
+#* [stackia/solarized-xcode](https://github.com/stackia/solarized-xcode) for dark & light themes.
+#* [ArtSabintsev/Solarized-Dark-for-Xcode](https://github.com/ArtSabintsev/Solarized-Dark-for-Xcode) for a (better?) dark theme.
 # }
 # }
 

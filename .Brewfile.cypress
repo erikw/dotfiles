@@ -16,6 +16,10 @@ tap 'homebrew/cask-drivers' # For focusrite-control
 =end
 # }
 
+# Formula: python-dev {
+	brew 'pyright'		# LSP server.
+# }
+
 # Formula: ruby-dev {
 	#brew 'ruby'		# For Jekyll
 	brew 'rbenv'		# includes 'ruby-build' as dependency

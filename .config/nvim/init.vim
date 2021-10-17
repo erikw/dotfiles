@@ -16,7 +16,6 @@
 call plug#begin(stdpath('data') . '/plugged')
 
 " General {
-		"Plug 'LaTeX-Box-Team/LaTeX-Box'	" TODO replace with https://github.com/latex-lsp/texlab
 		"Plug 'dhruvasagar/vim-table-mode'	" Create ASCII tables
 		"Plug 'godlygeek/tabular'		" Create tables. Disabled: not used and have some startup time.
 		"Plug 'mattn/vim-gist' | Plug 'mattn/webapi-vim'		" Post a new Gist.
@@ -24,6 +23,7 @@ call plug#begin(stdpath('data') . '/plugged')
 		"Plug 'scrooloose/nerdtree'		" Replaced by built-in netrw
 		"Plug 'sjl/gundo.vim'			" Use 'mbbill/undotree' instead; is better: https://vi.stackexchange.com/a/13863
 		"Plug 'vim-scripts/lbdbq' 	" Mutt: Query lbdb for recipinents.
+		Plug 'LaTeX-Box-Team/LaTeX-Box'	" TODO replace with https://github.com/latex-lsp/texlab
 		Plug 'bfontaine/Brewfile.vim', { 'for': 'brewfile' }	" Syntax for Brewfiles
 		Plug 'danro/rename.vim'			" Provides the :Rename command
 		Plug 'fidian/hexmode'			" Open binary files as a HEX dump with :Hexmode
@@ -44,6 +44,7 @@ call plug#begin(stdpath('data') . '/plugged')
 " Development {
 " Development: General {
 	"Plug 'dense-analysis/ale' TODO not needed, as Neovim has built-in LSP support?
+	Plug 'neovim/nvim-lspconfig'		" Plug-n-play configurations for LSP server.
 	Plug 'Townk/vim-autoclose'			" Automatically insert matching brace pairs.
 	Plug 'airblade/vim-gitgutter'		" Git modified status in sign column
 	Plug 'andymass/vim-matchup'			" Extend % matching. Replaces old the matchit plugin.
@@ -58,7 +59,7 @@ call plug#begin(stdpath('data') . '/plugged')
 	"Plug 'chazy/cscope_maps'	" More macros than autoload_cscope.vom
 	"Plug 'rhysd/vim-clang-format', { 'for': ['c', 'cpp'] }
 	Plug 'vim-scripts/autoload_cscope.vim', { 'for': ['c', 'cpp'] } 	" Load cscope file and define macros for using it. https://github.com/vim-scripts/autoload_cscope.vim/blob/master/plugin/autoload_cscope.vim#L81-L88
-	Plug 'craigemery/vim-autotag'	" Autogenerate new tags file.
+	Plug 'craigemery/vim-autotag'	" Autogenerate new tags file. Could replace with https://github.com/ludovicchabant/vim-gutentags
 "}
 
 " Development: Java {
@@ -166,6 +167,75 @@ set matchpairs+=<:>		" Also match <> with %.
 set formatoptions=tcroqwnl	" How automatic formatting should happen.
 set cinoptions+=g=		" Left-indent C++ access labels.
 "set pastetoggle  = <Leader>p    " Toggle 'paste' for sane pasting.
+" }
+
+" LSP {
+" NOTE remember to update servers array below when adding a new LSP config.
+lua << EOF
+	-- require'lspconfig'.ccls.setup{}
+	-- require'lspconfig'.sqls.setup{}
+	-- require'lspconfig'.texlab.setup{}
+	require'lspconfig'.bashls.setup{}
+	require'lspconfig'.gopls.setup{}
+	require'lspconfig'.jsonls.setup {}
+	require'lspconfig'.pyright.setup{}
+	require'lspconfig'.solargraph.setup{}
+	require'lspconfig'.vimls.setup{}
+EOF
+
+" Activate & Keybindings {
+" From https://github.com/neovim/nvim-lspconfig#keybindings-and-completion
+lua << EOF
+local nvim_lsp = require('lspconfig')
+
+-- Use an on_attach function to only map the following keys
+-- after the language server attaches to the current buffer
+local on_attach = function(client, bufnr)
+  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+
+  -- Enable completion triggered by <c-x><c-o>
+  buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+  -- Mappings.
+  local opts = { noremap=true, silent=true }
+
+  -- See `:help vim.lsp.*` for documentation on any of the below functions
+  buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+  buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+  buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+  buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+  buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+  buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+  buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+  buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+  buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+  buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+  buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+  buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+  buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
+  buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+  buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+  buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+
+end
+
+-- Use a loop to conveniently call 'setup' on multiple servers and
+-- map buffer local keybindings when the language server attaches
+local servers = { 'bashls', 'jsonls', 'pyright', 'solargraph', 'vimls' }
+for _, lsp in ipairs(servers) do
+  nvim_lsp[lsp].setup {
+    on_attach = on_attach,
+    flags = {
+      debounce_text_changes = 150,
+    }
+  }
+end
+EOF
+" }
+
+
 " }
 
 " Mappings {
