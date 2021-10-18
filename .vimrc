@@ -14,8 +14,8 @@
 	let g:ale_completion_enabled = 1	" Must be set before ALE is loaded.
 	let s:using_vundle = 1			" Vundle will break default behaviour of spellfile. Let others know when using Vundle.
 
-	set nocompatible              		" be iMproved, required
-	filetype off                  		" required
+	set nocompatible           " be iMproved, required
+	filetype off                " required
 
 	" Set the runtime path to include Vundle and initialize
 	set rtp+=~/.vim/bundle/Vundle.vim
