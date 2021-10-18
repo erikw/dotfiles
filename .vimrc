@@ -1,11 +1,9 @@
 " Erik Westrup's Vim configuration.
 " Modeline {
 "	vi: foldmarker={,} foldmethod=marker foldlevel=0 tabstop=8 shiftwidth=8:
-" 	8 spaces for a tab render best as HTML.
 " }
 
-" Profiling {
-" $ vim --startuptime /tmp/vim.log
+" Profiling { " $ vim --startuptime /tmp/vim.log
 " $ vim --startuptime /dev/stdout +qall
 " Reference: https://stackoverflow.com/questions/1687799/profiling-vim-startup-time
 " }
@@ -13,7 +11,7 @@
 " Plugins {
 	" See *vundle-plugins-uris* for Plugin syntax.
 	let g:ale_completion_enabled = 1	" Must be set before ALE is loaded.
-	let s:using_vundle = 1				" Vundle will break default behaviour of spellfile. Let others know when using Vundle.
+	let s:using_vundle = 1			" Vundle will break default behaviour of spellfile. Let others know when using Vundle.
 
 	set nocompatible              		" be iMproved, required
 	filetype off                  		" required
@@ -28,12 +26,12 @@
 	" General {
 		"Plugin 'dhruvasagar/vim-table-mode'
 		"Plugin 'fatih/vim-go'
-		"Plugin 'godlygeek/tabular'			" Disabled: not used and have some startup time.
+		"Plugin 'godlygeek/tabular'		" Disabled: not used and have some startup time.
 		"Plugin 'mattn/gist-vim'
-		"Plugin 'mattn/webapi-vim'			" Required for gist-vim
+		"Plugin 'mattn/webapi-vim'		" Required for gist-vim
 		"Plugin 'salsifis/vim-transpose'
 		"Plugin 'scrooloose/nerdtree'		" Replaced by built-in netrw
-		"Plugin 'sjl/gundo.vim'				" Use mbbill/undotree instead; is better: https://vi.stackexchange.com/a/13863
+		"Plugin 'sjl/gundo.vim'			" Use mbbill/undotree instead; is better: https://vi.stackexchange.com/a/13863
 		Plugin 'LaTeX-Box-Team/LaTeX-Box'
 		Plugin 'MarcWeber/vim-addon-mw-utils'	" Required for  garbas/vim-snipmate.
 		Plugin 'bfontaine/Brewfile.vim'
@@ -47,7 +45,7 @@
 		Plugin 'ntpeters/vim-better-whitespace'
 		Plugin 'rbonvall/snipmate-snippets-bib'
 		Plugin 'scrooloose/nerdcommenter'
-		Plugin 'tomtom/tlib_vim'			" Required for garbas/vim-snipmate
+		Plugin 'tomtom/tlib_vim'		" Required for garbas/vim-snipmate
 		Plugin 'tpope/vim-capslock'
 		Plugin 'tpope/vim-fugitive'
 		Plugin 'tpope/vim-repeat'
@@ -124,11 +122,11 @@
 	if v:version < 703
 		echoerr 'WARNING: This vimrc is written for Vim >= v.703; this is' v:version
 	endif
-	set nocompatible				" Be IMproved. Should be first.
+	set nocompatible		" Be IMproved. Should be first.
 	set viminfo+=n~/.vim/viminfo	" Write the viminfo file inside the Vim directory.
-	set undodir=~/.vim/undo/		" Collect history instead of having them in '.'.
-	set tags+=./tags;/				" Look for tags in current directory or search up until found.
-	set encoding=utf-8				" Use Unicode inside Vim's registers, viminfo, buffers ...
+	set undodir=~/.vim/undo/	" Collect history instead of having them in '.'.
+	set tags+=./tags;/		" Look for tags in current directory or search up until found.
+	set encoding=utf-8		" Use Unicode inside Vim's registers, viminfo, buffers ...
 
 	" Also use $HOME/.vim in Windows
 	if has('win32') || has('win64')
@@ -138,24 +136,25 @@
 
 " General {
 	"filetype plugin indent on	" File type specific features. Already set as part of Vundle setup.
-	syntax enable				" Syntax highlighting but keep current colors.
-	"syntax on					" Use default colors for syntax highlighting.
-	set mouse=a					" Enable mouse in all modes.
+	syntax enable			" Syntax highlighting but keep current colors.
+	"syntax on			" Use default colors for syntax highlighting.
+	set mouse=a			" Enable mouse in all modes.
 	set viewoptions=folds,cursor,slash,unix	" What to save with mkview.
-	set history=512				" Store much history.
+	set history=512			" Store much history.
 
 
-	"set complete-=k complete+=k			" Put the dictionaries in the normal completion set.
+	"set complete-=k complete+=k		" Put the dictionaries in the normal completion set.
 	set completeopt=longest,menu,preview	" Insert most common completion and show menu.
 	"set omnifunc=syntaxcomplete#Complete	" Let Omni completion (^x^o) use vim's builtin syntax files for language keywords.
 	set omnifunc=ale#completion#OmniFunc	" Use ALE for omnicompletion
-	set shortmess=filmnrxtTo				" Abbreviate messages.
+	set shortmess=filmnrxtTo		" Abbreviate messages.
 	set nrformats=alpha,octal,hex		" What to increment/decrement with ^A and ^X.
 	set hidden				" Work with hidden buffers more easily. Enables to leave buffer with unwritten changes (by :edit another buffer).
 	set autoread				" Autoreload buffer from file if not changed in vim, e.g. with the :checktime command.
 	set sessionoptions-=options		" Don't store global and local variables when saving sessions.
 	set undofile				" Save undo to file in undodir.
 	set undolevels=2048			" Levels of undo to keep in memory.history.
+	set modelines=5				" Number of lines from head of file to check for modelines. Setting this explicitly as on some syste*m (like macos in /usr/share/vim/vimrc) disables modelined by default. "
 	set ttyfast				" Smoother changes.
 	set clipboard+=unnamed			" Use register "* instead of unnamed register.
 	set timeoutlen=1500			" Timout (ms) for mappings and keycodes.
@@ -325,21 +324,21 @@
 " }
 
 " Mappings {
-	let mapleader = "\\"							" The key for <Leader>.
-	nmap <silent> <C-_> :nohlsearch<CR>				" Clear search matches highlighting. (Ctrl+/ => ^_)
-	"nmap <silent> <C-_> :let @/=""<CR>				" Clear search matches highlighting. (Ctrl+/ => ^_)
-	nmap <silent> <Leader>v :source $MYVIMRC<CR>	" Source vimrc.
+	let mapleader = "\\"					" The key for <Leader>.
+	nmap <silent> <C-_> :nohlsearch<CR>			" Clear search matches highlighting. (Ctrl+/ => ^_)
+	"nmap <silent> <C-_> :let @/=""<CR>			" Clear search matches highlighting. (Ctrl+/ => ^_)
+	nmap <silent> <Leader>v :source $MYVIMRC<CR>		" Source vimrc.
 	nmap <silent> <Leader>V :tabe $MYVIMRC<CR>		" Edit vimrc.
-	"nmap <silent> <Leader>d "=strftime("%Y-%m-%d")<CR>P		" Insert the current date.
+	"nmap <silent> <Leader>d "=strftime("%Y-%m-%d")<CR>P	" Insert the current date.
 	noremap <silent> <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>	" Open tags definition in a new tab.
     noremap <silent> <Leader>] :vsp<CR>:exec("tag ".expand("<cword>"))<CR>	" Open tags definition in a vertical split.
 	"nmap <silent> <Leader>S :%s/\s\+$//ge<CR>		" Remove all trailing spaces.
-	nnoremap <silent> gfs :wincmd f<CR>				" Open path under cursor in a split.
-	nnoremap <silent> gfv :vertical wincmd f<CR>	" Open path under cursor in a vertical split.
+	nnoremap <silent> gfs :wincmd f<CR>			" Open path under cursor in a split.
+	nnoremap <silent> gfv :vertical wincmd f<CR>		" Open path under cursor in a vertical split.
 	nnoremap <silent> gft :tab wincmd f<CR>			" Open path under cursor in a tab.
-	nnoremap <silent> gV `[v`]						" Visually select the text that was last edited/pasted.
-	nnoremap g^t :tabfirst<CR>						" Go to first tab.
-	nnoremap g$t :tablast<CR>						" Go to last tab.
+	nnoremap <silent> gV `[v`]				" Visually select the text that was last edited/pasted.
+	nnoremap g^t :tabfirst<CR>				" Go to first tab.
+	nnoremap g$t :tablast<CR>				" Go to last tab.
 	noremap Yf :let @" = expand("%")<CR>			" Yank current file name.
 	noremap YF :let @" = expand("%:p")<CR>			" Yank current (fully expanded) file name.
 	nnoremap <silent> <Leader>R :checktime<CR>		" Reload buffers from file if changed.
@@ -360,9 +359,9 @@
 	endif
 
 	" Toggles {
-		noremap <silent> <Leader>w :set wrap!<CR>:set wrap?<CR>				" Toggle line wrapping.
-		noremap <silent> <Leader>` :set list!<CR>					" Toggle listing of characters. See listchars.
-		noremap <silent> <ESC>p :set paste! paste?<CR>					" Toggle 'paste' for sane pasting.
+		noremap <silent> <Leader>w :set wrap!<CR>:set wrap?<CR>		" Toggle line wrapping.
+		noremap <silent> <Leader>` :set list!<CR>			" Toggle listing of characters. See listchars.
+		noremap <silent> <ESC>p :set paste! paste?<CR>			" Toggle 'paste' for sane pasting.
 		noremap <silent> <leader>p :set paste<CR>o<ESC>:normal "*p<CR>:set nopaste<CR>	" Paste on line after in paste-mode from register "*.
 		noremap <silent> <leader>P :set paste<CR>O<ESC>:normal "*P<CR>:set nopaste<CR>	" Paste on line before in paste-mode from register "*.
 
@@ -477,7 +476,7 @@
 		"let g:AutoClosePairs = AutoClose#ParsePairs("() [] {} <> «» ` \" '") " Pairs to close. Does not seems to work with vundle.
 		let g:AutoCloseProtectedRegions = ["Comment", "String", "Character"]	" Syntax regions to ignore.
 
-		noremap <silent> <Leader>ac :AutoCloseToggle<CR>				" Toggle vim-autoclose plugin mode.
+		noremap <silent> <Leader>ac :AutoCloseToggle<CR>			" Toggle vim-autoclose plugin mode.
 
 	" }
 
@@ -748,7 +747,7 @@
 	" }
 
 	" Taglist {
-		"nmap <silent> <F3> :Tlist<CR>					" Toggle the Tlist browser.
+		"nmap <silent> <F3> :Tlist<CR>				" Toggle the Tlist browser.
 		""let g:Tlist_Close_On_Select        = 1		" Close list on tag selection.
 		"let g:Tlist_Auto_Update             = 1		" Update newly opend files.
 		"let g:Tlist_Compact_Format          = 1		" Trim spaces in GUI.
