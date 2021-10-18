@@ -557,11 +557,13 @@ let g:snipMate = { 'snippet_version' : 1 }	" Use the new parser (and surpress me
 " Bookmarks
 let g:startify_bookmarks = [ {'v': '$XDG_CONFIG_HOME/nvim/init.vim'}, '~/.shell_config', '~/.shell_aliases' ]
 
-let g:startify_fortune_use_unicode = 1	" Draw fortune with Unicode instead of ASCII.
+"let g:startify_fortune_use_unicode = 1	" Draw fortune with Unicode instead of ASCII. Not needed with startify_custom_header.
 
+" Reference: https://vi.stackexchange.com/a/9942
+let s:nvim_version = matchstr(execute('version'), 'NVIM v\zs[^\n]*')
 
 " Custom logo instead of cowsay.
-let g:ascii = [
+let s:ascii = [
   \ '    ##############..... ##############',
   \ '    ##############......##############',
   \ '      ##########..........##########',
@@ -580,8 +582,13 @@ let g:ascii = [
   \ '      ######    .........',
   \ '                  .....',
   \ '                    .',
+  \ '    NeoVim v' . s:nvim_version
   \]
-let g:startify_custom_header = g:ascii + startify#fortune#boxed()
+"let g:startify_custom_header = s:ascii + startify#fortune#boxed()
+let g:startify_custom_header = s:ascii
+
+" Show version in fooder. Reference: https://github.com/mhinz/vim-startify/issues/449
+"let g:startify_custom_footer = "startify#pad(['', '\ufa76' . matchstr(execute('version'), 'NVIM v\\z\\s[^\\n]\*'), ''])"
 
 " }
 
