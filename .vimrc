@@ -9,7 +9,6 @@
 " Reference: https://stackoverflow.com/questions/1687799/profiling-vim-startup-time
 " }
 
-
 " Plugins {
 	let g:ale_completion_enabled = 1	 " Must be set before ALE is loaded.
 	let s:using_vundle = 1				" Vundle will break default behaviour of spellfile. Let others know when using Vundle.
