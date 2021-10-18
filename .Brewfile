@@ -10,6 +10,7 @@
 	tap 'homebrew/autoupdate' # https://github.com/Homebrew/homebrew-autoupdate
 # }
 
+
 # Formula: default {
 	brew 'ack'
 	brew 'aspell'
@@ -76,6 +77,7 @@
 	brew 'zsh'
 	brew 'zsh-completions'
 	brew 'zsh-syntax-highlighting'
+    	brew 'cormacrelf/tap/dark-notify'	# To detect chagnes in OS light/dark appearens. Used by https://github.com/cormacrelf/dark-notify/
 # }
 
 # Formula: optional {

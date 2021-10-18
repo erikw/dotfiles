@@ -105,10 +105,12 @@ Plug 'rbonvall/snipmate-snippets-bib', { 'for': 'tex' }	" Bibtex snippets.
 " }
 
 " UI {
-	"Plug 'vim-scripts/ScrollColors'	" Cycle though available colorschemes.
 	"Plug 'dstein64/nvim-scrollview'	" Visual and interactive scroll bar.
+	"Plug 'vim-scripts/ScrollColors'	" Cycle though available colorschemes.
+	Plug 'cormacrelf/dark-notify'		" Watch system light/dark mode changes.  Requires dark-notify(1).
 	Plug 'mhinz/vim-startify'		" Start screen with recently opended files.
 	Plug 'mkitt/tabline.vim'		" More informative tab titles.
+
 
 " Colorschemes {
 	Plug 'mhartington/oceanic-next'
@@ -437,6 +439,12 @@ set statusline+=\ 0x%B		" Character value under cursor.
 	"let g:clang_user_options = '2>/dev/null || exit 0'	" Ignore clang errors.
 	"let g:clang_complete_macros = 1			" Complete preprocessor macros and constants.
 	"let g:clang_complete_patterns = 1			" Complete code patters e.g. loop constructs.
+" }
+
+" dark-notify {
+:lua <<EOF
+	require('dark_notify').run()
+EOF
 " }
 
 " fzf.vim {
