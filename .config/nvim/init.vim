@@ -14,14 +14,14 @@
 call plug#begin(stdpath('data') . '/plugged')
 
 " General {
-		"Plug 'dhruvasagar/vim-table-mode'	" Create ASCII tables
-		"Plug 'godlygeek/tabular'		" Create tables. Disabled: not used and have some startup time.
+		"Plug 'dhruvasagar/vim-table-mode'		" Create ASCII tables
+		"Plug 'godlygeek/tabular'				" Create tables. Disabled: not used and have some startup time.
 		"Plug 'mattn/vim-gist' | Plug 'mattn/webapi-vim'		" Post a new Gist.
-		"Plug 'salsifis/vim-transpose'	" Matrix transposition of texts.
-		"Plug 'scrooloose/nerdtree'		" Replaced by built-in netrw
-		"Plug 'sjl/gundo.vim'			" Use 'mbbill/undotree' instead; is better: https://vi.stackexchange.com/a/13863
-		"Plug 'vim-scripts/lbdbq' 	" Mutt: Query lbdb for recipinents.
-		Plug 'LaTeX-Box-Team/LaTeX-Box'	" TODO replace with https://github.com/latex-lsp/texlab
+		"Plug 'salsifis/vim-transpose'			" Matrix transposition of texts.
+		"Plug 'scrooloose/nerdtree'				" Replaced by built-in netrw
+		"Plug 'sjl/gundo.vim'					" Use 'mbbill/undotree' instead; is better: https://vi.stackexchange.com/a/13863
+		"Plug 'vim-scripts/lbdbq' 				" Mutt: Query lbdb for recipinents.
+		Plug 'LaTeX-Box-Team/LaTeX-Box'			" TODO replace with https://github.com/latex-lsp/texlab
 		Plug 'bfontaine/Brewfile.vim', { 'for': 'brewfile' }	" Syntax for Brewfiles
 		Plug 'danro/rename.vim'					" Provides the :Rename command
 		Plug 'fidian/hexmode'					" Open binary files as a HEX dump with :Hexmode
@@ -47,21 +47,21 @@ call plug#begin(stdpath('data') . '/plugged')
 	Plug 'andymass/vim-matchup'				" Extend % matching. Replaces old the matchit plugin.
 	Plug 'editorconfig/editorconfig-vim'	" Standard .editorconfig file in shared projects.
 	Plug 'preservim/tagbar'					" Sidepane showing info from tags file.
-	Plug 'rhysd/conflict-marker.vim' 		" Navigate and edit VCS conflicts. Replace unmaintained 'vim-script/ConflictMotions'
+	Plug 'rhysd/conflict-marker.vim'		" Navigate and edit VCS conflicts. Replace unmaintained 'vim-script/ConflictMotions'
 	Plug 'vim-scripts/argtextobj.vim'		" Make function arguments text objects that can be operated on with.
 " }
 
 " Development: C/C++ {
 	"Plug 'Rip-Rip/clang_complete', { 'for': ['c', 'cpp'] }
-	"Plug 'chazy/cscope_maps'				" More macros than autoload_cscope.vom
+	"Plug 'chazy/cscope_maps'					" More macros than autoload_cscope.vom
 	"Plug 'rhysd/vim-clang-format', { 'for': ['c', 'cpp'] }
-	Plug 'vim-scripts/autoload_cscope.vim', { 'for': ['c', 'cpp'] } 	" Load cscope file and define macros for using it. https://github.com/vim-scripts/autoload_cscope.vim/blob/master/plugin/autoload_cscope.vim#L81-L88
-	Plug 'craigemery/vim-autotag'			" Autogenerate new tags file. Could replace with https://github.com/ludovicchabant/vim-gutentags
+	Plug 'vim-scripts/autoload_cscope.vim', { 'for': ['c', 'cpp'] }	" Load cscope file and define macros for using it. https://github.com/vim-scripts/autoload_cscope.vim/blob/master/plugin/autoload_cscope.vim#L81-L88
+	Plug 'craigemery/vim-autotag'				" Autogenerate new tags file. Could replace with https://github.com/ludovicchabant/vim-gutentags
 "}
 
 " Development: Java {
 	"Plugin 'artur-shaik/vim-javacomplete2', { 'for': 'java' }		" Omni-complete for Java
-	"Plugin 'erikw/jcommenter.vim', { 'for': 'java' } 				" Generate javadoc.
+	"Plugin 'erikw/jcommenter.vim', { 'for': 'java' }				" Generate javadoc.
 "}
 
 " Development: Go {
@@ -356,7 +356,6 @@ colorscheme NeoSolarized
 if filereadable(expand("~/.solarizedtoggle/status"))
 	let &background = readfile(expand("~/.solarizedtoggle/status"), '', 1)[0]
 else
-	"set background=dark
 	" Lighter bg during night.
 	" Source:  http://benjamintan.io/blog/2014/04/10/switch-solarized-light-slash-dark-depending-on-the-time-of-day/
 	let s:hour = strftime("%H")
@@ -478,6 +477,9 @@ noremap <silent> <Leader>ac :AutoCloseToggle<CR>				" Toggle vim-autoclose plugi
 " }
 
 " vim-better-whitespace {
+let g:strip_whitelines_at_eof=1			" Also strip empty lines at end of file on save.
+let g:show_spaces_that_precede_tabs=1	" Highlight spaces that happens before tab.
+
 " Use same command as in the old ~/.vim/plugin/stripspaces.vim
 " Need to wrap the command in a function as we can't chain
 " commands unless they were declared to support this.
