@@ -44,8 +44,8 @@ sandbox_hook sdk gradle
 # jump bookmarks
 #sandbox_init_jump(){
 	#if type jump-bin >/dev/null 2>&1; then
-		#source $(jump-bin --${my_shell}-integration)
-		#test ${my_shell} = 'zsh' && compctl -K _jump -S '' g	# Add completion to 'g' alias.
+		#source $(jump-bin --${SHELL_SHORT}-integration)
+		#test ${SHELL_SHORT} = 'zsh' && compctl -K _jump -S '' g	# Add completion to 'g' alias.
 	#fi
 #}
 

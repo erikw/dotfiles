@@ -181,10 +181,10 @@ source $HOME/.shell_functions
 
 # Programs {
 	# pkgfile (arch) "command not found" hook.
-	#sourceifexists /usr/share/doc/pkgfile/command-not-found.$my_shell
+	#sourceifexists /usr/share/doc/pkgfile/command-not-found.$SHELL_SHORT
 
 	# iTerm2 shell integration. Reference: https://www.iterm2.com/documentation-shell-integration.html
-	sourceifexists $HOME/.iterm2_shell_integration.$my_shell
+	sourceifexists $HOME/.iterm2_shell_integration.$SHELL_SHORT
 
 
 	# Tell gPodder to reside in multimedia directory. KDE4 uses ~/.kde4/env/
@@ -201,7 +201,7 @@ source $HOME/.shell_functions
 	# Tmuxinator initialization.
 	#if [ -d $HOME/src/github.com/tmuxinator/tmuxinator/bin/ ]; then
 		#PATH="$PATH:$HOME/src/github.com/tmuxinator/tmuxinator/bin/"
-		#source $HOME/src/github.com/tmuxinator/tmuxinator/completion/tmuxinator.$my_shell
+		#source $HOME/src/github.com/tmuxinator/tmuxinator/completion/tmuxinator.$SHELL_SHORT
 	#fi
 
 	# Dotfiles manager.
@@ -358,7 +358,7 @@ source $HOME/.shell_functions
 
 	# iTerm2 integration: https://iterm2.com/documentation-shell-integration.html
 	# Disabled. Not used and makes shell load slower
-	#test -e "${HOME}/.iterm2_shell_integration.${my_shell}" && source "${HOME}/.iterm2_shell_integration.${my_shell}"
+	#test -e "${HOME}/.iterm2_shell_integration.${SHELL_SHORT}" && source "${HOME}/.iterm2_shell_integration.${SHELL_SHORT}"
 
 
 
@@ -390,7 +390,7 @@ source $HOME/.shell_functions
 	sourceifexists $HOME/.config/broot/launcher/bash/br
 
 	# fzf https://github.com/junegunn/fzf#using-homebrew
-	sourceifexists $HOME/.fzf.${my_shell}
+	sourceifexists $HOME/.fzf.${SHELL_SHORT}
 
 
 	# ruby-build: recommended build env.
@@ -403,6 +403,6 @@ source $HOME/.shell_functions
 	# rbenv
 	# https://github.com/rbenv/rbenv
 	if program_is_in_path rbenv; then
-		eval "$(rbenv init - $my_shell)"
+		eval "$(rbenv init - $SHELL_SHORT)"
 	fi
 # }
