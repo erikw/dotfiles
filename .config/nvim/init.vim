@@ -14,26 +14,26 @@
 call plug#begin(stdpath('data') . '/plugged')
 
 " General {
-		"Plug 'dhruvasagar/vim-table-mode'		" Create ASCII tables
+		"Plug 'dhruvasagar/vim-table-mode'			" Create ASCII tables
 		"Plug 'godlygeek/tabular'				" Create tables. Disabled: not used and have some startup time.
-		"Plug 'mattn/vim-gist' | Plug 'mattn/webapi-vim'		" Post a new Gist.
-		"Plug 'salsifis/vim-transpose'			" Matrix transposition of texts.
+		"Plug 'mattn/vim-gist' | Plug 'mattn/webapi-vim'	" Post a new Gist.
+		"Plug 'salsifis/vim-transpose'				" Matrix transposition of texts.
 		"Plug 'scrooloose/nerdtree'				" Replaced by built-in netrw
 		"Plug 'sjl/gundo.vim'					" Use 'mbbill/undotree' instead; is better: https://vi.stackexchange.com/a/13863
 		"Plug 'vim-scripts/lbdbq'				" Mutt: Query lbdb for recipinents.
-		Plug 'LaTeX-Box-Team/LaTeX-Box'			" TODO replace with https://github.com/latex-lsp/texlab
+		Plug 'LaTeX-Box-Team/LaTeX-Box'				" TODO replace with https://github.com/latex-lsp/texlab
 		Plug 'bfontaine/Brewfile.vim', { 'for': 'brewfile' }	" Syntax for Brewfiles
 		Plug 'danro/rename.vim'					" Provides the :Rename command
 		Plug 'fidian/hexmode'					" Open binary files as a HEX dump with :Hexmode
 		Plug 'instant-markdown/vim-instant-markdown', {'for': 'markdown', 'do': 'yarn install'}	" Live preview markdown files in browser.
 		Plug 'mbbill/undotree'					" Navigate history in a sidebar.
-		Plug 'michaeljsmith/vim-indent-object'	" Operate on intendtation as text objects
-		Plug 'ntpeters/vim-better-whitespace'	" Highlight and remove trailing whitespaces.
-		Plug 'preservim/nerdcommenter'			" Comment source code.
+		Plug 'michaeljsmith/vim-indent-object'			" Operate on intendtation as text objects
+		Plug 'ntpeters/vim-better-whitespace'			" Highlight and remove trailing whitespaces.
+		Plug 'preservim/nerdcommenter'				" Comment source code.
 		Plug 'tpope/vim-capslock'				" Software CAPSLOCK.
 		Plug 'tpope/vim-fugitive'				" Git wrapper and shorthands.
 		Plug 'tpope/vim-repeat'					" Extend '.' repetition for plugins like vim-surround, vim-speeddating.
-		Plug 'tpope/vim-speeddating'			" Increment dates with C-a.
+		Plug 'tpope/vim-speeddating'				" Increment dates with C-a.
 		Plug 'tpope/vim-surround'				" Work on surrond delimiters or its content.
 		Plug 'tpope/vim-unimpaired'				"  Bracket mappings like [<space>
 
@@ -42,14 +42,14 @@ call plug#begin(stdpath('data') . '/plugged')
 " Development {
 " Development: General {
 	Plug 'AndrewRadev/sideways.vim'		" Shift function arguments left and right.
-	Plug 'neovim/nvim-lspconfig'			" Plug-n-play configurations for LSP server.
-	Plug 'Townk/vim-autoclose'				" Automatically insert matching brace pairs.
-	Plug 'airblade/vim-gitgutter'			" Git modified status in sign column
-	Plug 'andymass/vim-matchup'				" Extend % matching. Replaces old the matchit plugin.
+	Plug 'neovim/nvim-lspconfig'		" Plug-n-play configurations for LSP server.
+	Plug 'Townk/vim-autoclose'		" Automatically insert matching brace pairs.
+	Plug 'airblade/vim-gitgutter'		" Git modified status in sign column
+	Plug 'andymass/vim-matchup'		" Extend % matching. Replaces old the matchit plugin.
 	Plug 'editorconfig/editorconfig-vim'	" Standard .editorconfig file in shared projects.
-	Plug 'preservim/tagbar'					" Sidepane showing info from tags file.
-	Plug 'rhysd/conflict-marker.vim'		" Navigate and edit VCS conflicts. Replace unmaintained 'vim-script/ConflictMotions'
-	Plug 'vim-scripts/argtextobj.vim'		" Make function arguments text objects that can be operated on with.
+	Plug 'preservim/tagbar'			" Sidepane showing info from tags file.
+	Plug 'rhysd/conflict-marker.vim'	" Navigate and edit VCS conflicts. Replace unmaintained 'vim-script/ConflictMotions'
+	Plug 'vim-scripts/argtextobj.vim'	" Make function arguments text objects that can be operated on with.
 " }
 
 " Development: C/C++ {
@@ -61,8 +61,8 @@ call plug#begin(stdpath('data') . '/plugged')
 "}
 
 " Development: Java {
-	"Plugin 'artur-shaik/vim-javacomplete2', { 'for': 'java' }		" Omni-complete for Java
-	"Plugin 'erikw/jcommenter.vim', { 'for': 'java' }				" Generate javadoc.
+	"Plugin 'artur-shaik/vim-javacomplete2', { 'for': 'java' }	" Omni-complete for Java
+	"Plugin 'erikw/jcommenter.vim', { 'for': 'java' }		" Generate javadoc.
 "}
 
 " Development: Go {
@@ -70,9 +70,9 @@ call plug#begin(stdpath('data') . '/plugged')
 "}
 
 " Development: Python {
-	"Plugin 'davidhalter/jedi-vim', { 'for': 'python' }		" Autocompletion using jedi library.
-	"Plugin 'python-rope/ropevim', { 'for': 'python' }		" Refactoring with rope library.
-	"Plugin 'fisadev/vim-isort', { 'for': 'python' }		" Sort imports
+	"Plugin 'davidhalter/jedi-vim', { 'for': 'python' }	" Autocompletion using jedi library.
+	"Plugin 'python-rope/ropevim', { 'for': 'python' }	" Refactoring with rope library.
+	"Plugin 'fisadev/vim-isort', { 'for': 'python' }	" Sort imports
 "}
 
 " Development: Swift {
@@ -83,7 +83,7 @@ call plug#begin(stdpath('data') . '/plugged')
 " Snippets {
 " Snippet engine. Not very active. https://github.com/honza/vim-snippets list altenatives. neosnippet.vim seems nice, but require python provider.
 Plug 'garbas/vim-snipmate' | Plug 'MarcWeber/vim-addon-mw-utils' | Plug 'tomtom/tlib_vim'
-Plug 'honza/vim-snippets'								" Snippet library
+Plug 'honza/vim-snippets'				" Snippet library
 Plug 'rbonvall/snipmate-snippets-bib', { 'for': 'tex' }	" Bibtex snippets.
 " }
 
@@ -97,7 +97,7 @@ Plug 'rbonvall/snipmate-snippets-bib', { 'for': 'tex' }	" Bibtex snippets.
 " UI {
 	"Plug 'vim-scripts/ScrollColors'
 	Plug 'overcache/NeoSolarized'	" Solarized theme.
-	Plug 'mkitt/tabline.vim'		" More informative tab titles.
+	Plug 'mkitt/tabline.vim'	" More informative tab titles.
 "}
 
 " Initialize plugin system
@@ -105,14 +105,14 @@ call plug#end()
 " }
 
 " General {
-set undofile							" Save undo to file in undodir.
-set shortmess=filmnrxtToO				" Abbreviate messages.
-set nrformats=alpha,bin,octal,hex		" What to increment/decrement with ^A and ^X.
-set hidden								" Work with hidden buffers more easily. Enables to leave buffer with unwritten changes (by :edit another buffer).
-set sessionoptions-=options				" Don't store global and local variables when saving sessions.
-set undolevels=2048						" Levels of undo to keep in memory.
-"set clipboard+=unnamed					" Use register "* instead of unnamed register. This means what is being yanked in vim gets put to external clipboard automatically.
-set timeoutlen=1500						" Timout (ms) for mappings and keycodes.
+set undofile				" Save undo to file in undodir.
+set shortmess=filmnrxtToO		" Abbreviate messages.
+set nrformats=alpha,bin,octal,hex	" What to increment/decrement with ^A and ^X.
+set hidden				" Work with hidden buffers more easily. Enables to leave buffer with unwritten changes (by :edit another buffer).
+set sessionoptions-=options		" Don't store global and local variables when saving sessions.
+set undolevels=2048			" Levels of undo to keep in memory.
+"set clipboard+=unnamed			" Use register "* instead of unnamed register. This means what is being yanked in vim gets put to external clipboard automatically.
+set timeoutlen=1500			" Timout (ms) for mappings and keycodes.
 set completeopt=longest,menu,preview	" Insert most common completion and show menu.
 set omnifunc=syntaxcomplete#Complete	" Let Omni completion (^x^o) use vim's builtin syntax files for language keywords.
 " }
@@ -137,24 +137,24 @@ command! Cdpwd cd %:p:h
 command! Lcdpwd lcd %:p:h
 
 command! -nargs=* Wrap set wrap linebreak nolist	" Set softwrap correctly.
-autocmd BufWinLeave * silent! mkview				" Save fold views.
-autocmd BufWinEnter * silent! loadview				" Load fold views on start.
+autocmd BufWinLeave * silent! mkview			" Save fold views.
+autocmd BufWinEnter * silent! loadview			" Load fold views on start.
 " }
 
 " Formatting {
-set linebreak				" Wrap on 'breakat'-chars.
-"set showbreak=>			" Indicate wrapped lines.
-set showbreak=…				" Indicate wrapped lines.
-set smartindent				" Indent smart on C-like files.
-set preserveindent			" Try to preserve indent structure on changes of current line.
-set copyindent				" Copy indentstructure from existing lines.
-set tabstop=4				" Let a tab be 8 spaces wide.
-set shiftwidth=4			" Tab width for auto indent and >> shifting.
-"set softtabstop=4			" Number of spaces to count a tab for on ops like BS and tab.
-set matchpairs+=<:>			" Also match <> with %.
+set linebreak			" Wrap on 'breakat'-chars.
+"set showbreak=>		" Indicate wrapped lines.
+set showbreak=…			" Indicate wrapped lines.
+set smartindent			" Indent smart on C-like files.
+set preserveindent		" Try to preserve indent structure on changes of current line.
+set copyindent			" Copy indentstructure from existing lines.
+set tabstop=4			" Let a tab be 8 spaces wide.
+set shiftwidth=4		" Tab width for auto indent and >> shifting.
+"set softtabstop=4		" Number of spaces to count a tab for on ops like BS and tab.
+set matchpairs+=<:>		" Also match <> with %.
 set formatoptions=tcroqwnl	" How automatic formatting should happen.
 set cinoptions+=g=			" Left-indent C++ access labels.
-"set pastetoggle  = <Leader>p    " Toggle 'paste' for sane pasting.
+"set pastetoggle  = <Leader>p   " Toggle 'paste' for sane pasting.
 " }
 
 " GUI {
@@ -233,24 +233,24 @@ EOF
 " }
 
 " Mappings {
-let mapleader = "\\"									" The key for <Leader>.
-nmap <silent> <C-_> :nohlsearch<CR>						" Clear search matches highlighting. (Ctrl+/ => ^_)
-nmap <silent> <Leader>v :source $MYVIMRC<CR>			" Source init.vim
-nmap <silent> <Leader>V :tabe $MYVIMRC<CR>				" Edit init.vim
+let mapleader = "\\"					" The key for <Leader>.
+nmap <silent> <C-_> :nohlsearch<CR>			" Clear search matches highlighting. (Ctrl+/ => ^_)
+nmap <silent> <Leader>v :source $MYVIMRC<CR>		" Source init.vim
+nmap <silent> <Leader>V :tabe $MYVIMRC<CR>		" Edit init.vim
 noremap <silent> <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>	" Open tags definition in a new tab.
 noremap <silent> <Leader>] :vsp<CR>:exec("tag ".expand("<cword>"))<CR>		" Open tags definition in a vertical split.
-nnoremap g^t :tabfirst<CR>								" Go to first tab.
-nnoremap g$t :tablast<CR>								" Go to last tab.
-noremap Yf :let @" = expand("%")<CR>					" Yank current file name.
-noremap YF :let @" = expand("%:p")<CR>					" Yank current (fully expanded) file name.
-nnoremap <silent> <Leader>R :checktime<CR>				" Reload buffers from file if changed.
+nnoremap g^t :tabfirst<CR>				" Go to first tab.
+nnoremap g$t :tablast<CR>				" Go to last tab.
+noremap Yf :let @" = expand("%")<CR>			" Yank current file name.
+noremap YF :let @" = expand("%:p")<CR>			" Yank current (fully expanded) file name.
+nnoremap <silent> <Leader>R :checktime<CR>		" Reload buffers from file if changed.
 "nmap <silent> <Leader>d "=strftime("%Y-%m-%d")<CR>P	" Insert the current date.
-"nmap <silent> <Leader>S :%s/\s\+$//ge<CR>				" Remove all trailing spaces.
+"nmap <silent> <Leader>S :%s/\s\+$//ge<CR>		" Remove all trailing spaces.
 
-nnoremap <silent> gfs :wincmd f<CR>					" Open path under cursor in a split.
+nnoremap <silent> gfs :wincmd f<CR>			" Open path under cursor in a split.
 nnoremap <silent> gfv :vertical wincmd f<CR>		" Open path under cursor in a vertical split.
-nnoremap <silent> gft :tab wincmd f<CR>				" Open path under cursor in a tab.
-nnoremap <silent> gV `[v`]							" Visually select the text that was last edited/pasted.
+nnoremap <silent> gft :tab wincmd f<CR>			" Open path under cursor in a tab.
+nnoremap <silent> gV `[v`]				" Visually select the text that was last edited/pasted.
 
 " Redraw window so that search terms are centered.
 nnoremap n nzz
@@ -264,14 +264,14 @@ inoremap <expr> <C-d> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<C-d>"
 inoremap <expr> <C-u> pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<C-u>"
 
 if &l:term  =~ "screen.*"
-	noremap <silent> <C-x>x <C-x>					" Decrement for consistency with GNU Screen.
+	noremap <silent> <C-x>x <C-x>	" Decrement for consistency with GNU Screen.
 endif
 
 " Toggles {
 noremap <silent> <Leader>w :set wrap!<CR>:set wrap?<CR>		" Toggle line wrapping.
-noremap <silent> <Leader>` :set list!<CR>					" Toggle listing of characters. See listchars.
-noremap <Leader>l :set relativenumber!<CR>					" Toggle :number between absolute and line relative.
-noremap <silent> <ESC>p :set paste! paste?<CR>				" Toggle 'paste' for sane pasting.
+noremap <silent> <Leader>` :set list!<CR>			" Toggle listing of characters. See listchars.
+noremap <Leader>l :set relativenumber!<CR>			" Toggle :number between absolute and line relative.
+noremap <silent> <ESC>p :set paste! paste?<CR>			" Toggle 'paste' for sane pasting.
 noremap <silent> <leader>p :set paste<CR>o<ESC>:normal "*p<CR>:set nopaste<CR>	" Paste on line after in paste-mode from register "*.
 noremap <silent> <leader>P :set paste<CR>O<ESC>:normal "*P<CR>:set nopaste<CR>	" Paste on line before in paste-mode from register "*.
 
@@ -303,9 +303,9 @@ function! ToggleSpell(lang)
 	return l:newMode
 endfunction
 " }
-nmap <silent> <F6> :echo ToggleSpell("en_us")<CR>		" Toggle English spell.
-nmap <silent> <F7> :echo ToggleSpell("sv")<CR>			" Toggle Swedish spell.
-nmap <silent> <F8> :echo ToggleSpell("de")<CR>			" Toggle German spell.
+nmap <silent> <F6> :echo ToggleSpell("en_us")<CR>	" Toggle English spell.
+nmap <silent> <F7> :echo ToggleSpell("sv")<CR>		" Toggle Swedish spell.
+nmap <silent> <F8> :echo ToggleSpell("de")<CR>		" Toggle German spell.
 
 " Toggle mouse {
 function! ToggleMouse()
@@ -317,7 +317,7 @@ function! ToggleMouse()
 	set mouse?
 endfunction
 " }
-nmap <Leader>m :call ToggleMouse()<CR>					" Toggles mouse on and off.
+nmap <Leader>m :call ToggleMouse()<CR>	" Toggles mouse on and off.
 
 " Toggle background mode {
 function! ToggleBackgroundMode()
@@ -329,7 +329,7 @@ function! ToggleBackgroundMode()
 	set background?
 endfunction
 " }
-nmap <silent> <F5> :call ToggleBackgroundMode()<CR>		" Toggle between light and dark background mode.
+nmap <silent> <F5> :call ToggleBackgroundMode()<CR>	" Toggle between light and dark background mode.
 " }
 
 " Cmaps {
@@ -339,14 +339,14 @@ cmap w\ echoerr "Using a Swedish keyboard?"<CR>
 " }
 
 " Searching {
-	set ignorecase		" Case insensitive search.
-	set smartcase		" Smart case search.
-	set nowrapscan		" Don't wrap search around file.
+set ignorecase	" Case insensitive search.
+set smartcase	" Smart case search.
+set nowrapscan	" Don't wrap search around file.
 " }
 
 " Spelling {
-set spelllang=en_us				" Languages to do spell checking for.
-set spellsuggest=best,10		" Limit spell suggestions.
+set spelllang=en_us		" Languages to do spell checking for.
+set spellsuggest=best,10	" Limit spell suggestions.
 " Set spellfile dynamically. Shared with Vim.
 execute "set spellfile=" . "~/.vim/spell/" . matchstr(&spelllang, "[a-zA-Z][a-zA-Z]") . "." . &encoding . ".add"
 " Use a thesaurus file. Could load all, but that makes lookup slower. Instead let ToggleSpell() set per language.
@@ -371,9 +371,9 @@ else
 endif
 
 set termguicolors	" Enable 24-bit RGB. Required by NeoSolarized.
-set mouse=a			" Enable mouse in all modes.
-set title			" Show title in console title bar.
-set number			" Show line numbers.
+set mouse=a		" Enable mouse in all modes.
+set title		" Show title in console title bar.
+set number		" Show line numbers.
 set showmatch		" Shortly jump to a matching bracket when match.
 set cursorline		" Highlight the current line.
 "set cursorcolumn	" Highlight the current column.
@@ -386,28 +386,28 @@ set listchars=eol:$,space:·,tab:>-,trail:¬,extends:>,precedes:<,nbsp:.	" Chara
 
 " Statusline {
 " Comment these out when using powerline statusbar.
-set statusline=%t							" Tail of the filename.
-set statusline+=%m							" Modified flag.
+set statusline=%t		" Tail of the filename.
+set statusline+=%m		" Modified flag.
 set statusline+=\ [%{strlen(&fenc)?&fenc:'none'},	" File encoding.
-set statusline+=%{&ff}]						" File format.
-set statusline+=%h							" Help file flag.
-set statusline+=%r							" Read only flag.
-set statusline+=%y							" Filetype.
+set statusline+=%{&ff}]		" File format.
+set statusline+=%h		" Help file flag.
+set statusline+=%r		" Read only flag.
+set statusline+=%y		" Filetype.
 "set statusline+=['%{getline('.')[col('.')-1]}'\ \%b\ 0x%B]	" Value of byte under cursor.
 
 " vim-fugitive:
-set statusline+=%#StatusLineNC#					" Change highlight group
-set statusline+=%{fugitive#statusline()}		" Show current branch.
+set statusline+=%#StatusLineNC#			" Change highlight group
+set statusline+=%{fugitive#statusline()}	" Show current branch.
 set statusline+=%*
 set statusline+=%{tagbar#currenttag('[#%s]','')}	" Current tag.
 
-set statusline+=%=								" Left/right-aligned separator.
-"set statusline+=[\%b\ 0x%B]\					" Value of byte under cursor.
-"set statusline+=[0x%O]\						" Byte offset from start.
-set statusline+=%l/%L,							" Cursor line/total lines.
-set statusline+=%c								" Cursor column.
-set statusline+=\ %P							" Percent through file.
-set statusline+=\ 0x%B							" Character value under cursor.
+set statusline+=%=		" Left/right-aligned separator.
+"set statusline+=[\%b\ 0x%B]\	" Value of byte under cursor.
+"set statusline+=[0x%O]\	" Byte offset from start.
+set statusline+=%l/%L,		" Cursor line/total lines.
+set statusline+=%c		" Cursor column.
+set statusline+=\ %P		" Percent through file.
+set statusline+=\ 0x%B		" Character value under cursor.
 " }
 " }
 
@@ -423,10 +423,10 @@ set statusline+=\ 0x%B							" Character value under cursor.
 
 " fzf.vim {
 " Stolen from my friend https://github.com/erikagnvall/dotfiles/blob/master/vim/init.vim
-nnoremap <leader>f :FZF<space>		" Search for files in given path.
-nnoremap <c-p> :Files<CR>		" Search for files starting at current directory.
-nnoremap <leader>T :Tags<CR>		" Search in tags file.
-nnoremap ; :Buffers<CR>			" Search open buffers.
+nnoremap <leader>f :FZF<space>	" Search for files in given path.
+nnoremap <c-p> :Files<CR>	" Search for files starting at current directory.
+nnoremap <leader>T :Tags<CR>	" Search in tags file.
+nnoremap ; :Buffers<CR>		" Search open buffers.
 " }
 
 	" nerdcommenter {
@@ -442,7 +442,7 @@ nnoremap ; :Buffers<CR>			" Search open buffers.
 noremap <silent> <F2> :Lexplore<CR>	" Toggle the left vertical window
 let g:netrw_liststyle = 3		" Default view: tree. Cycle with (i).
 let g:netrw_banner = 0			" Remove space consuming top header text.
-let g:netrw_browse_split = 4	" Open in previous window by default (like NERDTree).
+let g:netrw_browse_split = 4		" Open in previous window by default (like NERDTree).
 let g:netrw_winsize = 20		" %-tage of window space to take in the respective open mode (vertical/horizontal).
 "let g:netrw_altv = 1			" Supposedly needed to splitit to left. However not needed as I just use :LExplore?
 
@@ -471,14 +471,14 @@ aug END
 
 " tagbar {
 nmap <silent> <F3> :TagbarToggle<CR>	" Toggle the Tagbar window.
-let g:tagbar_left = 0					" Keep the window on the right side.
-let g:tagbar_width = 30					" Width of window.
-let g:tagbar_autoclose = 1				" Close tagbar when jumping to a tag.
-let g:tagbar_autofocus = 1				" Give tagbar focus when it's opened.
-let g:tagbar_sort = 1					" Sort tags alphabetically.
-let g:tagbar_compact = 1				" Omit the help text.
-let g:tagbar_singleclick = 1			" Jump to tag with a single click.
-let g:tagbar_autoshowtag = 1			" Open folds if tag is not visible.
+let g:tagbar_left = 0			" Keep the window on the right side.
+let g:tagbar_width = 30			" Width of window.
+let g:tagbar_autoclose = 1		" Close tagbar when jumping to a tag.
+let g:tagbar_autofocus = 1		" Give tagbar focus when it's opened.
+let g:tagbar_sort = 1			" Sort tags alphabetically.
+let g:tagbar_compact = 1		" Omit the help text.
+let g:tagbar_singleclick = 1		" Jump to tag with a single click.
+let g:tagbar_autoshowtag = 1		" Open folds if tag is not visible.
 " }
 
 " vim-autoclose {
@@ -489,7 +489,7 @@ noremap <silent> <Leader>ac :AutoCloseToggle<CR>				" Toggle vim-autoclose plugi
 " }
 
 " vim-better-whitespace {
-let g:strip_whitelines_at_eof=1			" Also strip empty lines at end of file on save.
+let g:strip_whitelines_at_eof=1		" Also strip empty lines at end of file on save.
 let g:show_spaces_that_precede_tabs=1	" Highlight spaces that happens before tab.
 
 " Use same command as in the old ~/.vim/plugin/stripspaces.vim
@@ -532,12 +532,12 @@ autocmd BufReadPost fugitive://* set bufhidden=delete	" Close Fugitive buffers w
 " }
 
 " vim-gist {
-let g:gist_detect_filetype = 1						" Detect filetype from name.
-let g:gist_show_privates = 1						" Let Gist -l show private gists.
-let g:gist_private = 1								" Make private the default for new Gists.
-let g:gist_open_browser_after_post = 1				" Open in browser after post.
+let g:gist_detect_filetype = 1				" Detect filetype from name.
+let g:gist_show_privates = 1				" Let Gist -l show private gists.
+let g:gist_private = 1					" Make private the default for new Gists.
+let g:gist_open_browser_after_post = 1			" Open in browser after post.
 "let g:gist_clip_command = 'xclip -selection clipboard'	" Copy command.
-"let g:gist_browser_command = 'w3m %URL%'			" Browser to use.
+"let g:gist_browser_command = 'w3m %URL%'		" Browser to use.
 let g:gist_browser_command = 'firefox  %URL%'		" Browser to use.
 " }
 
@@ -557,7 +557,7 @@ nnoremap <silent> >a :SidewaysRight<CR>		" Move function argument to the right.
 
 " undotree {
 nmap <silent> <F4> :UndotreeToggle<CR>	" Toggle side pane.
-let g:undotree_WindowLayout=2			" Set style to have diff window below.
-let g:undotree_SetFocusWhenToggle=1		" Put cursor in undo window on open.
+let g:undotree_WindowLayout=2		" Set style to have diff window below.
+let g:undotree_SetFocusWhenToggle=1	" Put cursor in undo window on open.
 " }
 " }
