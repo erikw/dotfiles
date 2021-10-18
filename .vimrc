@@ -10,27 +10,19 @@
 " }
 
 " Plugins {
+	" See *vundle-plugins-uris* for Plugin syntax.
 	let g:ale_completion_enabled = 1	 " Must be set before ALE is loaded.
 	let s:using_vundle = 1				" Vundle will break default behaviour of spellfile. Let others know when using Vundle.
 
 	set nocompatible              " be iMproved, required
 	filetype off                  " required
 
-	" set the runtime path to include Vundle and initialize
+	" Set the runtime path to include Vundle and initialize
 	set rtp+=~/.vim/bundle/Vundle.vim
 	call vundle#begin()
 
-	" let Vundle manage Vundle, required
+	" Let Vundle manage Vundle, required
 	Plugin 'VundleVim/Vundle.vim'
-
-	" Formats {
-	" Git:
-		"Plugin 'git://git.domain.com/project.git'
-	" Github:
-		"Plugin 'username/project.vim'
-	" vim-scripts.org (https://github.com/vim-scripts/):
-		"Plugin 'ProjectName'
-	" }
 
 	" General {
 		"Plugin 'dhruvasagar/vim-table-mode'
@@ -74,6 +66,12 @@
 		"Plugin 'FuzzyFinder'		" Disabled, as it has high startup time
 		"Plugin 'L9'			" Required for FuzzyFinder.
 		"Plugin 'wincent/command-t'
+
+		" FZF - Fuzzy finding
+		" - Keyboard shortcuts: https://github.com/junegunn/fzf/blob/master/README-VIM.md#fzf
+		" - Commands: https://github.com/junegunn/fzf.vim#commands
+		Plugin 'junegunn/fzf'
+		Plugin 'junegunn/fzf.vim'
 	"}
 
 	" Development: General {
@@ -116,7 +114,6 @@
 	" mutt {
 		"Plugin 'lbdbq'
 	"}
-
 
 	call vundle#end()            " required
 	filetype plugin indent on    " required
@@ -544,6 +541,14 @@
 		"" Launch with Filecoverage-mode.
 		"noremap <silent> ,c :FufCoverageFile<CR>
 	" }
+
+" FZF {
+	" Stolen from my friend https://github.com/erikagnvall/dotfiles/blob/master/vim/init.vim
+	nnoremap <leader>f :FZF<space>
+	nnoremap <c-p> :Files<CR>
+	nnoremap <leader>T :Tags<CR>
+	nnoremap ; :Buffers<CR>
+" }
 
 	" Gist {
 		let g:gist_detect_filetype = 1				" Detect filetype from name.

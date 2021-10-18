@@ -88,7 +88,10 @@ Plug 'rbonvall/snipmate-snippets-bib', { 'for': 'tex' }	" Bibtex snippets.
 " }
 
 " Navigation {
-	"Plugin 'wincent/command-t' TODO replace this with fzf!
+	" FZF - Fuzzy finding
+	" - Keyboard shortcuts: https://github.com/junegunn/fzf/blob/master/README-VIM.md#fzf
+	" - Commands: https://github.com/junegunn/fzf.vim#commands
+	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } | Plug 'junegunn/fzf.vim'
 " }
 
 " UI {
@@ -416,6 +419,14 @@ set statusline+=\ 0x%B							" Character value under cursor.
 	"let g:clang_user_options = '2>/dev/null || exit 0'	" Ignore clang errors.
 	"let g:clang_complete_macros = 1			" Complete preprocessor macros and constants.
 	"let g:clang_complete_patterns = 1			" Complete code patters e.g. loop constructs.
+" }
+
+" fzf.vim {
+" Stolen from my friend https://github.com/erikagnvall/dotfiles/blob/master/vim/init.vim
+nnoremap <leader>f :FZF<space>
+nnoremap <c-p> :Files<CR>
+nnoremap <leader>T :Tags<CR>
+nnoremap ; :Buffers<CR>
 " }
 
 	" nerdcommenter {
