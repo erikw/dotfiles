@@ -1,6 +1,7 @@
 " Erik Westrup's Neovim configuration.
 " Modeline {
-"	vi: foldmarker={,} foldmethod=marker foldlevel=0 tabstop=8 :
+" vi: foldmarker={,} foldmethod=marker foldlevel=0 tabstop=8 :
+" 8 spaces for a tab render best as HTML.
 " }
 
 " Profiling {
