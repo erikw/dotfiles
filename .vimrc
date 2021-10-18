@@ -60,6 +60,7 @@
 		"Plugin 'ScrollColors'
 		Plugin 'altercation/vim-colors-solarized'
 		Plugin 'mkitt/tabline.vim'		" More informative tab titles. Only for terminal; gvim uses guilabel setting.
+		Plugin 'mhinz/vim-startify'		" Start screen with recently opended files.
 	"}
 
 	" Navigation {
@@ -689,6 +690,37 @@
 		"call togglebg#map("<Leader>%")	" Toggle background with solarized. Not nice because it maps in insert mode too.
 		call togglebg#map("<F5>")	" Toggle background with solarized.
 	" }
+
+" vim-startify {
+	" Bookmarks
+	let g:startify_bookmarks = [ {'v': '$HOME/.vimrc'}, '~/.shell_config', '~/.shell_aliases' ]
+
+	let g:startify_fortune_use_unicode = 1	" Draw fortune with Unicode instead of ASCII.
+
+
+	" Custom logo instead of cowsay.
+	let g:ascii = [
+  	  \ '    ##############..... ##############',
+  	  \ '    ##############......##############',
+  	  \ '      ##########..........##########',
+  	  \ '      ##########........##########',
+  	  \ '      ##########.......##########',
+  	  \ '      ##########.....##########..',
+  	  \ '      ##########....##########.....',
+  	  \ '    ..##########..##########.........',
+  	  \ '  ....##########.#########.............',
+  	  \ '    ..##################.............',
+  	  \ '      ################.............',
+  	  \ '      ##############.............',
+  	  \ '      ############.............',
+  	  \ '      ##########.............',
+  	  \ '      ########.............',
+  	  \ '      ######    .........',
+  	  \ '                  .....',
+  	  \ '                    .',
+  	  \]
+	let g:startify_custom_header = g:ascii + startify#fortune#boxed()
+" }
 
 	" Syntastic {
 		"" NOTE See Eclim section above: set EclimFileTypeValidate=0 as only one of Eclim and Syntastic can be enabled at the same time.

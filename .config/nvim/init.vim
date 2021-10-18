@@ -37,7 +37,6 @@ call plug#begin(stdpath('data') . '/plugged')
 	Plug 'tpope/vim-speeddating'				" Increment dates with C-a.
 	Plug 'tpope/vim-surround'				" Work on surrond delimiters or its content.
 	Plug 'tpope/vim-unimpaired'				"  Bracket mappings like [<space>
-
 " }
 
 " Development {
@@ -99,8 +98,9 @@ Plug 'rbonvall/snipmate-snippets-bib', { 'for': 'tex' }	" Bibtex snippets.
 
 " UI {
 	"Plug 'vim-scripts/ScrollColors'
-	Plug 'overcache/NeoSolarized'	" Solarized theme.
+	Plug 'mhinz/vim-startify'				" Start screen with recently opended files.
 	Plug 'mkitt/tabline.vim'	" More informative tab titles.
+	Plug 'overcache/NeoSolarized'	" Solarized theme.
 "}
 
 " Initialize plugin system
@@ -553,6 +553,38 @@ set updatetime=100		" Speedier update of file status.
 let g:snipMate = { 'snippet_version' : 1 }	" Use the new parser (and surpress message about using the old parser).
 " }
 
+" vim-startify {
+" Bookmarks
+let g:startify_bookmarks = [ {'v': '$XDG_CONFIG_HOME/nvim/init.vim'}, '~/.shell_config', '~/.shell_aliases' ]
+
+let g:startify_fortune_use_unicode = 1	" Draw fortune with Unicode instead of ASCII.
+
+
+" Custom logo instead of cowsay.
+let g:ascii = [
+  \ '    ##############..... ##############',
+  \ '    ##############......##############',
+  \ '      ##########..........##########',
+  \ '      ##########........##########',
+  \ '      ##########.......##########',
+  \ '      ##########.....##########..',
+  \ '      ##########....##########.....',
+  \ '    ..##########..##########.........',
+  \ '  ....##########.#########.............',
+  \ '    ..##################.............',
+  \ '      ################.............',
+  \ '      ##############.............',
+  \ '      ############.............',
+  \ '      ##########.............',
+  \ '      ########.............',
+  \ '      ######    .........',
+  \ '                  .....',
+  \ '                    .',
+  \]
+let g:startify_custom_header = g:ascii + startify#fortune#boxed()
+
+" }
+
 " sideways.vim {
 nnoremap <silent> <a :SidewaysLeft<CR>		" Move function argument to the left.
 nnoremap <silent> >a :SidewaysRight<CR>		" Move function argument to the right.
@@ -612,5 +644,4 @@ lua <<EOF
 EOF
 " }
 " }
-
 " }
