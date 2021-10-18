@@ -23,7 +23,6 @@ call plug#begin(stdpath('data') . '/plugged')
 	"Plug 'sjl/gundo.vim'					" Use 'mbbill/undotree' instead; is better: https://vi.stackexchange.com/a/13863
 	"Plug 'vim-scripts/lbdbq'				" Mutt: Query lbdb for recipinents.
 	"Plug 'voldikss/vim-translator'				" Async language translator.
-	Plug 'LaTeX-Box-Team/LaTeX-Box'				" TODO replace with https://github.com/latex-lsp/texlab
 	Plug 'bfontaine/Brewfile.vim', { 'for': 'brewfile' }	" Syntax for Brewfiles
 	Plug 'danro/rename.vim'					" Provides the :Rename command
 	Plug 'fidian/hexmode'					" Open binary files as a HEX dump with :Hexmode
@@ -62,14 +61,19 @@ call plug#begin(stdpath('data') . '/plugged')
 	Plug 'craigemery/vim-autotag'				" Autogenerate new tags file. Could replace with https://github.com/ludovicchabant/vim-gutentags
 "}
 
+" Development: Go {
+	"Plug 'fatih/vim-go', { 'for': 'go' }	" Compilation commands etc.
+"}
+
 " Development: Java {
 	"Plugin 'artur-shaik/vim-javacomplete2', { 'for': 'java' }	" Omni-complete for Java
 	"Plugin 'erikw/jcommenter.vim', { 'for': 'java' }		" Generate javadoc.
 "}
 
-" Development: Go {
-	"Plug 'fatih/vim-go', { 'for': 'go' }	" Compilation commands etc.
-"}
+" Development: LaTeX {
+	"Plug 'donRaphaco/neotex'				" Live preview PDF output from latex.
+	Plug 'LaTeX-Box-Team/LaTeX-Box'			" TODO replace with https://github.com/latex-lsp/texlab
+" }
 
 " Development: Python {
 	"Plugin 'davidhalter/jedi-vim', { 'for': 'python' }	" Autocompletion using jedi library.
