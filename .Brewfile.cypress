@@ -1,6 +1,7 @@
 # Brewfile for cypress
 # Modeline {
-#	vi: foldmarker={,} foldmethod=marker foldlevel=0 tabstop=8 ft=brewfile:
+#    vi: foldmarker={,} foldmethod=marker foldlevel=0 tabstop=8 ft=brewfile:
+#    The syntax highlight via vim plugin https://github.com/bfontaine/Brewfile.vim
 # }
 
 # Taps {
@@ -8,7 +9,7 @@ tap 'homebrew/cask-drivers' # For focusrite-control
 # }
 
 # Formula: default {
-	brew 'restic'
+    brew 'restic'
 # }
 #
 # Formula: optional {
@@ -17,58 +18,58 @@ tap 'homebrew/cask-drivers' # For focusrite-control
 # }
 
 # Formula: python-dev {
-	brew 'pyright'		# LSP server.
+    brew 'pyright'        # LSP server.
 # }
 
 # Formula: ruby-dev {
-	#brew 'ruby'		# For Jekyll
-	brew 'rbenv'		# includes 'ruby-build' as dependency
-	brew 'ruby-build'
-	brew 'openssl@1.1'	# ruby-build dependency
-	brew 'readline'		# ruby-build dependency
-	brew 'libyaml'		# Seems to be a runtime dependency for ruby from rbenv: https://stackoverflow.com/a/10958585/265508
+    #brew 'ruby'        # For Jekyll
+    brew 'rbenv'        # includes 'ruby-build' as dependency
+    brew 'ruby-build'
+    brew 'openssl@1.1'    # ruby-build dependency
+    brew 'readline'        # ruby-build dependency
+    brew 'libyaml'        # Seems to be a runtime dependency for ruby from rbenv: https://stackoverflow.com/a/10958585/265508
 # }
 
 # Cask: default {
-	cask 'android-file-transfer'
-	cask 'android-platform-tools'
-	cask 'authy'
-	cask 'cryptomator'
-	cask 'dropbox'
-	cask 'ferdi'
-	cask 'focusrite-control'
-	cask 'gramps'
-	cask 'isyncr'
-	cask 'jettison'
-	cask 'keybase'
-	cask 'kid3'
-	cask 'mactex'
-	cask 'mullvadvpn'
-	cask 'musicbrainz-picard'
-	cask 'mutify'
-	cask 'rekordbox'
-	cask 'signal'
-	cask 'transmission'
+    cask 'android-file-transfer'
+    cask 'android-platform-tools'
+    cask 'authy'
+    cask 'cryptomator'
+    cask 'dropbox'
+    cask 'ferdi'
+    cask 'focusrite-control'
+    cask 'gramps'
+    cask 'isyncr'
+    cask 'jettison'
+    cask 'keybase'
+    cask 'kid3'
+    cask 'mactex'
+    cask 'mullvadvpn'
+    cask 'musicbrainz-picard'
+    cask 'mutify'
+    cask 'rekordbox'
+    cask 'signal'
+    cask 'transmission'
 # }
 
 # Cask: optional {
 =begin
-	cask 'ableton-live-suite' # If using latest version, which I'm not.
-	cask 'mixed-in-key'	# If using latest version, which I'm not.
+    cask 'ableton-live-suite' # If using latest version, which I'm not.
+    cask 'mixed-in-key'    # If using latest version, which I'm not.
 =end
 # }
 
 # Mas: default {
-	mas 'djay', id: 450527929
-	mas 'Kindle', id: 405399194
-	mas 'Pixelmator Pro' 1289583905
+    mas 'djay', id: 450527929
+    mas 'Kindle', id: 405399194
+    mas 'Pixelmator Pro', id: 1289583905
 # }
 
 # Mas: optional {
 # }
 
 # Misc {
-	# For Heroku cli tool. https://devcenter.heroku.com/articles/heroku-cli
-	tap 'heroku/brew'
-	brew 'heroku'
+    # For Heroku cli tool. https://devcenter.heroku.com/articles/heroku-cli
+    tap 'heroku/brew'
+    brew 'heroku'
 # }
