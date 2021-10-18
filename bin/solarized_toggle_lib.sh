@@ -76,12 +76,13 @@ st_read_status() {
 # Read mode set by macOS
 st_read_macos_mode() {
 	local mode=
-	defaults read -g AppleInterfaceStyle >/dev/null 2>&1
-	case "$?" in
-		0) mode=dark ;;
-		*) mode=light ;;
-	esac
-	echo $mode
+	#defaults read -g AppleInterfaceStyle >/dev/null 2>&1
+	#case "$?" in
+		#0) mode=dark ;;
+		#*) mode=light ;;
+	#esac
+	#echo $mode
+	dark-notify --exit
 }
 
 # Updates status from macOS to cache, and then return value

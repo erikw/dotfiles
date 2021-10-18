@@ -1,5 +1,5 @@
 #!/Users/erikw/Library/ApplicationSupport/iTerm2/iterm2env/versions/3.8.6/bin/python3
-# For a while it did work to use homebrew's python and do $(pip3 install iterm2), but this broken (on websockets module import).
+# For a while it did work to use homebrew's python and do $(pip3 install iterm2), but this broke (on websockets module import).
 # What does work is to use the python version installed by Iterm2 > Scripts > Manage.  I will also have the required package iterm2 installed.
 # Need to create symlink as there can't be space in shebang path:
 # $ ln -s $HOME/Library/Application\ Support Library/ApplicationSupport
