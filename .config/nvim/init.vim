@@ -1,6 +1,6 @@
 " Erik Westrup's Neovim configuration.
 " Modeline {
-"	vi: foldmarker={,} foldmethod=marker foldlevel=0 tabstop=4 :
+"	vi: foldmarker={,} foldmethod=marker foldlevel=0 tabstop=8 :
 " }
 
 " Profiling {
@@ -424,9 +424,9 @@ set statusline+=\ 0x%B							" Character value under cursor.
 " fzf.vim {
 " Stolen from my friend https://github.com/erikagnvall/dotfiles/blob/master/vim/init.vim
 nnoremap <leader>f :FZF<space>		" Search for files in given path.
-nnoremap <c-p> :Files<CR>			" Search for files starting at current directory.
+nnoremap <c-p> :Files<CR>		" Search for files starting at current directory.
 nnoremap <leader>T :Tags<CR>		" Search in tags file.
-nnoremap ; :Buffers<CR>				" Search open buffers.
+nnoremap ; :Buffers<CR>			" Search open buffers.
 " }
 
 	" nerdcommenter {
