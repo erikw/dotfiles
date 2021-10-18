@@ -109,7 +109,12 @@ Plug 'rbonvall/snipmate-snippets-bib', { 'for': 'tex' }	" Bibtex snippets.
 	"Plug 'dstein64/nvim-scrollview'	" Visual and interactive scroll bar.
 	Plug 'mhinz/vim-startify'		" Start screen with recently opended files.
 	Plug 'mkitt/tabline.vim'		" More informative tab titles.
-	Plug 'overcache/NeoSolarized'	" Solarized theme.
+
+" Colorschemes {
+	Plug 'mhartington/oceanic-next'
+	Plug 'morhetz/gruvbox'
+	Plug 'overcache/NeoSolarized'
+" }
 "}
 
 " Initialize plugin system
@@ -366,7 +371,8 @@ execute "set thesaurus=" . "~/.vim/thesaurus/" . matchstr(&spelllang, "[a-zA-Z][
 " }
 
 " UI {
-colorscheme NeoSolarized
+"colorscheme NeoSolarized
+colorscheme gruvbox
 
 " Adjust colors to this background.
 if filereadable(expand("~/.solarizedtoggle/status"))
