@@ -112,6 +112,10 @@
 		"Plugin 'keith/swift.vim'
 	"}
 
+" Development: Web {
+	Plugin 'ap/vim-css-color'	" Display CSS colors in vim.
+" }
+
 	" mutt {
 		"Plugin 'lbdbq'
 	"}

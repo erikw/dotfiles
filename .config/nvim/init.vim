@@ -22,6 +22,7 @@ call plug#begin(stdpath('data') . '/plugged')
 	"Plug 'scrooloose/nerdtree'				" Replaced by built-in netrw
 	"Plug 'sjl/gundo.vim'					" Use 'mbbill/undotree' instead; is better: https://vi.stackexchange.com/a/13863
 	"Plug 'vim-scripts/lbdbq'				" Mutt: Query lbdb for recipinents.
+	"Plug 'voldikss/vim-translator'				" Async language translator.
 	Plug 'LaTeX-Box-Team/LaTeX-Box'				" TODO replace with https://github.com/latex-lsp/texlab
 	Plug 'bfontaine/Brewfile.vim', { 'for': 'brewfile' }	" Syntax for Brewfiles
 	Plug 'danro/rename.vim'					" Provides the :Rename command
@@ -51,7 +52,6 @@ call plug#begin(stdpath('data') . '/plugged')
 	Plug 'preservim/tagbar'			" Sidepane showing info from tags file.
 	Plug 'rhysd/conflict-marker.vim'	" Navigate and edit VCS conflicts. Replace unmaintained 'vim-script/ConflictMotions'
 	Plug 'vim-scripts/argtextobj.vim'	" Make function arguments text objects that can be operated on with.
-
 " }
 
 " Development: C/C++ {
@@ -80,6 +80,10 @@ call plug#begin(stdpath('data') . '/plugged')
 " Development: Swift {
 	"Plugin 'keith/swift.vim', { 'for': 'switft' }	" Syntax files for Switch
 "}
+
+" Development: Web {
+	Plug 'ap/vim-css-color', { 'for': ['css', 'scss'] }	" Display CSS colors in vim.
+" }
 " }
 
 " Snippets {
@@ -97,9 +101,10 @@ Plug 'rbonvall/snipmate-snippets-bib', { 'for': 'tex' }	" Bibtex snippets.
 " }
 
 " UI {
-	"Plug 'vim-scripts/ScrollColors'
-	Plug 'mhinz/vim-startify'				" Start screen with recently opended files.
-	Plug 'mkitt/tabline.vim'	" More informative tab titles.
+	"Plug 'vim-scripts/ScrollColors'	" Cycle though available colorschemes.
+	"Plug 'dstein64/nvim-scrollview'	" Visual and interactive scroll bar.
+	Plug 'mhinz/vim-startify'		" Start screen with recently opended files.
+	Plug 'mkitt/tabline.vim'		" More informative tab titles.
 	Plug 'overcache/NeoSolarized'	" Solarized theme.
 "}
 

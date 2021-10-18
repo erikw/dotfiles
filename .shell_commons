@@ -32,9 +32,11 @@ source $HOME/.shell_functions
 
 # Environment {
 	# Use THE text editor.
-	export EDITOR=vim
-	export VISUAL=vim
-	export CSHEDIT=vim
+	if program_is_in_path nvim; then
+		export EDITOR=nvim VISUAL=nvim CSHEDIT=nvim
+	elif program_is_in_path vim; then
+		export EDITOR=vim VISUAL=vim CSHEDIT=vim
+	fi
 
 	# and the only pager.
 	export PAGER=less
