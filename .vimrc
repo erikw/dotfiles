@@ -1,6 +1,7 @@
 " Erik Westrup's Vim configuration.
 " Modeline {
 "	vi: foldmarker={,} foldmethod=marker foldlevel=0 tabstop=8 shiftwidth=8:
+"	8 spaces for a tab render best as HTML.
 " }
 
 " Profiling { " $ vim --startuptime /tmp/vim.log
