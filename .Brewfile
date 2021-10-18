@@ -19,6 +19,7 @@
     brew 'cmatrix'
     brew 'colordiff'
     brew 'coreutils'    # Note that some gnu pakcages comes with g-prefix in the bin names. The default names are set up in $PATH in ~/.shell_commons
+    brew 'cormacrelf/tap/dark-notify'    # To detect chagnes in OS light/dark appearens. Used by https://github.com/cormacrelf/dark-notify/
     brew 'cowsay'
     brew 'ctags'
     brew 'curl'
@@ -76,7 +77,6 @@
     brew 'zsh'
     brew 'zsh-completions'
     brew 'zsh-syntax-highlighting'
-        brew 'cormacrelf/tap/dark-notify'    # To detect chagnes in OS light/dark appearens. Used by https://github.com/cormacrelf/dark-notify/
 # }
 
 # Formula: optional {
