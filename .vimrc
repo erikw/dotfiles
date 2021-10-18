@@ -1,6 +1,6 @@
 " Erik Westrup's Vim configuration.
 " Modeline {
-"	vi: foldmarker={,} foldmethod=marker foldlevel=0 tabstop=4 :
+"	vi: foldmarker={,} foldmethod=marker foldlevel=0 tabstop=8 :
 " }
 
 " Profiling {
@@ -12,7 +12,7 @@
 " Plugins {
 	" See *vundle-plugins-uris* for Plugin syntax.
 	let g:ale_completion_enabled = 1	 " Must be set before ALE is loaded.
-	let s:using_vundle = 1				" Vundle will break default behaviour of spellfile. Let others know when using Vundle.
+	let s:using_vundle = 1			" Vundle will break default behaviour of spellfile. Let others know when using Vundle.
 
 	set nocompatible              " be iMproved, required
 	filetype off                  " required
@@ -29,12 +29,12 @@
 		"Plugin 'fatih/vim-go'
 		"Plugin 'godlygeek/tabular'		" Disabled: not used and have some startup time.
 		"Plugin 'mattn/gist-vim'
-		"Plugin 'mattn/webapi-vim' " Required for gist-vim
+		"Plugin 'mattn/webapi-vim'		" Required for gist-vim
 		"Plugin 'salsifis/vim-transpose'
 		"Plugin 'scrooloose/nerdtree'		" Replaced by built-in netrw
-		"Plugin 'sjl/gundo.vim'				" Use mbbill/undotree instead; is better: https://vi.stackexchange.com/a/13863
+		"Plugin 'sjl/gundo.vim'			" Use mbbill/undotree instead; is better: https://vi.stackexchange.com/a/13863
 		Plugin 'LaTeX-Box-Team/LaTeX-Box'
-		Plugin 'MarcWeber/vim-addon-mw-utils' " Required for  garbas/vim-snipmate.
+		Plugin 'MarcWeber/vim-addon-mw-utils'	" Required for  garbas/vim-snipmate.
 		Plugin 'bfontaine/Brewfile.vim'
 		Plugin 'danro/rename.vim'
 		Plugin 'fidian/hexmode'
@@ -46,7 +46,7 @@
 		Plugin 'ntpeters/vim-better-whitespace'
 		Plugin 'rbonvall/snipmate-snippets-bib'
 		Plugin 'scrooloose/nerdcommenter'
-		Plugin 'tomtom/tlib_vim'	" Required for garbas/vim-snipmate
+		Plugin 'tomtom/tlib_vim'		" Required for garbas/vim-snipmate
 		Plugin 'tpope/vim-capslock'
 		Plugin 'tpope/vim-fugitive'
 		Plugin 'tpope/vim-repeat'
@@ -75,9 +75,9 @@
 	"}
 
 	" Development: General {
-		"Plugin 'scrooloose/syntastic' " Replaced by ale
+		"Plugin 'scrooloose/syntastic'		" Replaced by ale
 		Plugin 'AndrewRadev/sideways.vim'
-		Plugin 'rhysd/conflict-marker.vim'		" Navigate and edit VCS conflicts. Replace unmaintained 'vim-script/ConflictMotions'
+		Plugin 'rhysd/conflict-marker.vim'	" Navigate and edit VCS conflicts. Replace unmaintained 'vim-script/ConflictMotions'
 		Plugin 'Townk/vim-autoclose'
 		Plugin 'airblade/vim-gitgutter'
 		Plugin 'argtextobj.vim'
@@ -123,11 +123,11 @@
 	if v:version < 703
 		echoerr 'WARNING: This vimrc is written for Vim >= v.703; this is' v:version
 	endif
-	set nocompatible				" Be IMproved. Should be first.
+	set nocompatible		" Be IMproved. Should be first.
 	set viminfo+=n~/.vim/viminfo	" Write the viminfo file inside the Vim directory.
-	set undodir=~/.vim/undo/		" Collect history instead of having them in '.'.
-	set tags+=./tags;/				" Look for tags in current directory or search up until found.
-	set encoding=utf-8				" Use Unicode inside Vim's registers, viminfo, buffers ...
+	set undodir=~/.vim/undo/	" Collect history instead of having them in '.'.
+	set tags+=./tags;/		" Look for tags in current directory or search up until found.
+	set encoding=utf-8		" Use Unicode inside Vim's registers, viminfo, buffers ...
 
 	" Also use $HOME/.vim in Windows
 	if has('win32') || has('win64')
@@ -136,40 +136,40 @@
 " }
 
 " General {
-	"filetype plugin indent on				" File type specific features. Already set as part of Vundle setup.
-	syntax enable							" Syntax highlighting but keep current colors.
-	"syntax on								" Use default colors for syntax highlighting.
-	set mouse=a								" Enable mouse in all modes.
-	set viewoptions=folds,cursor,slash,unix		" What to save with mkview.
-	set history=512							" Store much history.
+	"filetype plugin indent on	" File type specific features. Already set as part of Vundle setup.
+	syntax enable			" Syntax highlighting but keep current colors.
+	"syntax on			" Use default colors for syntax highlighting.
+	set mouse=a			" Enable mouse in all modes.
+	set viewoptions=folds,cursor,slash,unix	" What to save with mkview.
+	set history=512			" Store much history.
 
 
-	"set complete-=k complete+=k			" Put the dictionaries in the normal completion set.
+	"set complete-=k complete+=k		" Put the dictionaries in the normal completion set.
 	set completeopt=longest,menu,preview	" Insert most common completion and show menu.
 	"set omnifunc=syntaxcomplete#Complete	" Let Omni completion (^x^o) use vim's builtin syntax files for language keywords.
 	set omnifunc=ale#completion#OmniFunc	" Use ALE for omnicompletion
-	set shortmess=filmnrxtTo				" Abbreviate messages.
-	set nrformats=alpha,octal,hex			" What to increment/decrement with ^A and ^X.
-	set hidden								" Work with hidden buffers more easily. Enables to leave buffer with unwritten changes (by :edit another buffer).
-	set autoread							" Autoreload buffer from file if not changed in vim, e.g. with the :checktime command.
-	set sessionoptions-=options				" Don't store global and local variables when saving sessions.
-	set undofile							" Save undo to file in undodir.
-	set undolevels=2048						" Levels of undo to keep in memory.history.
-	set ttyfast								" Smoother changes.
-	set clipboard+=unnamed					" Use register "* instead of unnamed register.
-	set timeoutlen=1500						" Timout (ms) for mappings and keycodes.
+	set shortmess=filmnrxtTo		" Abbreviate messages.
+	set nrformats=alpha,octal,hex		" What to increment/decrement with ^A and ^X.
+	set hidden				" Work with hidden buffers more easily. Enables to leave buffer with unwritten changes (by :edit another buffer).
+	set autoread				" Autoreload buffer from file if not changed in vim, e.g. with the :checktime command.
+	set sessionoptions-=options		" Don't store global and local variables when saving sessions.
+	set undofile				" Save undo to file in undodir.
+	set undolevels=2048			" Levels of undo to keep in memory.history.
+	set ttyfast				" Smoother changes.
+	set clipboard+=unnamed			" Use register "* instead of unnamed register.
+	set timeoutlen=1500			" Timout (ms) for mappings and keycodes.
 	if !has('gui_running')
 		if !has('win32') && !has('win64')
-			set term=$TERM					" Make arrow and other keys work.
+			set term=$TERM		" Make arrow and other keys work.
 		endif
 		if &l:term  =~ "screen.*"
-			set ttymouse=xterm2		" Needed for mouse support inside GNU Screen.
+			set ttymouse=xterm2	" Needed for mouse support inside GNU Screen.
 		endif
 	endif
 	if has("unix")
 		let s:uname = system("uname -s")
 		if s:uname == "Darwin"
-			set clipboard=unnamed		" Make copy to clipboard work under macOS.
+			set clipboard=unnamed	" Make copy to clipboard work under macOS.
 		endif
 	endif
 
@@ -196,23 +196,23 @@
 " }
 
 " Spelling {
-	"set spell								" Enable spell highlighting and suggestions.
-	set spellsuggest=best,10				" Limit spell suggestions.
-	set spelllang=en_us						" Languages to do spell checking for.
+	"set spell			" Enable spell highlighting and suggestions.
+	set spellsuggest=best,10	" Limit spell suggestions.
+	set spelllang=en_us		" Languages to do spell checking for.
 	" Set spellfile dynamically.
 	execute "set spellfile=" . "~/.vim/spell/" . matchstr(&spelllang, "[a-zA-Z][a-zA-Z]") . "." . &encoding . ".add"
 	" Use a thesaurus file. Could load all, but that makes lookup slower. Instead let ToggleSpell() set per language.
 	execute "set thesaurus=" . "~/.vim/thesaurus/" . matchstr(&spelllang, "[a-zA-Z][a-zA-Z]") . ".txt"
-	set dictionary+=~/.vim/spell/			" Use custom dictionaries.
-	"set dictionary+=/usr/share/dict/words		" Use system dictionary.
+	set dictionary+=~/.vim/spell/		" Use custom dictionaries.
+	"set dictionary+=/usr/share/dict/words	" Use system dictionary.
 " }
 
 " UI {
-	colorscheme solarized				" Use the solarized colorscheme.
+	colorscheme solarized	" Use the solarized colorscheme.
 
-	set t_Co=256						" Set number of colors.
-	"hi Normal ctermbg=NONE             " Transparent background.
-	set title							" Show title in console title bar.
+	set t_Co=256		" Set number of colors.
+	"hi Normal ctermbg=NONE	" Transparent background.
+	set title		" Show title in console title bar.
 	" Adjust colors to this background.
 	if filereadable(expand("~/.solarizedtoggle/status"))
 		let &background = readfile(expand("~/.solarizedtoggle/status"), '', 1)[0]
@@ -226,79 +226,80 @@
 			set background=dark
 		endif
 	endif
-	set number							" Show line numbers.
-	set tabpagemax=64					" Upper limit on number of tabs.
-	set showmode						" Show current mode in the last line.
+
+	set number				" Show line numbers.
+	set tabpagemax=64			" Upper limit on number of tabs.
+	set showmode				" Show current mode in the last line.
 	set backspace=indent,eol,start		" Make backspace work like expected.
-	set linespace=0						" No line spacing.
-	set showmatch						" Shortly jump to a matching bracket when match.
-	set wildmode=full					" Full completion.
-	set wildignorecase					" Case insensitive filename completion.
-	set scrolljump=5					" Lines to scroll when cursor leaves screen.
-	set scrolloff=3						" Minimum lines to keep above and below cursor.
-	set splitbelow						" Open horizontal split below.
-	set splitright						" Open vertical split to the right.
-	set foldenable						" Use folding.
-	set showcmd							" Show incomplete commands in the lower right corner.
-	set ruler							" Show current cursor position in the lower right corner.
-	set laststatus=2					" Always show the status line.
-	set nolist							" Don't show unprintable characters.
+	set linespace=0				" No line spacing.
+	set showmatch				" Shortly jump to a matching bracket when match.
+	set wildmode=full			" Full completion.
+	set wildignorecase			" Case insensitive filename completion.
+	set scrolljump=5			" Lines to scroll when cursor leaves screen.
+	set scrolloff=3				" Minimum lines to keep above and below cursor.
+	set splitbelow				" Open horizontal split below.
+	set splitright				" Open vertical split to the right.
+	set foldenable				" Use folding.
+	set showcmd				" Show incomplete commands in the lower right corner.
+	set ruler				" Show current cursor position in the lower right corner.
+	set laststatus=2			" Always show the status line.
+	set nolist				" Don't show unprintable characters.
 	"set listchars=eol:$,tab:>-,trail:¬,extends:>,precedes:<,nbsp:.	" Characters to use for list.
 	set listchars=eol:$,space:·,tab:>-,trail:¬,extends:>,precedes:<,nbsp:.	" Characters to use for list.
-	set cursorline						" Highlight the current line.
-	"set cursorcolumn					" Highlight the current column.
+	set cursorline				" Highlight the current line.
+	"set cursorcolumn			" Highlight the current column.
 	" Colors of the CursorLine.
 	"hi CursorLine cterm=NONE ctermbg=LightGray ctermfg=Black guibg=LightGray guifg=Black
 	"hi CursorColumn cterm=NONE ctermbg=LightGray ctermfg=Black guibg=LightGray guifg=Black
 
 	" Statusline {
 		" Comment these out when using powerline statusbar.
-		set statusline=%t						" Tail of the filename.
-		set statusline+=%m						" Modified flag.
+		set statusline=%t			" Tail of the filename.
+		set statusline+=%m			" Modified flag.
 		set statusline+=\ [%{strlen(&fenc)?&fenc:'none'},	" File encoding.
-		set statusline+=%{&ff}]					" File format.
-		set statusline+=%h						" Help file flag.
-		set statusline+=%r						" Read only flag.
-		set statusline+=%y						" Filetype.
+		set statusline+=%{&ff}]			" File format.
+		set statusline+=%h			" Help file flag.
+		set statusline+=%r			" Read only flag.
+		set statusline+=%y			" Filetype.
 		"set statusline+=['%{getline('.')[col('.')-1]}'\ \%b\ 0x%B]	" Value of byte under cursor.
 
-		set statusline+=%#StatusLineNC#				" Change highlight group
+		set statusline+=%#StatusLineNC#		" Change highlight group
 		set statusline+=%{fugitive#statusline()}	" Show current branch.
 		set statusline+=%*
 		set statusline+=%{tagbar#currenttag('[#%s]','')}	" Current tag.
 
-		set statusline+=%=							" Left/right-aligned separator.
-		"set statusline+=[\%b\ 0x%B]\				" Value of byte under cursor.
-		"set statusline+=[0x%O]\					" Byte offset from start.
-		set statusline+=%l/%L,						" Cursor line/total lines.
-		set statusline+=%c							" Cursor column.
-		set statusline+=\ %P						" Percent through file.
-		set statusline+=\ 0x%B						" Character valur under cursor.
+		set statusline+=%=			" Left/right-aligned separator.
+		"set statusline+=[\%b\ 0x%B]\		" Value of byte under cursor.
+		"set statusline+=[0x%O]\		" Byte offset from start.
+		set statusline+=%l/%L,			" Cursor line/total lines.
+		set statusline+=%c			" Cursor column.
+		set statusline+=\ %P			" Percent through file.
+		set statusline+=\ 0x%B			" Character valur under cursor.
 	" }
 " }
 
 " Searching {
-	set hlsearch		" Highlight search.
-	set incsearch		" Incremental search.
-	set ignorecase		" Case insensitive search.
-	set smartcase		" Smart case search.
-	set nowrapscan		" Don't wrap search around file.
+	set hlsearch	" Highlight search.
+	set incsearch	" Incremental search.
+	set ignorecase	" Case insensitive search.
+	set smartcase	" Smart case search.
+	set nowrapscan	" Don't wrap search around file.
 " }
 
 " Formatting {
-	set linebreak				" Wrap on 'breakat'-chars.
-	"set showbreak=>			" Indicate wrapped lines.
-	set showbreak=…				" Indicate wrapped lines.
-	set smartindent				" Indent smart on C-like files.
-	set preserveindent			" Try to preserve indent structure on changes of current line.
-	set copyindent				" Copy indentstructure from existing lines.
-	set tabstop=4				" Let a tab be X spaces wide.
-	set shiftwidth=4			" Tab width for auto indent and >> shifting.
-	"set softtabstop=4			" Number of spaces to count a tab for on ops like BS and tab.
-	set noexpandtab				" Do not expand tabs to spaces!
-	set matchpairs+=<:>			" Also match <> with %.
+	set linebreak			" Wrap on 'breakat'-chars.
+	"set showbreak=>		" Indicate wrapped lines.
+	set showbreak=…			" Indicate wrapped lines.
+	set smartindent			" Indent smart on C-like files.
+	set preserveindent		" Try to preserve indent structure on changes of current line.
+	set copyindent			" Copy indentstructure from existing lines.
+	set tabstop=4			" Let a tab be X spaces wide.
+	set shiftwidth=4		" Tab width for auto indent and >> shifting.
+	"set softtabstop=4		" Number of spaces to count a tab for on ops like BS and tab.
+	set noexpandtab			" Do not expand tabs to spaces!
+	set matchpairs+=<:>		" Also match <> with %.
 	set formatoptions=tcroqwnl	" Formatting options.
-	set cinoptions+=g=			" Left-indent C++ access labels.
+	set cinoptions+=g=		" Left-indent C++ access labels.
 	"set pastetoggle  = <Leader>p    " Toggle 'paste' for sane pasting.
 " }
 
@@ -317,30 +318,30 @@
 	command! Lcdpwd lcd %:p:h
 
 	command! -nargs=* Wrap set wrap linebreak nolist	" Set softwrap correctly.
-	autocmd BufWinLeave * silent! mkview				" Save fold views.
-	autocmd BufWinEnter * silent! loadview				" Load fold views on start.
+	autocmd BufWinLeave * silent! mkview			" Save fold views.
+	autocmd BufWinEnter * silent! loadview			" Load fold views on start.
 	"autocmd! BufWritePost .vimrc source $MYVIMRC		" Source first found vimrc on change.
 " }
 
 " Mappings {
-	let mapleader = "\\"									" The key for <Leader>.
-	nmap <silent> <C-_> :nohlsearch<CR>						" Clear search matches highlighting. (Ctrl+/ => ^_)
-	"nmap <silent> <C-_> :let @/=""<CR>						" Clear search matches highlighting. (Ctrl+/ => ^_)
+	let mapleader = "\\"						" The key for <Leader>.
+	nmap <silent> <C-_> :nohlsearch<CR>				" Clear search matches highlighting. (Ctrl+/ => ^_)
+	"nmap <silent> <C-_> :let @/=""<CR>				" Clear search matches highlighting. (Ctrl+/ => ^_)
 	nmap <silent> <Leader>v :source $MYVIMRC<CR>			" Source vimrc.
-	nmap <silent> <Leader>V :tabe $MYVIMRC<CR>					" Edit vimrc.
-	"nmap <silent> <Leader>d "=strftime("%Y-%m-%d")<CR>P				" Insert the current date.
-	noremap <silent> <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>		" Open tags definition in a new tab.
-    noremap <silent> <Leader>] :vsp<CR>:exec("tag ".expand("<cword>"))<CR>			" Open tags definition in a vertical split.
-	"nmap <silent> <Leader>S :%s/\s\+$//ge<CR>					" Remove all trailing spaces.
-	nnoremap <silent> gfs :wincmd f<CR>						" Open path under cursor in a split.
+	nmap <silent> <Leader>V :tabe $MYVIMRC<CR>			" Edit vimrc.
+	"nmap <silent> <Leader>d "=strftime("%Y-%m-%d")<CR>P		" Insert the current date.
+	noremap <silent> <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>	" Open tags definition in a new tab.
+    noremap <silent> <Leader>] :vsp<CR>:exec("tag ".expand("<cword>"))<CR>	" Open tags definition in a vertical split.
+	"nmap <silent> <Leader>S :%s/\s\+$//ge<CR>			" Remove all trailing spaces.
+	nnoremap <silent> gfs :wincmd f<CR>				" Open path under cursor in a split.
 	nnoremap <silent> gfv :vertical wincmd f<CR>			" Open path under cursor in a vertical split.
-	nnoremap <silent> gft :tab wincmd f<CR>					" Open path under cursor in a tab.
-	nnoremap <silent> gV `[v`]								" Visually select the text that was last edited/pasted.
-	nnoremap g^t :tabfirst<CR>								" Go to first tab.
-	nnoremap g$t :tablast<CR>								" Go to last tab.
-	noremap Yf :let @" = expand("%")<CR>					" Yank current file name.
-	noremap YF :let @" = expand("%:p")<CR>					" Yank current (fully expanded) file name.
-	nnoremap <silent> <Leader>R :checktime<CR>				" Reload buffers from file if changed.
+	nnoremap <silent> gft :tab wincmd f<CR>				" Open path under cursor in a tab.
+	nnoremap <silent> gV `[v`]					" Visually select the text that was last edited/pasted.
+	nnoremap g^t :tabfirst<CR>					" Go to first tab.
+	nnoremap g$t :tablast<CR>					" Go to last tab.
+	noremap Yf :let @" = expand("%")<CR>				" Yank current file name.
+	noremap YF :let @" = expand("%:p")<CR>				" Yank current (fully expanded) file name.
+	nnoremap <silent> <Leader>R :checktime<CR>			" Reload buffers from file if changed.
 
 	" Redraw window so that search terms are centered.
 	nnoremap n nzz
@@ -354,7 +355,7 @@
 	inoremap <expr> <C-u> pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<C-u>"
 
 	if &l:term  =~ "screen.*"
-		noremap <silent> <C-x>x <C-x>						" Decrement for consistency with GNU Screen.
+		noremap <silent> <C-x>x <C-x>	" Decrement for consistency with GNU Screen.
 	endif
 
 	" Toggles {
@@ -398,9 +399,9 @@
 			return l:newMode
 		endfunction
 		" }
-		nmap <silent> <F6> :echo ToggleSpell("en_us")<CR>			" Toggle English spell.
-		nmap <silent> <F7> :echo ToggleSpell("sv")<CR>				" Toggle Swedish spell.
-		nmap <silent> <F8> :echo ToggleSpell("de")<CR>				" Toggle German spell.
+		nmap <silent> <F6> :echo ToggleSpell("en_us")<CR>	" Toggle English spell.
+		nmap <silent> <F7> :echo ToggleSpell("sv")<CR>		" Toggle Swedish spell.
+		nmap <silent> <F8> :echo ToggleSpell("de")<CR>		" Toggle German spell.
 
 		" Toggle between static and relative line numbers. {
 		function! ToggleLine()
@@ -429,7 +430,7 @@
 				endif
 			endfunction
 		" }
-		nmap <silent> <Leader>J :call HighlightNearCursor()<CR>			" Toggle highlight on cursor-word.
+		nmap <silent> <Leader>J :call HighlightNearCursor()<CR>	" Toggle highlight on cursor-word.
 
 		" Toggle mouse {
 			function! ToggleMouse()
@@ -441,7 +442,7 @@
 				set mouse?
 			endfunction
 		" }
-		nmap <Leader>m :call ToggleMouse()<CR>					" Toggles mouse on and off.
+		nmap <Leader>m :call ToggleMouse()<CR>	" Toggles mouse on and off.
 	" }
 
 	" Cmaps {
@@ -484,7 +485,7 @@
 		"let g:clang_complete_copen = 1				" Open quickfix on error.
 		"let g:clang_close_preview = 1				" Close preview after completion.
 		"let g:clang_user_options = '2>/dev/null || exit 0'	" Ignore clang errors.
-		"let g:clang_complete_macros = 1				" Complete preprocessor macros and constants.
+		"let g:clang_complete_macros = 1			" Complete preprocessor macros and constants.
 		"let g:clang_complete_patterns = 1			" Complete code patters e.g. loop constructs.
 	" }
 
@@ -518,8 +519,8 @@
 
 	" FuzzyFinder {
 		"let g:fuf_dataDir = '~/.vim/fuf-data'		" Where to put stored data.
-		"let g:fuf_keyNextMode = '<C-u>'			" How to switch seach mode. Remapped from default <C-v>
-		"let g:fuf_keyPrevMode = '<C-i>'			" How to switch seach mode. Remapped from default <C-y>
+		"let g:fuf_keyNextMode = '<C-u>'		" How to switch seach mode. Remapped from default <C-v>
+		"let g:fuf_keyPrevMode = '<C-i>'		" How to switch seach mode. Remapped from default <C-y>
                     "let g:fuf_keyPrevPattern = '<C-r>'		" Recall previous pattern. Remapp from default <C-s>
 
 		"" Open files with same keybindings as command-t.
@@ -675,7 +676,7 @@
 	" }
 
 	" Sideways.vim {
-		nnoremap <silent> <a :SidewaysLeft<CR>		" Move function argument to the left.
+		nnoremap <silent> <a :SidewaysLeft<CR>	" Move function argument to the left.
 		nnoremap <silent> >a :SidewaysRight<CR>	" Move function argument to the right.
 	" }
 
@@ -684,8 +685,8 @@
 	" }
 
 	" Solarized {
-		"call togglebg#map("<Leader>%")		" Toggle background with solarized. Not nice because it maps in insert mode too.
-		call togglebg#map("<F5>")		" Toggle background with solarized.
+		"call togglebg#map("<Leader>%")	" Toggle background with solarized. Not nice because it maps in insert mode too.
+		call togglebg#map("<F5>")	" Toggle background with solarized.
 	" }
 
 	" Syntastic {
@@ -695,7 +696,7 @@
 
 		"let g:syntastic_always_populate_loc_list = 1	" Always produce the error lists in the location list window.
 		"let g:syntastic_auto_loc_list = 1		" Automatically open the location list showing where errors are.
-		"let g:syntastic_check_on_open=0			" Don't automatically do syntax check on open buffers. Assume the file is good until write.
+		"let g:syntastic_check_on_open=0		" Don't automatically do syntax check on open buffers. Assume the file is good until write.
 		"let g:syntastic_check_on_wq=0			" Don't check on write-quit..
 
 		"" Do syntax check on files with exceptions (the passive ones below).
@@ -734,36 +735,36 @@
 	" }
 
 	" Tagbar {
-		nmap <silent> <F3> :TagbarToggle<CR>		" Toggle the Tagbar window.
-		let g:tagbar_left		= 0		" Keep the window on the right side.
-		let g:tagbar_width		= 30		" Width of window.
-		let g:tagbar_autoclose		= 1		" Close tagbar when jumping to a tag.
-		let g:tagbar_autofocus		= 1		" Give tagbar focus when it's opened.
-		let g:tagbar_sort		= 1		" Sort tags alphabetically.
-		let g:tagbar_compact		= 1		" Omit the help text.
-		let g:tagbar_singleclick	= 1		" Jump to tag with a single click.
-		let g:tagbar_autoshowtag	= 1		" Open folds if tag is not visible.
+		nmap <silent> <F3> :TagbarToggle<CR>	" Toggle the Tagbar window.
+		let g:tagbar_left		= 0	" Keep the window on the right side.
+		let g:tagbar_width		= 30	" Width of window.
+		let g:tagbar_autoclose		= 1	" Close tagbar when jumping to a tag.
+		let g:tagbar_autofocus		= 1	" Give tagbar focus when it's opened.
+		let g:tagbar_sort		= 1	" Sort tags alphabetically.
+		let g:tagbar_compact		= 1	" Omit the help text.
+		let g:tagbar_singleclick	= 1	" Jump to tag with a single click.
+		let g:tagbar_autoshowtag	= 1	" Open folds if tag is not visible.
 	" }
 
 	" Taglist {
-		"nmap <silent> <F3> :Tlist<CR>						" Toggle the Tlist browser.
-		""let g:Tlist_Close_On_Select        = 1			" Close list on tag selection.
-		"let g:Tlist_Auto_Update             = 1			" Update newly opend files.
-		"let g:Tlist_Compact_Format          = 1			" Trim spaces in GUI.
-		"let g:Tlist_Auto_Highlight_Tag      = 1			" Highlight tags.
-		"let g:Tlist_GainFocus_On_ToggleOpen = 1			" Move cursor to list on open.
+		"nmap <silent> <F3> :Tlist<CR>				" Toggle the Tlist browser.
+		""let g:Tlist_Close_On_Select        = 1		" Close list on tag selection.
+		"let g:Tlist_Auto_Update             = 1		" Update newly opend files.
+		"let g:Tlist_Compact_Format          = 1		" Trim spaces in GUI.
+		"let g:Tlist_Auto_Highlight_Tag      = 1		" Highlight tags.
+		"let g:Tlist_GainFocus_On_ToggleOpen = 1		" Move cursor to list on open.
 		"let g:Tlist_Sort_Type               = "name"		" Sort by name instead of definition order.
-		"let g:Tlist_Use_SingleClick         = 1			" Jump to definition with a single click.
-		"let g:Tlist_Show_One_File           = 1			" Only show current buffers tags.
-		"let g:Tlist_Use_Right_Window        = 1			" Display on the right.
-		""let g:Tlist_Display_Prototype      = 1			" Show prototypes instead of tags.
-		"let g:Tlist_Exit_OnlyWindow         = 1			" Close Vim if only Tlist open.
+		"let g:Tlist_Use_SingleClick         = 1		" Jump to definition with a single click.
+		"let g:Tlist_Show_One_File           = 1		" Only show current buffers tags.
+		"let g:Tlist_Use_Right_Window        = 1		" Display on the right.
+		""let g:Tlist_Display_Prototype      = 1		" Show prototypes instead of tags.
+		"let g:Tlist_Exit_OnlyWindow         = 1		" Close Vim if only Tlist open.
 	" }
 
 	" Undotree {
 		nmap <silent> <F4> :UndotreeToggle<CR>		" Toggle side pane.
-		let g:undotree_WindowLayout=2				" Set style to have diff window below.
-		let g:undotree_SetFocusWhenToggle=1			" Put cursor in undo window on open.
+		let g:undotree_WindowLayout=2			" Set style to have diff window below.
+		let g:undotree_SetFocusWhenToggle=1		" Put cursor in undo window on open.
 	" }
 
 	" Vim Better Whitespace {
