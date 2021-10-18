@@ -1,6 +1,6 @@
 " Erik Westrup's Neovim configuration.
 " Modeline {
-" vi: foldmarker={,} foldmethod=marker foldlevel=0 tabstop=8 :
+" vi: foldmarker={,} foldmethod=marker foldlevel=0 tabstop=8 shiftwidth=8:
 " 8 spaces for a tab render best as HTML.
 " }
 
@@ -15,28 +15,28 @@
 call plug#begin(stdpath('data') . '/plugged')
 
 " General {
-		"Plug 'dhruvasagar/vim-table-mode'			" Create ASCII tables
-		"Plug 'godlygeek/tabular'				" Create tables. Disabled: not used and have some startup time.
-		"Plug 'mattn/vim-gist' | Plug 'mattn/webapi-vim'	" Post a new Gist.
-		"Plug 'salsifis/vim-transpose'				" Matrix transposition of texts.
-		"Plug 'scrooloose/nerdtree'				" Replaced by built-in netrw
-		"Plug 'sjl/gundo.vim'					" Use 'mbbill/undotree' instead; is better: https://vi.stackexchange.com/a/13863
-		"Plug 'vim-scripts/lbdbq'				" Mutt: Query lbdb for recipinents.
-		Plug 'LaTeX-Box-Team/LaTeX-Box'				" TODO replace with https://github.com/latex-lsp/texlab
-		Plug 'bfontaine/Brewfile.vim', { 'for': 'brewfile' }	" Syntax for Brewfiles
-		Plug 'danro/rename.vim'					" Provides the :Rename command
-		Plug 'fidian/hexmode'					" Open binary files as a HEX dump with :Hexmode
-		Plug 'instant-markdown/vim-instant-markdown', {'for': 'markdown', 'do': 'yarn install'}	" Live preview markdown files in browser.
-		Plug 'mbbill/undotree'					" Navigate history in a sidebar.
-		Plug 'michaeljsmith/vim-indent-object'			" Operate on intendtation as text objects
-		Plug 'ntpeters/vim-better-whitespace'			" Highlight and remove trailing whitespaces.
-		Plug 'preservim/nerdcommenter'				" Comment source code.
-		Plug 'tpope/vim-capslock'				" Software CAPSLOCK.
-		Plug 'tpope/vim-fugitive'				" Git wrapper and shorthands.
-		Plug 'tpope/vim-repeat'					" Extend '.' repetition for plugins like vim-surround, vim-speeddating.
-		Plug 'tpope/vim-speeddating'				" Increment dates with C-a.
-		Plug 'tpope/vim-surround'				" Work on surrond delimiters or its content.
-		Plug 'tpope/vim-unimpaired'				"  Bracket mappings like [<space>
+	"Plug 'dhruvasagar/vim-table-mode'			" Create ASCII tables
+	"Plug 'godlygeek/tabular'				" Create tables. Disabled: not used and have some startup time.
+	"Plug 'mattn/vim-gist' | Plug 'mattn/webapi-vim'	" Post a new Gist.
+	"Plug 'salsifis/vim-transpose'				" Matrix transposition of texts.
+	"Plug 'scrooloose/nerdtree'				" Replaced by built-in netrw
+	"Plug 'sjl/gundo.vim'					" Use 'mbbill/undotree' instead; is better: https://vi.stackexchange.com/a/13863
+	"Plug 'vim-scripts/lbdbq'				" Mutt: Query lbdb for recipinents.
+	Plug 'LaTeX-Box-Team/LaTeX-Box'				" TODO replace with https://github.com/latex-lsp/texlab
+	Plug 'bfontaine/Brewfile.vim', { 'for': 'brewfile' }	" Syntax for Brewfiles
+	Plug 'danro/rename.vim'					" Provides the :Rename command
+	Plug 'fidian/hexmode'					" Open binary files as a HEX dump with :Hexmode
+	Plug 'instant-markdown/vim-instant-markdown', {'for': 'markdown', 'do': 'yarn install'}	" Live preview markdown files in browser.
+	Plug 'mbbill/undotree'					" Navigate history in a sidebar.
+	Plug 'michaeljsmith/vim-indent-object'			" Operate on intendtation as text objects
+	Plug 'ntpeters/vim-better-whitespace'			" Highlight and remove trailing whitespaces.
+	Plug 'preservim/nerdcommenter'				" Comment source code.
+	Plug 'tpope/vim-capslock'				" Software CAPSLOCK.
+	Plug 'tpope/vim-fugitive'				" Git wrapper and shorthands.
+	Plug 'tpope/vim-repeat'					" Extend '.' repetition for plugins like vim-surround, vim-speeddating.
+	Plug 'tpope/vim-speeddating'				" Increment dates with C-a.
+	Plug 'tpope/vim-surround'				" Work on surrond delimiters or its content.
+	Plug 'tpope/vim-unimpaired'				"  Bracket mappings like [<space>
 
 " }
 
@@ -51,6 +51,11 @@ call plug#begin(stdpath('data') . '/plugged')
 	Plug 'preservim/tagbar'			" Sidepane showing info from tags file.
 	Plug 'rhysd/conflict-marker.vim'	" Navigate and edit VCS conflicts. Replace unmaintained 'vim-script/ConflictMotions'
 	Plug 'vim-scripts/argtextobj.vim'	" Make function arguments text objects that can be operated on with.
+
+	Plug 'hrsh7th/cmp-nvim-lsp'
+	Plug 'hrsh7th/cmp-buffer'
+	Plug 'hrsh7th/nvim-cmp'
+
 " }
 
 " Development: C/C++ {
