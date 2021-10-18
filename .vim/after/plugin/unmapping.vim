@@ -6,11 +6,10 @@
 
 " ScrollColors {
 	" Please don't steal these mappigns.
-	unmap \n
-	unmap \p
-	unmap \c
+	"unmap \n
+	"unmap \p
+	"unmap \c
 " }
-
 
 " Surround {
 	"xunmap s

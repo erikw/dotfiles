@@ -9,10 +9,10 @@
 " Reference: https://stackoverflow.com/questions/1687799/profiling-vim-startup-time
 " }
 
-let g:ale_completion_enabled = 1 " Must be set before ALE is loaded.
 
-" Vundle {
-	let s:using_vundle = 1		" Vundle will break default behaviour of spellfile. Let others know when using Vundle.
+" Plugins {
+	let g:ale_completion_enabled = 1	 " Must be set before ALE is loaded.
+	let s:using_vundle = 1				" Vundle will break default behaviour of spellfile. Let others know when using Vundle.
 
 	set nocompatible              " be iMproved, required
 	filetype off                  " required
@@ -24,7 +24,6 @@ let g:ale_completion_enabled = 1 " Must be set before ALE is loaded.
 	" let Vundle manage Vundle, required
 	Plugin 'VundleVim/Vundle.vim'
 
-
 	" Formats {
 	" Git:
 		"Plugin 'git://git.domain.com/project.git'
@@ -34,78 +33,23 @@ let g:ale_completion_enabled = 1 " Must be set before ALE is loaded.
 		"Plugin 'ProjectName'
 	" }
 
-	" UI {
-		"Plugin 'flazz/vim-colorschemes'
-		Plugin 'ScrollColors'
-		Plugin 'altercation/vim-colors-solarized'
-		Plugin 'mkitt/tabline.vim'	" Only for terminal. gvim uses guilabel setting.
-	"}
-	" Navigation {
-		"Plugin 'FuzzyFinder'		" Disabled, as it has high startup time
-		"Plugin 'L9'			" Required for FuzzyFinder.
-		Plugin 'wincent/command-t'
-	"}
-	" Development: General {
-		"Plugin 'AndrewRadev/sideways.vim'
-		"Plugin 'scrooloose/syntastic' " Replaced by ale
-		Plugin 'ConflictMotions'
-		Plugin 'CountJump'             	" Required for ConflictMotions.
-		Plugin 'Townk/vim-autoclose'
-		Plugin 'airblade/vim-gitgutter'
-		Plugin 'argtextobj.vim'
-		Plugin 'dense-analysis/ale'
-		Plugin 'editorconfig/editorconfig-vim'
-		Plugin 'ingo-library'		" Required for ConflictMotions.
-		Plugin 'majutsushi/tagbar'
-		Plugin 'tmhedberg/matchit'
-
-	"}
-	" Development: C/C++ {
-		"Plugin 'Rip-Rip/clang_complete'
-		"Plugin 'rhysd/vim-clang-format'
-		"Plugin 'chazy/cscope_maps'
-		Plugin 'autoload_cscope.vim'
-		Plugin 'craigemery/vim-autotag'
-	"}
-	" Development: Java {
-		"Plugin 'artur-shaik/vim-javacomplete2'
-		"Plugin 'erikw/jcommenter.vim'
-	"}
-	" Development: Python {
-		"Plugin 'davidhalter/jedi-vim'
-		"Plugin 'python-rope/ropevim'
-		"Plugin 'fisadev/vim-isort'
-	"}
-	" Development: Swift {
-		"Plugin 'keith/swift.vim'
-	"}
-	" mutt {
-		Plugin 'lbdbq'
-	"}
 	" General {
-		"Plugin 'buffergrep'
 		"Plugin 'dhruvasagar/vim-table-mode'
-		"Plugin 'easymotion/vim-easymotion'
 		"Plugin 'fatih/vim-go'
 		"Plugin 'godlygeek/tabular'		" Disabled: not used and have some startup time.
+		"Plugin 'mattn/gist-vim'
+		"Plugin 'mattn/webapi-vim' " Required for gist-vim
 		"Plugin 'salsifis/vim-transpose'
 		"Plugin 'scrooloose/nerdtree'		" Replaced by built-in netrw
-		"Plugin 'sjl/gundo.vim'			" Use mbbill/undotree instead; is better: https://vi.stackexchange.com/a/13863
-		"Plugin 'terryma/vim-multiple-cursors'
-		"Plugin 'tmux-plugins/vim-tmux'
-		"Plugin 'tpope/vim-markdown.git'
-		"Plugin 'tpope/vim-unimpaired'
+		"Plugin 'sjl/gundo.vim'				" Use mbbill/undotree instead; is better: https://vi.stackexchange.com/a/13863
 		Plugin 'LaTeX-Box-Team/LaTeX-Box'
 		Plugin 'MarcWeber/vim-addon-mw-utils' " Required for  garbas/vim-snipmate.
 		Plugin 'bfontaine/Brewfile.vim'
 		Plugin 'danro/rename.vim'
-		"Plugin 'erikw/vim-unimpaired'
 		Plugin 'fidian/hexmode'
 		Plugin 'garbas/vim-snipmate'
 		Plugin 'honza/vim-snippets'
 		Plugin 'instant-markdown/vim-instant-markdown', {'rtp': 'after'}
-		Plugin 'mattn/gist-vim'
-		Plugin 'mattn/webapi-vim' " Required for gist-vim
 		Plugin 'mbbill/undotree'
 		Plugin 'michaeljsmith/vim-indent-object'
 		Plugin 'ntpeters/vim-better-whitespace'
@@ -117,7 +61,63 @@ let g:ale_completion_enabled = 1 " Must be set before ALE is loaded.
 		Plugin 'tpope/vim-repeat'
 		Plugin 'tpope/vim-speeddating'
 		Plugin 'tpope/vim-surround'
+		Plugin 'tpope/vim-unimpaired'
 	"}
+
+	" UI {
+		"Plugin 'flazz/vim-colorschemes'
+		"Plugin 'ScrollColors'
+		Plugin 'altercation/vim-colors-solarized'
+		Plugin 'mkitt/tabline.vim'		" More informative tab titles. Only for terminal; gvim uses guilabel setting.
+	"}
+
+	" Navigation {
+		"Plugin 'FuzzyFinder'		" Disabled, as it has high startup time
+		"Plugin 'L9'			" Required for FuzzyFinder.
+		"Plugin 'wincent/command-t'
+	"}
+
+	" Development: General {
+		"Plugin 'scrooloose/syntastic' " Replaced by ale
+		Plugin 'AndrewRadev/sideways.vim'
+		Plugin 'rhysd/conflict-marker.vim'		" Navigate and edit VCS conflicts. Replace unmaintained 'vim-script/ConflictMotions'
+		Plugin 'Townk/vim-autoclose'
+		Plugin 'airblade/vim-gitgutter'
+		Plugin 'argtextobj.vim'
+		Plugin 'dense-analysis/ale'
+		Plugin 'editorconfig/editorconfig-vim'
+		Plugin 'majutsushi/tagbar'
+		Plugin 'tmhedberg/matchit'
+
+	"}
+
+	" Development: C/C++ {
+		"Plugin 'Rip-Rip/clang_complete'
+		"Plugin 'rhysd/vim-clang-format'
+		"Plugin 'chazy/cscope_maps'
+		Plugin 'autoload_cscope.vim'
+		Plugin 'craigemery/vim-autotag'
+	"}
+
+	" Development: Java {
+		"Plugin 'artur-shaik/vim-javacomplete2'
+		"Plugin 'erikw/jcommenter.vim'
+	"}
+
+	" Development: Python {
+		"Plugin 'davidhalter/jedi-vim'
+		"Plugin 'python-rope/ropevim'
+		"Plugin 'fisadev/vim-isort'
+	"}
+
+	" Development: Swift {
+		"Plugin 'keith/swift.vim'
+	"}
+
+	" mutt {
+		"Plugin 'lbdbq'
+	"}
+
 
 	call vundle#end()            " required
 	filetype plugin indent on    " required
@@ -127,10 +127,9 @@ let g:ale_completion_enabled = 1 " Must be set before ALE is loaded.
 	if v:version < 703
 		echoerr 'WARNING: This vimrc is written for Vim >= v.703; this is' v:version
 	endif
-	let s:use_plugins=1				" Enable plugin references in this rc.
 	set nocompatible				" Be IMproved. Should be first.
-	set viminfo+=n~/.vim/viminfo			" Write the viminfo file inside the Vim directory.
-	set undodir=~/.vim/undo/			" Collect history instead of having them in '.'.
+	set viminfo+=n~/.vim/viminfo	" Write the viminfo file inside the Vim directory.
+	set undodir=~/.vim/undo/		" Collect history instead of having them in '.'.
 	set tags+=./tags;/				" Look for tags in current directory or search up until found.
 	set encoding=utf-8				" Use Unicode inside Vim's registers, viminfo, buffers ...
 
@@ -141,41 +140,31 @@ let g:ale_completion_enabled = 1 " Must be set before ALE is loaded.
 " }
 
 " General {
-	"filetype plugin indent on			" File type specific features. Already set as part of Vundle setup.
-	syntax enable					" Syntax highlighting but keep current colors.
-	"syntax on					" Use default colors for syntax highlighting.
-	set mouse=a					" Enable mouse in all modes.
+	"filetype plugin indent on				" File type specific features. Already set as part of Vundle setup.
+	syntax enable							" Syntax highlighting but keep current colors.
+	"syntax on								" Use default colors for syntax highlighting.
+	set mouse=a								" Enable mouse in all modes.
 	set viewoptions=folds,cursor,slash,unix		" What to save with mkview.
-	set history=512					" Store much history.
-	"set spell					" Enable spell highlighting and suggestions.
-	set spellsuggest=best,10			" Limit spell suggestions.
-	set spelllang=en_us				" Languages to do spell checking for.
-	if exists("s:using_vundle")
-		" Set spellfile dynamically.
-		execute "set spellfile=" . "~/.vim/spell/" . matchstr(&spelllang, "[a-zA-Z][a-zA-Z]") . "." . &encoding . ".add"
-	endif
-	set dictionary+=~/.vim/spell/			" Use custom dictionaries.
-	"set dictionary+=/usr/share/dict/words		" Use system dictionary.
-	set thesaurus+=~/.vim/thesaurus/mthesaur.txt    " Use a thesaurus file.
+	set history=512							" Store much history.
+
+
 	"set complete-=k complete+=k			" Put the dictionaries in the normal completion set.
-	set completeopt=longest,menu,preview		" Insert most common completion and show menu.
-	"set omnifunc=syntaxcomplete#Complete		" Let Omni completion (^x^o) use vim's builtin syntax files for language keywords.
-	set omnifunc=ale#completion#OmniFunc		" Use ALE for omnicompletion
-	set shortmess=filmnrxtToO    			" Abbreviate messages.
+	set completeopt=longest,menu,preview	" Insert most common completion and show menu.
+	"set omnifunc=syntaxcomplete#Complete	" Let Omni completion (^x^o) use vim's builtin syntax files for language keywords.
+	set omnifunc=ale#completion#OmniFunc	" Use ALE for omnicompletion
+	set shortmess=filmnrxtTo				" Abbreviate messages.
 	set nrformats=alpha,octal,hex			" What to increment/decrement with ^A and ^X.
-	set hidden						" Work with hidden buffers more easily. Enables to leave buffer with unwritten changes (by :edit another buffer).
-	set autoread					" Autoreload buffer from file if not changed in vim, e.g. with the :checktime command.
-	set sessionoptions-=options			" Don't store global and local variables when saving sessions.
-	set undofile					" Save undo to file in undodir.
-	set undolevels=2048				" Levels of undo to keep in memory.history.
-	"set nomodeline					" Turn off possibly malicious Ex command execution.
-	set modelines=5					" Number of lines from head of file to check for modelines. Setting this explicitly as on some system (like macos in /usr/share/vim/vimrc) disables modelined by default.
-	set ttyfast					" Smoother changes.
-	set clipboard+=unnamed				" Use register "* instead of unnamed register.
-	set timeoutlen=1500				" Timout (ms) for mappings and keycodes.
+	set hidden								" Work with hidden buffers more easily. Enables to leave buffer with unwritten changes (by :edit another buffer).
+	set autoread							" Autoreload buffer from file if not changed in vim, e.g. with the :checktime command.
+	set sessionoptions-=options				" Don't store global and local variables when saving sessions.
+	set undofile							" Save undo to file in undodir.
+	set undolevels=2048						" Levels of undo to keep in memory.history.
+	set ttyfast								" Smoother changes.
+	set clipboard+=unnamed					" Use register "* instead of unnamed register.
+	set timeoutlen=1500						" Timout (ms) for mappings and keycodes.
 	if !has('gui_running')
 		if !has('win32') && !has('win64')
-			set term=$TERM       		" Make arrow and other keys work.
+			set term=$TERM					" Make arrow and other keys work.
 		endif
 		if &l:term  =~ "screen.*"
 			set ttymouse=xterm2		" Needed for mouse support inside GNU Screen.
@@ -205,31 +194,33 @@ let g:ale_completion_enabled = 1 " Must be set before ALE is loaded.
 			"set <F10>=[21~
 			"set <F11>=[23~
 			"set <F12>=[24~
-			""set termencoding=latin1 	" This will make Meta key work if meta8 is enabled.
+			""set termencoding=latin1	" This will make Meta key work if meta8 is enabled.
 		"end
 	" }
 " }
 
-" UI {
-	if s:use_plugins
-		"let g:solarized_termtrans=1			" Fix bacground problem in gnome-terminal.
-		"let g:solarized_termcolors=16 			" Colors to use in solarized.
-		colorscheme solarized				" Use the solarized colorscheme.
-	else
-		colorscheme default				" Use default color scheme.
-	endif
+" Spelling {
+	"set spell								" Enable spell highlighting and suggestions.
+	set spellsuggest=best,10				" Limit spell suggestions.
+	set spelllang=en_us						" Languages to do spell checking for.
+	" Set spellfile dynamically.
+	execute "set spellfile=" . "~/.vim/spell/" . matchstr(&spelllang, "[a-zA-Z][a-zA-Z]") . "." . &encoding . ".add"
+	" Use a thesaurus file. Could load all, but that makes lookup slower. Instead let ToggleSpell() set per language.
+	execute "set thesaurus=" . "~/.vim/thesaurus/" . matchstr(&spelllang, "[a-zA-Z][a-zA-Z]") . ".txt"
+	set dictionary+=~/.vim/spell/			" Use custom dictionaries.
+	"set dictionary+=/usr/share/dict/words		" Use system dictionary.
+" }
 
-	"set t_Co=16						" Set number of colors.
+" UI {
+	colorscheme solarized				" Use the solarized colorscheme.
+
 	set t_Co=256						" Set number of colors.
-	"hi Normal ctermbg=NONE                                 " Transparent background.
-	set title						" Show title in console title bar.
+	"hi Normal ctermbg=NONE             " Transparent background.
+	set title							" Show title in console title bar.
 	" Adjust colors to this background.
-	if has('gui_running')
-		set background=light
-	elseif filereadable(expand("~/.solarizedtoggle/status"))
+	if filereadable(expand("~/.solarizedtoggle/status"))
 		let &background = readfile(expand("~/.solarizedtoggle/status"), '', 1)[0]
 	else
-		"set background=dark
 		" Lighter bg during night.
 		" Source:  http://benjamintan.io/blog/2014/04/10/switch-solarized-light-slash-dark-depending-on-the-time-of-day/
 		let s:hour = strftime("%H")
@@ -239,25 +230,25 @@ let g:ale_completion_enabled = 1 " Must be set before ALE is loaded.
 			set background=dark
 		endif
 	endif
-	set number						" Show line numbers.
+	set number							" Show line numbers.
 	set tabpagemax=64					" Upper limit on number of tabs.
 	set showmode						" Show current mode in the last line.
-	set backspace=indent,eol,start				" Make backspace work like expected.
+	set backspace=indent,eol,start		" Make backspace work like expected.
 	set linespace=0						" No line spacing.
 	set showmatch						" Shortly jump to a matching bracket when match.
 	set wildmode=full					" Full completion.
 	set wildignorecase					" Case insensitive filename completion.
-	set scrolljump=5 					" Lines to scroll when cursor leaves screen.
-	set scrolloff=3 					" Minimum lines to keep above and below cursor.
+	set scrolljump=5					" Lines to scroll when cursor leaves screen.
+	set scrolloff=3						" Minimum lines to keep above and below cursor.
 	set splitbelow						" Open horizontal split below.
 	set splitright						" Open vertical split to the right.
 	set foldenable						" Use folding.
-	set showcmd						" Show incomplete commands in the lower right corner.
-	set ruler						" Show current cursor position in the lower right corner.
+	set showcmd							" Show incomplete commands in the lower right corner.
+	set ruler							" Show current cursor position in the lower right corner.
 	set laststatus=2					" Always show the status line.
-	set nolist						" Don't show unprintable characters.
-	"set listchars=eol:$,tab:>-,trail:¬,extends:>,precedes:<,nbsp:. 	" Characters to use for list.
-	set listchars=eol:$,space:·,tab:>-,trail:¬,extends:>,precedes:<,nbsp:. 	" Characters to use for list.
+	set nolist							" Don't show unprintable characters.
+	"set listchars=eol:$,tab:>-,trail:¬,extends:>,precedes:<,nbsp:.	" Characters to use for list.
+	set listchars=eol:$,space:·,tab:>-,trail:¬,extends:>,precedes:<,nbsp:.	" Characters to use for list.
 	set cursorline						" Highlight the current line.
 	"set cursorcolumn					" Highlight the current column.
 	" Colors of the CursorLine.
@@ -266,27 +257,27 @@ let g:ale_completion_enabled = 1 " Must be set before ALE is loaded.
 
 	" Statusline {
 		" Comment these out when using powerline statusbar.
-		set statusline=%t       				" Tail of the filename.
-		set statusline+=%m     					" Modified flag.
+		set statusline=%t						" Tail of the filename.
+		set statusline+=%m						" Modified flag.
 		set statusline+=\ [%{strlen(&fenc)?&fenc:'none'},	" File encoding.
 		set statusline+=%{&ff}]					" File format.
-		set statusline+=%h     					" Help file flag.
-		set statusline+=%r     					" Read only flag.
-		set statusline+=%y     					" Filetype.
-		"set statusline+=['%{getline('.')[col('.')-1]}'\ \%b\ 0x%B] 	" Value of byte under cursor.
-		if s:use_plugins
-			set statusline+=%#StatusLineNC#				" Change highlight group
-			set statusline+=%{fugitive#statusline()}		" Show current branch.
-			set statusline+=%*
-			set statusline+=%{tagbar#currenttag('[#%s]','')}	" Current tag.
-		endif
-		set statusline+=%=     					" Left/right-aligned separator.
-		"set statusline+=[\%b\ 0x%B]\  				" Value of byte under cursor.
-		"set statusline+=[0x%O]\ 				" Byte offset from start.
-		set statusline+=%l/%L, 					" Cursor line/total lines.
-		set statusline+=%c    					" Cursor column.
-		set statusline+=\ %P   					" Percent through file.
-		set statusline+=\ 0x%B					" Character valur under cursor.
+		set statusline+=%h						" Help file flag.
+		set statusline+=%r						" Read only flag.
+		set statusline+=%y						" Filetype.
+		"set statusline+=['%{getline('.')[col('.')-1]}'\ \%b\ 0x%B]	" Value of byte under cursor.
+
+		set statusline+=%#StatusLineNC#				" Change highlight group
+		set statusline+=%{fugitive#statusline()}	" Show current branch.
+		set statusline+=%*
+		set statusline+=%{tagbar#currenttag('[#%s]','')}	" Current tag.
+
+		set statusline+=%=							" Left/right-aligned separator.
+		"set statusline+=[\%b\ 0x%B]\				" Value of byte under cursor.
+		"set statusline+=[0x%O]\					" Byte offset from start.
+		set statusline+=%l/%L,						" Cursor line/total lines.
+		set statusline+=%c							" Cursor column.
+		set statusline+=\ %P						" Percent through file.
+		set statusline+=\ 0x%B						" Character valur under cursor.
 	" }
 " }
 
@@ -299,19 +290,19 @@ let g:ale_completion_enabled = 1 " Must be set before ALE is loaded.
 " }
 
 " Formatting {
-	set linebreak			" Wrap on 'breakat'-chars.
-	"set showbreak=>		" Indicate wrapped lines.
-	set showbreak=…			" Indicate wrapped lines.
-	set smartindent			" Indent smart on C-like files.
-	set preserveindent		" Try to preserve indent structure on changes of current line.
-	set copyindent			" Copy indentstructure from existing lines.
-	set tabstop=8			" Let a tab be 8 spaces wide.
-	set shiftwidth=8		" Tab width for auto indent and >> shifting.
-	"set softtabstop=8		" Number of spaces to count a tab for on ops like BS and tab.
-	set noexpandtab			" Do not expand tabs to spaces!
-	set matchpairs+=<:>		" Also match <> with %.
+	set linebreak				" Wrap on 'breakat'-chars.
+	"set showbreak=>			" Indicate wrapped lines.
+	set showbreak=…				" Indicate wrapped lines.
+	set smartindent				" Indent smart on C-like files.
+	set preserveindent			" Try to preserve indent structure on changes of current line.
+	set copyindent				" Copy indentstructure from existing lines.
+	set tabstop=4				" Let a tab be X spaces wide.
+	set shiftwidth=4			" Tab width for auto indent and >> shifting.
+	"set softtabstop=4			" Number of spaces to count a tab for on ops like BS and tab.
+	set noexpandtab				" Do not expand tabs to spaces!
+	set matchpairs+=<:>			" Also match <> with %.
 	set formatoptions=tcroqwnl	" Formatting options.
-	set cinoptions+=g=		" Left-indent C++ access labels.
+	set cinoptions+=g=			" Left-indent C++ access labels.
 	"set pastetoggle  = <Leader>p    " Toggle 'paste' for sane pasting.
 " }
 
@@ -336,24 +327,24 @@ let g:ale_completion_enabled = 1 " Must be set before ALE is loaded.
 " }
 
 " Mappings {
-	let mapleader = "\\"								" The key for <Leader>.
+	let mapleader = "\\"									" The key for <Leader>.
 	nmap <silent> <C-_> :nohlsearch<CR>						" Clear search matches highlighting. (Ctrl+/ => ^_)
 	"nmap <silent> <C-_> :let @/=""<CR>						" Clear search matches highlighting. (Ctrl+/ => ^_)
-	nmap <silent> <Leader>v :source $MYVIMRC<CR>					" Source vimrc.
+	nmap <silent> <Leader>v :source $MYVIMRC<CR>			" Source vimrc.
 	nmap <silent> <Leader>V :tabe $MYVIMRC<CR>					" Edit vimrc.
-	"nmap <silent> <Leader>d "=strftime("%Y-%m-%d")<CR>P 				" Insert the current date.
+	"nmap <silent> <Leader>d "=strftime("%Y-%m-%d")<CR>P				" Insert the current date.
 	noremap <silent> <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>		" Open tags definition in a new tab.
-    noremap <silent> <Leader>] :vsp<CR>:exec("tag ".expand("<cword>"))<CR>      		" Open tags definition in a vertical split.
+    noremap <silent> <Leader>] :vsp<CR>:exec("tag ".expand("<cword>"))<CR>			" Open tags definition in a vertical split.
 	"nmap <silent> <Leader>S :%s/\s\+$//ge<CR>					" Remove all trailing spaces.
 	nnoremap <silent> gfs :wincmd f<CR>						" Open path under cursor in a split.
-	nnoremap <silent> gfv :vertical wincmd f<CR>					" Open path under cursor in a vertical split.
-	nnoremap <silent> gft :tab wincmd f<CR>						" Open path under cursor in a tab.
-	nnoremap <silent> gV `[v`]							" Visually select the text that was last edited/pasted.
-	nnoremap g^t :tabfirst<CR>							" Go to first tab.
-	nnoremap g$t :tablast<CR>							" Go to last tab.
-	noremap Yf :let @" = expand("%")<CR>						" Yank current file name.
-	noremap YF :let @" = expand("%:p")<CR>						" Yank current (fully expanded) file name.
-	nnoremap <silent> <Leader>R :checktime<CR>						" Reload buffers from file if changed.
+	nnoremap <silent> gfv :vertical wincmd f<CR>			" Open path under cursor in a vertical split.
+	nnoremap <silent> gft :tab wincmd f<CR>					" Open path under cursor in a tab.
+	nnoremap <silent> gV `[v`]								" Visually select the text that was last edited/pasted.
+	nnoremap g^t :tabfirst<CR>								" Go to first tab.
+	nnoremap g$t :tablast<CR>								" Go to last tab.
+	noremap Yf :let @" = expand("%")<CR>					" Yank current file name.
+	noremap YF :let @" = expand("%:p")<CR>					" Yank current (fully expanded) file name.
+	nnoremap <silent> <Leader>R :checktime<CR>				" Reload buffers from file if changed.
 
 	" Redraw window so that search terms are centered.
 	nnoremap n nzz
@@ -382,6 +373,7 @@ let g:ale_completion_enabled = 1 " Must be set before ALE is loaded.
 			if !exists("b:old_spelllang")
 				let b:old_spelllang = &spelllang
 				let b:old_spellfile = &spellfile
+				let b:old_thesaurus = &thesaurus
 				if exists("s:using_vundle")
 					let b:old_dictionary = &dictionary
 				endif
@@ -390,13 +382,13 @@ let g:ale_completion_enabled = 1 " Must be set before ALE is loaded.
 			let l:newMode = ""
 			if !&l:spell || a:lang != &l:spelllang
 				setlocal spell
-				let l:newMode = "spell"
+				let l:newMode = "spell, " . a:lang
 				execute "setlocal spelllang=" . a:lang
 				if exists("s:using_vundle")
 					execute "setlocal spellfile=" . "~/.vim/spell/" . matchstr(a:lang, "[a-zA-Z][a-zA-Z]") . "." . &encoding . ".add"
 				endif
 				execute "setlocal dictionary=" . "~/.vim/spell/" . a:lang . "." . &encoding . ".dic"
-				let l:newMode .= ", " . a:lang
+				execute "setlocal thesaurus=" . "~/.vim/thesaurus/" . a:lang . ".txt"
 			else
 				setlocal nospell
 				let l:newMode = "nospell"
@@ -405,6 +397,7 @@ let g:ale_completion_enabled = 1 " Must be set before ALE is loaded.
 					execute "setlocal spellfile=" . b:old_spellfile
 				endif
 				execute "setlocal dictionary=" . b:old_dictionary
+				execute "setlocal thesaurus=" . b:old_thesaurus
 			endif
 			return l:newMode
 		endfunction
@@ -466,8 +459,7 @@ let g:ale_completion_enabled = 1 " Must be set before ALE is loaded.
 	"iabbrev ew Erik Westrup
 " }
 
-" Plugins {
-if s:use_plugins
+" Plugin Config {
 	" ALE {
 		" Reference https://github.com/dense-analysis/ale/blob/master/doc/ale.txt
 		let g:ale_fixers = {
@@ -475,8 +467,8 @@ if s:use_plugins
 		\}
 		" sh: " https://github.com/bash-lsp/bash-language-server#vim
 		let g:ale_linters = {
-    	    	    \ 'sh': ['language_server']
-    	    	    \ }
+				    \ 'sh': ['language_server']
+				    \ }
 		let g:ale_fix_on_save = 1
 
 		" Completion
@@ -557,9 +549,9 @@ if s:use_plugins
 	" Gist {
 		let g:gist_detect_filetype = 1				" Detect filetype from name.
 		let g:gist_show_privates = 1				" Let Gist -l show private gists.
+		let g:gist_private = 1					" Make private the default for new Gists.
+		let g:gist_open_browser_after_post = 1			" Open in browser after post.
 		"let g:gist_clip_command = 'xclip -selection clipboard'	" Copy command.
-		"let g:gist_private = 1					" Make private the default for new Gists.
-		"let g:gist_open_browser_after_post = 1			" Open in browser after post.
 		"let g:gist_browser_command = 'w3m %URL%'		" Browser to use.
 		let g:gist_browser_command = 'firefox  %URL%'		" Browser to use.
 	" }
@@ -638,8 +630,8 @@ if s:use_plugins
 	" }
 
 	" OmniCppComplete {
-		"let OmniCpp_ShowPrototypeInAbbr = 1 	" Show whole prototype (inc. parameters).
-		"let OmniCpp_ShowScopeInAbbr = 1 	" Show the scope.
+		"let OmniCpp_ShowPrototypeInAbbr = 1	" Show whole prototype (inc. parameters).
+		"let OmniCpp_ShowScopeInAbbr = 1		" Show the scope.
 	" }
 
 	" Powerline {
@@ -672,15 +664,15 @@ if s:use_plugins
 	" Rope {
 		"" Remappings done in ~/.vim/ftplugin/python/maps.vim
 		"let g:ropevim_guess_project = 1			" Try to guess project to open.
-		"let g:ropevim_enable_autoimport = 1 		" Enable the RopeAutoImport command.
+		"let g:ropevim_enable_autoimport = 1		" Enable the RopeAutoImport command.
 		"let g:ropevim_autoimport_underlineds = 1	" Also cache names beginning with underline with Autoimport.
 		"" Which modules to generate cache for with the :RopeGenerateAutoimportCache command.
 		"let g:ropevim_autoimport_modules = ["__future__", "__main__", "_dummy_thread", "_thread", "abc", "aifc", "argparse", "array", "ast", "asynchat", "asyncio", "asyncore", "atexit", "audioop", "base64", "bdb", "binascii", "binhex", "bisect", "builtins", "bz2", "cProfile", "calendar", "cgi", "cgitb", "chunk", "cmath", "cmd", "code", "codecs", "codeop", "collections", "colorsys", "compileall", "concurrent", "configparser", "contextlib", "copy", "copyreg", "crypt", "csv", "ctypes", "curses", "datetime", "dbm", "decimal", "difflib", "dis", "distutils", "doctest", "dummy_threading", "email", "encodings", "ensurepip", "enum", "errno", "faulthandler", "fcntl", "filecmp", "fileinput", "fnmatch", "formatter", "fpectl", "fractions", "ftplib", "functools", "gc", "getopt", "getpass", "gettext", "glob", "grp", "gzip", "hashlib", "heapq", "hmac", "html", "http", "imaplib", "imghdr", "imp", "importlib", "inspect", "io", "ipaddress", "itertools", "json", "keyword", "lib2to3", "linecache", "locale", "logging", "lzma", "macpath", "mailbox", "mailcap", "marshal", "math", "mimetypes", "mmap", "modulefinder", "msilib", "msvcrt", "multiprocessing", "netrc", "nis", "nntplib", "numbers", "operator", "optparse", "os", "ossaudiodev", "parser", "pathlib", "pdb", "pickle", "pickletools", "pipes", "pkgutil", "platform", "plistlib", "poplib", "posix", "pprint", "profile", "pstats", "pty", "pwd", "py_compile", "pyclbr", "pydoc", "queue", "quopri", "random", "re", "readline", "reprlib", "resource", "rlcompleter", "runpy", "sched", "select", "selectors", "shelve", "shlex", "shutil", "signal", "site", "smtpd", "smtplib", "sndhdr", "socket", "socketserver", "spwd", "sqlite3", "ssl", "stat", "statistics", "string", "stringprep", "struct", "subprocess", "sunau", "symbol", "symtable", "sys", "sysconfig", "syslog", "tabnanny", "tarfile", "telnetlib", "tempfile", "termios", "test", "textwrap", "threading", "time", "timeit", "tkinter", "token", "tokenize", "trace", "traceback", "tracemalloc", "tty", "turtle", "turtledemo", "types", "typing", "unicodedata", "unittest", "urllib", "uu", "uuid", "venv", "warnings", "wave", "weakref", "webbrowser", "winreg", "winsound", "wsgiref", "xdrlib", "xml", "xmlrpc", "zipapp", "zipfile", "zipimport", "zlib"]
 	" }
 
 	" Sideways.vim {
-		"nnoremap <silent> <a :SidewaysLeft<CR>		" Move function argument to the left.
-		"nnoremap <silent> >a :SidewaysRight<CR>	" Move function argument to the right.
+		nnoremap <silent> <a :SidewaysLeft<CR>		" Move function argument to the left.
+		nnoremap <silent> >a :SidewaysRight<CR>	" Move function argument to the right.
 	" }
 
 	" Snipmate {
@@ -745,12 +737,12 @@ if s:use_plugins
 		let g:tagbar_autofocus		= 1		" Give tagbar focus when it's opened.
 		let g:tagbar_sort		= 1		" Sort tags alphabetically.
 		let g:tagbar_compact		= 1		" Omit the help text.
-		let g:tagbar_singleclick	= 1 		" Jump to tag with a single click.
+		let g:tagbar_singleclick	= 1		" Jump to tag with a single click.
 		let g:tagbar_autoshowtag	= 1		" Open folds if tag is not visible.
 	" }
 
 	" Taglist {
-		"nmap <silent> <F3> :Tlist<CR>				 	" Toggle the Tlist browser.
+		"nmap <silent> <F3> :Tlist<CR>						" Toggle the Tlist browser.
 		""let g:Tlist_Close_On_Select        = 1			" Close list on tag selection.
 		"let g:Tlist_Auto_Update             = 1			" Update newly opend files.
 		"let g:Tlist_Compact_Format          = 1			" Trim spaces in GUI.
@@ -766,8 +758,8 @@ if s:use_plugins
 
 	" Undotree {
 		nmap <silent> <F4> :UndotreeToggle<CR>		" Toggle side pane.
-		let g:undotree_WindowLayout=2		 	" Set style to have diff window below.
-		let g:undotree_SetFocusWhenToggle=1		" Put cursor in undo window on open.
+		let g:undotree_WindowLayout=2				" Set style to have diff window below.
+		let g:undotree_SetFocusWhenToggle=1			" Put cursor in undo window on open.
 	" }
 
 	" Vim Better Whitespace {
@@ -785,12 +777,4 @@ if s:use_plugins
 		" Like :wqa but strip whitespaces in each buffer first.
 		command! Wqas bufdo call StripWhitespaceWrapper() | wq
 	" }
-
-endif
-" }
-
-" Source local {
-	"if filereadable(expand("~/.vimrc.local"))
-		"source ~/.vimrc.local
-	"endif
 " }
