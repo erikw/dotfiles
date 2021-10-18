@@ -20,7 +20,7 @@ call plug#begin(stdpath('data') . '/plugged')
 		"Plug 'salsifis/vim-transpose'			" Matrix transposition of texts.
 		"Plug 'scrooloose/nerdtree'				" Replaced by built-in netrw
 		"Plug 'sjl/gundo.vim'					" Use 'mbbill/undotree' instead; is better: https://vi.stackexchange.com/a/13863
-		"Plug 'vim-scripts/lbdbq' 				" Mutt: Query lbdb for recipinents.
+		"Plug 'vim-scripts/lbdbq'				" Mutt: Query lbdb for recipinents.
 		Plug 'LaTeX-Box-Team/LaTeX-Box'			" TODO replace with https://github.com/latex-lsp/texlab
 		Plug 'bfontaine/Brewfile.vim', { 'for': 'brewfile' }	" Syntax for Brewfiles
 		Plug 'danro/rename.vim'					" Provides the :Rename command
@@ -41,6 +41,7 @@ call plug#begin(stdpath('data') . '/plugged')
 
 " Development {
 " Development: General {
+	Plug 'AndrewRadev/sideways.vim'		" Shift function arguments left and right.
 	Plug 'neovim/nvim-lspconfig'			" Plug-n-play configurations for LSP server.
 	Plug 'Townk/vim-autoclose'				" Automatically insert matching brace pairs.
 	Plug 'airblade/vim-gitgutter'			" Git modified status in sign column
@@ -93,7 +94,7 @@ Plug 'rbonvall/snipmate-snippets-bib', { 'for': 'tex' }	" Bibtex snippets.
 " UI {
 	"Plug 'vim-scripts/ScrollColors'
 	Plug 'overcache/NeoSolarized'	" Solarized theme.
-	Plug 'mkitt/tabline.vim'		" More informative tabs. Only for terminal; gvim uses guilabel setting.
+	Plug 'mkitt/tabline.vim'		" More informative tab titles.
 "}
 
 " Initialize plugin system
@@ -102,7 +103,7 @@ call plug#end()
 
 " General {
 set undofile							" Save undo to file in undodir.
-set shortmess=filmnrxtToO    			" Abbreviate messages.
+set shortmess=filmnrxtToO				" Abbreviate messages.
 set nrformats=alpha,bin,octal,hex		" What to increment/decrement with ^A and ^X.
 set hidden								" Work with hidden buffers more easily. Enables to leave buffer with unwritten changes (by :edit another buffer).
 set sessionoptions-=options				" Don't store global and local variables when saving sessions.
@@ -233,15 +234,15 @@ let mapleader = "\\"									" The key for <Leader>.
 nmap <silent> <C-_> :nohlsearch<CR>						" Clear search matches highlighting. (Ctrl+/ => ^_)
 nmap <silent> <Leader>v :source $MYVIMRC<CR>			" Source init.vim
 nmap <silent> <Leader>V :tabe $MYVIMRC<CR>				" Edit init.vim
-noremap <silent> <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>		" Open tags definition in a new tab.
-noremap <silent> <Leader>] :vsp<CR>:exec("tag ".expand("<cword>"))<CR>      		" Open tags definition in a vertical split.
-nnoremap g^t :tabfirst<CR>							" Go to first tab.
-nnoremap g$t :tablast<CR>							" Go to last tab.
-noremap Yf :let @" = expand("%")<CR>				" Yank current file name.
-noremap YF :let @" = expand("%:p")<CR>				" Yank current (fully expanded) file name.
-nnoremap <silent> <Leader>R :checktime<CR>			" Reload buffers from file if changed.
-"nmap <silent> <Leader>d "=strftime("%Y-%m-%d")<CR>P 				" Insert the current date.
-"nmap <silent> <Leader>S :%s/\s\+$//ge<CR>					" Remove all trailing spaces.
+noremap <silent> <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>	" Open tags definition in a new tab.
+noremap <silent> <Leader>] :vsp<CR>:exec("tag ".expand("<cword>"))<CR>		" Open tags definition in a vertical split.
+nnoremap g^t :tabfirst<CR>								" Go to first tab.
+nnoremap g$t :tablast<CR>								" Go to last tab.
+noremap Yf :let @" = expand("%")<CR>					" Yank current file name.
+noremap YF :let @" = expand("%:p")<CR>					" Yank current (fully expanded) file name.
+nnoremap <silent> <Leader>R :checktime<CR>				" Reload buffers from file if changed.
+"nmap <silent> <Leader>d "=strftime("%Y-%m-%d")<CR>P	" Insert the current date.
+"nmap <silent> <Leader>S :%s/\s\+$//ge<CR>				" Remove all trailing spaces.
 
 nnoremap <silent> gfs :wincmd f<CR>					" Open path under cursor in a split.
 nnoremap <silent> gfv :vertical wincmd f<CR>		" Open path under cursor in a vertical split.
@@ -374,22 +375,22 @@ set showmatch		" Shortly jump to a matching bracket when match.
 set cursorline		" Highlight the current line.
 "set cursorcolumn	" Highlight the current column.
 set wildignorecase	" Case insensitive filename completion.
-set scrolljump=5 	" Lines to scroll when cursor leaves screen.
-set scrolloff=3 	" Minimum lines to keep above and below cursor.
+set scrolljump=5	" Lines to scroll when cursor leaves screen.
+set scrolloff=3		" Minimum lines to keep above and below cursor.
 set splitbelow		" Open horizontal split below.
 set splitright		" Open vertical split to the right.
-set listchars=eol:$,space:·,tab:>-,trail:¬,extends:>,precedes:<,nbsp:. 	" Characters to use for :list.
+set listchars=eol:$,space:·,tab:>-,trail:¬,extends:>,precedes:<,nbsp:.	" Characters to use for :list.
 
 " Statusline {
 " Comment these out when using powerline statusbar.
-set statusline=%t       						" Tail of the filename.
-set statusline+=%m     							" Modified flag.
+set statusline=%t							" Tail of the filename.
+set statusline+=%m							" Modified flag.
 set statusline+=\ [%{strlen(&fenc)?&fenc:'none'},	" File encoding.
-set statusline+=%{&ff}]							" File format.
-set statusline+=%h     							" Help file flag.
-set statusline+=%r     							" Read only flag.
-set statusline+=%y     							" Filetype.
-"set statusline+=['%{getline('.')[col('.')-1]}'\ \%b\ 0x%B] 	" Value of byte under cursor.
+set statusline+=%{&ff}]						" File format.
+set statusline+=%h							" Help file flag.
+set statusline+=%r							" Read only flag.
+set statusline+=%y							" Filetype.
+"set statusline+=['%{getline('.')[col('.')-1]}'\ \%b\ 0x%B]	" Value of byte under cursor.
 
 " vim-fugitive:
 set statusline+=%#StatusLineNC#					" Change highlight group
@@ -397,12 +398,12 @@ set statusline+=%{fugitive#statusline()}		" Show current branch.
 set statusline+=%*
 set statusline+=%{tagbar#currenttag('[#%s]','')}	" Current tag.
 
-set statusline+=%=     							" Left/right-aligned separator.
-"set statusline+=[\%b\ 0x%B]\  					" Value of byte under cursor.
-"set statusline+=[0x%O]\ 						" Byte offset from start.
-set statusline+=%l/%L, 							" Cursor line/total lines.
-set statusline+=%c    							" Cursor column.
-set statusline+=\ %P   							" Percent through file.
+set statusline+=%=								" Left/right-aligned separator.
+"set statusline+=[\%b\ 0x%B]\					" Value of byte under cursor.
+"set statusline+=[0x%O]\						" Byte offset from start.
+set statusline+=%l/%L,							" Cursor line/total lines.
+set statusline+=%c								" Cursor column.
+set statusline+=\ %P							" Percent through file.
 set statusline+=\ 0x%B							" Character value under cursor.
 " }
 " }
@@ -465,7 +466,7 @@ let g:tagbar_autoclose = 1				" Close tagbar when jumping to a tag.
 let g:tagbar_autofocus = 1				" Give tagbar focus when it's opened.
 let g:tagbar_sort = 1					" Sort tags alphabetically.
 let g:tagbar_compact = 1				" Omit the help text.
-let g:tagbar_singleclick = 1 			" Jump to tag with a single click.
+let g:tagbar_singleclick = 1			" Jump to tag with a single click.
 let g:tagbar_autoshowtag = 1			" Open folds if tag is not visible.
 " }
 
@@ -520,12 +521,12 @@ autocmd BufReadPost fugitive://* set bufhidden=delete	" Close Fugitive buffers w
 " }
 
 " vim-gist {
-let g:gist_detect_filetype = 1				" Detect filetype from name.
-let g:gist_show_privates = 1				" Let Gist -l show private gists.
+let g:gist_detect_filetype = 1						" Detect filetype from name.
+let g:gist_show_privates = 1						" Let Gist -l show private gists.
+let g:gist_private = 1								" Make private the default for new Gists.
+let g:gist_open_browser_after_post = 1				" Open in browser after post.
 "let g:gist_clip_command = 'xclip -selection clipboard'	" Copy command.
-"let g:gist_private = 1						" Make private the default for new Gists.
-"let g:gist_open_browser_after_post = 1		" Open in browser after post.
-"let g:gist_browser_command = 'w3m %URL%'	" Browser to use.
+"let g:gist_browser_command = 'w3m %URL%'			" Browser to use.
 let g:gist_browser_command = 'firefox  %URL%'		" Browser to use.
 " }
 
@@ -538,10 +539,14 @@ set updatetime=100		" Speedier update of file status.
 let g:snipMate = { 'snippet_version' : 1 }	" Use the new parser (and surpress message about using the old parser).
 " }
 
-" undotree {
-nmap <silent> <F4> :UndotreeToggle<CR>	" Toggle side pane.
-let g:undotree_WindowLayout=2		 	" Set style to have diff window below.
-let g:undotree_SetFocusWhenToggle=1		" Put cursor in undo window on open.
+" sideways.vim {
+nnoremap <silent> <a :SidewaysLeft<CR>		" Move function argument to the left.
+nnoremap <silent> >a :SidewaysRight<CR>		" Move function argument to the right.
 " }
 
+" undotree {
+nmap <silent> <F4> :UndotreeToggle<CR>	" Toggle side pane.
+let g:undotree_WindowLayout=2			" Set style to have diff window below.
+let g:undotree_SetFocusWhenToggle=1		" Put cursor in undo window on open.
+" }
 " }
