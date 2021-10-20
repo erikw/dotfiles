@@ -113,8 +113,8 @@ Plug 'rbonvall/snipmate-snippets-bib', { 'for': 'tex' }	" Bibtex snippets.
 
 
 " Colorschemes {
-	Plug 'mhartington/oceanic-next'
-	Plug 'morhetz/gruvbox'
+	"Plug 'mhartington/oceanic-next'
+	"Plug 'morhetz/gruvbox'
 	Plug 'overcache/NeoSolarized'
 " }
 "}
@@ -373,8 +373,7 @@ execute "set thesaurus=" . "~/.vim/thesaurus/" . matchstr(&spelllang, "[a-zA-Z][
 " }
 
 " UI {
-"colorscheme NeoSolarized
-colorscheme gruvbox
+colorscheme NeoSolarized
 
 " Adjust colors to this background.
 if filereadable(expand("~/.solarizedtoggle/status"))
@@ -495,6 +494,55 @@ aug END
 " }
 " }
 
+" nvim-cmp {
+set completeopt=menu,menuone,noselect
+
+" Lua Setup {
+lua <<EOF
+  -- Setup nvim-cmp.
+  local cmp = require'cmp'
+
+  cmp.setup({
+    snippet = {
+      expand = function(args)
+        -- For `vsnip` user.
+        --vim.fn["vsnip#anonymous"](args.body)
+      end,
+    },
+    mapping = {
+      ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+      ['<C-f>'] = cmp.mapping.scroll_docs(4),
+      ['<C-Space>'] = cmp.mapping.complete(),
+      ['<C-e>'] = cmp.mapping.close(),
+      ['<CR>'] = cmp.mapping.confirm({ select = true }),
+    },
+    sources = {
+      { name = 'nvim_lsp' },
+
+      { name = 'buffer' },
+    }
+  })
+
+  -- Setup lspconfig.
+  require('lspconfig')['bashls'].setup {
+    capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+    }
+  require('lspconfig')['jsonls'].setup {
+    capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+    }
+  require('lspconfig')['pyright'].setup {
+    capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+    }
+  require('lspconfig')['solargraph'].setup {
+    capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+    }
+  require('lspconfig')['vimls'].setup {
+    capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+  }
+EOF
+" }
+" }
+
 " tagbar {
 nmap <silent> <F3> :TagbarToggle<CR>	" Toggle the Tagbar window.
 let g:tagbar_left = 0			" Keep the window on the right side.
@@ -572,6 +620,17 @@ set updatetime=100		" Speedier update of file status.
 
 " }
 
+" vim-instant-markdown {
+" Blocklist certain paths for previewing files (recursively).
+" See https://github.com/instant-markdown/vim-instant-markdown/issues/198
+let g:instant_markdown_autostart=0
+augroup InstantMarkdownGroup
+  autocmd! 
+  au! BufReadPre,BufNewFile,BufEnter,BufFilePre *.md let g:instant_markdown_autostart=1
+  au! BufReadPre,BufNewFile,BufEnter,BufFilePre ~/src/github.com/erikw/hackerrank-solutions/*.md,~/src/github.com/erikw/leetcode-solutions/*.md let g:instant_markdown_autostart=0
+augroup END
+" }
+
 " vim-snipmate {
 let g:snipMate = { 'snippet_version' : 1 }	" Use the new parser (and surpress message about using the old parser).
 " }
@@ -625,54 +684,5 @@ nnoremap <silent> >a :SidewaysRight<CR>		" Move function argument to the right.
 nmap <silent> <F4> :UndotreeToggle<CR>	" Toggle side pane.
 let g:undotree_WindowLayout=2		" Set style to have diff window below.
 let g:undotree_SetFocusWhenToggle=1	" Put cursor in undo window on open.
-" }
-
-" nvim-cmp {
-set completeopt=menu,menuone,noselect
-
-" Lua Setup {
-lua <<EOF
-  -- Setup nvim-cmp.
-  local cmp = require'cmp'
-
-  cmp.setup({
-    snippet = {
-      expand = function(args)
-        -- For `vsnip` user.
-        --vim.fn["vsnip#anonymous"](args.body)
-      end,
-    },
-    mapping = {
-      ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-      ['<C-f>'] = cmp.mapping.scroll_docs(4),
-      ['<C-Space>'] = cmp.mapping.complete(),
-      ['<C-e>'] = cmp.mapping.close(),
-      ['<CR>'] = cmp.mapping.confirm({ select = true }),
-    },
-    sources = {
-      { name = 'nvim_lsp' },
-
-      { name = 'buffer' },
-    }
-  })
-
-  -- Setup lspconfig.
-  require('lspconfig')['bashls'].setup {
-    capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-    }
-  require('lspconfig')['jsonls'].setup {
-    capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-    }
-  require('lspconfig')['pyright'].setup {
-    capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-    }
-  require('lspconfig')['solargraph'].setup {
-    capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-    }
-  require('lspconfig')['vimls'].setup {
-    capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-  }
-EOF
-" }
 " }
 " }
