@@ -40,7 +40,7 @@
 		Plugin 'fidian/hexmode'
 		Plugin 'garbas/vim-snipmate'
 		Plugin 'honza/vim-snippets'
-		Plugin 'instant-markdown/vim-instant-markdown', {'rtp': 'after'}
+		Plugin 'instant-markdown/vim-instant-markdown'
 		Plugin 'mbbill/undotree'
 		Plugin 'michaeljsmith/vim-indent-object'
 		Plugin 'ntpeters/vim-better-whitespace'

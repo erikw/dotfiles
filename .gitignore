@@ -29,6 +29,7 @@
 .config/configstore/
 .config/gtk-2.0/
 .config/htop/
+.config/irb/irb_history
 .config/iterm2/
 .config/karabiner/
 .config/pudb/

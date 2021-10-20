@@ -606,7 +606,7 @@ let s:ascii = [
   \ '      ######    .........',
   \ '                  .....',
   \ '                    .',
-  \ '    NeoVim v' . s:nvim_version
+  \ '    Neovim v' . s:nvim_version
   \]
 "let g:startify_custom_header = s:ascii + startify#fortune#boxed()
 let g:startify_custom_header = s:ascii
