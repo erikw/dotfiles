@@ -325,6 +325,21 @@ source $HOME/.shell_functions
 		#export PATH="/usr/local/opt/ruby/bin:/usr/local/lib/ruby/gems/3.0.0/bin:$PATH"
 	#fi
 
+	# RVM
+	#sourceifexists $HOME/.rvm/scripts/rvm
+
+	# ruby-build: recommended build env.
+	# Reference: https://github.com/rbenv/ruby-build/wiki#suggested-build-environment
+	#export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+	if program_is_in_path ruby-build; then
+		export RUBY_CONFIGURE_OPTS="--with-openssl-dir=/usr/local/opt/openssl@1.1"
+	fi
+
+	# rbenv
+	# https://github.com/rbenv/rbenv
+	if program_is_in_path rbenv; then
+		eval "$(rbenv init - $SHELL_SHORT)"
+	fi
 
 	# Powerline plugin.
 	#if shell_is_macos; then
@@ -366,8 +381,6 @@ source $HOME/.shell_functions
 	# $(git config --global ghq.root)
 	export GITHUB=$HOME/src/github.com/erikw
 
-	# RVM
-	#sourceifexists $HOME/.rvm/scripts/rvm
 
 	# Travis cli client. https://github.com/travis-ci/travis.rb
 	sourceifexists $HOME/.travis/travis.sh
@@ -383,20 +396,6 @@ source $HOME/.shell_functions
 
 	# fzf https://github.com/junegunn/fzf#using-homebrew
 	sourceifexists $HOME/.fzf.${SHELL_SHORT}
-
-
-	# ruby-build: recommended build env.
-	# Reference: https://github.com/rbenv/ruby-build/wiki#suggested-build-environment
-	#export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
-	if program_is_in_path ruby-build; then
-		export RUBY_CONFIGURE_OPTS="--with-openssl-dir=/usr/local/opt/openssl@1.1"
-	fi
-
-	# rbenv
-	# https://github.com/rbenv/rbenv
-	if program_is_in_path rbenv; then
-		eval "$(rbenv init - $SHELL_SHORT)"
-	fi
 
 	# Homebrew sqlite to shadow old version shipped with macOS.
 	if [ -d /usr/local/opt/sqlite/ ]; then
