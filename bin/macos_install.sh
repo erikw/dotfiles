@@ -538,6 +538,8 @@ npm install -g vscode-langservers-extracted
 #n latest
 # After switching from system node from brew, need to install my global npm packages to ~/.n/lib/node_modules/
 # ~/bin/npm-install-global.sh
+# yarn - better than npm
+#npm install -g yarn
 
 
 # LSP server

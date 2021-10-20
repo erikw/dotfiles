@@ -10,6 +10,7 @@
 instant-markdown-d
 markdown-toc
 netlify-cli
+yarn 		# Dependency for rails
 
 # Language Servers (LSP)
 bash-language-server
