@@ -2,15 +2,15 @@
 /Users/erikw/.bundle/cache/
 /Users/erikw/.cache/
 /Users/erikw/.dotfiles/.config/Franz/
+/Users/erikw/.dotfiles/.config/MusicBrainz/
 /Users/erikw/.dotfiles/.config/Signal/
 /Users/erikw/.dotfiles/.config/chromium/
+/Users/erikw/.dotfiles/.config/configstore/
 /Users/erikw/.dotfiles/.config/discord/
 /Users/erikw/.dotfiles/.config/google-chrome/
-/Users/erikw/.dotfiles/.config/whatsapp-desktop/
-/Users/erikw/.dotfiles/.config/configstore/
 /Users/erikw/.dotfiles/.config/htop/
-/Users/erikw/.dotfiles/.config/MusicBrainz/
 /Users/erikw/.dotfiles/.config/pudb/
+/Users/erikw/.dotfiles/.config/whatsapp-desktop/
 /Users/erikw/.dotfiles/.config/wireshark/
 /Users/erikw/.dotfiles/.git/
 /Users/erikw/.dotfiles/.gradle/
@@ -29,6 +29,7 @@
 /Users/erikw/.mail/spam/
 /Users/erikw/.mozilla/firefox/*.default/Cache/
 /Users/erikw/.mozilla/firefox/*.default/storage/
+/Users/erikw/.n/
 /Users/erikw/.npm/
 /Users/erikw/.pulse/
 /Users/erikw/.rbenv/

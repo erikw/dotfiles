@@ -14,12 +14,11 @@ source $HOME/.shell_functions.d/sourceifexists.sh
 #
 # List installed versions: $ rvm list
 # Change to a new one: $ rvm use <version>
-#sandbox_init_rvm(){
+#sandbox_init_rvm() {
 	## Load RVM into a shell session *as a function*.
 	## Also adds installed gems to PATH.
 	#sourceifexists $HOME/.rvm/scripts/rvm
 #}
-
 
 # rbenv
 # NOTE Does not work for some reason. Sandbox init conflicts with the rbenv-init?
@@ -29,20 +28,20 @@ source $HOME/.shell_functions.d/sourceifexists.sh
 #sandbox_hook rbenv rbenv
 
 # GVM: Go Version Manager
-sandbox_init_gvm(){
+sandbox_init_gvm() {
 	sourceifexists $HOME/.gvm/scripts/gvm
 }
 sandbox_hook gvm gvm
 
 # SDK manager
-sandbox_init_sdk(){
+sandbox_init_sdk() {
 	export SDKMAN_DIR=$HOME/.sdkman
 	sourceifexists $SDKMAN_DIR/bin/sdkman-init.sh
 }
 sandbox_hook sdk gradle
 
 # jump bookmarks
-#sandbox_init_jump(){
+#sandbox_init_jump() {
 	#if type jump-bin >/dev/null 2>&1; then
 		#source $(jump-bin --${SHELL_SHORT}-integration)
 		#test ${SHELL_SHORT} = 'zsh' && compctl -K _jump -S '' g	# Add completion to 'g' alias.
@@ -50,7 +49,7 @@ sandbox_hook sdk gradle
 #}
 
 # Virtualenvwrapper
-sandbox_init_virtualenvwrapper(){
+sandbox_init_virtualenvwrapper() {
 	local virtenv_path
 	shell_is_macos && virtenv_path=/usr/local/bin/virtualenvwrapper.sh || virtenv_path=/usr/bin/virtualenvwrapper_lazy.sh
 	if [ -e $virtenv_path ]; then
@@ -65,7 +64,7 @@ for venv_func in "${virtualenv_functions[@]}"; do
 done
 
 # JAVA_HOME
-sandbox_init_java-home(){
+sandbox_init_java-home() {
 	if [ -x /usr/libexec/java_home ]; then
 		export JAVA_HOME=$(/usr/libexec/java_home)
 	fi
@@ -77,7 +76,7 @@ sandbox_hook java-home jar
 
 # pyenv python version manager
 # NOTE only interactive termnials will get this, not scripts.
-#sandbox_init_pyenv(){
+#sandbox_init_pyenv() {
 	#if type pyenv >/dev/null 2>&1; then
 		#eval "$(pyenv init -)"
 	#fi
@@ -91,3 +90,16 @@ sandbox_hook java-home jar
 #sandbox_hook pyenv python-config
 #sandbox_hook pyenv python3
 #sandbox_hook pyenv python3-config
+
+# NVM
+# NOTE Does not work for some reason.
+#sandbox_init_nvm() {
+	#if [ -d $XDG_CONFIG_HOME/nvm ]; then
+		#export NVM_DIR="$XDG_CONFIG_HOME/nvm"
+		#set -x
+		#[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+		#set +x
+		#[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+	#fi
+#}
+#sandbox_hook nvm nvm

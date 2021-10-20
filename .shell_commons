@@ -395,4 +395,20 @@ source $HOME/.shell_functions
 	if [ -d /usr/local/opt/sqlite/ ]; then
 		export PATH="/usr/local/opt/sqlite/bin:$PATH"
 	fi
+
+	# NVM
+	# Let's not use NVM; slows down every shell, puts a git repo in $XDG_CONFIG_HOME...
+	#if [ -d $XDG_CONFIG_HOME/nvm ]; then
+		#export NVM_DIR="$XDG_CONFIG_HOME/nvm"
+		#[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+		#[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+	#fi
+
+	# Node manager n: https://github.com/tj/n
+	if [ -d $HOME/.n ]; then
+		export N_PREFIX=$HOME/.n
+		export PATH=$N_PREFIX/bin:$PATH
+	fi
+
+
 # }

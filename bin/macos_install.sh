@@ -130,6 +130,9 @@ cat << EOF >>  ~/.gitconfig.local
 	email = $email
 EOF
 
+# NPM global packages. npm is installed by ~/.Brewfile
+~/bin/npm-install-global.sh
+
 # Vim {
 # Install Vundle plugins
 #vim -c BundleInstall
@@ -526,7 +529,16 @@ npm install -g vscode-langservers-extracted
 # Reference: https://sergio-ildefonso.medium.com/install-ruby-and-rails-on-a-mac-7b8a1ccb5f4
 # Reference: https://gorails.com/setup/osx/10.13-high-sierra
 #gem install rails
+## Dependencies
+# sqlite - macOS version is old
 #brew install sqlite3
+# npm - get a node manager to manage versiosn. NVM is slow and cumbersome => n
+#brew install n
+#n lts
+#n latest
+# After switching from system node from brew, need to install my global npm packages to ~/.n/lib/node_modules/
+# ~/bin/npm-install-global.sh
+
 
 # LSP server
 #gem install --user solargraph

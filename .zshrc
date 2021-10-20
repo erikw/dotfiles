@@ -163,9 +163,9 @@ fi
 	# }}
 
 	# Input/Output {{
-		unsetopt correct correctall 	# Do not encourage sloppy typing.
+		unsetopt correct correctall		# Do not encourage sloppy typing.
 		#setopt nohashdirs				# No need for rehash to find new binaries.
-		#setopt printexitvalue 			# Print abnormal exit status.
+		#setopt printexitvalue			# Print abnormal exit status.
 	# }}
 
 	# Job Control {{
@@ -189,8 +189,8 @@ fi
 	bindkey '^[[Z' reverse-menu-complete	# Reverse select on shift tab in completion menu.
 	bindkey "\ep" insert-last-word			# Insert !$ with Alt-p.
 	bindkey ' ' magic-space					# Expand !-commands on space.
-	bindkey "^R" history-beginning-search-backward # Complete from history with prefix
-	bindkey "^E" history-beginning-search-forward # Complete from history with prefix
+	bindkey "^R" history-beginning-search-backward	# Complete from history with prefix
+	bindkey "^E" history-beginning-search-forward	# Complete from history with prefix
 
 	# Enable char deleteion on command from history.
 	bindkey "^?" backward-delete-char
@@ -272,13 +272,8 @@ fi
 	#eval $(mcfly init zsh)
 # }}
 
-
-
 #sourceifexists $HOME/.shell_startx
 
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change (WHY?).
-#export PATH="$PATH:$HOME/.rvm/bin"
 
 # Must be at the end!
 #if [ "$PROFILE_STARTUP" = true ]; then

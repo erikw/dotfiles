@@ -211,6 +211,10 @@ $ make install
 ## Firefox
 Import minimal search-keyword bookmarks from [.bookmarks_minimal.html](.bookmarks_minimal.html) to Firefox.
 
+
+## NPM global packages
+~/bin/npm-install-global.sh
+
 # Table of Contents generation
 The table of contents was generated using [markdown-toc](https://github.com/jonschlinkert/markdown-toc)
 ```bash

@@ -32,6 +32,7 @@
 .config/irb/irb_history
 .config/iterm2/
 .config/karabiner/
+.config/nvm/
 .config/pudb/
 .config/wireshark/
 .etwolf/*
