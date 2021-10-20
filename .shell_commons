@@ -180,57 +180,7 @@ source $HOME/.shell_functions
 # }
 
 # Programs {
-	# pkgfile (arch) "command not found" hook.
-	#sourceifexists /usr/share/doc/pkgfile/command-not-found.$SHELL_SHORT
-
-	# iTerm2 shell integration. Reference: https://www.iterm2.com/documentation-shell-integration.html
-	sourceifexists $HOME/.iterm2_shell_integration.$SHELL_SHORT
-
-
-	# Tell gPodder to reside in multimedia directory. KDE4 uses ~/.kde4/env/
-	#export GPODDER_HOME=$HOME/media/music/gPodder
-
-	# Source MPD environment variables.
-	#sourceifexists $HOME/.mpd_env
-
-	# SSH agent. Source bash file if not connected from a remote SSH.
-	#if [ -z "$SSH_CLIENT" ] && [ -f "$HOME/.ssh-agent" ]; then
-		#. $HOME/.ssh-agent
-	#fi
-
-	# Tmuxinator initialization.
-	#if [ -d $HOME/src/github.com/tmuxinator/tmuxinator/bin/ ]; then
-		#PATH="$PATH:$HOME/src/github.com/tmuxinator/tmuxinator/bin/"
-		#source $HOME/src/github.com/tmuxinator/tmuxinator/completion/tmuxinator.$SHELL_SHORT
-	#fi
-
-	# Dotfiles manager.
-	# Not needed; ~/bin/ already included
-	#if [ -d "$HOME/.dotfiles/bin" ]; then
-		#PATH="$PATH:$HOME/.dotfiles/bin"
-	#fi
-
-	# cloc.pl
-	if [ -d "$HOME/src/github.com/AlDanial/cloc" ]; then
-		PATH="$PATH:$HOME/src/github.com/AlDanial/cloc"
-	fi
-
-	# Add ANSI color output to ant.
-	#if program_is_in_path ant; then
-		#export ANT_ARGS='-logger org.apache.tools.ant.listener.AnsiColorLogger'
-	#fi
-
-	# Add tab completion to daemonize.
-	if program_is_in_path daemonize; then
-		$completion_func -cf daemonize
-	fi
-
-	# Tab complete for viw.
-	if program_is_in_path viw; then
-	 	 $completion_func -cf viw
-	fi
-
-	# Go
+#  Go {
 	if [ -d $HOME/src/godeps ]; then
 		export GOPATH="$HOME/src/godeps/:$GOPATH"
 		PATH="$HOME/src/godeps/bin:$PATH"
@@ -243,44 +193,71 @@ source $HOME/.shell_functions
 		export GOROOT="$HOME/src/golang/go"
 		PATH="$GOROOT/bin:$GOROOT/pkg/tool/linux_amd64:$PATH"
 	fi
+# }
 
-	# less {
-		# Syntax highlighting for less with src-highlight.
-		# Normal highlight.
-		#if type src-hilite-lesspipe.sh  >/dev/null 2>&1; then
-			#export LESSOPEN="| src-hilite-lesspipe.sh %s"
-		#fi
-
-		if program_is_in_path source-highlight; then
-			export LESSOPEN="| /usr/local/bin/src-hilite-lesspipe.sh %s"
-			# Solarized version, as the normal version does not work (hidden text) when solarized terminal background is used.
-			# https://github.com/jrunning/source-highlight-solarized
-			#export LESSOPEN="| source-highlight --failsafe -f esc-solarized --style-file=esc-solarized.style -i %s -o STDOUT"
-		fi
-
-		LESS=		# Debians /etc/zsh/zshenv sets LESS to values that quits less when hitting the bottom.
-		#LESS="$LESS --no-lessopen"			# Disable usage of LESSOPEN.
-		LESS="$LESS --RAW-CONTROL-CHARS"	# Display colors.
-		LESS="$LESS --ignore-case"			# Case insensitive search. However using capital letter(s) will enable case sensitive search.
-		LESS="$LESS --status-column"		# Status column with number of lines etc.
-		#LESS="$LESS --LINE-NUMBERS"		# Show line numbers.
-		export LESS
-	# }
-
-	# Android SDK
-	#if [ -d "$HOME/src/android-sdk-linux/" ]; then
-		#PATH="$HOME/src/android-sdk-linux/tools/:$HOME/src/android-sdk-linux/platform-tools/:$PATH"
+# Java {
+	#if [ -e /usr/libexec/java_home ] ; then
+		#export JAVA_HOME=$(/usr/libexec/java_home 2>/dev/null)
+		#test $? -eq 0 || unset JAVA_HOME
 	#fi
 
-	# Perl local libraries.
-	# Reference: http://search.cpan.org/~haarg/local-lib-2.000015/lib/local/lib.pm http://www.perladvent.org/2009/3/
-	#perl_local=$HOME/bin/perl5
-	#if program_is_in_path perl && [ -d $perl_local/lib/perl5/local ]; then
-		#eval $(perl -I $perl_local/lib/perl5/ -Mlocal::lib=$perl_local)
+	# Add ANSI color output to ant.
+	#if program_is_in_path ant; then
+		#export ANT_ARGS='-logger org.apache.tools.ant.listener.AnsiColorLogger'
 	#fi
 
+# }
 
-	# Python {
+# less {
+	# Syntax highlighting for less with src-highlight.
+	# Normal highlight.
+	#if type src-hilite-lesspipe.sh  >/dev/null 2>&1; then
+		#export LESSOPEN="| src-hilite-lesspipe.sh %s"
+	#fi
+
+	if program_is_in_path source-highlight; then
+		export LESSOPEN="| /usr/local/bin/src-hilite-lesspipe.sh %s"
+		# Solarized version, as the normal version does not work (hidden text) when solarized terminal background is used.
+		# https://github.com/jrunning/source-highlight-solarized
+		#export LESSOPEN="| source-highlight --failsafe -f esc-solarized --style-file=esc-solarized.style -i %s -o STDOUT"
+	fi
+
+	LESS=		# Debians /etc/zsh/zshenv sets LESS to values that quits less when hitting the bottom.
+	#LESS="$LESS --no-lessopen"			# Disable usage of LESSOPEN.
+	LESS="$LESS --RAW-CONTROL-CHARS"	# Display colors.
+	LESS="$LESS --ignore-case"			# Case insensitive search. However using capital letter(s) will enable case sensitive search.
+	LESS="$LESS --status-column"		# Status column with number of lines etc.
+	#LESS="$LESS --LINE-NUMBERS"		# Show line numbers.
+	export LESS
+# }
+
+# Ruby {
+	# Homebrew ruby. NOTE not neeed when using rbenv.
+	#if [ -d /usr/local/opt/ruby/bin ]; then
+		# Ruby & Gems binaries
+		# Correct gem dir is GEMSDIR=$(gem environment gemdir)/bin
+		#export PATH="/usr/local/opt/ruby/bin:/usr/local/lib/ruby/gems/3.0.0/bin:$PATH"
+	#fi
+
+	# RVM
+	#sourceifexists $HOME/.rvm/scripts/rvm
+
+	# ruby-build: recommended build env.
+	# Reference: https://github.com/rbenv/ruby-build/wiki#suggested-build-environment
+	#export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+	if program_is_in_path ruby-build; then
+		export RUBY_CONFIGURE_OPTS="--with-openssl-dir=/usr/local/opt/openssl@1.1"
+	fi
+
+	# rbenv
+	# https://github.com/rbenv/rbenv
+	if program_is_in_path rbenv; then
+		eval "$(rbenv init - $SHELL_SHORT)"
+	fi
+
+# }
+
+# Python {
 	# Python pip binary installation directory (pip3 install --user)
 	if shell_is_macos; then
 		PATH="$HOME/Library/Python/3.9/bin:$PATH"
@@ -315,31 +292,58 @@ source $HOME/.shell_functions
 	#if program_is_in_path pyenv-virtualenv; then
 		#eval "$(pyenv virtualenv-init -)"
 	#fi
+# }
 
-	# }
+	# pkgfile (arch) "command not found" hook.
+	#sourceifexists /usr/share/doc/pkgfile/command-not-found.$SHELL_SHORT
 
-	# Homebrew ruby. NOTE not neeed when using rbenv.
-	#if [ -d /usr/local/opt/ruby/bin ]; then
-		# Ruby & Gems binaries
-		# Correct gem dir is GEMSDIR=$(gem environment gemdir)/bin
-		#export PATH="/usr/local/opt/ruby/bin:/usr/local/lib/ruby/gems/3.0.0/bin:$PATH"
+	# iTerm2 shell integration. Reference: https://www.iterm2.com/documentation-shell-integration.html
+	sourceifexists $HOME/.iterm2_shell_integration.$SHELL_SHORT
+
+
+	# Tell gPodder to reside in multimedia directory. KDE4 uses ~/.kde4/env/
+	#export GPODDER_HOME=$HOME/media/music/gPodder
+
+	# Source MPD environment variables.
+	#sourceifexists $HOME/.mpd_env
+
+	# SSH agent. Source bash file if not connected from a remote SSH.
+	#if [ -z "$SSH_CLIENT" ] && [ -f "$HOME/.ssh-agent" ]; then
+		#. $HOME/.ssh-agent
 	#fi
 
-	# RVM
-	#sourceifexists $HOME/.rvm/scripts/rvm
+	# Tmuxinator initialization.
+	#if [ -d $HOME/src/github.com/tmuxinator/tmuxinator/bin/ ]; then
+		#PATH="$PATH:$HOME/src/github.com/tmuxinator/tmuxinator/bin/"
+		#source $HOME/src/github.com/tmuxinator/tmuxinator/completion/tmuxinator.$SHELL_SHORT
+	#fi
 
-	# ruby-build: recommended build env.
-	# Reference: https://github.com/rbenv/ruby-build/wiki#suggested-build-environment
-	#export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
-	if program_is_in_path ruby-build; then
-		export RUBY_CONFIGURE_OPTS="--with-openssl-dir=/usr/local/opt/openssl@1.1"
+	# cloc.pl
+	if [ -d "$HOME/src/github.com/AlDanial/cloc" ]; then
+		PATH="$PATH:$HOME/src/github.com/AlDanial/cloc"
 	fi
 
-	# rbenv
-	# https://github.com/rbenv/rbenv
-	if program_is_in_path rbenv; then
-		eval "$(rbenv init - $SHELL_SHORT)"
+	# Add tab completion to daemonize.
+	if program_is_in_path daemonize; then
+		$completion_func -cf daemonize
 	fi
+
+	# Tab complete for viw.
+	if program_is_in_path viw; then
+		 $completion_func -cf viw
+	fi
+
+	# Android SDK
+	#if [ -d "$HOME/src/android-sdk-linux/" ]; then
+		#PATH="$HOME/src/android-sdk-linux/tools/:$HOME/src/android-sdk-linux/platform-tools/:$PATH"
+	#fi
+
+	# Perl local libraries.
+	# Reference: http://search.cpan.org/~haarg/local-lib-2.000015/lib/local/lib.pm http://www.perladvent.org/2009/3/
+	#perl_local=$HOME/bin/perl5
+	#if program_is_in_path perl && [ -d $perl_local/lib/perl5/local ]; then
+		#eval $(perl -I $perl_local/lib/perl5/ -Mlocal::lib=$perl_local)
+	#fi
 
 	# Powerline plugin.
 	#if shell_is_macos; then
@@ -356,7 +360,6 @@ source $HOME/.shell_functions
 		#powerline-daemon -q
 	#fi
 
-
 	# Load custom keymap
 	# NOTE allow me or %wheeler to issue loadkeys with no password.
 	#if shell_is_linux && [ -f "$HOME/.keymap" ]; then
@@ -366,8 +369,6 @@ source $HOME/.shell_functions
 	# iTerm2 integration: https://iterm2.com/documentation-shell-integration.html
 	# Disabled. Not used and makes shell load slower
 	#test -e "${HOME}/.iterm2_shell_integration.${SHELL_SHORT}" && source "${HOME}/.iterm2_shell_integration.${SHELL_SHORT}"
-
-
 
 	# Must be at the end of shell init file. but here should do...
 	if program_is_in_path sdk; then
@@ -381,15 +382,8 @@ source $HOME/.shell_functions
 	# $(git config --global ghq.root)
 	export GITHUB=$HOME/src/github.com/erikw
 
-
 	# Travis cli client. https://github.com/travis-ci/travis.rb
 	sourceifexists $HOME/.travis/travis.sh
-
-	# Java
-	#if [ -e /usr/libexec/java_home ] ; then
-		#export JAVA_HOME=$(/usr/libexec/java_home 2>/dev/null)
-		#test $? -eq 0 || unset JAVA_HOME
-	#fi
 
 	# broot - https://dystroy.org/broot/install-br/
 	sourceifexists $HOME/.config/broot/launcher/bash/br
