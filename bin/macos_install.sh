@@ -522,6 +522,10 @@ npm install -g vscode-langservers-extracted
 #rbenv global 3.0.2
 #
 
+# Rails
+# Reference: https://sergio-ildefonso.medium.com/install-ruby-and-rails-on-a-mac-7b8a1ccb5f4
+# Reference: https://gorails.com/setup/osx/10.13-high-sierra
+#gem install rails
 
 # LSP server
 #gem install --user solargraph
