@@ -91,10 +91,10 @@ call plug#begin(stdpath('data') . '/plugged')
 " }
 
 " Snippets {
-" Snippet engine. Not very active. https://github.com/honza/vim-snippets list altenatives. neosnippet.vim seems nice, but require python provider.
-Plug 'garbas/vim-snipmate' | Plug 'MarcWeber/vim-addon-mw-utils' | Plug 'tomtom/tlib_vim'
-Plug 'honza/vim-snippets'				" Snippet library
-Plug 'rbonvall/snipmate-snippets-bib', { 'for': 'tex' }	" Bibtex snippets.
+	" Snippet engine. Not very active. https://github.com/honza/vim-snippets list altenatives. neosnippet.vim seems nice, but require python provider.
+	Plug 'garbas/vim-snipmate' | Plug 'MarcWeber/vim-addon-mw-utils' | Plug 'tomtom/tlib_vim'
+	Plug 'honza/vim-snippets'				" Snippet library
+	Plug 'rbonvall/snipmate-snippets-bib', { 'for': 'tex' }	" Bibtex snippets.
 " }
 
 " Navigation {

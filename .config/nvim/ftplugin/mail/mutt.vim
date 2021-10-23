@@ -31,12 +31,12 @@ endfunction
 setlocal textwidth=80
 " Color the 81th column.
 let s:twcc = &textwidth +  1
-execute "set colorcolumn=" . s:twcc
+execute "setlocal colorcolumn=" . s:twcc
 " Auto format text.
 setlocal formatoptions+=a
 " Use par for gq (gw-> vim internal).
 if executable("par")
-	execute "set formatprg=par\\ -w" . &textwidth . "qs0"
+	execute "setlocal formatprg=par\\ -w" . &textwidth . "qs0"
 endif
 
 call MailFormat()
