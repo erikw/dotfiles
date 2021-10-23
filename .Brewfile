@@ -15,6 +15,7 @@
     brew 'aspell'
     brew 'bash'
     brew 'broot'
+    brew 'cheat'
     brew 'cloc'
     brew 'cmatrix'
     brew 'colordiff'

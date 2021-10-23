@@ -540,6 +540,7 @@ npm install -g vscode-langservers-extracted
 # ~/bin/npm-install-global.sh
 # yarn - better than npm
 #npm install -g yarn
+# NOTE unset CC=clang if creating a new rails app, as dependency byebug fails with clang.
 
 
 # LSP server

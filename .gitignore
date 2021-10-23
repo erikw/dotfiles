@@ -26,6 +26,7 @@
 .cgdb/
 .config/MusicBrainz/
 .config/broot/
+.config/cheat/
 .config/configstore/
 .config/gtk-2.0/
 .config/htop/
