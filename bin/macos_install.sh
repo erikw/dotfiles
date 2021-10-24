@@ -524,6 +524,8 @@ npm install -g vscode-langservers-extracted
 #rbenv install 3.0.2
 #rbenv global 3.0.2
 #
+# Install global gems:
+#BUNDLE_GEMFILE=$HOME/.Gemfile bundle install
 
 # Rails
 # Reference: https://sergio-ildefonso.medium.com/install-ruby-and-rails-on-a-mac-7b8a1ccb5f4
