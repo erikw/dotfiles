@@ -144,7 +144,7 @@ source $HOME/.shell_functions
 	export ATOM_HOME="$XDG_DATA_HOME"/atom
 	export INPUTRC="$XDG_CONFIG_HOME"/readline/inputrc
 	export KDEHOME="$XDG_CONFIG_HOME"/kde
-
+	export MPLAYER_HOME="$XDG_CONFIG_HOME"/mplayer
 # }
 
 # UI {
