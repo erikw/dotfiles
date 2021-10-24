@@ -1,19 +1,17 @@
 README.md skip
-CHANGELOG.md skip
 .gitignore skip
 .gitmodules skip
-t skip
 
 bin recurse
 .gnupg recurse
 
+.Xsession chmod 0744
+.config/mpd/mpd.conf chmod 0660
+.config/msmtp/config chmod 0600
+.config/ncmpcpp/config chmod  0600
+.config/offlineimap/config chmod 0600
 .irssi/config chmod 0600
 .mpd_env chmod 0600
-.mpdconf chmod 0660
-.msmtprc chmod 0600
-.ncmpcpp/config chmod  0600
 .netrc chmod 0600
-.offlineimaprc chmod 0600
 .xinitrc chmod 0744
-.Xsession chmod 0744
 bin/loopiadns.sh chmod 0700
