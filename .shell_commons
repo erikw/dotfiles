@@ -138,6 +138,12 @@ source $HOME/.shell_functions
 	test -n "$XDG_DATA_HOME"   || export XDG_DATA_HOME=$HOME/.local/share
 	test -n "$XDG_STATE_HOME"  || export XDG_STATE_HOME=$HOME/.local/state
 	test -n "$XDG_CACHE_HOME"  || export XDG_CACHE_HOME=$HOME/.cache
+
+
+	# Make programs respect XDG
+	export ATOM_HOME="$XDG_DATA_HOME"/atom
+	export INPUTRC="$XDG_CONFIG_HOME"/readline/inputrc 
+
 # }
 
 # UI {
@@ -409,7 +415,4 @@ source $HOME/.shell_functions
 		export N_PREFIX=$HOME/.n
 		export PATH=$N_PREFIX/bin:$PATH
 	fi
-
-	# Atom respect XDG
-	export ATOM_HOME="$XDG_DATA_HOME"/atom
 # }
