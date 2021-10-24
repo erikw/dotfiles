@@ -145,6 +145,9 @@ source $HOME/.shell_functions
 	export KDEHOME=$XDG_CONFIG_HOME/kde
 	export MPLAYER_HOME=$XDG_CONFIG_HOME/mplayer
 	export NOTMUCH_CONFIG=$XDG_CONFIG_HOME/notmuch/notmuchrc
+	export OCTAVE_SITE_INITFILE="$XDG_CONFIG_HOME/octave/octaverc"
+	export OCTAVE_HISTFILE="$XDG_CACHE_HOME/octave-hsts"
+
 
 # }
 
