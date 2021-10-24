@@ -1,8 +1,9 @@
 ;; Erik Westrup's GNU Emacs configuration.
 
 ;;; Environment
-(add-to-list 'load-path "~/.emacs.d/lisp")		 	;; Add lisp plugin folder to load path.
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")	;; Theme path.
+;;; NOTE use expand-file-name to use $XDG_CONFIG_HOME
+(add-to-list 'load-path (expand-file-name "lisp/" user-emacs-directory)) ;; Add lisp plugin folder to load path.
+(add-to-list 'custom-theme-load-path (expand-file-name "themes/" user-emacs-directory))	;; Theme path.
 
 ;;; Keyboard shortcuts
 (global-set-key [f7] 'global-hl-line-)			;; Toggle line highlight.
@@ -59,14 +60,14 @@
 
 ;; Put autosave files (i.e. #foo#) and backup files (i.e. foo~) in ~/.emacs.d/.
 (custom-set-variables
-   '(auto-save-file-name-transforms '((".*" "~/.emacs.d/autosaves/\\1" t)))
-     '(backup-directory-alist '((".*" . "~/.emacs.d/backups/"))))
+   '(auto-save-file-name-transforms '((".*" "~/.local/share/emacs/autosaves/\\1" t)))
+     '(backup-directory-alist '((".*" . "~/.local/share/emacs/backups/"))))
 ;; create the autosave dir if necessary, since emacs won't.
-(make-directory "~/.emacs.d/autosaves/" t)
+(make-directory "~/.local/share/emacs/autosaves/" t)
 
 ;;; UI
-(menu-bar-mode -1) 				;; Disable the menu bar.
-(global-hl-line-mode 1) 			;; Highlight cursor line.
+(menu-bar-mode -1)				;; Disable the menu bar.
+(global-hl-line-mode 1)			;; Highlight cursor line.
 (display-time)					;; Displays the time in the status bar.
 ;; GUI font to use.
 (setq default-frame-alist '((font . "terminus")))
@@ -84,7 +85,7 @@
 
 ;;; Solarized.
 ;; Theme path. Emacs 24 install assumed.
-;(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/emacs-color-theme-solarize/")
+;(add-to-list 'custom-theme-load-path (expand-file-name "themes/emacs-color-theme-solarize/" user-emacs-directory))
 ;(load-theme 'solarized-dark t)			;; Load dark theme.
 ;(load-theme 'solarized-light t)		;; Load light theme.
 ;(setq solarized-termcolors 256)		;; Use degraded version using colors close to solarized.
