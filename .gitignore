@@ -12,6 +12,7 @@
 *.pyc
 *.sw?
 *~
+.DS_STORE
 .atom
 .bazaar/lock/
 .cgdb/
@@ -24,6 +25,7 @@
 .config/htop/
 .config/irb/irb_history
 .config/iterm2/
+.config/kde/
 .config/pudb/
 .config/wireshark/
 .gradle/
@@ -31,7 +33,6 @@
 .irssi/away.log
 .irssi/dcc/
 .irssi/nicklistfifo
-.config/kde/
 .mplayer/
 .netrc
 .vdirsyncer/
