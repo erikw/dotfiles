@@ -152,6 +152,8 @@ source $HOME/.shell_functions
 	export XCOMPOSECACHE=$XDG_CACHE_HOME/X11/XCompose
 	export XCOMPOSEFILE=$XDG_CONFIG_HOME/X11/XCompose
 	export CGDB_DIR=$XDG_CONFIG_HOME/cgdb
+	export GRADLE_USER_HOME="$XDG_DATA_HOME"/gradle
+
 	# }
 # }
 
