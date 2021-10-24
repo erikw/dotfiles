@@ -1,3 +1,0 @@
-ex-mode@0.18.0
-vim-mode-plus@1.25.1
-
