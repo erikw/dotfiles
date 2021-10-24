@@ -5,8 +5,6 @@
 	editor = vim	# Will be overriden by $EDITOR
 [github]
 	user = erikw
-[core]
-	excludesfile = ~/.gitignore_global
 [color]
 	diff = auto
 	status = auto
@@ -88,9 +86,9 @@
 	;insteadOf = git://
 
 [include]
-  path = ~/.gitconfig.local ; set e.g. user.email
+  path = ~/.config/git/config-local ; set e.g. user.email
 
 ; Conditional config
 ; Available for git >=v2.13
 [includeIf "gitdir:~/work/"]
-	path = .gitconfig-work
+	path = ~/.config/git/config-work
