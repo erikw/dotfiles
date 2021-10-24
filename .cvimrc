@@ -6,7 +6,7 @@
 
 " General {{
 	let barposition = "bottom"
-	set noautofocus 	" Prevent pages from stealing the cursor on page load.
+	set noautofocus	" Prevent pages from stealing the cursor on page load.
 " }}
 
 set localconfig " Update settings via a local file (and the `:source` command) rather " than the default options page in chrome)0.
