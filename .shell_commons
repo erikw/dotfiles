@@ -141,10 +141,12 @@ source $HOME/.shell_functions
 
 
 	# Make programs respect XDG
-	export ATOM_HOME="$XDG_DATA_HOME"/atom
-	export INPUTRC="$XDG_CONFIG_HOME"/readline/inputrc
-	export KDEHOME="$XDG_CONFIG_HOME"/kde
-	export MPLAYER_HOME="$XDG_CONFIG_HOME"/mplayer
+	export ATOM_HOME=$XDG_DATA_HOME/atom
+	export INPUTRC=$XDG_CONFIG_HOME/readline/inputrc
+	export KDEHOME=$XDG_CONFIG_HOME/kde
+	export MPLAYER_HOME=$XDG_CONFIG_HOME/mplayer
+	export NOTMUCH_CONFIG=$XDG_CONFIG_HOME/notmuch/notmuchrc
+
 # }
 
 # UI {
