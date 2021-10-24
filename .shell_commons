@@ -1,7 +1,7 @@
 # Common shelll settings (used by at least my .bashrc and .zshrc)
 # Find out which are good sandboxing candidates with profileing like in: https://kev.inburke.com/kevin/profiling-zsh-startup-time/
 # Modeline {
-#	vi: foldmarker={,} filetype=sh foldmethod=marker foldlevel=0: tabstop=4 shiftwidth=4:
+#	vi: foldmarker={,} filetype=sh foldmethod=marker foldlevel=0: tabstop=8 shiftwidth=8:
 # }
 
 # Load utility functions.

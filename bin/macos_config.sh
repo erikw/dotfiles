@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 # Configure macOS to my linking.
 # Modeline {
-#	vi: foldmarker={,} foldmethod=marker foldlevel=0: tabstop=8:
+#	vi: foldmarker={,} foldmethod=marker foldlevel=0: tabstop=4:
 # }
 
 # Notes {
