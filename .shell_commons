@@ -1,6 +1,5 @@
 # Common shelll settings (used by at least my .bashrc and .zshrc)
 # Find out which are good sandboxing candidates with profileing like in: https://kev.inburke.com/kevin/profiling-zsh-startup-time/
-
 # Modeline {
 #	vi: foldmarker={,} filetype=sh foldmethod=marker foldlevel=0: tabstop=4 shiftwidth=4:
 # }
@@ -104,8 +103,8 @@ source $HOME/.shell_functions
 	if shell_is_macos; then
 		# Location of Brewfile. Reference: https://docs.brew.sh/Manpage#bundle-subcommand
 		# Alternatively could use $(brew bundle -g) to use this file, but as I'm not dealing with other Brewfile, might as well make this one default.
-		export HOMEBREW_BUNDLE_FILE=$HOME/.Brewfile
-		# Not using the ~/.Brewfile.lock.json feature.
+		export HOMEBREW_BUNDLE_FILE=$XDG_CONFIG_HOME/homebrew/Brewfile
+		# Not using the Brewfile.lock.json feature.
 		export HOMEBREW_BUNDLE_NO_LOCK=1
 	fi
 

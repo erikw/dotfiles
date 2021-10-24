@@ -11,9 +11,9 @@ set -ex
 # Using Brewfile at $HOMEBREW_BUNDLE_FILE
 brew bundle install
 
-brewfile_host_specific=$HOME/.Brewfile.$(hostname)
+brewfile_host_specific=$HOMEBREW_BUNDLE_FILE.$(hostname)
 if [ -e $brewfile_host_specific ]; then
-	brew bundle install --file $brewfile_host_specific
+    	brew bundle install --file $brewfile_host_specific
 fi
 
 # Make homebrew zsh default shell. Reference: https://rick.cogley.info/post/use-homebrew-zsh-instead-of-the-osx-default/
@@ -32,7 +32,7 @@ brew autoupdate --status
 # Python lists {
 set +e # Can't have -e while making these vars
 make_1line() {
-         echo "$1" | tr '\n' ' '
+	echo "$1" | tr '\n' ' '
 }
 read -r -d '' pip3_pkgs <<-'EOAPPS'
 	ipython
@@ -130,7 +130,7 @@ cat << EOF >>  ~/.gitconfig.local
 	email = $email
 EOF
 
-# NPM global packages. npm is installed by ~/.Brewfile
+# NPM global packages. npm is installed by Brewfile
 ~/bin/npm-install-global.sh
 
 # Vim {
@@ -151,7 +151,7 @@ EOF
 # Neovim {
 # Install vim-plug: https://github.com/junegunn/vim-plug
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+	   https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 nvim -c PlugInstall
 
 
@@ -371,8 +371,8 @@ nvim -c PlugInstall
 ## minute hour mday month wday	command
 #
 #
-#30     19     *     *     *    if_fail_do_notification restic_backup.sh
-#@monthly                       if_fail_do_notification restic_check.sh
+#30	 19	 *	 *	 *	if_fail_do_notification restic_backup.sh
+#@monthly			   if_fail_do_notification restic_check.sh
 
 
 # Stretchly
@@ -393,7 +393,7 @@ nvim -c PlugInstall
 
 # Crontab backup automation
 # Add to crontab an entry like:
-#@monthly                       if_fail_do_notification bak_crontab.sh
+#@monthly			   if_fail_do_notification bak_crontab.sh
 
 # Taskwarrior
 # * Edit `~/.taskrc` to chose path for holiday files and set up remote sync server.
@@ -497,7 +497,7 @@ npm install -g vscode-langservers-extracted
 #sdk install gradle x.y
 #sdk install java 15.0.0.hs-adpt
 # ## Brew
-# See ~/.Brewfile
+# See Brewfile
 
 # LSP server
 # No good one exist that are easily installable. https://microsoft.github.io/language-server-protocol/implementors/servers/
