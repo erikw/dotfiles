@@ -424,4 +424,9 @@ source $HOME/.shell_functions
 		export N_PREFIX=$HOME/.n
 		export PATH=$N_PREFIX/bin:$PATH
 	fi
+
+	# Homebrew curl
+	if [ -d /usr/local/opt/curl/bin ]; then
+		export PATH="/usr/local/opt/curl/bin:$PATH"
+	fi
 # }

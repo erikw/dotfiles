@@ -1,7 +1,7 @@
 README.md skip
 .gitignore skip
 .gitmodules skip
-.bookmarks_minimal.html
+.bookmarks_minimal.html skip
 
 bin recurse
 .gnupg recurse
