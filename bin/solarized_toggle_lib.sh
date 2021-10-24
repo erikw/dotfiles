@@ -33,10 +33,10 @@ st_set_iterm2() {
 st_set_xrdb() {
 	local -n opts=$1
 
-	local xres=$HOME/.Xresources
+	local xres=$XDG_CONFIG_HOME/X11/Xresources
 	local xres_symlink=$ST_STORAGE/Xresouces_theme
-	local xres_dark=$HOME/.Xresources.solarized_dark
-	local xres_light=$HOME/.Xresources.solarized_light
+	local xres_dark=$XDG_CONFIG_HOME/X11/Xresources.solarized_dark
+	local xres_light=$XDG_CONFIG_HOME/X11/Xresources.solarized_light
 	([ -z $DISPLAY ] || !(st_program_is_in_path xrdb)) && return
 	if [ "${opts[mode]}" =  dark ]; then
 		ln -sf $xres_dark $xres_symlink

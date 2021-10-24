@@ -39,8 +39,8 @@
 	# Updated X resouce database.
 	if [ -f "$HOME/.Xresources" ]; then
 		# Apparently merge will not always work for xterm settings.
-		#xrdb -merge $HOME/.Xresources
-		xrdb -load $HOME/.Xresources
+		#xrdb -merge $XDG_CONFIG_HOME/X11/Xresources
+		xrdb -load $XDG_CONFIG_HOME/X11/Xresources
 	fi
 
 	# Tell GTK and QT applications to use X input method so my .Xmodmaps becomes visible.

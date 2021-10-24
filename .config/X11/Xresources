@@ -1,5 +1,5 @@
 ! Xresouces for X program. This file deprecates .Xdefaults.
-! Reload with `xrdb -load .Xresouces` or -merge to not overwrite all settings.
+! Reload with `xrdb -load $XDG_CONFIG_HOME/X11/Xresouces` or -merge to not overwrite all settings.
 
 ! Modeline {
 !	 vi: foldmarker={,} foldmethod=marker foldlevel=0: tabstop=8:
