@@ -11,8 +11,8 @@
 	#url = git://github.com/sellout/emacs-color-theme-solarized.git
 
 # My repos.
-#[submodule ".mutt/colors/mutt-colors-solarized"]
-	#path = .mutt/colors/mutt-colors-solarized
+#[submodule "$XDG_CONFIG_HOME/mutt/colors/mutt-colors-solarized"]
+	#path = $XDG_CONFIG_HOME/mutt/colors/mutt-colors-solarized
 	#url = git@github.com:erikw/mutt-colors-solarized.git
 #[submodule ".irssi/scripts/irssi-bitlbee-facebook-rename"]
 	#path = .irssi/scripts/irssi-bitlbee-facebook-rename

@@ -53,7 +53,7 @@
 # }}
 
 # Crypt {{
-	source ~/.muttrc.gpg						# Use GnuPG commands. Original is in /usr/share/doc/packages/mutt/samples/gpg.rc
+	source $XDG_CONFIG_HOME/mutt/muttrc.gpg						# Use GnuPG commands. Original is in /usr/share/doc/packages/mutt/samples/gpg.rc
 	#source /etc/Muttrc.gpg.dist
 	set pgp_sign_as=D5EFDF013574AE9BE8343C327C16B1148E432F36	# Default ID to sign with. Beware of e.g. offlineimap syncing draft messages not yet encrypted.
 	set crypt_autosmime						# Use S/MIME format.
@@ -91,12 +91,12 @@
 	set attribution = "On %{%a %Y-%m-%d}, %n wrote:"	# A less verbose attribution line.
 	set forward_format = "Fwd: %s"				# Forwarding header subject.
 	set forward_quote					# Indent message with $indent_string.
-	set header_cache=~/.mutt/cache/headers			# Cache headers for faster lookup.
-	set message_cachedir=~/.mutt/cache/bodies		# Cache bodies for faster viewing. Not needed since I'm using Maildir?
+	set header_cache=$XDG_DATA_HOME/mutt/cache/headers	# Cache headers for faster lookup.
+	set message_cachedir=$XDG_DATA_HOME/mutt/cache/bodies	# Cache bodies for faster viewing. Not needed since I'm using Maildir?
 	set editor = "vim --cmd 'let mutt_mode=1'"		# Text editor for mail composing.
 	set save_history = 50					# Number of items per category to save.
-	set history_file = ~/.mutt/mutthistory			# File to store history in.
-	set certificate_file = ~/.mutt/certificates		# Location of trusted certs.
+	set history_file = $XDG_DATA_HOME/mutt/mutthistory	# File to store history in.
+	set certificate_file = $XDG_DATA_HOME/mutt/certificates	# Location of trusted certs.
 	unset score						# Don't bother scores.
 	my_hdr X-URL: http://erikw.me/				# A custom URL-header.
 	my_hdr X-Mailer: Mutt					# The User-Agent header standard has not been adopted enough.
@@ -139,8 +139,8 @@
 	#color indicator default green
 
 	# Use the solarized colorscheme.
-	#source ~/.mutt/colors/mutt-colors-solarized/mutt-colors-solarized-dark-256.muttrc
-	source ~/.mutt/colors/mutt-colors-solarized/mutt-colors-solarized-dark-256_newsbeuter.muttrc
+	#source $XDG_CONFIG_HOME/mutt/colors/mutt-colors-solarized/mutt-colors-solarized-dark-256.muttrc
+	source $XDG_CONFIG_HOME/mutt/colors/mutt-colors-solarized/mutt-colors-solarized-dark-256_newsbeuter.muttrc
 # }}
 
 # Bindings {{
@@ -163,7 +163,7 @@
 	macro index,pager	\em	"<recall-message>"				"recall a postponed message"
 	macro index,pager	\es	"<pipe-message>cat > ~/tmp/"			"pipe message to cat"
 	macro index,pager	 U	"<mark-as-new>"					"toggle mark as read flag"
-	macro index,pager	\er	":source ~/.muttrc<enter>"			"reload mutt config"
+	macro index,pager	\er	":source $XDG_CONFIG_HOME/mutt/muttrc<enter>"	"reload mutt config"
 	macro attach		s	"<save-entry><bol>~/dl/<eol>"			"save attachment in download directory"
 	macro index,pager	\ef	"|~/bin/mutt/view-x-face.sh<enter>"		"display the X-Face included in the mail"
 	macro index,pager	\Cw	"<pipe-message>~/bin/mutt/mutt2task.sh<enter> <save-message>+postponed<enter>"	"add mail to taskwarrior"
@@ -218,7 +218,7 @@
 # }}
 
 # Aliases {{
-	set alias_file = ~/.mutt/aliases	# External alias file.
+	set alias_file = $XDG_CONFIG_HOME/mutt/aliases	# External alias file.
 	set sort_alias = alias			# Sort by alias name.
 	set reverse_alias = yes			# Translate emailaddr -> alias names.
 	source $alias_file			# Source, for autocompletion.
