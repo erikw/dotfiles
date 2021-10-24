@@ -151,6 +151,7 @@ source $HOME/.shell_functions
 	export SCREENRC=$XDG_CONFIG_HOME/screen/screenrc
 	export XCOMPOSECACHE=$XDG_CACHE_HOME/X11/XCompose
 	export XCOMPOSEFILE=$XDG_CONFIG_HOME/X11/XCompose
+	export CGDB_DIR=$XDG_CONFIG_HOME/cgdb
 	# }
 # }
 
