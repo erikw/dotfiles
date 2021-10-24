@@ -1,16 +1,16 @@
 # NPM packages to be installed globally.
 # There is not good way to install global npm packages from a file. Thus this unix-file approach.
-# Usage: # $ sed 's/#.*//' $HOME/.npm-global-requirements.txt | xargs npm install -g
+# Usage: # $ sed 's/#.*//' $XDG_CONFIG_HOME/npm/global-requirements.txt | xargs npm install -g
 # NOTE codified to ~/bin/npm-install-global.sh
 # To list installed packages, run $ npm list -g --depth=0
 # Reference: https://www.monolune.com/installing-global-npm-packages-from-a-requirements-file/
 # Could specify version like https://github.com/yougotwill/dotfiles/blob/master/npm.global.txt, but I want latest always.
 
 # Development
+#markdown-toc
 instant-markdown-d
-markdown-toc
 netlify-cli
-yarn 		# Dependency for rails
+yarn		# Dependency for rails
 
 # Language Servers (LSP)
 bash-language-server
