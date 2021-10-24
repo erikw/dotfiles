@@ -212,7 +212,7 @@ $ make install
 Import minimal search-keyword bookmarks from [.bookmarks_minimal.html](.bookmarks_minimal.html) to Firefox.
 
 ## Global Gems
-BUNDLE_GEMFILE=$HOME/.Gemfile bundle install
+BUNDLE_GEMFILE=$XDG_CONFIG_HOME/ruby/Gemfile bundle install
 
 ## GLobal NPM packages
 ~/bin/npm-install-global.sh
