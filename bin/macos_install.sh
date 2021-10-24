@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Modeline {
-#	vi: foldmarker={,} foldmethod=marker foldlevel=0: tabstop=8:
+#	vi: foldmarker={,} foldmethod=marker foldlevel=0: tabstop=4:
 # }
 
 set -ex
@@ -13,7 +13,7 @@ brew bundle install
 
 brewfile_host_specific=$HOMEBREW_BUNDLE_FILE.$(hostname)
 if [ -e $brewfile_host_specific ]; then
-    	brew bundle install --file $brewfile_host_specific
+	brew bundle install --file $brewfile_host_specific
 fi
 
 # Make homebrew zsh default shell. Reference: https://rick.cogley.info/post/use-homebrew-zsh-instead-of-the-osx-default/
@@ -92,7 +92,7 @@ pip3 install --user $pip3_pkgs
 ## solarized_toggle.sh require
 # - pip3 package iterm2 mus be installed (in python setup above)
 # - iterm2 preference enable Python API: General > Magic tab > Enable Python API: Require "automation" permission.
-# 	(if this is not enough Iterm2 > Scripts (menu) > Manager > Install runtime)
+#	(if this is not enough Iterm2 > Scripts (menu) > Manager > Install runtime)
 ## Start macos_appearance_monitor.sh on login.
 cp $HOME/bin/com.user.appearancemon.plist $HOME/Library/LaunchAgents/
 launchctl load -w $HOME/Library/LaunchAgents/com.user.appearancemon.plist
@@ -101,7 +101,7 @@ launchctl start com.user.appearancemon
 ln -s $HOME/Library/Application\ Support Library/ApplicationSupport
 ## Automate command for toggling system appearance mode
 # * Create an automator Quick Action named "appearance_toggle" with AppleScript for the contents in ~/bin/macos_appearance_toggle.command
-# 	* NOPE use the build-in action "Change System Appearace" by dragging it in to the right, and set "Change Appearance" to "Toggle Light/Dark". This seems to go faster when toggling than the custom script.
+#	* NOPE use the build-in action "Change System Appearace" by dragging it in to the right, and set "Change Appearance" to "Toggle Light/Dark". This seems to go faster when toggling than the custom script.
 # * Bind to shortcut CTRL+OPT+CMD+t (shortcut used when feature was first introduced in the OS).
 
 
@@ -242,7 +242,7 @@ nvim -c PlugInstall
 # MacVim
 # * Make the app quit when the last buffer is closee: " MacVim > Preferences > After the last window closes: QuitMacVim.
 # * Open text files with MacVim
-# 	* Find any .txt file in Finder > cmd+i on it > Open with > MacVim > Change for all
+#	* Find any .txt file in Finder > cmd+i on it > Open with > MacVim > Change for all
 
 # Scroll Reverser
 ## Scrolling
@@ -267,7 +267,7 @@ nvim -c PlugInstall
 #   - Uncheck: Confirm closing multiple sessions.
 #   - Uncheck: Confirm "iTerm2 (#Q)" if windows open"
 # * iterm.sh: If iterm2.app is closed, 2 windows will be opended by this script. To prevent this:
-# 	- Startup > Select "Only Restore Hotkey Window" NOPE don't do this anymore as of #irctorautostart
+#	- Startup > Select "Only Restore Hotkey Window" NOPE don't do this anymore as of #irctorautostart
 ### Selection
 # * Check "Applications in terminal may access clipboard" so that I can e.g. copy from vim buffer to gui clipboard.
 ## Profiles
@@ -288,12 +288,12 @@ nvim -c PlugInstall
 # * Make Option key an Meta key, so e.g. tmux binding works on MBP internal keyboard.
 #   - set "Left option key acts as" "Esc+". NOTE need karabiner-elements to get left alt to work on external PC keyboard.
 # * Create shortcuts to toggle between solarized dark & light:
-# 	- Press the '+' button:>
-# 		- Shortcut: Opt + Cmd + s
-# 		- Action: "Load Color Preset" > "Solarized Light"
-# 	- Press the '+' button:>
-# 		- Shortcut: Opt + Cmd + shift + s
-# 		- Action: "Load Color Preset" > "Solarized Dark"
+#	- Press the '+' button:>
+#		- Shortcut: Opt + Cmd + s
+#		- Action: "Load Color Preset" > "Solarized Light"
+#	- Press the '+' button:>
+#		- Shortcut: Opt + Cmd + shift + s
+#		- Action: "Load Color Preset" > "Solarized Dark"
 
 
 
@@ -306,12 +306,12 @@ nvim -c PlugInstall
 ## HOWEVER, only use if needed. If having an external mac keyboard, keep to System Preferences bindings!
 # * Disable all custom modifier keys remappings done in System Preferences.
 # * For all keyboard
-# 	* caps_lock -> escape
-# 	* grave_accent_and_tilde(`) -> non_us_backslash
-# 		* Only when having the problem that tilde key is producing ± instead. Reference: https://apple.stackexchange.com/a/367644/197493
+#	* caps_lock -> escape
+#	* grave_accent_and_tilde(`) -> non_us_backslash
+#		* Only when having the problem that tilde key is producing ± instead. Reference: https://apple.stackexchange.com/a/367644/197493
 # * For internal keyboard
-# 	* fn -> left_control
-# 	* left_control -> fn
+#	* fn -> left_control
+#	* left_control -> fn
 # * For external keyboard (unless it's a proper Mac keyboard with comand and alt keys)
 #	* left_command -> left_option
 #	* left_option -> left_command
