@@ -11,4 +11,4 @@
 <Multi_key> <bracketleft>		: "å" aring # LATIN SMALL LETTER A WITH RING ABOVE
 <Multi_key> <braceleft>			: "Å" Aring # LATIN CAPITAL LETTER A WITH RING ABOVE
 <Multi_key> <semicolon>			: "ö" odiaeresis # LATIN SMALL LETTER O WITH DIAERESIS
-<Multi_key> <colon>			: "Ö" Odiaeresis # LATIN CAPITAL LETTER O WITH DIAERESIS
+<Multi_key> <colon>				: "Ö" Odiaeresis # LATIN CAPITAL LETTER O WITH DIAERESIS
