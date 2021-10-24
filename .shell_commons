@@ -147,8 +147,7 @@ source $HOME/.shell_functions
 	export NOTMUCH_CONFIG=$XDG_CONFIG_HOME/notmuch/notmuchrc
 	export OCTAVE_SITE_INITFILE="$XDG_CONFIG_HOME/octave/octaverc"
 	export OCTAVE_HISTFILE="$XDG_CACHE_HOME/octave-hsts"
-
-
+	export SCREENRC=$XDG_CONFIG_HOME/screen/screenrc
 # }
 
 # UI {
