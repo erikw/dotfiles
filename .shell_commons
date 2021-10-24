@@ -158,6 +158,7 @@ source $HOME/.shell_functions
 	export BUNDLE_USER_PLUGIN=$XDG_DATA_HOME/bundle
 	export GEM_SPEC_CACHE=$XDG_CACHE_HOME/gem
 	export GEM_HOME=$XDG_DATA_HOME/gem
+	export GRIPHOME=$XDG_CONFIG_HOME/grip
 
 	# }
 # }

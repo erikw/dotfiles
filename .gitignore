@@ -21,6 +21,7 @@
 .config/cheat/
 .config/configstore/
 .config/git/config-local
+.config/grip/cache-*
 .config/gtk-2.0/
 .config/htop/
 .config/irb/irb_history
