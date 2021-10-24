@@ -9,6 +9,7 @@
 !.config/.kde/share/config/mpdknotifierrc
 !.config/.kde/share/config/yakuakerc
 !.config/.kde/share/kde4/services/spotify.protocol
+!.config/gtk-2.0/gtkrc-2.0.mine
 *.pyc
 *.sw?
 *~
