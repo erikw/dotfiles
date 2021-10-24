@@ -213,7 +213,7 @@ Invoke-Expression "choco install vim --params /NoDesktopShortcuts"
 
 # AutoHotkey
 # * Press Win+R and type "shell:Startup"
-# * Make a shortcut from within this folder to ~/.dotfiles/.windows/AutoHotkey.ahk 
+# * Make a shortcut from within this folder to ~/.dotfiles/.config/autohotkey/AutoHotkey.ahk
 
 
 # Ditto
