@@ -13,5 +13,5 @@
 --c-kinds=+x
 --c++-kinds=+p
 
---regex-C=/$x/x/x/e/ Skip import statement in pyton files.
+--regex-C=/$x/x/x/e/ Skip import statement in python files.
 --python-kinds=-i
