@@ -1,0 +1,5 @@
+# for macOS: https://stackoverflow.com/a/116614/265508
+def cls
+  system('clear')
+end
+alias clear :cls
