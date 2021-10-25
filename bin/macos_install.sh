@@ -133,6 +133,9 @@ EOF
 # NPM global packages. npm is installed by Brewfile
 ~/bin/npm-install-global.sh
 
+# Make tig use $XDG_DATA_HOME. Reference: https://wiki.archlinux.org/title/XDG_Base_Directory#Partial
+mkdir -p $XDG_DATA_HOME/tig
+
 # Vim {
 # Install Vundle plugins
 #vim -c BundleInstall
