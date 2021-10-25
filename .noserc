@@ -1,3 +1,0 @@
-; Nosetests configuration. Options same as on commandline with prefix '--' removed.
-[nosetests]
-;nocapture=1
