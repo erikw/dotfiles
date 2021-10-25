@@ -376,8 +376,8 @@ execute "set thesaurus=" . "~/.vim/thesaurus/" . matchstr(&spelllang, "[a-zA-Z][
 colorscheme NeoSolarized
 
 " Adjust colors to this background.
-if filereadable(expand("~/.solarizedtoggle/status"))
-	let &background = readfile(expand("~/.solarizedtoggle/status"), '', 1)[0]
+if filereadable(expand("$XDG_CONFIG_HOME/solarizedtoggle/status"))
+	let &background = readfile(expand("$XDG_CONFIG_HOME/solarizedtoggle/status"), '', 1)[0]
 else
 	" Lighter bg during night.
 	" Source:  http://benjamintan.io/blog/2014/04/10/switch-solarized-light-slash-dark-depending-on-the-time-of-day/
@@ -625,7 +625,7 @@ set updatetime=100		" Speedier update of file status.
 " See https://github.com/instant-markdown/vim-instant-markdown/issues/198
 let g:instant_markdown_autostart=0
 augroup InstantMarkdownGroup
-  autocmd! 
+  autocmd!
   au! BufReadPre,BufNewFile,BufEnter,BufFilePre *.md let g:instant_markdown_autostart=1
   au! BufReadPre,BufNewFile,BufEnter,BufFilePre ~/src/github.com/erikw/hackerrank-solutions/*.md,~/src/github.com/erikw/leetcode-solutions/*.md let g:instant_markdown_autostart=0
 augroup END

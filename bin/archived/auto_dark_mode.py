@@ -14,7 +14,7 @@ import iterm2
 	#=> argument to solarized_toggle.sh to not toggle iterm and set it directly here, OR
 	# => monitor theme changes globally instead somewhere else.
 def solarized_toggle(mode):
-    # with open(Path('~/.solarizedtoggle/status').expanduser(), 'w') as status_file:
+    # with open(Path('$XDG_CONFIG_HOME/solarizedtoggle/status').expanduser(), 'w') as status_file:
         # status_file.write(mode)
 
         cmd = [Path('~/bin/solarized_toggle.sh').expanduser(), mode]

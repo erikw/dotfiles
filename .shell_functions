@@ -113,7 +113,7 @@ viack() {
 	local search
 	# Get the last argument. Source: http://stackoverflow.com/questions/1853946/getting-the-last-argument-passed-to-a-shell-script
 	for search; do true; done
-	vim -p $(ack -l $@) -c 1 +/$search  # Go to first line then search downwards.
+	vi -p $(ack -l $@) -c 1 +/$search  # Go to first line then search downwards.
 }
 
 # Wrapper around the classic 'vi with grep'.

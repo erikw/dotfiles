@@ -220,8 +220,8 @@
 	"hi Normal ctermbg=NONE	" Transparent background.
 	set title		" Show title in console title bar.
 	" Adjust colors to this background.
-	if filereadable(expand("~/.solarizedtoggle/status"))
-		let &background = readfile(expand("~/.solarizedtoggle/status"), '', 1)[0]
+	if filereadable(expand("$XDG_CONFIG_HOME/solarizedtoggle/status"))
+		let &background = readfile(expand("$XDG_CONFIG_HOME/solarizedtoggle/status"), '', 1)[0]
 	else
 		" Lighter bg during night.
 		" Source:  http://benjamintan.io/blog/2014/04/10/switch-solarized-light-slash-dark-depending-on-the-time-of-day/
