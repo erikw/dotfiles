@@ -13,7 +13,7 @@ bin recurse
 .config/ncmpcpp/config chmod  0600
 .config/offlineimap/config chmod 0600
 .irssi/config chmod 0600
-.mpd_env chmod 0600
+.config/mpd/env.sh chmod 0600
 .netrc chmod 0600
 .xinitrc chmod 0744
 bin/loopiadns.sh chmod 0700

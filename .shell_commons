@@ -329,7 +329,7 @@ source $HOME/.shell_functions
 	#export GPODDER_HOME=$HOME/media/music/gPodder
 
 	# Source MPD environment variables.
-	#sourceifexists $HOME/.mpd_env
+	#sourceifexists $XDG_CONFIG_HOME/mpd/env.sh
 
 	# SSH agent. Source bash file if not connected from a remote SSH.
 	#if [ -z "$SSH_CLIENT" ] && [ -f "$HOME/.ssh-agent" ]; then
