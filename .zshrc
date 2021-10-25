@@ -81,7 +81,7 @@ fi
 # }}
 
 # History {{
-	export HISTFILE=~/.zsh_histfile		# Where to save history.
+	export HISTFILE=~/.zsh_history		# Where to save history.
 	export HISTSIZE=1000000				# How many lines in the current session to remember.
 	export SAVEHIST=1000000				# How many lines to save to disk. Must be <=HISTSIZE.
 	# Patterns to exclue. Separate with |. *-matching.
