@@ -27,6 +27,7 @@
 .config/iterm2/
 .config/kde/
 .config/pudb/
+.config/restic/
 .config/wireshark/
 .irssi/away.log
 .irssi/dcc/

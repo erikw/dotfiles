@@ -53,7 +53,7 @@ VERBOSITY_LEVEL=1
 
 # Set all environment variables like
 # B2_ACCOUNT_ID, B2_ACCOUNT_KEY, RESTIC_REPOSITORY etc.
-source $HOME/.restic/b2_env.sh
+source $XDG_CONFIG_HOME/restic/b2_env.sh
 
 # How many network connections to set up to B2. Default is 5.
 B2_CONNECTIONS=50
