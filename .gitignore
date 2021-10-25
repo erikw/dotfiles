@@ -15,8 +15,6 @@
 *~
 .DS_STORE
 .atom
-.bazaar/lock/
-.cgdb/
 .config/MusicBrainz/
 .config/broot/
 .config/cheat/
@@ -30,14 +28,10 @@
 .config/kde/
 .config/pudb/
 .config/wireshark/
-.gradle/
-.ipython/
 .irssi/away.log
 .irssi/dcc/
 .irssi/nicklistfifo
-.mplayer/
 .netrc
-.vdirsyncer/
 .vim/.netrwhist
 .vim/after/ftplugin/markdown/instant-markdown.vim
 .vim/bundle/
