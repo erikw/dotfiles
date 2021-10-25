@@ -3,7 +3,7 @@ Description=xbindkeys
 After=xorg.target
 
 [Service]
-ExecStart=/usr/bin/xbindkeys
+ExecStart=/usr/bin/xbindkeys -f "$XDG_CONFIG_HOME"/xbindkeys/config
 Type=forking
 
 [Install]

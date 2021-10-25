@@ -133,7 +133,7 @@
 	volnoti --no-daemon --timeout 1.2 &
 
 	# Start X keyboard shortcut daemon.
-	xbindkeys
+	xbindkeys -f $XDG_CONFIG_HOME/xbindkeys/config
 
 	# DWM statusbar.
 	dwmstatus &

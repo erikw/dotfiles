@@ -1,4 +1,5 @@
 # Erik Westrup's xbindkeys configuration.
+# start as $ xbindkeys -f "$XDG_CONFIG_HOME"/xbindkeys/config
 # Keysymbols are defined in /usr/include/X11/keysymdef.h (exclude the XL_ prefix).
 # List of modifier: Release, Control, Shift, Mod1 (Alt), Mod2 (NumLock), Mod3 (CapsLock), Mod4 (Windows key), Mod5 (Scroll).
 # Modeline {
@@ -129,7 +130,7 @@
 		"voltune.sh -c mute"
 			Control + F12
 
-		# Toggle mic mute. 
+		# Toggle mic mute.
 		"amixer set Capture toggle"
 			Control + F9
 	# }
@@ -185,7 +186,7 @@
 		# Raise the volume.
 		"mpc volume +1"
 			Control + Shift + F11
-		
+
 		# XF86 {
 			# Play previous track.
 			#"mpc prev"
