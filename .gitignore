@@ -28,8 +28,9 @@
 .config/kde/
 .config/pudb/
 .config/restic/
-.config/solarizedtoggle/status
 .config/solarizedtoggle/Xresouces_theme
+.config/solarizedtoggle/status
+.config/taiga-stats/taiga-stats.conf
 .config/wireshark/
 .irssi/away.log
 .irssi/dcc/
