@@ -7,7 +7,7 @@
 # Could specify version like https://github.com/yougotwill/dotfiles/blob/master/npm.global.txt, but I want latest always.
 
 # Development
-#markdown-toc
+#markdown-toc	# GitHub renders ToC automatically now.
 instant-markdown-d
 netlify-cli
 yarn		# Dependency for rails
