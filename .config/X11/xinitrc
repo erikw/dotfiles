@@ -37,7 +37,8 @@
 
 # Host specific {
 	host=$(hostname --short)
-	xinithost=$HOME/.xinitrc.$host
+	#xinithost=$HOME/.xinitrc.$host
+	xinithost=$XDG_CONFIG_HOME/X11/xinitrc.$host
 	if [ -f $xinithost ] && [ -r $xinithost ]; then
 		. $xinithost
 	fi

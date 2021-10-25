@@ -6,7 +6,7 @@
 # TODO Migrate xintrc to systemd user session When there is a official way of starting X as a systemd user unit.  Current it does not work very well; dbus crashes.  Currently "Xorg as a systemd user service" requires Xorg to run as root, which is bad!  https://wiki.archlinux.org/index.php/Systemd/User
 
 # Environment {
-	# Desktop session. Used by $HOME/.xinitrc
+	# Desktop session. Used by $XDG_CONFIG_HOME/X11/xinitrc
 	session=dwm
 
 	# Web browser to use. urlscan (and others?) uses this variable.

@@ -14,5 +14,7 @@ fi
 if [ $host = irvine ]; then
 	type startx >/dev/null 2>&1
 	# End with cons, so the status code is not 1 when sourcing this.
-	[[ -z $DISPLAY && $XDG_VTNR -eq 1 && "$?" -eq 0 ]] && exec startx || :
+	#[[ -z $DISPLAY && $XDG_VTNR -eq 1 && "$?" -eq 0 ]] && exec startx || :
+	# XDG support: https://wiki.archlinux.org/title/XDG_Base_Directory
+	[[ -z $DISPLAY && $XDG_VTNR -eq 1 && "$?" -eq 0 ]] && exec startx "$XDG_CONFIG_HOME/X11/xinitrc" vt1  || :
 fi
