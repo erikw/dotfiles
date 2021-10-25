@@ -38,7 +38,7 @@ RETENTION_YEARS=2
 # What to backup, and what to not
 BACKUP_PATHS="$HOME/ /Volumes/toshiba_music/ /Volumes/wd_games/"
 
-BACKUP_EXCLUDES="--exclude-file $HOME/.backup_exclude"
+BACKUP_EXCLUDES="--exclude-file $XDG_CONFIG_HOME/backup_exclude"
 # restic will crash if not all exclude files specified are available.
 if [ -d /Volumes/toshiba_music/ ]; then
 	BACKUP_EXCLUDES="${BACKUP_EXCLUDES} --exclude-file /Volumes/toshiba_music/.backup_exclude"
