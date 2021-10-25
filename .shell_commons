@@ -160,7 +160,7 @@ source $HOME/.shell_functions
 	export GEM_HOME=$XDG_DATA_HOME/gem
 	export GRIPHOME=$XDG_CONFIG_HOME/grip
 	export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
-
+	export SQLITE_HISTORY=$XDG_DATA_HOME/sqlite_history
 	# }
 # }
 
