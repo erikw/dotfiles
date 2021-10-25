@@ -47,6 +47,7 @@
     brew 'imagemagick'
     brew 'ipcalc'
     brew 'jq'
+    brew 'less'
     brew 'ncdu'
     brew 'neovim'
     brew 'netcat'

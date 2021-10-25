@@ -10,12 +10,12 @@
 	autodetach on					# If something goes wrong automatically detach screen.
 	defutf8 on					# Tells screen that UTF8 encoding should be uses in all and new windows.
 	#idle 1800 lockscreen				# Lock after 30 min of inactivity.
-	
+
 	# Start screensaver in a new screen after 30 min, reset idle.
 	#idle 1800 eval "screen -t screensaver cmatrix -u 10" "idle 0"
-	
+
 	deflog on					# Set log on all windows (and new ones).
-	logfile $HOME/.log/screen/%t.screenlog		# Set log path and filename.
+	logfile $XDG_STATE_HOME/screen/%t.screenlog		# Set log path and filename.
 	maxwin 15					# Max numbers of windows.
 	#wall "Welcome to screen@`uname -n`."		# Message to all windows.
 	#maptimeout 0					# Set esc timeout to 0 ms. Good when using finch. obs might disable escape.
@@ -32,13 +32,13 @@
 	#vbell off					# Turn off annoying vbell 'wuff! wuff!'.
 	caption always					# Always show caption.
 	caption string "%{kw}%-w[%{r}%n %t%{-}]%+w"	# Format of the caption bar.
-	
+
 	hardstatus on					# Always show the hardstatus bar.
 	hardstatus alwayslastline			# Show as the last line.
 	backtick 1 5 5 $HOME/bin/screen/hardstatus.sh	# Update interval (id, lifespan, autorefresh, script)
 	# Format of the hardstatus bar. %1` refers to the output of the script above.
 	hardstatus string  "[%c:%s] %Y-%m-%d %D | Host: %H% | Load average: %l | %1`"
-	
+
 # }
 
 # Bindings {
@@ -49,7 +49,7 @@
 
 	#Launch urlview with the current screens text in a new screen window.
 	bind o eval "hardcopy_append off" "hardcopy -h /tmp/${USER}_screen-urlview" "screen urlview /tmp/${USER}_screen-urlview"
-	
+
 	# ^H stoppes working in some instances of Screen.
 	bindkey -d ^H stuff ^?
 

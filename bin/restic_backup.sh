@@ -13,7 +13,7 @@ set -e -o pipefail -x
 # Redirect stdout ( > ) into a named pipe ( >() ) running "tee" to a file, so we can observe the status by simply tailing the log file.
 me=$(basename "$0")
 now=$(date +%F_%R)
-log_dir=$HOME/.log/restic
+log_dir=${XDG_STATE_HOME:-$HOME/.local/state}/restic
 log_file="${log_dir}/${now}_${me}.$$.log"
 test -d $log_dir || mkdir -p $log_dir
 exec > >(tee -i $log_file)

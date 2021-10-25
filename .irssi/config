@@ -100,7 +100,7 @@ chatnets = {
     max_msgs = "3";
     max_whois = "30";
   };
-  EFNet = { 
+  EFNet = {
     type = "IRC";
     max_kicks = "4";
     max_msgs = "3";
@@ -306,7 +306,7 @@ settings = {
     user_name = "Erik Westrup";
     nick = "erikw";
     quit_message = "EOF";
-    awaylog_file = "~/.log/irssi/away.log";
+    awaylog_file = "~/.local/state/irssi/away.log";
     recode_fallback = "utf-8";
     recode_out_default_charset = "utf-8";
     log_day_changed = "= --- Day changed %a %Y-%m-%b";
@@ -324,7 +324,7 @@ settings = {
   "fe-common/core" = {
     term_charset = "utf-8";
     autolog = "yes";
-    autolog_path = "~/.log/irssi/$tag/${0}/${0}-%Y-%m-%d";
+    autolog_path = "~/.local/state/irssi/$tag/${0}/${0}-%Y-%m-%d";
     hilight_nick_matches = "yes";
     names_max_width = "0";
     beep_when_away = "yes";

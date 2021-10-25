@@ -6,7 +6,7 @@
 
 # Default values for all accounts.
 defaults
-logfile        ~/.log/msmtp.log
+logfile        ~/.local/state/msmtp/msmtp.log
 
 # GMail
 account gmail

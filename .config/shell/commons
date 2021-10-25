@@ -115,7 +115,8 @@ source $XDG_CONFIG_HOME/shell/functions
 	fi
 
 	# Personal log folder used by some program configurations.
-	[ -d $HOME/.log ] || (mkdir $HOME/.log && mkdir $HOME/.log/tmux && mkdir $HOME/.log/irssi)
+	test -d $XDG_STATE_HOME/tmux || mkdir -p $XDG_STATE_HOME/tmux
+	test -d $XDG_STATE_HOME/irssi || mkdir -p $XDG_STATE_HOME/irssi
 
 	# Enable sandboxing a.k.a. lazy loading of shell initialization for some programs.
 	if [ -e $HOME/.sandboxd/sandboxd ]; then
