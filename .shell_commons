@@ -386,8 +386,8 @@ source $HOME/.shell_functions
 
 	# Load custom keymap
 	# NOTE allow me or %wheeler to issue loadkeys with no password.
-	#if shell_is_linux && [ -f "$HOME/.keymap" ]; then
-		#sudo loadkeys -q $HOME/.keymap &>/dev/null
+	#if shell_is_linux && [ -f "$XDG_CONFIG_HOME/loadkeys/keymap" ]; then
+		#sudo loadkeys -q $XDG_CONFIG_HOME/loadkeys/keymap &>/dev/null
 	#fi
 
 	# iTerm2 integration: https://iterm2.com/documentation-shell-integration.html
