@@ -149,7 +149,6 @@ source $HOME/.shell_functions
 	export XDG_STATE_HOME="${XDG_STATE_HOME:-$HOME/.local/state}"
 	export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
 
-
 	# Make programs respect XDG
 	export INPUTRC=$XDG_CONFIG_HOME/readline/inputrc
 	export KDEHOME=$XDG_CONFIG_HOME/kde

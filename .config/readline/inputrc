@@ -27,8 +27,11 @@
 	# Path complete symlinks to directories with '/' as it would be a normal directory.
 	set mark-symlinked-directories on
 
-	# Show completion alternativies on first <tab>.
+	# Completion: show completion alternativies on first <tab>.
 	set show-all-if-ambiguous
+
+	# Completion: show matches before cycling with menu-comlete (below).
+	set menu-complete-display-prefix on
 # }
 
 # Bindings {
@@ -52,7 +55,10 @@
 	# Paste last argument from previous command with Alt-p.
 	"\ep": yank-last-arg
 
-	# The vi mode key bindings after this will apply to.
+	# Complete with menu, like zsh. Reference: https://stackoverflow.com/a/7179810/265508
+	TAB: menu-complete
+
+	# NOTE The vi mode key bindings after this line will apply to.
 	set keymap vi-command
 
 	# Let ^L clear the screen.
@@ -64,5 +70,6 @@
 	# Let up/down arrow do a shell history prefix-search (if input was typed alredy).
 	"\e[A": history-search-backward
 	"\e[B": history-search-forward
+
 # }
 

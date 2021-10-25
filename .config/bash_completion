@@ -1,0 +1,10 @@
+# Sourced when the shell is loaded by some script from the bash-completion package.
+
+# Source taskwarrior completion.
+taskwcomp=/usr/share/doc/task/scripts/bash/task.sh
+if [ -f "$taskwcomp" ]; then
+	source "$taskwcomp"
+fi
+unset taskwcomp
+
+echo "HI"

@@ -130,7 +130,7 @@ fi
 	zstyle ':vcs_info:*' enable git cvs svn
 	precmd () { vcs_info }
 	# See formatting options in manpage zshmisc(1) under the section SIMPLE PROMPT ESCAPES.
-	# Mimics the lookg of my ~/.bash_ps1
+	# Mimics the look of my $XDG_CONFIG_HOME/bash/ps1
 	# NOTE virtualenvwrapper prepends the active venv name in the generated bin/activate script.
 	PROMPT="%D{%H:%M:%S}"								# Date with seconds
 	[ $(id -u) -eq 0 ] && user_color=red || user_color=blue
