@@ -25,7 +25,7 @@ sandbox_init_rbenv(){
   export RBENV_ROOT="$HOME/.rbenv"
   export PATH="$RBENV_ROOT/bin:$PATH"
   export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
-  eval "$(rbenv init - $SHELL_SHORT)"
+  eval "$(rbenv init - $SHELL_NAME)"
 }
 sandbox_hook_shims rbenv "$HOME/.rbenv/shims"
 
@@ -45,8 +45,8 @@ sandbox_hook sdk gradle
 # jump bookmarks
 #sandbox_init_jump() {
 	#if type jump-bin >/dev/null 2>&1; then
-		#source $(jump-bin --${SHELL_SHORT}-integration)
-		#test ${SHELL_SHORT} = 'zsh' && compctl -K _jump -S '' g	# Add completion to 'g' alias.
+		#source $(jump-bin --${SHELL_NAME}-integration)
+		#test ${SHELL_NAME} = 'zsh' && compctl -K _jump -S '' g	# Add completion to 'g' alias.
 	#fi
 #}
 

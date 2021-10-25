@@ -13,7 +13,7 @@ fi
 
 
 if [ -f $HOME/.shell_commons ]; then
-	export SHELL_SHORT=bash
+	export SHELL_NAME=bash
 	export completion_func=complete
 	source $HOME/.shell_commons
 fi

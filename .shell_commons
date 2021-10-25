@@ -287,7 +287,7 @@ source $HOME/.shell_functions
 	# rbenv NOTE is sandboxed
 	# https://github.com/rbenv/rbenv
 	#if program_is_in_path rbenv; then
-		#eval "$(rbenv init - $SHELL_SHORT)"
+		#eval "$(rbenv init - $SHELL_NAME)"
 	#fi
 
 # }
@@ -325,10 +325,10 @@ source $HOME/.shell_functions
 # }
 
 	# pkgfile (arch) "command not found" hook.
-	#sourceifexists /usr/share/doc/pkgfile/command-not-found.$SHELL_SHORT
+	#sourceifexists /usr/share/doc/pkgfile/command-not-found.$SHELL_NAME
 
 	# iTerm2 shell integration. Reference: https://www.iterm2.com/documentation-shell-integration.html
-	sourceifexists $HOME/.iterm2_shell_integration.$SHELL_SHORT
+	sourceifexists $HOME/.iterm2_shell_integration.$SHELL_NAME
 
 
 	# Tell gPodder to reside in multimedia directory. KDE4 uses ~/.kde4/env/
@@ -345,7 +345,7 @@ source $HOME/.shell_functions
 	# Tmuxinator initialization.
 	#if [ -d $HOME/src/github.com/tmuxinator/tmuxinator/bin/ ]; then
 		#PATH="$PATH:$HOME/src/github.com/tmuxinator/tmuxinator/bin/"
-		#source $HOME/src/github.com/tmuxinator/tmuxinator/completion/tmuxinator.$SHELL_SHORT
+		#source $HOME/src/github.com/tmuxinator/tmuxinator/completion/tmuxinator.$SHELL_NAME
 	#fi
 
 	# cloc.pl
@@ -398,7 +398,7 @@ source $HOME/.shell_functions
 
 	# iTerm2 integration: https://iterm2.com/documentation-shell-integration.html
 	# Disabled. Not used and makes shell load slower
-	#test -e "${HOME}/.iterm2_shell_integration.${SHELL_SHORT}" && source "${HOME}/.iterm2_shell_integration.${SHELL_SHORT}"
+	#test -e "${HOME}/.iterm2_shell_integration.${SHELL_NAME}" && source "${HOME}/.iterm2_shell_integration.${SHELL_NAME}"
 
 	# Must be at the end of shell init file. but here should do...
 	if program_is_in_path sdk; then
@@ -419,7 +419,7 @@ source $HOME/.shell_functions
 	sourceifexists $HOME/.config/broot/launcher/bash/br
 
 	# fzf https://github.com/junegunn/fzf#using-homebrew
-	sourceifexists $HOME/.fzf.${SHELL_SHORT}
+	sourceifexists $HOME/.fzf.${SHELL_NAME}
 
 	# Homebrew sqlite to shadow old version shipped with macOS.
 	if [ -d /usr/local/opt/sqlite/ ]; then
