@@ -20,7 +20,7 @@
     brew 'cloc'
     brew 'cmatrix'
     brew 'colordiff'
-    brew 'coreutils'    # Note that some gnu pakcages comes with g-prefix in the bin names. The default names are set up in $PATH in ~/.shell_commons
+    brew 'coreutils'    # Note that some gnu pakcages comes with g-prefix in the bin names. The default names are set up in $PATH in $XDG_CONFIG_HOME/shell/commons.
     brew 'cormacrelf/tap/dark-notify'    # To detect chagnes in OS light/dark appearens. Used by https://github.com/cormacrelf/dark-notify/
     brew 'cowsay'
     brew 'ctags'

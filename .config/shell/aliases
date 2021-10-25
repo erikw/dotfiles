@@ -57,7 +57,7 @@
 # }
 
 # Color support {
-	# NOTE see ~/.shell_commons for dircolors
+	# NOTE see $XDG_CONFIG_HOME/shell/commons for dircolors
 	LS_OPTIONS=
 	shell_is_linux && LS_OPTIONS="$LS_OPTIONS --time-style=long-iso -F"
 	if [ "$TERM" != dumb ]; then
@@ -282,9 +282,9 @@
 # }
 
 # Permutation aliases {
-	# From $(bin/permute_aliases.sh cmd > $HOME/.shell_aliases_cmd)
-	#sourceifexists "$HOME/.shell_aliases_make"
-	#sourceifexists "$HOME/.shell_aliases_git"
+	# From $(bin/permute_aliases.sh cmd > $XDG_CONFIG_HOME/shell/aliases_cmd)
+	#sourceifexists $XDG_CONFIG_HOME/shell/aliases_make
+	#sourceifexists $XDG_CONFIG_HOME/shell/git"
 # }
 
 # Virtualenvwrapper {

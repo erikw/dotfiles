@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 # Overlay to daemonize that does not require absolute path to the program to start.
 
-source $HOME/.shell_functions
+source $XDG_CONFIG_HOME/shell/functions
 
 prog=$(which "$1")
 shift

@@ -1,7 +1,7 @@
 # Start X if we're at vt1.
 # TODO start using systemd service when there is an official way of starting xorg in a user session.
 
-source $HOME/.shell_functions
+source $XDG_CONFIG_HOME/shell/functions
 
 if shell_is_linux; then
 	host=$(hostname --short)

@@ -12,10 +12,10 @@ if [ -f /etc/profile ] && [ -r /etc/profile ]; then
 fi
 
 
-if [ -f $HOME/.shell_commons ]; then
+if [ -f $XDG_CONFIG_HOME/shell/commons ]; then
 	export SHELL_NAME=bash
 	export completion_func=complete
-	source $HOME/.shell_commons
+	source $XDG_CONFIG_HOME/shell/commons
 fi
 
 # Set Vi command line editing mode. Not needed because it's set in ~/.inputrc.
@@ -90,4 +90,4 @@ fi
 	#fi
 # }
 
-#sourceifexists $HOME/.shell_startx
+#sourceifexists $XDG_CONFIG_HOME/X11/startx.sh

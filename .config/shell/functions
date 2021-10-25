@@ -1,9 +1,9 @@
 # Utility shell functions.
 # vi: foldmarker={,} filetype=sh foldmethod=marker foldlevel=0: tabstop=4 shiftwidth=4:
 
-# Import ~/.shell_functions.d/ {
-if [ -d $HOME/.shell_functions.d ]; then
-	for funcfile in $HOME/.shell_functions.d/*.sh; do
+# Dynamically source functions from the drop-in directory. {
+if [ -d $XDG_CONFIG_HOME/shell/functions.d ]; then
+	for funcfile in $XDG_CONFIG_HOME/shell/functions.d/*.sh; do
 		source $funcfile
 	done;
 fi

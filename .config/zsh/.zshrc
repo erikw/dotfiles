@@ -16,10 +16,10 @@
 #fi
 
 # Common shell settings.
-if [ -f $HOME/.shell_commons ]; then
+if [ -f $XDG_CONFIG_HOME/shell/commons ]; then
 	export SHELL_NAME=zsh
 	export completion_func=compctl
-	source $HOME/.shell_commons
+	source $XDG_CONFIG_HOME/shell/commons
 fi
 
 # Environment {{
@@ -257,7 +257,7 @@ fi
 	#fi
 
 	# bookmark shell paths. No dependencies like jump needs ruby.
-	# See aliases in ~.shell_aliases.
+	# See aliases in $XDG_CONFIG_HOME/shell/aliases.
 	# See ~/.cdbookmark for saved aliases
 	if [ -d ~/src/github.com/mollifier/cd-bookmark ]; then
 		fpath=(~/src/github.com/mollifier/cd-bookmark(N-/) $fpath)
@@ -282,7 +282,7 @@ fi
 	#eval $(mcfly init zsh)
 # }}
 
-#sourceifexists $HOME/.shell_startx
+#sourceifexists $XDG_CONFIG_HOME/X11/startx.sh
 
 
 # Must be at the end!

@@ -5,7 +5,7 @@
 # }
 
 # Load utility functions.
-source $HOME/.shell_functions
+source $XDG_CONFIG_HOME/shell/functions
 
 # Paths {
 	# Make the path available in subshells. Export is only needed once.
@@ -74,7 +74,7 @@ source $HOME/.shell_functions
 	fi
 
 	# Source aliases.
-	sourceifexists $HOME/.shell_aliases
+	sourceifexists $XDG_CONFIG_HOME/shell/aliases
 
 
 	# Locale

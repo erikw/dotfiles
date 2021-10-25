@@ -2,7 +2,7 @@
 # Set up of lazily loaded set-up code
 # See https://github.com/benvan/sandboxd
 
-source $HOME/.shell_functions.d/sourceifexists.sh
+source $XDG_CONFIG_HOME/shell/functions.d/sourceifexists.sh
 
 # Ruby Version Manager
 # Is sandboxed because

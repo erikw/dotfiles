@@ -639,7 +639,7 @@ let g:snipMate = { 'snippet_version' : 1 }	" Use the new parser (and surpress me
 "let g:startify_fortune_use_unicode = 1	" Draw fortune with Unicode instead of ASCII. Not needed with startify_custom_header.
 "let g:startify_files_number = 15	" Nubmer of files to show.
 " Bookmarks
-let g:startify_bookmarks = [ {'v': '$XDG_CONFIG_HOME/nvim/init.vim'}, '~/.shell_config', '~/.shell_aliases' ]
+let g:startify_bookmarks = [ {'v': '$XDG_CONFIG_HOME/nvim/init.vim'}, '$XDG_CONFIG_HOME/shell/commons', '$XDG_CONFIG_HOME/shell/aliases' ]
 
 
 " Reference: https://vi.stackexchange.com/a/9942

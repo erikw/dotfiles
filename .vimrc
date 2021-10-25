@@ -697,7 +697,7 @@
 
 " vim-startify {
 	" Bookmarks
-	let g:startify_bookmarks = [ {'v': '$HOME/.vimrc'}, '~/.shell_config', '~/.shell_aliases' ]
+	let g:startify_bookmarks = [ {'v': '$$HOME/.vimrc'}, '$XDG_CONFIG_HOME/shell/commons', '$XDG_CONFIG_HOME/shell/aliases' ]
 
 	let g:startify_fortune_use_unicode = 1	" Draw fortune with Unicode instead of ASCII.
 

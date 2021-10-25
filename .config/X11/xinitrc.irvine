@@ -10,7 +10,7 @@
 	session=dwm
 
 	# Web browser to use. urlscan (and others?) uses this variable.
-	# This is also set in ~/.shell_commons, but must be set here since mutt is started from here via irctor.
+	# This is also set in $XDG_CONFIG_HOME/shell/commons, but must be set here since mutt is started from here via irctor.
 	export BROWSER=firefox
 
 	# Set up display with default modes. NOTE set wallpaper after this.

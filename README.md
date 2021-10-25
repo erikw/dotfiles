@@ -107,7 +107,7 @@ $ git comitt -m "SQUASHED passwords"
 Untrack `~/.irssi/config` for local changes.
 
 ```bash
-$ source ~/.shell_aliases
+$ source ~/.config/shell/aliases
 $ dotf_irssiconf_untrack
 ```
 
@@ -120,7 +120,7 @@ $ grep -nr GIT-CENSORED . | grep -v README.md | grep -v "/.git/"
 ```
 
 
-Set `DESKTYPE` in `~/.shell_commons`, unless system is macos.
+Set `DESKTYPE` in `$XDG_CONFIG_HOME/shell/commons`, unless system is macos.
 
 
 Default desktop is assumed to be macOS. Go through host-specific manual settings by searching for the corresponding tag.
