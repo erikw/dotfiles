@@ -63,6 +63,9 @@ fi
 	# Reference: https://github.com/mpv-player/mpv/issues/2892
 	zstyle ':completion:*:*:open:*' tag-order '!urls'
 
+	# Use cache from XDG location
+	zstyle ':completion:*' cache-path $XDG_CACHE_HOME/zsh/zcompcache
+
 	# Use colors in tabcompletion
 	shell_is_macos && zstyle ':completion:*:default' list-colors ''
 
@@ -72,16 +75,23 @@ fi
 	#compdef _path_files cd
 
 	autoload -Uz compinit
-	# -C: [shell startup time optimization] ignore checking for new comp files. The dump file will only be created if there isn’t one already. NOTE Thus, for new files e.g. added to fpath, manually run $(compinit -i) once.
-	# 		Alternative could be to do $(chmod go-w '/usr/local/share') but that's not a good solution.
+	# -C: [shell startup time optimization] ignore checking for new comp files. The dump file will be
+	#       created if there isn’t one already. NOTE Thus, for new files e.g. added to fpath, manually
+	#       run once: $ compinit -d $XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION -i
+	#		Alternative could be to do $(chmod go-w '/usr/local/share') but that's not a good solution.
 	# -u: ignore check for comp files not owned by root or current user. Avoids problems on $(sudo -s). NOTE seems not to be needed anymore.
 	# -i: ignore insecure folder/file check, thus include e.g. /usr/local/share/zsh/site-functions
+	# -d: Use a specific path to the dumpfile.
 	# Reference: http://zsh.sourceforge.net/Doc/Release/Completion-System.html#Initialization
-	compinit -C
+	#compinit -C
+	test -d $XDG_CACHE_HOME/zsh || mkdir -p $XDG_CACHE_HOME/zsh
+	compinit -d $XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION -C
 # }}
 
 # History {{
-	export HISTFILE=~/.zsh_history		# Where to save history.
+	#export HISTFILE=~/.zsh_history		# Where to save history.
+	test -d $XDG_STATE_HOME/zsh || mkdir -p $XDG_STATE_HOME/zsh
+	export HISTFILE="$XDG_STATE_HOME"/zsh/history
 	export HISTSIZE=1000000				# How many lines in the current session to remember.
 	export SAVEHIST=1000000				# How many lines to save to disk. Must be <=HISTSIZE.
 	# Patterns to exclue. Separate with |. *-matching.

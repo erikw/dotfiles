@@ -131,6 +131,11 @@ source $HOME/.shell_functions
 	# Nice to have when fetching scanned documents
 	export SCANNED=$HOME/media/images/scanned/
 
+	if shell_is_macos; then
+		# Disable macos shell restore feature (/etc/bashrc_Apple_Terminal) that creates e.g. ~/.zsh_session
+		export SHELL_SESSIONS_DISABLE=1
+	fi
+
 	# XDG {
 	# Set XDG envvars to default values, so that scripts can refer to them (like in ~/.config/nvim/syntax/)
 	# Reference: https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
