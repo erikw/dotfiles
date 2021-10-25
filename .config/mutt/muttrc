@@ -72,6 +72,7 @@
 # General {{
 	set charset = "utf-8"					# Charset used in terminal.
 	set send_charset = "utf-8:iso-8859-1"			# Charset for sending.
+	#set signature="$XDG_CONFIG_HOME/sig"			# Mail signature.
 	set signature="~/bin/siggen.sh|"			# Mail signature.
 	unset sig_dashes					# Don't put two dashed above the .sig.
 	#set edit_headers = yes					# Edit mail headers in the editor.
