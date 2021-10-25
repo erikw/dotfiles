@@ -19,6 +19,7 @@ tap 'homebrew/cask-drivers' # For focusrite-control
 
 # Formula: python-dev {
     brew 'pyright'        # LSP server.
+    brew 'pyenv'
 # }
 
 # Formula: ruby-dev {

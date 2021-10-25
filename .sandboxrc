@@ -21,11 +21,13 @@ source $HOME/.shell_functions.d/sourceifexists.sh
 #}
 
 # rbenv
-# NOTE Does not work for some reason. Sandbox init conflicts with the rbenv-init?
-#sandbox_init_rbenv(){
-	#eval "$(rbenv init - zsh)"
-#}
-#sandbox_hook rbenv rbenv
+sandbox_init_rbenv(){
+  export RBENV_ROOT="$HOME/.rbenv"
+  export PATH="$RBENV_ROOT/bin:$PATH"
+  export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+  eval "$(rbenv init - $SHELL_SHORT)"
+}
+sandbox_hook_shims rbenv "$HOME/.rbenv/shims"
 
 # GVM: Go Version Manager
 sandbox_init_gvm() {
@@ -76,20 +78,14 @@ sandbox_hook java-home jar
 
 # pyenv python version manager
 # NOTE only interactive termnials will get this, not scripts.
-#sandbox_init_pyenv() {
-	#if type pyenv >/dev/null 2>&1; then
-		#eval "$(pyenv init -)"
-	#fi
-#}
-#sandbox_hook pyenv easy_install
-#sandbox_hook pyenv pip
-#sandbox_hook pyenv pip3
-#sandbox_hook pyenv pydoc
-#sandbox_hook pyenv pydoc3
-#sandbox_hook pyenv python
-#sandbox_hook pyenv python-config
-#sandbox_hook pyenv python3
-#sandbox_hook pyenv python3-config
+sandbox_init_pyenv() {
+  export PYENV_ROOT="$HOME/.pyenv"
+  export PATH="$PYENV_ROOT/bin:$PATH"
+  eval "$(pyenv init -)"
+  #export VIRTUAL_ENV_DISABLE_PROMPT=1
+  #eval "$(pyenv virtualenv-init -)"
+}
+sandbox_hook_shims pyenv
 
 # NVM
 # NOTE Does not work for some reason.

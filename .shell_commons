@@ -273,11 +273,11 @@ source $HOME/.shell_functions
 		export RUBY_CONFIGURE_OPTS="--with-openssl-dir=/usr/local/opt/openssl@1.1"
 	fi
 
-	# rbenv
+	# rbenv NOTE is sandboxed
 	# https://github.com/rbenv/rbenv
-	if program_is_in_path rbenv; then
-		eval "$(rbenv init - $SHELL_SHORT)"
-	fi
+	#if program_is_in_path rbenv; then
+		#eval "$(rbenv init - $SHELL_SHORT)"
+	#fi
 
 # }
 
@@ -296,7 +296,8 @@ source $HOME/.shell_functions
 	#fi
 
 
-	#if program_is_in_path pyenv; then
+	if program_is_in_path pyenv; then
+		# NOTE is sandboxed
 		#export PYENV_ROOT="$HOME/.pyenv"
 		#export PATH="$PYENV_ROOT/bin:$PATH"
 		#eval "$(pyenv init --path)"
@@ -307,15 +308,9 @@ source $HOME/.shell_functions
 		# Solution: make an alias for brew that excludes pyenv from PATH
 		# Reference: https://github.com/pyenv/pyenv/issues/106#issuecomment-625334706
 		#alias brew='env PATH="${PATH//$(pyenv root)\/shims:/}" brew'
-		# Combined with removal of gnubins from abov (make sure to comment the first alias out for speed)
-		#alias brew='env PATH="$(echo "$PATH" | sed -e "s/:\/usr\/local\/opt\/[^:]*://g" -e "s/:.*pyenv\/shims://g")" brew'
-	#fi
-
-	# When using pyenv, normal virtual env can't be used for python <3.3.
-	# See https://github.com/pyenv/pyenv-virtualenv and https://www.freecodecamp.org/news/manage-multiple-python-versions-and-virtual-environments-venv-pyenv-pyvenv-a29fb00c296f/
-	#if program_is_in_path pyenv-virtualenv; then
-		#eval "$(pyenv virtualenv-init -)"
-	#fi
+		# Combined with removal of gnubins from above (make sure to comment the first alias out for speed)
+		alias brew='env PATH="$(echo "$PATH" | sed -e "s/:\/usr\/local\/opt\/[^:]*://g" -e "s/:.*pyenv\/shims://g")" brew'
+	fi
 # }
 
 	# pkgfile (arch) "command not found" hook.
