@@ -39,8 +39,8 @@
 	# Updated X resouce database.
 	if [ -f "$HOME/.Xresources" ]; then
 		# Apparently merge will not always work for xterm settings.
-		#xrdb -merge $XDG_CONFIG_HOME/X11/Xresources
-		xrdb -load $XDG_CONFIG_HOME/X11/Xresources
+		#xrdb -merge ${XDG_CONFIG_HOME:-$HOME/.config}/X11/Xresources
+		xrdb -load ${XDG_CONFIG_HOME:-$HOME/.config}/X11/Xresources
 	fi
 
 	# Tell GTK and QT applications to use X input method so my .Xmodmaps becomes visible.
@@ -133,7 +133,7 @@
 	volnoti --no-daemon --timeout 1.2 &
 
 	# Start X keyboard shortcut daemon.
-	xbindkeys -f $XDG_CONFIG_HOME/xbindkeys/config
+	xbindkeys -f ${XDG_CONFIG_HOME:-$HOME/.config}/xbindkeys/config
 
 	# DWM statusbar.
 	dwmstatus &

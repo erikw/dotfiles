@@ -1,7 +1,7 @@
 ;; Erik Westrup's GNU Emacs configuration.
 
 ;;; Environment
-;;; NOTE use expand-file-name to use $XDG_CONFIG_HOME
+;;; NOTE use expand-file-name user-emacs-directory to use $XDG_CONFIG_HOME/emacs if it exist.
 (add-to-list 'load-path (expand-file-name "lisp/" user-emacs-directory)) ;; Add lisp plugin folder to load path.
 (add-to-list 'custom-theme-load-path (expand-file-name "themes/" user-emacs-directory))	;; Theme path.
 

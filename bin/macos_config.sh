@@ -384,18 +384,17 @@ defaults write com.apple.finder _FXSortFoldersFirst -bool true
 ## Misc
 # * Sidebar Favourites, add to make it
 # - ~/
+# - ~/.dropbox-data/Dropbox/
 # - ~/Desktop/
 # - ~/doc/
 # - ~/dl/
 # - ~/media/
-# - ~/src/github.com/
 # - ~/media/images/screenshots/
 # - ~/media/music/production/
+# - ~/src/github.com/
 # - ~/tmp/
 # - ~/.config/finder/---------/
-	bind-key H pipe-pane -o "exec cat >>$XDG_STATE_HOME/tmux/'#W-tmux.log'" \; display-message 'Toggled logging to file.
 # - /Applications
-# - ~/Desktop
 # - /private/tmp
 # - /Volumes/toshiba_music/daw/plugins/
 # - /Volumes/toshiba_music/music/samples/

@@ -2,7 +2,7 @@
 # Set up of lazily loaded set-up code
 # See https://github.com/benvan/sandboxd
 
-source $XDG_CONFIG_HOME/shell/functions.d/sourceifexists.sh
+source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/functions.d/sourceifexists.sh
 
 # Ruby Version Manager
 # Is sandboxed because
@@ -90,8 +90,8 @@ sandbox_hook_shims pyenv
 # NVM
 # NOTE Does not work for some reason.
 #sandbox_init_nvm() {
-	#if [ -d $XDG_CONFIG_HOME/nvm ]; then
-		#export NVM_DIR="$XDG_CONFIG_HOME/nvm"
+	#if [ -d ${XDG_CONFIG_HOME:-$HOME/.config}/nvm ]; then
+		#export NVM_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/nvm"
 		#set -x
 		#[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 		#set +x

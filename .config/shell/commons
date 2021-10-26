@@ -52,7 +52,7 @@
 # }
 
 # Load utility functions.
-source $XDG_CONFIG_HOME/shell/functions
+source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/functions
 
 # Paths {
 	# Make the path available in subshells. Export is only needed once.
@@ -121,7 +121,7 @@ source $XDG_CONFIG_HOME/shell/functions
 	fi
 
 	# Source aliases.
-	sourceifexists $XDG_CONFIG_HOME/shell/aliases
+	sourceifexists ${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliases
 
 
 	# Locale
@@ -150,7 +150,7 @@ source $XDG_CONFIG_HOME/shell/functions
 	if shell_is_macos; then
 		# Location of Brewfile. Reference: https://docs.brew.sh/Manpage#bundle-subcommand
 		# Alternatively could use $(brew bundle -g) to use this file, but as I'm not dealing with other Brewfile, might as well make this one default.
-		export HOMEBREW_BUNDLE_FILE=$XDG_CONFIG_HOME/homebrew/Brewfile
+		export HOMEBREW_BUNDLE_FILE=${XDG_CONFIG_HOME:-$HOME/.config}/homebrew/Brewfile
 		# Not using the Brewfile.lock.json feature.
 		export HOMEBREW_BUNDLE_NO_LOCK=1
 	fi
@@ -162,8 +162,8 @@ source $XDG_CONFIG_HOME/shell/functions
 	fi
 
 	# Personal log folder used by some program configurations.
-	test -d $XDG_STATE_HOME/tmux || mkdir -p $XDG_STATE_HOME/tmux
-	test -d $XDG_STATE_HOME/irssi || mkdir -p $XDG_STATE_HOME/irssi
+	test -d ${XDG_STATE_HOME:-$HOME/.local/state}/tmux || mkdir -p ${XDG_STATE_HOME:-$HOME/.local/state}/tmux
+	test -d ${XDG_STATE_HOME:-$HOME/.local/state}/irssi || mkdir -p ${XDG_STATE_HOME:-$HOME/.local/state}/irssi
 
 	# Enable sandboxing a.k.a. lazy loading of shell initialization for some programs.
 	if [ -e $HOME/.sandboxd/sandboxd ]; then
@@ -193,7 +193,7 @@ source $XDG_CONFIG_HOME/shell/functions
 	if program_is_in_path dircolors; then
 		dircolorsdb=$HOME/src/github.com/seebi/dircolors-solarized/dircolors.256dark
 		if ! [ -f $dircolorsdb ]; then
-			dircolorsdb=$XDG_CONFIG_HOME/shell/dircolors
+			dircolorsdb=${XDG_CONFIG_HOME:-$HOME/.config}/shell/dircolors
 		fi
 		eval "$(dircolors -b $dircolorsdb)"
 	fi
@@ -348,7 +348,7 @@ source $XDG_CONFIG_HOME/shell/functions
 	#export GPODDER_HOME=$HOME/media/music/gPodder
 
 	# Source MPD environment variables.
-	#sourceifexists $XDG_CONFIG_HOME/mpd/env.sh
+	#sourceifexists ${XDG_CONFIG_HOME:-$HOME/.config}/mpd/env.sh
 
 	# SSH agent. Source bash file if not connected from a remote SSH.
 	#if [ -z "$SSH_CLIENT" ] && [ -f "$HOME/.ssh-agent" ]; then
@@ -405,8 +405,8 @@ source $XDG_CONFIG_HOME/shell/functions
 
 	# Load custom keymap
 	# NOTE allow me or %wheeler to issue loadkeys with no password.
-	#if shell_is_linux && [ -f "$XDG_CONFIG_HOME/loadkeys/keymap" ]; then
-		#sudo loadkeys -q $XDG_CONFIG_HOME/loadkeys/keymap &>/dev/null
+	#if shell_is_linux && [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/loadkeys/keymap" ]; then
+		#sudo loadkeys -q ${XDG_CONFIG_HOME:-$HOME/.config}/loadkeys/keymap &>/dev/null
 	#fi
 
 	# iTerm2 integration: https://iterm2.com/documentation-shell-integration.html
@@ -441,8 +441,8 @@ source $XDG_CONFIG_HOME/shell/functions
 
 	# NVM
 	# Let's not use NVM; slows down every shell, puts a git repo in $XDG_CONFIG_HOME...
-	#if [ -d $XDG_CONFIG_HOME/nvm ]; then
-		#export NVM_DIR="$XDG_CONFIG_HOME/nvm"
+	#if [ -d ${XDG_CONFIG_HOME:-$HOME/.config}/nvm ]; then
+		#export NVM_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/nvm"
 		#[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 		#[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 	#fi

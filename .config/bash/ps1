@@ -83,7 +83,7 @@ ps1_parse_hg_branch() {
 
 
 # Import colors.
-. $XDG_CONFIG_HOME/bash/colors
+. ${XDG_CONFIG_HOME:-$HOME/.config}/bash/colors
 
 # Reset default values.
 PS1=''

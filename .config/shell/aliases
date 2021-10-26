@@ -62,7 +62,7 @@
 	shell_is_linux && LS_OPTIONS="$LS_OPTIONS --time-style=long-iso -F"
 	if [ "$TERM" != dumb ]; then
 		if shell_is_linux && program_is_in_path dircolors; then
-		    eval "$(dircolors -b $XDG_CONFIG_HOME/shell/dircolors)"
+		    eval "$(dircolors -b ${XDG_CONFIG_HOME:-$HOME/.config}/shell/dircolors)"
 		fi
 		# Colors when output is terminal.
 		#alias ls="ls ${ls_options} --color=auto"
@@ -176,15 +176,14 @@
 	    alias nview='nvim -R'
 	    alias vimdiff='nvim -d'
 	    alias nvimdiff='nvim -d'
-	    alias viclean="nvim -u NONE -i NONE"
-	    alias vibclean="nvim -u NONE -i NONE -c 'set number backup'"
-	    alias nvim_clean='rm -rf $XDG_DATA_HOME/nvim/{shada,swap,undo,view}/ $XDG_CACHE_HOME/nvim/'		# It's a new-start!
-	    alias vi_clean='nvim_clean'
+	    alias viplain="nvim -u NONE -i NONE"
+	    alias vibplain="nvim -u NONE -i NONE -c 'set number backup'"
+	    alias nvim_clean='rm -rf ${XDG_DATA_HOME:-$HOME/.local/share}/nvim/{shada,swap,undo,view}/ ${XDG_CACHE_HOME:-$HOME/.cache}/nvim/'		# It's a new-start!
 	else
 	    alias vi='vim'						# Be IMproved.
 	    alias view='vim -R'					# Not all distributions of vim provide the readonly bin.
-	    alias viclean="vim -u NONE -i NONE"				# Start wiht without reading ~/.vimrc and using ~/.viminfo.
-	    alias vibclean="vim -u NONE -i NONE -c 'set number backup'"	# Same, but write local backup file.
+	    alias viplain="vim -u NONE -i NONE"				# Start wiht without reading ~/.vimrc and using ~/.viminfo.
+	    alias vibplain="vim -u NONE -i NONE -c 'set number backup'"	# Same, but write local backup file.
 	fi
 # }
 
@@ -247,7 +246,7 @@
 	alias find_dropbox_conflicts='find ~/.dropbox-data/Dropbox/doc -name "*conflicted copy*"'	# Find conflicting synced dropbox files.
 	alias find_large_files="find . -type f -size +5M -print0 | xargs -0 ls -lh | sort -k5,5 -h | awk '{print \$5, \$9}'"	# Find large files.
 	alias find_large_pdfs="find . -name \"*.pdf\" -type f -size +5M -print0 | xargs -0 ls -lh | sort -k5,5 -h | awk '{print \$5, \$9}'"	# Find large PDFs.
-	alias restic_env_b2='source $XDG_CONFIG_HOME/restic/b2_env.sh'		# Init restic env for B2.
+	alias restic_env_b2='source ${XDG_CONFIG_HOME:-$HOME/.config}/restic/b2_env.sh'		# Init restic env for B2.
 	alias git_top_contribs='git log | grep Author | sort | uniq -c | sort -n -r'	# Show top authors of a git repo.
 
 	# Enable/disable git change tracking on irssi conf. Have it off by default, as awl plugin keeps changing it all the time.
@@ -282,9 +281,9 @@
 # }
 
 # Permutation aliases {
-	# From $(bin/permute_aliases.sh cmd > $XDG_CONFIG_HOME/shell/aliases_cmd)
-	#sourceifexists $XDG_CONFIG_HOME/shell/aliases_make
-	#sourceifexists $XDG_CONFIG_HOME/shell/git"
+	# From $(bin/permute_aliases.sh cmd > ${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliases_cmd)
+	#sourceifexists ${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliases_make
+	#sourceifexists ${XDG_CONFIG_HOME:-$HOME/.config}/shell/git"
 # }
 
 # Virtualenvwrapper {

@@ -16,10 +16,10 @@
 #fi
 
 # Common shell settings.
-if [ -f $XDG_CONFIG_HOME/shell/commons ]; then
+if [ -f ${XDG_CONFIG_HOME:-$HOME/.config}/shell/commons ]; then
 	export SHELL_NAME=zsh
 	export completion_func=compctl
-	source $XDG_CONFIG_HOME/shell/commons
+	source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/commons
 fi
 
 # Environment {{
@@ -64,7 +64,7 @@ fi
 	zstyle ':completion:*:*:open:*' tag-order '!urls'
 
 	# Use cache from XDG location
-	zstyle ':completion:*' cache-path $XDG_CACHE_HOME/zsh/zcompcache
+	zstyle ':completion:*' cache-path ${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompcache
 
 	# Use colors in tabcompletion
 	shell_is_macos && zstyle ':completion:*:default' list-colors ''
@@ -84,14 +84,14 @@ fi
 	# -d: Use a specific path to the dumpfile.
 	# Reference: http://zsh.sourceforge.net/Doc/Release/Completion-System.html#Initialization
 	#compinit -C
-	test -d $XDG_CACHE_HOME/zsh || mkdir -p $XDG_CACHE_HOME/zsh
-	compinit -d $XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION -C
+	test -d ${XDG_CACHE_HOME:-$HOME/.cache}/zsh || mkdir -p ${XDG_CACHE_HOME:-$HOME/.cache}/zsh
+	compinit -d ${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump-$ZSH_VERSION -C
 # }}
 
 # History {{
 	#export HISTFILE=~/.zsh_history		# Where to save history.
-	test -d $XDG_STATE_HOME/zsh || mkdir -p $XDG_STATE_HOME/zsh
-	export HISTFILE="$XDG_STATE_HOME"/zsh/history
+	test -d ${XDG_STATE_HOME:-$HOME/.local/state}/zsh || mkdir -p ${XDG_STATE_HOME:-$HOME/.local/state}/zsh
+	export HISTFILE=${XDG_STATE_HOME:-$HOME/.local/state}/zsh/history
 	export HISTSIZE=1000000				# How many lines in the current session to remember.
 	export SAVEHIST=1000000				# How many lines to save to disk. Must be <=HISTSIZE.
 	# Patterns to exclue. Separate with |. *-matching.
@@ -282,7 +282,7 @@ fi
 	#eval $(mcfly init zsh)
 # }}
 
-#sourceifexists $XDG_CONFIG_HOME/X11/startx.sh
+#sourceifexists ${XDG_CONFIG_HOME:-$HOME/.config}/X11/startx.sh
 
 
 # Must be at the end!

@@ -19,7 +19,7 @@ backupper=$HOME/src/github.com/caseychu/spotify-backup/spotify-backup.py
 
 # Redirect stdout ( > ) into a named pipe ( >() ) running "tee" to a file, so we can observe the status by simply tailing the log file.
 me=$(basename "$0")
-log_dir=$XDG_STATE_HOME/spotify-backup
+log_dir=${XDG_STATE_HOME:-$HOME/.local/state}/spotify-backup
 log_file="${log_dir}/${date}_${me}.$$.log"
 test -d $log_dir || mkdir -p $log_dir
 exec > >(tee -i $log_file)

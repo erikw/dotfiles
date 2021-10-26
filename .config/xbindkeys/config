@@ -292,8 +292,8 @@
 
 # Misc {
 	# Toggle English and Swedish keboard layout.
-    	#"~/dev/vimomap/vimomap.sh --layout && xmodmap $XDG_CONFIG_HOME/X11/Xmodmap"
-    	#	Mod4 + Mod1 + Shift + k
+	#"~/dev/vimomap/vimomap.sh --layout && xmodmap ${XDG_CONFIG_HOME:-$HOME/.config}/X11/Xmodmap"
+		#	Mod4 + Mod1 + Shift + k
 
 	# Fix keyboard when docked.
 	"xkbset"

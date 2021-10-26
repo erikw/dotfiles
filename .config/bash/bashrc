@@ -12,10 +12,10 @@ if [ -f /etc/profile ] && [ -r /etc/profile ]; then
 fi
 
 
-if [ -f $XDG_CONFIG_HOME/shell/commons ]; then
+if [ -f ${XDG_CONFIG_HOME:-$HOME/.config}/shell/commons ]; then
 	export SHELL_NAME=bash
 	export completion_func=complete
-	source $XDG_CONFIG_HOME/shell/commons
+	source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/commons
 fi
 
 # Set Vi command line editing mode. Not needed because it's set in ~/.inputrc.
@@ -39,8 +39,8 @@ fi
 
 # History {
 	# Where to store the history.
-	test -d $XDG_STATE_HOME/bash || mkdir -p $XDG_STATE_HOME/bash
-	export HISTFILE="$XDG_STATE_HOME"/bash/history
+	test -d ${XDG_STATE_HOME:-$HOME/.local/state}/bash || mkdir -p ${XDG_STATE_HOME:-$HOME/.local/state}/bash
+	export HISTFILE=${XDG_STATE_HOME:-$HOME/.local/state}/bash/history
 	# Number lines to store in active bash session.
 	export HISTSIZE=100000
 	# Number lines to store in history file after session end.
@@ -59,7 +59,7 @@ fi
 
 # UI {
 	# Source PS1 configuration.
-	sourceifexists $XDG_CONFIG_HOME/bash/ps1
+	sourceifexists ${XDG_CONFIG_HOME:-$HOME/.config}/bash/ps1
 
 	# Powerline
 	#if [ -n "$POWERLINE_ROOT" ] && [ -d $POWERLINE_ROOT ]; then
@@ -90,4 +90,4 @@ fi
 	#fi
 # }
 
-#sourceifexists $XDG_CONFIG_HOME/X11/startx.sh
+#sourceifexists ${XDG_CONFIG_HOME:-$HOME/.config}/X11/startx.sh

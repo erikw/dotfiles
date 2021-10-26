@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Prints all unique permutation of a given program as bash alias commands to stdout. Ideal for generation of "make" or "git" aliases.
 # Usage:
-# $ ./permute_aliases.sh <program> > $XDG_CONFIG_HOME/shell/aliases_<program>
+# $ ./permute_aliases.sh <program> > ${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliases_<program>
 # source the generated file in you bash configuration file(s), like $(source aliases_<program>)
 # or add it directly like
 # $ ./permute_aliases.sh <program> >> ~/.bashrc

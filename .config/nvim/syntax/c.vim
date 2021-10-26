@@ -2,5 +2,6 @@
 
 "syntax keyword cTodo contained NOTE NOPE
 
-source $XDG_CONFIG_HOME/nvim/syntax/my_todo.vim
+let s:xdg_config_home = empty($XDG_CONFIG_HOME) ? "$HOME/.config" : $XDG_CONFIG_HOME
+exec "source " . s:xdg_config_home . "/nvim/syntax/my_todo.vim"
 call ExtendTodoSyntaxWithCustom('cTodo')
