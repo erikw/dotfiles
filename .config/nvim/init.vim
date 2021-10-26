@@ -13,7 +13,9 @@
 " Plugins {
 " vim-plug data folder
 call plug#begin(stdpath('data') . '/plugged')
-
+" Environment {
+let s:xdg_conf_home = empty($XDG_CONFIG_HOME) ? "$HOME/.config" : $XDG_CONFIG_HOME
+" }
 " General {
 	"Plug 'dhruvasagar/vim-table-mode'			" Create ASCII tables
 	"Plug 'godlygeek/tabular'				" Create tables. Disabled: not used and have some startup time.
@@ -376,8 +378,9 @@ execute "set thesaurus=" . "~/.vim/thesaurus/" . matchstr(&spelllang, "[a-zA-Z][
 colorscheme NeoSolarized
 
 " Adjust colors to this background.
-if filereadable(expand("$XDG_CONFIG_HOME/solarizedtoggle/status"))
-	let &background = readfile(expand("$XDG_CONFIG_HOME/solarizedtoggle/status"), '', 1)[0]
+let s:solarized_status = s:xdg_conf_home . "/solarizedtoggle/status"
+if filereadable(s:solarized_status)
+	let &background = readfile(s:solarized_status)[0]
 else
 	" Lighter bg during night.
 	" Source:  http://benjamintan.io/blog/2014/04/10/switch-solarized-light-slash-dark-depending-on-the-time-of-day/
@@ -640,7 +643,7 @@ let g:snipMate = { 'snippet_version' : 1 }	" Use the new parser (and surpress me
 "let g:startify_fortune_use_unicode = 1	" Draw fortune with Unicode instead of ASCII. Not needed with startify_custom_header.
 "let g:startify_files_number = 15	" Nubmer of files to show.
 " Bookmarks
-let g:startify_bookmarks = [ {'v': '$XDG_CONFIG_HOME/nvim/init.vim'}, '$XDG_CONFIG_HOME/shell/commons', '$XDG_CONFIG_HOME/shell/aliases' ]
+let g:startify_bookmarks = [ {'v': s:xdg_conf_home . '/nvim/init.vim'}, s:xdg_conf_home . '/shell/commons', s:xdg_conf_home . '/shell/aliases' ]
 
 
 " Reference: https://vi.stackexchange.com/a/9942

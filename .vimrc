@@ -220,8 +220,10 @@
 	"hi Normal ctermbg=NONE	" Transparent background.
 	set title		" Show title in console title bar.
 	" Adjust colors to this background.
-	if filereadable(expand("$XDG_CONFIG_HOME/solarizedtoggle/status"))
-		let &background = readfile(expand("$XDG_CONFIG_HOME/solarizedtoggle/status"), '', 1)[0]
+	let s:xdg_conf_home = empty($XDG_CONFIG_HOME) ? "$HOME/.config" : $XDG_CONFIG_HOME
+	let s:solarized_status = s:xdg_conf_home . "/solarizedtoggle/status"
+	if filereadable(s:solarized_status)
+		let &background = readfile(s:solarized_status)[0]
 	else
 		" Lighter bg during night.
 		" Source:  http://benjamintan.io/blog/2014/04/10/switch-solarized-light-slash-dark-depending-on-the-time-of-day/
@@ -698,7 +700,7 @@
 
 " vim-startify {
 	" Bookmarks
-	let g:startify_bookmarks = [ {'v': '$HOME/.vimrc'}, '$XDG_CONFIG_HOME/shell/commons', '$XDG_CONFIG_HOME/shell/aliases' ]
+	let g:startify_bookmarks = [ {'v': '$HOME/.vimrc'}, s:xdg_conf_home . '/shell/commons', s:xdg_conf_home . '/shell/aliases' ]
 
 	let g:startify_fortune_use_unicode = 1	" Draw fortune with Unicode instead of ASCII.
 
