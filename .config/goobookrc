@@ -6,7 +6,7 @@
 ;email: user@gmail.com
 ;password: top secret
 # The following are optional, defaults are shown
-;cache_filename: ~/.goobook_cache
+;cache_filename: ~/.cache/goobook/goobook_cache
 cache_expiry_hours: 12
 filter_groupless_contacts: no
 
