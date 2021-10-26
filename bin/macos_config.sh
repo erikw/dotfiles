@@ -392,7 +392,8 @@ defaults write com.apple.finder _FXSortFoldersFirst -bool true
 # - ~/media/images/screenshots/
 # - ~/media/music/production/
 # - ~/tmp/
-# - ~/.---------./
+# - ~/.config/finder/---------/
+	bind-key H pipe-pane -o "exec cat >>$XDG_STATE_HOME/tmux/'#W-tmux.log'" \; display-message 'Toggled logging to file.
 # - /Applications
 # - ~/Desktop
 # - /private/tmp
