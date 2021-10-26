@@ -181,9 +181,12 @@
 	    alias nvim_clean='rm -rf ${XDG_DATA_HOME:-$HOME/.local/share}/nvim/{shada,swap,undo,view}/ ${XDG_CACHE_HOME:-$HOME/.cache}/nvim/'		# It's a new-start!
 	else
 	    alias vi='vim'						# Be IMproved.
-	    alias view='vim -R'					# Not all distributions of vim provide the readonly bin.
+	    alias view='vim -R'						# Not all distributions of vim provide the readonly bin.
 	    alias viplain="vim -u NONE -i NONE"				# Start wiht without reading ~/.vimrc and using ~/.viminfo.
 	    alias vibplain="vim -u NONE -i NONE -c 'set number backup'"	# Same, but write local backup file.
+	fi
+	if program_is_in_path vim; then
+	    alias vim_clean='rm -rf ~/.vim/{.netrwhist,fuf-data,swap,view,viminfo,yankring_v2.txt} ~/.vim/undo/* ~/.cache/vim/swap/'		# It's a new-start!
 	fi
 # }
 
