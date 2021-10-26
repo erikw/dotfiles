@@ -3,7 +3,7 @@
 Most of my personal dotfiles can be found in this branch. I use dfm (dot file manager) to install and managed the dotfiles. See [justone/dotfiles](https://github.com/justone/dotfiles) for details on how to use it.
 
 # Highlights
-* [XDG compliance](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html) - I've spent quite some effort to make my dotfiles adhere to the standard as much as possible, using and contributing to the [Arch wiki page](https://wiki.archlinux.org/title/XDG_Base_Directory). Thus, most mof my configs now live in [.config/](.config/).
+* [.config/](.config/) [XDG compliance](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html) - I've spent quite some effort to make my dotfiles adhere to the standard as much as possible, using and contributing to the [Arch wiki page](https://wiki.archlinux.org/title/XDG_Base_Directory). Thus, most mof my configs now live in [.config/](.config/).
 * Check out my Neovim configurations [.config/nvim/](.config/nvim)-- they are pretty cool!
 * [bin/](bin/) -- many handy and time saving scripts.
   * [pdf_compress.sh](bin/pdf_compress.sh) -- compress file size of PDFs!
