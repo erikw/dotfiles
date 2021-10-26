@@ -137,6 +137,9 @@ source $XDG_CONFIG_HOME/shell/functions
 		export SHELL_SESSIONS_DISABLE=1
 	fi
 
+	# Speed up dfm by telling it where the source is
+	export DFM_REPO=$HOME/src/github.com/erikw/dotfiles/
+
 	# XDG {
 	# Set XDG envvars to default values, so that scripts can refer to them (like in ~/.config/nvim/syntax/)
 	# Reference: https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html

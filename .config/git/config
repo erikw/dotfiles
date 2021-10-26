@@ -63,7 +63,7 @@
 	helper = cache
 [pull]
 	rebase = true	; Only rebase when pulling, no mrege.
-	ff = only	; Allow only fast-forward (no merge comitt) rebase when pulling with rebase.
+	ff = only	; Allow only fast-forward (no merge commit) rebase when pulling with rebase.
 [push]
 	default = upstream
 [merge]

@@ -75,7 +75,8 @@ Set up git user email address in `~/.config/git/config-local`:
 ## Install DFM
 
 ```bash
-$ git clone git@github.com:erikw/dotfiles.git ~/.dotfiles
+$ #git clone git@github.com:erikw/dotfiles.git ~/.dotfiles  # old
+$ git clone git@github.com:erikw/dotfiles.git ~/src/github.com/erikw/dotfiles
 $ cd !$
 $ git remote add upstream git@github.com:justone/dotfiles.git
 $ git submodule init
@@ -83,10 +84,7 @@ $ git submodule update
 $ bin/dfm install
 ```
 
-``
-
 Check what dotfiles that were overriden, and handle this with a merge or discard.
-
 ```bash
 $ cd ~/.backup
 $ ls -la
@@ -100,7 +98,7 @@ $ git checkout -b local
 ```
 and after making some changes to the branch, star quashing to one commit
 ```bash
-$ git comitt -m "SQUASHED passwords"
+$ git commit -m "SQUASHED passwords"
 ```
 
 
