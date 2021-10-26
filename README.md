@@ -2,26 +2,6 @@
 
 Most of my personal dotfiles can be found in this branch. I use dfm (dot file manager) to install and managed the dotfiles. See [justone/dotfiles](https://github.com/justone/dotfiles) for details on how to use it.
 
-<!-- toc -->
-
-- [Highlights](#highlights)
-- [Installation](#installation)
-  * [Set up Github credentials](#set-up-github-credentials)
-    + [Generate a pair of new SSH keys.](#generate-a-pair-of-new-ssh-keys)
-    + [Upload keys](#upload-keys)
-  * [Install DFM](#install-dfm)
-  * [Host specific configuration](#host-specific-configuration)
-  * [Install ghq](#install-ghq)
-  * [General](#general)
-  * [Tmux](#tmux)
-  * [Shell](#shell)
-    + [ZSH](#zsh)
-    + [Bash](#bash)
-  * [Firefox](#firefox)
-- [Table of Contents generation](#table-of-contents-generation)
-
-<!-- tocstop -->
-
 # Highlights
 * [XDG compliance](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html) - I've spent quite some effort to make my dotfiles adhere to the standard as much as possible, using and contributing to the [Arch wiki page](https://wiki.archlinux.org/title/XDG_Base_Directory). Thus, most mof my configs now live in [.config/](.config/).
 * Check out my Neovim configurations [.config/nvim/](.config/nvim)-- they are pretty cool!
@@ -214,11 +194,3 @@ BUNDLE_GEMFILE=$XDG_CONFIG_HOME/bundle/Gemfile bundle install
 
 ## GLobal NPM packages
 ~/bin/npm-install-global.sh
-
-# Table of Contents generation
-The table of contents was generated using [markdown-toc](https://github.com/jonschlinkert/markdown-toc)
-```bash
-$ npm install -g markdown-toc
-$ # add toc marker to README.md
-$ markdown-toc -i ~/.dotfiles/README.md
-```
