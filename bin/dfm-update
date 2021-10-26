@@ -2,7 +2,7 @@
 
 set -e	# Exit on error
 
-cd $HOME/.dotfiles
+cd ${DFM_REPO:-$HOME/src/github.com/erikw/dotfiles}
 git stash
 git checkout personal
 git fetch
