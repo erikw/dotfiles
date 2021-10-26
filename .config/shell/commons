@@ -4,7 +4,7 @@
 #	vi: foldmarker={,} filetype=sh foldmethod=marker foldlevel=0: tabstop=8 shiftwidth=8:
 # }
 
-# Env Bootstrap XDG {
+# Env Bootstrap & XDG {
 	# Set XDG envvars to default values, so that scripts can refer to them (like in ~/.config/nvim/syntax/)
 	# Reference: https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
 	# Don't use these direclty, but substitute for default value if empty:
@@ -49,10 +49,10 @@
 	export XINITRC=$XDG_CONFIG_HOME/X11/xinitrc,
 	#export XSERVERRC=$XDG_CONFIG_HOME/X11/xserverrc
 
+	# Load utility functions.
+	source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/functions
 # }
 
-# Load utility functions.
-source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/functions
 
 # Paths {
 	# Make the path available in subshells. Export is only needed once.
