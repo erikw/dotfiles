@@ -187,7 +187,7 @@ $ make install
 
 
 ## Firefox
-Import minimal search-keyword bookmarks from [.bookmarks_minimal.html](.bookmarks_minimal.html) to Firefox.
+Import minimal search-keyword bookmarks from [bookmarks_minimal.html](.config/mozilla/bookmarks_minimal.html) to Firefox.
 
 ## Global Gems
 BUNDLE_GEMFILE=$XDG_CONFIG_HOME/bundle/Gemfile bundle install
