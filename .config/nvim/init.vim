@@ -14,7 +14,7 @@
 " vim-plug data folder
 call plug#begin(stdpath('data') . '/plugged')
 " Environment {
-let s:xdg_conf_home = empty($XDG_CONFIG_HOME) ? "$HOME/.config" : $XDG_CONFIG_HOME
+let s:xdg_config_home = empty($XDG_CONFIG_HOME) ? "$HOME/.config" : $XDG_CONFIG_HOME
 " }
 " General {
 	"Plug 'dhruvasagar/vim-table-mode'			" Create ASCII tables
@@ -378,7 +378,7 @@ execute "set thesaurus=" . "~/.vim/thesaurus/" . matchstr(&spelllang, "[a-zA-Z][
 colorscheme NeoSolarized
 
 " Adjust colors to this background.
-let s:solarized_status = s:xdg_conf_home . "/solarizedtoggle/status"
+let s:solarized_status = s:xdg_config_home . "/solarizedtoggle/status"
 if filereadable(s:solarized_status)
 	let &background = readfile(s:solarized_status)[0]
 else
@@ -643,7 +643,7 @@ let g:snipMate = { 'snippet_version' : 1 }	" Use the new parser (and surpress me
 "let g:startify_fortune_use_unicode = 1	" Draw fortune with Unicode instead of ASCII. Not needed with startify_custom_header.
 "let g:startify_files_number = 15	" Nubmer of files to show.
 " Bookmarks
-let g:startify_bookmarks = [ {'v': s:xdg_conf_home . '/nvim/init.vim'}, s:xdg_conf_home . '/shell/commons', s:xdg_conf_home . '/shell/aliases' ]
+let g:startify_bookmarks = [ {'v': s:xdg_config_home . '/nvim/init.vim'}, s:xdg_config_home . '/shell/commons', s:xdg_config_home . '/shell/aliases' ]
 
 
 " Reference: https://vi.stackexchange.com/a/9942

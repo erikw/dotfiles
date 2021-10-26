@@ -134,6 +134,8 @@
 	set tags+=./tags;/		" Look for tags in current directory or search up until found.
 	set encoding=utf-8		" Use Unicode inside Vim's registers, viminfo, buffers ...
 
+	let s:xdg_config_home = empty($XDG_CONFIG_HOME) ? "$HOME/.config" : $XDG_CONFIG_HOME
+
 	" Also use $HOME/.vim in Windows
 	if has('win32') || has('win64')
 		set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
@@ -220,8 +222,7 @@
 	"hi Normal ctermbg=NONE	" Transparent background.
 	set title		" Show title in console title bar.
 	" Adjust colors to this background.
-	let s:xdg_conf_home = empty($XDG_CONFIG_HOME) ? "$HOME/.config" : $XDG_CONFIG_HOME
-	let s:solarized_status = s:xdg_conf_home . "/solarizedtoggle/status"
+	let s:solarized_status = s:xdg_config_home . "/solarizedtoggle/status"
 	if filereadable(s:solarized_status)
 		let &background = readfile(s:solarized_status)[0]
 	else
@@ -700,7 +701,7 @@
 
 " vim-startify {
 	" Bookmarks
-	let g:startify_bookmarks = [ {'v': '$HOME/.vimrc'}, s:xdg_conf_home . '/shell/commons', s:xdg_conf_home . '/shell/aliases' ]
+	let g:startify_bookmarks = [ {'v': '$HOME/.vimrc'}, s:xdg_config_home . '/shell/commons', s:xdg_config_home . '/shell/aliases' ]
 
 	let g:startify_fortune_use_unicode = 1	" Draw fortune with Unicode instead of ASCII.
 
