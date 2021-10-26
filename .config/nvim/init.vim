@@ -15,6 +15,7 @@
 call plug#begin(stdpath('data') . '/plugged')
 " Environment {
 let s:xdg_config_home = empty($XDG_CONFIG_HOME) ? "$HOME/.config" : $XDG_CONFIG_HOME
+let s:xdg_state_home = empty($XDG_STATE_HOME) ? "$HOME/.local/state" : $XDG_STATE_HOME
 " }
 " General {
 	"Plug 'dhruvasagar/vim-table-mode'			" Create ASCII tables
@@ -378,7 +379,7 @@ execute "set thesaurus=" . "~/.vim/thesaurus/" . matchstr(&spelllang, "[a-zA-Z][
 colorscheme NeoSolarized
 
 " Adjust colors to this background.
-let s:solarized_status = s:xdg_config_home . "/solarizedtoggle/status"
+let s:solarized_status = s:xdg_state_home . "/solarizedtoggle/status"
 if filereadable(s:solarized_status)
 	let &background = readfile(s:solarized_status)[0]
 else

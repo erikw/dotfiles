@@ -135,6 +135,7 @@
 	set encoding=utf-8		" Use Unicode inside Vim's registers, viminfo, buffers ...
 
 	let s:xdg_config_home = empty($XDG_CONFIG_HOME) ? "$HOME/.config" : $XDG_CONFIG_HOME
+	let s:xdg_state_home = empty($XDG_STATE_HOME) ? "$HOME/.local/state" : $XDG_STATE_HOME
 
 	" Also use $HOME/.vim in Windows
 	if has('win32') || has('win64')
@@ -222,7 +223,7 @@
 	"hi Normal ctermbg=NONE	" Transparent background.
 	set title		" Show title in console title bar.
 	" Adjust colors to this background.
-	let s:solarized_status = s:xdg_config_home . "/solarizedtoggle/status"
+	let s:solarized_status = s:xdg_state_home . "/solarizedtoggle/status"
 	if filereadable(s:solarized_status)
 		let &background = readfile(s:solarized_status)[0]
 	else

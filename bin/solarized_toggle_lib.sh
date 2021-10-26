@@ -1,6 +1,6 @@
 # Functions etc. for solarize toggling, that can be sourced.
 
-ST_STORAGE=$XDG_CONFIG_HOME/solarizedtoggle
+ST_STORAGE=$XDG_STATE_HOME/solarizedtoggle
 ! [ -d $ST_STORAGE ] && mkdir $ST_STORAGE
 ST_STATUSFILE=$ST_STORAGE/status
 
