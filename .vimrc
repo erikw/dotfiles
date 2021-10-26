@@ -552,9 +552,10 @@
 " FZF {
 	" Stolen from my friend https://github.com/erikagnvall/dotfiles/blob/master/vim/init.vim
 	nnoremap <leader>f :FZF<space>		" Search for files in given path.
-	nnoremap <c-p> :Files<CR>			"Search for files starting at current directory.
+	nnoremap <c-p> :Files<CR>		"Search for files starting at current directory.
 	nnoremap <leader>T :Tags<CR>		" Search in tags file.
-	nnoremap ; :Buffers<CR>				" Search open buffers.
+	" Search open buffers. Comment must be on onw line.
+	nnoremap ; :Buffers<CR>
 " }
 
 	" Gist {
@@ -697,7 +698,7 @@
 
 " vim-startify {
 	" Bookmarks
-	let g:startify_bookmarks = [ {'v': '$$HOME/.vimrc'}, '$XDG_CONFIG_HOME/shell/commons', '$XDG_CONFIG_HOME/shell/aliases' ]
+	let g:startify_bookmarks = [ {'v': '$HOME/.vimrc'}, '$XDG_CONFIG_HOME/shell/commons', '$XDG_CONFIG_HOME/shell/aliases' ]
 
 	let g:startify_fortune_use_unicode = 1	" Draw fortune with Unicode instead of ASCII.
 
