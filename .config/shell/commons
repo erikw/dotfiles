@@ -4,6 +4,53 @@
 #	vi: foldmarker={,} filetype=sh foldmethod=marker foldlevel=0: tabstop=8 shiftwidth=8:
 # }
 
+# Env Bootstrap XDG {
+	# Set XDG envvars to default values, so that scripts can refer to them (like in ~/.config/nvim/syntax/)
+	# Reference: https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
+	# Don't use these direclty, but substitute for default value if empty:
+	# - ${XDG_CONFIG_HOME:-$HOME/.config}
+	# - ${XDG_DATA_HOME:-$HOME/.local/share}
+	# - ${XDG_STATE_HOME:-$HOME/.local/state}
+	# - ${XDG_CACHE_HOME:-$HOME/.cache}
+	export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
+	export XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
+	export XDG_STATE_HOME="${XDG_STATE_HOME:-$HOME/.local/state}"
+	export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
+
+	# On Linux, should be done by xdg-user-dirs
+	# NOTE disabled as I'm not really using this.
+	#if shell_is_macos && [ -e $XDG_CONFIG_HOME/user-dirs.dirs ] ; then
+		##while read -r line; do
+			##eval "export $line"
+		##done <  $XDG_CONFIG_HOME/user-dirs.dirs
+		#eval "export $(paste -s -d' ' $XDG_CONFIG_HOME/user-dirs.dirs)"
+	#fi
+
+	# Make programs respect XDG
+	export INPUTRC=$XDG_CONFIG_HOME/readline/inputrc
+	export KDEHOME=$XDG_CONFIG_HOME/kde
+	export MPLAYER_HOME=$XDG_CONFIG_HOME/mplayer
+	export NOTMUCH_CONFIG=$XDG_CONFIG_HOME/notmuch/notmuchrc
+	export OCTAVE_SITE_INITFILE=$XDG_CONFIG_HOME/octave/octaverc
+	export OCTAVE_HISTFILE=$XDG_CACHE_HOME/octave-hsts
+	export SCREENRC=$XDG_CONFIG_HOME/screen/screenrc
+	export XCOMPOSECACHE=$XDG_CACHE_HOME/X11/XCompose
+	export XCOMPOSEFILE=$XDG_CONFIG_HOME/X11/XCompose
+	export CGDB_DIR=$XDG_CONFIG_HOME/cgdb
+	export GRADLE_USER_HOME=$XDG_DATA_HOME/gradle
+	export BUNDLE_USER_CONFIG=$XDG_CONFIG_HOME/bundle
+	export BUNDLE_USER_CACHE=$XDG_CACHE_HOME/bundle
+	export BUNDLE_USER_PLUGIN=$XDG_DATA_HOME/bundle
+	export GEM_SPEC_CACHE=$XDG_CACHE_HOME/gem
+	export GEM_HOME=$XDG_DATA_HOME/gem
+	export GRIPHOME=$XDG_CONFIG_HOME/grip
+	export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
+	export SQLITE_HISTORY=$XDG_DATA_HOME/sqlite_history
+	export XINITRC=$XDG_CONFIG_HOME/X11/xinitrc,
+	#export XSERVERRC=$XDG_CONFIG_HOME/X11/xserverrc
+
+# }
+
 # Load utility functions.
 source $XDG_CONFIG_HOME/shell/functions
 
@@ -139,53 +186,6 @@ source $XDG_CONFIG_HOME/shell/functions
 
 	# Speed up dfm by telling it where the source is
 	export DFM_REPO=$HOME/src/github.com/erikw/dotfiles/
-
-	# XDG {
-	# Set XDG envvars to default values, so that scripts can refer to them (like in ~/.config/nvim/syntax/)
-	# Reference: https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
-	# Don't use these direclty, but substitute for default value if empty:
-	# - ${XDG_CONFIG_HOME:-$HOME/.config}
-	# - ${XDG_DATA_HOME:-$HOME/.local/share}
-	# - ${XDG_STATE_HOME:-$HOME/.local/state}
-	# - ${XDG_CACHE_HOME:-$HOME/.cache}
-	export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
-	export XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
-	export XDG_STATE_HOME="${XDG_STATE_HOME:-$HOME/.local/state}"
-	export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
-
-	# On Linux, should be done by xdg-user-dirs
-	# NOTE disabled as I'm not really using this.
-	#if shell_is_macos && [ -e $XDG_CONFIG_HOME/user-dirs.dirs ] ; then
-		##while read -r line; do
-			##eval "export $line"
-		##done <  $XDG_CONFIG_HOME/user-dirs.dirs
-		#eval "export $(paste -s -d' ' $XDG_CONFIG_HOME/user-dirs.dirs)"
-	#fi
-
-	# Make programs respect XDG
-	export INPUTRC=$XDG_CONFIG_HOME/readline/inputrc
-	export KDEHOME=$XDG_CONFIG_HOME/kde
-	export MPLAYER_HOME=$XDG_CONFIG_HOME/mplayer
-	export NOTMUCH_CONFIG=$XDG_CONFIG_HOME/notmuch/notmuchrc
-	export OCTAVE_SITE_INITFILE=$XDG_CONFIG_HOME/octave/octaverc
-	export OCTAVE_HISTFILE=$XDG_CACHE_HOME/octave-hsts
-	export SCREENRC=$XDG_CONFIG_HOME/screen/screenrc
-	export XCOMPOSECACHE=$XDG_CACHE_HOME/X11/XCompose
-	export XCOMPOSEFILE=$XDG_CONFIG_HOME/X11/XCompose
-	export CGDB_DIR=$XDG_CONFIG_HOME/cgdb
-	export GRADLE_USER_HOME=$XDG_DATA_HOME/gradle
-	export BUNDLE_USER_CONFIG=$XDG_CONFIG_HOME/bundle
-	export BUNDLE_USER_CACHE=$XDG_CACHE_HOME/bundle
-	export BUNDLE_USER_PLUGIN=$XDG_DATA_HOME/bundle
-	export GEM_SPEC_CACHE=$XDG_CACHE_HOME/gem
-	export GEM_HOME=$XDG_DATA_HOME/gem
-	export GRIPHOME=$XDG_CONFIG_HOME/grip
-	export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
-	export SQLITE_HISTORY=$XDG_DATA_HOME/sqlite_history
-	export XINITRC=$XDG_CONFIG_HOME/X11/xinitrc,
-	#export XSERVERRC=$XDG_CONFIG_HOME/X11/xserverrc
-
-	# }
 # }
 
 # UI {
