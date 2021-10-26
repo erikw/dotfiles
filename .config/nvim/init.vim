@@ -11,6 +11,8 @@
 " }
 
 " Plugins {
+let g:ale_completion_enabled = 1	" Must be set before ALE is loaded.
+
 " vim-plug data folder
 call plug#begin(stdpath('data') . '/plugged')
 " Environment {
@@ -44,13 +46,14 @@ let s:xdg_state_home = empty($XDG_STATE_HOME) ? "$HOME/.local/state" : $XDG_STAT
 
 " Development {
 " Development: General {
+	"Plug 'hrsh7th/nvim-cmp' | Plug 'hrsh7th/cmp-nvim-lsp' | Plug 'hrsh7th/cmp-buffer' | Plug 'hrsh7th/cmp-vsnip' | Plug 'hrsh7th/vim-vsnip'	" Autocompletion when typing with LSP backend. Disabled as too fast-moving development and bugs.
+	"Plug 'neovim/nvim-lspconfig'		" Plug-n-play configurations for LSP server. Disabled in favour of simpler to use ALE.
 	Plug 'AndrewRadev/sideways.vim'		" Shift function arguments left and right.
 	Plug 'Townk/vim-autoclose'		" Automatically insert matching brace pairs.
 	Plug 'airblade/vim-gitgutter'		" Git modified status in sign column
 	Plug 'andymass/vim-matchup'		" Extend % matching. Replaces old the matchit plugin.
+	Plug 'dense-analysis/ale'		" LSP linting engine.
 	Plug 'editorconfig/editorconfig-vim'	" Standard .editorconfig file in shared projects.
-	Plug 'hrsh7th/nvim-cmp' | Plug 'hrsh7th/cmp-nvim-lsp' | Plug 'hrsh7th/cmp-buffer' | Plug 'hrsh7th/cmp-vsnip' | Plug 'hrsh7th/vim-vsnip'	" Autocompletion when typing with LSP backend.
-	Plug 'neovim/nvim-lspconfig'		" Plug-n-play configurations for LSP server.
 	Plug 'preservim/tagbar'			" Sidepane showing info from tags file.
 	Plug 'rhysd/conflict-marker.vim'	" Navigate and edit VCS conflicts. Replace unmaintained 'vim-script/ConflictMotions'
 	Plug 'vim-scripts/argtextobj.vim'	" Make function arguments text objects that can be operated on with.
@@ -136,7 +139,7 @@ set undolevels=2048			" Levels of undo to keep in memory.
 "set clipboard+=unnamed			" Use register "* instead of unnamed register. This means what is being yanked in vim gets put to external clipboard automatically.
 set timeoutlen=1500			" Timout (ms) for mappings and keycodes.
 set completeopt=longest,menu,preview	" Insert most common completion and show menu.
-set omnifunc=syntaxcomplete#Complete	" Let Omni completion (^x^o) use vim's builtin syntax files for language keywords.
+"set omnifunc=syntaxcomplete#Complete	" Let Omni completion (^x^o) use vim's builtin syntax files for language keywords.
 " }
 
 " Abbreviations {
@@ -186,72 +189,70 @@ set cinoptions+=g=			" Left-indent C++ access labels.
 " }
 
 " LSP {
-" NOTE remember to update servers array below when adding a new LSP config.
-lua << EOF
-	-- require'lspconfig'.ccls.setup{}
-	-- require'lspconfig'.sqls.setup{}
-	-- require'lspconfig'.texlab.setup{}
-	require'lspconfig'.bashls.setup{}
-	require'lspconfig'.gopls.setup{}
-	require'lspconfig'.jsonls.setup {}
-	require'lspconfig'.pyright.setup{}
-	require'lspconfig'.solargraph.setup{}
-	require'lspconfig'.vimls.setup{}
-EOF
+"" NOTE remember to update servers array below when adding a new LSP config.
+"lua << EOF
+	"-- require'lspconfig'.ccls.setup{}
+	"-- require'lspconfig'.sqls.setup{}
+	"-- require'lspconfig'.texlab.setup{}
+	"require'lspconfig'.bashls.setup{}
+	"require'lspconfig'.gopls.setup{}
+	"require'lspconfig'.jsonls.setup {}
+	"require'lspconfig'.pyright.setup{}
+	"require'lspconfig'.solargraph.setup{}
+	"require'lspconfig'.vimls.setup{}
+"EOF
 
-" Activate & Keybindings {
-" From https://github.com/neovim/nvim-lspconfig#keybindings-and-completion
-lua << EOF
-local nvim_lsp = require('lspconfig')
+"" Activate & Keybindings {
+"" From https://github.com/neovim/nvim-lspconfig#keybindings-and-completion
+"lua << EOF
+"local nvim_lsp = require('lspconfig')
 
--- Use an on_attach function to only map the following keys
--- after the language server attaches to the current buffer
-local on_attach = function(client, bufnr)
-  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+"-- Use an on_attach function to only map the following keys
+"-- after the language server attaches to the current buffer
+"local on_attach = function(client, bufnr)
+  "local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+  "local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
-  -- Enable completion triggered by <c-x><c-o>
-  buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+  "-- Enable completion triggered by <c-x><c-o>
+  "buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
-  -- Mappings.
-  local opts = { noremap=true, silent=true }
+  "-- Mappings.
+  "local opts = { noremap=true, silent=true }
 
-  -- See `:help vim.lsp.*` for documentation on any of the below functions
-  buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-  buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-  buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-  buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-  buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
-  buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
-  buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
-  buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-  buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-  buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-  buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
-  buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
-  buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
-  buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
-  buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+  "-- See `:help vim.lsp.*` for documentation on any of the below functions
+  "buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+  "buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  "buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+  "buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+  "buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+  "buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+  "buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+  "buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+  "buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+  "buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+  "buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+  "buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+  "buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+  "buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
+  "buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+  "buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+  "buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 
-end
+"end
 
--- Use a loop to conveniently call 'setup' on multiple servers and
--- map buffer local keybindings when the language server attaches
-local servers = { 'bashls', 'jsonls', 'pyright', 'solargraph', 'vimls' }
-for _, lsp in ipairs(servers) do
-  nvim_lsp[lsp].setup {
-    on_attach = on_attach,
-    flags = {
-      debounce_text_changes = 150,
-    }
-  }
-end
-EOF
-" }
-
-
+"-- Use a loop to conveniently call 'setup' on multiple servers and
+"-- map buffer local keybindings when the language server attaches
+"local servers = { 'bashls', 'jsonls', 'pyright', 'solargraph', 'vimls' }
+"for _, lsp in ipairs(servers) do
+  "nvim_lsp[lsp].setup {
+    "on_attach = on_attach,
+    "flags = {
+      "debounce_text_changes = 150,
+    "}
+  "}
+"end
+"EOF
+"" }
 " }
 
 " Mappings {
@@ -435,6 +436,51 @@ set statusline+=\ 0x%B		" Character value under cursor.
 " }
 
 " Plugin Config {
+" ALE {
+" Reference https://github.com/dense-analysis/ale/blob/master/doc/ale.txt
+" Linting {
+" Disabled linters:
+		"\ 'sql': ['sqls'],
+		"\ 'tex': ['texlab'],
+let g:ale_linters = {
+		\ 'go': ['gopls'],
+		\ 'json': ['jsonls'],
+		\ 'python': ['pyright'],
+		\ 'ruby': ['solargraph'],
+		\ 'sh': ['language_server'],
+		\ 'vim': ['vimls'],
+		\ }
+" }
+
+" Fixing {
+let g:ale_fixers = {
+	\ '*': ['remove_trailing_lines', 'trim_whitespace', 'prettier'],
+	\ 'ruby': ['rubocop'],
+	\}
+let g:ale_fix_on_save = 1
+" }
+
+" Completion {
+let g:ale_completion_autoimport = 1
+" Trigger on ^x^o
+set omnifunc=ale#completion#OmniFunc
+" }
+
+" Mappings {
+" See :help ale-commands
+" Make similar keybindings to https://github.com/neovim/nvim-lspconfig#keybindings-and-completion
+nmap <silent> gd <Plug>(ale_go_to_definition)
+nmap <silent> gr <Plug>(ale_find_references)
+nmap <silent> K <Plug>(ale_hover)
+nmap <silent> <space>rn <Plug>(ale_rename)
+
+" Navigate between errors
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
+
+" }
+" }
+
 " clang_complete {
 	"let g:clang_auto_select = 1				" Select first entry but don't insert.
 	"let g:clang_complete_copen = 1				" Open quickfix on error.
@@ -500,53 +546,31 @@ aug END
 " }
 
 " nvim-cmp {
-set completeopt=menu,menuone,noselect
+"set completeopt=menu,menuone,noselect
 
-" Lua Setup {
-lua <<EOF
-  -- Setup nvim-cmp.
-  local cmp = require'cmp'
+"" Lua Setup {
+" Copy and paste latest setup from https://github.com/hrsh7th/nvim-cmp#setup
+" Not possible to comment out as lua code is interpreted still somehow.
+" The essential custom part is kept here:
+  "-- Setup lspconfig.
+  "require('lspconfig')['bashls'].setup {
+    "capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+    "}
+  "require('lspconfig')['jsonls'].setup {
+    "capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+    "}
+  "require('lspconfig')['pyright'].setup {
+    "capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+    "}
+  "require('lspconfig')['solargraph'].setup {
+    "capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+    "}
+  "require('lspconfig')['vimls'].setup {
+    "capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+  "}
 
-  cmp.setup({
-    snippet = {
-      expand = function(args)
-        vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
-      end,
-    },
-    mapping = {
-      ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-      ['<C-f>'] = cmp.mapping.scroll_docs(4),
-      ['<C-Space>'] = cmp.mapping.complete(),
-      ['<C-e>'] = cmp.mapping.close(),
-      ['<C-y>'] = cmp.config.disable, -- If you want to remove the default `<C-y>` mapping, You can specify `cmp.config.disable` value.
-      ['<CR>'] = cmp.mapping.confirm({ select = true }),
-    },
-    sources = cmp.config.sources({
-      { name = 'nvim_lsp' },
-      { name = 'vsnip' }, -- For vsnip users.
-    }, {
-      { name = 'buffer' },
-    })
-  })
-
-  -- Setup lspconfig.
-  require('lspconfig')['bashls'].setup {
-    capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-    }
-  require('lspconfig')['jsonls'].setup {
-    capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-    }
-  require('lspconfig')['pyright'].setup {
-    capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-    }
-  require('lspconfig')['solargraph'].setup {
-    capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-    }
-  require('lspconfig')['vimls'].setup {
-    capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-  }
-EOF
-" }
+" INSERT CONFIG FROM README HERE.
+"" }
 " }
 
 " tagbar {

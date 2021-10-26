@@ -469,17 +469,47 @@
 " Plugin Config {
 	" ALE {
 		" Reference https://github.com/dense-analysis/ale/blob/master/doc/ale.txt
-		let g:ale_fixers = {
-		\   '*': ['remove_trailing_lines', 'trim_whitespace']
-		\}
-		" sh: " https://github.com/bash-lsp/bash-language-server#vim
+		" Linting {
+		" Disabled linters:
+				"\ 'sql': ['sqls'],
+				"\ 'tex': ['texlab'],
 		let g:ale_linters = {
-				    \ 'sh': ['language_server']
-				    \ }
-		let g:ale_fix_on_save = 1
+				\ 'go': ['gopls'],
+				\ 'json': ['jsonls'],
+				\ 'python': ['pyright'],
+				\ 'ruby': ['solargraph'],
+				\ 'sh': ['language_server'],
+				\ 'vim': ['vimls'],
+				\ }
+		" }
 
-		" Completion
+		" Fixing {
+		let g:ale_fixers = {
+			\ '*': ['remove_trailing_lines', 'trim_whitespace', 'prettier'],
+			\ 'ruby': ['rubocop'],
+			\}
+		let g:ale_fix_on_save = 1
+		" }
+
+		" Completion {
 		let g:ale_completion_autoimport = 1
+		" Trigger on ^x^o
+		set omnifunc=ale#completion#OmniFunc
+		" }
+
+		" Mappings {
+		" See :help ale-commands
+		" Make similar keybindings to https://github.com/neovim/nvim-lspconfig#keybindings-and-completion
+		nmap <silent> gd <Plug>(ale_go_to_definition)
+		nmap <silent> gr <Plug>(ale_find_references)
+		nmap <silent> K <Plug>(ale_hover)
+		nmap <silent> <space>rn <Plug>(ale_rename)
+
+		" Navigate between errors
+		nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+		nmap <silent> <C-j> <Plug>(ale_next_wrap)
+
+		" }
 	" }
 
 	" AutoClose {
