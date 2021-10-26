@@ -49,7 +49,7 @@ let s:xdg_state_home = empty($XDG_STATE_HOME) ? "$HOME/.local/state" : $XDG_STAT
 	Plug 'airblade/vim-gitgutter'		" Git modified status in sign column
 	Plug 'andymass/vim-matchup'		" Extend % matching. Replaces old the matchit plugin.
 	Plug 'editorconfig/editorconfig-vim'	" Standard .editorconfig file in shared projects.
-	Plug 'hrsh7th/nvim-cmp' | Plug 'hrsh7th/cmp-nvim-lsp' | Plug 'hrsh7th/cmp-buffer'	" Autocompletion when typing with LSP backend.
+	Plug 'hrsh7th/nvim-cmp' | Plug 'hrsh7th/cmp-nvim-lsp' | Plug 'hrsh7th/cmp-buffer' | Plug 'hrsh7th/cmp-vsnip' | Plug 'hrsh7th/vim-vsnip'	" Autocompletion when typing with LSP backend.
 	Plug 'neovim/nvim-lspconfig'		" Plug-n-play configurations for LSP server.
 	Plug 'preservim/tagbar'			" Sidepane showing info from tags file.
 	Plug 'rhysd/conflict-marker.vim'	" Navigate and edit VCS conflicts. Replace unmaintained 'vim-script/ConflictMotions'
@@ -510,8 +510,7 @@ lua <<EOF
   cmp.setup({
     snippet = {
       expand = function(args)
-        -- For `vsnip` user.
-        --vim.fn["vsnip#anonymous"](args.body)
+        vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
       end,
     },
     mapping = {
@@ -519,13 +518,15 @@ lua <<EOF
       ['<C-f>'] = cmp.mapping.scroll_docs(4),
       ['<C-Space>'] = cmp.mapping.complete(),
       ['<C-e>'] = cmp.mapping.close(),
+      ['<C-y>'] = cmp.config.disable, -- If you want to remove the default `<C-y>` mapping, You can specify `cmp.config.disable` value.
       ['<CR>'] = cmp.mapping.confirm({ select = true }),
     },
-    sources = {
+    sources = cmp.config.sources({
       { name = 'nvim_lsp' },
-
+      { name = 'vsnip' }, -- For vsnip users.
+    }, {
       { name = 'buffer' },
-    }
+    })
   })
 
   -- Setup lspconfig.
