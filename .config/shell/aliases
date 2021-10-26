@@ -62,7 +62,7 @@
 	shell_is_linux && LS_OPTIONS="$LS_OPTIONS --time-style=long-iso -F"
 	if [ "$TERM" != dumb ]; then
 		if shell_is_linux && program_is_in_path dircolors; then
-		    eval "$(dircolors -b)"
+		    eval "$(dircolors -b $XDG_CONFIG_HOME/shell/dircolors)"
 		fi
 		# Colors when output is terminal.
 		#alias ls="ls ${ls_options} --color=auto"

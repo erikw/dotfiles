@@ -184,7 +184,7 @@ source $XDG_CONFIG_HOME/shell/functions
 	if program_is_in_path dircolors; then
 		dircolorsdb=$HOME/src/github.com/seebi/dircolors-solarized/dircolors.256dark
 		if ! [ -f $dircolorsdb ]; then
-			dircolorsdb=$XDG_CONFIG_HOME/dircolors
+			dircolorsdb=$XDG_CONFIG_HOME/shell/dircolors
 		fi
 		eval "$(dircolors -b $dircolorsdb)"
 	fi
