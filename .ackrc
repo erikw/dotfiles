@@ -8,6 +8,7 @@
 --ignore-file=match:tags
 --ignore-file=match:Session.vim
 --ignore-file=match:.syntastic_javac_config
+--ignore-file=match:viminfo
 
 # Intellij project files (old=fileformat).
 --ignore-file=match:.*.(ipr|iml)
