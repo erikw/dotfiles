@@ -449,8 +449,8 @@
 	#fi
 
 	# Node manager n: https://github.com/tj/n
+	export N_PREFIX=${XDG_DATA_HOME:-$HOME/.local/share}/n
 	if [ -d $HOME/.n ]; then
-		export N_PREFIX=$HOME/.n
 		export PATH=$N_PREFIX/bin:$PATH
 	fi
 
