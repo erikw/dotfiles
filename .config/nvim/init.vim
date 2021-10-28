@@ -502,7 +502,9 @@ nnoremap <leader>f :FZF<space>	" Search for files in given path.
 nnoremap <c-p> :Files<CR>	" Search for files starting at current directory.
 nnoremap <leader>T :Tags<CR>	" Search in tags file.
 " Search open buffers. Comment must be on line of its own...
-nnoremap ; :Buffers<CR>
+" ; conflicts with repeating search for characther (fF]
+"nnoremap ; :Buffers<CR>
+nnoremap <leader>; :Buffers<CR>
 " }
 
 	" nerdcommenter {
