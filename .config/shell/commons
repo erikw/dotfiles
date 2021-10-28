@@ -41,8 +41,6 @@
 	export BUNDLE_USER_CONFIG=$XDG_CONFIG_HOME/bundle/config
 	export BUNDLE_USER_CACHE=$XDG_CACHE_HOME/bundle
 	export BUNDLE_USER_PLUGIN=$XDG_DATA_HOME/bundle
-	export GEM_SPEC_CACHE=$XDG_CACHE_HOME/gem
-	export GEM_HOME=$XDG_DATA_HOME/gem
 	export GRIPHOME=$XDG_CONFIG_HOME/grip
 	export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
 	export SQLITE_HISTORY=$XDG_DATA_HOME/sqlite_history
@@ -52,6 +50,11 @@
 	export WGETRC=$XDG_CONFIG_HOME/wget/wgetrc
 	export GDBHISTFILE=$XDG_DATA_HOME/gdb/history
 	export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
+	export SOLARGRAPH_CACHE=$XDG_CACHE_HOME/solargraph
+
+	export GEM_SPEC_CACHE=$XDG_CACHE_HOME/gem
+	export GEM_HOME=$XDG_DATA_HOME/gem
+	export PATH="$GEM_HOME/bin:$PATH"
 
 	alias bashdb='bashdb -x ${XDG_CONFIG_HOME:-$HOME/.config}/bashdb/bashdbinit'
 
