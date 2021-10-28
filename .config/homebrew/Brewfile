@@ -282,10 +282,15 @@
 
 # Fonts {
     tap 'homebrew/cask-fonts'
+
+    # Programming fonts {
     cask 'font-terminus'
     cask 'font-inconsolata'
     brew 'svn' # Dependency for font'source-code-pro
     cask 'font-source-code-pro'
+    cask 'font-hack'
+    cask 'font-dm-mono'
+    # }
 
     tap 'colindean/fonts-nonfree'
     cask 'font-microsoft-office'
