@@ -160,6 +160,10 @@ nvim -c PlugInstall
 
 # }
 
+
+# fzf fuzzy finder. Installed via brew
+$(brew --prefix)/opt/fzf/install --xdg
+
 # }
 
 # Installs: Manual {

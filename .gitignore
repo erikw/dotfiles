@@ -19,6 +19,7 @@
 .config/broot/
 .config/cheat/
 .config/configstore/
+.config/fzf/
 .config/git/config-local
 .config/grip/cache-*
 .config/gtk-2.0/

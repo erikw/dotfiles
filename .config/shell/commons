@@ -433,7 +433,7 @@
 	sourceifexists $HOME/.config/broot/launcher/bash/br
 
 	# fzf https://github.com/junegunn/fzf#using-homebrew
-	sourceifexists $HOME/.fzf.${SHELL_NAME}
+	sourceifexists  ${XDG_CONFIG_HOME:-$HOME/.config}/fzf/fzf.${SHELL_NAME}
 
 	# Homebrew sqlite to shadow old version shipped with macOS.
 	if [ -d /usr/local/opt/sqlite/ ]; then
