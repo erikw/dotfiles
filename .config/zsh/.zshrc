@@ -258,7 +258,7 @@ fi
 
 	# bookmark shell paths. No dependencies like jump needs ruby.
 	# See aliases in $XDG_CONFIG_HOME/shell/aliases.
-	# See ~/.cdbookmark for saved aliases
+	# See ~/.cdbookmark for saved bookmarks
 	if [ -d ~/src/github.com/mollifier/cd-bookmark ]; then
 		fpath=(~/src/github.com/mollifier/cd-bookmark(N-/) $fpath)
 		autoload -Uz cd-bookmark
@@ -269,12 +269,11 @@ fi
 		alias l='cd-bookmark -l'
 		alias e='cd-bookmark -e'
 		alias p='cd-bookmark -p'
-		alias h='cd-bookmark -h'
 
 		# There's no build-in delete command.
 		function d() {
 			local name="$1"
-			sed -i "/^${name}|/d" $HOME/.cdbookmark
+			sed -i "/^${name}|/d" ${CD_BOOKMARK_FILE:-$HOME/.cdbookmark}
 		}
 	fi
 

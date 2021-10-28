@@ -18,6 +18,7 @@
 .config/MusicBrainz/
 .config/broot/
 .config/bundle/Gemfile.lock
+.config/cd-bookmark/bookmarks
 .config/cheat/
 .config/configstore/
 .config/fzf/
