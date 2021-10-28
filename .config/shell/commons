@@ -325,6 +325,7 @@
 	if program_is_in_path pyenv; then
 		# NOTE is sandboxed
 		#export PYENV_ROOT="$HOME/.pyenv"
+		#export PYENV_ROOT=${XDG_DATA_HOME:-$HOME/.local/share}/pyenv
 		#export PATH="$PYENV_ROOT/bin:$PATH"
 		#eval "$(pyenv init --path)"
 		#eval "$(pyenv init -)"
