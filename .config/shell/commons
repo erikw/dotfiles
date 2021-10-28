@@ -52,6 +52,8 @@
 	export WGETRC=$XDG_CONFIG_HOME/wget/wgetrc
 	export GDBHISTFILE=$XDG_DATA_HOME/gdb/history
 
+	alias bashdb='bashdb -x ${XDG_CONFIG_HOME:-$HOME/.config}/bashdb/bashdbinit'
+
 	# Load utility functions.
 	source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/functions
 # }
