@@ -48,11 +48,11 @@
 	export SQLITE_HISTORY=$XDG_DATA_HOME/sqlite_history
 	export XINITRC=$XDG_CONFIG_HOME/X11/xinitrc,
 	#export XSERVERRC=$XDG_CONFIG_HOME/X11/xserverrc
+	export ACKRC="$XDG_CONFIG_HOME/ack/ackrc"	# Project local .ackrc is still possible.
 
 	# Load utility functions.
 	source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/functions
 # }
-
 
 # Paths {
 	# Make the path available in subshells. Export is only needed once.
@@ -169,9 +169,6 @@
 	if [ -e $HOME/.sandboxd/sandboxd ]; then
 		source $HOME/.sandboxd/sandboxd
 	fi
-
-	# Try to use project local ack config. If there is none, $HOME/.ackrc will be used.
-	export ACKRC=".ackrc"
 
 	# Needed for gnupg's gpg(1) to work, thus for git commit signing.
 	export GPG_TTY=$(tty)
