@@ -34,6 +34,7 @@
 .config/taiga-stats/taiga-stats.conf
 .config/travis/
 .config/wireshark/
+.config/yarn/config
 .irssi/away.log
 .irssi/dcc/
 .irssi/nicklistfifo
