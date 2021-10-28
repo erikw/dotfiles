@@ -15,6 +15,7 @@
     brew 'aspell'
     brew 'bash'
     brew 'bash-completion'
+    brew 'bashdb'
     brew 'broot'
     brew 'cheat'
     brew 'cloc'
