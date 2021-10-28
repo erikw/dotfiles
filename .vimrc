@@ -589,7 +589,8 @@
 	nnoremap <c-p> :Files<CR>		"Search for files starting at current directory.
 	nnoremap <leader>T :Tags<CR>		" Search in tags file.
 	" Search open buffers. Comment must be on onw line.
-	nnoremap ; :Buffers<CR>
+	"nnoremap ; :Buffers<CR>
+	nnoremap <leader>; :Buffers<CR>
 " }
 
 	" Gist {
