@@ -17,6 +17,7 @@
 .atom
 .config/MusicBrainz/
 .config/broot/
+.config/bundle/Gemfile.lock
 .config/cheat/
 .config/configstore/
 .config/fzf/
