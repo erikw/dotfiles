@@ -432,11 +432,11 @@ chflags hidden ~/Public
 # * Drag my Gmail account to the top in the mailboxes left side list and collapse all other.
 # * Break out the  Archive button with space on both sides, to not misclick delete button.
 # * The default keyboard shortcut for archive an email, ctrl+cmd+a, conflicts with Todoist. Add another one.
-# 	- Reference: https://www.lifewire.com/archive-keyboard-shortcut-os-x-mail-1172749
-# 	- System Preferences > Shortcuts > App Shortcuts > + >
-# 		- Application: Maill.app
-# 		- Menu Title: Archive
-# 		- Keyboard shortcut: Opt+a
+#	- Reference: https://www.lifewire.com/archive-keyboard-shortcut-os-x-mail-1172749
+#	- System Preferences > Shortcuts > App Shortcuts > + >
+#		- Application: Maill.app
+#		- Menu Title: Archive
+#		- Keyboard shortcut: Opt+a
 ## General
 # * Downloads folder: ~/dl
 ## Accounts
@@ -445,6 +445,8 @@ chflags hidden ~/Public
 # * Message format: plain text. NOPE use Rich Text, it's not the 90s anymore....
 ## Signatures
 # * Add new signature "Standard".
+## Privacy
+# * Turn off everything
 # }
 
 # Calendar.app {
