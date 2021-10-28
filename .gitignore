@@ -32,6 +32,7 @@
 .config/restic/
 .config/subversion/
 .config/taiga-stats/taiga-stats.conf
+.config/travis/
 .config/wireshark/
 .irssi/away.log
 .irssi/dcc/

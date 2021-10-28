@@ -51,12 +51,12 @@
 	export GDBHISTFILE=$XDG_DATA_HOME/gdb/history
 	export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
 	export SOLARGRAPH_CACHE=$XDG_CACHE_HOME/solargraph
+	export TRAVIS_CONFIG_PATH=$XDG_CONFIG_HOME/travis
 
 	export GEM_SPEC_CACHE=$XDG_CACHE_HOME/gem
 	export GEM_HOME=$XDG_DATA_HOME/gem
 	export PATH="$GEM_HOME/bin:$PATH"
 
-	alias bashdb='bashdb -x ${XDG_CONFIG_HOME:-$HOME/.config}/bashdb/bashdbinit'
 
 	# Load utility functions.
 	source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/functions
