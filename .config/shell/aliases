@@ -134,6 +134,11 @@
 	alias keylist='ssh-add -l'
 # }
 
+# XDG {
+	alias bashdb='bashdb -x ${XDG_CONFIG_HOME:-$HOME/.config}/bashdb/bashdbinit'
+	alias svn='svn --config-dir ${XDG_CONFIG_HOME:-$HOME/.config}/subversion'
+# }
+
 # Sudo {
 	# Prefix these sudo aliases with \ so that e.g. the freebsd sudo alias is not used here, as sudoers POWER group command does not work then.
 	alias loadkeys='\sudo loadkeys'

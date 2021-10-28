@@ -30,6 +30,7 @@
 .config/kde/
 .config/pudb/
 .config/restic/
+.config/subversion/
 .config/taiga-stats/taiga-stats.conf
 .config/wireshark/
 .irssi/away.log
