@@ -51,6 +51,7 @@
 	export ACKRC=$XDG_CONFIG_HOME/ack/ackrc	# Project local .ackrc is still possible.
 	export WGETRC=$XDG_CONFIG_HOME/wget/wgetrc
 	export GDBHISTFILE=$XDG_DATA_HOME/gdb/history
+	export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
 
 	alias bashdb='bashdb -x ${XDG_CONFIG_HOME:-$HOME/.config}/bashdb/bashdbinit'
 
