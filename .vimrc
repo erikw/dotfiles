@@ -10,8 +10,6 @@
 " Reference: https://stackoverflow.com/questions/1687799/profiling-vim-startup-time
 " }
 
-" TODO remove s:using_vundle
-
 " Plugins {
 " Setup {
 let g:ale_completion_enabled = 1	" Must be set before ALE is loaded.
@@ -294,9 +292,7 @@ function! ToggleSpell(lang)
 		let b:old_spelllang = &spelllang
 		let b:old_spellfile = &spellfile
 		let b:old_thesaurus = &thesaurus
-		if exists("s:using_vundle")
-			let b:old_dictionary = &dictionary
-		endif
+		let b:old_dictionary = &dictionary
 	endif
 
 	let l:newMode = ""
@@ -304,18 +300,14 @@ function! ToggleSpell(lang)
 		setlocal spell
 		let l:newMode = "spell, " . a:lang
 		execute "setlocal spelllang=" . a:lang
-		if exists("s:using_vundle")
-			execute "setlocal spellfile=" . "~/.vim/spell/" . matchstr(a:lang, "[a-zA-Z][a-zA-Z]") . "." . &encoding . ".add"
-		endif
+		execute "setlocal spellfile=" . "~/.vim/spell/" . matchstr(a:lang, "[a-zA-Z][a-zA-Z]") . "." . &encoding . ".add"
 		execute "setlocal dictionary=" . "~/.vim/spell/" . a:lang . "." . &encoding . ".dic"
 		execute "setlocal thesaurus=" . "~/.vim/thesaurus/" . a:lang . ".txt"
 	else
 		setlocal nospell
 		let l:newMode = "nospell"
 		execute "setlocal spelllang=" . b:old_spelllang
-		if exists("s:using_vundle")
-			execute "setlocal spellfile=" . b:old_spellfile
-		endif
+		execute "setlocal spellfile=" . b:old_spellfile
 		execute "setlocal dictionary=" . b:old_dictionary
 		execute "setlocal thesaurus=" . b:old_thesaurus
 	endif
