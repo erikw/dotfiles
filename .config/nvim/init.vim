@@ -24,14 +24,13 @@ call plug#begin(stdpath('data') . '/plugged')
 	"Plug 'mattn/vim-gist' | Plug 'mattn/webapi-vim'	" Post a new Gist.
 	"Plug 'salsifis/vim-transpose'				" Matrix transposition of texts.
 	"Plug 'scrooloose/nerdtree'				" Replaced by built-in netrw
-	"Plug 'sjl/gundo.vim'					" Use 'mbbill/undotree' instead; is better: https://vi.stackexchange.com/a/13863
 	"Plug 'vim-scripts/lbdbq'				" Mutt: Query lbdb for recipinents.
 	"Plug 'voldikss/vim-translator'				" Async language translator.
 	Plug 'bfontaine/Brewfile.vim', { 'for': 'brewfile' }	" Syntax for Brewfiles
 	Plug 'danro/rename.vim'					" Provides the :Rename command
 	Plug 'fidian/hexmode'					" Open binary files as a HEX dump with :Hexmode
 	Plug 'instant-markdown/vim-instant-markdown', {'for': 'markdown', 'do': 'yarn install'}	" Live preview markdown files in browser.
-	Plug 'mbbill/undotree'					" Navigate history in a sidebar.
+	Plug 'mbbill/undotree'					" Navigate history in a sidebar. Replaces old 'mbbill/undotree'
 	Plug 'michaeljsmith/vim-indent-object'			" Operate on intendtation as text objects
 	Plug 'ntpeters/vim-better-whitespace'			" Highlight and remove trailing whitespaces.
 	Plug 'preservim/nerdcommenter'				" Comment source code.
@@ -40,18 +39,17 @@ call plug#begin(stdpath('data') . '/plugged')
 	Plug 'tpope/vim-repeat'					" Extend '.' repetition for plugins like vim-surround, vim-speeddating.
 	Plug 'tpope/vim-speeddating'				" Increment dates with C-a.
 	Plug 'tpope/vim-surround'				" Work on surrond delimiters or its content.
-	Plug 'tpope/vim-unimpaired'				"  Bracket mappings like [<space>
+	Plug 'tpope/vim-unimpaired'				" Bracket mappings like [<space>
 " }
 
 " Development {
 " Development: General {
-	"Plug 'Townk/vim-autoclose'				" Automatically insert matching brace pairs. Replaced by cohama/lexima.vim
 	"Plug 'hrsh7th/nvim-cmp' | Plug 'hrsh7th/cmp-nvim-lsp' | Plug 'hrsh7th/cmp-buffer' | Plug 'hrsh7th/cmp-vsnip' | Plug 'hrsh7th/vim-vsnip'	" Autocompletion when typing with LSP backend. Disabled as too fast-moving development and bugs.
 	"Plug 'neovim/nvim-lspconfig'			" Plug-n-play configurations for LSP server. Disabled in favour of simpler to use ALE.
 	Plug 'AndrewRadev/sideways.vim'			" Shift function arguments left and right.
 	Plug 'airblade/vim-gitgutter'			" Git modified status in sign column
 	Plug 'andymass/vim-matchup'				" Extend % matching. Replaces old the matchit plugin.
-	Plug 'cohama/lexima.vim'				" Autmoatically close opened braces etc.
+	Plug 'cohama/lexima.vim'				" Autmoatically close opened braces etc. Replaces old 'Townk/vim-autoclose'.
 	Plug 'dense-analysis/ale'				" LSP linting engine.
 	Plug 'editorconfig/editorconfig-vim'	" Standard .editorconfig file in shared projects.
 	Plug 'preservim/tagbar'					" Sidepane showing info from tags file.
