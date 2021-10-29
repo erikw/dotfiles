@@ -600,10 +600,10 @@ let g:tagbar_autoshowtag = 1		" Open folds if tag is not visible.
 " }
 
 " vim-autoclose {
-let g:AutoClosePairs = "() [] {} <> «» ` \" '"	" Pairs to auto-close.
-"let g:AutoCloseProtectedRegions = ["Comment", "String", "Character"]	" Syntax regions to ignore.
+"let g:AutoClosePairs = "() [] {} <> «» ` \" '"	" Pairs to auto-close.
+""let g:AutoCloseProtectedRegions = ["Comment", "String", "Character"]	" Syntax regions to ignore.
 
-noremap <silent> <Leader>ac :AutoCloseToggle<CR>				" Toggle vim-autoclose plugin mode.
+"noremap <silent> <Leader>ac :AutoCloseToggle<CR>				" Toggle vim-autoclose plugin mode.
 " }
 
 " vim-better-whitespace {
