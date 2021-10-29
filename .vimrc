@@ -19,101 +19,105 @@ call plug#begin('~/.vim/plugged')
 " }
 
 " General {
-	"Plug 'dhruvasagar/vim-table-mode'
-	"Plug 'fatih/vim-go'
-	"Plug 'vim-scripts/lbdbq'			" Mutt: Query lbdb for recipinents.
-	"Plug 'godlygeek/tabular'		" Disabled: not used and have some startup time.
-	"Plug 'mattn/gist-vim'
-	"Plug 'mattn/webapi-vim'		" Required for gist-vim
-	"Plug 'salsifis/vim-transpose'
-	"Plug 'scrooloose/nerdtree'		" Replaced by built-in netrw
-	"Plug 'sjl/gundo.vim'			" Use mbbill/undotree instead; is better: https://vi.stackexchange.com/a/13863
-	Plug 'LaTeX-Box-Team/LaTeX-Box'
-	Plug 'bfontaine/Brewfile.vim'
-	Plug 'danro/rename.vim'
-	Plug 'fidian/hexmode'
-	Plug 'instant-markdown/vim-instant-markdown'
-	Plug 'mbbill/undotree'
-	Plug 'michaeljsmith/vim-indent-object'
-	Plug 'ntpeters/vim-better-whitespace'
-	Plug 'scrooloose/nerdcommenter'
-	Plug 'tpope/vim-capslock'
-	Plug 'tpope/vim-fugitive'
-	Plug 'tpope/vim-repeat'
-	Plug 'tpope/vim-speeddating'
-	Plug 'tpope/vim-surround'
-	Plug 'tpope/vim-unimpaired'
+	"Plug 'dhruvasagar/vim-table-mode'			" Create ASCII tables
+	"Plug 'godlygeek/tabular'				" Create tables. Disabled: not used and have some startup time.
+	"Plug 'mattn/vim-gist' | Plug 'mattn/webapi-vim'	" Post a new Gist.
+	"Plug 'salsifis/vim-transpose'				" Matrix transposition of texts.
+	"Plug 'scrooloose/nerdtree'				" Replaced by built-in netrw
+	"Plug 'vim-scripts/lbdbq'				" Mutt: Query lbdb for recipinents.
+	"Plug 'voldikss/vim-translator'				" Async language translator.
+	Plug 'bfontaine/Brewfile.vim', { 'for': 'brewfile' }	" Syntax for Brewfiles
+	Plug 'danro/rename.vim'					" Provides the :Rename command
+	Plug 'fidian/hexmode'					" Open binary files as a HEX dump with :Hexmode
+	Plug 'instant-markdown/vim-instant-markdown', {'for': 'markdown', 'do': 'yarn install'}	" Live preview markdown files in browser.
+	Plug 'mbbill/undotree'					" Navigate history in a sidebar. Replaces old 'mbbill/undotree'
+	Plug 'michaeljsmith/vim-indent-object'			" Operate on intendtation as text objects
+	Plug 'ntpeters/vim-better-whitespace'			" Highlight and remove trailing whitespaces.
+	Plug 'preservim/nerdcommenter'				" Comment source code.
+	Plug 'tpope/vim-capslock'				" Software CAPSLOCK.
+	Plug 'tpope/vim-fugitive'				" Git wrapper and shorthands.
+	Plug 'tpope/vim-repeat'					" Extend '.' repetition for plugins like vim-surround, vim-speeddating.
+	Plug 'tpope/vim-speeddating'				" Increment dates with C-a.
+	Plug 'tpope/vim-surround'				" Work on surrond delimiters or its content.
+	Plug 'tpope/vim-unimpaired'				" Bracket mappings like [<space>
 "}
 
 " Development {
 " Development: General {
-	"Plug 'Townk/vim-autoclose'
-	"Plug 'scrooloose/syntastic'		" Replaced by ale
-	Plug 'AndrewRadev/sideways.vim'
-	Plug 'airblade/vim-gitgutter'
-	Plug 'cohama/lexima.vim'		" Autmoatically close opened braces etc.
-	Plug 'vim-scripts/argtextobj.vim'
-	Plug 'dense-analysis/ale'
-	Plug 'editorconfig/editorconfig-vim'
-	Plug 'majutsushi/tagbar'
-	Plug 'rhysd/conflict-marker.vim'	" Navigate and edit VCS conflicts. Replace unmaintained 'vim-script/ConflictMotions'
-	Plug 'tmhedberg/matchit'
+	Plug 'AndrewRadev/sideways.vim'			" Shift function arguments left and right.
+	Plug 'airblade/vim-gitgutter'			" Git modified status in sign column
+	Plug 'andymass/vim-matchup'				" Extend % matching. Replaces old the matchit plugin.
+	Plug 'cohama/lexima.vim'				" Autmoatically close opened braces etc. Replaces old 'Townk/vim-autoclose'.
+	Plug 'dense-analysis/ale'				" LSP linting engine.
+	Plug 'editorconfig/editorconfig-vim'	" Standard .editorconfig file in shared projects.
+	Plug 'preservim/tagbar'					" Sidepane showing info from tags file.
+	Plug 'rhysd/conflict-marker.vim'		" Navigate and edit VCS conflicts. Replace unmaintained 'vim-script/ConflictMotions'
+	Plug 'vim-scripts/argtextobj.vim'		" Make function arguments text objects that can be operated on with.
 "}
 
 " Development: C/C++ {
-	"Plug 'Rip-Rip/clang_complete'
-	"Plug 'rhysd/vim-clang-format'
-	"Plug 'chazy/cscope_maps'
-	Plug 'vim-scripts/autoload_cscope.vim'
-	Plug 'craigemery/vim-autotag'
+	"Plug 'Rip-Rip/clang_complete', { 'for': ['c', 'cpp'] }
+	"Plug 'chazy/cscope_maps'					" More macros than autoload_cscope.vom
+	"Plug 'rhysd/vim-clang-format', { 'for': ['c', 'cpp'] }
+	Plug 'vim-scripts/autoload_cscope.vim', { 'for': ['c', 'cpp'] }	" Load cscope file and define macros for using it. https://github.com/vim-scripts/autoload_cscope.vim/blob/master/plugin/autoload_cscope.vim#L81-L88
+	Plug 'craigemery/vim-autotag'				" Autogenerate new tags file. Could replace with https://github.com/ludovicchabant/vim-gutentags
+"}
+
+" Development: Go {
+	"Plug 'fatih/vim-go', { 'for': 'go' }	" Compilation commands etc.
 "}
 
 " Development: Java {
-	"Plug 'artur-shaik/vim-javacomplete2'
-	"Plug 'erikw/jcommenter.vim'
+	"Plugin 'artur-shaik/vim-javacomplete2', { 'for': 'java' }	" Omni-complete for Java
+	"Plugin 'erikw/jcommenter.vim', { 'for': 'java' }		" Generate javadoc.
 "}
 
+" Development: LaTeX {
+	"Plug 'donRaphaco/neotex'				" Live preview PDF output from latex.
+	Plug 'LaTeX-Box-Team/LaTeX-Box'			" TODO replace with https://github.com/latex-lsp/texlab
+" }
+
 " Development: Python {
-	"Plug 'davidhalter/jedi-vim'
-	"Plug 'python-rope/ropevim'
-	"Plug 'fisadev/vim-isort'
+	"Plugin 'davidhalter/jedi-vim', { 'for': 'python' }	" Autocompletion using jedi library.
+	"Plugin 'python-rope/ropevim', { 'for': 'python' }	" Refactoring with rope library.
+	"Plugin 'fisadev/vim-isort', { 'for': 'python' }	" Sort imports
 "}
 
 " Development: Swift {
-	"Plug 'keith/swift.vim'
+	"Plugin 'keith/swift.vim', { 'for': 'switft' }	" Syntax files for Switch
 "}
 
 " Development: Web {
-	Plug 'ap/vim-css-color'	" Display CSS colors in vim.
+	Plug 'ap/vim-css-color', { 'for': ['css', 'scss'] }	" Display CSS colors in vim.
 " }
 " }
 
 " Navigation {
-	"Plug 'vim-scripts/FuzzyFinder'	" Disabled, as it has high startup time
-	"Plug 'vim-scripts/L9'			" Required for FuzzyFinder.
-	"Plug 'wincent/command-t'
-
 	" FZF - Fuzzy finding
 	" - Keyboard shortcuts: https://github.com/junegunn/fzf/blob/master/README-VIM.md#fzf
 	" - Commands: https://github.com/junegunn/fzf.vim#commands
-	Plug 'junegunn/fzf'
-	Plug 'junegunn/fzf.vim'
-"}
+	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } | Plug 'junegunn/fzf.vim'
+" }
 
 " Snippets {
-	Plug 'MarcWeber/vim-addon-mw-utils'	" Required for  garbas/vim-snipmate.
-	Plug 'tomtom/tlib_vim'		" Required for garbas/vim-snipmate
-	Plug 'garbas/vim-snipmate'
-	Plug 'honza/vim-snippets'
-	Plug 'rbonvall/snipmate-snippets-bib'
+	Plug 'garbas/vim-snipmate' | Plug 'MarcWeber/vim-addon-mw-utils' | Plug 'tomtom/tlib_vim'
+	Plug 'honza/vim-snippets'				" Snippet library
+	Plug 'rbonvall/snipmate-snippets-bib', { 'for': 'tex' }	" Bibtex snippets.
 " }
 
 " UI {
-	"Plug 'flazz/vim-colorschemes'
-	"Plug 'vim-scripts/ScrollColors'
-	Plug 'altercation/vim-colors-solarized'
-	Plug 'mkitt/tabline.vim'		" More informative tab titles. Only for terminal; gvim uses guilabel setting.
+	"Plug 'vim-scripts/ScrollColors'	" Cycle though available colorschemes.
+	Plug 'cormacrelf/dark-notify'		" Watch system light/dark mode changes.  Requires dark-notify(1).
 	Plug 'mhinz/vim-startify'		" Start screen with recently opended files.
+	Plug 'mkitt/tabline.vim'		" More informative tab titles.
+
+
+" Colorschemes {
+	"Plug 'altercation/vim-colors-solarized'	" The one theme to rule them all.
+	"Plug 'mhartington/oceanic-next'
+	"Plug 'morhetz/gruvbox'
+	Plug 'overcache/NeoSolarized'
+" }
 "}
 
 " Setup - end {
@@ -358,6 +362,18 @@ function! ToggleMouse()
 endfunction
 " }
 nmap <Leader>m :call ToggleMouse()<CR>	" Toggles mouse on and off.
+
+" Toggle background mode {
+function! ToggleBackgroundMode()
+	if &background == "light"
+		set background=dark
+	else
+		set background=light
+	endif
+	set background?
+endfunction
+" }
+nmap <silent> <F5> :call ToggleBackgroundMode()<CR>	" Toggle between light and dark background mode.
 " }
 
 " Cmaps {
@@ -387,7 +403,7 @@ set dictionary+=~/.vim/spell/		" Use custom dictionaries.
 " }
 
 " UI {
-colorscheme solarized	" Use the solarized colorscheme.
+colorscheme NeoSolarized
 
 set t_Co=256		" Set number of colors.
 "hi Normal ctermbg=NONE	" Transparent background.
