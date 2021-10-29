@@ -193,6 +193,7 @@
 	    alias vibplain="vim -u NONE -i NONE -c 'set number backup'"	# Same, but write local backup file.
 	fi
 	if program_is_in_path vim; then
+	    alias vimplain="vim -u NONE -i NONE"
 	    alias vim_clean='rm -rf ~/.vim/{.netrwhist,fuf-data,swap,view,viminfo,yankring_v2.txt} ~/.vim/undo/* ~/.cache/vim/swap/'		# It's a new-start!
 	fi
 # }
