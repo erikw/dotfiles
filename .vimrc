@@ -206,113 +206,9 @@ endif
 " }
 " }
 
-" Spelling {
-"set spell			" Enable spell highlighting and suggestions.
-set spellsuggest=best,10	" Limit spell suggestions.
-set spelllang=en_us		" Languages to do spell checking for.
-" Set spellfile dynamically.
-execute "set spellfile=" . "~/.vim/spell/" . matchstr(&spelllang, "[a-zA-Z][a-zA-Z]") . "." . &encoding . ".add"
-" Use a thesaurus file. Could load all, but that makes lookup slower. Instead let ToggleSpell() set per language.
-execute "set thesaurus=" . "~/.vim/thesaurus/" . matchstr(&spelllang, "[a-zA-Z][a-zA-Z]") . ".txt"
-set dictionary+=~/.vim/spell/		" Use custom dictionaries.
-"set dictionary+=/usr/share/dict/words	" Use system dictionary.
-" }
-
-" UI {
-colorscheme solarized	" Use the solarized colorscheme.
-
-set t_Co=256		" Set number of colors.
-"hi Normal ctermbg=NONE	" Transparent background.
-set title		" Show title in console title bar.
-" Adjust colors to this background.
-let s:solarized_status = s:xdg_state_home . "/solarizedtoggle/status"
-if filereadable(s:solarized_status)
-	let &background = readfile(s:solarized_status)[0]
-else
-	" Lighter bg during night.
-	" Source:  http://benjamintan.io/blog/2014/04/10/switch-solarized-light-slash-dark-depending-on-the-time-of-day/
-	let s:hour = strftime("%H")
-	if 7 <= s:hour && s:hour < 18
-		set background=light
-	else
-		set background=dark
-	endif
-endif
-
-set number				" Show line numbers.
-set tabpagemax=64			" Upper limit on number of tabs.
-set showmode				" Show current mode in the last line.
-set backspace=indent,eol,start		" Make backspace work like expected.
-set linespace=0				" No line spacing.
-set showmatch				" Shortly jump to a matching bracket when match.
-set wildmode=full			" Full completion.
-set wildignorecase			" Case insensitive filename completion.
-set scrolljump=5			" Lines to scroll when cursor leaves screen.
-set scrolloff=3				" Minimum lines to keep above and below cursor.
-set splitbelow				" Open horizontal split below.
-set splitright				" Open vertical split to the right.
-set foldenable				" Use folding.
-set showcmd				" Show incomplete commands in the lower right corner.
-set ruler				" Show current cursor position in the lower right corner.
-set laststatus=2			" Always show the status line.
-set nolist				" Don't show unprintable characters.
-"set listchars=eol:$,tab:>-,trail:¬,extends:>,precedes:<,nbsp:.	" Characters to use for list.
-set listchars=eol:$,space:·,tab:>-,trail:¬,extends:>,precedes:<,nbsp:.	" Characters to use for list.
-set cursorline				" Highlight the current line.
-"set cursorcolumn			" Highlight the current column.
-" Colors of the CursorLine.
-"hi CursorLine cterm=NONE ctermbg=LightGray ctermfg=Black guibg=LightGray guifg=Black
-"hi CursorColumn cterm=NONE ctermbg=LightGray ctermfg=Black guibg=LightGray guifg=Black
-
-" Statusline {
-" Comment these out when using powerline statusbar.
-set statusline=%t			" Tail of the filename.
-set statusline+=%m			" Modified flag.
-set statusline+=\ [%{strlen(&fenc)?&fenc:'none'},	" File encoding.
-set statusline+=%{&ff}]			" File format.
-set statusline+=%h			" Help file flag.
-set statusline+=%r			" Read only flag.
-set statusline+=%y			" Filetype.
-"set statusline+=['%{getline('.')[col('.')-1]}'\ \%b\ 0x%B]	" Value of byte under cursor.
-
-set statusline+=%#StatusLineNC#		" Change highlight group
-set statusline+=%{fugitive#statusline()}	" Show current branch.
-set statusline+=%*
-set statusline+=%{tagbar#currenttag('[#%s]','')}	" Current tag.
-
-set statusline+=%=			" Left/right-aligned separator.
-"set statusline+=[\%b\ 0x%B]\		" Value of byte under cursor.
-"set statusline+=[0x%O]\		" Byte offset from start.
-set statusline+=%l/%L,			" Cursor line/total lines.
-set statusline+=%c			" Cursor column.
-set statusline+=\ %P			" Percent through file.
-set statusline+=\ 0x%B			" Character valur under cursor.
-" }
-" }
-
-" Searching {
-set hlsearch	" Highlight search.
-set incsearch	" Incremental search.
-set ignorecase	" Case insensitive search.
-set smartcase	" Smart case search.
-set nowrapscan	" Don't wrap search around file.
-" }
-
-" Formatting {
-set linebreak			" Wrap on 'breakat'-chars.
-"set showbreak=>		" Indicate wrapped lines.
-set showbreak=…			" Indicate wrapped lines.
-set smartindent			" Indent smart on C-like files.
-set preserveindent		" Try to preserve indent structure on changes of current line.
-set copyindent			" Copy indentstructure from existing lines.
-set tabstop=4			" Let a tab be X spaces wide.
-set shiftwidth=4		" Tab width for auto indent and >> shifting.
-"set softtabstop=4		" Number of spaces to count a tab for on ops like BS and tab.
-set noexpandtab			" Do not expand tabs to spaces!
-set matchpairs+=<:>		" Also match <> with %.
-set formatoptions=tcroqwnl	" Formatting options.
-set cinoptions+=g=		" Left-indent C++ access labels.
-"set pastetoggle  = <Leader>p    " Toggle 'paste' for sane pasting.
+" Abbreviations {
+" Expand my name.
+"iabbrev ew Erik Westrup
 " }
 
 " Commands {
@@ -333,6 +229,23 @@ command! -nargs=* Wrap set wrap linebreak nolist	" Set softwrap correctly.
 autocmd BufWinLeave * silent! mkview			" Save fold views.
 autocmd BufWinEnter * silent! loadview			" Load fold views on start.
 "autocmd! BufWritePost .vimrc source $MYVIMRC		" Source first found vimrc on change.
+" }
+
+" Formatting {
+set linebreak			" Wrap on 'breakat'-chars.
+"set showbreak=>		" Indicate wrapped lines.
+set showbreak=…			" Indicate wrapped lines.
+set smartindent			" Indent smart on C-like files.
+set preserveindent		" Try to preserve indent structure on changes of current line.
+set copyindent			" Copy indentstructure from existing lines.
+set tabstop=4			" Let a tab be X spaces wide.
+set shiftwidth=4		" Tab width for auto indent and >> shifting.
+"set softtabstop=4		" Number of spaces to count a tab for on ops like BS and tab.
+set noexpandtab			" Do not expand tabs to spaces!
+set matchpairs+=<:>		" Also match <> with %.
+set formatoptions=tcroqwnl	" Formatting options.
+set cinoptions+=g=		" Left-indent C++ access labels.
+"set pastetoggle  = <Leader>p    " Toggle 'paste' for sane pasting.
 " }
 
 " Mappings {
@@ -463,9 +376,96 @@ cmap w\ echoerr "Using a Swedish keyboard?"<CR>
 " }
 " }
 
-" Abbreviations {
-" Expand my name.
-"iabbrev ew Erik Westrup
+" Searching {
+set hlsearch	" Highlight search.
+set incsearch	" Incremental search.
+set ignorecase	" Case insensitive search.
+set smartcase	" Smart case search.
+set nowrapscan	" Don't wrap search around file.
+" }
+
+" Spelling {
+"set spell			" Enable spell highlighting and suggestions.
+set spellsuggest=best,10	" Limit spell suggestions.
+set spelllang=en_us		" Languages to do spell checking for.
+" Set spellfile dynamically.
+execute "set spellfile=" . "~/.vim/spell/" . matchstr(&spelllang, "[a-zA-Z][a-zA-Z]") . "." . &encoding . ".add"
+" Use a thesaurus file. Could load all, but that makes lookup slower. Instead let ToggleSpell() set per language.
+execute "set thesaurus=" . "~/.vim/thesaurus/" . matchstr(&spelllang, "[a-zA-Z][a-zA-Z]") . ".txt"
+set dictionary+=~/.vim/spell/		" Use custom dictionaries.
+"set dictionary+=/usr/share/dict/words	" Use system dictionary.
+" }
+
+" UI {
+colorscheme solarized	" Use the solarized colorscheme.
+
+set t_Co=256		" Set number of colors.
+"hi Normal ctermbg=NONE	" Transparent background.
+set title		" Show title in console title bar.
+" Adjust colors to this background.
+let s:solarized_status = s:xdg_state_home . "/solarizedtoggle/status"
+if filereadable(s:solarized_status)
+	let &background = readfile(s:solarized_status)[0]
+else
+	" Lighter bg during night.
+	" Source:  http://benjamintan.io/blog/2014/04/10/switch-solarized-light-slash-dark-depending-on-the-time-of-day/
+	let s:hour = strftime("%H")
+	if 7 <= s:hour && s:hour < 18
+		set background=light
+	else
+		set background=dark
+	endif
+endif
+
+set number				" Show line numbers.
+set tabpagemax=64			" Upper limit on number of tabs.
+set showmode				" Show current mode in the last line.
+set backspace=indent,eol,start		" Make backspace work like expected.
+set linespace=0				" No line spacing.
+set showmatch				" Shortly jump to a matching bracket when match.
+set wildmode=full			" Full completion.
+set wildignorecase			" Case insensitive filename completion.
+set scrolljump=5			" Lines to scroll when cursor leaves screen.
+set scrolloff=3				" Minimum lines to keep above and below cursor.
+set splitbelow				" Open horizontal split below.
+set splitright				" Open vertical split to the right.
+set foldenable				" Use folding.
+set showcmd				" Show incomplete commands in the lower right corner.
+set ruler				" Show current cursor position in the lower right corner.
+set laststatus=2			" Always show the status line.
+set nolist				" Don't show unprintable characters.
+"set listchars=eol:$,tab:>-,trail:¬,extends:>,precedes:<,nbsp:.	" Characters to use for list.
+set listchars=eol:$,space:·,tab:>-,trail:¬,extends:>,precedes:<,nbsp:.	" Characters to use for list.
+set cursorline				" Highlight the current line.
+"set cursorcolumn			" Highlight the current column.
+" Colors of the CursorLine.
+"hi CursorLine cterm=NONE ctermbg=LightGray ctermfg=Black guibg=LightGray guifg=Black
+"hi CursorColumn cterm=NONE ctermbg=LightGray ctermfg=Black guibg=LightGray guifg=Black
+
+" Statusline {
+" Comment these out when using powerline statusbar.
+set statusline=%t			" Tail of the filename.
+set statusline+=%m			" Modified flag.
+set statusline+=\ [%{strlen(&fenc)?&fenc:'none'},	" File encoding.
+set statusline+=%{&ff}]			" File format.
+set statusline+=%h			" Help file flag.
+set statusline+=%r			" Read only flag.
+set statusline+=%y			" Filetype.
+"set statusline+=['%{getline('.')[col('.')-1]}'\ \%b\ 0x%B]	" Value of byte under cursor.
+
+set statusline+=%#StatusLineNC#		" Change highlight group
+set statusline+=%{fugitive#statusline()}	" Show current branch.
+set statusline+=%*
+set statusline+=%{tagbar#currenttag('[#%s]','')}	" Current tag.
+
+set statusline+=%=			" Left/right-aligned separator.
+"set statusline+=[\%b\ 0x%B]\		" Value of byte under cursor.
+"set statusline+=[0x%O]\		" Byte offset from start.
+set statusline+=%l/%L,			" Cursor line/total lines.
+set statusline+=%c			" Cursor column.
+set statusline+=\ %P			" Percent through file.
+set statusline+=\ 0x%B			" Character valur under cursor.
+" }
 " }
 
 " Plugin Config {
