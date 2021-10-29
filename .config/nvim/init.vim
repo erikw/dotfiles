@@ -11,10 +11,12 @@
 " }
 
 " Plugins {
+" Setup {
 let g:ale_completion_enabled = 1	" Must be set before ALE is loaded.
 
 " vim-plug data folder
 call plug#begin(stdpath('data') . '/plugged')
+" }
 
 " General {
 	"Plug 'dhruvasagar/vim-table-mode'			" Create ASCII tables
@@ -94,18 +96,18 @@ call plug#begin(stdpath('data') . '/plugged')
 " }
 " }
 
-" Snippets {
-	" Snippet engine. Not very active. https://github.com/honza/vim-snippets list altenatives. neosnippet.vim seems nice, but require python provider.
-	Plug 'garbas/vim-snipmate' | Plug 'MarcWeber/vim-addon-mw-utils' | Plug 'tomtom/tlib_vim'
-	Plug 'honza/vim-snippets'				" Snippet library
-	Plug 'rbonvall/snipmate-snippets-bib', { 'for': 'tex' }	" Bibtex snippets.
-" }
-
 " Navigation {
 	" FZF - Fuzzy finding
 	" - Keyboard shortcuts: https://github.com/junegunn/fzf/blob/master/README-VIM.md#fzf
 	" - Commands: https://github.com/junegunn/fzf.vim#commands
 	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } | Plug 'junegunn/fzf.vim'
+" }
+
+" Snippets {
+	" Snippet engine. Not very active. https://github.com/honza/vim-snippets list altenatives. neosnippet.vim seems nice, but require python provider.
+	Plug 'garbas/vim-snipmate' | Plug 'MarcWeber/vim-addon-mw-utils' | Plug 'tomtom/tlib_vim'
+	Plug 'honza/vim-snippets'				" Snippet library
+	Plug 'rbonvall/snipmate-snippets-bib', { 'for': 'tex' }	" Bibtex snippets.
 " }
 
 " UI {
@@ -123,8 +125,10 @@ call plug#begin(stdpath('data') . '/plugged')
 " }
 "}
 
+" Setup - end {
 " Initialize plugin system
 call plug#end()
+" }
 " }
 
 " Environment {
