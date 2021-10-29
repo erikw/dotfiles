@@ -52,6 +52,7 @@ call plug#begin(stdpath('data') . '/plugged')
 	Plug 'cohama/lexima.vim'				" Autmoatically close opened braces etc. Replaces old 'Townk/vim-autoclose'.
 	Plug 'dense-analysis/ale'				" LSP linting engine.
 	Plug 'editorconfig/editorconfig-vim'	" Standard .editorconfig file in shared projects.
+	Plug 'github/copilot.vim'			" AI powered code completion.
 	Plug 'preservim/tagbar'					" Sidepane showing info from tags file.
 	Plug 'rhysd/conflict-marker.vim'		" Navigate and edit VCS conflicts. Replace unmaintained 'vim-script/ConflictMotions'
 	Plug 'vim-scripts/argtextobj.vim'		" Make function arguments text objects that can be operated on with.
@@ -445,6 +446,18 @@ set statusline+=\ 0x%B		" Character value under cursor.
 
 " Plugin Config {
 execute "source " . s:xdg_config_home . "/nvim/commons_plugin_config.vim"
+
+" copilot.vim {
+" Disable/enable per filetype
+"let g:copilot_filetypes = {
+      "\ '*': v:false,
+      "\ }
+
+" Remap from <tab> as this is used by snipmate.
+" Reference: https://github.com/github/feedback/discussions/6919#discussioncomment-1553837
+inoremap <silent><expr> <C-Space> copilot#Accept("")
+let g:copilot_no_tab_map = 1
+" }
 
 " dark-notify {
 :lua <<EOF

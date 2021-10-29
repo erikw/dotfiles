@@ -23,6 +23,7 @@
 .config/configstore/
 .config/fzf/
 .config/git/config-local
+.config/github-copilot/
 .config/grip/cache-*
 .config/gtk-2.0/
 .config/htop/
