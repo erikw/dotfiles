@@ -21,6 +21,7 @@
 	br = branch
 	ci = commit
 	cia = commit --amend
+	cicc = commit -m \"Collected changes\"
 	cl = clone
 	co = checkout
 	committers = shortlog -s -n --all
