@@ -62,6 +62,7 @@
     brew 'python'
     brew 'readline'
     brew 'rename'        # aka rename.pl
+    brew 'ripgrep'
     brew 'rsync'
     brew 'sl'
     brew 'source-highlight'

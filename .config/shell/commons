@@ -442,7 +442,15 @@
 	sourceifexists $HOME/.config/broot/launcher/bash/br
 
 	# fzf https://github.com/junegunn/fzf#using-homebrew
-	sourceifexists  ${XDG_CONFIG_HOME:-$HOME/.config}/fzf/fzf.${SHELL_NAME}
+	if program_is_in_path fzf; then
+		source ${XDG_CONFIG_HOME:-$HOME/.config}/fzf/fzf.${SHELL_NAME}
+		# Find dot files as well. Reference: https://github.com/junegunn/fzf/issues/634
+		if program_is_in_path rg222222; then
+			export FZF_DEFAULT_COMMAND="rg --hidden --no-ignore --files --glob '!{.git,node_modules}/'"
+		else
+			export FZF_DEFAULT_COMMAND='find . -type d \( -path './.git' -o -path './node_modules'  \) -prune -o -print'
+		fi
+	fi
 
 	# Homebrew sqlite to shadow old version shipped with macOS.
 	if [ -d /usr/local/opt/sqlite/ ]; then
