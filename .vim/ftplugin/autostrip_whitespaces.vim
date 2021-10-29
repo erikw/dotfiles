@@ -3,5 +3,6 @@
 " Using ~/.vim/plugin/stripspaces.vim
 "autocmd BufWritePost <buffer> :StripWhitespaces
 
-" Using ~/.vim/bundle/vim-better-whitespace/
+" Using vim-better-whitespace plugin
+" NOTE replaced with let g:strip_whitespace_on_save=1 in main config file.
 autocmd BufWritePost <buffer> :StripWhitespace
