@@ -167,10 +167,11 @@
 	fi
 
 	# A better compiler for C langs.
-	if program_is_in_path clang; then
-		export CC=clang
-		export CXX=clang++
-	fi
+	# Unfortunately still quite some problems e.g. with compiling native extension of $(gem install byebuy)
+	#if program_is_in_path clang; then
+		#export CC=clang
+		#export CXX=clang++
+	#fi
 
 	# Personal log folder used by some program configurations.
 	test -d ${XDG_STATE_HOME:-$HOME/.local/state}/tmux || mkdir -p ${XDG_STATE_HOME:-$HOME/.local/state}/tmux
