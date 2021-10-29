@@ -4,6 +4,16 @@
 
 source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/functions.d/sourceifexists.sh
 
+# Wrapper that hooks all names given in an array
+_sandbox_hook_all(){
+	local sandfunc="$1"
+	shift
+	local names=("$@")
+	for name in "${names[@]}"; do
+		eval "sandbox_hook ${sandfunc} ${name}"
+	done
+}
+
 # Ruby Version Manager
 # Is sandboxed because
 # 1) It's slow to source
@@ -34,14 +44,7 @@ sandbox_hook_shims rbenv ${XDG_DATA_HOME:-$HOME/.local/share}/gem/bin
 # Ruby on Rails wrapper scripts
 # Unfortunately it breaks system wide tab completion on $ bin/<tab>
 # Workaroud: $ ./bin/<tab>, $ bin//<tab>
-sandbox_hook rbenv bin/bundle
-sandbox_hook rbenv bin/rails
-sandbox_hook rbenv bin/rake
-sandbox_hook rbenv bin/setup
-sandbox_hook rbenv bin/spring
-sandbox_hook rbenv bin/webpack
-sandbox_hook rbenv bin/webpack-dev-server
-sandbox_hook rbenv bin/yarn
+_sandbox_hook_all rbenv bin/bundle bin/rails bin/rake bin/setup bin/spring bin/webpack bin/webpack-dev-server bin/yarn
 
 # GVM: Go Version Manager
 sandbox_init_gvm() {
@@ -65,19 +68,17 @@ sandbox_hook sdk gradle
 #}
 
 # Virtualenvwrapper
-sandbox_init_virtualenvwrapper() {
-	local virtenv_path
-	shell_is_macos && virtenv_path=/usr/local/bin/virtualenvwrapper.sh || virtenv_path=/usr/bin/virtualenvwrapper_lazy.sh
-	if [ -e $virtenv_path ]; then
-		source $virtenv_path
-		export WORKON_HOME=$HOME/.virtualenvs
-		export PROJECT_HOME=$HOME/dev
-	fi
-}
-virtualenv_functions=(add2virtualenv allvirtualenv cdproject cdsitepackages cdvirtualenv cpvirtualenv lssitepackages lsvirtualenv mkproject mktmpenv mkvirtualenv rmvirtualenv setvirtualenvproject showvirtualenv toggleglobalsitepackages virtualenv wipenv workon)
-for venv_func in "${virtualenv_functions[@]}"; do
-	eval "sandbox_hook virtualenvwrapper ${venv_func}"
-done
+#sandbox_init_virtualenvwrapper() {
+	#local virtenv_path
+	#shell_is_macos && virtenv_path=/usr/local/bin/virtualenvwrapper.sh || virtenv_path=/usr/bin/virtualenvwrapper_lazy.sh
+	#if [ -e $virtenv_path ]; then
+		#source $virtenv_path
+		#export WORKON_HOME=$HOME/.virtualenvs
+		#export PROJECT_HOME=$HOME/dev
+	#fi
+#}
+#virtualenv_functions=(add2virtualenv allvirtualenv cdproject cdsitepackages cdvirtualenv cpvirtualenv lssitepackages lsvirtualenv mkproject mktmpenv mkvirtualenv rmvirtualenv setvirtualenvproject showvirtualenv toggleglobalsitepackages virtualenv wipenv workon)
+#_sandbox_hook_all virtualenvwrapper "${virtualenv_functions[@]}"
 
 # JAVA_HOME
 sandbox_init_java-home() {
