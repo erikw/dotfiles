@@ -722,7 +722,6 @@ let g:startify_custom_header = s:ascii
 
 " Show version in fooder. Reference: https://github.com/mhinz/vim-startify/issues/449
 "let g:startify_custom_footer = "startify#pad(['', '\ufa76' . matchstr(execute('version'), 'NVIM v\\z\\s[^\\n]\*'), ''])"
-
 " }
 
 " sideways.vim {
