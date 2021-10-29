@@ -10,124 +10,117 @@
 " Reference: https://stackoverflow.com/questions/1687799/profiling-vim-startup-time
 " }
 
+" TODO remove s:using_vundle
+
 " Plugins {
 " Setup {
-" See *vundle-plugins-uris* for Plugin syntax.
 let g:ale_completion_enabled = 1	" Must be set before ALE is loaded.
-let s:using_vundle = 1			" Vundle will break default behaviour of spellfile. Let others know when using Vundle.
 
-set nocompatible           " be iMproved, required
-filetype off                " required
-
-" Set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-" Let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
+" vim-plug data folder
+call plug#begin('~/.vim/plugged')
 " }
 
 " General {
-	"Plugin 'dhruvasagar/vim-table-mode'
-	"Plugin 'fatih/vim-go'
-	"Plugin 'vim-scripts/lbdbq'			" Mutt: Query lbdb for recipinents.
-	"Plugin 'godlygeek/tabular'		" Disabled: not used and have some startup time.
-	"Plugin 'mattn/gist-vim'
-	"Plugin 'mattn/webapi-vim'		" Required for gist-vim
-	"Plugin 'salsifis/vim-transpose'
-	"Plugin 'scrooloose/nerdtree'		" Replaced by built-in netrw
-	"Plugin 'sjl/gundo.vim'			" Use mbbill/undotree instead; is better: https://vi.stackexchange.com/a/13863
-	Plugin 'LaTeX-Box-Team/LaTeX-Box'
-	Plugin 'bfontaine/Brewfile.vim'
-	Plugin 'danro/rename.vim'
-	Plugin 'fidian/hexmode'
-	Plugin 'instant-markdown/vim-instant-markdown'
-	Plugin 'mbbill/undotree'
-	Plugin 'michaeljsmith/vim-indent-object'
-	Plugin 'ntpeters/vim-better-whitespace'
-	Plugin 'scrooloose/nerdcommenter'
-	Plugin 'tpope/vim-capslock'
-	Plugin 'tpope/vim-fugitive'
-	Plugin 'tpope/vim-repeat'
-	Plugin 'tpope/vim-speeddating'
-	Plugin 'tpope/vim-surround'
-	Plugin 'tpope/vim-unimpaired'
+	"Plug 'dhruvasagar/vim-table-mode'
+	"Plug 'fatih/vim-go'
+	"Plug 'vim-scripts/lbdbq'			" Mutt: Query lbdb for recipinents.
+	"Plug 'godlygeek/tabular'		" Disabled: not used and have some startup time.
+	"Plug 'mattn/gist-vim'
+	"Plug 'mattn/webapi-vim'		" Required for gist-vim
+	"Plug 'salsifis/vim-transpose'
+	"Plug 'scrooloose/nerdtree'		" Replaced by built-in netrw
+	"Plug 'sjl/gundo.vim'			" Use mbbill/undotree instead; is better: https://vi.stackexchange.com/a/13863
+	Plug 'LaTeX-Box-Team/LaTeX-Box'
+	Plug 'bfontaine/Brewfile.vim'
+	Plug 'danro/rename.vim'
+	Plug 'fidian/hexmode'
+	Plug 'instant-markdown/vim-instant-markdown'
+	Plug 'mbbill/undotree'
+	Plug 'michaeljsmith/vim-indent-object'
+	Plug 'ntpeters/vim-better-whitespace'
+	Plug 'scrooloose/nerdcommenter'
+	Plug 'tpope/vim-capslock'
+	Plug 'tpope/vim-fugitive'
+	Plug 'tpope/vim-repeat'
+	Plug 'tpope/vim-speeddating'
+	Plug 'tpope/vim-surround'
+	Plug 'tpope/vim-unimpaired'
 "}
 
 " Development {
 " Development: General {
-	"Plugin 'Townk/vim-autoclose'
-	"Plugin 'scrooloose/syntastic'		" Replaced by ale
-	Plugin 'AndrewRadev/sideways.vim'
-	Plugin 'airblade/vim-gitgutter'
-	Plugin 'cohama/lexima.vim'		" Autmoatically close opened braces etc.
-	Plugin 'argtextobj.vim'
-	Plugin 'dense-analysis/ale'
-	Plugin 'editorconfig/editorconfig-vim'
-	Plugin 'majutsushi/tagbar'
-	Plugin 'rhysd/conflict-marker.vim'	" Navigate and edit VCS conflicts. Replace unmaintained 'vim-script/ConflictMotions'
-	Plugin 'tmhedberg/matchit'
+	"Plug 'Townk/vim-autoclose'
+	"Plug 'scrooloose/syntastic'		" Replaced by ale
+	Plug 'AndrewRadev/sideways.vim'
+	Plug 'airblade/vim-gitgutter'
+	Plug 'cohama/lexima.vim'		" Autmoatically close opened braces etc.
+	Plug 'vim-scripts/argtextobj.vim'
+	Plug 'dense-analysis/ale'
+	Plug 'editorconfig/editorconfig-vim'
+	Plug 'majutsushi/tagbar'
+	Plug 'rhysd/conflict-marker.vim'	" Navigate and edit VCS conflicts. Replace unmaintained 'vim-script/ConflictMotions'
+	Plug 'tmhedberg/matchit'
 "}
 
 " Development: C/C++ {
-	"Plugin 'Rip-Rip/clang_complete'
-	"Plugin 'rhysd/vim-clang-format'
-	"Plugin 'chazy/cscope_maps'
-	Plugin 'autoload_cscope.vim'
-	Plugin 'craigemery/vim-autotag'
+	"Plug 'Rip-Rip/clang_complete'
+	"Plug 'rhysd/vim-clang-format'
+	"Plug 'chazy/cscope_maps'
+	Plug 'vim-scripts/autoload_cscope.vim'
+	Plug 'craigemery/vim-autotag'
 "}
 
 " Development: Java {
-	"Plugin 'artur-shaik/vim-javacomplete2'
-	"Plugin 'erikw/jcommenter.vim'
+	"Plug 'artur-shaik/vim-javacomplete2'
+	"Plug 'erikw/jcommenter.vim'
 "}
 
 " Development: Python {
-	"Plugin 'davidhalter/jedi-vim'
-	"Plugin 'python-rope/ropevim'
-	"Plugin 'fisadev/vim-isort'
+	"Plug 'davidhalter/jedi-vim'
+	"Plug 'python-rope/ropevim'
+	"Plug 'fisadev/vim-isort'
 "}
 
 " Development: Swift {
-	"Plugin 'keith/swift.vim'
+	"Plug 'keith/swift.vim'
 "}
 
 " Development: Web {
-	Plugin 'ap/vim-css-color'	" Display CSS colors in vim.
+	Plug 'ap/vim-css-color'	" Display CSS colors in vim.
 " }
 " }
 
 " Navigation {
-	"Plugin 'FuzzyFinder'	" Disabled, as it has high startup time
-	"Plugin 'L9'			" Required for FuzzyFinder.
-	"Plugin 'wincent/command-t'
+	"Plug 'vim-scripts/FuzzyFinder'	" Disabled, as it has high startup time
+	"Plug 'vim-scripts/L9'			" Required for FuzzyFinder.
+	"Plug 'wincent/command-t'
 
 	" FZF - Fuzzy finding
 	" - Keyboard shortcuts: https://github.com/junegunn/fzf/blob/master/README-VIM.md#fzf
 	" - Commands: https://github.com/junegunn/fzf.vim#commands
-	Plugin 'junegunn/fzf'
-	Plugin 'junegunn/fzf.vim'
+	Plug 'junegunn/fzf'
+	Plug 'junegunn/fzf.vim'
 "}
 
 " Snippets {
-	Plugin 'MarcWeber/vim-addon-mw-utils'	" Required for  garbas/vim-snipmate.
-	Plugin 'tomtom/tlib_vim'		" Required for garbas/vim-snipmate
-	Plugin 'garbas/vim-snipmate'
-	Plugin 'honza/vim-snippets'
-	Plugin 'rbonvall/snipmate-snippets-bib'
+	Plug 'MarcWeber/vim-addon-mw-utils'	" Required for  garbas/vim-snipmate.
+	Plug 'tomtom/tlib_vim'		" Required for garbas/vim-snipmate
+	Plug 'garbas/vim-snipmate'
+	Plug 'honza/vim-snippets'
+	Plug 'rbonvall/snipmate-snippets-bib'
 " }
 
 " UI {
-	"Plugin 'flazz/vim-colorschemes'
-	"Plugin 'ScrollColors'
-	Plugin 'altercation/vim-colors-solarized'
-	Plugin 'mkitt/tabline.vim'		" More informative tab titles. Only for terminal; gvim uses guilabel setting.
-	Plugin 'mhinz/vim-startify'		" Start screen with recently opended files.
+	"Plug 'flazz/vim-colorschemes'
+	"Plug 'vim-scripts/ScrollColors'
+	Plug 'altercation/vim-colors-solarized'
+	Plug 'mkitt/tabline.vim'		" More informative tab titles. Only for terminal; gvim uses guilabel setting.
+	Plug 'mhinz/vim-startify'		" Start screen with recently opended files.
 "}
 
 " Setup - end {
-call vundle#end()            " required
-filetype plugin indent on    " required
+" Initialize plugin system
+call plug#end()
 " }
 " }
 

@@ -138,7 +138,9 @@ mkdir -p ${XDG_DATA_HOME:-$HOME/.local/share}/tig
 
 # Vim {
 # Install Vundle plugins
-#vim -c BundleInstall
+sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+vim -c PlugInstall
 
 #  Instant Markdown Preview
 # https://github.com/instant-markdown/vim-instant-markdown

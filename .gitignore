@@ -42,9 +42,10 @@
 .netrc
 .vim/.netrwhist
 .vim/after/ftplugin/markdown/instant-markdown.vim
-.vim/bundle/
+.vim/autoload/plug.vim
 .vim/eclim/
 .vim/fuf-data/
+.vim/plugged/
 .vim/spell/*.spl
 .vim/undo/
 .vim/view/
