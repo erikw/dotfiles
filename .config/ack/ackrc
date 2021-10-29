@@ -1,7 +1,8 @@
 # Global ack conf
 # It's possible to have project local conf via a hack of setting: ACKRC=".ackrc". Reference: http://rustyrazorblade.com/post/2012/making-better-use-of-your-ackrc-file/
+# --ignore-dir: Unfortunately can only match agains basename of a dir, not foo/bar. https://stackoverflow.com/a/42817701/265508
 
-# Ignore these files by default. See man(1) grep section 'Defining your own types'.
+# Ignore these files by default. See ack(1) grep section 'Defining your own types'.
 # Vim development
 --ignore-file=match:cscope.out
 --ignore-file=match:cscope.files
@@ -9,6 +10,13 @@
 --ignore-file=match:Session.vim
 --ignore-file=match:.syntastic_javac_config
 --ignore-file=match:viminfo
+
+# $XDG_CONFIG_HOME dirs to exclude.
+--ignore-dir=.vim
+# Like .config/grip/cache-4.5.2/
+--ignore-dir=match:/cache-.*/
+# Like .config/cheat/cheatsheets/
+--ignore-dir=match:/cheatsheets/
 
 # Intellij project files (old=fileformat).
 --ignore-file=match:.*.(ipr|iml)
@@ -21,7 +29,7 @@
 #--ignore-dir=logs/
 
 # Jekyll
-#--jgnore-dir=.jekyll-cache/
+--ignore-dir=.jekyll-cache/
 #
 #--ignore-dir=_site/
 #--ignore-dir=.git-metadata/
