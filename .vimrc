@@ -11,6 +11,7 @@
 " }
 
 " Plugins {
+" Setup {
 " See *vundle-plugins-uris* for Plugin syntax.
 let g:ale_completion_enabled = 1	" Must be set before ALE is loaded.
 let s:using_vundle = 1			" Vundle will break default behaviour of spellfile. Let others know when using Vundle.
@@ -24,10 +25,12 @@ call vundle#begin()
 
 " Let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
+" }
 
 " General {
 	"Plugin 'dhruvasagar/vim-table-mode'
 	"Plugin 'fatih/vim-go'
+	"Plugin 'vim-scripts/lbdbq'			" Mutt: Query lbdb for recipinents.
 	"Plugin 'godlygeek/tabular'		" Disabled: not used and have some startup time.
 	"Plugin 'mattn/gist-vim'
 	"Plugin 'mattn/webapi-vim'		" Required for gist-vim
@@ -35,19 +38,14 @@ Plugin 'VundleVim/Vundle.vim'
 	"Plugin 'scrooloose/nerdtree'		" Replaced by built-in netrw
 	"Plugin 'sjl/gundo.vim'			" Use mbbill/undotree instead; is better: https://vi.stackexchange.com/a/13863
 	Plugin 'LaTeX-Box-Team/LaTeX-Box'
-	Plugin 'MarcWeber/vim-addon-mw-utils'	" Required for  garbas/vim-snipmate.
 	Plugin 'bfontaine/Brewfile.vim'
 	Plugin 'danro/rename.vim'
 	Plugin 'fidian/hexmode'
-	Plugin 'garbas/vim-snipmate'
-	Plugin 'honza/vim-snippets'
 	Plugin 'instant-markdown/vim-instant-markdown'
 	Plugin 'mbbill/undotree'
 	Plugin 'michaeljsmith/vim-indent-object'
 	Plugin 'ntpeters/vim-better-whitespace'
-	Plugin 'rbonvall/snipmate-snippets-bib'
 	Plugin 'scrooloose/nerdcommenter'
-	Plugin 'tomtom/tlib_vim'		" Required for garbas/vim-snipmate
 	Plugin 'tpope/vim-capslock'
 	Plugin 'tpope/vim-fugitive'
 	Plugin 'tpope/vim-repeat'
@@ -56,26 +54,7 @@ Plugin 'VundleVim/Vundle.vim'
 	Plugin 'tpope/vim-unimpaired'
 "}
 
-" UI {
-	"Plugin 'flazz/vim-colorschemes'
-	"Plugin 'ScrollColors'
-	Plugin 'altercation/vim-colors-solarized'
-	Plugin 'mkitt/tabline.vim'		" More informative tab titles. Only for terminal; gvim uses guilabel setting.
-	Plugin 'mhinz/vim-startify'		" Start screen with recently opended files.
-"}
-
-" Navigation {
-	"Plugin 'FuzzyFinder'	" Disabled, as it has high startup time
-	"Plugin 'L9'			" Required for FuzzyFinder.
-	"Plugin 'wincent/command-t'
-
-	" FZF - Fuzzy finding
-	" - Keyboard shortcuts: https://github.com/junegunn/fzf/blob/master/README-VIM.md#fzf
-	" - Commands: https://github.com/junegunn/fzf.vim#commands
-	Plugin 'junegunn/fzf'
-	Plugin 'junegunn/fzf.vim'
-"}
-
+" Development {
 " Development: General {
 	"Plugin 'Townk/vim-autoclose'
 	"Plugin 'scrooloose/syntastic'		" Replaced by ale
@@ -116,13 +95,40 @@ Plugin 'VundleVim/Vundle.vim'
 " Development: Web {
 	Plugin 'ap/vim-css-color'	" Display CSS colors in vim.
 " }
+" }
 
-" mutt {
-	"Plugin 'lbdbq'
+" Navigation {
+	"Plugin 'FuzzyFinder'	" Disabled, as it has high startup time
+	"Plugin 'L9'			" Required for FuzzyFinder.
+	"Plugin 'wincent/command-t'
+
+	" FZF - Fuzzy finding
+	" - Keyboard shortcuts: https://github.com/junegunn/fzf/blob/master/README-VIM.md#fzf
+	" - Commands: https://github.com/junegunn/fzf.vim#commands
+	Plugin 'junegunn/fzf'
+	Plugin 'junegunn/fzf.vim'
 "}
 
+" Snippets {
+	Plugin 'MarcWeber/vim-addon-mw-utils'	" Required for  garbas/vim-snipmate.
+	Plugin 'tomtom/tlib_vim'		" Required for garbas/vim-snipmate
+	Plugin 'garbas/vim-snipmate'
+	Plugin 'honza/vim-snippets'
+	Plugin 'rbonvall/snipmate-snippets-bib'
+" }
+
+" UI {
+	"Plugin 'flazz/vim-colorschemes'
+	"Plugin 'ScrollColors'
+	Plugin 'altercation/vim-colors-solarized'
+	Plugin 'mkitt/tabline.vim'		" More informative tab titles. Only for terminal; gvim uses guilabel setting.
+	Plugin 'mhinz/vim-startify'		" Start screen with recently opended files.
+"}
+
+" Setup - end {
 call vundle#end()            " required
 filetype plugin indent on    " required
+" }
 " }
 
 " Environment {
