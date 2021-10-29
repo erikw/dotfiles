@@ -26,100 +26,99 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 " General {
-"Plugin 'dhruvasagar/vim-table-mode'
-"Plugin 'fatih/vim-go'
-"Plugin 'godlygeek/tabular'		" Disabled: not used and have some startup time.
-"Plugin 'mattn/gist-vim'
-"Plugin 'mattn/webapi-vim'		" Required for gist-vim
-"Plugin 'salsifis/vim-transpose'
-"Plugin 'scrooloose/nerdtree'		" Replaced by built-in netrw
-"Plugin 'sjl/gundo.vim'			" Use mbbill/undotree instead; is better: https://vi.stackexchange.com/a/13863
-Plugin 'LaTeX-Box-Team/LaTeX-Box'
-Plugin 'MarcWeber/vim-addon-mw-utils'	" Required for  garbas/vim-snipmate.
-Plugin 'bfontaine/Brewfile.vim'
-Plugin 'danro/rename.vim'
-Plugin 'fidian/hexmode'
-Plugin 'garbas/vim-snipmate'
-Plugin 'honza/vim-snippets'
-Plugin 'instant-markdown/vim-instant-markdown'
-Plugin 'mbbill/undotree'
-Plugin 'michaeljsmith/vim-indent-object'
-Plugin 'ntpeters/vim-better-whitespace'
-Plugin 'rbonvall/snipmate-snippets-bib'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'tomtom/tlib_vim'		" Required for garbas/vim-snipmate
-Plugin 'tpope/vim-capslock'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-speeddating'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-unimpaired'
+	"Plugin 'dhruvasagar/vim-table-mode'
+	"Plugin 'fatih/vim-go'
+	"Plugin 'godlygeek/tabular'		" Disabled: not used and have some startup time.
+	"Plugin 'mattn/gist-vim'
+	"Plugin 'mattn/webapi-vim'		" Required for gist-vim
+	"Plugin 'salsifis/vim-transpose'
+	"Plugin 'scrooloose/nerdtree'		" Replaced by built-in netrw
+	"Plugin 'sjl/gundo.vim'			" Use mbbill/undotree instead; is better: https://vi.stackexchange.com/a/13863
+	Plugin 'LaTeX-Box-Team/LaTeX-Box'
+	Plugin 'MarcWeber/vim-addon-mw-utils'	" Required for  garbas/vim-snipmate.
+	Plugin 'bfontaine/Brewfile.vim'
+	Plugin 'danro/rename.vim'
+	Plugin 'fidian/hexmode'
+	Plugin 'garbas/vim-snipmate'
+	Plugin 'honza/vim-snippets'
+	Plugin 'instant-markdown/vim-instant-markdown'
+	Plugin 'mbbill/undotree'
+	Plugin 'michaeljsmith/vim-indent-object'
+	Plugin 'ntpeters/vim-better-whitespace'
+	Plugin 'rbonvall/snipmate-snippets-bib'
+	Plugin 'scrooloose/nerdcommenter'
+	Plugin 'tomtom/tlib_vim'		" Required for garbas/vim-snipmate
+	Plugin 'tpope/vim-capslock'
+	Plugin 'tpope/vim-fugitive'
+	Plugin 'tpope/vim-repeat'
+	Plugin 'tpope/vim-speeddating'
+	Plugin 'tpope/vim-surround'
+	Plugin 'tpope/vim-unimpaired'
 "}
 
 " UI {
-"Plugin 'flazz/vim-colorschemes'
-"Plugin 'ScrollColors'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'mkitt/tabline.vim'		" More informative tab titles. Only for terminal; gvim uses guilabel setting.
-Plugin 'mhinz/vim-startify'		" Start screen with recently opended files.
+	"Plugin 'flazz/vim-colorschemes'
+	"Plugin 'ScrollColors'
+	Plugin 'altercation/vim-colors-solarized'
+	Plugin 'mkitt/tabline.vim'		" More informative tab titles. Only for terminal; gvim uses guilabel setting.
+	Plugin 'mhinz/vim-startify'		" Start screen with recently opended files.
 "}
 
 " Navigation {
-"Plugin 'FuzzyFinder'	" Disabled, as it has high startup time
-"Plugin 'L9'			" Required for FuzzyFinder.
-"Plugin 'wincent/command-t'
+	"Plugin 'FuzzyFinder'	" Disabled, as it has high startup time
+	"Plugin 'L9'			" Required for FuzzyFinder.
+	"Plugin 'wincent/command-t'
 
-" FZF - Fuzzy finding
-" - Keyboard shortcuts: https://github.com/junegunn/fzf/blob/master/README-VIM.md#fzf
-" - Commands: https://github.com/junegunn/fzf.vim#commands
-Plugin 'junegunn/fzf'
-Plugin 'junegunn/fzf.vim'
+	" FZF - Fuzzy finding
+	" - Keyboard shortcuts: https://github.com/junegunn/fzf/blob/master/README-VIM.md#fzf
+	" - Commands: https://github.com/junegunn/fzf.vim#commands
+	Plugin 'junegunn/fzf'
+	Plugin 'junegunn/fzf.vim'
 "}
 
 " Development: General {
-"Plugin 'Townk/vim-autoclose'
-"Plugin 'scrooloose/syntastic'		" Replaced by ale
-Plugin 'AndrewRadev/sideways.vim'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'cohama/lexima.vim'		" Autmoatically close opened braces etc.
-Plugin 'argtextobj.vim'
-Plugin 'dense-analysis/ale'
-Plugin 'editorconfig/editorconfig-vim'
-Plugin 'majutsushi/tagbar'
-Plugin 'rhysd/conflict-marker.vim'	" Navigate and edit VCS conflicts. Replace unmaintained 'vim-script/ConflictMotions'
-Plugin 'tmhedberg/matchit'
-
+	"Plugin 'Townk/vim-autoclose'
+	"Plugin 'scrooloose/syntastic'		" Replaced by ale
+	Plugin 'AndrewRadev/sideways.vim'
+	Plugin 'airblade/vim-gitgutter'
+	Plugin 'cohama/lexima.vim'		" Autmoatically close opened braces etc.
+	Plugin 'argtextobj.vim'
+	Plugin 'dense-analysis/ale'
+	Plugin 'editorconfig/editorconfig-vim'
+	Plugin 'majutsushi/tagbar'
+	Plugin 'rhysd/conflict-marker.vim'	" Navigate and edit VCS conflicts. Replace unmaintained 'vim-script/ConflictMotions'
+	Plugin 'tmhedberg/matchit'
 "}
 
 " Development: C/C++ {
-"Plugin 'Rip-Rip/clang_complete'
-"Plugin 'rhysd/vim-clang-format'
-"Plugin 'chazy/cscope_maps'
-Plugin 'autoload_cscope.vim'
-Plugin 'craigemery/vim-autotag'
+	"Plugin 'Rip-Rip/clang_complete'
+	"Plugin 'rhysd/vim-clang-format'
+	"Plugin 'chazy/cscope_maps'
+	Plugin 'autoload_cscope.vim'
+	Plugin 'craigemery/vim-autotag'
 "}
 
 " Development: Java {
-"Plugin 'artur-shaik/vim-javacomplete2'
-"Plugin 'erikw/jcommenter.vim'
+	"Plugin 'artur-shaik/vim-javacomplete2'
+	"Plugin 'erikw/jcommenter.vim'
 "}
 
 " Development: Python {
-"Plugin 'davidhalter/jedi-vim'
-"Plugin 'python-rope/ropevim'
-"Plugin 'fisadev/vim-isort'
+	"Plugin 'davidhalter/jedi-vim'
+	"Plugin 'python-rope/ropevim'
+	"Plugin 'fisadev/vim-isort'
 "}
 
 " Development: Swift {
-"Plugin 'keith/swift.vim'
+	"Plugin 'keith/swift.vim'
 "}
 
 " Development: Web {
-Plugin 'ap/vim-css-color'	" Display CSS colors in vim.
+	Plugin 'ap/vim-css-color'	" Display CSS colors in vim.
 " }
 
 " mutt {
-"Plugin 'lbdbq'
+	"Plugin 'lbdbq'
 "}
 
 call vundle#end()            " required
