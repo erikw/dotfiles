@@ -30,6 +30,18 @@ sandbox_init_rbenv(){
 }
 #sandbox_hook_shims rbenv
 sandbox_hook_shims rbenv ${XDG_DATA_HOME:-$HOME/.local/share}/rbenv/shims
+sandbox_hook_shims rbenv ${XDG_DATA_HOME:-$HOME/.local/share}/gem/bin
+# Ruby on Rails wrapper scripts
+# Unfortunately it breaks system wide tab completion on $ bin/<tab>
+# Workaroud: $ ./bin/<tab>, $ bin//<tab>
+sandbox_hook rbenv bin/bundle
+sandbox_hook rbenv bin/rails
+sandbox_hook rbenv bin/rake
+sandbox_hook rbenv bin/setup
+sandbox_hook rbenv bin/spring
+sandbox_hook rbenv bin/webpack
+sandbox_hook rbenv bin/webpack-dev-server
+sandbox_hook rbenv bin/yarn
 
 # GVM: Go Version Manager
 sandbox_init_gvm() {
