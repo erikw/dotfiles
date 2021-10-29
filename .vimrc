@@ -10,6 +10,7 @@
 " Reference: https://stackoverflow.com/questions/1687799/profiling-vim-startup-time
 " }
 
+" TODO extracted common plugins like done with .config/nvim/commons_plugin_config.vim?
 " Plugins {
 " Setup {
 let g:ale_completion_enabled = 1	" Must be set before ALE is loaded.
