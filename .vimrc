@@ -470,6 +470,22 @@ cmap w\ echoerr "Using a Swedish keyboard?"<CR>
 
 " Plugin Config {
 " ALE {
+" Reference https://github.com/dense-analysis/ale/blob/master/doc/ale.txt
+" Linting {
+" Disabled linters:
+		"\ 'sql': ['sqls'],
+		"\ 'tex': ['texlab'],
+let g:ale_linters = {
+		\ 'go': ['gopls'],
+		\ 'json': ['jsonls'],
+		\ 'python': ['pyright'],
+		\ 'ruby': ['solargraph'],
+		\ 'sh': ['language_server'],
+		\ 'vim': ['vimls'],
+		\ }
+" }
+
+" Fixing {
 " Removed 'trim_whitespace' and 'remove_trailing_lines' as it overlaps with the functionally already provided by vim-better-whitespace.
 let g:ale_fixers = {
 	\ '*': ['prettier'],
@@ -499,78 +515,16 @@ nmap <silent> <C-j> <Plug>(ale_next_wrap)
 " }
 " }
 
-" AutoClose {
-""let g:AutoClosePairs = AutoClose#ParsePairs("() [] {} <> «» ` \" '") " Pairs to close. Does not seems to work with vundle.
-"let g:AutoCloseProtectedRegions = ["Comment", "String", "Character"]	" Syntax regions to ignore.
-
-"noremap <silent> <Leader>ac :AutoCloseToggle<CR>			" Toggle vim-autoclose plugin mode.
-
+" clang_complete {
+	"let g:clang_auto_select = 1				" Select first entry but don't insert.
+	"let g:clang_complete_copen = 1				" Open quickfix on error.
+	"let g:clang_close_preview = 1				" Close preview after completion.
+	"let g:clang_user_options = '2>/dev/null || exit 0'	" Ignore clang errors.
+	"let g:clang_complete_macros = 1			" Complete preprocessor macros and constants.
+	"let g:clang_complete_patterns = 1			" Complete code patters e.g. loop constructs.
 " }
 
-" Clang Complete {
-"let g:clang_auto_select = 1				" Select first entry but don't insert.
-"let g:clang_complete_copen = 1				" Open quickfix on error.
-"let g:clang_close_preview = 1				" Close preview after completion.
-"let g:clang_user_options = '2>/dev/null || exit 0'	" Ignore clang errors.
-"let g:clang_complete_macros = 1			" Complete preprocessor macros and constants.
-"let g:clang_complete_patterns = 1			" Complete code patters e.g. loop constructs.
-" }
-
-" Clang Format {
-"let g:clang_format#auto_format = 0			" Auto format on save.
-"let g:clang_format#auto_formatexpr = 1			" Let vim's formatexpr be set to clang-format (format with gq).
-"autocmd FileType c,cpp,objc map <buffer><Leader>x <Plug>(operator-clang-format)
-
-"" Git pull request for this: https://github.com/rhysd/vim-clang-format/pull/17
-"function! ClangFormatAutoToggleFunc()
-	"if !exists("g:clang_format#auto_format") || g:clang_format#auto_format == 0
-		"let g:clang_format#auto_format = 1
-		"echo "Auto clang-format: enabled"
-	"else
-		"let g:clang_format#auto_format = 0
-		"echo "Auto clang-format: disabled"
-	"endif
-"endfunction
-"" Toggle auto clang-format.
-"command! ClangFormatAutoToggle call ClangFormatAutoToggleFunc()
-"nmap <Leader>C :ClangFormatAutoToggle<CR>
-"}
-
-" Eclim {
-"let g:EclimFileTypeValidate = 0			" Set to 0 when syntatic should be used instead of eclim. Both can't be used at the same time. See http://eclim.org/vim/java/validate.html
-" }
-
-" Fugative {
-autocmd BufReadPost fugitive://* set bufhidden=delete	" Close Fugitive buffers when leaving.
-" }
-
-" FuzzyFinder {
-"let g:fuf_dataDir = '~/.vim/fuf-data'		" Where to put stored data.
-"let g:fuf_keyNextMode = '<C-u>'		" How to switch seach mode. Remapped from default <C-v>
-"let g:fuf_keyPrevMode = '<C-i>'		" How to switch seach mode. Remapped from default <C-y>
-    "let g:fuf_keyPrevPattern = '<C-r>'		" Recall previous pattern. Remapp from default <C-s>
-
-"" Open files with same keybindings as command-t.
-"let g:fuf_keyOpenSplit = '<C-d>'		" How to open file in split. Does not work to use <C-s> even if keyPrevPattern is remapped, somehow.
-"let g:fuf_keyOpenVsplit = '<C-v>'		" Open file in vertical split.
-"let g:fuf_keyOpenTabpage = '<C-t>'		" Open in new tab.
-
-"" Comments can't be after the mapping, that starts the fuzzyview in normal mode.
-"" Launch File-mode.
-"noremap <silent> ,f :FufFile<CR>
-"" Launch Buffer-mode.
-"noremap <silent> ,b :FufBuffer<CR>
-"" Launch Dir-mode.
-"noremap <silent> ,d :FufDir<CR>
-"" Launch Tag-mode
-"noremap <silent> ,t :FufTag<CR>
-"" Launch Tag-mode with current word.
-"noremap <silent> ,tw :FufTagWithCursorWord<CR>
-"" Launch with Filecoverage-mode.
-"noremap <silent> ,c :FufCoverageFile<CR>
-" }
-
-" FZF {
+" fzf.vim {
 " Stolen from my friend https://github.com/erikagnvall/dotfiles/blob/master/vim/init.vim
 " Comment must be on line of its own...
 " Search for files in given path.
@@ -590,58 +544,22 @@ nnoremap <leader>t :Windows<CR>
 nnoremap <leader>h :History<CR>
 " }
 
-" Gist {
-let g:gist_detect_filetype = 1				" Detect filetype from name.
-let g:gist_show_privates = 1				" Let Gist -l show private gists.
-let g:gist_private = 1					" Make private the default for new Gists.
-let g:gist_open_browser_after_post = 1			" Open in browser after post.
-"let g:gist_clip_command = 'xclip -selection clipboard'	" Copy command.
-"let g:gist_browser_command = 'w3m %URL%'		" Browser to use.
-let g:gist_browser_command = 'firefox  %URL%'		" Browser to use.
-" }
-
-" Gundo {
-"nmap <silent> <F4> :GundoToggle<CR>		" Toggle Gundo.
-"let g:gundo_close_on_revert=1			" Automatically close on revert.
-"let g:gundo_preview_bottom=1			" Draw preview below current window.
-
-"" If using python3, need to set this var. Reference: https://vi.stackexchange.com/a/13863
-"if has('python3')
-	"let g:gundo_prefer_python3 = 1
-"endif
-" }
-
-" Javacomplete2 {
-"" Required setting
-"autocmd FileType java setlocal omnifunc=javacomplete#Complete
-
-"" Auto-import symbol under cursor.
-"autocmd FileType java nmap <F10> <Plug>(JavaComplete-Imports-AddSmart)
-"autocmd FileType java imap <F10> <Plug>(JavaComplete-Imports-AddSmart)
-
-"" Add all missing imports.
-"autocmd FileType java nmap <F11> <Plug>(JavaComplete-Imports-AddMissing)
-"autocmd FileType java imap <F11> <Plug>(JavaComplete-Imports-AddMissing)
-
-"" Remove all unused imports.
-"autocmd FileType java nmap <F12> <Plug>(JavaComplete-Imports-RemoveUnused)
-"autocmd FileType java imap <F12> <Plug>(JavaComplete-Imports-RemoveUnused)
-" }
-
-" Jedi {
-"let g:jedi#use_tabs_not_buffers = 1  " Go to a tab when opening a definition.
-" }
+	" nerdcommenter {
+	" Swap invert comment toggle.
+		"map <silent> <Leader>c<Space> <plug>NERDCommenterInvert
+		"map <silent> <Leader>ci <plug>NERDCommenterToggle
+	" }
 
 " netrw {
 " Ships by default with vim mostly.
 " Reference: https://shapeshed.com/vim-netrw/
 " Reference: " http://vimcasts.org/blog/2013/01/oil-and-vinegar-split-windows-and-project-drawer/
 noremap <silent> <F2> :Lexplore<CR>	" Toggle the left vertical window
-let g:netrw_liststyle = 3	" Default view: tree. Cycle with (i).
-let g:netrw_banner = 0		" Remove space consuming top header text.
-let g:netrw_browse_split = 4	" Open in previous window by default (like NERDTree).
-let g:netrw_winsize = 20	" %-tage of window space to take in the respective open mode (vertical/horizontal).
-"let g:netrw_altv = 1		" Supposedly needed to splitit to left. However not needed as I just use :LExplore?
+let g:netrw_liststyle = 3		" Default view: tree. Cycle with (i).
+let g:netrw_banner = 0			" Remove space consuming top header text.
+let g:netrw_browse_split = 4		" Open in previous window by default (like NERDTree).
+let g:netrw_winsize = 20		" %-tage of window space to take in the respective open mode (vertical/horizontal).
+"let g:netrw_altv = 1			" Supposedly needed to splitit to left. However not needed as I just use :LExplore?
 
 " Auto close {
 " Close after opening a file (which gets opened in another window)
@@ -666,66 +584,129 @@ aug END
 " }
 " }
 
-" NERDTree {
-"noremap <silent> <F2> :NERDTreeToggle<CR>	" Toggle the NERDTree file browser.
-"let g:NERDTreeCaseSensitiveSort=1		" Sort case sensitive.
-"let g:NERDTreeMouseMode=3			" Single click opens folders and files.
-"let g:NERDTreeQuitOnOpen=1			" Close tree after open.
+" nvim-cmp {
+"set completeopt=menu,menuone,noselect
+
+"" Lua Setup {
+" Copy and paste latest setup from https://github.com/hrsh7th/nvim-cmp#setup
+" Not possible to comment out as lua code is interpreted still somehow.
+" The essential custom part is kept here:
+  "-- Setup lspconfig.
+  "require('lspconfig')['bashls'].setup {
+    "capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+    "}
+  "require('lspconfig')['jsonls'].setup {
+    "capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+    "}
+  "require('lspconfig')['pyright'].setup {
+    "capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+    "}
+  "require('lspconfig')['solargraph'].setup {
+    "capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+    "}
+  "require('lspconfig')['vimls'].setup {
+    "capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+  "}
+
+" INSERT CONFIG FROM README HERE.
+"" }
 " }
 
-" OmniCppComplete {
-"let OmniCpp_ShowPrototypeInAbbr = 1	" Show whole prototype (inc. parameters).
-"let OmniCpp_ShowScopeInAbbr = 1		" Show the scope.
+" tagbar {
+nmap <silent> <F3> :TagbarToggle<CR>	" Toggle the Tagbar window.
+let g:tagbar_left = 0			" Keep the window on the right side.
+let g:tagbar_width = 30			" Width of window.
+let g:tagbar_autoclose = 1		" Close tagbar when jumping to a tag.
+let g:tagbar_autofocus = 1		" Give tagbar focus when it's opened.
+let g:tagbar_sort = 1			" Sort tags alphabetically.
+let g:tagbar_compact = 1		" Omit the help text.
+let g:tagbar_singleclick = 1		" Jump to tag with a single click.
+let g:tagbar_autoshowtag = 1		" Open folds if tag is not visible.
 " }
 
-" Powerline {
-"" Check if vim plugin exists, e.g. debian's powerline does not currently have it.
-"if isdirectory($POWERLINE_ROOT . "/bindings/vim") && (has('python') || has('python3'))
-	"set rtp+=$POWERLINE_ROOT/bindings/vim
-	""let g:powerline_pycmd="py3"
-	"if has('python3')
-		"" Pre-req: $(pip3 install powerline-status).
+" vim-autoclose {
+"let g:AutoClosePairs = "() [] {} <> «» ` \" '"	" Pairs to auto-close.
+""let g:AutoCloseProtectedRegions = ["Comment", "String", "Character"]	" Syntax regions to ignore.
 
-		"" NOTE there is a current bug in vim that it does not work well with newer pythons. https://github.com/powerline/powerline/issues/1925
-		"" NOTE temporary macOS fix #1: recompile vim with python2 instead:  brew reinstall vim --with-python@2
-		"" NOTE temporary macOS fix #2: run python3 silently first, then the error is not issued the second time.
-		""silent! python3 1
-		"" NOTE temporary macOS fix #3: preprend the first import command with silent!
-		""silent! python3 from powerline.vim import setup as powerline_setup
+"noremap <silent> <Leader>ac :AutoCloseToggle<CR>				" Toggle vim-autoclose plugin mode.
+" }
 
-		"python3 from powerline.vim import setup as powerline_setup
-		"python3 powerline_setup()
-		"python3 del powerline_setup
-	"elseif has('python')
-		"" Pre-req: $(pip2 install powerline-status).
-		"python from powerline.vim import setup as powerline_setup
-		"python powerline_setup()
-		"python del powerline_setup
+" vim-better-whitespace {
+let g:strip_whitelines_at_eof=1		" Also strip empty lines at end of file on save.
+let g:show_spaces_that_precede_tabs=1	" Highlight spaces that happens before tab.
+let g:strip_whitespace_on_save = 1	" Activate by default.
+let g:strip_whitespace_confirm=0	" Don't ask for permission.
+" Filetypes to ignore even when strip_whitespace_on_save=1
+"let g:better_whitespace_filetypes_blacklist=['<filetype1>', '<filetype2>', '<etc>',
+
+
+" Use same command as in the old ~/.vim/plugin/stripspaces.vim
+" Need to wrap the command in a function as we can't chain
+" commands unless they were declared to support this.
+" Reference: " https://unix.stackexchange.com/questions/144568/how-do-i-write-a-command-in-vim-to-run-multiple-commands
+function! StripWhitespaceWrapper()
+	execute 'StripWhitespace'
+endfunction
+command! Ws call StripWhitespaceWrapper() | update
+
+" Like :wq but strip whitespaces first.
+command! Wqs call StripWhitespaceWrapper() | wq
+" Like :wqa but strip whitespaces in each buffer first.
+command! Wqas bufdo call StripWhitespaceWrapper() | wq
+" }
+
+" vim-clang-format {
+"let g:clang_format#auto_format = 0			" Auto format on save.
+"let g:clang_format#auto_formatexpr = 1			" Let vim's formatexpr be set to clang-format (format with gq).
+"autocmd FileType c,cpp,objc map <buffer><Leader>x <Plug>(operator-clang-format)
+
+"" Git pull request for this: https://github.com/rhysd/vim-clang-format/pull/17
+"function! ClangFormatAutoToggleFunc()
+	"if !exists("g:clang_format#auto_format") || g:clang_format#auto_format == 0
+		"let g:clang_format#auto_format = 1
+		"echo "Auto clang-format: enabled"
+	"else
+		"let g:clang_format#auto_format = 0
+		"echo "Auto clang-format: disabled"
 	"endif
-"endif
+"endfunction
+"" Toggle auto clang-format.
+"command! ClangFormatAutoToggle call ClangFormatAutoToggleFunc()
+"nmap <Leader>C :ClangFormatAutoToggle<CR>
+"}
+
+" vim-fugative {
+autocmd BufReadPost fugitive://* set bufhidden=delete	" Close Fugitive buffers when leaving.
 " }
 
-" Rope {
-"" Remappings done in ~/.vim/ftplugin/python/maps.vim
-"let g:ropevim_guess_project = 1			" Try to guess project to open.
-"let g:ropevim_enable_autoimport = 1		" Enable the RopeAutoImport command.
-"let g:ropevim_autoimport_underlineds = 1	" Also cache names beginning with underline with Autoimport.
-"" Which modules to generate cache for with the :RopeGenerateAutoimportCache command.
-"let g:ropevim_autoimport_modules = ["__future__", "__main__", "_dummy_thread", "_thread", "abc", "aifc", "argparse", "array", "ast", "asynchat", "asyncio", "asyncore", "atexit", "audioop", "base64", "bdb", "binascii", "binhex", "bisect", "builtins", "bz2", "cProfile", "calendar", "cgi", "cgitb", "chunk", "cmath", "cmd", "code", "codecs", "codeop", "collections", "colorsys", "compileall", "concurrent", "configparser", "contextlib", "copy", "copyreg", "crypt", "csv", "ctypes", "curses", "datetime", "dbm", "decimal", "difflib", "dis", "distutils", "doctest", "dummy_threading", "email", "encodings", "ensurepip", "enum", "errno", "faulthandler", "fcntl", "filecmp", "fileinput", "fnmatch", "formatter", "fpectl", "fractions", "ftplib", "functools", "gc", "getopt", "getpass", "gettext", "glob", "grp", "gzip", "hashlib", "heapq", "hmac", "html", "http", "imaplib", "imghdr", "imp", "importlib", "inspect", "io", "ipaddress", "itertools", "json", "keyword", "lib2to3", "linecache", "locale", "logging", "lzma", "macpath", "mailbox", "mailcap", "marshal", "math", "mimetypes", "mmap", "modulefinder", "msilib", "msvcrt", "multiprocessing", "netrc", "nis", "nntplib", "numbers", "operator", "optparse", "os", "ossaudiodev", "parser", "pathlib", "pdb", "pickle", "pickletools", "pipes", "pkgutil", "platform", "plistlib", "poplib", "posix", "pprint", "profile", "pstats", "pty", "pwd", "py_compile", "pyclbr", "pydoc", "queue", "quopri", "random", "re", "readline", "reprlib", "resource", "rlcompleter", "runpy", "sched", "select", "selectors", "shelve", "shlex", "shutil", "signal", "site", "smtpd", "smtplib", "sndhdr", "socket", "socketserver", "spwd", "sqlite3", "ssl", "stat", "statistics", "string", "stringprep", "struct", "subprocess", "sunau", "symbol", "symtable", "sys", "sysconfig", "syslog", "tabnanny", "tarfile", "telnetlib", "tempfile", "termios", "test", "textwrap", "threading", "time", "timeit", "tkinter", "token", "tokenize", "trace", "traceback", "tracemalloc", "tty", "turtle", "turtledemo", "types", "typing", "unicodedata", "unittest", "urllib", "uu", "uuid", "venv", "warnings", "wave", "weakref", "webbrowser", "winreg", "winsound", "wsgiref", "xdrlib", "xml", "xmlrpc", "zipapp", "zipfile", "zipimport", "zlib"]
+" vim-gist {
+let g:gist_detect_filetype = 1				" Detect filetype from name.
+let g:gist_show_privates = 1				" Let Gist -l show private gists.
+let g:gist_private = 1					" Make private the default for new Gists.
+let g:gist_open_browser_after_post = 1			" Open in browser after post.
+"let g:gist_clip_command = 'xclip -selection clipboard'	" Copy command.
+"let g:gist_browser_command = 'w3m %URL%'		" Browser to use.
+let g:gist_browser_command = 'firefox  %URL%'		" Browser to use.
 " }
 
-" Sideways.vim {
-nnoremap <silent> <a :SidewaysLeft<CR>	" Move function argument to the left.
-nnoremap <silent> >a :SidewaysRight<CR>	" Move function argument to the right.
+" vim-gitgutter {
+set updatetime=100		" Speedier update of file status.
+
 " }
 
-" Snipmate {
+" vim-instant-markdown {
+" Blocklist certain paths for previewing files (recursively).
+" See https://github.com/instant-markdown/vim-instant-markdown/issues/198
+let g:instant_markdown_autostart=0
+augroup InstantMarkdownGroup
+  autocmd!
+  au! BufReadPre,BufNewFile,BufEnter,BufFilePre *.md let g:instant_markdown_autostart=1
+  au! BufReadPre,BufNewFile,BufEnter,BufFilePre ~/src/github.com/erikw/hackerrank-solutions/*.md,~/src/github.com/erikw/leetcode-solutions/*.md let g:instant_markdown_autostart=0
+augroup END
+" }
+
+" vim-snipmate {
 let g:snipMate = { 'snippet_version' : 1 }	" Use the new parser (and surpress message about using the old parser).
-" }
-
-" Solarized {
-"call togglebg#map("<Leader>%")	" Toggle background with solarized. Not nice because it maps in insert mode too.
-call togglebg#map("<F5>")	" Toggle background with solarized.
 " }
 
 " vim-startify {
@@ -762,107 +743,19 @@ let s:ascii = [
 \]
 "let g:startify_custom_header = s:ascii + startify#fortune#boxed()
 let g:startify_custom_header = s:ascii
+
+" Show version in fooder. Reference: https://github.com/mhinz/vim-startify/issues/449
+"let g:startify_custom_footer = "startify#pad(['', '\ufa76' . matchstr(execute('version'), 'NVIM v\\z\\s[^\\n]\*'), ''])"
 " }
 
-" Syntastic {
-"" NOTE See Eclim section above: set EclimFileTypeValidate=0 as only one of Eclim and Syntastic can be enabled at the same time.
-
-"noremap <silent> <F9> :SyntasticToggleMode<CR>					" Toggle syntastic checking.
-
-"let g:syntastic_always_populate_loc_list = 1	" Always produce the error lists in the location list window.
-"let g:syntastic_auto_loc_list = 1		" Automatically open the location list showing where errors are.
-"let g:syntastic_check_on_open=0		" Don't automatically do syntax check on open buffers. Assume the file is good until write.
-"let g:syntastic_check_on_wq=0			" Don't check on write-quit..
-
-"" Do syntax check on files with exceptions (the passive ones below).
-"" mode=active => files are checked when writing a buffer.
-"" mode=passive => files only checked on invokation of :SyntasticCheck.
-"" active_filetypes: files here are always checked even if the mode is passive. Ignored when mode=active.
-"" passive_filetypes: files here are never checked even if the mode is active. Ignored when mode=passive.
-"let g:syntastic_mode_map = { 'mode': 'active',
-			"\ 'active_filetypes': [],
-			"\ 'passive_filetypes': ['python', 'tex', 'html'] }
-"" Python, use prospector.
-"let g:syntastic_python_checkers = ['prospector']
-
-"" Java; the http://checkstyle.sourceforge.net/ checker (aur:checkstyle) might be aster than javac for big projects.
-"" This requires a configuration file e.g.  http://checkstyle.sourceforge.net/google_style.html
-""let g:syntastic_java_checkstyle_classpath = '/usr/share/checkstyle/checkstyle.jar'
-""let g:syntastic_java_checkstyle_conf_file = '~/dev/google_checks.xml'
-""let g:syntastic_java_checkers = ['checkstyle']
-
-"" For syntastic support in gradle projects:
-"" 1. Add to build.gradle:
-"" plugins {
-""     id "org.gradle.java"
-""     id "com.scuilion.syntastic" version "0.3.8"
-"" }
-"" 2. Run $(./gradlew syntastic) to generate the syntastic config.
-"" 3. Enable syntastic javac config file with:
-"let g:syntastic_java_javac_config_file_enabled = 1
-"" Reference: https://github.com/Scuilion/gradle-syntastic-plugin
-
-"" Recommended settings to show errors in the statusline.
-"" Disabled these when using powerline statusbar.
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
+" sideways.vim {
+nnoremap <silent> <a :SidewaysLeft<CR>		" Move function argument to the left.
+nnoremap <silent> >a :SidewaysRight<CR>		" Move function argument to the right.
 " }
 
-" Tagbar {
-nmap <silent> <F3> :TagbarToggle<CR>	" Toggle the Tagbar window.
-let g:tagbar_left		= 0	" Keep the window on the right side.
-let g:tagbar_width		= 30	" Width of window.
-let g:tagbar_autoclose		= 1	" Close tagbar when jumping to a tag.
-let g:tagbar_autofocus		= 1	" Give tagbar focus when it's opened.
-let g:tagbar_sort		= 1	" Sort tags alphabetically.
-let g:tagbar_compact		= 1	" Omit the help text.
-let g:tagbar_singleclick	= 1	" Jump to tag with a single click.
-let g:tagbar_autoshowtag	= 1	" Open folds if tag is not visible.
-" }
-
-" Taglist {
-"nmap <silent> <F3> :Tlist<CR>				" Toggle the Tlist browser.
-""let g:Tlist_Close_On_Select        = 1		" Close list on tag selection.
-"let g:Tlist_Auto_Update             = 1		" Update newly opend files.
-"let g:Tlist_Compact_Format          = 1		" Trim spaces in GUI.
-"let g:Tlist_Auto_Highlight_Tag      = 1		" Highlight tags.
-"let g:Tlist_GainFocus_On_ToggleOpen = 1		" Move cursor to list on open.
-"let g:Tlist_Sort_Type               = "name"	" Sort by name instead of definition order.
-"let g:Tlist_Use_SingleClick         = 1		" Jump to definition with a single click.
-"let g:Tlist_Show_One_File           = 1		" Only show current buffers tags.
-"let g:Tlist_Use_Right_Window        = 1		" Display on the right.
-""let g:Tlist_Display_Prototype      = 1		" Show prototypes instead of tags.
-"let g:Tlist_Exit_OnlyWindow         = 1		" Close Vim if only Tlist open.
-" }
-
-" Undotree {
-nmap <silent> <F4> :UndotreeToggle<CR>		" Toggle side pane.
-let g:undotree_WindowLayout=2			" Set style to have diff window below.
-let g:undotree_SetFocusWhenToggle=1		" Put cursor in undo window on open.
-" }
-
-" Vim Better Whitespace {
-let g:strip_whitelines_at_eof=1		" Also strip empty lines at end of file on save.
-let g:show_spaces_that_precede_tabs=1	" Highlight spaces that happens before tab.
-let g:strip_whitespace_on_save = 1	" Activate by default.
-let g:strip_whitespace_confirm=0	" Don't ask for permission.
-" Filetypes to ignore even when strip_whitespace_on_save=1
-"let g:better_whitespace_filetypes_blacklist=['<filetype1>', '<filetype2>', '<etc>',
-
-
-" Use same command as in the old ~/.vim/plugin/stripspaces.vim
-" Need to wrap the command in a function as we can't chain
-" commands unless they were declared to support this.
-" Reference: " https://unix.stackexchange.com/questions/144568/how-do-i-write-a-command-in-vim-to-run-multiple-commands
-function! StripWhitespaceWrapper()
-	execute 'StripWhitespace'
-endfunction
-command! Ws call StripWhitespaceWrapper() | update
-
-" Like :wq but strip whitespaces first.
-command! Wqs call StripWhitespaceWrapper() | wq
-" Like :wqa but strip whitespaces in each buffer first.
-command! Wqas bufdo call StripWhitespaceWrapper() | wq
+" undotree {
+nmap <silent> <F4> :UndotreeToggle<CR>	" Toggle side pane.
+let g:undotree_WindowLayout=2		" Set style to have diff window below.
+let g:undotree_SetFocusWhenToggle=1	" Put cursor in undo window on open.
 " }
 " }
