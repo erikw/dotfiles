@@ -76,15 +76,16 @@
 	"}
 
 	" Development: General {
+		"Plugin 'Townk/vim-autoclose'
 		"Plugin 'scrooloose/syntastic'		" Replaced by ale
 		Plugin 'AndrewRadev/sideways.vim'
-		Plugin 'rhysd/conflict-marker.vim'	" Navigate and edit VCS conflicts. Replace unmaintained 'vim-script/ConflictMotions'
-		Plugin 'Townk/vim-autoclose'
 		Plugin 'airblade/vim-gitgutter'
+		Plugin 'cohama/lexima.vim'		" Autmoatically close opened braces etc.
 		Plugin 'argtextobj.vim'
 		Plugin 'dense-analysis/ale'
 		Plugin 'editorconfig/editorconfig-vim'
 		Plugin 'majutsushi/tagbar'
+		Plugin 'rhysd/conflict-marker.vim'	" Navigate and edit VCS conflicts. Replace unmaintained 'vim-script/ConflictMotions'
 		Plugin 'tmhedberg/matchit'
 
 	"}
@@ -513,10 +514,10 @@
 	" }
 
 	" AutoClose {
-		"let g:AutoClosePairs = AutoClose#ParsePairs("() [] {} <> «» ` \" '") " Pairs to close. Does not seems to work with vundle.
-		let g:AutoCloseProtectedRegions = ["Comment", "String", "Character"]	" Syntax regions to ignore.
+		""let g:AutoClosePairs = AutoClose#ParsePairs("() [] {} <> «» ` \" '") " Pairs to close. Does not seems to work with vundle.
+		"let g:AutoCloseProtectedRegions = ["Comment", "String", "Character"]	" Syntax regions to ignore.
 
-		noremap <silent> <Leader>ac :AutoCloseToggle<CR>			" Toggle vim-autoclose plugin mode.
+		"noremap <silent> <Leader>ac :AutoCloseToggle<CR>			" Toggle vim-autoclose plugin mode.
 
 	" }
 
@@ -584,13 +585,23 @@
 	" }
 
 " FZF {
-	" Stolen from my friend https://github.com/erikagnvall/dotfiles/blob/master/vim/init.vim
-	nnoremap <leader>f :FZF<space>		" Search for files in given path.
-	nnoremap <c-p> :Files<CR>		"Search for files starting at current directory.
-	nnoremap <leader>T :Tags<CR>		" Search in tags file.
-	" Search open buffers. Comment must be on onw line.
-	"nnoremap ; :Buffers<CR>
-	nnoremap <leader>; :Buffers<CR>
+" Stolen from my friend https://github.com/erikagnvall/dotfiles/blob/master/vim/init.vim
+" Comment must be on line of its own...
+" Search for files in given path.
+nnoremap <leader>f :FZF<space>
+" Search for files starting at current directory.
+nnoremap <c-p> :Files<CR>
+" Search in tags file.
+nnoremap <leader>T :Tags<CR>
+" Search open buffers.
+" ; conflicts with repeating search for characther (fF]
+"nnoremap ; :Buffers<CR>
+"nnoremap <leader>; :Buffers<CR>
+nnoremap <leader>b :Buffers<CR>
+" Search open tabs (indirectly; " https://medium.com/@paulodiovani/vim-buffers-windows-and-tabs-an-overview-8e2a57c57afa).
+nnoremap <leader>t :Windows<CR>
+" Search history of opended files
+nnoremap <leader>h :History<CR>
 " }
 
 	" Gist {
