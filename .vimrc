@@ -469,24 +469,9 @@
 
 " Plugin Config {
 	" ALE {
-		" Reference https://github.com/dense-analysis/ale/blob/master/doc/ale.txt
-		" Linting {
-		" Disabled linters:
-				"\ 'sql': ['sqls'],
-				"\ 'tex': ['texlab'],
-		let g:ale_linters = {
-				\ 'go': ['gopls'],
-				\ 'json': ['jsonls'],
-				\ 'python': ['pyright'],
-				\ 'ruby': ['solargraph'],
-				\ 'sh': ['language_server'],
-				\ 'vim': ['vimls'],
-				\ }
-		" }
-
-		" Fixing {
+		" Removed 'trim_whitespace' and 'remove_trailing_lines' as it overlaps with the functionally already provided by vim-better-whitespace.
 		let g:ale_fixers = {
-			\ '*': ['remove_trailing_lines', 'trim_whitespace', 'prettier'],
+			\ '*': ['prettier'],
 			\ 'ruby': ['rubocop'],
 			\}
 		let g:ale_fix_on_save = 1
@@ -857,6 +842,14 @@ let g:startify_custom_header = s:ascii
 	" }
 
 	" Vim Better Whitespace {
+		let g:strip_whitelines_at_eof=1		" Also strip empty lines at end of file on save.
+		let g:show_spaces_that_precede_tabs=1	" Highlight spaces that happens before tab.
+		let g:strip_whitespace_on_save = 1	" Activate by default.
+		let g:strip_whitespace_confirm=0	" Don't ask for permission.
+		" Filetypes to ignore even when strip_whitespace_on_save=1
+		"let g:better_whitespace_filetypes_blacklist=['<filetype1>', '<filetype2>', '<etc>',
+
+
 		" Use same command as in the old ~/.vim/plugin/stripspaces.vim
 		" Need to wrap the command in a function as we can't chain
 		" commands unless they were declared to support this.
