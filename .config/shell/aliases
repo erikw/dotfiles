@@ -180,7 +180,7 @@
 	    alias nvi='nvim'
 	    alias view='nvim -R'
 	    alias nview='nvim -R'
-	    alias vimdiff='nvim -d'
+	    alias vidiff='nvim -d'
 	    alias nvimdiff='nvim -d'
 	    alias viplain="nvim -u NONE -i NONE"
 	    alias vibplain="nvim -u NONE -i NONE -c 'set number backup'"
@@ -188,6 +188,7 @@
 	else
 	    alias vi='vim'						# Be IMproved.
 	    alias view='vim -R'						# Not all distributions of vim provide the readonly bin.
+	    alias vidiff='vimdiff'
 	    alias viplain="vim -u NONE -i NONE"				# Start wiht without reading ~/.vimrc and using ~/.viminfo.
 	    alias vibplain="vim -u NONE -i NONE -c 'set number backup'"	# Same, but write local backup file.
 	fi
