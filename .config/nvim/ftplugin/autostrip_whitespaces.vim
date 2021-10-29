@@ -4,4 +4,5 @@
 "autocmd BufWritePost <buffer> :StripWhitespaces
 
 " Using vim-better-whitespace plugin
+" NOTE replaced by https://github.com/cohama/lexima.vim
 autocmd BufWritePost <buffer> :StripWhitespace

@@ -46,17 +46,18 @@ let s:xdg_state_home = empty($XDG_STATE_HOME) ? "$HOME/.local/state" : $XDG_STAT
 
 " Development {
 " Development: General {
+	"Plug 'Townk/vim-autoclose'				" Automatically insert matching brace pairs. Replaced by cohama/lexima.vim
 	"Plug 'hrsh7th/nvim-cmp' | Plug 'hrsh7th/cmp-nvim-lsp' | Plug 'hrsh7th/cmp-buffer' | Plug 'hrsh7th/cmp-vsnip' | Plug 'hrsh7th/vim-vsnip'	" Autocompletion when typing with LSP backend. Disabled as too fast-moving development and bugs.
-	"Plug 'neovim/nvim-lspconfig'		" Plug-n-play configurations for LSP server. Disabled in favour of simpler to use ALE.
-	Plug 'AndrewRadev/sideways.vim'		" Shift function arguments left and right.
-	Plug 'Townk/vim-autoclose'		" Automatically insert matching brace pairs.
-	Plug 'airblade/vim-gitgutter'		" Git modified status in sign column
-	Plug 'andymass/vim-matchup'		" Extend % matching. Replaces old the matchit plugin.
-	Plug 'dense-analysis/ale'		" LSP linting engine.
+	"Plug 'neovim/nvim-lspconfig'			" Plug-n-play configurations for LSP server. Disabled in favour of simpler to use ALE.
+	Plug 'AndrewRadev/sideways.vim'			" Shift function arguments left and right.
+	Plug 'airblade/vim-gitgutter'			" Git modified status in sign column
+	Plug 'andymass/vim-matchup'				" Extend % matching. Replaces old the matchit plugin.
+	Plug 'cohama/lexima.vim'				" Autmoatically close opened braces etc.
+	Plug 'dense-analysis/ale'				" LSP linting engine.
 	Plug 'editorconfig/editorconfig-vim'	" Standard .editorconfig file in shared projects.
-	Plug 'preservim/tagbar'			" Sidepane showing info from tags file.
-	Plug 'rhysd/conflict-marker.vim'	" Navigate and edit VCS conflicts. Replace unmaintained 'vim-script/ConflictMotions'
-	Plug 'vim-scripts/argtextobj.vim'	" Make function arguments text objects that can be operated on with.
+	Plug 'preservim/tagbar'					" Sidepane showing info from tags file.
+	Plug 'rhysd/conflict-marker.vim'		" Navigate and edit VCS conflicts. Replace unmaintained 'vim-script/ConflictMotions'
+	Plug 'vim-scripts/argtextobj.vim'		" Make function arguments text objects that can be operated on with.
 " }
 
 " Development: C/C++ {
@@ -156,6 +157,8 @@ command! Wsudo silent w !sudo tee % > /dev/null
 command! Wmake update | silent !make >/dev/null
 " See buffer and file diff.
 command! Wdiff w !diff % -
+" A stronger quit that unloads the buffer
+command! Q bd
 
 " Change to directory of current file.
 command! Cdpwd cd %:p:h
@@ -498,13 +501,22 @@ EOF
 
 " fzf.vim {
 " Stolen from my friend https://github.com/erikagnvall/dotfiles/blob/master/vim/init.vim
-nnoremap <leader>f :FZF<space>	" Search for files in given path.
-nnoremap <c-p> :Files<CR>	" Search for files starting at current directory.
-nnoremap <leader>T :Tags<CR>	" Search in tags file.
-" Search open buffers. Comment must be on line of its own...
+" Comment must be on line of its own...
+" Search for files in given path.
+nnoremap <leader>f :FZF<space>
+" Search for files starting at current directory.
+nnoremap <c-p> :Files<CR>
+" Search in tags file.
+nnoremap <leader>T :Tags<CR>
+" Search open buffers.
 " ; conflicts with repeating search for characther (fF]
 "nnoremap ; :Buffers<CR>
-nnoremap <leader>; :Buffers<CR>
+"nnoremap <leader>; :Buffers<CR>
+nnoremap <leader>b :Buffers<CR>
+" Search open tabs (indirectly; " https://medium.com/@paulodiovani/vim-buffers-windows-and-tabs-an-overview-8e2a57c57afa).
+nnoremap <leader>t :Windows<CR>
+" Search history of opended files
+nnoremap <leader>h :History<CR>
 " }
 
 	" nerdcommenter {
