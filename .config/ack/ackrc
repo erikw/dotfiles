@@ -12,7 +12,8 @@
 --ignore-file=match:viminfo
 
 # $XDG_CONFIG_HOME dirs to exclude.
---ignore-dir=.vim
+# Like .vim/plugged/
+--ignore-dir=plugged/
 # Like .config/grip/cache-4.5.2/
 --ignore-dir=match:/cache-.*/
 # Like .config/cheat/cheatsheets/
