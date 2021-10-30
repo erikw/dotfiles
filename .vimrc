@@ -239,9 +239,9 @@ set showbreak=…			" Indicate wrapped lines.
 set smartindent			" Indent smart on C-like files.
 set preserveindent		" Try to preserve indent structure on changes of current line.
 set copyindent			" Copy indentstructure from existing lines.
-set tabstop=4			" Let a tab be X spaces wide.
-set shiftwidth=4		" Tab width for auto indent and >> shifting.
-"set softtabstop=4		" Number of spaces to count a tab for on ops like BS and tab.
+set tabstop=8			" Let a tab be X spaces wide. 8 spaces for a tab render best as HTML on e.g. GithHub.
+set shiftwidth=8		" Tab width for auto indent and >> shifting.
+"set softtabstop=8		" Number of spaces to count a tab for on ops like BS and tab.
 set noexpandtab			" Do not expand tabs to spaces!
 set matchpairs+=<:>		" Also match <> with %.
 set formatoptions=tcroqwnl	" Formatting options.
