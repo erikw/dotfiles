@@ -53,6 +53,7 @@
 	export SOLARGRAPH_CACHE=$XDG_CACHE_HOME/solargraph
 	export TRAVIS_CONFIG_PATH=$XDG_CONFIG_HOME/travis
 	export CD_BOOKMARK_FILE=$XDG_CONFIG_HOME/cd-bookmark/bookmarks
+	export RIPGREP_CONFIG_PATH=$XDG_CONFIG_HOME/ripgrep/config
 
 	export GEM_SPEC_CACHE=$XDG_CACHE_HOME/gem
 	export GEM_HOME=$XDG_DATA_HOME/gem

@@ -28,9 +28,3 @@
 #--ignore-dir=build/
 # Ignore gradle run log directory.
 #--ignore-dir=logs/
-
-# Jekyll
---ignore-dir=.jekyll-cache/
-#
-#--ignore-dir=_site/
-#--ignore-dir=.git-metadata/

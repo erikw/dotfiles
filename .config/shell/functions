@@ -120,7 +120,14 @@ viack() {
 vigrep() {
 	local search
 	for search; do true; done
-	vim -p $(grep -Rl $@) -c 1 +/$search
+	vi -p $(grep -Rl $@) -c 1 +/$search
+}
+
+# Wrapper around the classic 'rg with grep'.
+virg() {
+	local search
+	for search; do true; done
+	vi -p $(rg -l $@) -c 1 +/$search
 }
 
 _dev_log() {

@@ -1,0 +1,49 @@
+# Reference: https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md#configuration-file
+
+# Follow symbolic links.
+--follow
+
+# Search hidden files and directories.
+--hidden
+
+# lowecase search term = case-insenstitive
+# mix case search term = case-sensitive
+# Override by using (-s|--case-sensitice)
+--smart-case
+
+
+
+# Ignores
+# Ignore git directories.
+--glob=!.git/
+
+# Ignore vendor npm packages in projects.
+--glob=!node_modules/
+
+# Ignore vendor dir for go projects.
+--glob=!vendor/
+
+# Vim development
+--glob=!cscope.out
+--glob=!cscope.files
+--glob=!tags
+--glob=!Session.vim
+--glob=!.syntastic_javac_config
+--glob=!viminfo
+
+# $XDG_CONFIG_HOME dirs to exclude.
+--glob=!.vim/plugged/
+# Like .config/grip/cache-4.5.2/
+--glob=!cache-[0-9.]*/
+# Like .config/cheat/cheatsheets/
+--glob=!cheatsheets/
+
+# Intellij project files (old=fileformat).
+--glob=!.*.(ipr|iml)
+--glob=!.idea/
+
+# Java development
+# Ignore gradle build directories.
+--glob=!build/
+# Ignore gradle run log directory.
+--glob=!logs/
