@@ -199,8 +199,12 @@ fi
 	bindkey '^[[Z' reverse-menu-complete	# Reverse select on shift tab in completion menu.
 	bindkey "\ep" insert-last-word			# Insert !$ with Alt-p.
 	bindkey ' ' magic-space					# Expand !-commands on space.
-	bindkey "^R" history-beginning-search-backward	# Complete from history with prefix
-	bindkey "^E" history-beginning-search-forward	# Complete from history with prefix
+
+	# fzf provies a better ^R search.
+	if ! program_is_in_path fzf; then
+		bindkey "^R" history-beginning-search-backward	# Complete from history with prefix
+		bindkey "^E" history-beginning-search-forward	# Complete from history with prefix
+	fi
 
 	# Enable char deleteion on command from history.
 	bindkey "^?" backward-delete-char

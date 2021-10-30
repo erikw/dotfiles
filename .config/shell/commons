@@ -445,12 +445,17 @@
 	# fzf https://github.com/junegunn/fzf#using-homebrew
 	if program_is_in_path fzf; then
 		source ${XDG_CONFIG_HOME:-$HOME/.config}/fzf/fzf.${SHELL_NAME}
+		# Default cli options. See fzf(1)
+		export FZF_COMPLETION_OPTS='--multi'
+
 		# Find dot files as well. Reference: https://github.com/junegunn/fzf/issues/634
-		if program_is_in_path rg222222; then
-			export FZF_DEFAULT_COMMAND="rg --hidden --no-ignore --files --glob '!{.git,node_modules}/'"
+		if program_is_in_path fd; then
+			#export FZF_DEFAULT_COMMAND="rg --hidden --files --glob '!{.git,node_modules}/'"
+			export FZF_DEFAULT_COMMAND='fd --type file --hidden --follow'
 		else
 			export FZF_DEFAULT_COMMAND='find . -type d \( -path './.git' -o -path './node_modules'  \) -prune -o -print'
 		fi
+		export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 	fi
 
 	# Homebrew sqlite to shadow old version shipped with macOS.
