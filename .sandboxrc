@@ -31,20 +31,20 @@ _sandbox_hook_all(){
 #}
 
 # rbenv
-sandbox_init_rbenv(){
-  #export RBENV_ROOT=$HOME/.rbenv
-  export RBENV_ROOT=${XDG_DATA_HOME:-$HOME/.local/share}/rbenv
-  export PATH="$RBENV_ROOT/bin:$PATH"
-  export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
-  eval "$(rbenv init - $SHELL_NAME)"
-}
+# NOTE disabled because of breaking bin/<tab> completion.
+#sandbox_init_rbenv(){
+  #export RBENV_ROOT=${XDG_DATA_HOME:-$HOME/.local/share}/rbenv
+  #export PATH="$RBENV_ROOT/bin:$PATH"
+  #export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+  #eval "$(rbenv init - $SHELL_NAME)"
+#}
 #sandbox_hook_shims rbenv
-sandbox_hook_shims rbenv ${XDG_DATA_HOME:-$HOME/.local/share}/rbenv/shims
-sandbox_hook_shims rbenv ${XDG_DATA_HOME:-$HOME/.local/share}/gem/bin
+#sandbox_hook_shims rbenv ${XDG_DATA_HOME:-$HOME/.local/share}/rbenv/shims
+#sandbox_hook_shims rbenv ${XDG_DATA_HOME:-$HOME/.local/share}/gem/bin
 # Ruby on Rails wrapper scripts
 # Unfortunately it breaks system wide tab completion on $ bin/<tab>
 # Workaroud: $ ./bin/<tab>, $ bin//<tab>
-_sandbox_hook_all rbenv bin/bundle bin/rails bin/rake bin/setup bin/spring bin/webpack bin/webpack-dev-server bin/yarn bin/guard.sh bin/server.sh
+#_sandbox_hook_all rbenv bin/bundle bin/rails bin/rake bin/setup bin/spring bin/webpack bin/webpack-dev-server bin/yarn bin/guard.sh bin/server.sh
 
 # GVM: Go Version Manager
 sandbox_init_gvm() {

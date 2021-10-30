@@ -309,9 +309,12 @@
 
 	# rbenv NOTE is sandboxed
 	# https://github.com/rbenv/rbenv
-	#if program_is_in_path rbenv; then
-		#eval "$(rbenv init - $SHELL_NAME)"
-	#fi
+	if program_is_in_path rbenv; then
+		export RBENV_ROOT=${XDG_DATA_HOME:-$HOME/.local/share}/rbenv
+		export PATH="$RBENV_ROOT/bin:$PATH"
+		export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+		eval "$(rbenv init - $SHELL_NAME)"
+	fi
 
 # }
 
