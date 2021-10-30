@@ -128,11 +128,25 @@ $ go get github.com/motemen/ghq
 
 * [altercation/solarized](https://github.com/altercation/solarized)
 ```bash
-$ mkdir -p ~/src/github.com
+$ mkdir -p ~/src/github.com/altercation
 $ cd !$
 $ git clone git@github.com:altercation/solarized.git
 ````
 
+## Vim*
+### Neovim
+```console
+$ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+	   https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+$ nvim -c PlugInstall
+```
+
+### Vim
+```console
+$ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+$ vim -c PlugInstall
+```
 
 ## Tmux
 
