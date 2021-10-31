@@ -115,7 +115,8 @@
 	# Instructions comes from the output of $(brew install coreutils).
 	# NOTE this can have unexpected side effects. $(brew doctor): Warning: Putting non-prefixed coreutils in your path can cause gmp builds to fail.
 	if shell_is_macos; then
-		gnu_packages=(coreutils findutils gnu-indent gnu-sed gnu-tar grep)
+		# skip findutils as it breaks python builds e.g. numpy. use gfind(1) when needed.
+		gnu_packages=(coreutils gnu-indent gnu-sed gnu-tar grep)
 		for gnu_package in "${gnu_packages[@]}"; do
 			gpathbase=/usr/local/opt/${gnu_package}/libexec
 			if [ -d $gpathbase/gnubin ]; then
@@ -330,7 +331,7 @@
 	#fi
 
 
-	if program_is_in_path pyenv; then
+	#if program_is_in_path pyenv; then
 		# NOTE is sandboxed
 		#export PYENV_ROOT="$HOME/.pyenv"
 		#export PYENV_ROOT=${XDG_DATA_HOME:-$HOME/.local/share}/pyenv
@@ -344,8 +345,8 @@
 		# Reference: https://github.com/pyenv/pyenv/issues/106#issuecomment-625334706
 		#alias brew='env PATH="${PATH//$(pyenv root)\/shims:/}" brew'
 		# Combined with removal of gnubins from above (make sure to comment the first alias out for speed)
-		alias brew='env PATH="$(echo "$PATH" | sed -e "s/:\/usr\/local\/opt\/[^:]*://g" -e "s/:.*pyenv\/shims://g")" brew'
-	fi
+		#alias brew='env PATH="$(echo "$PATH" | sed -e "s/:\/usr\/local\/opt\/[^:]*://g" -e "s/:.*pyenv\/shims://g")" brew'
+	#fi
 # }
 
 	# pkgfile (arch) "command not found" hook.

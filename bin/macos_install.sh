@@ -49,7 +49,6 @@ read -r -d '' pip3_pkgs_additional <<-'EOAPPS'
 	pudb
 	pyenv
 	ropevim
-	virtualenvwrapper
 EOAPPS
 pip3_pkgs_additional=$(make_1line "$pip3_pkgs_additional")
 set -e
@@ -57,16 +56,6 @@ set -e
 pip3 install --user $pip3_pkgs
 #pip3 install --user $pip3_pkgs_additional
 
-# * If wanting different python version than given by brew, use pyenv(1).
-# * To manage project package dependences, use pipenv with Pipfile and virtualenvs
-# See https://towardsdatascience.com/python-environment-101-1d68bda3094d#39b6
-## Alternatives for global packages install
-# * pipenv with a Pipfile:
-#   - https://packaging.python.org/tutorials/managing-dependencies/
-#   - However this is more for project package dependencies. Global install is not working (from https://stackoverflow.com/a/54342856)
-# * Pipex: https://github.com/pipxproject/pipx
-#  - However not offering any real benefits for my setup, there's not Pipefile or such to specify packages or versions needed.
-# * https://miro.medium.com/max/577/1*w-gYboE96IYdDBUDR7QokQ.png
 # }
 
 # Install tmux session on login.
