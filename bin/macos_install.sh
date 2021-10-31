@@ -560,6 +560,14 @@ npm install -g vscode-langservers-extracted
 # }
 
 # Python {
+# * Manage python versions with pyenv from homebrew
+# * Manage python projects (with dependencies) with poetry. https://github.com/python-poetry/poetry
+#    * pipenv more established, but a lot of issues wih this project.
+# curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/install-poetry.py | python -
+# poetry completions zsh > $XDG_CONFIG_HOME/zsh/funcs/_poetry
+# and reload compinit
+
+
 ## jedi-vim
 #cd ~/.vim/bundle/jedi-vim/
 #git submodule update --init

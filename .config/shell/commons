@@ -75,6 +75,9 @@
 	# Include binaries in home directory.
 	PATH="$HOME/bin:$PATH"
 
+	# E.g. poetry installs here.
+	test -d $HOME/.local/bin && export PATH="$HOME/.local/bin:$PATH"
+
 	# Set common bin paths.
 	#PATH=${PATH}:$(find ~/bin -maxdepth 2 -type d | tr '\n' ':' | sed 's/:$//')
 	#common_bin_dirs=(mutt mkdirs)
@@ -124,12 +127,6 @@
 		# However brew should not run with gnu utils in PATH as this can mess up builds $(brew doctor complains)
 		# NOPE this is a bad idea; when 'brew' is used with aliases, this alieas is expanded e.g. $(psg brew) would ps-aux grep for the whole env PATH... below.
 		#alias brew='env PATH="$(echo "$PATH" | sed -e "s/:\/usr\/local\/opt\/[^:]*://g")" brew'
-	fi
-
-	# Add MacTex binaries (macos).
-	# Reference: http://rkrug.github.io/LMS-test/downloads/UpdatingForElCapitan.pdf
-	if [ -e /Library/TeX/texbin ]; then
-		PATH="/Library/TeX/texbin:$PATH"
 	fi
 
 	# Source aliases.
@@ -432,6 +429,13 @@
 		export SDKMAN_DIR="$HOME/.sdkman"
 		[[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]] && source "$SDKMAN_DIR/bin/sdkman-init.sh"
 	fi
+
+	# Add MacTex binaries (macos) to PATH.
+	# Reference: http://rkrug.github.io/LMS-test/downloads/UpdatingForElCapitan.pdf
+	if [ -e /Library/TeX/texbin ]; then
+		PATH="/Library/TeX/texbin:$PATH"
+	fi
+
 
 	# ghq
 	# https://github.com/motemen/ghq

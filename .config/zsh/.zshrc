@@ -29,14 +29,13 @@ fi
 	#path=(~/tmp $path)
 
 	# Function paths.
-	# - .zsh_funcs - custom functions
-	# - .zprompts - custom prompt themes
-	fpath=(~/.zsh_funcs $fpath)
-
+	# - .zsh_funcs/ - custom functions e.g. completion functions installed here.
+	# - .zprompts/ - custom prompt themes
+	fpath+=$XDG_CONFIG_HOME/zsh/funcs/
 	# Homebrew zsh completions. Static path for faster shell startup, than solution from https://docs.brew.sh/Shell-Completion
 	# Some of the completion functions comes from https://github.com/zsh-users/zsh-completions
 	if [ -d /usr/local/share/zsh-completions ]; then
-		fpath=(/usr/local/share/zsh-completions $fpath)
+		fpath+=/usr/local/share/zsh-completions
 	fi
 # }}
 
