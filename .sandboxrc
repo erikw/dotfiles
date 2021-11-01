@@ -32,18 +32,20 @@ _sandbox_hook_all(){
 
 # rbenv
 # NOTE disabled because of breaking bin/<tab> completion.
-#sandbox_init_rbenv(){
-  #export RBENV_ROOT=${XDG_DATA_HOME:-$HOME/.local/share}/rbenv
-  #export PATH="$RBENV_ROOT/bin:$PATH"
-  #export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
-  #eval "$(rbenv init - $SHELL_NAME)"
-#}
+sandbox_init_rbenv(){
+  export RBENV_ROOT=${XDG_DATA_HOME:-$HOME/.local/share}/rbenv
+  export PATH="$RBENV_ROOT/bin:$PATH"
+  export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+  eval "$(rbenv init - $SHELL_NAME)"
+}
 #sandbox_hook_shims rbenv
-#sandbox_hook_shims rbenv ${XDG_DATA_HOME:-$HOME/.local/share}/rbenv/shims
+sandbox_hook_shims rbenv ${XDG_DATA_HOME:-$HOME/.local/share}/rbenv/shims
+# NOTE gem/bin seems not to be needed to be sandboxed actually.
 #sandbox_hook_shims rbenv ${XDG_DATA_HOME:-$HOME/.local/share}/gem/bin
-# Ruby on Rails wrapper scripts
+# Ruby on Rails wrapper scripts.
 # Unfortunately it breaks system wide tab completion on $ bin/<tab>
 # Workaroud: $ ./bin/<tab>, $ bin//<tab>
+# NOTE actually not needed to sandbox these!
 #_sandbox_hook_all rbenv bin/bundle bin/rails bin/rake bin/setup bin/spring bin/webpack bin/webpack-dev-server bin/yarn bin/guard.sh bin/server.sh
 
 # GVM: Go Version Manager
@@ -94,7 +96,6 @@ sandbox_hook java-home jar
 # pyenv python version manager
 # NOTE only interactive termnials will get this, not scripts.
 sandbox_init_pyenv() {
-	#export PYENV_ROOT="$HOME/.pyenv"
 	export PYENV_ROOT=${XDG_DATA_HOME:-$HOME/.local/share}/pyenv
 	export PATH="$PYENV_ROOT/bin:$PATH"
 	eval "$(pyenv init --path)"  # Adds shims to PATH.

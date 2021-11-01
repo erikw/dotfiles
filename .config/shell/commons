@@ -111,24 +111,26 @@
 		export DESKTYPE=dwm
 	fi
 
-	# Add homebrew coreutils with default names to PATH, and also to MANPATH.
+	# GNU coreutils etc. {
+	# Add homebrew coreutils with default names to PATH, and also to MANPATH. {
 	# Instructions comes from the output of $(brew install coreutils).
-	# NOTE this can have unexpected side effects. $(brew doctor): Warning: Putting non-prefixed coreutils in your path can cause gmp builds to fail.
-	if shell_is_macos; then
-		# skip findutils as it breaks python builds e.g. numpy. use gfind(1) when needed.
-		gnu_packages=(coreutils gnu-indent gnu-sed gnu-tar grep)
-		for gnu_package in "${gnu_packages[@]}"; do
-			gpathbase=/usr/local/opt/${gnu_package}/libexec
-			if [ -d $gpathbase/gnubin ]; then
-				PATH="$gpathbase/gnubin:$PATH"
-				MANPATH="$gpathbase/gnuman:$MANPATH"
-			fi
-		done
-		unset gnu_packages gnu_package gpathbase
-		# However brew should not run with gnu utils in PATH as this can mess up builds $(brew doctor complains)
-		# NOPE this is a bad idea; when 'brew' is used with aliases, this alieas is expanded e.g. $(psg brew) would ps-aux grep for the whole env PATH... below.
-		#alias brew='env PATH="$(echo "$PATH" | sed -e "s/:\/usr\/local\/opt\/[^:]*://g")" brew'
-	fi
+	# NOTE this can have unexpected side effects. $(brew doctor): Warning: Putting non-prefixed coreutils in your path can cause gmp builds to fail. Better not do this!
+	# findutils seems to break numpy e.g.
+	#if shell_is_macos; then
+		#gnu_packages=(gnu-indent findutils gnu-sed gnu-tar grep)
+		#for gnu_package in "${gnu_packages[@]}"; do
+			#gpathbase=/usr/local/opt/${gnu_package}/libexec
+			#if [ -d $gpathbase/gnubin ]; then
+				#PATH="$gpathbase/gnubin:$PATH"
+				#MANPATH="$gpathbase/gnuman:$MANPATH"
+			#fi
+		#done
+		#unset gnu_packages gnu_package gpathbase
+		## However brew should not run with gnu utils in PATH as this can mess up builds $(brew doctor complains)
+		## NOPE this is a bad idea; when 'brew' is used with aliases, this alieas is expanded e.g. $(psg brew) would ps-aux grep for the whole env PATH... below.
+		##alias brew='env PATH="$(echo "$PATH" | sed -e "s/:\/usr\/local\/opt\/[^:]*://g")" brew'
+	#fi
+	# }
 
 	# Source aliases.
 	sourceifexists ${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliases
@@ -307,12 +309,12 @@
 
 	# rbenv NOTE is sandboxed
 	# https://github.com/rbenv/rbenv
-	if program_is_in_path rbenv; then
-		export RBENV_ROOT=${XDG_DATA_HOME:-$HOME/.local/share}/rbenv
-		export PATH="$RBENV_ROOT/bin:$PATH"
-		export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
-		eval "$(rbenv init - $SHELL_NAME)"
-	fi
+	#if program_is_in_path rbenv; then
+		#export RBENV_ROOT=${XDG_DATA_HOME:-$HOME/.local/share}/rbenv
+		#export PATH="$RBENV_ROOT/bin:$PATH"
+		#export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+		#eval "$(rbenv init - $SHELL_NAME)"
+	#fi
 
 # }
 
@@ -333,11 +335,12 @@
 
 	#if program_is_in_path pyenv; then
 		# NOTE is sandboxed
-		#export PYENV_ROOT="$HOME/.pyenv"
 		#export PYENV_ROOT=${XDG_DATA_HOME:-$HOME/.local/share}/pyenv
 		#export PATH="$PYENV_ROOT/bin:$PATH"
-		#eval "$(pyenv init --path)"
+		#eval "$(pyenv init --path)"  # Adds shims to PATH.
 		#eval "$(pyenv init -)"
+		##export VIRTUAL_ENV_DISABLE_PROMPT=1
+		##eval "$(pyenv virtualenv-init -)"
 
 		# Brew should use system default python when building packages $(brew doctor) complains with
 		# "config" scripts exist outside your system or Homebrew directories.
