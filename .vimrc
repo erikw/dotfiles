@@ -476,6 +476,7 @@ set statusline+=\ 0x%B			" Character valur under cursor.
 " }
 
 " Plugin Config {
+" gF shourtcut: ~/.config/nvim/commons_plugin_config.vim
 execute "source " . s:xdg_config_home . "/nvim/commons_plugin_config.vim"
 
 " vim-startify {

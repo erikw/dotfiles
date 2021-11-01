@@ -12,7 +12,7 @@
 let g:ale_linters = {
 		\ 'go': ['gopls'],
 		\ 'json': ['jsonls'],
-		\ 'python': ['pyright'],
+		\ 'python': ['pyright', 'flake8'],
 		\ 'ruby': ['solargraph'],
 		\ 'sh': ['language_server'],
 		\ 'vim': ['vimls'],
@@ -76,6 +76,11 @@ nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>t :Windows<CR>
 " Search history of opended files
 nnoremap <leader>h :History<CR>
+" }
+
+" lexima.vim {
+" Put cursor between ```-blocks in markdown files after <CR. Reference: https://github.com/cohama/lexima.vim/issues/121
+call lexima#add_rule({'at': '^```\(\S*\)\%#```', 'char': '<CR>', 'input': '<CR>', 'input_after': '<CR>', 'filetype': ['markdown']})
 " }
 
 	" nerdcommenter {
