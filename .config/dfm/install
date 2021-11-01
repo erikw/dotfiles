@@ -2,8 +2,9 @@ README.md skip
 .gitignore skip
 .gitmodules skip
 
-bin recurse
 .gnupg recurse
+.local recurse
+bin recurse
 
 .Xsession chmod 0744
 .config/X11/xinitrc chmod 0744
