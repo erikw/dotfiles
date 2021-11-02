@@ -20,11 +20,12 @@ let g:ale_linters = {
 " }
 
 " Fixing {
-" Removed 'trim_whitespace' and 'remove_trailing_lines' as it overlaps with the functionally already provided by vim-better-whitespace.
+" * - disabled 'trim_whitespace' and 'remove_trailing_lines' as it overlaps with the functionally already provided by vim-better-whitespace.
+" python - disabled autoimport as it messes up ifx in taiga_stats.commands import  fix. Could be resolved by https://github.com/myint/autoflake/issues/59
 let g:ale_fixers = {
 	\ '*': ['prettier'],
 	\ 'ruby': ['rubocop'],
-	\ 'python': ['isort'],
+	\ 'python': ['autoflake', 'black', 'isort'],
 	\}
 let g:ale_fix_on_save = 1
 " }

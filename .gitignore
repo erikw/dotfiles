@@ -30,7 +30,8 @@
 /.config/irb/irb_history
 /.config/iterm2/
 /.config/kde/
-/.config/pudb/
+/.config/pudb/internal-cmdline-history.txt
+/.config/pudb/saved-breakpoints-*
 /.config/restic/
 /.config/subversion/
 /.config/taiga-stats/taiga-stats.conf

@@ -35,20 +35,20 @@ make_1line() {
 	echo "$1" | tr '\n' ' '
 }
 read -r -d '' pip3_pkgs <<-'EOAPPS'
+	autoflake
+	autoimport
+	black
+	flake8
+	ipdb
 	ipython
 	pip-autoremove
+	pudb
 EOAPPS
 pip3_pkgs=$(make_1line "$pip3_pkgs")
 
 read -r -d '' pip3_pkgs_additional <<-'EOAPPS'
 	goobook
-	ipdb
 	iterm2
-	pipenv
-	powerline-status
-	pudb
-	pyenv
-	ropevim
 EOAPPS
 pip3_pkgs_additional=$(make_1line "$pip3_pkgs_additional")
 set -e
