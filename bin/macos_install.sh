@@ -28,36 +28,6 @@ brew install terminal-notifier
 brew autoupdate --start 43200 --upgrade --cleanup --enable-notification
 brew autoupdate --status
 
-# Python setup {
-# Python lists {
-set +e # Can't have -e while making these vars
-make_1line() {
-	echo "$1" | tr '\n' ' '
-}
-read -r -d '' pip3_pkgs <<-'EOAPPS'
-	autoflake
-	autoimport
-	black
-	flake8
-	ipdb
-	ipython
-	pip-autoremove
-	pudb
-EOAPPS
-pip3_pkgs=$(make_1line "$pip3_pkgs")
-
-read -r -d '' pip3_pkgs_additional <<-'EOAPPS'
-	goobook
-	iterm2
-EOAPPS
-pip3_pkgs_additional=$(make_1line "$pip3_pkgs_additional")
-set -e
-# }
-pip3 install --user $pip3_pkgs
-#pip3 install --user $pip3_pkgs_additional
-
-# }
-
 # Install tmux session on login.
 # Reference: http://www.launchd.info/
 # NOPE starting tmux with launchctl makes it run with less access e.g. doing $(ls /volumes/somevolume) gives "Operation not permitted".
@@ -79,7 +49,8 @@ pip3 install --user $pip3_pkgs
 
 # solarized_toggle.sh
 ## solarized_toggle.sh require
-# - pip3 package iterm2 mus be installed (in python setup above)
+# - pip3 package iterm2 mus be installed
+pip3 install iterm2
 # - iterm2 preference enable Python API: General > Magic tab > Enable Python API: Require "automation" permission.
 #	(if this is not enough Iterm2 > Scripts (menu) > Manager > Install runtime)
 ## Start macos_appearance_monitor.sh on login.
@@ -559,6 +530,25 @@ npm install -g vscode-langservers-extracted
 
 # LSP server
 #brew install pyright
+
+# Global python packages
+# Reference: https://tanzu.vmware.com/developer/guides/gs-python-installing-global-packages/
+# Default:
+#pipx install autoflake
+#pipx install autoimport
+#pipx install black
+#pipx install flake8
+#pipx install ipdb
+#pipx install ipython
+#pipx install pip-autoremove
+#pipx install pudb
+
+# Additional:
+#pipx install goobook
+# }
+# }
+
+
 # }
 
 # Xcode {
