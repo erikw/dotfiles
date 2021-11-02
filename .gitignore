@@ -34,7 +34,7 @@
 /.config/pudb/saved-breakpoints-*
 /.config/restic/
 /.config/subversion/
-/.config/taiga_stats/
+/.config/taiga-stats/
 /.config/travis/
 /.config/wireshark/
 /.config/yarn/config
