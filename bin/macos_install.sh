@@ -557,21 +557,8 @@ npm install -g vscode-langservers-extracted
 # and reload compinit
 
 
-## jedi-vim
-#cd ~/.vim/bundle/jedi-vim/
-#git submodule update --init
-
 # LSP server
 #brew install pyright
-
-## rope
-#pip3 install --user ropevim
-#cat >> ~/.zshrc
-#export PYTHONPATH="$PYTHONPATH:$HOME/Library/Python/3.5/lib/python/site-packages"
-#^D
-
-# isort
-#pip3 install --user isort
 # }
 
 # Xcode {

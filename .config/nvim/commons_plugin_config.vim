@@ -24,6 +24,7 @@ let g:ale_linters = {
 let g:ale_fixers = {
 	\ '*': ['prettier'],
 	\ 'ruby': ['rubocop'],
+	\ 'python': ['isort'],
 	\}
 let g:ale_fix_on_save = 1
 " }
