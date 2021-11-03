@@ -61,6 +61,7 @@
     brew 'pdfgrep'
     brew 'peco'
     brew 'pidof'
+    brew 'pipx'		# To manage globally installed cli tools from pip.
     brew 'python'
     brew 'readline'
     brew 'rename'       # a.k.a. rename.pl

@@ -4,7 +4,7 @@
 
 REQ=${XDG_CONFIG_HOME:-$HOME/.config}/npm/global-requirements.txt
 if [ -r $REQ ]; then
-	#sed 's/#.*//' $HOME/.npm-global-requirements.txt | xargs npm install -g
+	#sed 's/#.*//' $REQ | xargs npm install -g
 	# Improved support for trailing comments. Reference: https://unix.stackexchange.com/a/384019/19909
 	sed '
 	  s|[[:blank:]]*#.*||; # remove #comments

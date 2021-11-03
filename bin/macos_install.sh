@@ -91,7 +91,7 @@ cat << EOF >>  ~/.gitconfig.local
 EOF
 
 # NPM global packages. npm is installed by Brewfile
-~/bin/npm-install-global.sh
+~/bin/glob_pkg_install_npm.sh
 
 # Make tig use $XDG_DATA_HOME. Reference: https://wiki.archlinux.org/title/XDG_Base_Directory#Partial
 mkdir -p ${XDG_DATA_HOME:-$HOME/.local/share}/tig
@@ -495,7 +495,7 @@ npm install -g vscode-langservers-extracted
 #rbenv global 3.0.2
 #
 # Install global gems:
-#BUNDLE_GEMFILE=${XDG_CONFIG_HOME:-$HOME/.config}/bundle/Gemfile bundle install
+#~/bin/glob_pkg_install_gem.sh
 
 # Rails
 # Reference: https://sergio-ildefonso.medium.com/install-ruby-and-rails-on-a-mac-7b8a1ccb5f4
@@ -509,7 +509,7 @@ npm install -g vscode-langservers-extracted
 #n lts
 #n latest
 # After switching from system node from brew, need to install my global npm packages to ~/.n/lib/node_modules/
-# ~/bin/npm-install-global.sh
+#~/bin/glob_pkg_install_pip.sh
 # yarn - better than npm
 #npm install -g yarn
 # NOTE unset CC=clang if creating a new rails app, as dependency byebug fails with clang.
@@ -538,19 +538,7 @@ npm install -g vscode-langservers-extracted
 #brew install pyright
 
 # Global python packages
-# Reference: https://tanzu.vmware.com/developer/guides/gs-python-installing-global-packages/
-# Default:
-#pipx install autoflake
-#pipx install autoimport
-#pipx install black
-#pipx install flake8
-#pipx install ipdb
-#pipx install ipython
-#pipx install pip-autoremove
-#pipx install pudb
-
-# Additional:
-#pipx install goobook
+~/bin/glob_pkg_install_pip.sh
 # }
 # }
 

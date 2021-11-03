@@ -20,7 +20,6 @@ tap 'homebrew/cask-drivers' # For focusrite-control
 # Formula: python-dev {
     brew 'pyright'        # LSP server.
     brew 'pyenv'
-    brew 'pipx'		# To manage globally installed cli tools from pip.
 # }
 
 # Formula: ruby-dev {
