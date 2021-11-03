@@ -69,29 +69,30 @@ noremap <silent> <leader>p :set paste<CR>o<ESC>:normal "*p<CR>:set nopaste<CR>	"
 noremap <silent> <leader>P :set paste<CR>O<ESC>:normal "*P<CR>:set nopaste<CR>	" Paste on line before in paste-mode from register "*.
 
 " Toggle spell with a language. {
+" Set 'spellang' last, otherwise vim (but not nvim) complaines that ~/.vim/spell dont' exist.
 function! ToggleSpell(lang)
 	if !exists("b:old_spelllang")
-		let b:old_spelllang = &spelllang
 		let b:old_spellfile = &spellfile
 		let b:old_dictionary = &dictionary
 		let b:old_thesaurus = &thesaurus
+		let b:old_spelllang = &spelllang
 	endif
 
 	let l:newMode = ""
 	if !&l:spell || a:lang != &l:spelllang
 		setlocal spell
 		let l:newMode = "spell, " . a:lang
+		execute "setlocal spellfile=" . g:xdg_config_home . "/nvim/spell/" . matchstr(a:lang, "[a-zA-Z][a-zA-Z]") . "." . &encoding . ".add"
+		execute "setlocal dictionary=" . g:xdg_config_home ."/nvim/spell/" . a:lang . "." . &encoding . ".dic"
+		execute "setlocal thesaurus=" . g:xdg_config_home . "/nvim/thesaurus/" . a:lang . ".txt"
 		execute "setlocal spelllang=" . a:lang
-		execute "setlocal spellfile=" . "~/.vim/spell/" . matchstr(a:lang, "[a-zA-Z][a-zA-Z]") . "." . &encoding . ".add"
-		execute "setlocal dictionary=" . "~/.vim/spell/" . a:lang . "." . &encoding . ".dic"
-		execute "setlocal thesaurus=" . "~/.vim/thesaurus/" . a:lang . ".txt"
 	else
 		setlocal nospell
 		let l:newMode = "nospell"
-		execute "setlocal spelllang=" . b:old_spelllang
 		execute "setlocal spellfile=" . b:old_spellfile
 		execute "setlocal dictionary=" . b:old_dictionary
 		execute "setlocal thesaurus=" . b:old_thesaurus
+		execute "setlocal spelllang=" . b:old_spelllang
 	endif
 	return l:newMode
 endfunction

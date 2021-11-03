@@ -11,8 +11,8 @@
 " }
 
 " Environment {
-let s:xdg_config_home = empty($XDG_CONFIG_HOME) ? "$HOME/.config" : $XDG_CONFIG_HOME
-let s:xdg_state_home = empty($XDG_STATE_HOME) ? "$HOME/.local/state" : $XDG_STATE_HOME
+let g:xdg_config_home = empty($XDG_CONFIG_HOME) ? "$HOME/.config" : $XDG_CONFIG_HOME
+let g:xdg_state_home = empty($XDG_STATE_HOME) ? "$HOME/.local/state" : $XDG_STATE_HOME
 " }
 
 " Plugins {
@@ -26,7 +26,7 @@ call plug#begin(stdpath('data') . '/plugged')
 
 " Common Plugins {
 " gF shourtcut: ~/.config/nvim/commons_plugin.vim
-execute "source " . s:xdg_config_home . "/nvim/commons_plugin.vim"
+execute "source " . stdpath('config') . "/commons_plugin.vim"
 " }
 
 " Development {
@@ -49,7 +49,7 @@ call plug#end()
 
 " Commons Config {
 " gF shourtcut: ~/.config/nvim/commons_plugin_config.vim
-execute "source " . s:xdg_config_home . "/nvim/commons.vim"
+execute "source " . stdpath('config') . "/commons.vim"
 " }
 
 " General {
@@ -163,17 +163,17 @@ set nowrapscan	" Don't wrap search around file.
 " Spelling {
 set spelllang=en_us		" Languages to do spell checking for.
 set spellsuggest=best,10	" Limit spell suggestions.
-" Set spellfile dynamically. Shared with Vim.
-execute "set spellfile=" . "~/.vim/spell/" . matchstr(&spelllang, "[a-zA-Z][a-zA-Z]") . "." . &encoding . ".add"
+" Set spellfile dynamically.
+execute "set spellfile=" . stdpath('config') . "/spell/" . matchstr(&spelllang, "[a-zA-Z][a-zA-Z]") . "." . &encoding . ".add"
 " Use a thesaurus file. Could load all, but that makes lookup slower. Instead let ToggleSpell() set per language.
-execute "set thesaurus=" . "~/.vim/thesaurus/" . matchstr(&spelllang, "[a-zA-Z][a-zA-Z]") . ".txt"
+execute "set thesaurus=" . stdpath('config') . "/thesaurus/" . matchstr(&spelllang, "[a-zA-Z][a-zA-Z]") . ".txt"
 " }
 
 " UI {
 colorscheme NeoSolarized
 
 " Adjust colors to this background.
-let s:solarized_status = s:xdg_state_home . "/solarizedtoggle/status"
+let s:solarized_status = g:xdg_state_home . "/solarizedtoggle/status"
 if filereadable(s:solarized_status)
 	let &background = readfile(s:solarized_status)[0]
 else
@@ -255,11 +255,11 @@ EOF
 "let g:startify_files_number = 15	" Nubmer of files to show.
 " Bookmarks
 let g:startify_bookmarks = [
-	\ {'v': s:xdg_config_home . '/nvim/init.vim'},
-	\ {'p': s:xdg_config_home . '/nvim/commons_plugin.vim'},
-	\ {'c': s:xdg_config_home . '/nvim/commons.vim'},
-	\ s:xdg_config_home . '/shell/commons',
-	\ s:xdg_config_home . '/shell/aliases'
+	\ {'v': g:xdg_config_home . '/nvim/init.vim'},
+	\ {'p': g:xdg_config_home . '/nvim/commons_plugin.vim'},
+	\ {'c': g:xdg_config_home . '/nvim/commons.vim'},
+	\ g:xdg_config_home . '/shell/commons',
+	\ g:xdg_config_home . '/shell/aliases'
 	\ ]
 
 

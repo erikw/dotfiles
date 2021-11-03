@@ -18,8 +18,8 @@ set viminfo+=n~/.vim/viminfo	" Write the viminfo file inside the Vim directory.
 set undodir=~/.vim/undo/	" Collect history instead of having them in '.'.
 set tags+=./tags;/		" Look for tags in current directory or search up until found.
 
-let s:xdg_config_home = empty($XDG_CONFIG_HOME) ? "$HOME/.config" : $XDG_CONFIG_HOME
-let s:xdg_state_home = empty($XDG_STATE_HOME) ? "$HOME/.local/state" : $XDG_STATE_HOME
+let g:xdg_config_home = empty($XDG_CONFIG_HOME) ? "$HOME/.config" : $XDG_CONFIG_HOME
+let g:xdg_state_home = empty($XDG_STATE_HOME) ? "$HOME/.local/state" : $XDG_STATE_HOME
 
 " Also use $HOME/.vim in Windows
 if has('win32') || has('win64')
@@ -37,7 +37,7 @@ call plug#begin('~/.vim/plugged')
 
 " Common Plugins {
 " gF shourtcut: ~/.config/nvim/commons_plugin.vim
-execute "source " . s:xdg_config_home . "/nvim/commons_plugin.vim"
+execute "source " . g:xdg_config_home . "/nvim/commons_plugin.vim"
 " }
 
 " Setup - end {
@@ -48,7 +48,7 @@ call plug#end()
 
 " Commons Config {
 " gF shourtcut: ~/.config/nvim/commons_plugin_config.vim
-execute "source " . s:xdg_config_home . "/nvim/commons.vim"
+execute "source " . g:xdg_config_home . "/nvim/commons.vim"
 " }
 
 " General {
@@ -144,9 +144,9 @@ set nowrapscan	" Don't wrap search around file.
 set spellsuggest=best,10	" Limit spell suggestions.
 set spelllang=en_us		" Languages to do spell checking for.
 " Set spellfile dynamically.
-execute "set spellfile=" . "~/.vim/spell/" . matchstr(&spelllang, "[a-zA-Z][a-zA-Z]") . "." . &encoding . ".add"
+execute "set spellfile=" . g:xdg_config_home ."/nvim/spell/" . matchstr(&spelllang, "[a-zA-Z][a-zA-Z]") . "." . &encoding . ".add"
 " Use a thesaurus file. Could load all, but that makes lookup slower. Instead let ToggleSpell() set per language.
-execute "set thesaurus=" . "~/.vim/thesaurus/" . matchstr(&spelllang, "[a-zA-Z][a-zA-Z]") . ".txt"
+execute "set thesaurus=" . g:xdg_config_home . "/nvim/thesaurus/" . matchstr(&spelllang, "[a-zA-Z][a-zA-Z]") . ".txt"
 set dictionary+=~/.vim/spell/		" Use custom dictionaries.
 "set dictionary+=/usr/share/dict/words	" Use system dictionary.
 " }
@@ -158,7 +158,7 @@ set t_Co=256		" Set number of colors.
 "hi Normal ctermbg=NONE	" Transparent background.
 set title		" Show title in console title bar.
 " Adjust colors to this background.
-let s:solarized_status = s:xdg_state_home . "/solarizedtoggle/status"
+let s:solarized_status = g:xdg_state_home . "/solarizedtoggle/status"
 if filereadable(s:solarized_status)
 	let &background = readfile(s:solarized_status)[0]
 else
@@ -204,10 +204,10 @@ set cursorline				" Highlight the current line.
 " Bookmarks
 let g:startify_bookmarks = [
 	\ {'v': '$HOME/.vimrc'},
-	\ {'p': s:xdg_config_home . '/nvim/commons_plugin.vim'},
-	\ {'c': s:xdg_config_home . '/nvim/commons.vim'},
-	\ s:xdg_config_home . '/shell/commons',
-	\ s:xdg_config_home . '/shell/aliases'
+	\ {'p': g:xdg_config_home . '/nvim/commons_plugin.vim'},
+	\ {'c': g:xdg_config_home . '/nvim/commons.vim'},
+	\ g:xdg_config_home . '/shell/commons',
+	\ g:xdg_config_home . '/shell/aliases'
 	\ ]
 
 let g:startify_fortune_use_unicode = 1	" Draw fortune with Unicode instead of ASCII.
