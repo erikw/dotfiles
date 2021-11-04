@@ -262,17 +262,10 @@ fi
 	#fi
 
 	# Bookmark shell paths. No dependencies like jump who needs ruby.
-	if [ -d ~/src/github.com/mollifier/cd-bookmark ]; then
+	# Aliases in ~/.config/shell/aliases
+	if [ -d ~/src/github.com/erikw/cd-bookmark ]; then
 		fpath=(~/src/github.com/erikw/cd-bookmark(N-/) $fpath)
 		autoload -Uz cd-bookmark
-
-		# Bashmark style aliases
-		alias g='cd-bookmark -c'
-		alias s='cd-bookmark -a'
-		alias l='cd-bookmark -l'
-		alias e='cd-bookmark -e'
-		alias p='cd-bookmark -p'
-		alias d='cd-bookmark -d'
 	fi
 
 	# Not working. Program only activated when interactivly sourced from shell for some reason.

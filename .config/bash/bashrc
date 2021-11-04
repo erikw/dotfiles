@@ -88,6 +88,11 @@ fi
 		#PATH="$HOME/src/github.com/simonwhitaker/gibo:$PATH"
 		#source $HOME/src/github.com/simonwhitaker/gibo/gibo-completion.bash
 	#fi
+
+	if [ -d $HOME/src/github.com/erikw/cd-bookmark ]; then
+		# sourceifexists not working here...
+		source $HOME/src/github.com/erikw/cd-bookmark/cd-bookmark
+	fi
 # }
 
 #sourceifexists ${XDG_CONFIG_HOME:-$HOME/.config}/X11/startx.sh

@@ -164,6 +164,18 @@
 	#alias l="jump --list"
 # }
 
+# cd-bookmark {
+	# Bashmark style aliases
+	if [ -d $HOME/src/github.com/mollifier/cd-bookmark ]; then
+	    alias g='cd-bookmark -c'
+	    alias s='cd-bookmark -a'
+	    alias l='cd-bookmark -l'
+	    alias e='cd-bookmark -e'
+	    alias p='cd-bookmark -p'
+	    alias d='cd-bookmark -d'
+	fi
+# }
+
 # Libreoffice {
 	alias lbase='libreoffice --base'		# Writer.
 	alias lcalc='libreoffice --calc'		# Calc.
