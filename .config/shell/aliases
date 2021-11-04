@@ -206,7 +206,7 @@
 	#alias cgdb='cgdb -q -x $GOPATH/.gdbinit'		# Suppress legal info + Go support.
 
 	#alias df='df -h'						# Always show in human readable.
-	alias dfc='dfc -d' 						# Show used column.
+	alias dfc='dfc -d'						# Show used column.
 	alias octave='octave-cli --silent'				# Run in terminal without greeting message.
 	alias xoctave='\octave'						# Default X version.
 	alias matlab='matlab -nodesktop -nosplash'			# Run in terminal with no splash screen.

@@ -38,6 +38,7 @@
 /.config/travis/
 /.config/wireshark/
 /.config/yarn/config
+/.config/zsh/.zsh_history
 /.config/zsh/funcs/_poetry
 /.irssi/away.log
 /.irssi/dcc/

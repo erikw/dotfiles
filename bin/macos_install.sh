@@ -242,6 +242,7 @@ $(brew --prefix)/opt/fzf/install --xdg
 # * Check "Applications in terminal may access clipboard" so that I can e.g. copy from vim buffer to gui clipboard.
 ## Profiles
 #* After configuring the default profile, clone it in to a profile called "zsh" and remove the "Send text at start" #irctorautostart
+# * Set keyboard shortcut for profile "zsh" to Ctrl + Cmd + z
 ### General
 # * Send text at start: "irctor"   #irctorautostart
 ### Colors
