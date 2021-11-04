@@ -166,7 +166,7 @@
 
 # cd-bookmark {
 	# Bashmark style aliases
-	if [ -d $HOME/src/github.com/mollifier/cd-bookmark ]; then
+	if [ -d $HOME/.local/cd-bookmark ]; then
 	    alias g='cd-bookmark -c'
 	    alias s='cd-bookmark -a'
 	    alias l='cd-bookmark -l'
