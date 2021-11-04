@@ -91,6 +91,7 @@ fi
 
 	if [ -d $HOME/.local/cd-bookmark ]; then
 		# sourceifexists not working here...
+		#source $HOME/src/github.com/erikw/cd-bookmark/cd-bookmark
 		source $HOME/.local/cd-bookmark/cd-bookmark
 	fi
 # }

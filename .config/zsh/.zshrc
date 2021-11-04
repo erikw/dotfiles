@@ -71,7 +71,11 @@ fi
 	shell_is_macos && zstyle ':completion:*:default' list-colors ''
 
 	# Complete options for aliases too.
-	setopt completealiases
+	# NOPE setting this means that aliases are not expanded before completion. I don't want this as then
+	# $ g <tab>
+	# does not work (g alias for 'cd-bookmark -c')
+	#setopt completealiases
+
 	# List files when cd-completing.
 	#compdef _path_files cd
 
@@ -264,6 +268,7 @@ fi
 	# Bookmark shell paths. No dependencies like jump who needs ruby.
 	# Aliases in ~/.config/shell/aliases
 	if [ -d ~/.local/cd-bookmark ]; then
+		#fpath=(~/src/github.com/erikw/cd-bookmark/(N-/) $fpath)
 		fpath=(~/.local/cd-bookmark(N-/) $fpath)
 		autoload -Uz cd-bookmark
 	fi
