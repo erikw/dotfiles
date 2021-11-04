@@ -261,11 +261,9 @@ fi
 		##source $HOME/src/github.com/simonwhitaker/gibo/gibo-completion.zsh
 	#fi
 
-	# bookmark shell paths. No dependencies like jump needs ruby.
-	# See aliases in $XDG_CONFIG_HOME/shell/aliases.
-	# See ~/.cdbookmark for saved bookmarks
+	# Bookmark shell paths. No dependencies like jump who needs ruby.
 	if [ -d ~/src/github.com/mollifier/cd-bookmark ]; then
-		fpath=(~/src/github.com/mollifier/cd-bookmark(N-/) $fpath)
+		fpath=(~/src/github.com/erikw/cd-bookmark(N-/) $fpath)
 		autoload -Uz cd-bookmark
 
 		# Bashmark style aliases
@@ -274,12 +272,7 @@ fi
 		alias l='cd-bookmark -l'
 		alias e='cd-bookmark -e'
 		alias p='cd-bookmark -p'
-
-		# There's no build-in delete command.
-		function d() {
-			local name="$1"
-			sed -i "/^${name}|/d" ${CD_BOOKMARK_FILE:-$HOME/.cdbookmark}
-		}
+		alias d='cd-bookmark -d'
 	fi
 
 	# Not working. Program only activated when interactivly sourced from shell for some reason.
