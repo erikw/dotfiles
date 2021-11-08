@@ -180,9 +180,7 @@
 	# Enable sandboxing a.k.a. lazy loading of shell initialization for some programs.
 	# Not possible with dfm to install to .local/share as 2 levels of recurse in dfminstall does not work.
 	# See https://github.com/justone/dfm/issues/39
-	# TODO use local/sandboxd when https://github.com/benvan/sandboxd/issues/11 is fixed.
-	sourceifexists $HOME/src/github.com/erikw/sandboxd/sandboxd
-	#sourceifexists $HOME/.local/sandboxd/sandboxd
+	sourceifexists $HOME/.local/sandboxd/sandboxd
 
 	# Needed for gnupg's gpg(1) to work, thus for git commit signing.
 	export GPG_TTY=$(tty)
