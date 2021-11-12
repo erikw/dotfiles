@@ -48,8 +48,7 @@ if [ -d /Volumes/wd_games/ ]; then
 fi
 
 BACKUP_TAG=cronjob
-VERBOSITY_LEVEL=1
-#VERBOSITY_LEVEL=3
+VERBOSITY_LEVEL=2
 
 # Set all environment variables like
 # B2_ACCOUNT_ID, B2_ACCOUNT_KEY, RESTIC_REPOSITORY etc.
