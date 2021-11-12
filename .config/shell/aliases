@@ -57,33 +57,25 @@
 # }
 
 # Color support {
-	# NOTE see $XDG_CONFIG_HOME/shell/commons for dircolors
 	LS_OPTIONS=
 	shell_is_linux && LS_OPTIONS="$LS_OPTIONS --time-style=long-iso -F"
 	if [ "$TERM" != dumb ]; then
+		# TODO should merge this with dircolors in $XDG_CONFIG_HOME/shell/commons.
 		if shell_is_linux && program_is_in_path dircolors; then
 		    eval "$(dircolors -b ${XDG_CONFIG_HOME:-$HOME/.config}/shell/dircolors)"
 		fi
-		# Colors when output is terminal.
-		#alias ls="ls ${ls_options} --color=auto"
-		# Force colors to all stdouts.
-		#alias ls="ls ${ls_options} --color=always"
-		#alias dir='ls --color=auto --format=vertical'
-		#alias vdir='ls --color=auto --format=long'
 
-		# /bin/ls on mac does not accept --color, but ls from coreutils does!
-		if ! shell_is_macos || [ -e /usr/local/opt/coreutils/libexec/gnubin/ls ]; then
-			LS_OPTIONS="$LS_OPTIONS --color=auto"
-		fi
+		# List with colors when output is terminal.
+		LS_OPTIONS="$LS_OPTIONS --color=auto"
 
 		# Highligt matches when output is on the terminal.
-		#export GREP_OPTIONS='--color=always'
-
-		alias grep='grep --color=auto'
+		# Note that GREP_OPTIONS is no longer; need to make alias ourselves:
+		# https://www.gnu.org/software/grep/manual/html_node/Environment-Variables.html
+		alias grep="grep --color=auto"
 		# Force color e.g. to use when piping to less.
 		alias grepc='grep --color=always'
-		alias fgrepc='fgrep --color=always'
-		alias egrepc='egrep --color=always'
+		#alias fgrepc='fgrep --color=always'
+		#alias egrepc='egrep --color=always'
 
 		# Colored cows, yeah!
 		#if program_is_in_path cower; then
@@ -122,10 +114,8 @@
 		fi
 	fi
 
+	# Still need to set alias with options, https://superuser.com/a/670563/42070.
 	alias ls="ls $LS_OPTIONS"
-
-
-
 # }
 
 # SSH agent {
