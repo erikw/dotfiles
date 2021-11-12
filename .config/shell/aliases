@@ -107,15 +107,15 @@
 		if program_is_in_path gcc; then
 			alias gcc="gcc -fdiagnostics-color=auto"
 		fi
-
-		# Global BSD/macOS util colors support.
-		if shell_is_bsd; then
-			export CLICOLOR=yes
-		fi
 	fi
 
 	# Still need to set alias with options, https://superuser.com/a/670563/42070.
-	alias ls="ls $LS_OPTIONS"
+	# TODO gls not working with colors -- FIX
+       #if  shell_is_macos && program_is_in_path gls ; then
+	    #alias ls="gls $LS_OPTIONS"
+       #else
+	    alias ls="ls $LS_OPTIONS"
+       #fi
 # }
 
 # SSH agent {
