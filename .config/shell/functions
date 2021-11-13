@@ -176,7 +176,8 @@ function mkdircd() {
 
 # cd in to newly created directory.
 function mkdirtodaycd() {
-	local today=$(date -I)
+	# BSD date don't have the -I switch like GNU date.
+	local today=$(date +%Y-%m-%d)
 	mkdircd "$today"
 }
 

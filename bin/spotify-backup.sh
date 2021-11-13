@@ -8,7 +8,7 @@
 
 spot_username=erikwestrup
 
-date=$(date --date "-1 sec" "+%Y-%m-%d-%H%M%S")
+date=$(date "+%Y-%m-%d-%H%M%S")
 outdest=$HOME/bak/spotify
 outfile="$outdest/${spot_username}_${date}"
 outtxt=$outfile.txt
