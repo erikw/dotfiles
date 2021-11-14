@@ -111,7 +111,7 @@
 	fi
 
 	# GNU coreutils etc. {
-	# Add homebrew coreutils with default names to PATH, and also to MANPATH. {
+	# Add homebrew coreutils with default names to PATH, and also to MANPATH.
 	# Instructions comes from the output of $(brew install coreutils).
 	# NOTE this can have unexpected side effects. $(brew doctor): Warning: Putting non-prefixed coreutils in your path can cause gmp builds to fail. Better not do this!
 	# findutils seems to break numpy e.g.

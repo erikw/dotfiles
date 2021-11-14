@@ -126,13 +126,6 @@ $ go get github.com/motemen/ghq
 
 ## General
 
-* [altercation/solarized](https://github.com/altercation/solarized)
-```bash
-$ mkdir -p ~/src/github.com/altercation
-$ cd !$
-$ git clone git@github.com:altercation/solarized.git
-````
-
 ## Vim*
 ### Neovim
 ```console
@@ -153,11 +146,6 @@ $ vim -c PlugInstall
 Install:
 
  * urlview(1)
- * [seebi/tmux-colors-solarized](https://github.com/seebi/tmux-colors-solarized)
- ```bash
- $ cd ~/src/github.com
- $ git clone git@github.com:seebi/tmux-colors-solarized.git
- ```
  * --[tpm](https://github.com/tmux-plugins/tpm)--
 ```bash
 $ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
