@@ -199,8 +199,7 @@
 
 # UI {
 	# Solarized ls colors.
-	# TODO move this to git submodule in ~/.local/
-	dircolorsdb=$HOME/src/github.com/seebi/dircolors-solarized/dircolors.256dark
+	dircolorsdb=$HOME/.local/dircolors-solarized/dircolors.256dark
 	if ! [ -f $dircolorsdb ]; then
 		dircolorsdb=${XDG_CONFIG_HOME:-$HOME/.config}/shell/dircolors
 	fi

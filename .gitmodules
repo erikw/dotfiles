@@ -16,3 +16,6 @@
 [submodule ".local/cd-bookmark"]
 	path = .local/cd-bookmark
 	url = https://github.com/erikw/cd-bookmark.git
+[submodule ".local/dircolors-solarized"]
+	path = .local/dircolors-solarized
+	url = https://github.com/seebi/dircolors-solarized.git
