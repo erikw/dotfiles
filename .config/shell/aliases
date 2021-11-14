@@ -60,11 +60,6 @@
 	LS_OPTIONS=
 	shell_is_linux && LS_OPTIONS="$LS_OPTIONS --time-style=long-iso -F"
 	if [ "$TERM" != dumb ]; then
-		# TODO should merge this with dircolors in $XDG_CONFIG_HOME/shell/commons.
-		if shell_is_linux && program_is_in_path dircolors; then
-		    eval "$(dircolors -b ${XDG_CONFIG_HOME:-$HOME/.config}/shell/dircolors)"
-		fi
-
 		# List with colors when output is terminal.
 		LS_OPTIONS="$LS_OPTIONS --color=auto"
 
@@ -110,12 +105,12 @@
 	fi
 
 	# Still need to set alias with options, https://superuser.com/a/670563/42070.
-	# TODO gls not working with colors -- FIX
-       #if  shell_is_macos && program_is_in_path gls ; then
-	    #alias ls="gls $LS_OPTIONS"
-       #else
+       if  shell_is_macos && program_is_in_path gls ; then
+	    # Note that for coreutil ls to have color output, dircolors must be evalued. See ~/.config/shell/commons
+	    alias ls="gls $LS_OPTIONS"
+       else
 	    alias ls="ls $LS_OPTIONS"
-       #fi
+       fi
 # }
 
 # SSH agent {
