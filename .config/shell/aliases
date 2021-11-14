@@ -113,6 +113,15 @@
        fi
 # }
 
+# Coreutils {
+# Hand picked tools that we use use instead of the basic BSD versions in macOS
+# AVOID gfind, ggrep as they can break source compilation builds.
+if shell_is_macos; then
+    program_is_in_path grm && alias rm='grm'	# Same reason as for keeping gls; BSD version can't append arguments after filenames.
+fi
+#
+# }
+
 # SSH agent {
 	alias keyon="ssh-add -t 14400"
 	alias keyoff='ssh-add -D'
