@@ -541,10 +541,6 @@ npm install -g vscode-langservers-extracted
 # Global python packages
 ~/bin/glob_pkg_install_pip.sh
 # }
-# }
-
-
-# }
 
 # Xcode {
 #* [Xvim](http://xvim.org/) Vim keybindings. See Xcode 8 [instructions](https://github.com/XVimProject/XVim/blob/master/INSTALL_Xcode8.md)
@@ -679,9 +675,8 @@ npm install -g vscode-langservers-extracted
 # - Output Launchkey_MK3 Output (Launchkey):	Tack=On, Sync=Off, Remote=On
 ## Files and Folders
 # * Adjust the default empty project "Save current Set as Default" with a new project:
-#  1. Keep 1 MIDI track only with brown color (drums).
-#  2. Set master volume to -8dB as my headphones are very loud by default.
-#  3. Set preview volume on master channels' mixer to -8dB for the same reason.
+#  - Keep 1 MIDI track only with brown color (drums).
+#  - Set preview volume on master channels' mixer to -8dB as my headphones are very loud by default.
 ## Library
 # * Location of User Library: $root/ableton/includes/user_library/
 # * Installation Folder for Packs: $root/ableton/includes/factory_packs/
