@@ -17,6 +17,8 @@
     brew 'bash'
     brew 'bash-completion'
     brew 'bashdb'
+    brew 'bat'
+    brew 'bat-extras'
     brew 'broot'
     brew 'cheat'
     brew 'cloc'

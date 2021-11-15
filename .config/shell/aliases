@@ -224,6 +224,8 @@ fi
 	alias grip='grip --browser'					# Open new tab in browser, until this can be configured: https://github.com/joeyespo/grip/issues/340
 	alias pdflatex='pdflatex -interaction=nonstopmode -halt-on-error' # Quit on error.
 
+	program_is_in_path batman && alias man='batman'			# Using bat from bat-extras package.
+
 	# Not needed anymore, installing with brew --with-default-names.
 	#if type gsed >/dev/null 2>&1 && shell_is_macos; then
 		#alias sed='gsed'	# The default sed on macOS is utter crap..
