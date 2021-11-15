@@ -16,9 +16,9 @@ st_set_tmux() {
 	st_program_is_in_path tmux || return
 
 	if [ "${opts[mode]}" =  dark ]; then
-		theme_conf=$HOME/src/github.com/seebi/tmux-colors-solarized/tmuxcolors-dark.conf
+		theme_conf=$HOME/.local/tmux-colors-solarized/tmuxcolors-dark.conf
 	else
-		theme_conf=$HOME/src/github.com/seebi/tmux-colors-solarized/tmuxcolors-light.conf
+		theme_conf=$HOME/.local/tmux-colors-solarized/tmuxcolors-light.conf
 	fi
 	tmux source $theme_conf
 }
