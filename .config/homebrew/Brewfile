@@ -36,6 +36,7 @@
     brew 'fswatch'		# For macos_appearance_monitor.sh
     brew 'fzf'
     brew 'gawk'
+    brew 'gh'
     brew 'ghq'
     brew 'git'
     brew 'gnu-getopt'

@@ -22,6 +22,7 @@
 /.config/cheat/
 /.config/configstore/
 /.config/fzf/
+/.config/gh/hosts.yml
 /.config/git/config-local
 /.config/github-copilot/
 /.config/grip/cache-*
