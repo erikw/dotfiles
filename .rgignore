@@ -1,5 +1,4 @@
 # ripgrep ignores additional to .gitignore
-/.sandboxd/
 /.local/cd-bookmark/
 /.local/dircolors-solarized/
 /.local/sandboxd/
