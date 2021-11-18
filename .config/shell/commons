@@ -239,6 +239,15 @@
 				man "$@"
 	}
 	fi
+
+	if program_is_in_path bat; then
+		source $HOME/bin/solarized_toggle_lib.sh
+		if [ "$(st_read_status)" = light ]; then
+			export BAT_THEME="Solarized (light)"
+		else
+			export BAT_THEME="Solarized (dark)"
+		fi
+	fi
 # }
 
 # Programs {
