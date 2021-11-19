@@ -240,16 +240,12 @@ nnoremap <leader>t :Windows<CR>
 nnoremap <leader>h :History<CR>
 " }
 
-" lexima.vim {
-" Put cursor between ```-blocks in markdown files after <CR. Reference: https://github.com/cohama/lexima.vim/issues/121
-call lexima#add_rule({'at': '^```\(\S*\)\%#```', 'char': '<CR>', 'input': '<CR>', 'input_after': '<CR>', 'filetype': ['markdown']})
-" }
 
-	" nerdcommenter {
-	" Swap invert comment toggle.
-		"map <silent> <Leader>c<Space> <plug>NERDCommenterInvert
-		"map <silent> <Leader>ci <plug>NERDCommenterToggle
-	" }
+" nerdcommenter {
+" Swap invert comment toggle.
+	"map <silent> <Leader>c<Space> <plug>NERDCommenterInvert
+	"map <silent> <Leader>ci <plug>NERDCommenterToggle
+" }
 
 " netrw {
 " Ships by default with vim mostly.

@@ -48,7 +48,7 @@ call plug#end()
 " }
 
 " Commons Config {
-" gF shourtcut: ~/.config/nvim/commons_plugin_config.vim
+" gF shourtcut: ~/.config/nvim/commons.vim
 execute "source " . stdpath('config') . "/commons.vim"
 " }
 
