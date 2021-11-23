@@ -280,7 +280,18 @@
     brew 'pyright' # Language Server for python https://langserver.org/
     brew 'python@2'
 =end
+# }
 
+# QuickLook Plugins {
+# Reference: https://github.com/sindresorhus/quick-look-plugins
+    #brew 'qlimagesize'		# QuickLook plugin for image metadata. Not working on macOS Catalina: https://github.com/Nyx0uf/qlImageSize/issues/45
+    #brew 'qlvideo'		# QuickLook plugin for video files. Not working on macOS catalina: https://github.com/Marginal/QLVideo/issues/92
+    brew 'apparency'		# QuickLook plugin for Applications
+    brew 'qlcolorcode'		# Colorize source code
+    brew 'qlmarkdown'		# Markdown preview
+    brew 'qlstephen'		# View files without extension.
+    brew 'quicklook-json'	# QuickLook plugin for JSON files
+# }
 
 # Misc {
 # cryfs {

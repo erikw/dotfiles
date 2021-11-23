@@ -28,6 +28,19 @@ brew install terminal-notifier
 brew autoupdate --start 43200 --upgrade --cleanup --enable-notification
 brew autoupdate --status
 
+# QuickLook Plugins {
+# Fix attributes for QuickLook plugins..
+# Reference: https://github.com/sindresorhus/quick-look-plugins
+xattr -d -r com.apple.quarantine ~/Library/QuickLook && killall Finder
+
+# qlmarkdown needs to be opended once to work.
+# Reference: https://github.com/sbarex/QLMarkdown
+open /Applications/QLMarkdown.app/
+
+# Same for Apparency
+open /Applications/Apparency.app/
+# }
+
 # Install tmux session on login.
 # Reference: http://www.launchd.info/
 # NOPE starting tmux with launchctl makes it run with less access e.g. doing $(ls /volumes/somevolume) gives "Operation not permitted".
