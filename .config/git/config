@@ -66,12 +66,14 @@
 		git status --porcelain \
 		| sort \
 		| sed -re '/^\\?\\?[[:space:]]/d' -e '/^[[:space:]]+[[:upper:]]/d' \
-		| sed -re 's/^([[:upper:]]+)[[:space:]]+/\\1 /g' \
-		| sed -re 's/^([[:upper:]]*)M[[:upper:]]*[[:space:]]/\\1 Modified /g' \
-		| sed -re 's/^([[:upper:]]*)R[[:upper:]]*[[:space:]]/\\1 Renamed /g' \
-		| sed -re 's/^([[:upper:]]*)A[[:upper:]]*[[:space:]]/\\1 Added /g' \
-		| sed -re 's/^([[:upper:]]*)D[[:upper:]]*[[:space:]]/\\1 Deleted /g' \
-		| sed -re 's/^([[:upper:]]*)T[[:upper:]]*[[:space:]]/\\1 File Type Changed /g' \
+		| sed -re 's/^([[:upper:]]+)[[:space:]]+/\\1:\\n/g' \
+		| awk '!x[$0]++' \
+		| sed -re 's/^([[:upper:]]+:)[[:space:]]+/\\1 /g' \
+		| sed -re 's/^([[:upper:]]*)M[[:upper:]]*:$/\\1 Modified: /g' \
+		| sed -re 's/^([[:upper:]]*)R[[:upper:]]*:$/\\1 Renamed: /g' \
+		| sed -re 's/^([[:upper:]]*)A[[:upper:]]*:$/\\1 Added: /g' \
+		| sed -re 's/^([[:upper:]]*)D[[:upper:]]*:$/\\1 Deleted: /g' \
+		| sed -re 's/^([[:upper:]]*)T[[:upper:]]*:$/\\1 File Type Changed: /g' \
 		| sed -re 's/^[[:space:]]*//g' > $TMPFILE; \
 		git commit -F $TMPFILE; \
 		rm -f $TMPFILE"
