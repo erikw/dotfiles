@@ -1,4 +1,8 @@
 " Nvim-Vim shared common plugins.
+" Modeline {
+" vi: foldmarker={,} foldmethod=marker foldlevel=0 tabstop=8 shiftwidth=8:
+" 8 spaces for a tab render best as HTML.
+" }
 
 " General {
 	"Plug 'dhruvasagar/vim-table-mode'			" Create ASCII tables
@@ -8,7 +12,6 @@
 	"Plug 'scrooloose/nerdtree'				" Replaced by built-in netrw
 	"Plug 'vim-scripts/lbdbq'				" Mutt: Query lbdb for recipinents.
 	"Plug 'voldikss/vim-translator'				" Async language translator.
-	Plug 'bfontaine/Brewfile.vim', { 'for': 'brewfile' }	" Syntax for Brewfiles
 	Plug 'danro/rename.vim'					" Provides the :Rename command
 	Plug 'fidian/hexmode'					" Open binary files as a HEX dump with :Hexmode
 	Plug 'instant-markdown/vim-instant-markdown', {'for': 'markdown', 'do': 'yarn install'}	" Live preview markdown files in browser.
@@ -28,11 +31,11 @@
 " Development: General {
 	Plug 'AndrewRadev/sideways.vim'			" Shift function arguments left and right.
 	Plug 'airblade/vim-gitgutter'			" Git modified status in sign column
-	Plug 'andymass/vim-matchup'				" Extend % matching. Replaces old the matchit plugin.
-	Plug 'cohama/lexima.vim'				" Autmoatically close opened braces etc. Replaces old 'Townk/vim-autoclose'.
-	Plug 'dense-analysis/ale'				" LSP linting engine.
-	Plug 'editorconfig/editorconfig-vim'	" Standard .editorconfig file in shared projects.
-	Plug 'preservim/tagbar'					" Sidepane showing info from tags file.
+	Plug 'andymass/vim-matchup'			" Extend % matching. Replaces old the matchit plugin.
+	Plug 'cohama/lexima.vim'			" Autmoatically close opened braces etc. Replaces old 'Townk/vim-autoclose'.
+	Plug 'dense-analysis/ale'			" LSP linting engine.
+	Plug 'editorconfig/editorconfig-vim'		" Standard .editorconfig file in shared projects.
+	Plug 'preservim/tagbar'				" Sidepane showing info from tags file.
 	Plug 'rhysd/conflict-marker.vim'		" Navigate and edit VCS conflicts. Replace unmaintained 'vim-script/ConflictMotions'
 	Plug 'vim-scripts/argtextobj.vim'		" Make function arguments text objects that can be operated on with.
 " }
@@ -86,6 +89,11 @@
 	Plug 'garbas/vim-snipmate' | Plug 'MarcWeber/vim-addon-mw-utils' | Plug 'tomtom/tlib_vim'
 	Plug 'honza/vim-snippets'				" Snippet library
 	Plug 'rbonvall/snipmate-snippets-bib', { 'for': 'tex' }	" Bibtex snippets.
+" }
+
+" Syntax {
+	Plug 'bfontaine/Brewfile.vim', { 'for': 'brewfile' }		" Syntax for Brewfiles
+	Plug 'kalekundert/vim-nestedtext', { 'for': 'nestedtext' }	" Syntax for NestedText .nt files.
 " }
 
 " UI {

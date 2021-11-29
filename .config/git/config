@@ -62,17 +62,19 @@
 	# Commit status - generate commit message from git-status.
 	# Inspired by https://stackoverflow.com/a/35027514/265508
 	# Why so complicated? Because the modifiers can be grouped e.g. "RM a -> b" would mean that the file was both renamed and modified.
-	cis = !git status --porcelain \
+	cis = !"TMPFILE=$(mktemp -t git-commit-status-message); \
+		git status --porcelain \
 		| sort \
-		| sed -re '/^\\?\\?[[:space:]]/d' \
+		| sed -re '/^\\?\\?[[:space:]]/d' -e '/^[[:space:]]+[[:upper:]]/d' \
 		| sed -re 's/^([[:upper:]]+)[[:space:]]+/\\1 /g' \
 		| sed -re 's/^([[:upper:]]*)M[[:upper:]]*[[:space:]]/\\1 Modified /g' \
 		| sed -re 's/^([[:upper:]]*)R[[:upper:]]*[[:space:]]/\\1 Renamed /g' \
 		| sed -re 's/^([[:upper:]]*)A[[:upper:]]*[[:space:]]/\\1 Added /g' \
 		| sed -re 's/^([[:upper:]]*)D[[:upper:]]*[[:space:]]/\\1 Deleted /g' \
 		| sed -re 's/^([[:upper:]]*)T[[:upper:]]*[[:space:]]/\\1 File Type Changed /g' \
-		| sed -re 's/^[[:space:]]*//g' \
-		| git commit -F -
+		| sed -re 's/^[[:space:]]*//g' > $TMPFILE; \
+		git commit -F $TMPFILE; \
+		rm -f $TMPFILE"
 
 	# Pre-pend [skip ci] to HEAD's commit message. Reference: https://gist.github.com/jpalmieri/cb6271004127633a133e9606ddba58b1
         skip-ci = !"git reset && COMMIT_MSG=$(git show -s --format=format:%B) && git commit --allow-empty --amend -m \"[skip ci] $COMMIT_MSG\" && git --no-pager show -s --format='format:New commit message subject: %s%n'"
