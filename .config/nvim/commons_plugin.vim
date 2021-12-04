@@ -97,6 +97,7 @@
 " }
 
 " UI {
+	"Plug 'itchyny/lightline.vim'
 	"Plug 'vim-scripts/ScrollColors'	" Cycle though available colorschemes.
 	Plug 'cormacrelf/dark-notify'		" Watch system light/dark mode changes.  Requires dark-notify(1).
 	Plug 'mhinz/vim-startify'		" Start screen with recently opended files.

@@ -27,7 +27,7 @@ autocmd BufWinEnter * silent! loadview			" Load fold views on start.
 
 " Mappings {
 let mapleader = "\\"					" The key for <Leader>.
-nmap <silent> <C-_> :nohlsearch<CR>			" Clear search matches highlighting. (Ctrl+/ => ^_)
+nmap <silent> <C-_> :nohlsearch<CR>			" Clear search matches highlighting. (Ctrl+/ => ^_). Note: neovim has <c-l> doing this be default now. https://neovim.io/doc/user/vim_diff.html#nvim-features-new
 nmap <silent> <Leader>v :source $MYVIMRC<CR>		" Source init.vim
 nmap <silent> <Leader>V :tabe $MYVIMRC<CR>		" Edit init.vim
 noremap <silent> <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>	" Open tags definition in a new tab.
@@ -224,20 +224,24 @@ nmap <silent> <C-j> <Plug>(ale_next_wrap)
 " Stolen from my friend https://github.com/erikagnvall/dotfiles/blob/master/vim/init.vim
 " Comment must be on line of its own...
 " Search for files in given path.
-nnoremap <leader>f :FZF<space>
+nnoremap <Leader>f :FZF<space>
 " Search for files starting at current directory.
-nnoremap <c-p> :Files<CR>
+" Sublime-like shortcut 'go to file' ctrl+p.
+nnoremap <C-p> :Files<CR>
+" Search for files starting at current directory.
+" Sublime-like shortcut 'go to file' ctrl+shift+p. Note: <C-S-p> is not mappable in vim. <M-P> is in neovim but not vim.
+nnoremap <leader>c :Commands<CR>
 " Search in tags file.
-nnoremap <leader>T :Tags<CR>
+nnoremap <Leader>T :Tags<CR>
 " Search open buffers.
 " ; conflicts with repeating search for characther (fF]
 "nnoremap ; :Buffers<CR>
 "nnoremap <leader>; :Buffers<CR>
-nnoremap <leader>b :Buffers<CR>
+nnoremap <Leader>b :Buffers<CR>
 " Search open tabs (indirectly; " https://medium.com/@paulodiovani/vim-buffers-windows-and-tabs-an-overview-8e2a57c57afa).
-nnoremap <leader>t :Windows<CR>
+nnoremap <Leader>t :Windows<CR>
 " Search history of opended files
-nnoremap <leader>h :History<CR>
+nnoremap <Leader>h :History<CR>
 " }
 
 

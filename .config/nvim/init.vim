@@ -60,7 +60,7 @@ set hidden				" Work with hidden buffers more easily. Enables to leave buffer wi
 set sessionoptions-=options		" Don't store global and local variables when saving sessions.
 set undolevels=2048			" Levels of undo to keep in memory.
 "set clipboard+=unnamed			" Use register "* instead of unnamed register. This means what is being yanked in vim gets put to external clipboard automatically.
-set timeoutlen=1500			" Timout (ms) for mappings and keycodes.
+set timeoutlen=500			" Timout (ms) for mappings and keycodes. Make it a bit snappier.
 set completeopt=longest,menu,preview	" Insert most common completion and show menu.
 "set omnifunc=syntaxcomplete#Complete	" Let Omni completion (^x^o) use vim's builtin syntax files for language keywords.
 " }
@@ -209,6 +209,8 @@ set listchars=eol:$,space:·,tab:>-,trail:¬,extends:>,precedes:<,nbsp:.	" Chara
 "let g:copilot_filetypes = {
       "\ '*': v:false,
       "\ }
+" Disabled for now
+let g:copilot_filetypes = { '*': v:false }
 
 " Remap from <tab> as this is used by snipmate.
 " Reference: https://github.com/github/feedback/discussions/6919#discussioncomment-1553837

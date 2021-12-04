@@ -74,7 +74,8 @@
 		| sed -re 's/^([[:upper:]]*)A[[:upper:]]*:$/\\1 Added: /g' \
 		| sed -re 's/^([[:upper:]]*)D[[:upper:]]*:$/\\1 Deleted: /g' \
 		| sed -re 's/^([[:upper:]]*)T[[:upper:]]*:$/\\1 File Type Changed: /g' \
-		| sed -re 's/^[[:space:]]*//g' > $TMPFILE; \
+		| tr '\n' ' ' \
+		| sed -re 's/(^|[[:alpha:]]+:[[:space:]])[[:space:]]*/\\1/g' > $TMPFILE; \
 		git commit -F $TMPFILE; \
 		rm -f $TMPFILE"
 

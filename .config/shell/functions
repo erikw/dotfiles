@@ -99,7 +99,9 @@ git() {
 	fi
 
 	if [ "$1" = root ]; then
-		local root="$($gitbin rev-parse --show-cdup)"
+		#local root="$($gitbin rev-parse --show-cdup)"
+		# --show-cdup goes up to submodule and not super repo, but --show-superproject-working-tree does.
+		local root="$($gitbin rev-parse --show-superproject-working-tree)"
 		[ -n "$root" ] && cd "$root"
 	else
 		$gitbin $@
