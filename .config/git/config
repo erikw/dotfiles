@@ -2,7 +2,7 @@
 	name = Erik Westrup
 	;email = user@host.tld  ; Set in ~/.gitconfig.local
 	signingkey = D5EFDF013574AE9BE8343C327C16B1148E432F36
-	editor = vim	# Will be overriden by $EDITOR
+	editor = nvim	# Will be overriden by $EDITOR
 [github]
 	user = erikw
 [color]
