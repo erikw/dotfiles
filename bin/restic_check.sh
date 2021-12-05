@@ -3,7 +3,7 @@
 # This script is typically run by: /etc/systemd/system/restic-check.{service,timer}
 
 # Exit on failure, pipe failure
-set -e -o pipefail
+set -e -o pipefail -x
 
 # Redirect stdout ( > ) into a named pipe ( >() ) running "tee" to a file, so we can observe the status by simply tailing the log file.
 me=$(basename "$0")
@@ -25,8 +25,9 @@ exit_hook() {
 trap exit_hook INT TERM
 
 
+VERBOSITY_LEVEL=2
 
-source $HOME/.restic/b2_env.sh
+source ${XDG_CONFIG_HOME:-$HOME/.config}/restic/b2_env.sh
 
 # How many network connections to set up to B2. Default is 5.
 B2_CONNECTIONS=50
@@ -38,6 +39,7 @@ B2_CONNECTIONS=50
 
 # Check repository for errors.
 restic check \
+	--verbose=${VERBOSITY_LEVEL} \
 	--option b2.connections=$B2_CONNECTIONS \
 	--verbose &
 wait $!

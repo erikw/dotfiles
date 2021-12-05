@@ -463,6 +463,7 @@ $(brew --prefix)/opt/fzf/install --xdg
 # * Show Dash and focus on search field: cmd+shift+d
 # * Uncheck "Show dock icon"
 # * Check "Show menu bar icon"
+# * Sync: set folder ~/dropbox/data/dash/    # own subdir so this dir can be shared with work Dropbox account.
 # }
 # LSP Servers {
 #cargo install --git https://github.com/latex-lsp/texlab.git --locked
