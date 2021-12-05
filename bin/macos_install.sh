@@ -457,6 +457,13 @@ $(brew --prefix)/opt/fzf/install --xdg
 # }
 
 # Development {
+# General {
+# Dash.app
+## General
+# * Show Dash and focus on search field: cmd+shift+d
+# * Uncheck "Show dock icon"
+# * Check "Show menu bar icon"
+# }
 # LSP Servers {
 #cargo install --git https://github.com/latex-lsp/texlab.git --locked
 #go get github.com/lighttiger2505/sqls

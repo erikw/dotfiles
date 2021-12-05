@@ -145,6 +145,7 @@
     cask 'amethyst'
     cask 'appcleaner'
     cask 'clipy'
+    cask 'dash'
     cask 'electric-sheep'
     cask 'firefox'
     cask 'gimp'

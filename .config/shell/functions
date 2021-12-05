@@ -230,3 +230,11 @@ sleep_shutdown() {
 		sleep $time && shutdown -h now
 	fi
 }
+
+# Search Dash.app.
+# Note, can't use name 'dash' as this is the dash shell.
+# Usage: dashs "term"
+dashs() {
+	local term="$*"
+	open "dash://${term}"
+}

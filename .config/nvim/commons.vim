@@ -102,16 +102,16 @@ nmap <silent> <F7> :echo ToggleSpell("sv")<CR>		" Toggle Swedish spell.
 nmap <silent> <F8> :echo ToggleSpell("de")<CR>		" Toggle German spell.
 
 " Toggle mouse {
-function! ToggleMouse()
-	if &mouse == "a"
-		set mouse=
-	else
-		set mouse=a
-	endif
-	set mouse?
-endfunction
+"function! ToggleMouse()
+	"if &mouse == "a"
+		"set mouse=
+	"else
+		"set mouse=a
+	"endif
+	"set mouse?
+"endfunction
 " }
-nmap <Leader>m :call ToggleMouse()<CR>	" Toggles mouse on and off.
+"nmap <Leader>m :call ToggleMouse()<CR>	" Toggles mouse on and off.
 
 " Toggle background mode {
 function! ToggleBackgroundMode()
@@ -242,6 +242,8 @@ nnoremap <Leader>b :Buffers<CR>
 nnoremap <Leader>t :Windows<CR>
 " Search history of opended files
 nnoremap <Leader>h :History<CR>
+" Search mappings.
+nnoremap <Leader>m :Maps<CR>
 " }
 
 

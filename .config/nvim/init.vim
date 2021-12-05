@@ -34,6 +34,7 @@ execute "source " . stdpath('config') . "/commons_plugin.vim"
 	"Plug 'hrsh7th/nvim-cmp' | Plug 'hrsh7th/cmp-nvim-lsp' | Plug 'hrsh7th/cmp-buffer' | Plug 'hrsh7th/cmp-vsnip' | Plug 'hrsh7th/vim-vsnip'	" Autocompletion when typing with LSP backend. Disabled as too fast-moving development and bugs.
 	"Plug 'neovim/nvim-lspconfig'			" Plug-n-play configurations for LSP server. Disabled in favour of simpler to use ALE.
 	Plug 'github/copilot.vim'			" AI powered code completion.
+	Plug 'ibhagwan/fzf-lua' | Plug 'mrjones2014/dash.nvim', { 'do': 'make install' } " Search dash.app from nvim.
 " }
 " }
 
@@ -222,6 +223,11 @@ let g:copilot_no_tab_map = 1
 :lua <<EOF
 	require('dark_notify').run()
 EOF
+" }
+
+" dash.vim {
+nnoremap <Leader>d :Dash<CR>
+nnoremap <Leader>D :DashWord<CR>
 " }
 
 " nvim-cmp {
