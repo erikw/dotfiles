@@ -14,6 +14,7 @@
 *.sw?
 *~
 .DS_STORE
+/!.ipython/profile_default/ipython_config.py
 /.atom
 /.config/MusicBrainz/
 /.config/broot/
@@ -42,6 +43,7 @@
 /.config/zsh/.zsh_history
 /.config/zsh/.zsh_sessions/
 /.config/zsh/funcs/_poetry
+/.ipython/
 /.irssi/away.log
 /.irssi/dcc/
 /.irssi/nicklistfifo
