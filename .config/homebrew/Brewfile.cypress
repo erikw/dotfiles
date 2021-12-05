@@ -18,13 +18,12 @@ tap 'homebrew/cask-drivers' # For focusrite-control
 # }
 
 # Formula: python-dev {
-    brew 'pyright'        # LSP server.
+    brew 'pyright'      # LSP server.
     brew 'pyenv'
-    brew 'python-tk'  # Needed for pyenv when using some pip packages.
+    brew 'python-tk'	# Needed for pyenv when using some pip packages.
 # }
 
 # Formula: ruby-dev {
-    #brew 'ruby'        # For Jekyll
     brew 'rbenv'        # includes 'ruby-build' as dependency
     brew 'ruby-build'
     brew 'openssl@1.1'  # ruby-build dependency
