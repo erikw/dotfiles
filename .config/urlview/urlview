@@ -12,4 +12,6 @@
 
 # MACOS-CONFIG
 # Reference: https://www.jstorimer.com/blogs/workingwithcode/7766135-using-mutt-with-gmail-on-osx
+#COMMAND open -a "Google Chrome" %s
+# --background seems to be an undocumented feature in open(1).
 COMMAND open --background %s

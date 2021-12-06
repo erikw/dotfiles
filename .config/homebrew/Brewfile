@@ -11,6 +11,7 @@
 # }
 
 # Formula: default {
+    #brew 'urlview'        # for tmux link opening
     brew 'ack'
     brew 'as-tree'	# A tree view of the contents of a directory. $(fd ... | as-tree)
     brew 'aspell'
@@ -31,6 +32,7 @@
     brew 'curl'
     brew 'dfc'
     brew 'dos2unix'
+    brew 'erikw/xdg-urlview/xdg-urlview'
     brew 'fd'			# A powerful alternative to find.
     brew 'findutils'
     brew 'fswatch'		# For macos_appearance_monitor.sh
@@ -81,7 +83,6 @@
     brew 'tree'
     brew 'unar'
     brew 'unzip'
-    brew 'urlview'        # for tmux link opening
     brew 'w3m'
     brew 'watch'
     brew 'wget'
