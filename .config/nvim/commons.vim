@@ -173,7 +173,7 @@ let g:ale_linters = {
 		\ 'go': ['gopls'],
 		\ 'json': ['jsonls'],
 		\ 'python': ['pyright', 'flake8'],
-		\ 'ruby': ['solargraph'],
+		\ 'ruby': ['solargraph', 'ruby'],
 		\ 'sh': ['language_server'],
 		\ 'vim': ['vimls'],
 		\ }
