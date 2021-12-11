@@ -65,7 +65,6 @@ set history=512			" Store much history.
 "set complete-=k complete+=k		" Put the dictionaries in the normal completion set.
 set completeopt=longest,menu,preview	" Insert most common completion and show menu.
 "set omnifunc=syntaxcomplete#Complete	" Let Omni completion (^x^o) use vim's builtin syntax files for language keywords.
-set omnifunc=ale#completion#OmniFunc	" Use ALE for omnicompletion
 set shortmess=filmnrxtTo		" Abbreviate messages.
 set nrformats=alpha,octal,hex		" What to increment/decrement with ^A and ^X.
 set hidden				" Work with hidden buffers more easily. Enables to leave buffer with unwritten changes (by :edit another buffer).
