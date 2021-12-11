@@ -1,4 +1,9 @@
 " Nvim-Vim shared common config.
+" Modeline {
+" vi: foldmarker={,} foldmethod=marker foldlevel=0 tabstop=8 shiftwidth=8:
+" 8 spaces for a tab render best as HTML.
+" }
+
 " Abbreviations {
 " Expand my name.
 "iabbrev ew Erik Westrup
@@ -23,6 +28,11 @@ command! Lcdpwd lcd %:p:h
 command! -nargs=* Wrap set wrap linebreak nolist	" Set softwrap correctly.
 autocmd BufWinLeave * silent! mkview			" Save fold views.
 autocmd BufWinEnter * silent! loadview			" Load fold views on start.
+" }
+
+" Completion {
+"set completeopt=longest,menu,preview	" Insert most common completion and show menu.
+"set omnifunc=syntaxcomplete#Complete	" Let Omni completion (^x^o) use vim's builtin syntax files for language keywords.
 " }
 
 " Mappings {
@@ -194,6 +204,9 @@ let g:ale_fix_on_save = 1
 let g:ale_completion_autoimport = 1
 " Trigger on ^x^o
 set omnifunc=ale#completion#OmniFunc
+" 'longest' seems to tirgger a variation of :h ale-completion-completeopt-bug
+" See https://github.com/dense-analysis/ale/issues/1700#issuecomment-991643960
+set completeopt=menu,preview
 " }
 
 " Mappings {

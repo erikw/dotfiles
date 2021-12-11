@@ -62,8 +62,6 @@ set sessionoptions-=options		" Don't store global and local variables when savin
 set undolevels=2048			" Levels of undo to keep in memory.
 "set clipboard+=unnamed			" Use register "* instead of unnamed register. This means what is being yanked in vim gets put to external clipboard automatically.
 set timeoutlen=500			" Timout (ms) for mappings and keycodes. Make it a bit snappier.
-set completeopt=longest,menu,preview	" Insert most common completion and show menu.
-"set omnifunc=syntaxcomplete#Complete	" Let Omni completion (^x^o) use vim's builtin syntax files for language keywords.
 " }
 
 " Formatting {
