@@ -224,8 +224,8 @@ EOF
 " }
 
 " dash.vim {
-nnoremap <Leader>d :Dash<CR>
-nnoremap <Leader>D :DashWord<CR>
+nnoremap <Leader>d :DashWord<CR>
+nnoremap <Leader>D :Dash<CR>
 " }
 
 " nvim-cmp {

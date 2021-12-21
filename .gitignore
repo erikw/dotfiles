@@ -23,6 +23,7 @@
 /.config/cheat/
 /.config/configstore/
 /.config/fzf/
+/.config/gcloud/
 /.config/gh/hosts.yml
 /.config/git/config-local
 /.config/github-copilot/
