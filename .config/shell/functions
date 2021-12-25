@@ -98,7 +98,10 @@ git() {
 		# Try get root from git submodule:
 		local root="$($gitbin rev-parse --show-superproject-working-tree)"
 		# Else we're in the main repo already:
-		test -n "$root" || root="$($gitbin rev-parse --show-cdup)"
+		# --show-cdup will not take us to the root if we came here from a symlink.
+		#test -n "$root" || root="$($gitbin rev-parse --show-cdup)"
+		# Instead get full path with --show-to-level https://stackoverflow.com/q/39746533/265508
+		test -n "$root" || root="$($gitbin rev-parse --show-toplevel)"
 		[ -n "$root" ] && cd "$root"
 	else
 		$gitbin $@

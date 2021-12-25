@@ -3,6 +3,9 @@
 " vi: foldmarker={,} foldmethod=marker foldlevel=0 tabstop=8 shiftwidth=8:
 " 8 spaces for a tab render best as HTML.
 " }
+" gf shourtcuts:
+" ~/.config/nvim/commons_plugin.vim
+" ~/.config/nvim/commons.vim
 
 " Profiling {
 " $ nvim --startuptime /tmp/nvim.log
@@ -25,7 +28,7 @@ call plug#begin(stdpath('data') . '/plugged')
 " }
 
 " Common Plugins {
-" gF shourtcut: ~/.config/nvim/commons_plugin.vim
+" gf shourtcut: ~/.config/nvim/commons_plugin.vim
 execute "source " . stdpath('config') . "/commons_plugin.vim"
 " }
 
@@ -49,7 +52,7 @@ call plug#end()
 " }
 
 " Commons Config {
-" gF shourtcut: ~/.config/nvim/commons.vim
+" gf shourtcut: ~/.config/nvim/commons.vim
 execute "source " . stdpath('config') . "/commons.vim"
 " }
 
