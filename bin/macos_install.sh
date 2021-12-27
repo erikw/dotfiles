@@ -510,6 +510,7 @@ npm install -g vscode-langservers-extracted
 # ruby-build install and manage different ruby versions. https://github.com/rbenv/ruby-build
 # rbenv - switch to the right ruby version for projects. Autmatically uses ruby-build as install plugin. https://github.com/rbenv/rbenv
 # Note env requirements at https://github.com/rbenv/ruby-build/wiki#suggested-build-environment
+# Possibly workaround like this as well: https://github.com/rbenv/ruby-build/issues/1353
 #brew install ruby-build rbenv readline openssl@1.1
 #rbenv init >> ~/.zshrc
 #rbenv install --list
