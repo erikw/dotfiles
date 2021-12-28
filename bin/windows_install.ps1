@@ -17,7 +17,7 @@ iex (new-object net.webclient).downloadstring('https://get.scoop.sh')
 scoop install aria2
 scoop config aria2-warning-enabled false
 
-
+# TODO install from text file? https://github.com/ScoopInstaller/Scoop/issues/1543#issuecomment-308894312
 $scoop_prgs =
 "7zip " +
 "ack " +
