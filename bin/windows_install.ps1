@@ -13,6 +13,10 @@
 set-executionpolicy remotesigned -s cu
 iex (new-object net.webclient).downloadstring('https://get.scoop.sh')
 
+# scoop install aria2 use multi download connections if aria2 is installed
+scoop install aria2
+
+
 $scoop_prgs =
 "7zip " +
 "ack " +
