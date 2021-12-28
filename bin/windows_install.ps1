@@ -61,6 +61,9 @@ iwr https://chocolatey.org/install.ps1 -UseBasicParsing | iex
 # Skip confirmation for every package.	
 choco feature enable -n=allowGlobalConfirmation
 
+# TODO migrate list to a packages.config
+# https://docs.chocolatey.org/en-us/choco/commands/install#packages.config
+
 $choco_apps =
 "7zip " +
 "autohotkey " +
