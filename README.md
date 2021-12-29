@@ -10,7 +10,7 @@ Most of my personal dotfiles can be found in this branch. I use dfm (dot file ma
 
 # Installation
 
-## Set up Github credentials
+## Set up GitHub credentials
 
 ### Generate a pair of new SSH keys
 ```bash
@@ -20,7 +20,7 @@ $ chmod 744 ssh-keygen.sh
 $ ./ssh-keygen.sh
 ```
 
-Add a config for Github, but don't bother about the values. Instead after this open up `~/.ssh/config` and remove the newly added github section and replace it with
+Add a config for GitHub, but don't bother about the values. Instead after this open up `~/.ssh/config` and remove the newly added github section and replace it with
 
 ```
 Host *github.com
@@ -33,7 +33,7 @@ Host *github.com
 
 
 ### Upload keys
-Upload the public key to your [Github profile](https://github.com/settings/keys)
+Upload the public key to your [GitHub profile](https://github.com/settings/keys)
 
 ```bash
 # Linux:
