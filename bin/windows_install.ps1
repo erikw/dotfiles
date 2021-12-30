@@ -63,7 +63,7 @@ scoop install pshazz
 # GUI apps. https://chocolatey.org/
 iwr https://chocolatey.org/install.ps1 -UseBasicParsing | iex
 
-# Skip confirmation for every package.	
+# Skip confirmation for every package.
 choco feature enable -n=allowGlobalConfirmation
 
 # TODO migrate list to a packages.config
@@ -91,6 +91,7 @@ $choco_apps =
 "spotify " +
 "steam " +
 "sumatrapdf " +
+"velocity" +
 "vlc " +
 "whatsapp " +
 "windirstat " +
@@ -125,7 +126,7 @@ Invoke-Expression "choco install vim --params /NoDesktopShortcuts"
 
 
 # * Drivers. For Thinkpad, download  http://pcsupport.lenovo.com/de/en/products/Laptops-and-## netbooks/ThinkPad-T-Series-laptops/ThinkPad-T430/downloads)
-# * Lenovo ThinkVantage System Update utility, 
+# * Lenovo ThinkVantage System Update utility,
 # * Lenovo Power Manager Driver
 # * Lenovo Vantage (avilable from Microsoft Store too).
 # * Intel HD Graphics Driver for Windows 10
@@ -189,7 +190,7 @@ Invoke-Expression "choco install vim --params /NoDesktopShortcuts"
 
 
 
- 
+
 
 
 # Taskbar (right click on)
@@ -270,7 +271,7 @@ $Shortcut.Save()
 #  		* Data: Enter name for "Auto-login username"
 #  		* SSH
 #  			* "Remote command": tmux attach || tmux new-session
-#  			* > Auth: Select "Private key file for authentication" and chose the private .ppk file. 
+#  			* > Auth: Select "Private key file for authentication" and chose the private .ppk file.
 ## Solarized
 # Edit .reg file and insert name of my session on line 3, then run the file.
 # https://github.com/altercation/solarized/tree/master/putty-colors-solarized
@@ -353,7 +354,7 @@ $Shortcut.Save()
 # ==Date & time
 # * Check "Set time zone automatically"
 
-# =Region 
+# =Region
 # * Country: ..
 # * Regional format: English (United States)
 # * Click "Change date formats" > set everything to ISO8601.

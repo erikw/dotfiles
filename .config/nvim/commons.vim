@@ -259,7 +259,6 @@ nnoremap <Leader>h :History<CR>
 nnoremap <Leader>m :Maps<CR>
 " }
 
-
 " nerdcommenter {
 " Swap invert comment toggle.
 	"map <silent> <Leader>c<Space> <plug>NERDCommenterInvert
