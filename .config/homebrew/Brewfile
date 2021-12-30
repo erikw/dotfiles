@@ -84,6 +84,7 @@
     brew 'unar'
     brew 'unzip'
     brew 'w3m'
+    brew 'wader/tap/fq'
     brew 'watch'
     brew 'wget'
     brew 'xz'
