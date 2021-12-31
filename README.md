@@ -16,15 +16,15 @@ The dotfiles will work without the base tooling, but much better if it's already
 ### macOS
 For macOS, install homebrew and run configs:
 ```bash
-~/bin/macos_config.sh
-~/bin/macos_install.sh
+bin/macos_config.sh
+bin/macos_install.sh
 ```
 
 ### Windows
 Run :
 ```bash
-~/bin/windows_config.ps1
-~/bin/windows_install.ps1
+bin/windows_config.ps1
+bin/windows_install.ps1
 ```
 
 
