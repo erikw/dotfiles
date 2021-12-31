@@ -78,10 +78,6 @@ ln -s $HOME/Library/Application\ Support Library/ApplicationSupport
 # * Bind to shortcut CTRL+OPT+CMD+t (shortcut used when feature was first introduced in the OS).
 
 
-# wego from brew is not recognizing forecast.io backend.
-#go get -u github.com/schachmat/wego
-
-
 # Update gnu locate database on schedule by appending crontab.
 #newtab="* */2 * * * /usr/local/Cellar/findutils/4.6.0/bin/updatedb --prunepaths='/tmp' >/dev/null 2>&1"
 # NOTE disabled as updatedb takes too much CPU on macOS, making other work hard.
@@ -91,50 +87,6 @@ ln -s $HOME/Library/Application\ Support Library/ApplicationSupport
 	#newtab=$(printf "%s\n%s\n" "$oldtab" "$newtab")
 #fi
 #sudo sh -c "echo \"$newtab\" | crontab -"
-
-# Git
-email=
-while [ -z "$email" ]; do
-	echo -n "Enter email address for ~/.gitconfig.local: "
-	read email
-done;
-cat << EOF >>  ~/.gitconfig.local
-[user]
-	email = $email
-EOF
-
-# NPM global packages. npm is installed by Brewfile
-~/bin/glob_pkg_install_npm.sh
-
-# Make tig use $XDG_DATA_HOME. Reference: https://wiki.archlinux.org/title/XDG_Base_Directory#Partial
-mkdir -p ${XDG_DATA_HOME:-$HOME/.local/share}/tig
-
-# Vim {
-# Install Vundle plugins
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
-vim -c PlugInstall
-
-#  Instant Markdown Preview
-# https://github.com/instant-markdown/vim-instant-markdown
-#npm -g install instant-markdown-d
-
-# command-t
-#cd $HOME/.vim/bundle/command-t/ruby/command-t/ext/command-t
-#ruby extconf.rb
-#make
-#cd -
-# }
-
-# Neovim {
-# Install vim-plug: https://github.com/junegunn/vim-plug
-sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-	   https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-nvim -c PlugInstall
-
-
-# }
 
 
 # fzf fuzzy finder. Installed via brew

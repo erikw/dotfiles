@@ -10,9 +10,27 @@ Most of my personal dotfiles can be found in this branch. I use dfm (dot file ma
 
 # Installation
 
-## Set up GitHub credentials
+# OS-dependent Installation of Tooling
+The dotfiles will work without the base tooling, but much better if it's already in place!
 
-### Generate a pair of new SSH keys
+## macOS
+For macOS, install homebrew and run configs:
+```bash
+~/bin/macos_config.sh
+~/bin/macos_install.sh
+```
+
+## Windows
+Run :
+```bash
+~/bin/windows_config.ps1
+~/bin/windows_install.ps1
+```
+
+
+## Git
+
+### Generate a pair of new SSH keys for GitHub
 ```bash
 $ cd /tmp
 $ curl -O https://raw.githubusercontent.com/erikw/dotfiles/personal/bin/ssh-keygen.sh
@@ -42,7 +60,7 @@ $ # or, macOS:
 $ pbcopy <  ~/.ssh/identityfiles/github_id_rsa.pub
 ```
 
-## Git email
+### Set Git Email
 Needs to be set for GitHub to [associate](https://docs.github.com/en/github/setting-up-and-managing-your-github-user-account/managing-email-preferences/setting-your-commit-email-address) commits.
 
 Set up git user email address in `~/.config/git/config-local`:
@@ -58,10 +76,7 @@ Set up git user email address in `~/.config/git/config-local`:
 $ #git clone git@github.com:erikw/dotfiles.git ~/.dotfiles  # old
 $ git clone git@github.com:erikw/dotfiles.git ~/src/github.com/erikw/dotfiles
 $ cd !$
-$ git remote add upstream git@github.com:justone/dotfiles.git
-$ git submodule init
-$ git submodule update
-$ bin/dfm install
+$ ./install.sh
 ```
 
 Check what dotfiles that were overriden, and handle this with a merge or discard.
@@ -82,117 +97,19 @@ $ git commit -m "SQUASHED passwords"
 ```
 
 
-Untrack `~/.irssi/config` for local changes.
-
-```bash
-$ source ~/.config/shell/aliases
-$ dotf_irssiconf_untrack
-```
-
-
 ## Host specific configuration
-Passwords and other secretes are censored. To find these and substitue them for the real thing, do
-
-```bash
-$ grep -nr GIT-CENSORED . | grep -v README.md | grep -v "/.git/"
-```
-
-
-Set `DESKTYPE` in `$XDG_CONFIG_HOME/shell/commons`, unless system is macos.
-
-
-Default desktop is assumed to be macOS. Go through host-specific manual settings by searching for the corresponding tag.
-
-```bash
-$ grep -nr MACOS-CONFIG . 2>/dev/null | grep -v README.md
-$ grep -nr LINUX-CONFIG . 2>/dev/null | grep -v README.md
-$ grep -nr FREEBSD-CONFIG . 2>/dev/null | grep -v README.md
-```
-
-
-For macOS, install homebrew and run configs:
-
-```bash
-~/bin/macos_config.sh
-~/bin/macos_install.sh
-```
-
-## Install ghq
-Make it easier to organize all git clones that will follow soon, by using the exellent tool [ghq](https://github.com/motemen/ghq)!
-
-```bash
-$ go get github.com/motemen/ghq
-```
-
-## General
-
-## Vim*
-### Neovim
-```console
-$ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-	   https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-$ nvim -c PlugInstall
-```
-
-### Vim
-```console
-$ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-$ vim -c PlugInstall
-```
-
-## Tmux
-
-Install:
-
- * urlview(1)
- * --[tpm](https://github.com/tmux-plugins/tpm)--
-```bash
-$ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-````
-Then reload tmux.conf
-
-```
-$ tmux source ~/.tmux.conf
-```
-and press `prefix-I` to install tpm plugins.
-
-
-Update `~/.tmux.conf` to use xclip for linux and pbcopy/pbpaste for macOS and the default-command option.
-
-
-## Shell
-
-Install for both zsh and bash:
- * [seebi/dircolors-solarized](https://github.com/seebi/dircolors-solarized) (only for Linux systems)
- * [GNU source-highlight](https://www.gnu.org/software/src-highlite/source-highlight.html) for less(1). To make it work on macOS, run `source-highlight-settings(1)` and create a new data dir at the path `/usr/local/share/source-highlight`.
-
-
-### ZSH
-* [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
-
-* [mollifier/cd-bookmark](https://github.com/mollifier/cd-bookmark)
-```bash
-$ ghq clone https://github.com/mollifier/cd-bookmark.git
-$ cd ~/.dotfiles
-$ s dot
-$ cd ~/dl/
-$ s dl
-````
-
-### Bash
-* [huyng/bashmarks](https://github.com/huyng/bashmarks)
-```bash
-$ ghq-get https://github.com/huyng/bashmarks.git
-$ make install
-````
+* Passwords and other secretes are censored. To find these and substitue them for the real thing, do:
+	```console
+	$ grep -nr GIT-CENSORED . | grep -v README.md | grep -v "/.git/"
+	```
+* Set `DESKTYPE` in `$XDG_CONFIG_HOME/shell/commons`, unless system is macos.
+* Default desktop is assumed to be macOS. Go through host-specific manual settings by searching for the corresponding tag.
+	```console
+	$ grep -nr MACOS-CONFIG . 2>/dev/null | grep -v README.md
+	$ grep -nr LINUX-CONFIG . 2>/dev/null | grep -v README.md
+	$ grep -nr FREEBSD-CONFIG . 2>/dev/null | grep -v README.md
+	```
 
 
 ## Firefox
 Import minimal search-keyword bookmarks from [bookmarks_minimal.html](.config/mozilla/bookmarks_minimal.html) to Firefox.
-
-# Global packages
-```console
-~/bin/glob_pkg_install_npm.sh
-~/bin/glob_pkg_install_pip.sh
-~/bin/glob_pkg_install_gem.sh
