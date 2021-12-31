@@ -10,7 +10,7 @@ Most of my personal dotfiles can be found in this branch. I use dfm (dot file ma
 
 # Installation
 
-# OS-dependent Installation of Tooling
+# OS Dependent Tooling
 The dotfiles will work without the base tooling, but much better if it's already in place!
 
 ## macOS
