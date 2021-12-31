@@ -19,16 +19,16 @@ source .config/shell/functions
 source .config/shell/functions.d/sourceifexists.sh
 
 step "Setting up git"
-# Git
-email=
-while [ -z "$email" ]; do
-	echo -n "Enter email address for ~/.config/git/config-local: "
-	read email
-done;
-cat << EOF >> ~/.config/git/config-local
-[user]
-	email = $email
-EOF
+# No means of doing this here, as we want to clone the dotfiles itself with git protocol, thus this must be done already before install.sh
+#email=
+#while [ -z "$email" ]; do
+	#echo -n "Enter email address for ~/.config/git/config-local: "
+	#read email
+#done;
+#cat << EOF >> ~/.config/git/config-local
+#[user]
+	#email = $email
+#EOF
 git remote add upstream git@github.com:justone/dotfiles.git
 git submodule init
 git submodule update
