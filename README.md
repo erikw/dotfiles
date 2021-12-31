@@ -60,15 +60,6 @@ $ # or, macOS:
 $ pbcopy <  ~/.ssh/identityfiles/github_id_rsa.pub
 ```
 
-### Set Git Email
-Needs to be set for GitHub to [associate](https://docs.github.com/en/github/setting-up-and-managing-your-github-user-account/managing-email-preferences/setting-your-commit-email-address) commits.
-
-Set up git user email address in `~/.config/git/config-local`:
-```
-[user]
-	email = user@doman.tld
-```
-
 
 ## Install DFM
 
