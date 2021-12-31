@@ -10,17 +10,17 @@ Most of my personal dotfiles can be found in this branch. I use dfm (dot file ma
 
 # Installation
 
-# OS Dependent Tooling
+## OS Dependent Tooling
 The dotfiles will work without the base tooling, but much better if it's already in place!
 
-## macOS
+### macOS
 For macOS, install homebrew and run configs:
 ```bash
 ~/bin/macos_config.sh
 ~/bin/macos_install.sh
 ```
 
-## Windows
+### Windows
 Run :
 ```bash
 ~/bin/windows_config.ps1
