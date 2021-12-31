@@ -64,17 +64,17 @@ fi
 step "Making tig behave"
 mkdir -p ${XDG_DATA_HOME:-$HOME/.local/share}/tig
 
-#if program_is_in_path npm ; then
-	#step "Installing global npm packages."
-	#$HOME/bin/glob_pkg_install_npm.sh
-#fi
+if program_is_in_path npm ; then
+	step "Installing global npm packages."
+	$HOME/bin/glob_pkg_install_npm.sh
+fi
 
-#if program_is_in_path pip ; then
-	#step "Installing global pip packages."
-	#$HOME/bin/glob_pkg_install_pip.sh
-#fi
+if program_is_in_path pip ; then
+	step "Installing global pip packages."
+	$HOME/bin/glob_pkg_install_pip.sh
+fi
 
-#if program_is_in_path bundle ; then
-	#step "Installing global gems."
-	#$HOME/bin/glob_pkg_install_gem.sh
-#fi
+if program_is_in_path bundle ; then
+	step "Installing global gems."
+	$HOME/bin/glob_pkg_install_gem.sh
+fi
