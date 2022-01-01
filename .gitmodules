@@ -22,3 +22,6 @@
 [submodule ".local/tmux-colors-solarized"]
 	path = .local/tmux-colors-solarized
 	url = https://github.com/seebi/tmux-colors-solarized.git
+[submodule ".config/tmux/plugins/tpm"]
+	path = .config/tmux/plugins/tpm
+	url = https://github.com/tmux-plugins/tpm

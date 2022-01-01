@@ -64,6 +64,11 @@ fi
 step "Making tig behave"
 mkdir -p ${XDG_DATA_HOME:-$HOME/.local/share}/tig
 
+if program_is_in_path tmux ; then
+	step "Setting up tmux plugins with tpm."
+	tmux run $HOME/.config/tmux/plugins/tpm/bindings/install_plugins
+fi
+
 if program_is_in_path npm ; then
 	step "Installing global npm packages."
 	$HOME/bin/glob_pkg_install_npm.sh

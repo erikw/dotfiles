@@ -42,6 +42,7 @@ open /Applications/Apparency.app/
 # }
 
 # Install tmux session on login.
+# TODO could replace with https://github.com/tmux-plugins/tmux-continuum/blob/master/docs/automatic_start.md ?
 # Reference: http://www.launchd.info/
 # NOPE starting tmux with launchctl makes it run with less access e.g. doing $(ls /volumes/somevolume) gives "Operation not permitted".
 # thus, instead go for a simpler solution: Autostart;
