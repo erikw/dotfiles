@@ -60,6 +60,13 @@ $ # or, macOS:
 $ pbcopy <  ~/.ssh/identityfiles/github_id_rsa.pub
 ```
 
+### Git E-Mail
+Set up git user email address in `~/.config/git/config-local`:
+```
+[user]
+	email = user@doman.tld
+```
+
 
 ## Install DFM
 

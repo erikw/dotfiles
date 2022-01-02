@@ -19,16 +19,16 @@ source .config/shell/functions
 source .config/shell/functions.d/sourceifexists.sh
 
 step "Setting up git"
-# Git
-email=
-while [ -z "$email" ]; do
-	echo -n "Enter email address for ~/.config/git/config-local: "
-	read email
-done;
-cat << EOF >> ~/.config/git/config-local
-[user]
-	email = $email
-EOF
+# NOTE disabled as this script should work as non-interactive e.g. GitHub Codespaces VSCode setup.
+#email=
+#while [ -z "$email" ]; do
+	#echo -n "Enter email address for ~/.config/git/config-local: "
+	#read email
+#done;
+#cat << EOF >> ~/.config/git/config-local
+#[user]
+	#email = $email
+#EOF
 git remote add upstream git@github.com:justone/dotfiles.git
 git submodule init
 git submodule update
