@@ -175,6 +175,7 @@ function mkdircd() {
 	mkdir -p "$dir"
 	cd "$dir"
 }
+alias mkcd=mkdircd
 
 # cd in to newly created directory.
 function mkdirtodaycd() {
