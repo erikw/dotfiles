@@ -12,6 +12,9 @@ if [ -r $REQ ]; then
 	  b
 	  :prune
 	  /./!d;' $REQ | xargs npm install -g
+
+	  printf "The following packages are now installed on the system:\n"
+	  npm list -g
 else
 	printf "Could not read %s\n" $REQ
 fi

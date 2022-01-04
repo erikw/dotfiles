@@ -14,6 +14,9 @@ if [ -r $REQ ]; then
 	  b
 	  :prune
 	  /./!d;' $REQ | xargs -n1 pipx install
+
+	printf "The following packages are now installed on the system:\n"
+	pipx list
 else
 	printf "Could not read %s\n" $REQ
 fi

@@ -118,3 +118,18 @@ sandbox_hook_shims pyenv ${XDG_DATA_HOME:-$HOME/.local/share}/pyenv/shims
 	#fi
 #}
 #sandbox_hook nvm nvm
+
+# asdf
+#sandbox_init_asdf() {
+	#if program_is_in_path asdf; then
+		#if shell_is_macos; then
+			##source "$(brew --prefix asdf)/libexec/asdf.sh"
+			#source "/usr/local/opt/asdf/libexec/asdf.sh"
+		#elif shell_is_linux; then
+			#source /opt/asdf-vm/asdf.sh
+		#fi
+	#fi
+#}
+#sandbox_hook asdf asdf
+#sandbox_hook_shims asdf ${XDG_DATA_HOME:-$HOME/.local/share}/asdf/plugins/nodejs/shims
+#sandbox_hook_shims asdf ${XDG_DATA_HOME:-$HOME/.local/share}/asdf/shims

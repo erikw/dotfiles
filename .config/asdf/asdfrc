@@ -1,0 +1,4 @@
+# Reference: https://asdf-vm.com/manage/configuration.html
+
+# Support e.g. .ruby-version files
+legacy_version_file = yes

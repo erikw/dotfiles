@@ -79,12 +79,17 @@ fi
 	# List files when cd-completing.
 	#compdef _path_files cd
 
+
+	compinit_regen() {
+		rm $XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION
+		compinit -d $XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION -i
+	}
+
 	autoload -Uz compinit
 	# -C: [shell startup time optimization] ignore checking for new comp files. The dump file will be
 	#       created if there isn’t one already. NOTE Thus, for new files e.g. added to fpath, manually
-	#       run once: $ compinit -d $XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION -i
-	#		Alternative could be to do $(chmod go-w '/usr/local/share') but that's not a good solution.
-	# -u: ignore check for comp files not owned by root or current user. Avoids problems on $(sudo -s). NOTE seems not to be needed anymore.
+	#       run once (or function above)
+	#       $ rm $XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION && compinit -d $XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION -i
 	# -i: ignore insecure folder/file check, thus include e.g. /usr/local/share/zsh/site-functions
 	# -d: Use a specific path to the dumpfile.
 	# Reference: http://zsh.sourceforge.net/Doc/Release/Completion-System.html#Initialization

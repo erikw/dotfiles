@@ -14,6 +14,7 @@
     #brew 'urlview'        # for tmux link opening
     brew 'ack'
     brew 'as-tree'	# A tree view of the contents of a directory. $(fd ... | as-tree)
+    brew 'asdf'
     brew 'aspell'
     brew 'bash'
     brew 'bash-completion'

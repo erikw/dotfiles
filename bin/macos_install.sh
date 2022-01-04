@@ -485,12 +485,7 @@ npm install -g vscode-langservers-extracted
 ## Dependencies
 # sqlite - macOS version is old
 #brew install sqlite3
-# npm - get a node manager to manage versiosn. NVM is slow and cumbersome => n
-#brew install n
-#n lts
-#n latest
-# After switching from system node from brew, need to install my global npm packages to ~/.n/lib/node_modules/
-#~/bin/glob_pkg_install_pip.sh
+# npm - get a node manager to manage versions. NVM is slow and cumbersome => n. nope ASDF! See node section
 # yarn - better than npm
 #npm install -g yarn
 # NOTE unset CC=clang if creating a new rails app, as dependency byebug fails with clang.
@@ -520,6 +515,23 @@ npm install -g vscode-langservers-extracted
 
 # Global python packages
 ~/bin/glob_pkg_install_pip.sh
+# }
+
+# JavaScript {
+# OLD, switch to asdf
+#brew install n
+#n lts
+#n latest
+# After switching from system node from brew, need to install my global npm packages to ~/.n/lib/node_modules/
+#~/bin/glob_pkg_install_npm.sh
+
+# Dependencies, listed at https://github.com/asdf-vm/asdf-nodejs/
+brew install gpg gawk
+
+asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
+asdf install nodejs latest
+glob_pkg_install_npm.sh
+
 # }
 
 # Xcode {
