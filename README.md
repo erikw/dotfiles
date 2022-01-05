@@ -8,6 +8,9 @@ Most of my personal dotfiles can be found in this branch. I use dfm (dot file ma
 * [bin/](bin/) -- many handy and time saving scripts.
   * [pdf_compress.sh](bin/pdf_compress.sh) -- compress file size of PDFs!
 
+# Development 
+Could replace dfm with GNU stove: https://www.stevenrbaker.com/tech/managing-dotfiles-with-gnu-stow.html
+
 # Installation
 
 ## OS Dependent Tooling
