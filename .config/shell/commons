@@ -84,7 +84,7 @@
 	PATH="$HOME/bin:$PATH"
 
 	# E.g. poetry installs here.
-	test -d $HOME/.local/bin && export PATH="$HOME/.local/bin:$PATH"
+	test -d $HOME/.local/bin && PATH="$HOME/.local/bin:$PATH"
 
 	# Set common bin paths.
 	#PATH=${PATH}:$(find ~/bin -maxdepth 2 -type d | tr '\n' ':' | sed 's/:$//')
@@ -316,7 +316,7 @@
 	#if [ -d /usr/local/opt/ruby/bin ]; then
 		# Ruby & Gems binaries
 		# Correct gem dir is GEMSDIR=$(gem environment gemdir)/bin
-		#export PATH="/usr/local/opt/ruby/bin:/usr/local/lib/ruby/gems/3.0.0/bin:$PATH"
+		#PATH="/usr/local/opt/ruby/bin:/usr/local/lib/ruby/gems/3.0.0/bin:$PATH"
 	#fi
 
 	# RVM
@@ -330,10 +330,11 @@
 	fi
 
 	# rbenv NOTE is sandboxed
+	# replaced by asdf
 	# https://github.com/rbenv/rbenv
 	#if program_is_in_path rbenv; then
 		#export RBENV_ROOT=${XDG_DATA_HOME:-$HOME/.local/share}/rbenv
-		#export PATH="$RBENV_ROOT/bin:$PATH"
+		#PATH="$RBENV_ROOT/bin:$PATH"
 		#export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
 		#eval "$(rbenv init - $SHELL_NAME)"
 	#fi
@@ -358,7 +359,7 @@
 	#if program_is_in_path pyenv; then
 		# NOTE is sandboxed
 		#export PYENV_ROOT=${XDG_DATA_HOME:-$HOME/.local/share}/pyenv
-		#export PATH="$PYENV_ROOT/bin:$PATH"
+		#PATH="$PYENV_ROOT/bin:$PATH"
 		#eval "$(pyenv init --path)"  # Adds shims to PATH.
 		#eval "$(pyenv init -)"
 		##export VIRTUAL_ENV_DISABLE_PROMPT=1
@@ -493,7 +494,7 @@
 
 	# Homebrew sqlite to shadow old version shipped with macOS.
 	if [ -d /usr/local/opt/sqlite/ ]; then
-		export PATH="/usr/local/opt/sqlite/bin:$PATH"
+		PATH="/usr/local/opt/sqlite/bin:$PATH"
 	fi
 
 	# NVM
@@ -505,14 +506,15 @@
 	#fi
 
 	# Node manager n: https://github.com/tj/n
-	export N_PREFIX=${XDG_DATA_HOME:-$HOME/.local/share}/n
-	if [ -d $HOME/.n ]; then
-		export PATH=$N_PREFIX/bin:$PATH
-	fi
+	# Replaced by asdf
+	#export N_PREFIX=${XDG_DATA_HOME:-$HOME/.local/share}/n
+	#if [ -d $HOME/.n ]; then
+		#PATH=$N_PREFIX/bin:$PATH
+	#fi
 
 	# Homebrew curl
 	if [ -d /usr/local/opt/curl/bin ]; then
-		export PATH="/usr/local/opt/curl/bin:$PATH"
+		PATH="/usr/local/opt/curl/bin:$PATH"
 	fi
 
 	# asdf

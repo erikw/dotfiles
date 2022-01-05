@@ -448,6 +448,14 @@ npm install -g vscode-langservers-extracted
 #sdk install java 15.0.0.hs-adpt
 # ## Brew
 # See Brewfile
+#
+# TODO next time, replace sdkman with asdf
+# asdf version manager - java
+#asdf plugin-add java
+# Build requirements from https://github.com/halcyon/asdf-java
+#brew install bash curl unzip jq
+#asdf install java latest
+#asdf global java latest
 
 # LSP server
 # No good one exist that are easily installable. https://microsoft.github.io/language-server-protocol/implementors/servers/
@@ -481,7 +489,7 @@ npm install -g vscode-langservers-extracted
 
 # asdf version manager - ruby
 asdf plugin-add ruby
-# Python build from https://github.com/asdf-vm/asdf-ruby
+# Build requirements from https://github.com/asdf-vm/asdf-ruby
 brew install openssl readline
 asdf install ruby latest
 asdf global ruby latest
@@ -520,7 +528,7 @@ asdf global ruby latest
 
 # asdf version manager - python
 asdf plugin-add python
-# Python build from https://github.com/danhper/asdf-python
+# Build requirements from https://github.com/danhper/asdf-python
 brew install openssl readline sqlite3 xz zlib
 asdf install python latest
 asdf global python latest
@@ -544,7 +552,7 @@ asdf global python latest
 
 # asdf version manager - nodejs
 asdf plugin add nodejs
-# Dependencies, listed at https://github.com/asdf-vm/asdf-nodejs/
+# Build requirements from https://github.com/asdf-vm/asdf-nodejs/
 brew install gpg gawk
 asdf install nodejs latest
 asdf global nodejs latest
