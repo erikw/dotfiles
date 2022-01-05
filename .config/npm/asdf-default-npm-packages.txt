@@ -1,0 +1,6 @@
+bash-language-server
+instant-markdown-d
+netlify-cli
+vim-language-server
+vscode-langservers-extracted
+yarn

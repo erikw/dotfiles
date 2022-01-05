@@ -69,17 +69,18 @@ if program_is_in_path tmux ; then
 	tmux run $HOME/.config/tmux/plugins/tpm/bindings/install_plugins
 fi
 
-if program_is_in_path npm ; then
-	step "Installing global npm packages."
-	$HOME/bin/glob_pkg_install_npm.sh
-fi
+# Disabled glob_pkg_install_*.sh as asdf handles this.
+#if program_is_in_path npm ; then
+	#step "Installing global npm packages."
+	#$HOME/bin/glob_pkg_install_npm.sh
+#fi
 
-if program_is_in_path pip ; then
-	step "Installing global pip packages."
-	$HOME/bin/glob_pkg_install_pip.sh
-fi
+#if program_is_in_path pip ; then
+	#step "Installing global pip packages."
+	#$HOME/bin/glob_pkg_install_pip.sh
+#fi
 
-if program_is_in_path bundle ; then
-	step "Installing global gems."
-	$HOME/bin/glob_pkg_install_gem.sh
-fi
+#if program_is_in_path bundle ; then
+	#step "Installing global gems."
+	#$HOME/bin/glob_pkg_install_gem.sh
+#fi

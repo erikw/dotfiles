@@ -1,5 +1,6 @@
 # Pip packages to be installed globally.
 # NOTE codified to ~/bin/glob_pkg_install_pip.sh
+# NOTE asdf will use ./asdf-default-python-packages.txt instead
 
 # Development
 autoflake	# Fix flake errors directly.

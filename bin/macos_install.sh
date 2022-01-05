@@ -496,25 +496,33 @@ npm install -g vscode-langservers-extracted
 # }
 
 # Python {
-# State of the ard:
-# * Python version - pyenv
+# State of the art:
+# * Python version - pyenv, or better with asdf
 # * Project dependences - poetry
 # * Global python tools - pipx
 
 
-# * Manage python versions with pyenv from homebrew
+# * Manage python versions with pyenv or asdf from homebrew
 # * Manage python projects (with dependencies) with poetry. https://github.com/python-poetry/poetry
 #    * pipenv more established, but a lot of issues wih this project.
 # curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/install-poetry.py | python -
 # poetry completions zsh > $XDG_CONFIG_HOME/zsh/funcs/_poetry
 # and reload compinit
 
+# asdf version manager
+asdf plugin-add python
+# Python build from https://github.com/danhper/asdf-python
+brew install openssl readline sqlite3 xz zlib
+asdf install python latest
+asdf global python latest
+
+# Global python packages
+# asdf manages this now.
+#~/bin/glob_pkg_install_pip.sh
+#asdf reshim python # to add binaires from global pip installed above to PATH.
 
 # LSP server
 #brew install pyright
-
-# Global python packages
-~/bin/glob_pkg_install_pip.sh
 # }
 
 # JavaScript {
@@ -528,9 +536,13 @@ npm install -g vscode-langservers-extracted
 # Dependencies, listed at https://github.com/asdf-vm/asdf-nodejs/
 brew install gpg gawk
 
-asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
+asdf plugin add nodejs
 asdf install nodejs latest
-glob_pkg_install_npm.sh
+asdf global nodejs latest
+
+# Global node packages
+# asdf manages this now.
+#glob_pkg_install_npm.sh
 
 # }
 

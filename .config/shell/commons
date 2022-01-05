@@ -54,9 +54,14 @@
 	export TRAVIS_CONFIG_PATH=$XDG_CONFIG_HOME/travis
 	export RIPGREP_CONFIG_PATH=$XDG_CONFIG_HOME/ripgrep/config
 
-	# Not yet fully compliant; https://github.com/asdf-vm/asdf/issues/687
+	# asdf; Not yet fully compliant; https://github.com/asdf-vm/asdf/issues/687
 	export ASDF_CONFIG_FILE=${XDG_CONFIG_HOME}/asdf/asdfrc
 	export ASDF_DATA_DIR=${XDG_DATA_HOME}/asdf
+	# asdf plugins:
+	export ASDF_PYTHON_DEFAULT_PACKAGES_FILE=${XDG_CONFIG_HOME}/pip/asdf-default-python-packages.txt
+	export ASDF_NPM_DEFAULT_PACKAGES_FILE=${XDG_CONFIG_HOME}/npm/asdf-default-npm-packages.txt
+	export ASDF_GEM_DEFAULT_PACKAGES_FILE=${XDG_CONFIG_HOME}/gem/asdf-default-gems.txt
+
 
 	export GEM_SPEC_CACHE=$XDG_CACHE_HOME/gem
 	export GEM_HOME=$XDG_DATA_HOME/gem
@@ -514,6 +519,7 @@
 	if program_is_in_path asdf; then
 		if shell_is_macos; then
 			#source "$(brew --prefix asdf)/libexec/asdf.sh"
+			# Optimize shell start time
 			source "/usr/local/opt/asdf/libexec/asdf.sh"
 		elif shell_is_linux; then
 			source /opt/asdf-vm/asdf.sh

@@ -95,16 +95,16 @@ sandbox_hook java-home jar
 
 # pyenv python version manager
 # NOTE only interactive termnials will get this, not scripts.
-sandbox_init_pyenv() {
-	export PYENV_ROOT=${XDG_DATA_HOME:-$HOME/.local/share}/pyenv
-	export PATH="$PYENV_ROOT/bin:$PATH"
-	eval "$(pyenv init --path)"  # Adds shims to PATH.
-	eval "$(pyenv init -)"
-	#export VIRTUAL_ENV_DISABLE_PROMPT=1
-	#eval "$(pyenv virtualenv-init -)"
-}
-#sandbox_hook_shims pyenv
-sandbox_hook_shims pyenv ${XDG_DATA_HOME:-$HOME/.local/share}/pyenv/shims
+#sandbox_init_pyenv() {
+	#export PYENV_ROOT=${XDG_DATA_HOME:-$HOME/.local/share}/pyenv
+	#export PATH="$PYENV_ROOT/bin:$PATH"
+	#eval "$(pyenv init --path)"  # Adds shims to PATH.
+	#eval "$(pyenv init -)"
+	##export VIRTUAL_ENV_DISABLE_PROMPT=1
+	##eval "$(pyenv virtualenv-init -)"
+#}
+##sandbox_hook_shims pyenv
+#sandbox_hook_shims pyenv ${XDG_DATA_HOME:-$HOME/.local/share}/pyenv/shims
 
 # NVM
 # NOTE Does not work for some reason.

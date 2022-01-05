@@ -1,4 +1,5 @@
 # NPM packages to be installed globally.
+# NOTE asdf will use ./asdf-default-npm-packages.txt instead
 # There is not good way to install global npm packages from a file. Thus this unix-file approach.
 # Usage: # $ sed 's/#.*//' $XDG_CONFIG_HOME/npm/global-requirements.txt | xargs npm install -g
 # NOTE codified to ~/bin/npm-install-global.sh

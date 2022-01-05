@@ -1,0 +1,11 @@
+# The asdf plugin for ruby supports comments in the default package file, in contrary to the nodejs and python plugin.
+# Reference: https://github.com/asdf-vm/asdf-ruby/blob/master/bin/install
+
+# To get readline support in irb(1).
+rb-readline
+
+# Works well with ALE.
+rubocop
+
+# LSP
+solargraph
