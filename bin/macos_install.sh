@@ -465,6 +465,7 @@ npm install -g vscode-langservers-extracted
 
 
 ## ruby-build + rbenv
+# NOTE replace with asdf
 # ruby-build install and manage different ruby versions. https://github.com/rbenv/ruby-build
 # rbenv - switch to the right ruby version for projects. Autmatically uses ruby-build as install plugin. https://github.com/rbenv/rbenv
 # Note env requirements at https://github.com/rbenv/ruby-build/wiki#suggested-build-environment
@@ -477,6 +478,14 @@ npm install -g vscode-langservers-extracted
 #
 # Install global gems:
 #~/bin/glob_pkg_install_gem.sh
+
+# asdf version manager - ruby
+asdf plugin-add ruby
+# Python build from https://github.com/asdf-vm/asdf-ruby
+brew install openssl readline
+asdf install ruby latest
+asdf global ruby latest
+
 
 # Rails
 # Reference: https://sergio-ildefonso.medium.com/install-ruby-and-rails-on-a-mac-7b8a1ccb5f4
@@ -509,7 +518,7 @@ npm install -g vscode-langservers-extracted
 # poetry completions zsh > $XDG_CONFIG_HOME/zsh/funcs/_poetry
 # and reload compinit
 
-# asdf version manager
+# asdf version manager - python
 asdf plugin-add python
 # Python build from https://github.com/danhper/asdf-python
 brew install openssl readline sqlite3 xz zlib
@@ -533,10 +542,10 @@ asdf global python latest
 # After switching from system node from brew, need to install my global npm packages to ~/.n/lib/node_modules/
 #~/bin/glob_pkg_install_npm.sh
 
+# asdf version manager - nodejs
+asdf plugin add nodejs
 # Dependencies, listed at https://github.com/asdf-vm/asdf-nodejs/
 brew install gpg gawk
-
-asdf plugin add nodejs
 asdf install nodejs latest
 asdf global nodejs latest
 

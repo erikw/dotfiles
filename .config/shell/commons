@@ -325,7 +325,7 @@
 	# ruby-build: recommended build env.
 	# Reference: https://github.com/rbenv/ruby-build/wiki#suggested-build-environment
 	#export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
-	if program_is_in_path ruby-build; then
+	if program_is_in_path ruby-build || program_is_in_path asdf ; then
 		export RUBY_CONFIGURE_OPTS="--with-openssl-dir=/usr/local/opt/openssl@1.1"
 	fi
 
