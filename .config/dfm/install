@@ -6,6 +6,7 @@ install.sh skip
 
 .gnupg recurse
 .local recurse
+.repos recurse
 bin recurse
 
 .Xsession chmod 0744

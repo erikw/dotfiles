@@ -15,16 +15,16 @@ cscope.out
 cscope.po.out
 cscope.in.out
 
+# Python Development
 # Rope python refactoring lib.
-.ropeproject/
-
-# Syntastic class path confugration file is generated globally on all gradle projects from the gradle-syntastic-plugin (see ~/.gradle/init.gradle). Ignore by default in git repos as this is personal to me.
-.syntastic_javac_config
-
-
+#.ropeproject/
 
 # Java Development
 # Ignore composite build file.
-composite.gradle
+#composite.gradle
 # Intellj
-.idea/
+#.idea/
+
+# Ruby development
+# byebug
+#.byebug_history
