@@ -1,7 +1,4 @@
 # ripgrep ignores additional to .gitignore
-/.local/cd-bookmark/
-/.local/dircolors-solarized/
-/.local/sandboxd/
-/.local/tmux-colors-solarized/
+/.repos/
 /.config/nvim/spell/
 /.config/nvim/thesaurus/

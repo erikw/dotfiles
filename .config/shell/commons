@@ -208,7 +208,7 @@
 
 # UI {
 	# Solarized ls colors.
-	dircolorsdb=$HOME/.local/dircolors-solarized/dircolors.256dark
+	dircolorsdb=$HOME/.repos/dircolors-solarized/dircolors.256dark
 	if ! [ -f $dircolorsdb ]; then
 		dircolorsdb=${XDG_CONFIG_HOME:-$HOME/.config}/shell/dircolors
 	fi
