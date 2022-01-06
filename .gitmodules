@@ -1,6 +1,6 @@
 # Prefer t use https URLs instead of ssh, so that the computer where i clone my dotfiles does not need to have SSH keys set up to my Github account.
 [submodule ".sandboxd"]
-	path = .local/sandboxd
+	path = .repos/sandboxd
 	url = https://github.com/benvan/sandboxd.git
 #[submodule ".emacs.d/themes/emacs-color-theme-solarize"]
 	#path = .emacs.d/themes/emacs-color-theme-solarize
