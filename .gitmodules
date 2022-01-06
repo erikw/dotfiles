@@ -20,7 +20,7 @@
 	path = .repos/dircolors-solarized
 	url = https://github.com/seebi/dircolors-solarized.git
 [submodule ".local/tmux-colors-solarized"]
-	path = .local/tmux-colors-solarized
+	path = .repos/tmux-colors-solarized
 	url = https://github.com/seebi/tmux-colors-solarized.git
 [submodule ".config/tmux/plugins/tpm"]
 	path = .config/tmux/plugins/tpm
