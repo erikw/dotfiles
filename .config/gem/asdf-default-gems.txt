@@ -4,6 +4,14 @@
 # To get readline support in irb(1).
 rb-readline
 
+# The best of both worlds:
+# pry - syntax highlighting (IRB replacement)
+# byebug - step debugger.
+# Invoke by placing in code
+# require 'pry'; binding.pry
+# vim snippe: pry<tab>
+pry-byebug
+
 # Works well with ALE.
 rubocop
 
