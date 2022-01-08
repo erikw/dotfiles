@@ -451,11 +451,12 @@ npm install -g vscode-langservers-extracted
 #
 # TODO next time, replace sdkman with asdf
 # asdf version manager - java
-#asdf plugin-add java
+asdf plugin-add java
 # Build requirements from https://github.com/halcyon/asdf-java
-#brew install bash curl unzip jq
-#asdf install java latest
-#asdf global java latest
+brew install bash curl unzip jq
+#asdf list-all java
+#asdf install java temurin-* # the rebranded adoptopenjdk
+#asdf global java temurin-*
 
 # LSP server
 # No good one exist that are easily installable. https://microsoft.github.io/language-server-protocol/implementors/servers/

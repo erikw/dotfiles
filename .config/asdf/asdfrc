@@ -1,4 +1,9 @@
 # Reference: https://asdf-vm.com/manage/configuration.html
 
+# General
 # Support e.g. .ruby-version files
 legacy_version_file = yes
+
+# Plugin - java
+# Integrate with /usr/libexec/java_home
+java_macos_integration_enable = yes

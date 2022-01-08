@@ -83,15 +83,15 @@ sandbox_hook sdk gradle
 #_sandbox_hook_all virtualenvwrapper "${virtualenv_functions[@]}"
 
 # JAVA_HOME
-sandbox_init_java-home() {
-	if [ -x /usr/libexec/java_home ]; then
-		export JAVA_HOME=$(/usr/libexec/java_home)
-	fi
-}
-sandbox_hook java-home java
-sandbox_hook java-home javac
-sandbox_hook java-home javadoc
-sandbox_hook java-home jar
+#sandbox_init_java-home() {
+#	if [ -x /usr/libexec/java_home ]; then
+#		export JAVA_HOME=$(/usr/libexec/java_home)
+#	fi
+#}
+#sandbox_hook java-home java
+#sandbox_hook java-home javac
+#sandbox_hook java-home javadoc
+#sandbox_hook java-home jar
 
 # pyenv python version manager
 # NOTE only interactive termnials will get this, not scripts.

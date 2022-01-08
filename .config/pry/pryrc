@@ -1,5 +1,10 @@
 # vi: ft=ruby:
 
+# Aliases
+# GDB-style commands:
+Pry.commands.alias_command 'list', 'show-source'
+Pry.commands.alias_command 'l', 'show-source'
+
 # pry-byebug
 ## Enable byebug normal command names.
 if defined?(PryByebug)

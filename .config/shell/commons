@@ -286,6 +286,9 @@
 		#export ANT_ARGS='-logger org.apache.tools.ant.listener.AnsiColorLogger'
 	#fi
 
+	# Set $JAVA_HOME from asdf. Reference: https://github.com/halcyon/asdf-java
+	sourceifexists ${XDG_DATA_HOME:-$HOME/.local/share}/asdf/plugins/java/set-java-home.$SHELL_NAME
+
 # }
 
 # less {
