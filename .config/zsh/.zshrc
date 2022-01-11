@@ -40,10 +40,21 @@ fi
 # }}
 
 # Completion {{
-	zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate
-	zstyle ':completion:*' max-errors 3 numeric
-	# Visualize and selecting with arrow keys in completion.
 	zstyle ':completion:*' menu select
+	# Completion functions to try in given order. Reference: https://zsh.sourceforge.io/Doc/Release/Completion-System.html
+	zstyle ':completion:*' completer _expand _expand_alias _extensions _complete _ignored
+
+	# Workaround for https://github.com/mollifier/cd-bookmark/issues/9
+	#zstyle ':completion:*:*:cd-bookmark:*' menu no
+	zstyle ':completion:*:*:cd-bookmark:*' menu auto select
+	# Setting specific completer for cd-bookmark did not work:
+	#zstyle ':completion:*:*:cd-bookmark:*' completer _expand _expand_alias _extensions _complete _ignored
+
+	# _correct max errors for match (but not for numbers)
+	zstyle ':completion:*:correct:::' max-errors 2 not-numeric
+	# _approximate max errors for match
+	zstyle ':completion:*:approximate:::' max-errors 3 numeric
+	# Visualize and selecting with arrow keys in completion.
 	# Remove slash from completed directory.
 	zstyle ':completion:*' squeeze-slashes true
 	# Cache completions.
