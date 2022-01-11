@@ -30,10 +30,14 @@ fi
 	#complete -cf man
 
 	# Use bash-completion, if available.
-	if shell_is_bsd; then
-		[[ $PS1 && -f /usr/local/etc/bash_completion ]] &&  . /usr/local/etc/bash_completion
-	else
-		[[ $PS1 && -f /usr/share/bash-completion/bash_completion ]] && . /usr/share/bash-completion/bash_completion
+	if [[ $PS1 ]]; then
+		if shell_is_macos; then
+			sourceifexists $HOMEBREW_PREFIX/etc/bash_completion
+		elif shell_is_bsd; then
+			sourceifexists /usr/local/etc/bash_completion
+		else
+			sourceifexists /usr/share/bash-completion/bash_completion
+		fi
 	fi
 # }
 

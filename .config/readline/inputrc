@@ -32,6 +32,10 @@
 
 	# Completion: show matches before cycling with menu-comlete (below).
 	set menu-complete-display-prefix on
+
+	# Completion: Increase from default 100 before asking:
+	# Display all \d+ possibilities? (y or n)
+	set completion-query-items 500
 # }
 
 # Bindings {
@@ -55,8 +59,11 @@
 	# Paste last argument from previous command with Alt-p.
 	"\ep": yank-last-arg
 
-	# Complete with menu, like zsh. Reference: https://stackoverflow.com/a/7179810/265508
+	# Completion: with menu, like zsh. Reference: https://stackoverflow.com/a/7179810/265508
 	TAB: menu-complete
+
+	# Completion: go backwards with shift+tab. Reference: https://stackoverflow.com/a/47494977/265508
+	"\e[Z": menu-complete-backward
 
 	# NOTE The vi mode key bindings after this line will apply to.
 	set keymap vi-command
@@ -72,4 +79,3 @@
 	"\e[B": history-search-forward
 
 # }
-

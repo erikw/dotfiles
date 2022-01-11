@@ -86,6 +86,9 @@
 	# E.g. poetry installs here.
 	test -d $HOME/.local/bin && PATH="$HOME/.local/bin:$PATH"
 
+	# Homebrew installation path prefix - do this once, instead of slowing down shell everywhere.
+	test -z ${HOMEBREW_PREFIX+x} && export HOMEBREW_PREFIX=$(brew --prefix)
+
 	# Set common bin paths.
 	#PATH=${PATH}:$(find ~/bin -maxdepth 2 -type d | tr '\n' ':' | sed 's/:$//')
 	#common_bin_dirs=(mutt mkdirs)
@@ -329,7 +332,7 @@
 	# Reference: https://github.com/rbenv/ruby-build/wiki#suggested-build-environment
 	#export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
 	if program_is_in_path ruby-build || program_is_in_path asdf ; then
-		export RUBY_CONFIGURE_OPTS="--with-openssl-dir=/usr/local/opt/openssl@1.1"
+		export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$HOMEBREW_PREFIX/opt/openssl@1.1"
 	fi
 
 	# rbenv NOTE is sandboxed
@@ -523,9 +526,7 @@
 	# asdf
 	if program_is_in_path asdf; then
 		if shell_is_macos; then
-			#source "$(brew --prefix asdf)/libexec/asdf.sh"
-			# Optimize shell start time
-			source "/usr/local/opt/asdf/libexec/asdf.sh"
+			source "$HOMEBREW_PREFIX/opt/asdf/libexec/asdf.sh"
 		elif shell_is_linux; then
 			source /opt/asdf-vm/asdf.sh
 		fi

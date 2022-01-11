@@ -2,8 +2,10 @@
 
 # Aliases
 # GDB-style commands:
-Pry.commands.alias_command 'list', 'show-source'
-Pry.commands.alias_command 'l', 'show-source'
+# Pry.commands.alias_command 'list', 'show-source'
+# Pry.commands.alias_command 'l', 'show-source'
+Pry.commands.alias_command 'list', 'whereami'
+Pry.commands.alias_command 'l', 'whereami'
 
 # pry-byebug
 ## Enable byebug normal command names.
@@ -12,6 +14,7 @@ if defined?(PryByebug)
   Pry.commands.alias_command 's', 'step'
   Pry.commands.alias_command 'n', 'next'
   Pry.commands.alias_command 'f', 'finish'
+  Pry.commands.alias_command 'bt', 'backtrace'
 end
 
 ## Hit Enter to repeat last command
