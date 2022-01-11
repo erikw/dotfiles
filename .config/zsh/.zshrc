@@ -70,6 +70,9 @@ fi
 	# Use colors in tabcompletion
 	shell_is_macos && zstyle ':completion:*:default' list-colors ''
 
+	# Increase maximum from default 100 suggestions to complete before asking to show more.
+	export LISTMAX=500
+
 	# Complete options for aliases too.
 	# NOPE setting this means that aliases are not expanded before completion. I don't want this as then
 	# $ g <tab>
@@ -161,6 +164,8 @@ fi
 	zsh_syntax_path=
 	if shell_is_linux; then
 		zsh_syntax_path=/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+	elif shell_is_macos; then
+		zsh_syntax_path=$HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 	elif shell_is_bsd; then
 		zsh_syntax_path=/usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 	fi
