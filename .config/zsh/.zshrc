@@ -42,11 +42,10 @@ fi
 # Completion {{
 	zstyle ':completion:*' menu select
 	# Completion functions to try in given order. Reference: https://zsh.sourceforge.io/Doc/Release/Completion-System.html
-	zstyle ':completion:*' completer _expand _expand_alias _extensions _complete _ignored
+	zstyle ':completion:*' completer _expand _expand_alias _extensions _complete _ignored _correct _approximate
 
 	# Workaround for https://github.com/mollifier/cd-bookmark/issues/9
-	#zstyle ':completion:*:*:cd-bookmark:*' menu no
-	zstyle ':completion:*:*:cd-bookmark:*' menu auto select
+	zstyle ':completion:*:*:cd-bookmark:*' menu no
 	# Setting specific completer for cd-bookmark did not work:
 	#zstyle ':completion:*:*:cd-bookmark:*' completer _expand _expand_alias _extensions _complete _ignored
 
