@@ -70,6 +70,15 @@ if &l:term  =~ "screen.*"
 	noremap <silent> <C-x>x <C-x>	" Decrement for consistency with GNU Screen.
 endif
 
+" TabWinAdjustSplit() {
+function! TabWinAdjustSplit()
+	let current_tab = tabpagenr()
+	tabdo wincmd =
+	execute 'tabnext' current_tab
+endfunction
+# }
+nnoremap <silent> <leader>= :call TabWinAdjustSplit()<cr>	" Ctrl+w+= in all tabs: adjust window splits equally in all tabs
+
 " Toggles {
 noremap <silent> <Leader>w :set wrap!<CR>:set wrap?<CR>		" Toggle line wrapping.
 noremap <silent> <Leader>` :set list!<CR>			" Toggle listing of characters. See listchars.
