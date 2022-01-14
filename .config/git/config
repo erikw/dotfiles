@@ -62,7 +62,7 @@
 	# Commit status - generate commit message from git-status.
 	# Inspired by https://stackoverflow.com/a/35027514/265508
 	# Why so complicated? Because the modifiers can be grouped e.g. "RM a -> b" would mean that the file was both renamed and modified.
-	cis = !"TMPFILE=$(mktemp -t git-commit-status-message); \
+	cis = !"TMPFILE=$(mktemp /tmp/git-commit-status-message.XXX); \
 		git status --porcelain \
 		| sort \
 		| sed -re '/^\\?\\?[[:space:]]/d' -e '/^[[:space:]]+[[:upper:]]/d' \
