@@ -12,6 +12,7 @@
 	"Plug 'scrooloose/nerdtree'				" Replaced by built-in netrw
 	"Plug 'vim-scripts/lbdbq'				" Mutt: Query lbdb for recipinents.
 	"Plug 'voldikss/vim-translator'				" Async language translator.
+	Plug 'LucHermitte/local_vimrc' | Plug 'LucHermitte/lh-vim-lib' " Project local vim config.
 	Plug 'danro/rename.vim'					" Provides the :Rename command
 	Plug 'fidian/hexmode'					" Open binary files as a HEX dump with :Hexmode
 	Plug 'instant-markdown/vim-instant-markdown', {'for': 'markdown', 'do': 'yarn install'}	" Live preview markdown files in browser.

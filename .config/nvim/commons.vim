@@ -268,6 +268,13 @@ nnoremap <Leader>h :History<CR>
 nnoremap <Leader>m :Maps<CR>
 " }
 
+" local_vimrc {
+" File names to recognize.
+let g:local_vimrc = ['.vimlocal', '_vimrc_local.vim']
+" Paths to not ask before loading.
+call lh#local_vimrc#munge('whitelist', $HOME.'/src/github.com/erikw')
+" }
+
 " nerdcommenter {
 " Swap invert comment toggle.
 	"map <silent> <Leader>c<Space> <plug>NERDCommenterInvert
@@ -391,12 +398,13 @@ set updatetime=100		" Speedier update of file status.
 " }
 
 " vim-instant-markdown {
+let g:instant_markdown_autostart=1
+
 " Blocklist certain paths for previewing files (recursively).
 " See https://github.com/instant-markdown/vim-instant-markdown/issues/198
-let g:instant_markdown_autostart=0
+" Did not work to put this in .vimlocal file, as it's loaded too late.
 augroup InstantMarkdownGroup
   autocmd!
-  au! BufReadPre,BufNewFile,BufEnter,BufFilePre *.md let g:instant_markdown_autostart=1
   au! BufReadPre,BufNewFile,BufEnter,BufFilePre ~/src/github.com/erikw/hackerrank-solutions/*.md,~/src/github.com/erikw/leetcode-solutions/*.md let g:instant_markdown_autostart=0
 augroup END
 " }
@@ -418,5 +426,6 @@ let g:undotree_SetFocusWhenToggle=1	" Put cursor in undo window on open.
 " }
 
 " Project local settings {
-silent! source .vimlocal
+" Replaced with the plugin local_vimrc.
+"silent! source .vimlocal
 " }
