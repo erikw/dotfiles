@@ -76,7 +76,7 @@ function! TabWinAdjustSplit()
 	tabdo wincmd =
 	execute 'tabnext' current_tab
 endfunction
-# }
+" }
 nnoremap <silent> <leader>= :call TabWinAdjustSplit()<cr>	" Ctrl+w+= in all tabs: adjust window splits equally in all tabs
 
 " Toggles {
@@ -415,4 +415,8 @@ nmap <silent> <F4> :UndotreeToggle<CR>	" Toggle side pane.
 let g:undotree_WindowLayout=2		" Set style to have diff window below.
 let g:undotree_SetFocusWhenToggle=1	" Put cursor in undo window on open.
 " }
+" }
+
+" Project local settings {
+silent! source .vimlocal
 " }
