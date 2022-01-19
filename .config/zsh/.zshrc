@@ -157,17 +157,17 @@ fi
 	# NOTE virtualenvwrapper prepends the active venv name in the generated bin/activate script.
 	PROMPT="%D{%H:%M:%S}"								# Date with seconds
 	[ $(id -u) -eq 0 ] && user_color=red || user_color=blue
-	PROMPT="$PROMPT %F{$user_color}%n%{$reset_color%}@%F{cyan}%m%{$reset_color%}"		# Current user and hostname
+	PROMPT="$PROMPT %F{$user_color}%n%{$reset_color%}@%F{cyan}%m%{$reset_color%}"	# Current user and hostname
 	unset user_color
 	if [ -n "$SSH_CLIENT" ] && ! ([ -n "$TMUX" ] || [[ "$TERM" == "screen-"* ]] ); then
 		# Highlight when loggied in via SSH. But not in screen/tmux, that does not make sense.
 		PROMPT="$PROMPT %F{blue}[SSH]%{$reset_color%}"
 	fi
-	PROMPT="$PROMPT %F{3}%5~/%{$reset_color%}"			# CWD, truncated to 5 components (directory depth).
-	PROMPT="$PROMPT \${vcs_info_msg_0_}"				# Current VCS branch, as configured above. $ is escaped so this part is not evaluated yet (breaks then).
-	PROMPT="$PROMPT%1(j:[%j]:)"							# Number of background jobs (if >=1).
+	PROMPT="$PROMPT %F{3}%5~%{$reset_color%}"		# CWD, truncated to 5 components (directory depth).
+	PROMPT="$PROMPT \${vcs_info_msg_0_}"			# Current VCS branch, as configured above. $ is escaped so this part is not evaluated yet (breaks then).
+	PROMPT="$PROMPT%1(j:[%j]:)"				# Number of background jobs (if >=1).
 	PROMPT="$PROMPT%(?::%F{red}{%?}%{$reset_color%})"	# Last exit code if !=0
-	PROMPT="$PROMPT> "									# EOL
+	PROMPT="$PROMPT> "					# EOL
 
 
 	# Fish like syntax highlighting on command line.
