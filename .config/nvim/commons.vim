@@ -413,6 +413,33 @@ augroup END
 let g:snipMate = { 'snippet_version' : 1 }	" Use the new parser (and surpress message about using the old parser).
 " }
 
+" vim-yoink {
+let g:yoinkMaxItems=16   		" Increase from default 10.
+let g:yoinkSyncNumberedRegisters=1	" Repurpose the registers to be a history stack!
+let g:yoinkIncludeDeleteOperations=1	" Include text delete operations in the yank history.
+let g:yoinkSyncSystemClipboardOnFocus=0	" Don't integrate with system clipboard.
+
+if has("nvim")
+	let g:yoinkSavePersistently=1		" Persist history across sessions.
+endif
+
+
+" Replace default paste with Yoink. "xp still works
+nmap p <plug>(YoinkPaste_p)
+nmap P <plug>(YoinkPaste_P)
+
+" Also replace the default gp with yoink paste so we can toggle paste in this case too
+nmap gp <plug>(YoinkPaste_gp)
+nmap gP <plug>(YoinkPaste_gP)
+
+" Cycle yankring immediately after pasting.
+nmap <c-n> <plug>(YoinkPostPasteSwapBack)
+nmap <c-p> <plug>(YoinkPostPasteSwapForward)
+
+" Toggle formatted paste.
+nmap <c-=> <plug>(YoinkPostPasteToggleFormat)
+" }
+
 " sideways.vim {
 nnoremap <silent> <a :SidewaysLeft<CR>		" Move function argument to the left.
 nnoremap <silent> >a :SidewaysRight<CR>		" Move function argument to the right.

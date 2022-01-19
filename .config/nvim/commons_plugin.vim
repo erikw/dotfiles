@@ -20,6 +20,7 @@
 	Plug 'michaeljsmith/vim-indent-object'			" Operate on intendtation as text objects
 	Plug 'ntpeters/vim-better-whitespace'			" Highlight and remove trailing whitespaces.
 	Plug 'preservim/nerdcommenter'				" Comment source code.
+	Plug 'svermeulen/vim-yoink'				" Yankring implementation.
 	Plug 'tpope/vim-capslock'				" Software CAPSLOCK.
 	Plug 'tpope/vim-fugitive'				" Git wrapper and shorthands.
 	Plug 'tpope/vim-repeat'					" Extend '.' repetition for plugins like vim-surround, vim-speeddating.
