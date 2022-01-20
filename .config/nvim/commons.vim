@@ -249,7 +249,8 @@ nmap <silent> <C-j> <Plug>(ale_next_wrap)
 nnoremap <Leader>f :FZF<space>
 " Search for files starting at current directory.
 " Sublime-like shortcut 'go to file' ctrl+p.
-nnoremap <C-p> :Files<CR>
+" Disabled here; see vim-yoink section for a re-mapping for :Files
+"nnoremap <C-p> :Files<CR>
 " Search for files starting at current directory.
 " Sublime-like shortcut 'go to file' ctrl+shift+p. Note: <C-S-p> is not mappable in vim. <M-P> is in neovim but not vim.
 nnoremap <leader>c :Commands<CR>
@@ -414,7 +415,7 @@ let g:snipMate = { 'snippet_version' : 1 }	" Use the new parser (and surpress me
 " }
 
 " vim-yoink {
-let g:yoinkMaxItems=16   		" Increase from default 10.
+let g:yoinkMaxItems=16			" Increase from default 10.
 let g:yoinkSyncNumberedRegisters=1	" Repurpose the registers to be a history stack!
 let g:yoinkIncludeDeleteOperations=1	" Include text delete operations in the yank history.
 let g:yoinkSyncSystemClipboardOnFocus=0	" Don't integrate with system clipboard.
@@ -434,10 +435,12 @@ nmap gP <plug>(YoinkPaste_gP)
 
 " Cycle yankring immediately after pasting.
 nmap <c-n> <plug>(YoinkPostPasteSwapBack)
-nmap <c-p> <plug>(YoinkPostPasteSwapForward)
+"nmap <c-p> <plug>(YoinkPostPasteSwapForward)
+" Let c-p execute fzf if we're not in paste mode.
+nmap <expr> <c-p> yoink#canSwap() ? '<plug>(YoinkPostPasteSwapForward)' : ':Files<CR>'
 
 " Toggle formatted paste.
-nmap <c-=> <plug>(YoinkPostPasteToggleFormat)
+"nmap <c-=> <plug>(YoinkPostPasteToggleFormat)
 " }
 
 " sideways.vim {
