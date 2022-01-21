@@ -42,6 +42,12 @@ program_is_in_path() {
 	}
 # }
 
+# ps-grep
+# List matching processes. Wrap in function instead of alias to avoid bug when searching for name that is also binary found in PATH
+psg() {
+	ps aux | grep "$*"
+}
+
 # cd to the directory containing the program found in PATH.
 cdw() {
 	local prog="$1"
