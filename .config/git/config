@@ -15,7 +15,7 @@
 [help]
 	;browser = firefox -new-tab
 	browser = lynx
-	autoCorrect = prompt  # Prompt before correcting misspelled command.
+	autoCorrect = immediate  # Prompt before correcting misspelled command.
 [svn]
 	rmdir = true
 [alias]

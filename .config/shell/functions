@@ -98,6 +98,7 @@ stopwatch() {
 
 # Git overlay which adds a command to cd to the root of a git repo.
 git() {
+	# TODO whereis find /usr/bin/git from Xcode and not /usr/local/bin git from brew
 	local gitbin=$(whereis git)
 
 	if [ "$1" = root ]; then

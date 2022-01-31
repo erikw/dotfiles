@@ -78,6 +78,7 @@ restic backup \
 	--tag $BACKUP_TAG \
 	--option b2.connections=$B2_CONNECTIONS \
 	$BACKUP_EXCLUDES \
+	--exclude-if-present .git \
 	$BACKUP_PATHS &
 wait $!
 
