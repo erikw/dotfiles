@@ -220,6 +220,7 @@ sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setglobalstate on
 # * Turn display off after: 5 min
 ## Power Adapter
 # * Turn display off after: 60 min
+# * Check "Prevent your mac from automatically sleeping when the display is off"
 # }
 
 # Keyboard {

@@ -454,8 +454,3 @@ let g:undotree_WindowLayout=2		" Set style to have diff window below.
 let g:undotree_SetFocusWhenToggle=1	" Put cursor in undo window on open.
 " }
 " }
-
-" Project local settings {
-" Replaced with the plugin local_vimrc.
-"silent! source .vimlocal
-" }

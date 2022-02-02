@@ -74,6 +74,7 @@
     brew 'rename'       # a.k.a. rename.pl
     brew 'ripgrep'	# Faster than grep, ack, ag.
     brew 'rsync'
+    brew 'shellcheck'
     brew 'sl'
     brew 'source-highlight'
     brew 'switchaudio-osx'

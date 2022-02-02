@@ -3,6 +3,7 @@
 # get keycodes with `dumpkeys | less` or `showkey`.
 
 # Translate Caps Lock key to Escape.
+# Note that shift+capslock will still work to send Caps Lock.
 keycode 58 = Escape
 # Put Caps Lock on Pause key.
 keycode 119 = Caps_Lock
