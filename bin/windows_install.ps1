@@ -20,6 +20,8 @@ scoop config aria2-warning-enabled false
 # Could migrate list to a packages.config
 # https://github.com/ScoopInstaller/Scoop/issues/1543#issuecomment-308894312
 # but it's nice to keep this self-contaied so it can be downloaded an executed direclty
+
+# NOTE mind the space before closing double quote.
 $scoop_prgs =
 "7zip " +
 "ack " +
@@ -90,11 +92,8 @@ $choco_apps =
 "openhardwaremonitor " +
 "putty " +
 "signal " +
-"skype " +
 "spotify " +
-"steam " +
 "sumatrapdf " +
-"velocity" +
 "vlc " +
 "whatsapp " +
 "windirstat " +
@@ -107,6 +106,9 @@ $choco_apps_additional =
 "f.lux " +
 "flashplayerplugin " +
 "origin " +
+"skype " +
+"steam " +
+"velocity " +
 "virtualclonedrive " +
 "winscp " +
 ""
@@ -128,7 +130,7 @@ Invoke-Expression "choco install vim --params /NoDesktopShortcuts"
 # Manually install {
 
 
-# * Drivers. For Thinkpad, download  http://pcsupport.lenovo.com/de/en/products/Laptops-and-## netbooks/ThinkPad-T-Series-laptops/ThinkPad-T430/downloads)
+# * Drivers. For Thinkpad, download  http://pcsupport.lenovo.com/de/en/products/Laptops-and-netbooks/ThinkPad-T-Series-laptops/ThinkPad-T430/downloads)
 # * Lenovo ThinkVantage System Update utility,
 # * Lenovo Power Manager Driver
 # * Lenovo Vantage (avilable from Microsoft Store too).
@@ -197,11 +199,12 @@ Invoke-Expression "choco install vim --params /NoDesktopShortcuts"
 
 
 # Taskbar (right click on)
-# * Cortana > show Cortana icon.
+# * Cortana > uncheck "Show Cortana icon"
+# * Search > check "Hidden"
 
 
 # Start menu
-# * Remove all crap.
+# * Remove all tiles to get a single column start menu.
 
 # Create link to User's folder in the taskbar:
 # 1. Right click on the desktop > New > Shortcuts
