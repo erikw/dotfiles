@@ -119,6 +119,7 @@ Invoke-Expression "choco install $choco_apps"
 #Invoke-Expression "choco install $choco_apps_additional"
 
 # Chcos with installoptions
+# TODO next time, switch from chocolately to buil-in winget
 Invoke-Expression "choco install vim --params /NoDesktopShortcuts"
 
 # Upgrade system with
@@ -174,19 +175,20 @@ Invoke-Expression "choco install vim --params /NoDesktopShortcuts"
 # git-bash$ eval $(ssh-agent -s)
 # git-bash$ ssh-add ~/.ssh/id_rsa
 # Copy ~/.ssh/id_rsa.pub to Github profile
-# git-bash$ git clone git@github.com:erikw/dotfiles.git ~/.dotfiles
-# git-bash$ cd ~/.dotfiles
+# git-bash$ mkdir -p ~/src/github.com/erikw
+# git-bash$ cd !$
+# git-bash$ git clone git@github.com:erikw/dotfiles.git
 # git-bash$ git checkout -b local
 # Because bin/dfm does not work on Windows (infinite recursions), instead in a privilegied powershell install some symlinks:
-# pwrshl$  New-Item -Path ~/.vimperatorrc -ItemType SymbolicLink -Value ~/.dotfiles/.vimperatorrc
-# pwrshl$  New-Item -Path ~/.tridactylrc -ItemType SymbolicLink -Value ~/.dotfiles/.tridactylrc
-# pwrshl$  New-Item -Path ~/.gitconfig -ItemType SymbolicLink -Value ~/.dotfiles/.gitconfig
+# pwrshl$  New-Item -Path ~/.vimperatorrc -ItemType SymbolicLink -Value ~/src/github.com/erikw/dotfiles/.vimperatorrc
+# pwrshl$  New-Item -Path ~/.tridactylrc -ItemType SymbolicLink -Value ~/src/github.com/erikw/dotfiles/tridactylrc
+# pwrshl$  New-Item -Path ~/.gitconfig -ItemType SymbolicLink -Value ~/src/github.com/erik/dotfiles/.gitconfig
 
 
 
 # Windows Desktop shortcuts to add:
 # * Whatsapp: Is installed in %USER%\AppData\Local\Whatsapp
-# * ~/.dotfiles/bin/windows_update.ps1: Right click on Desktop > New > Shortcut > Enter: powershell.exe -command "& 'C:\Users\erikw\.dotfiles\bin\windows_update.ps1'"
+# * ~/src/github.com/erik/dotfiles/bin/windows_update.ps1: Right click on Desktop > New > Shortcut > Enter: powershell.exe -command "& 'C:\Users\erikw\src\github.com\erikw\dotfiles\bin\windows_update.ps1'"
 # * Lenovo vantage: to upgrade firmwares
 # * Windows Upgrade: Right click on desktop > New > Shortcut > Location: "ms-settings:windowsupdate" > Name: Windows Upgrade.
 # * Power Shell
@@ -228,7 +230,7 @@ Invoke-Expression "choco install vim --params /NoDesktopShortcuts"
 
 # AutoHotkey
 # * Press Win+R and type "shell:Startup"
-# * Make a shortcut from within this folder to ~/.dotfiles/.config/autohotkey/AutoHotkey.ahk
+# * Make a shortcut from within this folder to ~/src/github.com/erikw/dotfiles/.config/autohotkey/AutoHotkey.ahk
 
 
 # Ditto
@@ -238,7 +240,7 @@ Invoke-Expression "choco install vim --params /NoDesktopShortcuts"
 
 
 # Vimperator:
-#cp ~/.dotfiles/.vimperatorrc ~/
+#cp ~/src/github.com/erikw/dotfiles/.vimperatorrc ~/
 
 
 # Linux, OSX and sane OSes store and interpret the hwclock as UTC time, while Windoze insists on it being in the local timezone...
