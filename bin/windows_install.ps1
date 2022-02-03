@@ -182,7 +182,7 @@ Invoke-Expression "choco install vim --params /NoDesktopShortcuts"
 # Because bin/dfm does not work on Windows (infinite recursions), instead in a privilegied powershell install some symlinks:
 # pwrshl$  New-Item -Path ~/.vimperatorrc -ItemType SymbolicLink -Value ~/src/github.com/erikw/dotfiles/.vimperatorrc
 # pwrshl$  New-Item -Path ~/.tridactylrc -ItemType SymbolicLink -Value ~/src/github.com/erikw/dotfiles/tridactylrc
-# pwrshl$  New-Item -Path ~/.gitconfig -ItemType SymbolicLink -Value ~/src/github.com/erik/dotfiles/.gitconfig
+# pwrshl$  New-Item -Path ~/.gitconfig -ItemType SymbolicLink -Value ~/src/github.com/erikw/dotfiles/.gitconfig
 
 
 
