@@ -17,7 +17,9 @@ iex (new-object net.webclient).downloadstring('https://get.scoop.sh')
 scoop install aria2
 scoop config aria2-warning-enabled false
 
-# TODO install from text file? https://github.com/ScoopInstaller/Scoop/issues/1543#issuecomment-308894312
+# Could migrate list to a packages.config
+# https://github.com/ScoopInstaller/Scoop/issues/1543#issuecomment-308894312
+# but it's nice to keep this self-contaied so it can be downloaded an executed direclty
 $scoop_prgs =
 "7zip " +
 "ack " +
@@ -66,8 +68,9 @@ iwr https://chocolatey.org/install.ps1 -UseBasicParsing | iex
 # Skip confirmation for every package.
 choco feature enable -n=allowGlobalConfirmation
 
-# TODO migrate list to a packages.config
+# Could migrate list to a packages.config
 # https://docs.chocolatey.org/en-us/choco/commands/install#packages.config
+# but it's nice to keep this self-contaied so it can be downloaded an executed direclty
 
 $choco_apps =
 "7zip " +

@@ -33,7 +33,7 @@
     brew 'curl'
     brew 'dfc'
     brew 'dos2unix'
-    brew 'erikw/xdg-urlview/xdg-urlview'
+    brew 'erikw/tap/xdg-urlview'
     brew 'fd'			# A powerful alternative to find.
     brew 'findutils'
     brew 'fswatch'		# For macos_appearance_monitor.sh
