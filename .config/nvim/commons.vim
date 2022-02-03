@@ -316,6 +316,12 @@ aug END
 " }
 " }
 
+" lexima.vim {
+" Don't auto-close quotes at "word" (more like non-whitespaces places )boundaries. Reference: https://github.com/cohama/lexima.vim/issues/129
+call lexima#add_rule({'char': '"', 'at': '\%#\S\|\S\%#'})
+call lexima#add_rule({'char': "'", 'at': '\%#\S\|\S\%#'})
+" }
+
 " tagbar {
 nmap <silent> <F3> :TagbarToggle<CR>	" Toggle the Tagbar window.
 let g:tagbar_left = 0			" Keep the window on the right side.
