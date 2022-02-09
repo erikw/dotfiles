@@ -50,14 +50,13 @@ open /Applications/Apparency.app/
 # old below:
 #mkdir -p $HOME/Library/LaunchAgents
 #cp $HOME/bin/com.user.irctor.plist $HOME/Library/LaunchAgents/
-#launchctl load -w $HOME/Library/LaunchAgents/com.user.irctor.plist
-#launchctl start com.user.irctor
+#launchctl bootstrap gui/$UID $HOME/Library/LaunchAgents/com.user.irctor.plist
+#launchctl enable gui/$UID/com.user.irctor
 #launchctl list | grep com.user.irctor
-#launchctl unload -w $HOME/Library/LaunchAgents/com.user.irctor.plist
 # Start iterm2.app with tmux session loaded on login.
 #cp $HOME/bin/com.user.iterm.plist $HOME/Library/LaunchAgents/
-#launchctl load -w $HOME/Library/LaunchAgents/com.user.iterm.plist
-#launchctl start com.user.iterm
+#launchctl bootstrap gui/$UID $HOME/Library/LaunchAgents/com.user.iterm.plist
+#launchctl enable gui/$UID/com.user.iterm
 
 
 # solarized_toggle.sh
@@ -68,8 +67,8 @@ pip3 install iterm2
 #	(if this is not enough Iterm2 > Scripts (menu) > Manager > Install runtime)
 ## Start macos_appearance_monitor.sh on login.
 cp $HOME/bin/com.user.appearancemon.plist $HOME/Library/LaunchAgents/
-launchctl load -w $HOME/Library/LaunchAgents/com.user.appearancemon.plist
-launchctl start com.user.appearancemon
+launchctl bootstrap gui/$UID $HOME/Library/LaunchAgents/com.user.appearancemon.plist
+launchctl enable gui/$UID com.user.appearancemon
 # Create symlink so that ~/bin/solarized_iterm2_set.py works.
 ln -s $HOME/Library/Application\ Support Library/ApplicationSupport
 ## Automate command for toggling system appearance mode
