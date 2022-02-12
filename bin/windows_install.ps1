@@ -269,17 +269,17 @@ $Shortcut.Save()
 # PuTTY
 ## To set up login with ssh keys
 # * Run puttygen.exe
-# 	* Generate a new key.
-# 	* Save public and private key to file to ~/.ssh/identity_files/
+#	* Generate a new key.
+#	* Save public and private key to file to ~/.ssh/identity_files/
 #  * Configure a puTTY profile
-#  	* Session:
-#  		* Enter host name and profile name
-#  	* Window > Apparence > select font; get a powerlinefont from https://github.com/powerline/fonts
-#  	* Connection:
-#  		* Data: Enter name for "Auto-login username"
-#  		* SSH
-#  			* "Remote command": tmux attach || tmux new-session
-#  			* > Auth: Select "Private key file for authentication" and chose the private .ppk file.
+#	* Session:
+#		* Enter host name and profile name
+#	* Window > Apparence > select font; get a powerlinefont from https://github.com/powerline/fonts
+#	* Connection:
+#		* Data: Enter name for "Auto-login username"
+#		* SSH
+#			* "Remote command": tmux attach || tmux new-session
+#			* > Auth: Select "Private key file for authentication" and chose the private .ppk file.
 ## Solarized
 # Edit .reg file and insert name of my session on line 3, then run the file.
 # https://github.com/altercation/solarized/tree/master/putty-colors-solarized

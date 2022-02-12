@@ -25,12 +25,14 @@ program_is_in_path() {
 		*'darwin'*	) SHELL_PLATFORM=macos	;;
 		*'freebsd'*	) SHELL_PLATFORM=freebsd	;;
 		*'bsd'*		) SHELL_PLATFORM=bsd		;;
+		*'msys'*	) SHELL_PLATFORM=windows	;;
 	esac
 
 	shell_is_linux() { [ "$SHELL_PLATFORM" = linux ]; }
 	shell_is_macos() { [ "$SHELL_PLATFORM" = macos ]; }
 	shell_is_freebsd() { [ "$SHELL_PLATFORM" = freebsd ]; }
 	shell_is_bsd() { [ "$SHELL_PLATFORM" = bsd ] || [ "$SHELL_PLATFORM" = freebsd ] || [ "$SHELL_PLATFORM" = macos ]; }
+	shell_is_windows() { [ "$SHELL_PLATFORM" = windows ]; }
 
 	# Test if the shell is interactive.
 	shell_is_interactive() {

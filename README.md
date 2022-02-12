@@ -113,3 +113,6 @@ $ git commit -m "SQUASHED passwords"
 
 ## Firefox
 Import minimal search-keyword bookmarks from [bookmarks_minimal.html](.config/mozilla/bookmarks_minimal.html) to Firefox.
+
+# Future
+Migrated to [homeschick](https://github.com/andsens/homeshick) to be able to split Linux from macOS-only configs, and have a main general one?
