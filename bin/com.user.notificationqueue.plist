@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Start notification-queue-notifier.sh login. -->
+<!-- To install: -->
+<!-- $ cp notification-queue-notifier.sh ~/bin/ -->
+<!-- $ cp com.user.notificationqueue.plist ~/Library/LaunchAgents/ -->
 <!-- $ launchctl bootstrap gui/$UID ~/Library/LaunchAgents/com.user.notificationqueue.plist -->
 <!-- $ launchctl enable gui/$UID/com.user.notificationqueue -->
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
