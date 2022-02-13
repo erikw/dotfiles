@@ -17,3 +17,6 @@ rubocop
 
 # LSP
 solargraph
+
+# Other
+git-bump
