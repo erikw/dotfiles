@@ -17,7 +17,7 @@
         <dict>
             <key>PATH</key>
             <string>/usr/local/bin:/usr/bin:/bin</string>
-	    <!--
+            <!--
             <key>POWERLINE_ROOT</key>
             <string>/Users/erikw/Library/Python/3.7/lib/python/site-packages/powerline</string>
             -->
@@ -28,7 +28,7 @@
         </dict>
         <!-- Working directory for tmux is / if not set. -->
         <key>WorkingDirectory</key>
-	<string>/Users/erikw/</string>
+        <string>/Users/erikw/</string>
         <key>RunAtLoad</key>
         <true/>
         <!-- Output logging for debugging. -->

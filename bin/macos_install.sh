@@ -59,6 +59,13 @@ open /Applications/Apparency.app/
 #launchctl enable gui/$UID/com.user.iterm
 
 
+# Notification queue service
+mkdir -p $HOME/Library/LaunchAgents
+cp $HOME/bin/com.user.notificationqueue.plist $HOME/Library/LaunchAgents/
+launchctl bootstrap gui/$UID $HOME/Library/LaunchAgents/com.user.notificationqueue.plist
+launchctl enable gui/$UID/com.user.notificationqueue
+
+
 # solarized_toggle.sh
 ## solarized_toggle.sh require
 # - pip3 package iterm2 mus be installed

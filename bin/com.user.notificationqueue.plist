@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Start notification-queue-notifier.sh login. -->
+<!-- $ launchctl bootstrap gui/$UID ~/Library/LaunchAgents/com.user.notificationqueue.plist -->
+<!-- $ launchctl enable gui/$UID/com.user.notificationqueue -->
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>Label</key>
+        <string>com.user.notificationqueue</string>
+        <key>Program</key>
+        <string>/Users/erikw/bin/notification-queue-notifier.sh</string>
+        <key>EnvironmentVariables</key>
+        <dict>
+            <key>PATH</key>
+            <string>/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+        </dict>
+        <key>RunAtLoad</key>
+        <true/>
+    </dict>
+</plist>
