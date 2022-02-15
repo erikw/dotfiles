@@ -27,6 +27,7 @@
 	Plug 'tpope/vim-speeddating'				" Increment dates with C-a.
 	Plug 'tpope/vim-surround'				" Work on surrond delimiters or its content.
 	Plug 'tpope/vim-unimpaired'				" Bracket mappings like [<space>
+	Plug 'tpope/vim-characterize'				" 'ga' on steroid.
 " }
 
 " Development {

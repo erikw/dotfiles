@@ -18,5 +18,14 @@ rubocop
 # LSP
 solargraph
 
-# Other
+# Add git-bump version tagger sub-command.
 git-bump
+
+# Edit or browser a gem with $(gem edit <gem>) or $(gem open <gem>)
+gem-browse
+
+# Generate tags file in installed gems automatically.
+# Requires local excuberant ctags to be installed
+gem-ctags
+
+# Other
