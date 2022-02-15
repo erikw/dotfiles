@@ -160,13 +160,21 @@ fi
 
 # cd-bookmark {
 	# Bashmark style aliases
-	if [ -d $HOME/.repos/cd-bookmark ]; then
-	    alias g='cd-bookmark -c'
-	    alias s='cd-bookmark -a'
-	    alias l='cd-bookmark -l'
-	    alias e='cd-bookmark -e'
-	    alias p='cd-bookmark -p'
-	    alias d='cd-bookmark -d'
+	#if [ -e $XDG_CONFIG_HOME/cd-bookmark/bookmarks ]; then
+		#alias g='cd-bookmark -c'
+		#alias s='cd-bookmark -a'
+		#alias l='cd-bookmark -l'
+		#alias e='cd-bookmark -e'
+		#alias p='cd-bookmark -p'
+		#alias d='cd-bookmark -d'
+	#fi
+# }
+
+# fzf-marks {
+	# Bashmark style aliases
+	if [ -d $HOME/.repos/fzf-marks ]; then
+		alias g='fzm'
+		alias s='mark'
 	fi
 # }
 

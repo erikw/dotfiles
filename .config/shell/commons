@@ -53,6 +53,7 @@
 	export SOLARGRAPH_CACHE=$XDG_CACHE_HOME/solargraph
 	export TRAVIS_CONFIG_PATH=$XDG_CONFIG_HOME/travis
 	export RIPGREP_CONFIG_PATH=$XDG_CONFIG_HOME/ripgrep/config
+	export FZF_MARKS_FILE=$XDG_CONFIG_HOME/fzf-marks/marks
 
 	# asdf; Not yet fully compliant; https://github.com/asdf-vm/asdf/issues/687
 	export ASDF_CONFIG_FILE=${XDG_CONFIG_HOME}/asdf/asdfrc
@@ -539,4 +540,12 @@
 			source /opt/asdf-vm/asdf.sh
 		fi
 	fi
+
+	# fzf-marks: https://github.com/urbainvaes/fzf-marks
+	sourceifexists $HOME/.repos/fzf-marks/fzf-marks.plugin.$SHELL_NAME
+	#if [ -d $HOME/.repos/fzf-marks ]; then
+		#sourceifexists $HOME/.repos/fzf-marks/fzf-marks.plugin.$SHELL_NAME
+		#export FZF_MARKS_FILE
+	#fi
+
 # }
