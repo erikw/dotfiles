@@ -21,6 +21,7 @@ st_set_tmux() {
 		theme_conf=$HOME/.repos/tmux-colors-solarized/tmuxcolors-light.conf
 	fi
 	tmux source $theme_conf
+	ln -sf $theme_conf $ST_STORAGE/tmux-theme.conf
 }
 
 st_set_iterm2() {
