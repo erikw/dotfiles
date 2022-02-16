@@ -161,20 +161,32 @@ fi
 # cd-bookmark {
 	# Bashmark style aliases
 	#if [ -e $XDG_CONFIG_HOME/cd-bookmark/bookmarks ]; then
-		#alias g='cd-bookmark -c'
-		#alias s='cd-bookmark -a'
-		#alias l='cd-bookmark -l'
-		#alias e='cd-bookmark -e'
-		#alias p='cd-bookmark -p'
-		#alias d='cd-bookmark -d'
+	    #alias g='cd-bookmark -c'
+	    #alias s='cd-bookmark -a'
+	    #alias l='cd-bookmark -l'
+	    #alias e='cd-bookmark -e'
+	    #alias p='cd-bookmark -p'
+	    #alias d='cd-bookmark -d'
 	#fi
 # }
 
 # fzf-marks {
 	# Bashmark style aliases
 	if [ -d $HOME/.repos/fzf-marks ]; then
-		alias g='fzm'
-		alias s='mark'
+	    alias g='fzm'
+	    alias s='mark'
+	    alias e="vi $FZF_MARKS_FILE"
+
+	    _fzf_marks_delete() {
+		local mark="$1"
+
+		if ! grep -q "^$mark : " $FZF_MARKS_FILE; then
+		    echo "$mark is not in bookmark" >&2
+		    return 2
+		fi
+		sed -i.bak -e "/^${mark} : /d" "$FZF_MARKS_FILE" && rm "$FZF_MARKS_FILE.bak"
+	    }
+	    alias d='_fzf_marks_delete'
 	fi
 # }
 
