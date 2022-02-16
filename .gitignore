@@ -23,6 +23,7 @@
 /.config/cd-bookmark/bookmarks
 /.config/cheat/
 /.config/configstore/
+/.config/fzf-marks/marks
 /.config/fzf/
 /.config/gcloud/
 /.config/gh/hosts.yml
