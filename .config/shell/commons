@@ -205,6 +205,8 @@
 
 	# Nice to have when fetching scanned documents
 	export SCANNED=$HOME/media/images/scanned/
+	# Ditto screenshots
+	export SCREENSHOTS=$HOME/media/images/screenshots/
 
 	if shell_is_macos; then
 		# Disable macos shell restore feature (/etc/bashrc_Apple_Terminal) that creates e.g. ~/.zsh_session
@@ -213,6 +215,9 @@
 
 	# Speed up dfm by telling it where the source is
 	export DFM_REPO=$HOME/src/github.com/erikw/dotfiles/
+
+	# Tokens and so
+	sourceifexists $XDG_DATA_HOME/secrets.sh
 # }
 
 # UI {
