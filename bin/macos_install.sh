@@ -49,19 +49,19 @@ open /Applications/Apparency.app/
 # 2. Set iterm2 default profile to start irctor, and then have an additional profile that just runs zsh. see #irctorautostart below in the iterm section.
 # old below:
 #mkdir -p $HOME/Library/LaunchAgents
-#cp $HOME/bin/com.user.irctor.plist $HOME/Library/LaunchAgents/
+#ln -s $HOME/.config/LaunchAgents/com.user.irctor.plist $HOME/Library/LaunchAgents/
 #launchctl bootstrap gui/$UID $HOME/Library/LaunchAgents/com.user.irctor.plist
 #launchctl enable gui/$UID/com.user.irctor
 #launchctl list | grep com.user.irctor
 # Start iterm2.app with tmux session loaded on login.
-#cp $HOME/bin/com.user.iterm.plist $HOME/Library/LaunchAgents/
+#ln -s $HOME/.config/LaunchAgents/com.user.iterm.plist $HOME/Library/LaunchAgents/
 #launchctl bootstrap gui/$UID $HOME/Library/LaunchAgents/com.user.iterm.plist
 #launchctl enable gui/$UID/com.user.iterm
 
 
 # Notification queue service
 mkdir -p $HOME/Library/LaunchAgents
-cp $HOME/bin/com.user.notificationqueue.plist $HOME/Library/LaunchAgents/
+ln -s $HOME/.config/LaunchAgents/com.user.notificationqueue.plist $HOME/Library/LaunchAgents/
 launchctl bootstrap gui/$UID $HOME/Library/LaunchAgents/com.user.notificationqueue.plist
 launchctl enable gui/$UID/com.user.notificationqueue
 
@@ -73,7 +73,7 @@ pip3 install iterm2
 # - iterm2 preference enable Python API: General > Magic tab > Enable Python API: Require "automation" permission.
 #	(if this is not enough Iterm2 > Scripts (menu) > Manager > Install runtime)
 ## Start macos_appearance_monitor.sh on login.
-cp $HOME/bin/com.user.appearancemon.plist $HOME/Library/LaunchAgents/
+ln -s $HOME/.config/LaunchAgents/com.user.appearancemon.plist $HOME/Library/LaunchAgents/
 launchctl bootstrap gui/$UID $HOME/Library/LaunchAgents/com.user.appearancemon.plist
 launchctl enable gui/$UID com.user.appearancemon
 # Create symlink so that ~/bin/solarized_iterm2_set.py works.
