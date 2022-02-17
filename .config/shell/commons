@@ -552,6 +552,9 @@
 		# --exact --select-1: jump to exact match directly if only match.
 		# --nth=1 --delimiter=' : ': only search the bookmark names, not values.
 		FZF_MARKS_COMMAND="$FZF_MARKS_COMMAND --exact --select-1 --nth=1 --delimiter=' : '"
+
+		# Be consistent with default fzf behaviour. ctrl-d should close selection window, not delete things.
+		FZF_MARKS_DELETE=ctrl-r
 	fi
 
 # }
