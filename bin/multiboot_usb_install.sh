@@ -15,7 +15,7 @@
 
 
 
-# Instructions and proceedure extracted from the completely miserable script /_ISO/docs/linux_utils/fmt.sh
+# Instructions and procedures extracted from the completely miserable script /_ISO/docs/linux_utils/fmt.sh
 sudo -i
 targdev=/dev/sdX
 target=/media/usb_media
@@ -30,7 +30,7 @@ curl -O http://url/to/easy2boot.exe # http://www.easy2boot.com/
 mv easy2boot.exe easy2boot.zip
 unzip easy2boot.zip
 
-# Instal GRUB.
+# Install GRUB.
 cd easy2boot/_ISO_/docs/linux-utils
 # Install grub4dos to MBR.
 chmod 744 bootlace.com
@@ -51,7 +51,7 @@ cp path/to/imgs/some-util.iso $target/_ISO/UTILITIES/
 perl ./defragfs $target -f
 
 
-# Ignore file extension auto-suggestons
+# Ignore file extension auto-suggestions
 # http://www.easy2boot.com/add-payload-files/list-of-file-extensions-recognised-by-e2b
 cat >> $target/_ISO/MyE2B.cfg
 !BAT

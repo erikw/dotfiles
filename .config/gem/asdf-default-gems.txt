@@ -28,4 +28,7 @@ gem-browse
 # Requires local excuberant ctags to be installed
 gem-ctags
 
+# Heap, Priority Queue, Stack,...
+algorithms
+
 # Other

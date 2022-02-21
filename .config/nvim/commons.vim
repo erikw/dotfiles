@@ -286,6 +286,7 @@ call lh#local_vimrc#munge('whitelist', $HOME.'/src/github.com/erikw')
 " Ships by default with vim mostly.
 " Reference: https://shapeshed.com/vim-netrw/
 " Reference: " http://vimcasts.org/blog/2013/01/oil-and-vinegar-split-windows-and-project-drawer/
+" Keyboard shortcuts: https://gist.github.com/t-mart/610795fcf7998559ea80
 noremap <silent> <F2> :Lexplore<CR>	" Toggle the left vertical window
 let g:netrw_liststyle = 3		" Default view: tree. Cycle with (i).
 let g:netrw_banner = 0			" Remove space consuming top header text.

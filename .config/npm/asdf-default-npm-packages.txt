@@ -1,6 +1,12 @@
-bash-language-server
+# Development
+#markdown-toc	# GitHub renders ToC automatically now.
 instant-markdown-d
 netlify-cli
+
+# RoR requirements
+yarn
+
+# Language Servers (LSP)
+bash-language-server
 vim-language-server
 vscode-langservers-extracted
-yarn
