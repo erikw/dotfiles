@@ -208,7 +208,7 @@ moshmux () {
 }
 
 # cd(1) to installation of gem from bundle.
-bundlecd () {
+bundlecd() {
 	local gem="$@"
 	local path=$(bundle info --path "$gem")
 	test $? -eq 0 && cd "$path"

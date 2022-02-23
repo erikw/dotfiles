@@ -1,4 +1,5 @@
 # Install Easy2Boot.
+# NOTE replace with https://ventoy.net/en/index.html
 # Official instructions: http://www.easy2boot.com/make-an-easy2boot-usb-drive/make-using-linux/
 #
 # ISOs to put on the stick:
