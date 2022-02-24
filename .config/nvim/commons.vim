@@ -28,6 +28,10 @@ command! Lcdpwd lcd %:p:h
 command! -nargs=* Wrap set wrap linebreak nolist	" Set softwrap correctly.
 autocmd BufWinLeave * silent! mkview			" Save fold views.
 autocmd BufWinEnter * silent! loadview			" Load fold views on start.
+
+
+" Disable all fixers. Good when editing non-owned code bases.
+command! DisableFixers execute "DisableStripWhitespaceOnSave" | execute "let g:ale_fix_on_save = 0"
 " }
 
 " Completion {
@@ -231,6 +235,10 @@ nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 " }
+
+" Toggle command for fixers
+" Reference: https://github.com/dense-analysis/ale/issues/1353#issuecomment-424677810
+command! ALEToggleFixer execute "let g:ale_fix_on_save = get(g:, 'ale_fix_on_save', 0) ? 0 : 1"
 " }
 
 " clang_complete {

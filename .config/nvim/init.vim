@@ -13,6 +13,8 @@
 " Reference: https://stackoverflow.com/questions/1687799/profiling-vim-startup-time
 " }
 
+
+
 " Environment {
 let g:xdg_config_home = empty($XDG_CONFIG_HOME) ? "$HOME/.config" : $XDG_CONFIG_HOME
 let g:xdg_state_home = empty($XDG_STATE_HOME) ? "$HOME/.local/state" : $XDG_STATE_HOME
@@ -25,6 +27,14 @@ let g:ale_completion_enabled = 1	" Must be set before ALE is loaded.
 
 " vim-plug data folder
 call plug#begin(stdpath('data') . '/plugged')
+
+" The python provider (pythonx.vim) checker takes alomost 1 second on startup.
+" Do one of:
+" * Install neovim package in used version: $ pip install neovim, then
+" :checkhealth
+" * Disable the provider (not used by curret plugins anyways.)
+" Reference: https://www.reddit.com/r/neovim/comments/ksf0i4/slow_startup_time_when_opening_python_files_with/
+let g:loaded_python3_provider = 0
 " }
 
 " Common Plugins {

@@ -24,7 +24,7 @@ sudo dscl . -create /Users/$USER UserShell /usr/local/bin/zsh
 # There's no nice way to set this up with brew-bundler. Only the tap can be put there, but not of the configuration, so might as well keep it all here until then.
 brew tap homebrew/autoupdate
 # Start upgrade (including casks) every 12 hours.
-brew autoupdate start 43200 --upgrade --cleanup --enable-notification
+brew autoupdate start 43200 --upgrade --cleanup
 brew autoupdate status
 
 # QuickLook Plugins {
