@@ -13,8 +13,6 @@
 " Reference: https://stackoverflow.com/questions/1687799/profiling-vim-startup-time
 " }
 
-
-
 " Environment {
 let g:xdg_config_home = empty($XDG_CONFIG_HOME) ? "$HOME/.config" : $XDG_CONFIG_HOME
 let g:xdg_state_home = empty($XDG_STATE_HOME) ? "$HOME/.local/state" : $XDG_STATE_HOME
@@ -35,6 +33,12 @@ call plug#begin(stdpath('data') . '/plugged')
 " * Disable the provider (not used by curret plugins anyways.)
 " Reference: https://www.reddit.com/r/neovim/comments/ksf0i4/slow_startup_time_when_opening_python_files_with/
 let g:loaded_python3_provider = 0
+
+" Let's disable more that is not used to gain startup time.
+let g:loaded_python_provider = 0
+let g:loaded_ruby_provider = 0
+let g:loaded_provider_provider = 0
+let g:loaded_node_provider = 0
 " }
 
 " Common Plugins {
