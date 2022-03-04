@@ -115,6 +115,7 @@ $(brew --prefix)/opt/fzf/install --xdg
 # * If not already the case, make sure lpr uses the default printer:
 #lpstat -p -d
 #lpoptions -d Brother_DCP_7070DW
+#lpoptions -p Brother_DCP_7070DW -o Printing=DuplexNoTumble -o PageSize=A4
 
 # Antivirus: Avast Security for Mac
 # https://www.avast.com/en-us/free-mac-security
