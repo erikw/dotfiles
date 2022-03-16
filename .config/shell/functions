@@ -101,7 +101,9 @@ stopwatch() {
 # Git overlay which adds a command to cd to the root of a git repo.
 git() {
 	# TODO whereis find /usr/bin/git from Xcode and not /usr/local/bin git from brew
-	local gitbin=$(whereis git)
+	# -q: macOS, supress name prefix
+	# -b: macOS, only search binary not manual
+	local gitbin=$(whereis -q -b git)
 
 	if [ "$1" = root ]; then
 		# Try get root from git submodule:

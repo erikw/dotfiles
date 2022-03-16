@@ -52,6 +52,7 @@ tap 'homebrew/cask-drivers' # For focusrite-control
     cask 'mutify'
     cask 'rekordbox'
     cask 'signal'
+    cask 'skype'
     cask 'transmission'
 # }
 

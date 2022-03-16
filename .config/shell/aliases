@@ -347,3 +347,14 @@ fi
 	alias whatismyip='curl ifconfig.me && echo'		# Get external IP-address
 	#alias whatismyip='curl ifconfig.co'			# Get external IP-address
 # }
+
+# Copy & Paste {
+	# Linux version of OSX pbcopy and pbpaste.
+	# Ref: https://medium.com/@codenameyau/how-to-copy-and-paste-in-terminal-c88098b5840d
+	if shell_is_linux; then
+		alias pbcopy='xsel — clipboard — input'
+		alias pbpaste='xsel — clipboard — output'
+		#alias pbcopy='xclip -selection clipboard'
+		#alias pbpaste='xclip -selection clipboard -o'
+	fi
+# }
