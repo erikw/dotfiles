@@ -35,7 +35,7 @@
 	dic = diff --cached
 	diffc = diff --cached
 	ft = fetch
-	fuckit = !"git add .; git commit -m \"$(curl -s http://whatthecommit.com/index.txt)\""
+	fuckit = !"git add .; git commit -am \"$(curl -s http://whatthecommit.com/index.txt)\""
 	gvimerge = mergetool -t gvimdiff
 	h = help
 	l = log
