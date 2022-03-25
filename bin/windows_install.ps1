@@ -1,4 +1,7 @@
-﻿# Install script for my Windows setup.
+﻿# #requires -version 4.0
+#requires –runasadministrator
+
+# Install script for my Windows setup.
 # Run this in an administrative Powershell prompt (for chocolately).
 # To download-and-execute:
 # $ iex (new-object net.webclient).downloadstring('https://raw.githubusercontent.com/erikw/dotfiles/personal/bin/windows_install.ps1')

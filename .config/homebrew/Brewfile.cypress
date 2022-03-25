@@ -51,6 +51,7 @@ tap 'homebrew/cask-drivers' # For focusrite-control
     cask 'musicbrainz-picard'
     cask 'mutify'
     cask 'rekordbox'
+    cask 'send-to-kindle'
     cask 'signal'
     cask 'skype'
     cask 'transmission'

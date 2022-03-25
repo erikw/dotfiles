@@ -140,10 +140,10 @@ $(brew --prefix)/opt/fzf/install --xdg
 
 # Clipy
 ## General
-# * Max clipboard history size: 85
+# * Max clipboard history size: 100
 ## Menu
 # * Number of items to place inline: 25
-# * Number of items to place inside a folder: 60
+# * Number of items to place inside a folder: 75
 # * Number of characters in the menu: 50
 ## Shortcuts
 # * Menu>Main: NOP
