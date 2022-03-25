@@ -153,6 +153,7 @@
     cask 'gimp'
     cask 'google-chrome'
     cask 'iterm2'
+    cask 'keepingyouawake'
     cask 'libreoffice'
     cask 'scroll-reverser'
     cask 'sensiblesidebuttons'    # Need to manually add it to System Preferences > Users & Groups > Login items
