@@ -99,7 +99,8 @@
 	rebase = true	; Only rebase when pulling, no mrege.
 	ff = only	; Allow only fast-forward (no merge commit) rebase when pulling with rebase.
 [push]
-	default = upstream
+	;default = upstream
+	default = current	; Avoid "fatal: The current branch advanced-login has no upstream branch" and $(git push -u ...)
 [merge]
 	log = true
 [init]
