@@ -92,6 +92,7 @@ $choco_apps =
 "javaruntime " +
 "lastpass " +
 "libreoffice " +
+"littleregistrycleaner" +
 "openhardwaremonitor " +
 "putty " +
 "signal " +
