@@ -10,7 +10,7 @@ for dir in $(find $path -type d | tac); do
 	cd "$dir" && echo "====> Entering: $dir/"
         # --force: for case-insensitive fs https://github.com/ap/rename/issues/16
 	rename --verbose --transcode utf8 --lower-case --sanitize --force  *
-	# Transcode unicode to ASCII. See rename(1).
+	# Recode Unicode to ASCII. See rename(1).
 	rename --verbose --transcode utf8 -MText::Unidecode '$_ = unidecode $_' *
 	cd - >/dev/null
 done
