@@ -59,6 +59,7 @@
     brew 'jq'
     brew 'less'
     brew 'mosh'
+    brew 'multitime'
     brew 'ncdu'
     brew 'neovim'
     brew 'netcat'

@@ -84,3 +84,7 @@ fi
 	#step "Installing global gems."
 	#$HOME/bin/glob_pkg_install_gem.sh
 #fi
+
+# Perl
+# Requirements for ~/bin/rename_sane.sh
+cpan Text::Unidecode

@@ -436,12 +436,17 @@
 		#PATH="$HOME/src/android-sdk-linux/tools/:$HOME/src/android-sdk-linux/platform-tools/:$PATH"
 	#fi
 
-	# Perl local libraries.
-	# Reference: http://search.cpan.org/~haarg/local-lib-2.000015/lib/local/lib.pm http://www.perladvent.org/2009/3/
-	#perl_local=$HOME/bin/perl5
-	#if program_is_in_path perl && [ -d $perl_local/lib/perl5/local ]; then
-		#eval $(perl -I $perl_local/lib/perl5/ -Mlocal::lib=$perl_local)
-	#fi
+	# Perl
+	# cpan(1): avoid interactive configuration on first launch.
+	export PERL_MM_USE_DEFAULT=1
+	# Custom locallib installation path for modules
+	# Ref: https://stackoverflow.com/a/41541273/265508
+	export PERL_BASE="$XDG_DATA_HOME/perl5"
+	export PERL_MM_OPT="INSTALL_BASE=$PERL_BASE"
+	export PERL_MB_OPT="--install_base $PERL_BASE"
+	export PERL5LIB="$PERL_BASE/lib/perl5"
+	export PATH="$PERL_BASE/bin:$PATH"
+	export MANPATH="$PERL_BASE/man:$MANPATH"
 
 	# Powerline plugin.
 	#if shell_is_macos; then

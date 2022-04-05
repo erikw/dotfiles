@@ -1,29 +1,15 @@
 #!/usr/bin/env sh
 # Rename to sane file names.
 # Requirements: rename(.pl)
+# Requirements: $ cpan Text::Unidecode
 
-#set -xe
-
-if [ -n  "$1" ]; then
-	path="$1"
-else
-	path="."
-fi
+test -n "$1" && path="$1" || path="."
 
 IFS=$'\n'
 for dir in $(find $path -type d | tac); do
-	echo "$dir"
-	cd "$dir"
-	# On macOS, case-only rename is not allowed. Need to rename file to temporay name first.
-	# Reference: https://stackoverflow.com/questions/7787029/how-do-i-rename-all-files-to-lowercase
-	#rename 's/(.*)/lc($1)/e' *
-	for f in *; do
-		#lower=$(echo $f | tr "[:upper:]" "[:lower:]")
-		# gnu tr is not internationalized, but gawk is: https://unix.stackexchange.com/a/228570/19909
-		lower=$(echo $f | gawk '{print tolower($0)}')
-		mv "$f" "$f.tmp"
-		mv "$f.tmp" "$lower"
-	done
-	rename 's/ /_/g' *
+	cd "$dir" && echo "====> Entering: $dir/"
+	rename --verbose --transcode utf8 --lower-case --sanitize --force  *
+	# Transcode unicode to ASCII. See rename(1).
+	rename --verbose --transcode utf8 -MText::Unidecode '$_ = unidecode $_' *
 	cd - >/dev/null
 done
