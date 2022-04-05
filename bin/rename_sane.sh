@@ -8,7 +8,7 @@ test -n "$1" && path="$1" || path="."
 IFS=$'\n'
 for dir in $(find $path -type d | tac); do
 	cd "$dir" && echo "====> Entering: $dir/"
-        # --force: fir case-insensitive fs https://github.com/ap/rename/issues/16
+        # --force: for case-insensitive fs https://github.com/ap/rename/issues/16
 	rename --verbose --transcode utf8 --lower-case --sanitize --force  *
 	# Transcode unicode to ASCII. See rename(1).
 	rename --verbose --transcode utf8 -MText::Unidecode '$_ = unidecode $_' *
