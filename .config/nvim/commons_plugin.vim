@@ -41,6 +41,7 @@
 	Plug 'preservim/tagbar'				" Sidepane showing info from tags file.
 	Plug 'rhysd/conflict-marker.vim'		" Navigate and edit VCS conflicts. Replace unmaintained 'vim-script/ConflictMotions'
 	Plug 'vim-scripts/argtextobj.vim'		" Make function arguments text objects that can be operated on with.
+	Plug 'godlygeek/tabular' | Plug 'preservim/vim-markdown' " Markdown utilties like list indention, TOC.
 " }
 
 " Development: C/C++ {

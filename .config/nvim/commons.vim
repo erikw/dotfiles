@@ -426,6 +426,13 @@ augroup InstantMarkdownGroup
 augroup END
 " }
 
+" vim-markdown {
+let g:vim_markdown_folding_disabled = 1		" No fold by default
+let g:vim_markdown_toc_autofit = 1		" Make :Toc smaller
+let g:vim_markdown_follow_anchor = 1		" Let ge follow #anchors
+let g:vim_markdown_new_list_item_indent = 2	" Bullent space indents.
+" }
+
 " vim-snipmate {
 let g:snipMate = { 'snippet_version' : 1 }	" Use the new parser (and surpress message about using the old parser).
 " }
