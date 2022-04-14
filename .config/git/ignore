@@ -15,6 +15,9 @@ cscope.out
 cscope.po.out
 cscope.in.out
 
+# https://www.dotenv.org/
+.env
+
 # Python Development
 # Rope python refactoring lib.
 #.ropeproject/

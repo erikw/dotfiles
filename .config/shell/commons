@@ -215,9 +215,6 @@
 
 	# Speed up dfm by telling it where the source is
 	export DFM_REPO=$HOME/src/github.com/erikw/dotfiles/
-
-	# Tokens and so
-	sourceifexists $XDG_DATA_HOME/secrets.sh
 # }
 
 # UI {
@@ -560,6 +557,11 @@
 
 		# Be consistent with default fzf behaviour. ctrl-d should close selection window, not delete things.
 		FZF_MARKS_DELETE=ctrl-r
+	fi
+
+	# direnv: https://direnv.net/
+	if program_is_in_path direnv; then
+		eval "$(direnv hook $SHELL_NAME)"
 	fi
 
 # }

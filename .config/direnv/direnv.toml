@@ -1,0 +1,5 @@
+[global]
+load_dotenv = true  # Needed to load .env as of https://github.com/direnv/direnv/issues/916
+
+[whitelist]
+prefix = [ "/Users/erikw/src/github.com/erikw/" ]

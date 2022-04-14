@@ -32,6 +32,8 @@
     brew 'ctags'
     brew 'curl'
     brew 'dfc'
+    brew 'difftastic'
+    brew 'direnv'
     brew 'dos2unix'
     brew 'erikw/tap/xdg-urlview'
     brew 'fd'			# A powerful alternative to find.
@@ -191,6 +193,7 @@
     cask 'google-drive'
     cask 'gpg-suite'
     cask 'handbrake'
+    cask 'inkscape'
     cask 'insomnia'
     cask 'insync'
     cask 'intellij-idea-ce'
