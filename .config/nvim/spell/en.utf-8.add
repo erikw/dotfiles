@@ -574,3 +574,5 @@ balancer
 Scalability
 uptime
 mode
+VM
+dockerized
