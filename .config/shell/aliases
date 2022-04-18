@@ -104,13 +104,15 @@
 		fi
 	fi
 
-	# Still need to set alias with options, https://superuser.com/a/670563/42070.
-       if  shell_is_macos && program_is_in_path gls ; then
-	    # Note that for coreutil ls to have color output, dircolors must be evalued. See ~/.config/shell/commons
-	    alias ls="gls $LS_OPTIONS"
-       else
-	    alias ls="ls $LS_OPTIONS"
-       fi
+	if program_is_in_path lsd; then
+		alias ls=lsd
+	elif shell_is_macos && program_is_in_path gls; then
+		# Still need to set alias with options, https://superuser.com/a/670563/42070.
+		# Note that for coreutil ls to have color output, dircolors must be evalued. See ~/.config/shell/commons
+		alias ls="gls $LS_OPTIONS"
+	else
+		alias ls="ls $LS_OPTIONS"
+	fi
 # }
 
 # Coreutils {

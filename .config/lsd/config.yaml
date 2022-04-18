@@ -1,0 +1,47 @@
+# Ref: https://github.com/Peltoche/lsd
+
+# Use ls config instead of lsd config.
+classic: false
+
+color:
+  when: auto
+  theme: default
+
+date: '+%Y-%m-%d %H:%M'
+
+icons:
+  when: auto
+  theme: fancy
+  separator: " "
+
+# == Ignore Globs ==
+# A list of globs to ignore when listing.
+# ignore-globs:
+#   - .git
+
+# Whether to add indicator characters to certain listed files.
+# Possible values: false, true
+indicators: false
+
+
+# Specifies the format of the size column.
+# Possible values: default, short, bytes
+size: default
+
+sorting:
+  # Specify what to sort by.
+  # Possible values: extension, name, time, size, version
+  column: name
+  # Whether to reverse the sorting.
+  # Possible values: false, true
+  reverse: false
+  # Whether to group directories together and where.
+  # When "classic" is set, this is set to "none".
+  # Possible values: first, last, none
+  dir-grouping: none
+
+# Whether to omit showing symlink targets
+no-symlink: false
+
+# Whether to display the total size of directories.
+total-size: false

@@ -221,8 +221,10 @@ $(brew --prefix)/opt/fzf/install --xdg
 # * Select color preset "Solarized Ligt". With macOs appearance following the sun, it's much more likely to be day time and thus no need to switch color in irctor on start.
 ### Text
 # * Set font to either
+# ** DM Mono, Regular, 14pt
 # ** Source Code Pro, Regular, 14pt
 # ** Terminus, Medium, 16pt
+# ** Any NerdFont when using lsd(1) e.g.: Hack Nerd Font Mono, Regular, 14pt
 ### Terminal
 # * Check "Silence Bells"
 ### Terminal
