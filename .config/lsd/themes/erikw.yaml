@@ -1,0 +1,25 @@
+# Move away from some yellow colors not working well with solarized light
+user: 105 # changed
+group: 187
+permission:
+  read: dark_green
+  write: dark_yellow
+  exec: dark_red
+  exec-sticky: 5
+  no-access: 245
+date:
+  hour-old: 40
+  day-old: 42
+  older: 36
+size:
+  none: 245
+  small: 217 # changed
+  medium: 216
+  large: 172
+inode:
+  valid: 13
+  invalid: 245
+links:
+  valid: 13
+  invalid: 245
+tree-edge: 245

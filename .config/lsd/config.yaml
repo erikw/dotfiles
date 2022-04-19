@@ -5,7 +5,8 @@ classic: false
 
 color:
   when: auto
-  theme: default
+  #theme: default  # TODO find solarized theme
+  theme: erikw
 
 date: '+%Y-%m-%d %H:%M'
 
