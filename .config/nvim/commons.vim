@@ -288,6 +288,9 @@ call lh#local_vimrc#munge('whitelist', $HOME.'/src/github.com/erikw')
 " Swap invert comment toggle.
 	"map <silent> <Leader>c<Space> <plug>NERDCommenterInvert
 	"map <silent> <Leader>ci <plug>NERDCommenterToggle
+
+" Align line-wise comment delimiters flush left instead of following code indentation
+let g:NERDDefaultAlign = 'left'
 " }
 
 " netrw {

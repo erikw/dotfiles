@@ -102,6 +102,7 @@
 # Formula: optional {
 =begin
     brew 'antiword'
+    brew 'asciinema'
     brew 'bashdb'
     brew 'ccls'
     brew 'cgdb'
