@@ -9,7 +9,7 @@
 	# Use patched font symbols.
 	export TMUX_POWERLINE_PATCHED_FONT_IN_USE="true"
 	# The theme to use.
-	#export TMUX_POWERLINE_THEME="erikw"
+	export TMUX_POWERLINE_THEME="erikw"
 	# Overlay dirctory to look for themes. There you can put your own themes outside the repo. Fallback will still be the "themes" directory in the repo.
 	export TMUX_POWERLINE_DIR_USER_THEMES="${XDG_CONFIG_HOME:-$HOME/.config}/tmux-powerline/themes/"
 	# Overlay dirctory to look for segments. There you can put your own segments outside the repo. Fallback will still be the "segments" directory in the repo.
@@ -113,9 +113,9 @@
 
 # weather.sh {
 	# The data provider to use. Currently only "yahoo" is supported.
-	export TMUX_POWERLINE_SEG_WEATHER_DATA_PROVIDER="yahoo"
+	export TMUX_POWERLINE_SEG_WEATHER_DATA_PROVIDER="yrno"
 	# What unit to use. Can be any of {c,f,k}.
-	export TMUX_POWERLINE_SEG_WEATHER_UNIT="f"
+	export TMUX_POWERLINE_SEG_WEATHER_UNIT="c"
 	# How often to updat the weahter in seconds.
 	export TMUX_POWERLINE_SEG_WEATHER_UPDATE_PERIOD="600"
 
@@ -123,5 +123,9 @@
 	# 1. Go to Yahoo weather http://weather.yahoo.com/
 	# 2. Find the weather for you location
 	# 3. Copy the last numbers in that URL. e.g. "http://weather.yahoo.com/united-states/california/newport-beach-12796587/" has the number "12796587"
-	export TMUX_POWERLINE_SEG_WEATHER_LOCATION="12796587"
+	#export TMUX_POWERLINE_SEG_WEATHER_LOCATION="12796587"
+
+	# yrno
+	export TMUX_POWERLINE_SEG_WEATHER_LAT="52.51728951583041"
+	export TMUX_POWERLINE_SEG_WEATHER_LON="13.406983127694986"
 # }
