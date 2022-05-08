@@ -509,6 +509,10 @@ defaults write com.apple.screencapture show-thumbnail -bool FALSE
 #curl -L https://iterm2.com/misc/install_shell_integration.sh | bash
 
 # Media shortcuts for external keyboard: follow instructions in ~/bin/macos_media_control/info.txt
+
+# Move any window with ctrl+cmd+click+drag, like typical Linux WMs.
+# Ref: https://mmazzarolo.com/blog/2022-04-16-drag-window-by-clicking-anywhere-on-macos/
+defaults write -g NSWindowShouldDragOnGesture -bool true
 # }
 
 killall Dock Finder
