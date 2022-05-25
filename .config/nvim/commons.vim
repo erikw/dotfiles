@@ -330,7 +330,7 @@ aug END
 
 " lexima.vim {
 " Don't auto-close quotes at "word" (more like non-whitespaces places )boundaries. Reference: https://github.com/cohama/lexima.vim/issues/129
-if &rtp =~ 'lexima'
+if exists("lexima#add_rule")
 	call lexima#add_rule({'char': '"', 'at': '\%#\S\|\S\%#'})
 	call lexima#add_rule({'char': "'", 'at': '\%#\S\|\S\%#'})
 	call lexima#add_rule({'char': "[", 'at': '\%#\S\|\S\%#'})  " for []() url syntax around word.
