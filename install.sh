@@ -95,4 +95,5 @@ fi
 
 # Perl
 # Requirements for ~/bin/rename_sane.sh
+step "rename_sane.sh dependency: cpan module Unicode"
 cpan Text::Unidecode
