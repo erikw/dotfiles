@@ -21,7 +21,7 @@ source .config/shell/functions.d/sourceifexists.sh
 
 step "Setting up git"
 # For non-interactive setups e.g. GitHubCoderspaces. Needed as git submodule init asks about github.com fingerprint.
-ssh-keyscan github.com ~/.ssh/known_hosts
+ssh-keyscan github.com >> ~/.ssh/known_hosts
 
 # NOTE disabled as this script should work as non-interactive e.g. GitHub Codespaces VSCode setup.
 #email=
