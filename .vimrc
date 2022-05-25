@@ -152,7 +152,8 @@ set dictionary+=~/.vim/spell/		" Use custom dictionaries.
 " }
 
 " UI {
-silent! colorscheme NeoSolarized	" Ignore if don't exist. Ref: https://stackoverflow.com/a/5703164/265508
+" Ignore if don't exist. This is the case when $(vim -c PlugInstall) Ref: https://stackoverflow.com/a/5703164/265508
+silent! colorscheme NeoSolarized
 
 set t_Co=256		" Set number of colors.
 "hi Normal ctermbg=NONE	" Transparent background.
