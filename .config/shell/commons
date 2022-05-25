@@ -88,11 +88,13 @@
 	test -d $HOME/.local/bin && PATH="$HOME/.local/bin:$PATH"
 
 	# Homebrew installation path prefix - do this once, instead of slowing down shell everywhere.
-	if shell_is_macos; then
-		# But optimize that still ;)
-		test -z ${HOMEBREW_PREFIX+x} && export HOMEBREW_PREFIX=/usr/local
-	else
-		test -z ${HOMEBREW_PREFIX+x} && export HOMEBREW_PREFIX=$(brew --prefix)
+	if program_is_in_path brew; then
+		if shell_is_macos; then
+			# But optimize that still ;)
+			test -z ${HOMEBREW_PREFIX+x} && export HOMEBREW_PREFIX=/usr/local
+		else  # Linux
+			test -z ${HOMEBREW_PREFIX+x} && export HOMEBREW_PREFIX=$(brew --prefix)
+		fi
 	fi
 
 	# Set common bin paths.
