@@ -187,7 +187,7 @@ execute "set thesaurus=" . stdpath('config') . "/thesaurus/" . matchstr(&spellla
 " }
 
 " UI {
-colorscheme NeoSolarized
+silent! colorscheme NeoSolarized	" Ignore if don't exist. Ref: https://stackoverflow.com/a/5703164/265508
 
 " Adjust colors to this background.
 let s:solarized_status = g:xdg_state_home . "/solarizedtoggle/status"
