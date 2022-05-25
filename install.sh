@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 # Install dotfiles.
 #
-# The name of this script should adhere to what is usually recognized in automations, see  https://docs.github.com/en/codespaces/customizing-your-codespace/personalizing-codespaces-for-your-account
+# The name of this script should adhere to what is usually recognized in automations, e.g. GitHub Codespaces.
+# For CodeSpaces, see
+# * https://docs.github.com/en/codespaces/customizing-your-codespace/personalizing-codespaces-for-your-account
+# * https://docs.github.com/en/codespaces/troubleshooting/troubleshooting-dotfiles-for-codespaces
 
 
 step() {
@@ -21,7 +24,8 @@ source .config/shell/functions.d/sourceifexists.sh
 
 step "Setting up git"
 # For non-interactive setups e.g. GitHubCoderspaces. Needed as git submodule init asks about github.com fingerprint.
-ssh-keyscan github.com >> ~/.ssh/known_hosts
+mkdir -p $HOME/.ssh
+ssh-keyscan github.com >> $HOME/.ssh/known_hosts
 
 # NOTE disabled as this script should work as non-interactive e.g. GitHub Codespaces VSCode setup.
 #email=
@@ -62,8 +66,8 @@ fi
 
 
 if program_is_in_path irssi; then
-	step "Untracking ~/.irssi/config for local changes."
-	source ~/.config/shell/aliases
+	step "Untracking $HOME/.irssi/config for local changes."
+	source $HOME/.config/shell/aliases
 	dotf_irssiconf_untrack
 fi
 
