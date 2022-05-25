@@ -1,7 +1,8 @@
 #!/usr/bin/env sh
 # Rename to sane file names.
-# Requirements: rename(.pl)
-# Requirements: $ cpan Text::Unidecode
+# * Requirements: rename(.pl)
+# * Requirements: $ cpan Text::Unidecode
+#   * non-interactive: $ PERL_MM_USE_DEFAULT=1 perl -MCPAN -e 'install Text::Unidecode'
 
 test -n "$1" && path="$1" || path="."
 
