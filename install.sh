@@ -18,6 +18,10 @@ cd $BASEDIR
 source .config/shell/functions
 source .config/shell/functions.d/sourceifexists.sh
 
+step "clone git submodules"
+git submodule init
+git submodule update
+
 step "Setting up git"
 # NOTE disabled as this script should work as non-interactive e.g. GitHub Codespaces VSCode setup.
 #email=

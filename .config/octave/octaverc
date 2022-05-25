@@ -1,4 +1,5 @@
 # Octave configuration
 # See https://wiki.octave.org/.octaverc
 
-format long	# Don't round numbers but display more decimals.
+#format long	# Don't round numbers but display more decimals.
+format short	% Don't display unecessary decimal places like 29.900000000

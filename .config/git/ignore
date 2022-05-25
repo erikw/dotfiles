@@ -30,4 +30,4 @@ cscope.in.out
 
 # Ruby development
 # byebug
-#.byebug_history
+.byebug_history
