@@ -51,13 +51,13 @@ ls -la $HOME/.backup
 if program_is_in_path vim && program_is_in_path curl; then
 	step "Setting up Vim"
 	curl -fLo $HOME/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-	vim -c PlugInstall
+	vim -c 'PlugInstall | qa'
 fi
 
 if program_is_in_path nvim && program_is_in_path curl; then
 	step "Setting up Neovim"
 	sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-	nvim -c PlugInstall
+	nvim -c 'PlugInstall | qa'
 fi
 
 
