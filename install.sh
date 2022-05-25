@@ -100,4 +100,6 @@ fi
 # Perl
 # Requirements for ~/bin/rename_sane.sh
 step "rename_sane.sh dependency: cpan module Unicode"
-cpan Text::Unidecode
+#cpan Text::Unidecode
+# Non-interactive, answer questions with default. Ref: https://stackoverflow.com/a/977996/265508
+PERL_MM_USE_DEFAULT=1 perl -MCPAN -e 'install Text::Unidecode'
