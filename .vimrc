@@ -152,7 +152,9 @@ set dictionary+=~/.vim/spell/		" Use custom dictionaries.
 " }
 
 " UI {
-colorscheme NeoSolarized
+if has#colorscheme('NeoSolarized')
+	colorscheme NeoSolarized
+endif
 
 set t_Co=256		" Set number of colors.
 "hi Normal ctermbg=NONE	" Transparent background.

@@ -281,7 +281,9 @@ nnoremap <Leader>m :Maps<CR>
 " File names to recognize.
 let g:local_vimrc = ['.vimlocal', '_vimrc_local.vim']
 " Paths to not ask before loading.
-call lh#local_vimrc#munge('whitelist', $HOME.'/src/github.com/erikw')
+if exists("lh#local_vimrc")
+	call lh#local_vimrc#munge('whitelist', $HOME.'/src/github.com/erikw')
+end
 " }
 
 " nerdcommenter {
