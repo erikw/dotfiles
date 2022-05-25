@@ -27,4 +27,4 @@
 	url = https://github.com/tmux-plugins/tpm
 [submodule ".repos/fzf-marks"]
 	path = .repos/fzf-marks
-	url = git@github.com:urbainvaes/fzf-marks.git
+	url = https://github.com/urbainvaes/fzf-marks.git
