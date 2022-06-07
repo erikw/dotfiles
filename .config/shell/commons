@@ -91,6 +91,7 @@
 	if program_is_in_path brew; then
 		if shell_is_macos; then
 			# But optimize that still ;)
+			# TODO for Apple silicon macs the path is /opt/homebrew
 			test -z ${HOMEBREW_PREFIX+x} && export HOMEBREW_PREFIX=/usr/local
 		else  # Linux
 			test -z ${HOMEBREW_PREFIX+x} && export HOMEBREW_PREFIX=$(brew --prefix)
