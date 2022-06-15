@@ -39,7 +39,7 @@ tap 'homebrew/cask-drivers' # For focusrite-control
     cask 'authy'
     cask 'cryptomator'
     cask 'dropbox'
-    cask 'ferdi'
+    cask 'ferdium/ferdium/ferdium-nightly'
     cask 'focusrite-control'
     cask 'google-cloud-sdk'  # for gcloud cli used for tardbot.
     cask 'gramps'
