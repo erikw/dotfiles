@@ -224,11 +224,9 @@ set listchars=eol:$,space:·,tab:>-,trail:¬,extends:>,precedes:<,nbsp:.	" Chara
 " Plugin Config {
 " copilot.vim {
 " Disable/enable per filetype
-"let g:copilot_filetypes = {
-      "\ '*': v:false,
-      "\ }
-" Disabled for now
-let g:copilot_filetypes = { '*': v:false }
+let g:copilot_filetypes = {
+      \ '*': v:true,
+      \ }
 
 " Remap from <tab> as this is used by snipmate.
 " Reference: https://github.com/github/feedback/discussions/6919#discussioncomment-1553837

@@ -1,0 +1,8 @@
+# Ref: https://github.com/ianyh/Amethyst/blob/development/docs/configuration-files.md
+layouts:
+    - tall
+    - fullscreen
+    - floating
+
+enables-layout-hud: false
+enables-layout-hud-on-space-change: false
