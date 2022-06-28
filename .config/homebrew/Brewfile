@@ -32,6 +32,7 @@
     brew 'ctags'
     brew 'curl'
     brew 'dfc'
+    brew 'dict'
     brew 'diff-pdf'
     brew 'difftastic'
     brew 'direnv'
