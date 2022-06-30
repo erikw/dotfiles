@@ -124,7 +124,7 @@ git() {
 # Last argument is the search string. Preceding arguments are for ack.
 viack() {
 	local search
-	# Get the last argument. Source: http://stackoverflow.com/questions/1853946/getting-the-last-argument-passed-to-a-shell-script
+	# Get the last argument. Reference: https://stackoverflow.com/a/1853993/265508
 	for search; do true; done
 	vi -p $(ack -l $@) -c 1 +/$search  # Go to first line then search downwards.
 }
@@ -141,6 +141,11 @@ virg() {
 	local search
 	for search; do true; done
 	vi -p $(rg -l $@) -c 1 +/$search
+}
+
+# Wrapper around the classic 'fd with grep'.
+vifd() {
+	vi -p $(fd $@)
 }
 
 _dev_log() {
