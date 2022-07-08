@@ -287,7 +287,7 @@ fi
 	alias find_dropbox_conflicts='find ~/.dropbox-data/Dropbox/doc -name "*conflicted copy*"'	# Find conflicting synced dropbox files.
 	alias find_large_files="find . -type f -size +5M -print0 | xargs -0 ls -lh | sort -k5,5 -h | awk '{print \$5, \$9}'"	# Find large files.
 	alias find_large_pdfs="find . -name \"*.pdf\" -type f -size +5M -print0 | xargs -0 ls -lh | sort -k5,5 -h | awk '{print \$5, \$9}'"	# Find large PDFs.
-	alias restic_env_b2='source ${XDG_CONFIG_HOME:-$HOME/.config}/restic/b2_env.sh'		# Init restic env for B2.
+	alias restic_env_b2='source $HOMEBREW_PREFIX/etc/restic/default.env.sh'		# Init restic env for B2.
 	alias git_top_contribs='git log | grep Author | sort | uniq -c | sort -n -r'	# Show top authors of a git repo.
 
 	# Enable/disable git change tracking on irssi conf. Have it off by default, as awl plugin keeps changing it all the time.

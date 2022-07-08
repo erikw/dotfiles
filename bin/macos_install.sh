@@ -9,7 +9,10 @@ set -ex
 # Install homebrew.
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 # Using Brewfile at $HOMEBREW_BUNDLE_FILE
-brew bundle install
+#brew bundle install
+# NOPE don't set global HOMEBREW_BUNDLE_FILE path, interferes with local projects.
+brewfile_global=${XDG_CONFIG_HOME:-$HOME/.config}/homebrew/Brewfile
+brew bundle install --file $brewfile_global
 
 brewfile_host_specific=$HOMEBREW_BUNDLE_FILE.$(hostname)
 if [ -e $brewfile_host_specific ]; then

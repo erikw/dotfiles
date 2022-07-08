@@ -181,8 +181,9 @@
 	# Brew bundler
 	if shell_is_macos; then
 		# Location of Brewfile. Reference: https://docs.brew.sh/Manpage#bundle-subcommand
-		# Alternatively could use $(brew bundle -g) to use this file, but as I'm not dealing with other Brewfile, might as well make this one default.
-		export HOMEBREW_BUNDLE_FILE=${XDG_CONFIG_HOME:-$HOME/.config}/homebrew/Brewfile
+		# Alternatively could use $(brew bundle --global) to use this file, but as I'm not dealing with other Brewfile, might as well make this one default.
+		# NOPE when Brewfile is used in a project, this will interfere, don't set this globally.
+		#export HOMEBREW_BUNDLE_FILE=${XDG_CONFIG_HOME:-$HOME/.config}/homebrew/Brewfile
 		# Not using the Brewfile.lock.json feature.
 		export HOMEBREW_BUNDLE_NO_LOCK=1
 	fi
