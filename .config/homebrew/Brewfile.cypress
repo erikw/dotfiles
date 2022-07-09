@@ -49,6 +49,7 @@ tap 'homebrew/cask-drivers' # For focusrite-control
     cask 'keybase'
     cask 'kid3'
     cask 'mactex'
+    cask 'microsoft-office'
     cask 'mullvadvpn'
     cask 'musicbrainz-picard'
     cask 'mutify'
