@@ -8,7 +8,7 @@
 # * https://docs.github.com/en/codespaces/customizing-your-codespace/personalizing-codespaces-for-your-account
 # * https://docs.github.com/en/codespaces/troubleshooting/troubleshooting-dotfiles-for-codespaces
 
-set -euxo pipefail
+set -exo pipefail
 
 step() {
 	local msg="$@"
@@ -17,6 +17,7 @@ step() {
 }
 
 
+# cd to dotfiles root
 # Reference: https://stackoverflow.com/a/43919044/265508
 a="/$0"; a=${a%/*}; a=${a#/}; a=${a:-.}; BASEDIR=$(cd "$a"; pwd)
 cd $BASEDIR

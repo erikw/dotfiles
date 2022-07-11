@@ -3,6 +3,15 @@
 
 set -euxo pipefail
 
+# cd to dotfiles root
+# Reference: https://stackoverflow.com/a/43919044/265508
+a="/$0"; a=${a%/*}; a=${a#/}; a=${a:-.}; BASEDIR=$(cd "$a"; pwd)
+cd $BASEDIR/..
+
+source .config/shell/functions
+source .config/shell/functions.d/sourceifexists.sh
+
+
 step() {
 	local msg="$@"
 	printf "\n====================\n"
