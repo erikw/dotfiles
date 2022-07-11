@@ -31,16 +31,6 @@ step "Setting up git"
 mkdir -p $HOME/.ssh
 ssh-keyscan github.com >> $HOME/.ssh/known_hosts
 
-# NOTE disabled as this script should work as non-interactive e.g. GitHub Codespaces VSCode setup.
-#email=
-#while [ -z "$email" ]; do
-	#echo -n "Enter email address for ~/.config/git/config-local: "
-	#read email
-#done;
-#cat << EOF >> ~/.config/git/config-local
-#[user]
-	#email = $email
-#EOF
 git remote add upstream git@github.com:justone/dotfiles.git
 git submodule init
 git submodule update
@@ -52,6 +42,18 @@ git submodule update
 
 step "Installing dotfiles with dfm"
 bin/dfm install
+
+# Must be after dfm-install, otherwise it gets moved to ~/.backup
+# NOTE disabled as this script should work as non-interactive e.g. GitHub Codespaces VSCode setup.
+#email=
+#while [ -z "$email" ]; do
+	#echo -n "Enter email address for ~/.config/git/config-local: "
+	#read email
+#done;
+#cat << EOF >> ~/.config/git/config-local
+#[user]
+	#email = $email
+#EOF
 
 step "Listing backed up dotfiles at \$HOME/.backup"
 echo "Please check $HOME/.backup/ & commit changes to the local branch."

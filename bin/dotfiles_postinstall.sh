@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 # Installation to be done after dotfiles are installed, and ideally after OS-specific tooling too.
+# NOTE this must be non-interactive as it's called from non-interactive dotfiles install.sh
 
 set -euxo pipefail
 
