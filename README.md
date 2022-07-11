@@ -13,27 +13,18 @@ Could replace dfm with GNU stove: https://www.stevenrbaker.com/tech/managing-dot
 
 # Installation
 
-## OS Dependent Tooling
-The dotfiles will work without the base tooling, but much better if it's already in place!
+## Install DFM
 
-### macOS
-For macOS, install homebrew and run configs:
+### Bootstrapped
+Either bootstrap like:
 ```console
-$ bin/macos_config.sh
-$ bin/macos_install.sh
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/erikw/dotfiles/personal/bin/boostrap_dotfiles.sh)"
 ```
 
-### Windows
-Run:
+### Manual
+#### Git
+##### Generate a pair of new SSH keys for GitHub
 ```console
-$ bin/windows_config.ps1
-$ bin/windows_install.ps1
-```
-
-
-## Git
-### Generate a pair of new SSH keys for GitHub
-```bash
 $ cd /tmp
 $ curl -O https://raw.githubusercontent.com/erikw/dotfiles/personal/bin/ssh-keygen.sh
 $ chmod 744 ssh-keygen.sh
@@ -52,49 +43,69 @@ Host *github.com
 ```
 
 
-### Upload keys
+##### Upload keys
 Upload the public key to your [GitHub profile](https://github.com/settings/keys)
 
-```bash
+```console
 # Linux:
 $ xclip ~/.ssh/identityfiles/github_id_rsa.pub
 $ # or, macOS:
 $ pbcopy <  ~/.ssh/identityfiles/github_id_rsa.pub
 ```
 
-### Git E-Mail
+##### Git E-Mail
 Set up git user email address in `~/.config/git/config-local`:
 ```
 [user]
 	email = user@doman.tld
 ```
-
-
-## Install DFM
-
-```bash
+#### Clone dotfiles repo
+* Clone repo
+```console
 $ #git clone git@github.com:erikw/dotfiles.git ~/.dotfiles  # old
 $ git clone git@github.com:erikw/dotfiles.git ~/src/github.com/erikw/dotfiles
 $ cd !$
 $ ./install.sh
-```
 
+
+
+### Post-install
 Check what dotfiles that were overriden, and handle this with a merge or discard.
-```bash
+```console
 $ cd ~/.backup
 $ ls -la
 ```
 
 Switch to a local branch for secret changes:
 
-```bash
+```console
 $ cd ~/.dotfiles
 $ git checkout -b local
 ```
 and after making some changes to the branch, star quashing to one commit
-```bash
+```console
 $ git commit -m "SQUASHED passwords"
 ```
+
+
+## OS Dependent Tooling
+The dotfiles will work without the base tooling, but much better if it's already in place!
+
+### macOS
+For macOS, install homebrew and run configs:
+```console
+$ bin/macos_config.sh
+$ bin/macos_install.sh
+```
+
+### Windows
+Run:
+```console
+$ bin/windows_config.ps1
+$ bin/windows_install.ps1
+```
+
+
 
 
 ## Host specific configuration

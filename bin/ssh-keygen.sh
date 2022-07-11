@@ -2,6 +2,10 @@
 # Interactivly create SSH keypairs with my preferences.
 # # NOTE don't use alias for github.com since lot's of applications will break like git submodule and vundle. Just use 'Host "*github.com"'.
 
+
+only_key=n
+test "$1" = "--only-key" && only_key=y
+
 alias=""
 while [ -z "$alias" ]; do
 	echo -n "Alias the remote the host: "
@@ -61,6 +65,9 @@ if ! [ -d $HOME/.ssh/identityfiles ]; then
 fi
 
 eval "$cmd_keygen"
+
+
+"$only_key" == "y" && exit
 
 if ! [ -e $HOME/.ssh/config ]; then
 	cat << EOF > $HOME/.ssh/config
