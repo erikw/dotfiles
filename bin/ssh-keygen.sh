@@ -2,6 +2,7 @@
 # Interactivly create SSH keypairs with my preferences.
 # # NOTE don't use alias for github.com since lot's of applications will break like git submodule and vundle. Just use 'Host "*github.com"'.
 
+# TODO add to ssh-agent? https://www.ssh.com/academy/ssh/agent
 
 only_key=n
 test "$1" = "--only-key" && only_key=y
