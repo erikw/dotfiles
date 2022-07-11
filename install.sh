@@ -1,11 +1,14 @@
 #!/usr/bin/env bash
 # Install dotfiles.
 #
+# NOTE this must be a non-interactive script, as e.g. it will be run by GitHub Coderspaces.
+#
 # The name of this script should adhere to what is usually recognized in automations, e.g. GitHub Codespaces.
 # For CodeSpaces, see
 # * https://docs.github.com/en/codespaces/customizing-your-codespace/personalizing-codespaces-for-your-account
 # * https://docs.github.com/en/codespaces/troubleshooting/troubleshooting-dotfiles-for-codespaces
 
+set -euxo pipefail
 
 step() {
 	local msg="$@"
@@ -103,3 +106,6 @@ step "rename_sane.sh dependency: cpan module Unicode"
 #cpan Text::Unidecode
 # Non-interactive, answer questions with default. Ref: https://stackoverflow.com/a/977996/265508
 PERL_MM_USE_DEFAULT=1 perl -MCPAN -e 'install Text::Unidecode'
+
+
+step "Please check $HOME/.backup/ & commit changes to local branch"

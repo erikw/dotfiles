@@ -9,8 +9,6 @@ Most of my personal dotfiles can be found in this branch. I use dfm (dot file ma
   * [pdf_compress.sh](bin/pdf_compress.sh) -- compress file size of PDFs!
 
 # Development 
-Could replace dfm with GNU stove: https://www.stevenrbaker.com/tech/managing-dotfiles-with-gnu-stow.html
-
 # Installation
 
 ## Install DFM
@@ -66,26 +64,9 @@ $ #git clone git@github.com:erikw/dotfiles.git ~/.dotfiles  # old
 $ git clone git@github.com:erikw/dotfiles.git ~/src/github.com/erikw/dotfiles
 $ cd !$
 $ ./install.sh
-
-
-
-### Post-install
-Check what dotfiles that were overriden, and handle this with a merge or discard.
-```console
-$ cd ~/.backup
-$ ls -la
 ```
 
-Switch to a local branch for secret changes:
 
-```console
-$ cd ~/.dotfiles
-$ git checkout -b local
-```
-and after making some changes to the branch, star quashing to one commit
-```console
-$ git commit -m "SQUASHED passwords"
-```
 
 
 ## OS Dependent Tooling
@@ -108,7 +89,31 @@ $ bin/windows_install.ps1
 
 
 
-## Host specific configuration
+## Dotfiles setup
+Now it's time make the final configurations to the dotfiles repo itself once the OS-dependant tooling is setup:
+```console
+$ ./install.sh
+```
+
+### Post-install
+Check what dotfiles that were overriden, and handle this with a merge or discard.
+```console
+$ cd ~/.backup
+$ ls -la
+```
+
+Switch to a local branch for secret changes:
+```console
+$ cd ~/.dotfiles
+$ git checkout -b local
+```
+
+and after making some changes to the branch, squash to one commit
+```console
+$ git commit -m "SQUASHED passwords"
+```
+
+### Host specific configuration
 * Passwords and other secretes are censored. To find these and substitue them for the real thing, do:
 	```console
 	$ grep -nr GIT-CENSORED . | grep -v README.md | grep -v "/.git/"
@@ -122,8 +127,11 @@ $ bin/windows_install.ps1
 	```
 
 
+
 ## Firefox
 Import minimal search-keyword bookmarks from [bookmarks_minimal.html](.config/mozilla/bookmarks_minimal.html) to Firefox.
 
 # Future
-Migrated to [homeschick](https://github.com/andsens/homeshick) to be able to split Linux from macOS-only configs, and have a main general one?
+* Migrate to [homeschick](https://github.com/andsens/homeshick) to be able to split Linux from macOS-only configs, and have a main general one?
+* Could replace dfm with GNU stove: https://www.stevenrbaker.com/tech/managing-dotfiles-with-gnu-stow.html ?
+

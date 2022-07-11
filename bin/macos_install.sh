@@ -3,7 +3,7 @@
 #	vi: foldmarker={,} foldmethod=marker foldlevel=0: tabstop=4:
 # }
 
-set -ex
+set -euxo pipefail
 
 # Installs: Automated {
 # Install homebrew.

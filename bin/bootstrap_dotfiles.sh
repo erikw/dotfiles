@@ -1,9 +1,14 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
+# Boot strap my dotfiles by setting up Git with SSH keys and then cloning and install my dotfiles repo.
+
+set -euxo pipefail
 
 SSH_ID_DIR="$HOME/.ssh/identityfiles"
 SSH_PUB_KEY="$SSH_ID_DIR/github_id_rsa.pub"
 DOTFILES_REPO=git@github.com:erikw/dotfiles.git
-DOTFILES_ROOT=$HOME/src/github.com/erikw/dotfiles
+REPOS_ROOT="$HOME/src/github.com/erikw"
+DOTFILES_ROOT="$REPOS_ROOT/dotfiles"
+
 step() {
 	local msg="$@"
 	printf "\n====================\n"
@@ -16,7 +21,7 @@ step "Generating SSH key pair for GitHub"
 mkdir -p $SSH_ID_DIR
 ssh-keygen -t rsa -f $SSH_ID_DIR/github_id_rsa -C "${USER}@${HOSTNAME} for erikw@github"
 
-cat << EOF > $HOME/.ssh/config
+cat << EOF >> $HOME/.ssh/config
 
 Host *github.com
 	Port 22
@@ -26,10 +31,10 @@ Host *github.com
 	ServerAliveInterval 15
 EOF
 
-if type xclip >/dev/null 2>&1
+if type xclip >/dev/null 2>&1; then
 	xclip $SSH_PUB_KEY
 	echo "Copied public key to clipboard with xclip"
-elif type pbcopy >/dev/null 2>&1
+elif type pbcopy >/dev/null 2>&1; then
 	pbcopy < $SSH_PUB_KEY
 	echo "Copied public key to clipboard with pbcopy"
 fi
@@ -51,8 +56,14 @@ EOF
 
 
 step "Cloning dotfiles repo"
+mkdir -p $REPOS_ROOT
 git clone $DOTFILES_REPO $DOTFILES_ROOT
 cd $DOTFILES_ROOT
 
-step "Running ./install.sh"
-./install.sh
+step "Bootstrap done"
+echo "Now please:"
+printf "\t1. Run OS-specific installer scripts e.g. \n"
+printf "\t\t~/bin/macos_config.sh \n"
+printf "\t\t~/bin/macos_install.sh \n"
+printf "\t\t~/bin/windows_install.ps1 \n"
+printf "\t2. Configure dotfiles with ./install.sh \n"

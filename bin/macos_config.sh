@@ -14,7 +14,7 @@
 # }
 
 # Script Environment {
-set -ex
+set -euxo pipefail
 
 # From: https://github.com/mathiasbynens/dotfiles/blob/main/.macos
 # Close any open System Preferences panes, to prevent them from overriding
