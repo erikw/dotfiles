@@ -49,7 +49,9 @@ tap 'homebrew/cask-drivers' # For focusrite-control
     cask 'keybase'
     cask 'kid3'
     cask 'mactex'
-    cask 'microsoft-office'
+    cask 'microsoft-excel'
+    cask 'microsoft-powerpoint'
+    cask 'microsoft-word'
     cask 'mullvadvpn'
     cask 'musicbrainz-picard'
     cask 'mutify'
@@ -63,6 +65,7 @@ tap 'homebrew/cask-drivers' # For focusrite-control
 # Cask: optional {
 =begin
     cask 'ableton-live-suite' # If using latest version, which I'm not.
+    cask 'microsoft-office'  # License managed at https://account.microsoft.com/services/
     cask 'mixed-in-key'    # If using latest version, which I'm not.
 =end
 # }
