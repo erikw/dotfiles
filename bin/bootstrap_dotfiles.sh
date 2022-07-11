@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
-URL_SSH_KEYGEN=https://raw.githubusercontent.com/erikw/dotfiles/personal/bin/ssh-keygen.sh
-SSH_PUB_KEY="$HOME/.ssh/identityfiles/github_id_rsa.pub"
+SSH_ID_DIR="$HOME/.ssh/identityfiles"
+SSH_PUB_KEY="$SSH_ID_DIR/github_id_rsa.pub"
 DOTFILES_REPO=git@github.com:erikw/dotfiles.git
 DOTFILES_ROOT=$HOME/src/github.com/erikw/dotfiles
 step() {
@@ -12,18 +12,16 @@ step() {
 
 cd /tmp
 
-step "Generating SSH key for GitHub"
-curl -O $URL_SSH_KEYGEN
-chmod 744 ssh-keygen.sh
-./ssh-keygen.sh  --only-key  # TODO add option to be able to specify name, URL on cli. Or find better script, to avoid human input.
-
+step "Generating SSH key pair for GitHub"
+mkdir -p $SSH_ID_DIR
+ssh-keygen -t rsa -f $SSH_ID_DIR/github_id_rsa -C "${USER}@${HOSTNAME} for erikw@github"
 
 cat << EOF > $HOME/.ssh/config
 
 Host *github.com
 	Port 22
 	User git
-	IdentityFile ~/.ssh/identityfiles/github_id_rsa
+	IdentityFile ${SSH_PUB_KEY}
 	IdentitiesOnly yes
 	ServerAliveInterval 15
 EOF
@@ -57,4 +55,4 @@ git clone $DOTFILES_REPO $DOTFILES_ROOT
 cd $DOTFILES_ROOT
 
 step "Running ./install.sh"
-/install.sh
+./install.sh
