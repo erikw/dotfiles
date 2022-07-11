@@ -16,7 +16,7 @@ Most of my personal dotfiles can be found in this branch. I use dfm (dot file ma
 ### Bootstrapped
 Either bootstrap like:
 ```console
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/erikw/dotfiles/personal/bin/boostrap_dotfiles.sh)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/erikw/dotfiles/personal/bin/bootstrap_dotfiles.sh)"
 ```
 
 ### Manual
