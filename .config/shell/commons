@@ -406,10 +406,33 @@
 	# Source MPD environment variables.
 	#sourceifexists ${XDG_CONFIG_HOME:-$HOME/.config}/mpd/env.sh
 
-	# SSH agent. Source bash file if not connected from a remote SSH.
-	#if [ -z "$SSH_CLIENT" ] && [ -f "$HOME/.ssh-agent" ]; then
-		#. $HOME/.ssh-agent
-	#fi
+
+	# Start SSH agent, unless this is an SSH session already
+	# Ref: https://stackoverflow.com/a/18915067
+	if [ -z "$SSH_CLIENT" ] && [ -f "$HOME/.ssh-agent" ]; then
+		SSH_ENV="$HOME/.ssh/agent-environment"
+
+		function start_agent {
+		    echo "Initialising new SSH agent..."
+		    /usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
+		    echo succeeded
+		    chmod 600 "${SSH_ENV}"
+		    . "${SSH_ENV}" > /dev/null
+		    /usr/bin/ssh-add;
+		}
+
+		# Source SSH settings, if applicable
+		if [ -f "${SSH_ENV}" ]; then
+		    . "${SSH_ENV}" > /dev/null
+		    #ps ${SSH_AGENT_PID} doesn't work under cywgin
+		    ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
+			start_agent;
+		    }
+		else
+		    start_agent;
+		fi
+	fi
+
 
 	# Tmuxinator initialization.
 	#if [ -d $HOME/src/github.com/tmuxinator/tmuxinator/bin/ ]; then

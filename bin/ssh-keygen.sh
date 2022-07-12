@@ -2,8 +2,6 @@
 # Interactivly create SSH keypairs with my preferences.
 # # NOTE don't use alias for github.com since lot's of applications will break like git submodule and vundle. Just use 'Host "*github.com"'.
 
-# TODO add to ssh-agent? https://www.ssh.com/academy/ssh/agent
-
 only_key=n
 test "$1" = "--only-key" && only_key=y
 
@@ -105,5 +103,15 @@ echo "$cmd_copy"
 echo -n "[Y/n]: "
 read ok
 if ([ -z "$ok" ] || [[ "$ok" = [yY] ]]); then
+	eval "$cmd_copy"
+fi
+
+
+cmd_agent="ssh-add \$HOME/.ssh/identityfiles/${key_stem}"
+echo "$cmd_agent"
+echo -n "[Y/n]: "
+read ok
+if ([ -z "$ok" ] || [[ "$ok" = [yY] ]]); then
+	eval $(ssh-agent)
 	eval "$cmd_copy"
 fi
