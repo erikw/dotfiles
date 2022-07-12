@@ -193,8 +193,8 @@ $(brew --prefix)/opt/fzf/install --xdg
 ## Scrolling
 # * Check: Enable Scroll Reverser
 # * Scrolling devices:
-#  - Check: Reverse Trackpad
-#  - Uncheck: Reverse Mouse
+#  - Uncheck: Reverse Trackpad
+#  - Check: Reverse Mouse
 ## App
 # * Check: Start at login
 # * Uncheck: Show in menu bar

@@ -95,7 +95,6 @@ sudo dseditgroup -o edit -u $USER -p -a $USER -t user power
 
 # General {
 # * Appearance: Auto
-# * NOPE  Uncheck "Close windows when quitting an app"
 # }
 
 # Desktop & Screensaver {
@@ -142,7 +141,7 @@ defaults write com.apple.Dock position-immutable -bool true
 # - Wi-Fi: uncheck
 # - Bluetooth: uncheck
 # - AirDrop: uncheck
-# - Do Not Distrub: when active
+# - Focus: when active
 # - Keyboard Brightness: uncheck
 # - Screen Mirroring: when active
 # - Display: uncheck
@@ -158,7 +157,7 @@ defaults write com.apple.Dock position-immutable -bool true
 # - Siri: uncheck
 # - Time machine: Show in Menu Bar
 # Dock misc {
-# * Add ~/ (Stack, List)  and ~/dl/ (Stack, Grid) to dock.
+# * Add ~/ (Stack, List)  and ~/dl/ (Stack, Automatic) to dock.
 # * For dual monitors: For all applications in dock: Right click > Option > assign to correct monitor and desktop.
 
 # Dim hidden apps (CMD+H) in the dock.
@@ -171,7 +170,7 @@ defaults write com.apple.dock persistent-apps -array-add '{tile-data={}; tile-ty
 # }
 
 # Mission Control {
-# * Unckeck "Automatically rearrange Spaces based on most recent use"
+# * Unckeck "Automatically rearrange Spaces based on most recent use":
 defaults write com.apple.dock mru-spaces -bool false
 # }
 
@@ -182,12 +181,14 @@ defaults write NSGlobalDomain AppleLanguages -array en-us sv-se de-de
 defaults write NSGlobalDomain AppleLocale en_DE
 # }
 
-# Notifications {
-# * Turn of Do Not Disturb:
+# Notifications & Focus {
+## Notifications
+# * Uncheck "Show notification on lock screen" for all apps individually, to not leak notifications.
+## Focus
+# * Turn on Do Not Disturb:
 #  - From 22:00 to 08:00
 #  -  When the display is sleeping
 #  -  When mirroring to TVs and projectors
-# * Uncheck "Show notification on lock screen" for all apps individually, to not leak notifications.
 # }
 
 # Security & Privacy {
@@ -201,9 +202,6 @@ sudo spctl --master-disable
 # * Turn on firewall.
 # Reference: https://superuser.com/a/1641741
 sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setglobalstate on
-# * NOPE Turn on "Block all incoming connections"
-# Reference: https://superuser.com/a/1357550
-# sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setblockall on
 ## Privacy
 # * Apple Advertising > uncheck "Personalize Ads".
 # }
@@ -253,7 +251,6 @@ defaults write -g InitialKeyRepeat -int 25
 ## Text
 # * Set word expansions based on ~/doc/tech/word_expansions.txt
 # * Spelling: Automatic by Language
-# * Click the "Spelling" dropdown > choose "Set up" > uncheck British English and check US English.
 ## Shortcuts
 ### Mission Control:
 # * Show Notification Center: Cmd+F11
@@ -271,7 +268,7 @@ defaults write -g InitialKeyRepeat -int 25
 
 # Mouse {
 # * Uncheck "Scroll Direction: Natural. NOPE use scroll-reverser app instead, to have natural scroll with trackpad and normal scroll with external mouse.
-defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
+#defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
 # For setting a new speed, easiest is to set the value in System Preferences, then read desired value $(defaults read -g com.apple.mouse...)
 # * Tracking Speed: 1/2
 defaults write -g com.apple.mouse.scaling 0.875
@@ -352,11 +349,11 @@ defaults write com.apple.finder ShowPathbar -bool true
 # ** Show Status Bar
 defaults write com.apple.finder ShowStatusBar -bool true
 ### Show View Options
-# * First make sure to be in List view before entering this menu
-# * Check "Always open in list view" > Use as default
+# * First make sure to be in Column view before entering this menu
+# * Check "Always open in Column view" > Use as default
 # Four-letter codes for the view modes: `icnv`, `Nlsv`, `clmv`, `glyv`
 defaults write com.apple.finder FXPreferredViewStyle -string "clmv"
-# * Also open this dialog while being in ~/, then check "Show Library Folder". Reference: https://appletoolbox.com/unhide-access-mac-library-folder/
+# * Also open this dialog while being in ~/, then check "Show Library Folder". Reference: https://appletoolbox.com/unhide-access-mac-library-folder/:
 chflags nohidden ~/Library
 ## Preferences
 ### General
@@ -431,7 +428,6 @@ chflags hidden ~/Public
 
 # Mail.app {
 # * Drag my Gmail account to the top in the mailboxes left side list and collapse all other.
-# * Break out the  Archive button with space on both sides, to not misclick delete button.
 # * The default keyboard shortcut for archive an email, ctrl+cmd+a, conflicts with Todoist. Add another one.
 #	- Reference: https://www.lifewire.com/archive-keyboard-shortcut-os-x-mail-1172749
 #	- System Preferences > Shortcuts > App Shortcuts > + >
@@ -490,7 +486,7 @@ chflags hidden ~/Public
 # * When the shell exists: close if the shell exited cleanly
 # }
 
-# Archive Utill.app {
+# Archive Util.app {
 # * Uncheck "Reveal expanded items in Finder"
 # }
 
