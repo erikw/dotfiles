@@ -49,7 +49,20 @@ echo "Paste contents of $SSH_PUB_KEY to https://github.com/settings/keys"
 echo "Press enter to continue"
 read
 
-# TODO after dfm-install in install.sh, this just gets moved to ~/.backup. dotfiles_postinstall also must be non-interactive. How solve?
+
+
+step "Cloning dotfiles repo"
+mkdir -p $REPOS_ROOT
+git clone $DOTFILES_REPO $DOTFILES_ROOT
+
+step "Installing dotfiles"
+cd $DOTFILES_ROOT
+./install.sh
+
+
+
+step "Git email setup"
+# Needs to be after dfm-install in install.sh, otherwise this just gets moved to ~/.backup.
 git_email=""
 while [ -z "$git_email" ]; do
 	echo -n "Enter your Git email: "
@@ -60,12 +73,3 @@ cat << EOF > $HOME/.config/git/config-local
 [user]
 	email = $git_email
 EOF
-
-
-step "Cloning dotfiles repo"
-mkdir -p $REPOS_ROOT
-git clone $DOTFILES_REPO $DOTFILES_ROOT
-
-step "Installing dotfiles"
-cd $DOTFILES_ROOT
-./install.sh
