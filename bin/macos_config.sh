@@ -260,6 +260,17 @@ defaults write -g InitialKeyRepeat -int 25
 # * Enable shortcuts for cycling input sources _backwards_ ("Select the previous input source") with CTRL+OPT+Space.
 # * Check "Select the *previous* input source: ctrl+opt+space.
 # * Uncheck "Select next source"
+### App Shortcuts
+# * Maill.app: The default keyboard shortcut for archive an email, ctrl+cmd+a, conflicts with Todoist. Add another one.
+#	Reference: https://www.lifewire.com/archive-keyboard-shortcut-os-x-mail-1172749
+#   - Application: Maill.app
+#   - Menu Title: Archive
+#   - Keyboard shortcut: opt+a
+# * Put mac to sleep, to use same keyboard shortcut as Jettison when it's not installed
+#   Ref: https://apple.stackexchange.com/a/28168
+#   - Application: All Applications
+#   - Menu Title: Sleep
+#   - Keyboard Shortcut: ctrl+cmd+s
 # Reason: keyboard shorcut clash on SHIFT+OPT with Amethyst's cycle layout.
 ## Input Sources
 # * Add US, Swedish & German. NOTE should have been automatically added after adding these languages in Language & Region (AppleLanguages)
@@ -428,12 +439,6 @@ chflags hidden ~/Public
 
 # Mail.app {
 # * Drag my Gmail account to the top in the mailboxes left side list and collapse all other.
-# * The default keyboard shortcut for archive an email, ctrl+cmd+a, conflicts with Todoist. Add another one.
-#	- Reference: https://www.lifewire.com/archive-keyboard-shortcut-os-x-mail-1172749
-#	- System Preferences > Shortcuts > App Shortcuts > + >
-#		- Application: Maill.app
-#		- Menu Title: Archive
-#		- Keyboard shortcut: Opt+a
 ## General
 # * Downloads folder: ~/dl
 ## Accounts
