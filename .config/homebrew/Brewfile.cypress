@@ -5,7 +5,7 @@
 # }
 
 # Taps {
-tap 'homebrew/cask-drivers' # For focusrite-control
+    tap 'homebrew/cask-drivers' # For focusrite-control
 # }
 
 # Formula: default {

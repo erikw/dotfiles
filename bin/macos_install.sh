@@ -11,6 +11,20 @@ set -euxo pipefail
 # Using Brewfile at $HOMEBREW_BUNDLE_FILE
 #brew bundle install
 # NOPE don't set global HOMEBREW_BUNDLE_FILE path, interferes with local projects.
+
+# Need to add brew to PATH
+brew_bin=
+if [ -e /opt/homebrew/bin/brew ]; then  # Apple Silicon macs
+	brew_bin=/opt/homebrew/bin/brew
+elif [ -e /usr/local/bin/brew ]; then  # Intel Macs
+	brew_bin=/usr/local/bin/brew
+else
+	echo "Could not detect Homebrew installation path" >&2
+	exit 1
+fi
+eval "$(${brew_bin} shellenv)"
+
+
 brewfile_global=${XDG_CONFIG_HOME:-$HOME/.config}/homebrew/Brewfile
 brew bundle install --file $brewfile_global
 
@@ -37,10 +51,10 @@ xattr -d -r com.apple.quarantine ~/Library/QuickLook && killall Finder
 
 # qlmarkdown needs to be opended once to work.
 # Reference: https://github.com/sbarex/QLMarkdown
-open /Applications/QLMarkdown.app/
+open /Applications/QLMarkdown.app
 
 # Same for Apparency
-open /Applications/Apparency.app/
+open /Applications/Apparency.app
 # }
 
 # Install tmux session on login.

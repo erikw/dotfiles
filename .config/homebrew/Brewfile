@@ -5,13 +5,17 @@
 #    The syntax highlight via vim plugin https://github.com/bfontaine/Brewfile.vim
 # }
 
+# It's not necessary to tap before installing 'tap/formula', but it gives a warning if not done.
 # Taps {
     tap 'beeftornado/rmtree' # rmtree: remove brew package's dependencies with $(brew rmtree <package>).
     tap 'homebrew/autoupdate' # https://github.com/Homebrew/homebrew-autoupdate
+    tap 'cormacrelf/tap'  # For dark-notify
+    tap 'erikw/tap'       # For xdg-urlview
+    tap 'wader/tap'       # For fq
 # }
 
 # Formula: default {
-    #brew 'urlview'        # for tmux link opening
+    #brew 'urlview'        # For tmux link opening
     brew 'ack'
     brew 'as-tree'	# A tree view of the contents of a directory. $(fd ... | as-tree)
     brew 'asdf'
@@ -251,6 +255,11 @@
 # https://github.com/mas-cli/mas
 # Format: mas "Human Readable Name Can Be Whatever", id:<id>
 # Unfortunately this <appleiId> must have manually downloaded all apps one time before they can be installed with mas. Find <id> with
+#
+# List all apps installed via App Store.
+# Ref: https://osxdaily.com/2013/09/28/list-mac-app-store-apps-terminal/
+# $ find /Applications -path '*Contents/_MASReceipt/receipt' -maxdepth 4 -print |\sed 's#.app/Contents/_MASReceipt/receipt#.app#g; s#/Applications/##'
+#
 # $ mas search <app>
     mas  'Brother iPrint&Scan', id: 1193539993  # Image Capture.app does not work for Brother DCP-7070DW
     mas  'Shazam', id: 897118787
@@ -295,11 +304,11 @@
 # Reference: https://github.com/sindresorhus/quick-look-plugins
     #brew 'qlimagesize'		# QuickLook plugin for image metadata. Not working on macOS Catalina: https://github.com/Nyx0uf/qlImageSize/issues/45
     #brew 'qlvideo'		# QuickLook plugin for video files. Not working on macOS catalina: https://github.com/Marginal/QLVideo/issues/92
-    brew 'apparency'		# QuickLook plugin for Applications
-    brew 'qlcolorcode'		# Colorize source code
-    brew 'qlmarkdown'		# Markdown preview
-    brew 'qlstephen'		# View files without extension.
-    brew 'quicklook-json'	# QuickLook plugin for JSON files
+    cask 'apparency'		# QuickLook plugin for Applications
+    cask 'qlcolorcode'		# Colorize source code
+    cask 'qlmarkdown'		# Markdown preview
+    cask 'qlstephen'		# View files without extension.
+    cask 'quicklook-json'	# QuickLook plugin for JSON files
 # }
 
 # Misc {

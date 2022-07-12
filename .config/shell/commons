@@ -88,15 +88,18 @@
 	test -d $HOME/.local/bin && PATH="$HOME/.local/bin:$PATH"
 
 	# Homebrew installation path prefix - do this once, instead of slowing down shell everywhere.
-	if program_is_in_path brew; then
-		if shell_is_macos; then
-			# But optimize that still ;)
-			# TODO for Apple silicon macs the path is /opt/homebrew
-			test -z ${HOMEBREW_PREFIX+x} && export HOMEBREW_PREFIX=/usr/local
-		else  # Linux
-			test -z ${HOMEBREW_PREFIX+x} && export HOMEBREW_PREFIX=$(brew --prefix)
-		fi
+	brew_bin=
+	if [ -e /opt/homebrew/bin/brew ]; then  # Apple Silicon macs
+		brew_bin=/opt/homebrew/bin/brew
+	elif [ -e /usr/local/bin/brew ]; then  # Intel Macs
+		brew_bin=/usr/local/bin/brew
+	elif [ -e /home/linuxbrew/.linuxbrew/bin/brew ]; then  # Linux
+		brew_bin=/home/linuxbrew/.linuxbrew/bin/brew
 	fi
+	if [ -n "$brew_bin" ]; then
+		eval "$(${brew_bin} shellenv)"
+	fi
+	unset brew_bin
 
 	# Set common bin paths.
 	#PATH=${PATH}:$(find ~/bin -maxdepth 2 -type d | tr '\n' ':' | sed 's/:$//')
