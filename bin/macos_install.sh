@@ -25,10 +25,10 @@ fi
 eval "$(${brew_bin} shellenv)"
 
 
-brewfile_global=${XDG_CONFIG_HOME:-$HOME/.config}/homebrew/Brewfile
+brewfile_global="${XDG_CONFIG_HOME:-$HOME/.config}/homebrew/Brewfile"
 brew bundle install --file $brewfile_global
 
-brewfile_host_specific=$HOMEBREW_BUNDLE_FILE.$(hostname)
+brewfile_host_specific="${brewfile_global}.$(hostname)"
 if [ -e $brewfile_host_specific ]; then
 	brew bundle install --file $brewfile_host_specific
 fi
