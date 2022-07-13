@@ -1,0 +1,32 @@
+# Navigation
+map <C-d> scrollPageDown
+map <C-u> scrollPageUp
+map <C-f> scrollFullPageDown
+map <C-b> scrollFullPageUp
+
+# Tabs
+map d removeTab
+map u restoreTab
+map <C-8> visitPreviousTab
+map R reload hard
+
+# Emulation of Vimperator's quickmarks
+map gnG createTab https://gmail.com/
+map gnL createTab https://lifesum.com/
+map gnP createTab https://photos.google.com/
+map gnc createTab https://contacts.google.com/
+map gnd createTab https://www.duolingo.com/
+map gnf createTab http://www.facebook.com/
+map gng createTab https://github.com/
+map gnl createTab chrome://lastpass/content/home2.xul
+map gnn createTab https://my.n26.com/
+map gnp createTab https://getpocket.com/
+map gnr createTab https://cloud.feedly.com/
+map gns createTab https://online.swedbank.se/
+
+# TODO emulate goX to open URL in current tab, when there exist such a command in Vimium
+
+# Misc
+#map y copyCurrentUrl
+map <left> previousTab
+map <right> nextTab
