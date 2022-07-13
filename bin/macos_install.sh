@@ -220,6 +220,8 @@ $(brew --prefix)/opt/fzf/install --xdg
 
 # iTerm2
 # * Load settings from Preferencs > General > Preferences tab > Load from custom folder or URL. Reference: https://stackoverflow.com/a/23356086/265508
+# * Give iterm full disk access, to avoid may different permission request popups later
+#    * System Preferences > Security & Privacy > Privacy > Full Disk Access > Add Iterm.app
 ## General
 ### Closing
 # * Make it easier to restart/poweroff by not confirming closing multiple windows - I always use tmux so it's not a problem.
@@ -327,7 +329,7 @@ $(brew --prefix)/opt/fzf/install --xdg
 ## Environment
 ##SHELL=/bin/sh
 ## ~/ works, but not $HOME strangely enough.
-#PATH=~/bin:/usr/local/bin:/usr/local/sbin:/sbin:/usr/sbin:/usr/bin:/bin
+#PATH=~/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/local/sbin:/sbin:/usr/sbin:/usr/bin:/bin
 ## Reference: crontab(5).
 ## Helper: https://crontab.guru/
 ## Order of crontab fields

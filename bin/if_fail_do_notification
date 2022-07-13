@@ -27,8 +27,8 @@ eval "$cmd" > >(tee -a $file_stdout) 2> >(tee -a $file_stderr >&2)
 ecode=$?
 #ecode=${PIPESTATUS[0]}
 
-#test $ecode -eq 0 || /usr/local/bin/terminal-notifier -title "$cmd" < $file_stdout
-test $ecode -eq 0 || cat $file_stderr $file_stdout | /usr/local/bin/terminal-notifier -title "$cmd"
+#test $ecode -eq 0 || terminal-notifier -title "$cmd" < $file_stdout
+test $ecode -eq 0 || cat $file_stderr $file_stdout | terminal-notifier -title "$cmd"
 
 #rm $file_stdout $file_stderr
 exit $ecode

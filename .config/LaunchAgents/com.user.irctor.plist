@@ -16,7 +16,7 @@
         <!-- $XDG_CONFIG_HOME/shell/commons is not read so need to set the same related tmux-powerline variables as set there. -->
         <dict>
             <key>PATH</key>
-            <string>/usr/local/bin:/usr/bin:/bin</string>
+            <string>/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin</string>
             <!--
             <key>POWERLINE_ROOT</key>
             <string>/Users/erikw/Library/Python/3.7/lib/python/site-packages/powerline</string>

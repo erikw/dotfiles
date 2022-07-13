@@ -3,7 +3,7 @@
 # brew dependencies: switchaudio-osx
 
 # Default: cycle devices
-bin=/usr/local/bin/SwitchAudioSource
+bin=/opt/homebrew/bin/SwitchAudioSource
 cmd="$bin -t output -n"
 
 # Output device obtained via $(SwitchAudioSource -a -t output)
