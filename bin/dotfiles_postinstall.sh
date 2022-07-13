@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+# Modeline {
+#	vi: foldmarker={,} foldmethod=marker foldlevel=0: tabstop=4:
+# }
 # Installation to be done after dotfiles are installed, and ideally after OS-specific tooling too.
 # NOTE this must be non-interactive as it's called from non-interactive dotfiles install.sh
 
@@ -45,6 +48,7 @@ mkdir -p ${XDG_DATA_HOME:-$HOME/.local/share}/tig
 
 if program_is_in_path tmux ; then
 	step "Setting up tmux plugins with tpm."
+	tmux new-session -d # Need session before running commands.
 	tmux run $HOME/.config/tmux/plugins/tpm/bindings/install_plugins
 fi
 
