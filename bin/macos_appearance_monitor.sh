@@ -31,7 +31,7 @@ while read mode; do
 
 	#$HOME/bin/solarized_toggle.sh -m $mode
 	mode_old=$(st_read_status)
-	if [ $mode_old != $mode ]; then
+	if [ "$mode_old" != "$mode" ]; then
 		printf "Toggling from %s->%s\n" $mode_old $mode
 		opts_g[mode]=$mode
 		st_set_all opts_g

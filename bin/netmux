@@ -1,0 +1,106 @@
+#!/usr/bin/env bash
+session_name=netmux
+
+tmux start-server
+
+# Set correct theme on start up.
+source $HOME/bin/solarized_toggle_lib.sh
+set_solarized_theme() {
+	mode=$(st_read_macos_mode)
+	declare -A opts_g=( [mode]=$mode [macos_update]=false)
+	st_set_tmux opts_g
+	# Also set iTerm, as the mode might be wrong on launch of the application
+	st_set_iterm2 opts_g
+}
+
+
+# Start session if it does not exists and set up my windows and panes.
+do_start() {
+	tmux has-session -t "$session_name" 2>/dev/null
+	if [ "$?" -ne "0" ]; then
+		# Should not bee needed if stop() is correctly implemented and a session is always quited via the stop function.
+		do_clean_files
+		tmux new-session -d -x 287 -y 41 -s "$session_name"
+		#tmux set-window-option -t "$session_name":0 monitor-activity off
+
+		#tmux new-session -d -x 287 -y 41 -s "$session_name" -n "irssi" irssi
+		#tmux new-window -t "$session_name":1 -n "irssi" irssi
+		#tmux set-window-option -t "$session_name":0 monitor-activity off
+		#tmux split-window -t "$session_name":0 -h -p 15 "cat $HOME/.irssi/nicklistfifo"
+		#tmux select-pane -t "$session_name":0.0
+
+		#tmux new-window -t "$session_name":2 ncmpcpp
+		#tmux set-window-option -t "$session_name":2 monitor-activity off
+
+		#tmux new-window -t "$session_name":2 -n "octave" octave-cli
+		#tmux new-window -t "$session_name":2 -n "bc" bc
+		#tmux set-window-option -t "$session_name":2 monitor-activity off
+
+		#tmux new-window -t "$session_name":1
+
+		# Let this be the last window so I can quicky toggle.
+		#tmux select-window -t "$session_name":3
+		#tmux select-window -t "$session_name":0
+
+		# Set active window on start.
+		#tmux select-window -t "$session_name":0
+		#tmux select-pane -t "$session_name":0.0
+		#tmux select-window -t "$session_name":1
+		echo "Session ${session_name} started."
+	else
+		echo "Session ${session_name} already exists."
+
+	fi
+}
+
+do_stop() {
+	echo "Stopping ${session_name}...  "
+
+	#killall -w -s 2 rtorrent
+
+	tmux select-window -t "$session_name":3
+	tmux send-keys -t "$session_name"  "quit" C-m
+	sleep 0.5s
+	tmux kill-session -t "$session_name"
+}
+
+do_attach() {
+	if ! tmux list-sessions -F "#{session_name}" | grep -q "${session_name}"; then
+		do_start
+	fi
+	# Do in background as setting iterm2 colors takes a bit of time.
+	set_solarized_theme &
+
+	echo "Attaching ${session_name}...  "
+	tmux -2 attach-session -t "$session_name"
+}
+
+# Delete files left by programs.
+do_clean_files() {
+	# Delete octave-core.
+	if [ -f $HOME/octave-core ]; then
+		rm -f $HOME/octave-core
+	fi
+	if [ -f $HOME/octave-workspace ]; then
+		rm -f $HOME/octave-workspace
+	fi
+}
+
+case $1 in
+	attach | "")
+		do_attach
+		;;
+	start)
+		do_start
+		;;
+	stop)
+		do_stop
+		;;
+	restart)
+		do_stop
+		do_start
+		;;
+	*)
+		echo "Command \"$1\"not available!" >&2
+		exit 1
+esac
