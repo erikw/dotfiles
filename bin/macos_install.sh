@@ -151,6 +151,7 @@ $(brew --prefix)/opt/fzf/install --xdg
 # Amethyst
 ## General
 # * Uncheck "Display layout when changing spaces".
+## Layouts
 # * Set the following layouts to be used: tall, fullscreen, floating.
 ## Floating
 # * Add Pixelmator Pro, as the mouse hover tooltips are treated as own windows.

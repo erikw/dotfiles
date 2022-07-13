@@ -1,0 +1,19 @@
+/* Remove close button on Firefox tabs:
+ * Reference: https://github.com/djc/no-close-buttons
+ */
+// .tab-close-button { display: none !important; }
+
+
+/* Hide the native tab bar.
+ * Requires setting toolkit.legacyUserProfileCustomizations.stylesheets;true in about:config.
+ * Reference: https://www.reddit.com/r/firefox/comments/736cji/how_to_hide_native_tabs_in_firefox_57_tree_style/
+ */
+/* For some FF versions this work */
+#TabsToolbar {
+    visibility: collapse;
+}
+/* while this one for others ... /*
+/*#main-window[tabsintitlebar="true"]:not([extradragspace="true"]) #TabsToolbar > .toolbar-items {*/
+  /*opacity: 0;*/
+  /*pointer-events: none;*/
+/*}*/
