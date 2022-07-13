@@ -220,16 +220,15 @@ $(brew --prefix)/opt/fzf/install --xdg
 
 # iTerm2
 # * Load settings from Preferencs > General > Preferences tab > Load from custom folder or URL. Reference: https://stackoverflow.com/a/23356086/265508
-# * Give iterm2 full disk access: System Preferences > Security & Privacy > Privacy > Full Disk Access > add iTerm.app
 ## General
 ### Closing
 # * Make it easier to restart/poweroff by not confirming closing multiple windows - I always use tmux so it's not a problem.
 #   - Uncheck: Confirm closing multiple sessions.
-#   - Uncheck: Confirm "iTerm2 (#Q)" if windows open"
+#   - Uncheck: Confirm "iTerm2 (#Q)""
 # * iterm.sh: If iterm2.app is closed, 2 windows will be opended by this script. To prevent this:
 #	- Startup > Select "Only Restore Hotkey Window" NOPE don't do this anymore as of #irctorautostart
 ### Selection
-# * Check "Applications in terminal may access clipboard" so that I can e.g. copy from vim buffer to gui clipboard.
+# * Check "Applications in terminal may access clipboard" so that I can e.g. copy from vim buffer to GUI clipboard.
 ## Profiles
 #* After configuring the default profile, clone it in to a profile called "zsh" and remove the "Send text at start" #irctorautostart
 # * Set keyboard shortcut for profile "zsh" to Ctrl + Cmd + z
@@ -242,19 +241,20 @@ $(brew --prefix)/opt/fzf/install --xdg
 # ** DM Mono, Regular, 14pt
 # ** Source Code Pro, Regular, 14pt
 # ** Terminus, Medium, 16pt
-# ** Any NerdFont when using lsd(1) e.g.: Hack Nerd Font Mono, Regular, 14pt
+# ** Any NerdFont when using lsd(1) e.g.: Hack Nerd Font, Regular, 14pt
 ### Terminal
-# * Check "Silence Bells"
-### Terminal
+# * Notifications > Check "Silence Bell"
 # * Check "Unlimited Scrollback"
 ### Keys
+#### General
 # * Make Option key an Meta key, so e.g. tmux binding works on MBP internal keyboard.
 #   - set "Left option key acts as" "Esc+". NOTE need karabiner-elements to get left alt to work on external PC keyboard.
+#### Key Mappings
 # * Create shortcuts to toggle between solarized dark & light:
-#	- Press the '+' button:>
+#	- Press the '+' button:
 #		- Shortcut: Opt + Cmd + s
 #		- Action: "Load Color Preset" > "Solarized Light"
-#	- Press the '+' button:>
+#	- Press the '+' button:
 #		- Shortcut: Opt + Cmd + shift + s
 #		- Action: "Load Color Preset" > "Solarized Dark"
 
@@ -345,14 +345,13 @@ $(brew --prefix)/opt/fzf/install --xdg
 # Dropbox
 ## General
 # * Dropbox badge: Never show
-# * Open folders in: Finder
 
 
 # Denon PMA-50 (amplifier). Reference: http://manuals.denon.com/PMA50/EU/EN/WBSPSYknckyjju.php#WBSPMLurphubft
 # * Connect via USB
 # * Open Audio MIDI Setup app
 # * Right click on PMA-50 and check "Use this Device for Sound Output"
-# * Set format to: “192 kHz” and “2ch-24 bit Interger”.
+# * Set format to: “192 kHz: 2ch-24 bit Interger”.
 
 # Crontab backup automation
 # Add to crontab an entry like:
@@ -360,12 +359,6 @@ $(brew --prefix)/opt/fzf/install --xdg
 
 # Taskwarrior
 # * Edit `~/.taskrc` to chose path for holiday files and set up remote sync server.
-
-# Atom
-# As suggested from [Stackoverflow](https://stackoverflow.com/questions/30006827/how-to-save-atom-editor-config-and-list-of-packages-installed), install frozen packages:
-#apm install --packages-file ~/.atom/apm_packages_bakup.txt
-# Back the installed ones up with:
-#apm list --installed --bare > ~/.atom/apm_packages_bakup.txt
 
 
 # Custom fonts
@@ -408,6 +401,7 @@ $(brew --prefix)/opt/fzf/install --xdg
 
 
 
+# NOPE skip this, not used
 # Automator command to cycle output devices. Do this for all ~/bin/macos_media_control/SwitchAudioSource*.command
 # * Create an automator Quick Action named "SwitchAudioSource_cycle" with AppleScript for the contents in ~/bin/macos_media_control/SwitchAudioSource_cycle.command
 # * Bind to shortcuts like:
@@ -417,6 +411,7 @@ $(brew --prefix)/opt/fzf/install --xdg
 #  - USB Soundcard/headset: OPT+CMD+F12
 
 
+# NOPE skip this, using Jettison instead.
 # Automator command eject USB drives
 # * Create an automator Quick Action named "eject_external_disks" with AppleScript for the contents in ~/bin/macos_eject_external_disks.command
 # * Bind to shortcut CTRL+CMD+F12
@@ -435,6 +430,7 @@ $(brew --prefix)/opt/fzf/install --xdg
 # * Bind to shortcut CMD+F9
 # * For this to work, System Preferences > Security & Privacy > Privacy > Accessibillity > allow System Preferences.app.
 
+# NOPE does not seem to work
 # Automator command for toggling muting microphone input
 # * Create an automator Quick Action named "mic_mute_toggle" with AppleScript for the contents in ~/bin/macos_mic_mute_toggle.command
 # * Bind to shortcut Kinesis Freestyle2 button right arrow (cmd+rightArrow).
@@ -532,7 +528,7 @@ asdf global ruby latest
 ## Dependencies
 # sqlite - macOS version is old
 #brew install sqlite3
-# npm - get a node manager to manage versions. NVM is slow and cumbersome => n. nope ASDF! See node section
+# npm - get a node manager to manage versions. NVM is slow and cumbersome => n. NOPE is the way to goASDF! See node section
 # yarn - better than npm
 #npm install -g yarn
 # NOTE unset CC=clang if creating a new rails app, as dependency byebug fails with clang.
