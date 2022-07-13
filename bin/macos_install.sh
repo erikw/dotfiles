@@ -92,13 +92,13 @@ pip3 install iterm2
 ## Start macos_appearance_monitor.sh on login.
 ln -s $HOME/.config/LaunchAgents/com.user.appearancemon.plist $HOME/Library/LaunchAgents/
 launchctl bootstrap gui/$UID $HOME/Library/LaunchAgents/com.user.appearancemon.plist
-launchctl enable gui/$UID com.user.appearancemon
+launchctl enable gui/$UID/com.user.appearancemon
 # Create symlink so that ~/bin/solarized_iterm2_set.py works.
-ln -s $HOME/Library/Application\ Support Library/ApplicationSupport
+ln -s $HOME/Library/Application\ Support $HOME/Library/ApplicationSupport
 ## Automate command for toggling system appearance mode
-# * Create an automator Quick Action named "appearance_toggle" with AppleScript for the contents in ~/bin/macos_appearance_toggle.command
+# * Create an Automator.app Quick Action named "appearance_toggle" with AppleScript for the contents in ~/bin/macos_appearance_toggle.command
 #	* NOPE use the build-in action "Change System Appearace" by dragging it in to the right, and set "Change Appearance" to "Toggle Light/Dark". This seems to go faster when toggling than the custom script.
-# * Bind to shortcut CTRL+OPT+CMD+t (shortcut used when feature was first introduced in the OS).
+# * Bind to Service shortcut CTRL+OPT+CMD+t (shortcut used when feature was first introduced in the OS).
 
 
 # Update gnu locate database on schedule by appending crontab.
