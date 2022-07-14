@@ -412,8 +412,8 @@
 
 	# Start SSH agent, unless this is an SSH session already
 	# Ref: https://stackoverflow.com/a/18915067
-	if [ -z "$SSH_CLIENT" ] && [ -f "$HOME/.ssh-agent" ]; then
-		SSH_ENV="$HOME/.ssh/agent-environment"
+	if [ -z "$SSH_CLIENT" ]; then
+		SSH_ENV="$HOME/.ssh/env"
 
 		function start_agent {
 		    echo "Initialising new SSH agent..."

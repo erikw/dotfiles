@@ -107,7 +107,11 @@ if ([ -z "$ok" ] || [[ "$ok" = [yY] ]]); then
 fi
 
 
-cmd_agent="ssh-add \$HOME/.ssh/identityfiles/${key_stem}"
+apple_keychain=
+if [[ "$OSTYPE" =~ darwin.* ]]; then
+	apple_keychain=--apple-use-keychain
+fi
+cmd_agent="ssh-add ${apple_keychain} \$HOME/.ssh/identityfiles/${key_stem}"
 echo "$cmd_agent"
 echo -n "[Y/n]: "
 read ok
