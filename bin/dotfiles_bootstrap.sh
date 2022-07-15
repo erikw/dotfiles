@@ -23,6 +23,7 @@ step "Generating SSH key pair for GitHub"
 mkdir -p $SSH_ID_DIR
 chmod 700 $SSH_DIR
 chmod 700 $SSH_ID_DIR
+# TODO by not using ssh-keygen.sh, we miss out on the common header there. Extract header gen to a lib?
 ssh-keygen -t rsa -f $SSH_ID_DIR/github_id_rsa -C "${USER}@${HOSTNAME} for erikw@github"
 
 cat << EOF >> $HOME/.ssh/config
@@ -34,8 +35,7 @@ Host *github.com
 	IdentitiesOnly yes
 	ServerAliveInterval 15
 EOF
-
-# TODO add to ssh-agent? https://www.ssh.com/academy/ssh/agent
+# TODO add to ssh-agent in the same way as in ssh-keygen.sh
 
 if type xclip >/dev/null 2>&1; then
 	xclip $SSH_PUB_KEY
