@@ -317,7 +317,7 @@
 	#fi
 
 	if program_is_in_path source-highlight; then
-		export LESSOPEN="| /usr/local/bin/src-hilite-lesspipe.sh %s"
+		export LESSOPEN="| $(which src-hilite-lesspipe.sh) %s"
 		# Solarized version, as the normal version does not work (hidden text) when solarized terminal background is used.
 		# https://github.com/jrunning/source-highlight-solarized
 		#export LESSOPEN="| source-highlight --failsafe -f esc-solarized --style-file=esc-solarized.style -i %s -o STDOUT"
