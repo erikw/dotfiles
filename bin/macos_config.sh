@@ -273,7 +273,7 @@ defaults write -g InitialKeyRepeat -int 25
 #   Ref: https://apple.stackexchange.com/a/28168
 #   - Application: All Applications
 #   - Menu Title: Sleep
-#   - Keyboard Shortcut: ctrl+cmd+s
+#   - Keyboard Shortcut: ctrl+opt+cmd+s
 # Reason: keyboard shorcut clash on SHIFT+OPT with Amethyst's cycle layout.
 ## Input Sources
 # * Add US, Swedish & German. NOTE should have been automatically added after adding these languages in Language & Region (AppleLanguages)
