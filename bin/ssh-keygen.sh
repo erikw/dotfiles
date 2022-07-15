@@ -96,6 +96,8 @@ Host ${alias}
 	User ${user}
 	IdentityFile ~/.ssh/identityfiles/${key_stem}
 	IdentitiesOnly yes
+	AddKeysToAgent yes
+	UseKeychain yes
 	ServerAliveInterval 15
 EOF
 
