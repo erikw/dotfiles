@@ -167,6 +167,7 @@ $(brew --prefix)/opt/fzf/install --xdg
 # * Menu>Main: NOP
 # * Menu>History: Cmd+Shift+v.
 # * Menu>Snipets: Cmd+Shift+b.
+# * History>Clear history: Shift+ctrl+opt+cmd+c
 ## Snippets
 # Create snipets for some common items in ~/doc/tech/word_expansions.txt
 
