@@ -302,6 +302,10 @@ defaults -currentHost write -globalDomain com.apple.mouse.tapBehavior -int 1
 defaults write com.apple.dock showAppExposeGestureEnabled -bool true
 # }
 
+# Touch ID {
+# * Add a few fingers
+# }
+
 # Sound {
 # * Uncheck "Play sound on startup"
 # }
