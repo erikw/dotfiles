@@ -130,7 +130,6 @@
     brew 'jsonlint'
     brew 'knock'
     brew 'llvm'
-    brew 'mercurial'
     brew 'multitail'
     brew 'mutt'
     brew 'ncftp'
@@ -143,11 +142,9 @@
     brew 'pastebinit'
     brew 'postgresql'
     brew 'pv'
-    brew 'reattach-to-user-namespace'
     brew 'swiftlint'
     brew 'task'
     brew 'tasksh'
-    brew 'tigervnc-viewer'
     brew 'valgrind'
     brew 'wakeonlan'
     brew 'wego'
@@ -186,7 +183,6 @@
     cask 'background-music'
     cask 'bankid'
     cask 'burn'
-    cask 'caffeine'
     cask 'cheatsheet'
     cask 'clamxav'
     cask 'colloquy'
@@ -195,9 +191,7 @@
     cask 'eclipse-ide'
     cask 'epic-games'
     cask 'eqmac'
-    cask 'fl-studio'
     cask 'flip4mac'
-    cask 'franz'
     cask 'freshback'
     cask 'google-drive'
     cask 'gpg-suite'
@@ -227,26 +221,22 @@
     cask 'prey'
     cask 'pycharm-ce'
     cask 'qr-journal'
-    cask 'rambox'
     cask 'rekordbox'
-    cask 'robo-3t'
     cask 'semulov'
     cask 'send-to-kindle'
     cask 'skype'
     cask 'slack'
     cask 'sound-control'
-    cask 'spectacle'
+    cask 'rectangle'
     cask 'spotify-notifications'
     cask 'steam'
     cask 'stretchly'
     cask 'switch'     # Audio format converter
     cask 'thunderbird'
     cask 'tor-browser'
-    cask 'tunnelblick'
     cask 'veracrypt'
     cask 'virtualbox'
     cask 'wireshark'
-    cask 'xee'
     cask 'zoom'
 =end
 # }
@@ -271,7 +261,6 @@
     mas 'GamePad Companion', id: 428799479
     mas 'Irvue', id: 1039633667
     mas 'Microsoft To Do', id: 1274495053
-    mas 'MuteMyMic', id: 456362093
     mas 'Neural Mix Pro', id: 1527105121
     mas 'SwordSoft Screenink Free', id: 953841977
     mas 'WeatherBug', id: 1059074180
