@@ -2,6 +2,10 @@
 # Interactivly create SSH keypairs with my preferences.
 # # NOTE don't use alias for github.com since lot's of applications will break like git submodule and vundle. Just use 'Host "*github.com"'.
 
+is_macos() {
+  [[ "$OSTYPE" == "darwin"* ]]
+}
+
 only_key=n
 test "$1" = "--only-key" && only_key=y
 
@@ -30,10 +34,10 @@ if [ -z "$user" ]; then
 fi
 
 
-echo -n "Encryption algorithm [-t rsa]: "
+echo -n "Encryption algorithm [-t ed25519]: "
 read algo
 if [ -z "$algo" ]; then
-	algo="rsa"
+	algo="ed25519"
 fi
 
 
@@ -69,6 +73,11 @@ eval "$cmd_keygen"
 "$only_key" == "y" && exit
 
 if ! [ -e $HOME/.ssh/config ]; then
+	macos_keychain=
+	if is_macos; then
+		macos_keychain="UseKeychain yes   # Apple Keychain"
+	fi
+
 	cat << EOF > $HOME/.ssh/config
 # ~${USER}'s ssh config
 # * How to apply the same settings for multiple hosts: https://unix.stackexchange.com/a/168460/19909
@@ -84,6 +93,12 @@ LogLevel QUIET
 
 # Extra ~/.ssh/known_hosts file e.g. if updated automatically by a script.
 #UserKnownHostsFile=~/.ssh/known_host_extra
+
+Host *
+	ServerAliveInterval 15
+	IdentitiesOnly yes
+	AddKeysToAgent yes
+	${macos_keychain}
 EOF
 fi
 
@@ -95,10 +110,6 @@ Host ${alias}
 	Port ${port}
 	User ${user}
 	IdentityFile ~/.ssh/identityfiles/${key_stem}
-	IdentitiesOnly yes
-	AddKeysToAgent yes
-	UseKeychain yes
-	ServerAliveInterval 15
 EOF
 
 cmd_copy="ssh-copy-id -i \$HOME/.ssh/identityfiles/${key_stem}.pub ${user}@${hostname} -p ${port}"
@@ -110,15 +121,12 @@ if ([ -z "$ok" ] || [[ "$ok" = [yY] ]]); then
 fi
 
 
-apple_keychain=
-if [[ "$OSTYPE" =~ darwin.* ]]; then
-	apple_keychain=--apple-use-keychain
-fi
+is_macos && apple_keychain=--apple-use-keychain || apple_keychain=
 cmd_agent="ssh-add ${apple_keychain} \$HOME/.ssh/identityfiles/${key_stem}"
 echo "$cmd_agent"
 echo -n "[Y/n]: "
 read ok
 if ([ -z "$ok" ] || [[ "$ok" = [yY] ]]); then
 	eval $(ssh-agent)
-	eval "$cmd_copy"
+	eval "$cmd_agent"
 fi
