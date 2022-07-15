@@ -76,6 +76,7 @@ if ! [ -e $HOME/.ssh/config ]; then
 # * Send local LANG env to server. Note that the server must hav this variable AcceptEnv'd. ssh_config(5).
 #	Host *
 #		SendEnv LANG
+# * ssh-agent on macOS: https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#adding-your-ssh-key-to-the-ssh-agent
 
 # Avoid "Connection to $HOST closed." when disconnecting. Refer
 # Reference: https://unix.stackexchange.com/a/203346/19909
