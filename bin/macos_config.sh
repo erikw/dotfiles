@@ -231,7 +231,7 @@ sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setglobalstate on
 defaults write NSGlobalDomain KeyRepeat -int 2
 # * Delay Until Repeat: short (2nd most right value)
 defaults write -g InitialKeyRepeat -int 25
-# * Turn off backlit after 1 minute.
+# * Turn off backlit after: 30 seconds.
 # Non-touchbar MPBs {
 # ** Uncheck "Use F1, F2 etc. keys as standard function keys".
 # }
