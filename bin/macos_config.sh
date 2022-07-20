@@ -263,6 +263,9 @@ defaults write -g InitialKeyRepeat -int 25
 # * Enable shortcuts for cycling input sources _backwards_ ("Select the previous input source") with CTRL+OPT+Space.
 # * Check "Select the *previous* input source: ctrl+opt+space.
 # * Uncheck "Select next source"
+### Services
+# * Disable "Text > Open man Page in Terminal" -- annoying
+# * Disable "Text > Search man page Index in Terminal" -- annoying
 ### App Shortcuts
 # * Maill.app: The default keyboard shortcut for archive an email, ctrl+cmd+a, conflicts with Todoist. Add another one.
 #	Reference: https://www.lifewire.com/archive-keyboard-shortcut-os-x-mail-1172749

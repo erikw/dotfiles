@@ -31,11 +31,15 @@ fi
 	# Function paths.
 	# - .zsh_funcs/ - custom functions e.g. completion functions installed here.
 	# - .zprompts/ - custom prompt themes
-	fpath+=$XDG_CONFIG_HOME/zsh/funcs/
+	fpath+=$XDG_CONFIG_HOME/zsh/.zsh_funcs/
 	# Homebrew zsh completions. Reference: https://docs.brew.sh/Shell-Completion
 	# Some of the completion functions comes from https://github.com/zsh-users/zsh-completions
 	if [ -d $HOMEBREW_PREFIX/share/zsh-completions ]; then
 		fpath+=$HOMEBREW_PREFIX/share/zsh-completions
+	fi
+	# Global functions which could also be completion functions.
+	if [ -d $HOMEBREW_PREFIX/share/zsh/site-functions ]; then
+		fpath+=$HOMEBREW_PREFIX/share/zsh/site-functions
 	fi
 # }}
 

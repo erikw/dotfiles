@@ -66,6 +66,7 @@
     brew 'ipcalc'
     brew 'jq'
     brew 'less'
+    brew 'lsd'
     brew 'mosh'
     brew 'multitime'
     brew 'ncdu'
@@ -75,6 +76,7 @@
     brew 'npm'
     brew 'octave'
     brew 'pdfgrep'
+    brew 'pdftk-java'  # For ~/bin/pdf_extract_range.sh
     brew 'peco'
     brew 'pidof'
     brew 'pipx'		# To manage globally installed cli tools from pip.
