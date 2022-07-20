@@ -75,6 +75,7 @@
     brew 'nmap'
     brew 'npm'
     brew 'octave'
+    brew 'pam-reattach'  # To use Touch ID for sudo within tmux. See https://github.com/fabianishere/pam_reattach
     brew 'pdfgrep'
     brew 'pdftk-java'  # For ~/bin/pdf_extract_range.sh
     brew 'peco'

@@ -87,7 +87,8 @@ sudo dseditgroup -o edit -u $USER -p -a $USER -t user power
 #EOF
 
 # Sudo with Touch ID. Ref: https://news.ycombinator.com/item?id=26303170
-sudo sed -i -e '1s;^;auth       sufficient     pam_tid.so # Sudo with Touch ID\n;' /etc/pam.d/sudo
+# To work within tmux, need to use pam_reattach. Ref: https://github.com/fabianishere/pam_reattach
+sudo sed -i -e '1s;^;auth       optional        /opt/homebrew/lib/pam/pam_reattach.so\nauth       sufficient     pam_tid.so # Sudo with Touch ID\n;' /etc/pam.d/sudo
 # }
 
 # System Preferences {
