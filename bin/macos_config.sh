@@ -288,8 +288,9 @@ defaults write -g InitialKeyRepeat -int 25
 # * Uncheck "Scroll Direction: Natural. NOPE use scroll-reverser app instead, to have natural scroll with trackpad and normal scroll with external mouse.
 #defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
 # For setting a new speed, easiest is to set the value in System Preferences, then read desired value $(defaults read -g com.apple.mouse...)
-# * Tracking Speed: 1/2
-defaults write -g com.apple.mouse.scaling 0.875
+# * Tracking Speed:
+#defaults write -g com.apple.mouse.scaling 0.875  # 1st vertical mouse, 1/2
+defaults write -g com.apple.mouse.scaling 0.6875  # 2nd vertical mouse, 1/2 -1 notch
 # * Scrolling speed: 3/4
 defaults write -g com.apple.scrollwheel.scaling 0.75
 # * Double-click speed: 3/4
