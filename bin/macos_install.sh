@@ -403,9 +403,13 @@ $(brew --prefix)/opt/fzf/install --xdg
 # If start_screensaver save did not show up, try logging in and out or restarting the computer.
 
 
+# Automator command: start Microsoft To Do
+# * Create an automator Quick Action named "ms_todo_start" with AppleScript with action "Launch Application"
+# * Bind to shortcut ctrl+cmd+y
+
 
 # NOPE skip this, not used
-# Automator command to cycle output devices. Do this for all ~/bin/macos_media_control/SwitchAudioSource*.command
+# Automator command: cycle output devices. Do this for all ~/bin/macos_media_control/SwitchAudioSource*.command
 # * Create an automator Quick Action named "SwitchAudioSource_cycle" with AppleScript for the contents in ~/bin/macos_media_control/SwitchAudioSource_cycle.command
 # * Bind to shortcuts like:
 #  - cycle: OPT+CMD+F9.
@@ -415,26 +419,26 @@ $(brew --prefix)/opt/fzf/install --xdg
 
 
 # NOPE skip this, using Jettison instead.
-# Automator command eject USB drives
+# Automator command: eject USB drives
 # * Create an automator Quick Action named "eject_external_disks" with AppleScript for the contents in ~/bin/macos_eject_external_disks.command
 # * Bind to shortcut CTRL+CMD+F12
 
 
-# Automator command for showing Control Center.
+# Automator command: showing Control Center.
 # TODO replace this with native System Preferences shortcut when supported.
 # * Create an automator Quick Action named "open_controlcenter" with AppleScript for the contents in ~/bin/macos_open_controlcenter.command
 # * Bind to shortcut CMD+F10
 # * For this to work, System Preferences > Security & Privacy > Privacy > Accessibillity > allow System Preferences.app.
 
 
-# Automator command for showing Now Playing
+# Automator command: showing Now Playing
 # TODO replace this with native System Preferences shortcut when supported.
 # * Create an automator Quick Action named "open_nowplaying" with AppleScript for the contents in ~/bin/macos_open_nowplaying.command
 # * Bind to shortcut CMD+F9
 # * For this to work, System Preferences > Security & Privacy > Privacy > Accessibillity > allow System Preferences.app.
 
 # NOPE does not seem to work
-# Automator command for toggling muting microphone input
+# Automator command: toggling muting microphone input
 # * Create an automator Quick Action named "mic_mute_toggle" with AppleScript for the contents in ~/bin/macos_mic_mute_toggle.command
 # * Bind to shortcut Kinesis Freestyle2 button right arrow (cmd+rightArrow).
 # }
