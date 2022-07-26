@@ -25,7 +25,8 @@ Either bootstrap like:
 ```console
 $ cd /tmp
 $ curl -O https://raw.githubusercontent.com/erikw/dotfiles/personal/bin/ssh-keygen.sh
-$ chmod 744 ssh-keygen.sh
+$ curl -O https://raw.githubusercontent.com/erikw/dotfiles/personal/bin/ssh-config-create.sh
+$ chmod 744 ssh-keygen.sh ssh-config-create.sh
 $ ./ssh-keygen.sh
 ```
 

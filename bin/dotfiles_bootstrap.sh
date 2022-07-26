@@ -4,12 +4,18 @@
 
 set -euxo pipefail
 
+is_macos() {
+  [[ "$OSTYPE" == "darwin"* ]]
+}
+
 SSH_DIR="$HOME/.ssh"
 SSH_ID_DIR="$SSH_DIR/identityfiles"
-SSH_PUB_KEY="$SSH_ID_DIR/github_id_rsa.pub"
+SSH_PRIV_KEY="$SSH_ID_DIR/github_id_rsa"
+SSH_PUB_KEY="${SSH_PRIV_KEY}.pub"
 DOTFILES_REPO=git@github.com:erikw/dotfiles.git
 REPOS_ROOT="$HOME/src/github.com/erikw"
 DOTFILES_ROOT="$REPOS_ROOT/dotfiles"
+SSH_CONFIG_SCRIPT_URL="https://github.com/erikw/dotfiles/blob/personal/bin/ssh-config-create.sh"
 
 step() {
 	local msg="$@"
@@ -23,7 +29,9 @@ step "Generating SSH key pair for GitHub"
 mkdir -p $SSH_ID_DIR
 chmod 700 $SSH_DIR
 chmod 700 $SSH_ID_DIR
-# TODO by not using ssh-keygen.sh, we miss out on the common header there. Extract header gen to a lib?
+curl -O https://raw.githubusercontent.com/erikw/dotfiles/personal/bin/ssh-config-create.sh
+chmod 744 ssh-config-create.sh
+./ssh-config-create.sh
 ssh-keygen -t rsa -f $SSH_ID_DIR/github_id_rsa -C "${USER}@${HOSTNAME} for erikw@github"
 
 cat << EOF >> $HOME/.ssh/config
@@ -35,7 +43,12 @@ Host *github.com
 	IdentitiesOnly yes
 	ServerAliveInterval 15
 EOF
-# TODO add to ssh-agent in the same way as in ssh-keygen.sh
+
+# Set up ssh-agent
+is_macos && apple_keychain=--apple-use-keychain || apple_keychain=
+cmd_agent="ssh-add ${apple_keychain} ${SSH_PRIV_KEY}"
+eval $(ssh-agent)
+eval "$cmd_agent"
 
 if type xclip >/dev/null 2>&1; then
 	xclip $SSH_PUB_KEY
