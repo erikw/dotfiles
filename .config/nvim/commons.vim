@@ -275,6 +275,8 @@ nnoremap <Leader>t :Windows<CR>
 nnoremap <Leader>h :History<CR>
 " Search mappings.
 nnoremap <Leader>m :Maps<CR>
+" Search with rg (aka live grep).
+nnoremap <Leader>g :Rg<CR>
 " }
 
 " local_vimrc {
@@ -342,7 +344,7 @@ endif
 " tagbar {
 nmap <silent> <F3> :TagbarToggle<CR>	" Toggle the Tagbar window.
 let g:tagbar_left = 0			" Keep the window on the right side.
-let g:tagbar_width = 30			" Width of window.
+let g:tagbar_width = 50			" Width of window.
 let g:tagbar_autoclose = 1		" Close tagbar when jumping to a tag.
 let g:tagbar_autofocus = 1		" Give tagbar focus when it's opened.
 let g:tagbar_sort = 1			" Sort tags alphabetically.
