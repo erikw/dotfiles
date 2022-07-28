@@ -53,6 +53,7 @@ noremap YF :let @" = expand("%:p")<CR>			" Yank current (fully expanded) file na
 nnoremap <silent> <Leader>R :checktime<CR>		" Reload buffers from file if changed.
 "nmap <silent> <Leader>d "=strftime("%Y-%m-%d")<CR>P	" Insert the current date.
 "nmap <silent> <Leader>S :%s/\s\+$//ge<CR>		" Remove all trailing spaces.
+nnoremap <silent> <C-s> :mksession! <bar> echo "Session saved"<CR> " Save (force) current session.
 
 nnoremap <silent> gfs :wincmd f<CR>			" Open path under cursor in a split.
 nnoremap <silent> gfv :vertical wincmd f<CR>		" Open path under cursor in a vertical split.
