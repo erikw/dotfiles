@@ -452,15 +452,17 @@ chflags hidden ~/Public
 
 # Mail.app {
 # * Drag my Gmail account to the top in the mailboxes left side list and collapse all other.
-## General
+# * In the New Mail window toolbar, drag in Lists.
+## Settings
+### General
 # * Downloads folder: ~/dl
-## Accounts
+### Accounts
 # * Disable iCloud
-## Composing
+### Composing
 # * Message format: plain text. NOPE use Rich Text, it's not the 90s anymore....
-## Signatures
+### Signatures
 # * Add new signature "Standard".
-## Privacy
+### Privacy
 # * Turn off everything
 # }
 

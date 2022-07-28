@@ -191,7 +191,7 @@
     cask 'colloquy'
     cask 'cyberduck'
     cask 'docker'
-    cask 'muzzle'  # Automatic DoNotDisturbe while screen sharing over video conferencing.
+    cask 'dozer'  # Hide menubar icons. Alternative to bartender
     cask 'eclipse-ide'
     cask 'epic-games'
     cask 'eqmac'
@@ -211,6 +211,7 @@
     cask 'keybase'
     cask 'libreoffice'
     cask 'livereload'
+    cask 'mactex'
     cask 'macvim'    # Prefer macvim cask to formula. Both provide MacVim.app but only the cask installs it to /Applications. Spotlight used to find both locations, but no only at /Applications. https://github.com/macvim-dev/macvim/issues/450#issuecomment-570202139
     cask 'max'
     cask 'microsoft-excel'
@@ -218,6 +219,7 @@
     cask 'microsoft-powerpoint'
     cask 'microsoft-word'
     cask 'mp3tag'
+    cask 'muzzle'  # Automatic DoNotDisturbe while screen sharing over video conferencing.
     cask 'name-mangler'
     cask 'origin'
     cask 'pdftotext'
