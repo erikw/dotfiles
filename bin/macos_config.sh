@@ -452,7 +452,7 @@ chflags hidden ~/Public
 
 # Mail.app {
 # * Drag my Gmail account to the top in the mailboxes left side list and collapse all other.
-# * In the New Mail window toolbar, drag in Lists.
+# * In the New Mail window toolbar, click Aa to activate formatting options.
 ## Settings
 ### General
 # * Downloads folder: ~/dl
