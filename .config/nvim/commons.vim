@@ -53,7 +53,8 @@ noremap YF :let @" = expand("%:p")<CR>			" Yank current (fully expanded) file na
 nnoremap <silent> <Leader>R :checktime<CR>		" Reload buffers from file if changed.
 "nmap <silent> <Leader>d "=strftime("%Y-%m-%d")<CR>P	" Insert the current date.
 "nmap <silent> <Leader>S :%s/\s\+$//ge<CR>		" Remove all trailing spaces.
-nnoremap <silent> <C-s> :mksession! <bar> echo "Session saved"<CR> " Save (force) current session.
+nnoremap <silent> <C-S> :mksession! <bar> echo "Session saved"<CR> " Save (force) current session.
+nnoremap <silent> <C-O> :source Session.vim <bar> echo "Session loaded"<CR> " Load saved session.
 
 nnoremap <silent> gfs :wincmd f<CR>			" Open path under cursor in a split.
 nnoremap <silent> gfv :vertical wincmd f<CR>		" Open path under cursor in a vertical split.
@@ -348,7 +349,7 @@ let g:tagbar_left = 0			" Keep the window on the right side.
 let g:tagbar_width = 50			" Width of window.
 let g:tagbar_autoclose = 1		" Close tagbar when jumping to a tag.
 let g:tagbar_autofocus = 1		" Give tagbar focus when it's opened.
-let g:tagbar_sort = 1			" Sort tags alphabetically.
+"let g:tagbar_sort = 1			" Sort tags alphabetically.
 let g:tagbar_compact = 1		" Omit the help text.
 let g:tagbar_singleclick = 1		" Jump to tag with a single click.
 let g:tagbar_autoshowtag = 1		" Open folds if tag is not visible.

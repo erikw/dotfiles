@@ -53,11 +53,14 @@ execute "source " . stdpath('config') . "/commons_plugin.vim"
 	"Plug 'neovim/nvim-lspconfig'			" Plug-n-play configurations for LSP server. Disabled in favour of simpler to use ALE.
 	Plug 'github/copilot.vim'			" AI powered code completion.
 	Plug 'ibhagwan/fzf-lua' | Plug 'mrjones2014/dash.nvim', { 'do': 'make install' } " Search dash.app from nvim.
+	Plug 'lukas-reineke/indent-blankline.nvim'	" Indent vertical markers.
+	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " NVim interface for tree-sitter (language parser).
 " }
 " }
 
 " UI {
 	"Plug 'dstein64/nvim-scrollview'	" Visual and interactive scroll bar.
+	"Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 "}
 
 " Setup - end {
@@ -249,6 +252,16 @@ nnoremap <Leader>d :DashWord<CR>
 nnoremap <Leader>D :Dash<CR>
 " }
 
+" indent-blankline.nvim {
+:lua <<EOF
+require("indent_blankline").setup {
+    use_treesitter = true,  -- use treesitter to calculate indentation.
+    show_current_context = true,  -- highlight current indent block.
+    show_current_context_start = true, -- underline first line of current indent block.
+}
+EOF
+" }
+
 " nvim-cmp {
 "set completeopt=menu,menuone,noselect
 
@@ -275,6 +288,21 @@ nnoremap <Leader>D :Dash<CR>
 
 " INSERT CONFIG FROM README HERE.
 "" }
+" }
+
+" nvim-treesitter {
+:lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  -- A list of parser names, or "all"
+  ensure_installed = { "lua", "ruby", "python" },
+
+  -- Install parsers synchronously (only applied to `ensure_installed`)
+  sync_install = false,
+
+  -- Automatically install missing parsers when entering buffer
+  auto_install = true,
+}
+EOF
 " }
 
 " vim-startify {

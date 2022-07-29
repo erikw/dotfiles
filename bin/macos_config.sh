@@ -258,7 +258,7 @@ defaults write -g InitialKeyRepeat -int 25
 ## Shortcuts
 ### Mission Control:
 # * Show Notification Center: Cmd+F11
-# * Enable shortcuts Ctrl+[1-5] for switching to Desktops. (Need to open 5 spaces for this to show up)
+# * NOPE Enable shortcuts Ctrl+[1-5] for switching to Desktops. (Need to open 5 spaces for this to show up)
 # * Do not Distrurb on/off: Cmd+F12
 ### Input Sources
 # * Enable shortcuts for cycling input sources _backwards_ ("Select the previous input source") with CTRL+OPT+Space.
