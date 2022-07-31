@@ -45,19 +45,20 @@ Visit the web player and got settings and set URLs to be opened with the desltop
 For some addons, go to Manage and enable usage in private mode.
 
 ### Default
+* https://addons.mozilla.org/en-US/firefox/addon/bitwarden-password-manager/
+* https://addons.mozilla.org/en-US/firefox/addon/check4change/
+* https://addons.mozilla.org/en-US/firefox/addon/darkreader/
 * https://addons.mozilla.org/en-US/firefox/addon/google-translator-webextension/
 * https://addons.mozilla.org/en-US/firefox/addon/i-dont-care-about-cookies/
-* https://addons.mozilla.org/en-US/firefox/addon/lastpass-password-manager/
 * https://addons.mozilla.org/en-US/firefox/addon/pushbullet/
 * https://addons.mozilla.org/en-US/firefox/addon/tree-style-tab/
-* https://addons.mozilla.org/en-US/firefox/addon/darkreader/
-* https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/
 * https://addons.mozilla.org/en-US/firefox/addon/tst-more-tree-commands/
-* https://addons.mozilla.org/en-US/firefox/addon/check4change/
+* https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/
 
 ### Additional
 * https://addons.mozilla.org/en-US/firefox/addon/tridactyl-vim/?src=external-github
 * https://addons.mozilla.org/en-US/firefox/addon/keepassxc-browser/
+* https://addons.mozilla.org/en-US/firefox/addon/lastpass-password-manager/
 * https://addons.mozilla.org/en-US/firefox/addon/want-my-rss/
 * https://addons.mozilla.org/en-US/firefox/addon/4775/
 * https://addons.mozilla.org/en-US/firefox/addon/dictionary-switcher/

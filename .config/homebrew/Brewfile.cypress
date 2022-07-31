@@ -65,6 +65,7 @@
 # Cask: optional {
 =begin
     cask 'ableton-live-suite' # If using latest version, which I'm not.
+    cask 'bitwarden'
     cask 'microsoft-office'  # License managed at https://account.microsoft.com/services/
     cask 'mixed-in-key'    # If using latest version, which I'm not.
     cask 'mutify'
