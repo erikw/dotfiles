@@ -70,7 +70,7 @@ fi
 eval "$cmd_keygen"
 
 
-"$only_key" == "y" && exit
+test "$only_key" = "y" && exit
 
 ssh-config-create.sh
 

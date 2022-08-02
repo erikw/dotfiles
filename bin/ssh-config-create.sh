@@ -21,6 +21,10 @@ cat << EOF > $HOME/.ssh/config
 #	Host *
 #		SendEnv LANG
 # * ssh-agent on macOS: https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#adding-your-ssh-key-to-the-ssh-agent
+# * Multiple GitHub accounts with different SSH keys:
+#    * SSH setup: https://gist.github.com/oanhnn/80a89405ab9023894df7
+#    * Git config setup: create ~/.config/git/config-<profile> with email and URL rewrite from
+#      https://gist.github.com/oanhnn/80a89405ab9023894df7?permalink_comment_id=3872306#gistcomment-3872306
 
 # Avoid "Connection to $HOST closed." when disconnecting. Refer
 # Reference: https://unix.stackexchange.com/a/203346/19909
