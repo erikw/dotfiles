@@ -529,6 +529,16 @@ defaults write com.apple.screencapture show-thumbnail -bool FALSE
 # Move any window with ctrl+cmd+click+drag, like typical Linux WMs.
 # Ref: https://mmazzarolo.com/blog/2022-04-16-drag-window-by-clicking-anywhere-on-macos/
 defaults write -g NSWindowShouldDragOnGesture -bool true
+
+# Ignore external disks that are for other systems e.g. encrypted Time Machine disk.
+# Ref: https://discussions.apple.com/docs/DOC-7942
+# Ref: https://akrabat.com/prevent-an-external-drive-from-auto-mounting-on-macos/
+# * $ UUID=$(diskutil info /dev/disk5s1 | grep "Volume UUID" | awk '{print $3}')
+# * $ sudo vifs
+# * Enter:
+#   UUID=$UUID none apfs rw,noauto
+# * Restart computer to test.
+
 # }
 
 killall Dock Finder
