@@ -150,7 +150,7 @@ defaults write com.apple.Dock position-immutable -bool true
 # - Screen Mirroring: when active
 # - Display: uncheck
 # - Sound: always
-# - Now Playing: when active
+# - Now Playing: unchecked
 # * Other modules:
 # - Accessibility Shourtcuts: uncheck all
 # - Battery: Menu Bar, Control center. Show percentage
