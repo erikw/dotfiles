@@ -34,6 +34,12 @@ if program_is_in_path nvim && program_is_in_path curl; then
 	nvim -c 'PlugInstall | qa'
 fi
 
+if program_is_in_path git-lfs; then
+	# git-lfs must have been installed on the system already.
+	step "Installing git-lfs configuration."
+	git lfs install
+fi
+
 
 if program_is_in_path irssi; then
 	step "Untracking $HOME/.irssi/config for local changes."

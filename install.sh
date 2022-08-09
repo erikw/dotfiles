@@ -32,13 +32,12 @@ mkdir -p $HOME/.ssh
 ssh-keyscan github.com >> $HOME/.ssh/known_hosts
 
 git remote add upstream git@github.com:justone/dotfiles.git
-git submodule init
-git submodule update
-git checkout -b local
-
 step "clone git submodules"
 git submodule init
 git submodule update
+
+step "switch to local branch"
+git checkout -b local
 
 step "Installing dotfiles with dfm"
 bin/dfm install
