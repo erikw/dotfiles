@@ -1,6 +1,8 @@
 # Vim
 Session.vim
 *.sw[opn]
+# custom named sessions
+*.s.vim
 
 # OS X
 .DS_Store

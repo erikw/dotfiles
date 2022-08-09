@@ -385,6 +385,10 @@ $(brew --prefix)/opt/fzf/install --xdg
 # From https://www.dict.cc/?s=about%3Awordlist&l=e
 # To use it;
 # - open Dictionary.app > Preferences > enable and up the pref order of the "Deutsch-Englisch" dictionary.
+
+
+# Mute Me button
+# Download https://muteme.com/download
 # }
 
 # Automator Actions {
