@@ -47,7 +47,9 @@ execute "source " . stdpath('config') . "/commons_plugin.vim"
 " }
 
 " General {
-	Plug 'kyazdani42/nvim-tree.lua' | Plug 'kyazdani42/nvim-web-devicons' " File explorer tree
+	Plug 'kyazdani42/nvim-tree.lua' " File explorer tree
+	Plug 'kyazdani42/nvim-web-devicons' " Dependency for: nvim-tree.lua, lualine.nvim
+	Plug 'nvim-lualine/lualine.nvim'  " Statusline
 " }
 
 " Development {
@@ -297,12 +299,20 @@ EOF
 " nvim-tree.lua {
 noremap <silent> <F2> :NvimTreeToggle<CR> " Toggle file explorer tree
 :lua <<EOF
-	require("nvim-tree").setup({
+	require("nvim-tree").setup {
 		open_on_setup = true,
 		open_on_setup_file = false,
 		open_on_tab = true,
 		filters = { custom = { "^.git$" } }
-	})
+	}
+EOF
+" }
+
+" lualine.nvim {
+:lua <<EOF
+	require('lualine').setup {
+		extensions = {'fugitive', 'fzf', 'nvim-tree', 'quickfix'}
+	}
 EOF
 " }
 

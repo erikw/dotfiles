@@ -198,6 +198,33 @@ set cursorline				" Highlight the current line.
 "hi CursorLine cterm=NONE ctermbg=LightGray ctermfg=Black guibg=LightGray guifg=Black
 "hi CursorColumn cterm=NONE ctermbg=LightGray ctermfg=Black guibg=LightGray guifg=Black
 
+" UI: Statusline {
+" Comment these out when using powerline statusbar.
+set statusline=%t		" Tail of the filename.
+set statusline+=%m		" Modified flag.
+set statusline+=\ [%{strlen(&fenc)?&fenc:'none'},	" File encoding.
+set statusline+=%{&ff}]		" File format.
+set statusline+=%h		" Help file flag.
+set statusline+=%r		" Read only flag.
+set statusline+=%y		" Filetype.
+"set statusline+=['%{getline('.')[col('.')-1]}'\ \%b\ 0x%B]	" Value of byte under cursor.
+
+" vim-fugitive:
+set statusline+=%#StatusLineNC#			" Change highlight group
+set statusline+=%{fugitive#statusline()}	" Show current branch.
+set statusline+=%*
+set statusline+=%{tagbar#currenttag('[#%s]','')}	" Current tag.
+
+set statusline+=%=		" Left/right-aligned separator.
+"set statusline+=[\%b\ 0x%B]\	" Value of byte under cursor.
+"set statusline+=[0x%O]\	" Byte offset from start.
+set statusline+=%l/%L,		" Cursor line/total lines.
+set statusline+=%c		" Cursor column.
+set statusline+=\ %P		" Percent through file.
+set statusline+=\ 0x%B		" Character value under cursor.
+" }
+
+
 " }
 
 " Plugin Config {
