@@ -201,6 +201,41 @@ set cursorline				" Highlight the current line.
 " }
 
 " Plugin Config {
+" netrw {
+" Ships by default with vim mostly.
+" Reference: https://shapeshed.com/vim-netrw/
+" Reference: " http://vimcasts.org/blog/2013/01/oil-and-vinegar-split-windows-and-project-drawer/
+" Keyboard shortcuts: https://gist.github.com/t-mart/610795fcf7998559ea80
+noremap <silent> <F2> :Lexplore<CR>	" Toggle the left vertical window
+let g:netrw_liststyle = 3		" Default view: tree. Cycle with (i).
+let g:netrw_banner = 0			" Remove space consuming top header text.
+let g:netrw_browse_split = 4		" Open in previous window by default (like NERDTree).
+let g:netrw_winsize = 20		" %-tage of window space to take in the respective open mode (vertical/horizontal).
+"let g:netrw_altv = 1			" Supposedly needed to splitit to left. However not needed as I just use :LExplore?
+
+" Auto close {
+" Close after opening a file (which gets opened in another window)
+" Reference: https://stackoverflow.com/a/69029703/265508
+let g:netrw_fastbrowse = 0
+autocmd FileType netrw setl bufhidden=wipe
+function! CloseNetrw() abort
+	for bufn in range(1, bufnr('$'))
+		if bufexists(bufn) && getbufvar(bufn, '&filetype') ==# 'netrw'
+			silent! execute 'bwipeout ' . bufn
+			if getline(2) =~# '^" Netrw '
+				silent! bwipeout
+			endif
+			return
+		endif
+	endfor
+endfunction
+augroup closeOnOpen
+	autocmd!
+	autocmd BufWinEnter * if getbufvar(winbufnr(winnr()), "&filetype") != "netrw"|call CloseNetrw()|endif
+aug END
+" }
+" }
+
 " vim-startify {
 " Bookmarks
 let g:startify_bookmarks = [

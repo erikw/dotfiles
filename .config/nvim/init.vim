@@ -46,6 +46,10 @@ let g:loaded_node_provider = 0
 execute "source " . stdpath('config') . "/commons_plugin.vim"
 " }
 
+" General {
+	Plug 'kyazdani42/nvim-tree.lua' | Plug 'kyazdani42/nvim-web-devicons' " File explorer tree
+" }
+
 " Development {
 " Development: General {
 	"Plug 'hrsh7th/nvim-cmp' | Plug 'hrsh7th/cmp-nvim-lsp' | Plug 'hrsh7th/cmp-buffer' | Plug 'hrsh7th/cmp-vsnip' | Plug 'hrsh7th/vim-vsnip'	" Autocompletion when typing with LSP backend. Disabled as too fast-moving development and bugs.
@@ -288,6 +292,18 @@ EOF
 
 " INSERT CONFIG FROM README HERE.
 "" }
+" }
+
+" nvim-tree.lua {
+noremap <silent> <F2> :NvimTreeToggle<CR> " Toggle file explorer tree
+:lua <<EOF
+	require("nvim-tree").setup({
+		open_on_setup = true,
+		open_on_setup_file = false,
+		open_on_tab = true,
+		filters = { custom = { "^.git$" } }
+	})
+EOF
 " }
 
 " nvim-treesitter {

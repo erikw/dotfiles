@@ -447,7 +447,7 @@ chflags hidden ~/Public
 # * On the notification/widget dropdown (click on clock), keep the following widgets
 #  - Calendar: Month
 #  - Calendar: Up next (M)
-#  - Weather: Forecast (M)
+#  - Weather: Forecast (L)
 # }
 
 # Mail.app {
