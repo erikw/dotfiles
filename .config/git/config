@@ -111,6 +111,11 @@
 	textconv = odt2txt
 [http]
 	postBuffer = 524288000	; Increase post byte size. Could also set this per project with $(git config http.postBuffer 524288000). Reference: https://stackoverflow.com/a/3605544/265508
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
 [gerrit]
 	createChangeId = true
 
@@ -129,8 +134,3 @@
 ; Available for git >=v2.13
 [includeIf "gitdir:~/work/"]
 	path = ~/.config/git/config-work
-[filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
