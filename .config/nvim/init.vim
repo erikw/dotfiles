@@ -268,6 +268,14 @@ require("indent_blankline").setup {
 EOF
 " }
 
+" lualine.nvim {
+:lua <<EOF
+	require('lualine').setup {
+		extensions = {'fugitive', 'fzf', 'nvim-tree', 'quickfix'}
+	}
+EOF
+" }
+
 " nvim-cmp {
 "set completeopt=menu,menuone,noselect
 
@@ -297,21 +305,18 @@ EOF
 " }
 
 " nvim-tree.lua {
-noremap <silent> <F2> :NvimTreeToggle<CR> " Toggle file explorer tree
+"noremap <silent> <F2> :NvimTreeToggle<CR> " Toggle file explorer tree
+
+" Global toggles until https://github.com/kyazdani42/nvim-tree.lua/issues/1493
+noremap <silent> <F2> :NvimTreeOpen<CR> " Toggle file explorer tree
+noremap <silent> <S-F2> :tabdo NvimTreeClose<CR> " Toggle file explorer tree
+
 :lua <<EOF
 	require("nvim-tree").setup {
 		open_on_setup = true,
 		open_on_setup_file = false,
 		open_on_tab = true,
 		filters = { custom = { "^.git$" } }
-	}
-EOF
-" }
-
-" lualine.nvim {
-:lua <<EOF
-	require('lualine').setup {
-		extensions = {'fugitive', 'fzf', 'nvim-tree', 'quickfix'}
 	}
 EOF
 " }
