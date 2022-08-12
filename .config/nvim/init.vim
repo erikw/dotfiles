@@ -233,9 +233,9 @@ set listchars=eol:$,space:·,tab:>-,trail:¬,extends:>,precedes:<,nbsp:.	" Chara
 " Plugin Config {
 " copilot.vim {
 " Disable/enable per filetype
-      "\ '*': v:true,
+      "\ '*': v:false, # global toggle, all on or all off.
 let g:copilot_filetypes = {
-      \ '*': v:false,
+      \ '*': v:true,
       \ 'sh': v:true,
       \ 'py': v:true,
       \ 'rb': v:true,
