@@ -44,6 +44,6 @@
 
 # Java development
 # Ignore gradle build directories.
---glob=!build/
+#--glob=!build/
 # Ignore gradle run log directory.
---glob=!logs/
+#--glob=!logs/

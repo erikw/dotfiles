@@ -308,8 +308,17 @@ EOF
 "noremap <silent> <F2> :NvimTreeToggle<CR> " Toggle file explorer tree
 
 " Global toggles until https://github.com/kyazdani42/nvim-tree.lua/issues/1493
-noremap <silent> <F2> :NvimTreeOpen<CR> " Toggle file explorer tree
-noremap <silent> <S-F2> :tabdo NvimTreeClose<CR> " Toggle file explorer tree
+" Could extend this by having just one Toggle function that keeps state in a
+" global variable.
+noremap <silent> <F2> :NvimTreeOpen<CR> " Toggle file explorer tree.
+" NvimTreeCloseAll() {
+function! NvimTreeCloseAll()
+	let current_tab = tabpagenr()
+	tabdo NvimTreeClose
+	execute 'tabnext' current_tab
+endfunction
+" }
+nnoremap <silent> <S-F2> :call NvimTreeCloseAll()<CR>	" Close NvimTree in all tabs.
 
 :lua <<EOF
 	require("nvim-tree").setup {
