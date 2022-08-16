@@ -236,6 +236,8 @@ set listchars=eol:$,space:·,tab:>-,trail:¬,extends:>,precedes:<,nbsp:.	" Chara
       "\ '*': v:false, # global toggle, all on or all off.
 let g:copilot_filetypes = {
       \ '*': v:true,
+      \ 'txt': v:false,
+      \ 'markdown': v:false,
       \ 'sh': v:true,
       \ 'py': v:true,
       \ 'rb': v:true,
