@@ -272,9 +272,15 @@ EOF
 
 " lualine.nvim {
 :lua <<EOF
-	require('lualine').setup {
-		extensions = {'fugitive', 'fzf', 'nvim-tree', 'quickfix'}
-	}
+require('lualine').setup {
+  sections = {
+    lualine_c = {{
+	'filename',
+	path = 1 -- relative path
+	}},
+  },
+  extensions = {'fugitive', 'fzf', 'nvim-tree', 'quickfix'}
+}
 EOF
 " }
 
