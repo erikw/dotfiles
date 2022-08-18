@@ -39,6 +39,10 @@ command! DisableFixers execute "DisableStripWhitespaceOnSave" | execute "let g:a
 "set omnifunc=syntaxcomplete#Complete	" Let Omni completion (^x^o) use vim's builtin syntax files for language keywords.
 " }
 
+" General {
+set tabpagemax=100			" Upper limit on number of tabs.
+" }
+
 " Mappings {
 let mapleader = "\\"					" The key for <Leader>.
 nmap <silent> <C-_> :nohlsearch<CR>			" Clear search matches highlighting. (Ctrl+/ => ^_). Note: neovim has <c-l> doing this be default now. https://neovim.io/doc/user/vim_diff.html#nvim-features-new

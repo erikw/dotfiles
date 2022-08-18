@@ -174,7 +174,6 @@ else
 endif
 
 set number				" Show line numbers.
-set tabpagemax=64			" Upper limit on number of tabs.
 set showmode				" Show current mode in the last line.
 set backspace=indent,eol,start		" Make backspace work like expected.
 set linespace=0				" No line spacing.

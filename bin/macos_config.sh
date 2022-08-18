@@ -534,7 +534,7 @@ defaults write -g NSWindowShouldDragOnGesture -bool true
 # Ref: https://discussions.apple.com/docs/DOC-7942
 # Ref: https://akrabat.com/prevent-an-external-drive-from-auto-mounting-on-macos/
 # * $ UUID=$(diskutil info /dev/disk5s1 | grep "Volume UUID" | awk '{print $3}')
-# * $ sudo vifs
+# * $ sudo vifs  # Edits /etc/fstab
 # * Enter:
 #   UUID=$UUID none apfs rw,noauto
 # * Restart computer to test.

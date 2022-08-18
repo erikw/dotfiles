@@ -119,6 +119,15 @@ git() {
 	fi
 }
 
+# Get path to the best vi(m) to use.
+vi_path() {
+	if program_is_in_path nvim; then
+		which nvim
+	else
+		which vim
+	fi
+}
+
 # Wrapper around the classic 'vi with ack' with search highlighting.
 # Usage example: viack -i "search_term
 # Last argument is the search string. Preceding arguments are for ack.
@@ -126,26 +135,30 @@ viack() {
 	local search
 	# Get the last argument. Reference: https://stackoverflow.com/a/1853993/265508
 	for search; do true; done
-	vi -p $(ack -l $@) -c 1 +/$search  # Go to first line then search downwards.
+	vi="$(vi_path)"
+	"$vi" -p $(ack -l $@) -c 1 +/$search  # Go to first line then search downwards.
 }
 
 # Wrapper around the classic 'vi with grep'.
 vigrep() {
 	local search
 	for search; do true; done
-	vi -p $(grep -Rl $@) -c 1 +/$search
+	vi="$(vi_path)"
+	$"vi" -p $(grep -Rl $@) -c 1 +/$search
 }
 
 # Wrapper around the classic 'rg with grep'.
 virg() {
 	local search
 	for search; do true; done
-	vi -p $(rg -l $@) -c 1 +/$search
+	vi="$(vi_path)"
+	"$vi" -p $(rg -l $@) -c 1 +/$search
 }
 
 # Wrapper around the classic 'fd with grep'.
 vifd() {
-	vi -p $(fd $@)
+	vi="$(vi_path)"
+	"$vi" -p $(fd $@)
 }
 
 _dev_log() {
