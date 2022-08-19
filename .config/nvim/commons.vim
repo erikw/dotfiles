@@ -32,6 +32,15 @@ autocmd BufWinEnter * silent! loadview			" Load fold views on start.
 
 " Disable all fixers. Good when editing non-owned code bases.
 command! DisableFixers execute "DisableStripWhitespaceOnSave" | execute "let g:ale_fix_on_save = 0"
+
+
+function! DebuggerClear()
+	let current_buf = bufnr()
+	silent :bufdo exe "g/^\\s*debugger\\s*$/d | update"
+	execute 'buffer' current_buf
+endfunction
+command! DebuggerClear :call DebuggerClear()  " Clear all debugger statement lines in all open buffers.
+
 " }
 
 " Completion {
