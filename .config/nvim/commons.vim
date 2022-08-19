@@ -49,7 +49,14 @@ command! DebuggerClear :call DebuggerClear()  " Clear all debugger statement lin
 " }
 
 " General {
+set nrformats=alpha,octal,hex		" What to increment/decrement with ^A and ^X.
 set tabpagemax=100			" Upper limit on number of tabs.
+set hidden				" Work with hidden buffers more easily. Enables to leave buffer with unwritten changes (by :edit another buffer).
+set sessionoptions-=options		" Don't store global and local variables in sessions.
+set sessionoptions-=folds		" Don't store folds in sessions.
+set undofile				" Save undo to file in undodir.
+set undolevels=2048			" Levels of undo to keep in memory.
+set timeoutlen=500			" Timout (ms) for mappings and keycodes. Make it a bit snappier.
 " }
 
 " Mappings {

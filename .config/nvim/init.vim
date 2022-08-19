@@ -81,14 +81,8 @@ execute "source " . stdpath('config') . "/commons.vim"
 " }
 
 " General {
-set undofile				" Save undo to file in undodir.
 set shortmess=filmnrxtToO		" Abbreviate messages.
-set nrformats=alpha,bin,octal,hex	" What to increment/decrement with ^A and ^X.
-set hidden				" Work with hidden buffers more easily. Enables to leave buffer with unwritten changes (by :edit another buffer).
-set sessionoptions-=options		" Don't store global and local variables when saving sessions.
-set undolevels=2048			" Levels of undo to keep in memory.
 "set clipboard+=unnamed			" Use register "* instead of unnamed register. This means what is being yanked in vim gets put to external clipboard automatically.
-set timeoutlen=500			" Timout (ms) for mappings and keycodes. Make it a bit snappier.
 " }
 
 " Formatting {

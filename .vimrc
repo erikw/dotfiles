@@ -67,16 +67,10 @@ set history=512			" Store much history.
 
 "set complete-=k complete+=k		" Put the dictionaries in the normal completion set.
 set shortmess=filmnrxtTo		" Abbreviate messages.
-set nrformats=alpha,octal,hex		" What to increment/decrement with ^A and ^X.
-set hidden				" Work with hidden buffers more easily. Enables to leave buffer with unwritten changes (by :edit another buffer).
 set autoread				" Autoreload buffer from file if not changed in vim, e.g. with the :checktime command.
-set sessionoptions-=options		" Don't store global and local variables when saving sessions.
-set undofile				" Save undo to file in undodir.
-set undolevels=2048			" Levels of undo to keep in memory.history.
 set modelines=5				" Number of lines from head of file to check for modelines. Setting this explicitly as on some syste*m (like macos in /usr/share/vim/vimrc) disables modelined by default. "
 set ttyfast				" Smoother changes.
 set clipboard+=unnamed			" Use register "* instead of unnamed register.
-set timeoutlen=1500			" Timout (ms) for mappings and keycodes.
 if !has('gui_running')
 	if !has('win32') && !has('win64')
 		set term=$TERM		" Make arrow and other keys work.
