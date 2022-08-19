@@ -39,7 +39,6 @@
     cask 'authy'
     cask 'cryptomator'
     cask 'dropbox'
-    cask 'ferdium'
     cask 'focusrite-control'
     cask 'google-cloud-sdk'  # for gcloud cli used for tardbot.
     cask 'gramps'
@@ -66,6 +65,7 @@
 =begin
     cask 'ableton-live-suite' # If using latest version, which I'm not.
     cask 'bitwarden'
+    cask 'ferdium'
     cask 'microsoft-office'  # License managed at https://account.microsoft.com/services/
     cask 'mixed-in-key'    # If using latest version, which I'm not.
     cask 'mutify'
@@ -73,9 +73,10 @@
 # }
 
 # Mas: default {
-    mas 'djay', id: 450527929
     mas 'Kindle', id: 405399194
     mas 'Pixelmator Pro', id: 1289583905
+    mas 'WhatsApp Desktop', id: 1147396723
+    mas 'djay', id: 450527929
 # }
 
 # Mas: optional {
