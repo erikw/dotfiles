@@ -132,7 +132,16 @@ $(brew --prefix)/opt/fzf/install --xdg
 # * If not already the case, make sure lpr uses the default printer:
 #lpstat -p -d
 #lpoptions -d Brother_DCP_7070DW
-#lpoptions -p Brother_DCP_7070DW -o Printing=DuplexNoTumble -o PageSize=A4
+#lpoptions -p Brother_DCP_7070DW  -o PageSize=A4 -o Printing=DuplexNoTumble -o Duplex/Two-Sided=true
+#
+# Then set default options used for gui printing diaglog.
+# Ref: https://support.pirateship.com/en/articles/2799085-mac-how-to-change-default-printer-settings
+# * $ cupsctl WebInterface=yes
+# * Go to http://localhost:631/printers/ log in with system user and password
+# * Select my printer > Dropdown: Set Default Options
+#   - Media Size: A4
+#   - Two-Sided Printing: LongEdgeBinding
+
 
 # Antivirus: Avast Security for Mac
 # https://www.avast.com/en-us/free-mac-security

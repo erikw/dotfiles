@@ -129,6 +129,10 @@ fi
 	setopt histignorespace		# Ignore commands starting with space.
 	setopt extendedhistory		# Save command time start and exec time in seconds.
 	setopt histreduceblanks		# Strip redundant spaces.
+
+	# Don't save failed commands (mostly misspellings) to history, to avoid getting them on completion later.
+	# Ref: https://superuser.com/a/902508/42070
+	zshaddhistory() { whence ${${(z)1}[1]} >| /dev/null || return 1 }
 # }}
 
 # UI {{
