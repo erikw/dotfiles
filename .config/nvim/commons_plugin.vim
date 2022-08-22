@@ -43,6 +43,7 @@
 	Plug 'vim-scripts/argtextobj.vim'		" Make function arguments text objects that can be operated on with.
 	Plug 'godlygeek/tabular' | Plug 'preservim/vim-markdown' " Markdown utilties like list indention, TOC.
 	Plug 'ruanyl/vim-gh-line'			" Copy lik to file on GitHub.
+	Plug 'superDross/ticket.vim'
 " }
 
 " Development: C/C++ {

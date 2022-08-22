@@ -73,13 +73,16 @@ noremap YF :let @" = expand("%:p")<CR>			" Yank current (fully expanded) file na
 nnoremap <silent> <Leader>R :checktime<CR>		" Reload buffers from file if changed.
 "nmap <silent> <Leader>d "=strftime("%Y-%m-%d")<CR>P	" Insert the current date.
 "nmap <silent> <Leader>S :%s/\s\+$//ge<CR>		" Remove all trailing spaces.
-nnoremap <silent> <C-S> :mksession! <bar> echo "Session saved"<CR> " Save (force) current session.
 nnoremap <silent> <C-O> :source Session.vim <bar> echo "Session loaded"<CR> " Load saved session.
 
 nnoremap <silent> gfs :wincmd f<CR>			" Open path under cursor in a split.
 nnoremap <silent> gfv :vertical wincmd f<CR>		" Open path under cursor in a vertical split.
 nnoremap <silent> gft :tab wincmd f<CR>			" Open path under cursor in a tab.
 nnoremap <silent> gV `[v`]				" Visually select the text that was last edited/pasted.
+
+" Save (force) current session.
+"nnoremap <silent> <C-S> :mksession! <bar> echo "Session saved"<CR>
+nnoremap <silent> <Leader>s :mksession! <bar> echo "Session saved"<CR>
 
 " Redraw window so that search terms are centered.
 nnoremap n nzz
@@ -312,6 +315,20 @@ let g:tagbar_autofocus = 1		" Give tagbar focus when it's opened.
 let g:tagbar_compact = 1		" Omit the help text.
 let g:tagbar_singleclick = 1		" Jump to tag with a single click.
 let g:tagbar_autoshowtag = 1		" Open folds if tag is not visible.
+" }
+
+" tickets.vim {
+" Alternatives that also support per-branch saving to some extent:
+" * https://piet.me/branch-based-sessions-in-vim/
+" * https://github.com/dhruvasagar/vim-prosession
+" * https://github.com/wting/gitsessions.vim
+" * https://github.com/rmagatti/auto-session
+
+let g:auto_ticket = 1  " Automatically load tickets when starting vim without file arguments.
+
+ " Save current session.
+"nnoremap <silent> <C-s> :SaveSession <bar> echo "Session saved"<CR>
+nnoremap <silent> <C-s> :execute ':SaveSession' <bar> echo "Session saved"<CR>
 " }
 
 " vim-autoclose {
