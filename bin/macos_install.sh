@@ -140,7 +140,7 @@ $(brew --prefix)/opt/fzf/install --xdg
 # * Go to http://localhost:631/printers/ log in with system user and password
 # * Select my printer > Dropdown: Set Default Options
 #   - Media Size: A4
-#   - Two-Sided Printing: LongEdgeBinding
+#   - Two-Sided Printing: Long-Edge Binding
 
 
 # Antivirus: Avast Security for Mac
