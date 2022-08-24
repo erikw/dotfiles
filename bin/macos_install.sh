@@ -204,7 +204,6 @@ $(brew --prefix)/opt/fzf/install --xdg
 # * Disable all other shortcuts as e.g. opt+cmd+r conflicts with Firefox reading mode, cmd+opt+s with iTerm solarized toggle.
 # ** It's not enough to uncheck a shortcut, it's value has to be deleted otherwise it will be enabled again.
 
-
 # Spotify Notifications
 # NOPE Replaced with native Now Playing Menu Bar.
 # * Set shortcut to show current playing to: Ctrl + Opt + Cmd + p
