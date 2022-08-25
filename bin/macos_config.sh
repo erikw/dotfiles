@@ -539,6 +539,28 @@ defaults write -g NSWindowShouldDragOnGesture -bool true
 #   UUID=$UUID none apfs rw,noauto
 # * Restart computer to test.
 
+
+# Prepare user's crontab header.
+read -r -d '' newtab <<'EOF'
+# Environment
+#SHELL=/bin/sh
+# ~/ works, but not $HOME strangely enough.
+PATH=~/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/local/sbin:/sbin:/usr/sbin:/usr/bin:/bin
+# Reference: crontab(5).
+# Helper: https://crontab.guru/
+# Order of crontab fields
+# minute hour mday month wday	command
+
+
+#30	 19	 *	 *	 *	if_fail_do_notification restic_backup.sh
+#@monthly			   if_fail_do_notification restic_check.sh
+EOF
+oldtab=$(crontab -l)
+if [ -n "$oldtab" ]; then
+	newtab=$(printf "%s\n%s\n" "$oldtab" "$newtab")
+fi
+echo "$newtab" | crontab -
+
 # }
 
 killall Dock Finder

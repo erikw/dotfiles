@@ -115,6 +115,11 @@ ln -s $HOME/Library/Application\ Support $HOME/Library/ApplicationSupport
 # fzf fuzzy finder. Installed via brew
 $(brew --prefix)/opt/fzf/install --xdg
 
+# Install ~/bin/dotfiles_backup_local.sh cron entry.
+tab_entry="0 13 * * * dotfiles_backup_local.sh"
+tab_old=$(crontab -l)
+tab_new=$(printf "%s\n%s\n" "$tab_old" "$tab_entry")
+echo "$tab_new" | crontab -
 # }
 
 # Installs: Manual {
