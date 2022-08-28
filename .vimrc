@@ -108,35 +108,15 @@ endif
 " }
 " }
 
-" Formatting {
-set linebreak			" Wrap on 'breakat'-chars.
-"set showbreak=>		" Indicate wrapped lines.
-set showbreak=…			" Indicate wrapped lines.
-set smartindent			" Indent smart on C-like files.
-set preserveindent		" Try to preserve indent structure on changes of current line.
-set copyindent			" Copy indentstructure from existing lines.
-set tabstop=8			" Let a tab be X spaces wide. 8 spaces for a tab render best as HTML on e.g. GithHub.
-set shiftwidth=8		" Tab width for auto indent and >> shifting.
-"set softtabstop=8		" Number of spaces to count a tab for on ops like BS and tab.
-set noexpandtab			" Do not expand tabs to spaces!
-set matchpairs+=<:>		" Also match <> with %.
-set formatoptions=tcroqwnl	" Formatting options.
-set cinoptions+=g=		" Left-indent C++ access labels.
-"set pastetoggle  = <Leader>p    " Toggle 'paste' for sane pasting.
-" }
-
 " Searching {
 set hlsearch	" Highlight search.
 set incsearch	" Incremental search.
-set ignorecase	" Case insensitive search.
-set smartcase	" Smart case search.
-set nowrapscan	" Don't wrap search around file.
 " }
 
 " Spelling {
 "set spell			" Enable spell highlighting and suggestions.
-set spellsuggest=best,10	" Limit spell suggestions.
 set spelllang=en_us		" Languages to do spell checking for.
+set spellsuggest=best,10	" Limit spell suggestions.
 " Set spellfile dynamically.
 execute "set spellfile=" . g:xdg_config_home ."/nvim/spell/" . matchstr(&spelllang, "[a-zA-Z][a-zA-Z]") . "." . &encoding . ".add"
 " Use a thesaurus file. Could load all, but that makes lookup slower. Instead let ToggleSpell() set per language.
@@ -146,50 +126,19 @@ set dictionary+=~/.vim/spell/		" Use custom dictionaries.
 " }
 
 " UI {
-" Ignore if don't exist. This is the case when $(vim -c PlugInstall) Ref: https://stackoverflow.com/a/5703164/265508
-silent! colorscheme NeoSolarized
-
 set t_Co=256		" Set number of colors.
 "hi Normal ctermbg=NONE	" Transparent background.
 set title		" Show title in console title bar.
-" Adjust colors to this background.
-let s:solarized_status = g:xdg_state_home . "/solarizedtoggle/status"
-if filereadable(s:solarized_status)
-	let &background = readfile(s:solarized_status)[0]
-else
-	" Lighter bg during night.
-	" Source:  http://benjamintan.io/blog/2014/04/10/switch-solarized-light-slash-dark-depending-on-the-time-of-day/
-	let s:hour = strftime("%H")
-	if 7 <= s:hour && s:hour < 18
-		set background=light
-	else
-		set background=dark
-	endif
-endif
 
-set number				" Show line numbers.
 set showmode				" Show current mode in the last line.
 set backspace=indent,eol,start		" Make backspace work like expected.
 set linespace=0				" No line spacing.
-set showmatch				" Shortly jump to a matching bracket when match.
 set wildmode=full			" Full completion.
-set wildignorecase			" Case insensitive filename completion.
-set scrolljump=5			" Lines to scroll when cursor leaves screen.
-set scrolloff=3				" Minimum lines to keep above and below cursor.
-set splitbelow				" Open horizontal split below.
-set splitright				" Open vertical split to the right.
 set foldenable				" Use folding.
 set showcmd				" Show incomplete commands in the lower right corner.
 set ruler				" Show current cursor position in the lower right corner.
 set laststatus=2			" Always show the status line.
 set nolist				" Don't show unprintable characters.
-"set listchars=eol:$,tab:>-,trail:¬,extends:>,precedes:<,nbsp:.	" Characters to use for list.
-set listchars=eol:$,space:·,tab:>-,trail:¬,extends:>,precedes:<,nbsp:.	" Characters to use for list.
-set cursorline				" Highlight the current line.
-"set cursorcolumn			" Highlight the current column.
-" Colors of the CursorLine.
-"hi CursorLine cterm=NONE ctermbg=LightGray ctermfg=Black guibg=LightGray guifg=Black
-"hi CursorColumn cterm=NONE ctermbg=LightGray ctermfg=Black guibg=LightGray guifg=Black
 
 " UI: Statusline {
 " Comment these out when using powerline statusbar.

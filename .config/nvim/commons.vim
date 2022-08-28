@@ -59,6 +59,22 @@ set undolevels=2048			" Levels of undo to keep in memory.
 set timeoutlen=500			" Timout (ms) for mappings and keycodes. Make it a bit snappier.
 " }
 
+" Formatting {
+set linebreak			" Wrap on 'breakat'-chars.
+"set showbreak=>		" Indicate wrapped lines.
+set showbreak=…			" Indicate wrapped lines.
+set smartindent			" Indent smart on C-like files.
+set preserveindent		" Try to preserve indent structure on changes of current line.
+set copyindent			" Copy indentstructure from existing lines.
+set tabstop=8			" Let a tab be X spaces wide. 8 spaces for a tab render best as HTML on e.g. GithHub.
+set shiftwidth=8		" Tab width for auto indent and >> shifting.
+"set softtabstop=8		" Number of spaces to count a tab for on ops like BS and tab.
+set matchpairs+=<:>		" Also match <> with %.
+set formatoptions=tcroqwnl	" How automatic formatting should happen.
+set cinoptions+=g=		" Left-indent C++ access labels.
+"set pastetoggle  = <Leader>p   " Toggle 'paste' for sane pasting.
+" }
+
 " Mappings {
 let mapleader = "\\"					" The key for <Leader>.
 nmap <silent> <C-_> :nohlsearch<CR>			" Clear search matches highlighting. (Ctrl+/ => ^_). Note: neovim has <c-l> doing this be default now. https://neovim.io/doc/user/vim_diff.html#nvim-features-new
@@ -180,11 +196,51 @@ cmap w\ echoerr "Using a Swedish keyboard?"<CR>
 " }
 " }
 
-" Plugin Config {
-" Modeline {
-" vi: foldmarker={,} foldmethod=marker foldlevel=0 tabstop=8 shiftwidth=8:
+" Searching {
+set ignorecase	" Case insensitive search.
+set smartcase	" Smart case search.
+set nowrapscan	" Don't wrap search around file.
 " }
 
+" UI {
+" Ignore if don't exist. This is the case when $(vim -c PlugInstall) the firs time. Ref: https://stackoverflow.com/a/5703164/265508
+silent! colorscheme NeoSolarized
+
+" Adjust colors to this background.
+let s:solarized_status = g:xdg_state_home . "/solarizedtoggle/status"
+if filereadable(s:solarized_status)
+	let &background = readfile(s:solarized_status)[0]
+else
+	" Lighter bg during night.
+	" Source:  http://benjamintan.io/blog/2014/04/10/switch-solarized-light-slash-dark-depending-on-the-time-of-day/
+	let s:hour = strftime("%H")
+	if 7 <= s:hour && s:hour < 18
+		set background=light
+	else
+		set background=dark
+	endif
+endif
+
+set termguicolors	" Enable 24-bit RGB. Required by NeoSolarized.
+set mouse=a		" Enable mouse in all modes.
+set title		" Show title in console title bar.
+set number		" Show line numbers.
+set relativenumber	" Show relative line numbers.
+set showmatch		" Shortly jump to a matching bracket when match.
+set cursorline		" Highlight the current line.
+set wildignorecase	" Case insensitive filename completion.
+set scrolljump=5	" Lines to scroll when cursor leaves screen.
+set scrolloff=3		" Minimum lines to keep above and below cursor.
+set splitbelow		" Open horizontal split below.
+set splitright		" Open vertical split to the right.
+set listchars=eol:$,space:·,tab:>-,trail:¬,extends:>,precedes:<,nbsp:.	" Characters to use for :list.
+"set cursorcolumn	" Highlight the current column.
+" Colors of the CursorLine.
+"hi CursorLine cterm=NONE ctermbg=LightGray ctermfg=Black guibg=LightGray guifg=Black
+"hi CursorColumn cterm=NONE ctermbg=LightGray ctermfg=Black guibg=LightGray guifg=Black
+" }
+
+" Plugin Config {
 " ALE {
 " Reference https://github.com/dense-analysis/ale/blob/master/doc/ale.txt
 " Linting {
