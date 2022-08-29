@@ -327,7 +327,7 @@ nnoremap <Leader>b :Buffers<CR>
 " Search open tabs (indirectly; " https://medium.com/@paulodiovani/vim-buffers-windows-and-tabs-an-overview-8e2a57c57afa).
 nnoremap <Leader>t :Windows<CR>
 " Search history of opended files
-nnoremap <Leader>h :History<CR>
+nnoremap <Leader>H :History<CR>
 " Search mappings.
 nnoremap <Leader>m :Maps<CR>
 " Search with rg (aka live grep).

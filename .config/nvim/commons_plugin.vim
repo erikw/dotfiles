@@ -25,7 +25,7 @@
 	Plug 'tpope/vim-fugitive'				" Git wrapper and shorthands.
 	Plug 'tpope/vim-repeat'					" Extend '.' repetition for plugins like vim-surround, vim-speeddating.
 	Plug 'tpope/vim-speeddating'				" Increment dates with C-a.
-	Plug 'tpope/vim-surround'				" Work on surrond delimiters or its content.
+	Plug 'tpope/vim-surround'				" Work on surrond delimiters or its content. TODO replace with https://github.com/kylechui/nvim-surround ?
 	Plug 'tpope/vim-unimpaired'				" Bracket mappings like [<space>
 	Plug 'tpope/vim-characterize'				" 'ga' on steroid.
 " }
