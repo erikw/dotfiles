@@ -65,6 +65,12 @@ execute "source " . stdpath('config') . "/commons_plugin.vim"
 " }
 " }
 
+" Snippets {
+	Plug 'dcampos/nvim-snippy'				" Snippets engine compatible with the SnipMate format.
+	Plug 'honza/vim-snippets'				" Snippet library
+	Plug 'rbonvall/snipmate-snippets-bib', { 'for': 'tex' }	" Bibtex snippets.
+" }
+
 " UI {
 	"Plug 'dstein64/nvim-scrollview'	" Visual and interactive scroll bar.
 	"Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
@@ -260,6 +266,19 @@ EOF
 
 " INSERT CONFIG FROM README HERE.
 "" }
+" }
+
+" nvim-snippy {
+:lua <<EOF
+require('snippy').setup({
+    mappings = {
+        is = {
+            ['<Tab>'] = 'expand_or_advance',
+            ['<S-Tab>'] = 'previous',
+        },
+    },
+})
+EOF
 " }
 
 " nvim-tree.lua {

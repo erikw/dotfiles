@@ -43,6 +43,13 @@ call plug#begin('~/.vim/plugged')
 execute "source " . g:xdg_config_home . "/nvim/commons_plugin.vim"
 " }
 
+" Snippets {
+	" Snippet engine. Not very active. https://github.com/honza/vim-snippets list altenatives. neosnippet.vim seems nice, but require python provider.
+	Plug 'garbas/vim-snipmate' | Plug 'MarcWeber/vim-addon-mw-utils' | Plug 'tomtom/tlib_vim'
+	Plug 'honza/vim-snippets'				" Snippet library
+	Plug 'rbonvall/snipmate-snippets-bib', { 'for': 'tex' }	" Bibtex snippets.
+" }
+
 " Setup - end {
 " Initialize plugin system
 call plug#end()
@@ -203,6 +210,12 @@ augroup closeOnOpen
 	autocmd BufWinEnter * if getbufvar(winbufnr(winnr()), "&filetype") != "netrw"|call CloseNetrw()|endif
 aug END
 " }
+" }
+
+" vim-snipmate {
+let g:snipMate = { 'snippet_version' : 1 }	" Use the new parser (and surpress message about using the old parser).
+let g:snipMate.always_choose_first = 1		" Make it easy to override snippet from ~/.local/share/nvim/plugged/vim-snippets/snippets/ in ~/.config/nvim/snippets/
+
 " }
 
 " vim-startify {

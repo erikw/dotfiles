@@ -476,12 +476,6 @@ let g:vim_markdown_follow_anchor = 1		" Let ge follow #anchors
 let g:vim_markdown_new_list_item_indent = 2	" Bullent space indents.
 " }
 
-" vim-snipmate {
-let g:snipMate = { 'snippet_version' : 1 }	" Use the new parser (and surpress message about using the old parser).
-let g:snipMate.always_choose_first = 1		" Make it easy to override snippet from ~/.local/share/nvim/plugged/vim-snippets/snippets/ in ~/.config/nvim/snippets/
-
-" }
-
 " vim-yoink {
 let g:yoinkMaxItems=16			" Increase from default 10.
 let g:yoinkSyncNumberedRegisters=1	" Repurpose the registers to be a history stack!
