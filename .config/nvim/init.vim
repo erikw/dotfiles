@@ -49,6 +49,7 @@ execute "source " . stdpath('config') . "/commons_plugin.vim"
 " General {
 	Plug 'kyazdani42/nvim-tree.lua'		" File explorer tree
 	Plug 'phaazon/hop.nvim'			" Easy motion jumps in buffer.
+	"Plug 'gennaro-tedesco/nvim-peekup'	" Register viewer and selector. Not compatible with vim-yoink.
 " }
 
 " Development {
@@ -77,6 +78,7 @@ execute "source " . stdpath('config') . "/commons_plugin.vim"
 	"Plug 'romgrk/barbar.nvim'		" Tab bar improvements. Cool but too much.
 	Plug 'kyazdani42/nvim-web-devicons'	" Dependency for: nvim-tree.lua, lualine.nvim, barbar.nvim
 	Plug 'nvim-lualine/lualine.nvim'	" Statusline
+	Plug 'chentoast/marks.nvim'		" Visualize marks in the sign column.
 "}
 
 " Setup - end {
@@ -237,6 +239,12 @@ require('lualine').setup {
   },
   extensions = {'fugitive', 'fzf', 'nvim-tree', 'quickfix'}
 }
+EOF
+" }
+
+" marks.nvim {
+:lua <<EOF
+require'marks'.setup {}
 EOF
 " }
 
