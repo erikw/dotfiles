@@ -318,8 +318,9 @@ EOF
 " nvim-treesitter {
 :lua <<EOF
 require'nvim-treesitter.configs'.setup {
-  -- A list of parser names, or "all"
-  ensure_installed = { "lua", "ruby", "python" },
+  -- A list of parser names, or "all". Install manually with :TSINstall <parser>
+  -- comment - for parsing e.g. TODO markers in comments.
+  ensure_installed = { "comment","lua", "ruby", "python" },
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = false,
