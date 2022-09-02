@@ -307,8 +307,8 @@ require("other-nvim").setup({
 	mappings = {
 		-- builtin mappings
 		"rails",
-		-- custom mapping
-		-- custom mapping: rails src->test
+		-- custom mappings
+		-- custom mappings: rails src->test
 		{
 			pattern = "/app/models/(.*).rb",
 			target = "/test/unit/models/%1_test.rb",
@@ -364,7 +364,7 @@ require("other-nvim").setup({
 			target = "/test/unit/lib/%1_test.rb",
 			context = "test"
 		},
-		-- custom mapping: rails test->src
+		-- custom mappings: rails test->src
 		{
 			pattern = "/test/unit/models/(.*)_test.rb",
 			target = "/app/models/%1.rb",
