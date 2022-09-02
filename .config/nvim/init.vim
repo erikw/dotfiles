@@ -305,7 +305,121 @@ EOF
 lua << EOF
 require("other-nvim").setup({
 	mappings = {
+		-- builtin mappings
 		"rails",
+		-- custom mapping
+		-- custom mapping: rails src->test
+		{
+			pattern = "/app/models/(.*).rb",
+			target = "/test/unit/models/%1_test.rb",
+			context = "test"
+		},
+		{
+			pattern = "/app/controllers/(.*).rb",
+			target = "/test/integration/%1_test.rb",
+			context = "test"
+		},
+		{
+			pattern = "/app/controllers/(.*).rb",
+			target = "/test/functional/%1_test.rb",
+			context = "test"
+		},
+		{
+			pattern = "/app/controllers/(.*).rb",
+			target = "/test/unit/controllers/%1_test.rb",
+			context = "test"
+		},
+		{
+			pattern = "/app/channels/(.*).rb",
+			target = "/test/channels/%1_test.rb",
+			context = "test"
+		},
+		{
+			pattern = "/app/mailers/(.*).rb",
+			target = "/test/unit/mailers/%1_test.rb",
+			context = "test"
+		},
+		{
+			pattern = "/app/policies/(.*).rb",
+			target = "/test/unit/policies/%1_test.rb",
+			context = "test"
+		},
+		{
+			pattern = "/app/serializers/(.*).rb",
+			target = "/test/unit/serializers/%1_test.rb",
+			context = "test"
+		},
+		{
+			pattern = "/app/services/(.*).rb",
+			target = "/test/unit/services/%1_test.rb",
+			context = "test"
+		},
+		{
+			pattern = "/app/workers/(.*).rb",
+			target = "/test/unit/workers/%1_test.rb",
+			context = "test"
+		},
+		{
+			pattern = "/lib/(.*).rb",
+			target = "/test/unit/lib/%1_test.rb",
+			context = "test"
+		},
+		-- custom mapping: rails test->src
+		{
+			pattern = "/test/unit/models/(.*)_test.rb",
+			target = "/app/models/%1.rb",
+			context = "src"
+		},
+		{
+			pattern = "/test/integration/(.*)_test.rb",
+			target = "/app/controllers/%1.rb",
+			context = "src"
+		},
+		{
+			pattern = "/test/functional/(.*)_test.rb",
+			target = "/app/controllers/%1.rb",
+			context = "src"
+		},
+		{
+			pattern = "/test/unit/controllers/(.*)_test.rb",
+			target = "/app/controllers/%1.rb",
+			context = "src"
+		},
+		{
+			pattern = "/test/channels/(.*)_test.rb",
+			target = "/app/channels/%1.rb",
+			context = "src"
+		},
+		{
+			pattern = "/test/unit/mailers/(.*)_test.rb",
+			target = "/app/mailers/%1.rb",
+			context = "src"
+		},
+		{
+			pattern = "/test/unit/policies/(.*)_test.rb",
+			target = "/app/policies/%1.rb",
+			context = "src"
+		},
+		{
+			pattern = "/test/unit/serializers/(.*)_test.rb",
+			target = "/app/serializers/%1.rb",
+			context = "src"
+		},
+		{
+			pattern = "/test/unit/services/(.*)_test.rb",
+			target = "/app/services/%1.rb",
+			context = "src"
+		},
+		{
+			pattern = "/test/unit/workers/(.*)_test.rb",
+			target = "/app/workers/%1.rb",
+			context = "src"
+		},
+		{
+			pattern = "/test/unit/lib/(.*)_test.rb",
+			target = "/lib/%1.rb",
+			context = "src"
+		},
 	},
 })
 
@@ -315,8 +429,8 @@ vim.api.nvim_set_keymap("n", "<leader>lv", "<cmd>:OtherVSplit<CR>", { noremap = 
 vim.api.nvim_set_keymap("n", "<leader>lc", "<cmd>:OtherClear<CR>", { noremap = true, silent = true })
 
 -- Context specific bindings
-vim.api.nvim_set_keymap("n", "<leader>lt", "<cmd>:Other test<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<leader>ls", "<cmd>:Other scss<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>lt", "<cmd>:OtherVSplit test<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>ls", "<cmd>:OtherVSplit src<CR>", { noremap = true, silent = true })
 EOF
 " }
 
