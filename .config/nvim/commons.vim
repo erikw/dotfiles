@@ -249,6 +249,7 @@ set listchars=eol:$,space:·,tab:>-,trail:¬,extends:>,precedes:<,nbsp:.	" Chara
 		"\ 'tex': ['texlab'],
 let g:ale_linters = {
 		\ 'go': ['gopls'],
+		\ 'javascript': ['eslint'],
 		\ 'json': ['jsonls'],
 		\ 'python': ['pyright', 'flake8'],
 		\ 'ruby': ['solargraph', 'ruby'],
@@ -262,6 +263,7 @@ let g:ale_linters = {
 " python - disabled autoimport as it messes up ifx in taiga_stats.commands import  fix. Could be resolved by https://github.com/myint/autoflake/issues/59
 let g:ale_fixers = {
 	\ '*': ['prettier'],
+	\ 'javascript': ['eslint'],
 	\ 'ruby': ['rubocop'],
 	\ 'python': ['autoflake', 'black', 'isort'],
 	\}

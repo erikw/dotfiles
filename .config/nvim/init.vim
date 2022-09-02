@@ -50,6 +50,7 @@ execute "source " . stdpath('config') . "/commons_plugin.vim"
 	Plug 'kyazdani42/nvim-tree.lua'		" File explorer tree
 	Plug 'phaazon/hop.nvim'			" Easy motion jumps in buffer.
 	"Plug 'gennaro-tedesco/nvim-peekup'	" Register viewer and selector. Not compatible with vim-yoink.
+	Plug 'axieax/urlview.nvim'		" Open URLs in buffer.
 " }
 
 " Development {
@@ -63,6 +64,8 @@ execute "source " . stdpath('config') . "/commons_plugin.vim"
 	Plug 'lukas-reineke/indent-blankline.nvim'	" Indent vertical markers.
 	Plug 'nvim-lua/plenary.nvim' | Plug 'sindrets/diffview.nvim' " Better than fugative ':Git difftool'.
 	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " NVim interface for tree-sitter (language parser).
+	Plug 'nguyenvukhang/nvim-toggler'		" Toggle values like true/false with <leader>i.
+	Plug 'rgroli/other.nvim'			" Open related file like test.
 " }
 " }
 
@@ -79,6 +82,7 @@ execute "source " . stdpath('config') . "/commons_plugin.vim"
 	Plug 'kyazdani42/nvim-web-devicons'	" Dependency for: nvim-tree.lua, lualine.nvim, barbar.nvim
 	Plug 'nvim-lualine/lualine.nvim'	" Statusline
 	Plug 'chentoast/marks.nvim'		" Visualize marks in the sign column.
+	Plug 'sitiom/nvim-numbertoggle'		" Automatic relative / static line number toggling.
 "}
 
 " Setup - end {
@@ -199,7 +203,7 @@ let g:copilot_no_tab_map = 1
 " }
 
 " dark-notify {
-:lua <<EOF
+lua <<EOF
 	require('dark_notify').run()
 EOF
 " }
@@ -210,7 +214,7 @@ nnoremap <Leader>D :Dash<CR>
 " }
 
 " hop.nvim {
-:lua <<EOF
+lua <<EOF
 	require'hop'.setup()
 	-- Keybindings
 	-- Vim Command to Lua function mapping: https://github.com/phaazon/hop.nvim/wiki/Advanced-Hop#lua-equivalents-of-hop-commands
@@ -219,7 +223,7 @@ EOF
 " }
 
 " indent-blankline.nvim {
-:lua <<EOF
+lua <<EOF
 require("indent_blankline").setup {
     use_treesitter = true,  -- use treesitter to calculate indentation.
     show_current_context = true,  -- highlight current indent block.
@@ -229,7 +233,7 @@ EOF
 " }
 
 " lualine.nvim {
-:lua <<EOF
+lua <<EOF
 require('lualine').setup {
   sections = {
     lualine_c = {{
@@ -243,7 +247,7 @@ EOF
 " }
 
 " marks.nvim {
-:lua <<EOF
+lua <<EOF
 require'marks'.setup {}
 EOF
 " }
@@ -276,8 +280,15 @@ EOF
 "" }
 " }
 
+" nvim-numbertoggle {
+" init.vim or .vimrc
+lua << EOF
+require("numbertoggle").setup()
+EOF
+" }
+
 " nvim-snippy {
-:lua <<EOF
+lua <<EOF
 require('snippy').setup({
     mappings = {
         is = {
@@ -286,6 +297,33 @@ require('snippy').setup({
         },
     },
 })
+EOF
+" }
+
+" other.nvim {
+" init.vim or .vimrc
+lua << EOF
+require("other-nvim").setup({
+	mappings = {
+		"rails",
+	},
+})
+
+vim.api.nvim_set_keymap("n", "<leader>ll", "<cmd>:Other<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>lp", "<cmd>:OtherSplit<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>lv", "<cmd>:OtherVSplit<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>lc", "<cmd>:OtherClear<CR>", { noremap = true, silent = true })
+
+-- Context specific bindings
+vim.api.nvim_set_keymap("n", "<leader>lt", "<cmd>:Other test<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>ls", "<cmd>:Other scss<CR>", { noremap = true, silent = true })
+EOF
+" }
+
+" nvim-toggler {
+" init.vim or .vimrc
+lua << EOF
+require('nvim-toggler').setup()
 EOF
 " }
 
@@ -305,7 +343,7 @@ endfunction
 " }
 nnoremap <silent> <S-F2> :call NvimTreeCloseAll()<CR>	" Close NvimTree in all tabs.
 
-:lua <<EOF
+lua <<EOF
 	require("nvim-tree").setup {
 		open_on_setup = true,
 		open_on_setup_file = false,
@@ -316,11 +354,11 @@ EOF
 " }
 
 " nvim-treesitter {
-:lua <<EOF
+lua <<EOF
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all". Install manually with :TSINstall <parser>
   -- comment - for parsing e.g. TODO markers in comments.
-  ensure_installed = { "comment","lua", "ruby", "python" },
+  ensure_installed = { "comment","lua", "ruby", "python", "javascript" },
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = false,

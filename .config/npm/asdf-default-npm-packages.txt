@@ -10,3 +10,6 @@ yarn
 bash-language-server
 vim-language-server
 vscode-langservers-extracted
+
+# Linters
+eslint
