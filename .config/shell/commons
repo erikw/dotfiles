@@ -54,6 +54,7 @@
 	export TRAVIS_CONFIG_PATH=$XDG_CONFIG_HOME/travis
 	export RIPGREP_CONFIG_PATH=$XDG_CONFIG_HOME/ripgrep/config
 	export FZF_MARKS_FILE=$XDG_CONFIG_HOME/fzf-marks/marks
+	export GOPATH="$XDG_DATA_HOME/go"
 
 	# asdf; Not yet fully compliant; https://github.com/asdf-vm/asdf/issues/687
 	export ASDF_CONFIG_FILE=${XDG_CONFIG_HOME}/asdf/asdfrc
@@ -279,15 +280,10 @@
 
 # Programs {
 #  Go {
-	if [ -d $HOME/src/godeps ]; then
-		export GOPATH="$HOME/src/godeps/:$GOPATH"
-		PATH="$HOME/src/godeps/bin:$PATH"
+	if [ -d "$GOPATH/bin" ]; then
+		PATH="$GOPATH/bin::$PATH"
 	fi
-	if [ -d $HOME/dev/go ]; then
-		export GOPATH="$HOME/dev/go/:$GOPATH"
-		PATH="$HOME/dev/go/bin:$PATH"
-	fi
-	if [ -e "$HOME/src/github.com/golang/go" ]; then
+	if [ -d "$HOME/src/github.com/golang/go" ]; then
 		export GOROOT="$HOME/src/golang/go"
 		PATH="$GOROOT/bin:$GOROOT/pkg/tool/linux_amd64:$PATH"
 	fi
