@@ -56,15 +56,15 @@ execute "source " . stdpath('config') . "/commons_plugin.vim"
 " Development {
 " Development: General {
 	"Plug 'hrsh7th/nvim-cmp' | Plug 'hrsh7th/cmp-nvim-lsp' | Plug 'hrsh7th/cmp-buffer' | Plug 'hrsh7th/cmp-vsnip' | Plug 'hrsh7th/vim-vsnip'	" Autocompletion when typing with LSP backend. Disabled as too fast-moving development and bugs.
-	"Plug 'm-demare/hlargs.nvim' " Highlight usage of method arguments. Disabled until working with NeoSolarized: https://github.com/m-demare/hlargs.nvim/issues/37#issuecomment-1230784816
 	"Plug 'mfussenegger/nvim-dap'			" Debug Adapter Protocol client. Like LSP for debuggers. TODO try again when more mature. Currently LUA config is not working (freezes nvim).
 	"Plug 'neovim/nvim-lspconfig'			" Plug-n-play configurations for LSP server. Disabled in favour of simpler to use ALE.
 	Plug 'github/copilot.vim'			" AI powered code completion.
 	Plug 'ibhagwan/fzf-lua' | Plug 'mrjones2014/dash.nvim', { 'do': 'make install' } " Search dash.app from nvim.
 	Plug 'lukas-reineke/indent-blankline.nvim'	" Indent vertical markers.
+	Plug 'm-demare/hlargs.nvim'			" Highlight usage of method arguments.
+	Plug 'nguyenvukhang/nvim-toggler'		" Toggle values like true/false with <leader>i.
 	Plug 'nvim-lua/plenary.nvim' | Plug 'sindrets/diffview.nvim' " Better than fugative ':Git difftool'.
 	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " NVim interface for tree-sitter (language parser).
-	Plug 'nguyenvukhang/nvim-toggler'		" Toggle values like true/false with <leader>i.
 	Plug 'rgroli/other.nvim'			" Open related file like test.
 " }
 " }
@@ -204,7 +204,12 @@ let g:copilot_no_tab_map = 1
 
 " dark-notify {
 lua <<EOF
-	require('dark_notify').run()
+	require('dark_notify').run({
+		onchange = function(mode)
+			-- Init hlargs.nvim. Ref: https://github.com/m-demare/hlargs.nvim/issues/37#issuecomment-1237395420
+			require('hlargs').setup()
+	    end
+})
 EOF
 " }
 
@@ -220,6 +225,14 @@ lua <<EOF
 	-- Vim Command to Lua function mapping: https://github.com/phaazon/hop.nvim/wiki/Advanced-Hop#lua-equivalents-of-hop-commands
 	vim.api.nvim_set_keymap('', '<leader>h', "<cmd>lua require'hop'.hint_words()<cr>", {})
 EOF
+" }
+
+" hlargs.vim {
+" Due to a bug when dark-notify is enabled, do the hlargs init is done in the  dark-notify callback.
+" Ref: https://github.com/m-demare/hlargs.nvim/issues/37#issuecomment-1237395420
+"lua <<EOF
+"require('hlargs').setup()
+"EOF
 " }
 
 " indent-blankline.nvim {
