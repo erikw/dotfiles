@@ -19,7 +19,7 @@ read -r -d '' ADDED_MODULES <<-EOF
 
 timestamp=$(date "+%Y-%m-%d-%H%M%S")
 
-if fgrep -q "pam_tid.so" "$PAM_FILE"; then
+if grep -q "pam_tid.so" "$PAM_FILE"; then
 	echo "TouchID for sudo is already enabled."
 else
 	cp $PAM_FILE ${PAM_FILE}.${timestamp}.bak
