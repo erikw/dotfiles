@@ -7,10 +7,11 @@
 
 # It's not necessary to tap before installing 'tap/formula', but it gives a warning if not done.
 # Taps {
+    #tap 'homebrew/cask-drivers'      # For jabra-direct
     tap 'beeftornado/rmtree' # rmtree: remove brew package's dependencies with $(brew rmtree <package>).
-    tap 'homebrew/autoupdate' # https://github.com/Homebrew/homebrew-autoupdate
     tap 'cormacrelf/tap'  # For dark-notify
     tap 'erikw/tap'       # For xdg-urlview
+    tap 'homebrew/autoupdate' # https://github.com/Homebrew/homebrew-autoupdate
     tap 'wader/tap'       # For fq
 # }
 
@@ -180,6 +181,7 @@
 # Cask: optional {
 =begin
     cask 'adium'
+    cask 'jabra-direct'
     cask 'android-studio'
     cask 'atom'
     cask 'audacity'

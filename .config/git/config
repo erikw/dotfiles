@@ -110,6 +110,8 @@
 	default = current	; Avoid "fatal: The current branch advanced-login has no upstream branch" and $(git push -u ...)
 [merge]
 	log = true
+[branch]
+	autosetupmerge = always  ; Automatically link local and remote branch of same name. Then don't need to do $(git push -u) first time. Ref: https://stackoverflow.com/a/29928863/265508
 [init]
 	defaultBranch = main	; Until this is default.
 [pager]
