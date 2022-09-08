@@ -23,9 +23,7 @@ if fgrep -q "pam_tid.so" "$PAM_FILE"; then
 	echo "TouchID for sudo is already enabled."
 else
 	cp $PAM_FILE ${PAM_FILE}.${timestamp}.bak
-
 	echo -e "$ADDED_MODULES" | cat - $PAM_FILE > ${PAM_FILE}.new
-
 	mv ${PAM_FILE}.new $PAM_FILE
 
 	echo "TouchID for sudo is now enabled."
