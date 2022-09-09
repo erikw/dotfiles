@@ -413,6 +413,7 @@ defaults write com.apple.finder _FXSortFoldersFirst -bool true
 # - ~/media/images/screenshots/
 # - ~/media/music/production/
 # - ~/src/github.com/
+# - ~/src/github.com/erikw/erikw.me-jekyll/
 # - ~/tmp/
 # - ~/.config/finder/---------/
 # - /Applications
