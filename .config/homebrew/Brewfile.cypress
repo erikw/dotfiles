@@ -37,6 +37,7 @@
     cask 'android-file-transfer'
     cask 'android-platform-tools'
     cask 'authy'
+    cask 'cron'
     cask 'cryptomator'
     cask 'dropbox'
     cask 'focusrite-control'

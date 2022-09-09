@@ -34,6 +34,7 @@ if [ -e $brewfile_host_specific ]; then
 fi
 
 # Make homebrew zsh default shell. Reference: https://rick.cogley.info/post/use-homebrew-zsh-instead-of-the-osx-default/
+# Check current: $ dscl . -read /Users/$USER UserShell
 sudo dscl . -create /Users/$USER UserShell $(brew --prefix)/bin/zsh
 
 
