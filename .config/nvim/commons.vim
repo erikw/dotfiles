@@ -382,7 +382,7 @@ let g:tagbar_autoshowtag = 1		" Open folds if tag is not visible.
 " * https://github.com/wting/gitsessions.vim
 " * https://github.com/rmagatti/auto-session
 
-let g:auto_ticket = 1  " Automatically load tickets when starting vim without file arguments.
+let g:auto_ticket = 0  " Automatically load tickets when starting vim without file arguments.
 
  " Save current session.
 "nnoremap <silent> <C-s> :SaveSession <bar> echo "Session saved"<CR>
