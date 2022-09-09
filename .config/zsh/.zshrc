@@ -96,17 +96,15 @@ fi
 	# List files when cd-completing.
 	#compdef _path_files cd
 
-
 	compinit_regen() {
-		rm $XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION
-		compinit -d $XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION -i
+		rm -f ${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump-$ZSH_VERSION
+		compinit -d ${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump-$ZSH_VERSION -i
 	}
 
 	autoload -Uz compinit
 	# -C: [shell startup time optimization] ignore checking for new comp files. The dump file will be
 	#       created if there isn’t one already. NOTE Thus, for new files e.g. added to fpath, manually
-	#       run once (or function above)
-	#       $ rm $XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION && compinit -d $XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION -i
+	#       run once the compinit_regen function above.
 	# -i: ignore insecure folder/file check, thus include e.g. /usr/local/share/zsh/site-functions
 	# -d: Use a specific path to the dumpfile.
 	# Reference: http://zsh.sourceforge.net/Doc/Release/Completion-System.html#Initialization
