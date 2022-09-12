@@ -188,6 +188,7 @@ defaults write NSGlobalDomain AppleLocale en_DE
 # Notifications & Focus {
 ## Notifications
 # * Uncheck "Show notification on lock screen" for all apps individually, to not leak notifications.
+# * Calendar.app: disable notifications if using Cron.app
 ## Focus
 # * Turn on Do Not Disturb:
 #  - From 22:00 to 08:00
