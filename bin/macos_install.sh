@@ -125,6 +125,11 @@ echo "$tab_new" | crontab -
 
 # Installs: Manual {
 # General System {
+
+# EurKey
+# Enable the keymap from System Preferences > Keyboard > Input Sources
+
+
 # General manual install list
 # * easytag
 # * Xcode XVim: https://github.com/XVimProject/XVim, https://github.com/XVimProject/XVim/blob/master/INSTALL_Xcode8.md
@@ -168,6 +173,10 @@ echo "$tab_new" | crontab -
 # * Uncheck "Display layout when changing spaces".
 ## Layouts
 # * Set the following layouts to be used: tall, fullscreen, floating.
+## Shortcuts
+# Disable shortcuts as they conflict with EurKey input (like capital ÄÅ)
+# * Focus screen 1 (opt+shift+w), as opt+w produces Ä.
+# * Select Tall layout (opt+shift+a), as opt+shift+a produces Å.
 ## Floating
 # * Add Pixelmator Pro, as the mouse hover tooltips are treated as own windows.
 

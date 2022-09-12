@@ -164,6 +164,7 @@
     cask 'dash'
     cask 'dictcc-en-de-dictionary-plugin' # From https://www.dict.cc/?s=about%3Awordlist&l=e
     cask 'electric-sheep'
+    cask 'eurkey'  # For ErgoDox
     cask 'firefox'
     cask 'gimp'
     cask 'google-chrome'
