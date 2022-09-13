@@ -604,3 +604,4 @@ TouchID
 prepend
 nvim
 neovim
+treesitter

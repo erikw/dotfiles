@@ -76,12 +76,14 @@ execute "source " . stdpath('config') . "/commons_plugin.vim"
 " }
 
 " UI {
+	"Plug 'RRethy/vim-illuminate'		" Highlight current word under cursor. Not compatible with dark-notify: https://github.com/cormacrelf/dark-notify/issues/8
 	"Plug 'dstein64/nvim-scrollview'	" Visual and interactive scroll bar.
 	"Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 	"Plug 'romgrk/barbar.nvim'		" Tab bar improvements. Cool but too much.
+	"Plug 'yamatsum/nvim-cursorline'	" Highlight current word under cursor. Not compatible with dark-notify: https://github.com/cormacrelf/dark-notify/issues/8
+	Plug 'chentoast/marks.nvim'		" Visualize marks in the sign column.
 	Plug 'kyazdani42/nvim-web-devicons'	" Dependency for: nvim-tree.lua, lualine.nvim, barbar.nvim
 	Plug 'nvim-lualine/lualine.nvim'	" Statusline
-	Plug 'chentoast/marks.nvim'		" Visualize marks in the sign column.
 	Plug 'sitiom/nvim-numbertoggle'		" Automatic relative / static line number toggling.
 "}
 
@@ -206,11 +208,14 @@ let g:copilot_no_tab_map = 1
 lua <<EOF
 	require('dark_notify').run({
 		onchange = function(mode)
-			-- Init hlargs.nvim. Ref: https://github.com/m-demare/hlargs.nvim/issues/37#issuecomment-1237395420
+			-- Init hlargs.nvim.
+			-- Ref: https://github.com/m-demare/hlargs.nvim/issues/37#issuecomment-1237395420
+			-- Ref: https://github.com/cormacrelf/dark-notify/issues/8
 			require('hlargs').setup()
 	    end
 })
 EOF
+nmap <silent> <F5> :lua require('dark_notify').toggle()<CR> " Override mapping from commons.vim
 " }
 
 " dash.vim {
@@ -310,6 +315,67 @@ require('snippy').setup({
         },
     },
 })
+EOF
+" }
+
+" nvim-cursorline {
+"lua << EOF
+"require('nvim-cursorline').setup { }
+"EOF
+" }
+
+" nvim-toggler {
+" init.vim or .vimrc
+lua << EOF
+require('nvim-toggler').setup()
+EOF
+" }
+
+" nvim-tree.lua {
+"noremap <silent> <F2> :NvimTreeToggle<CR> " Toggle file explorer tree
+
+" Global toggles until https://github.com/kyazdani42/nvim-tree.lua/issues/1493
+" Could extend this by having just one Toggle function that keeps state in a
+" global variable.
+noremap <silent> <F2> :NvimTreeOpen<CR> " Toggle file explorer tree.
+" NvimTreeCloseAll() {
+function! NvimTreeCloseAll()
+	let current_tab = tabpagenr()
+	tabdo NvimTreeClose
+	execute 'tabnext' current_tab
+endfunction
+" }
+nnoremap <silent> <S-F2> :call NvimTreeCloseAll()<CR>	" Close NvimTree in all tabs.
+
+lua <<EOF
+	require("nvim-tree").setup {
+		open_on_setup = true,
+		open_on_setup_file = false,
+		open_on_tab = true,
+		filters = { custom = { "^.git$" } }
+	}
+EOF
+" }
+
+" nvim-treesitter {
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  -- A list of parser names, or "all". Install manually with :TSINstall <parser>
+  -- comment - for parsing e.g. TODO markers in comments.
+  ensure_installed = { "comment","lua", "ruby", "python", "javascript" },
+
+  -- Install parsers synchronously (only applied to `ensure_installed`)
+  sync_install = false,
+
+  -- Automatically install missing parsers when entering buffer
+  auto_install = true,
+  highlight = {
+     enable = true,
+   },
+   indent = {
+     enable = true
+   },
+}
 EOF
 " }
 
@@ -447,59 +513,10 @@ vim.api.nvim_set_keymap("n", "<leader>ls", "<cmd>:OtherVSplit src<CR>", { norema
 EOF
 " }
 
-" nvim-toggler {
-" init.vim or .vimrc
-lua << EOF
-require('nvim-toggler').setup()
-EOF
-" }
-
-" nvim-tree.lua {
-"noremap <silent> <F2> :NvimTreeToggle<CR> " Toggle file explorer tree
-
-" Global toggles until https://github.com/kyazdani42/nvim-tree.lua/issues/1493
-" Could extend this by having just one Toggle function that keeps state in a
-" global variable.
-noremap <silent> <F2> :NvimTreeOpen<CR> " Toggle file explorer tree.
-" NvimTreeCloseAll() {
-function! NvimTreeCloseAll()
-	let current_tab = tabpagenr()
-	tabdo NvimTreeClose
-	execute 'tabnext' current_tab
-endfunction
-" }
-nnoremap <silent> <S-F2> :call NvimTreeCloseAll()<CR>	" Close NvimTree in all tabs.
-
-lua <<EOF
-	require("nvim-tree").setup {
-		open_on_setup = true,
-		open_on_setup_file = false,
-		open_on_tab = true,
-		filters = { custom = { "^.git$" } }
-	}
-EOF
-" }
-
-" nvim-treesitter {
-lua <<EOF
-require'nvim-treesitter.configs'.setup {
-  -- A list of parser names, or "all". Install manually with :TSINstall <parser>
-  -- comment - for parsing e.g. TODO markers in comments.
-  ensure_installed = { "comment","lua", "ruby", "python", "javascript" },
-
-  -- Install parsers synchronously (only applied to `ensure_installed`)
-  sync_install = false,
-
-  -- Automatically install missing parsers when entering buffer
-  auto_install = true,
-  highlight = {
-     enable = true,
-   },
-   indent = {
-     enable = true
-   },
-}
-EOF
+" vim-illuminate {
+"lua << EOF
+"require('illuminate').configure()
+"EOF
 " }
 
 " vim-startify {

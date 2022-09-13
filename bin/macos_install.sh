@@ -127,7 +127,7 @@ echo "$tab_new" | crontab -
 # General System {
 
 # EurKey
-# Enable the keymap from System Preferences > Keyboard > Input Sources
+# Enable the keymap from System Preferences > Keyboard > Input Sources. Replace US with EurKey.
 
 
 # General manual install list
