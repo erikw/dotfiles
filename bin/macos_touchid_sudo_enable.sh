@@ -4,7 +4,7 @@
 # Inspired by: https://mostlymac.blog/2022/03/01/use-jamf-self-service-to-enable-touchid-for-sudo/
 
 # Run this script as sudo. Ref: https://unix.stackexchange.com/a/28794/19909
-[ "$UID" -eq 0 ] || exec sudo bash "$0" "$@"
+test "$EUID" -eq 0 || exec sudo bash "$0" "$@"
 
 PAM_FILE=/etc/pam.d/sudo
 SCRIPT_NAME=$(basename "$0")
