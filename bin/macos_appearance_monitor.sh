@@ -10,7 +10,7 @@ source $HOME/bin/solarized_toggle_lib.sh
 declare -A opts_g=( [mode]=unset [macos_update]=false)
 
 # Plist version
-plist=$HOME/Library/Preferences/.GlobalPreferences.plist
+#plist=$HOME/Library/Preferences/.GlobalPreferences.plist
 #fswatch --one-per-batch --event Renamed $plist | while read change; do \
 	#mode=$(st_read_macos_mode)
 	#echo "macOS appearace set to $mode"
