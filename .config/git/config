@@ -54,7 +54,7 @@
 	rb = rebase
 	re = restore
 	;sha1head = rev-parse HEAD
-	sha1head = !"git rev-parse HEAD | tee /dev/tty | pbcopy"
+	sha1head = !"git rev-parse HEAD | tee /dev/tty | tr -d '\n' | pbcopy"
 	st = status
 	stashshow0 = stash show -p stash@{0}
 	stat = status
