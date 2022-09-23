@@ -1,5 +1,5 @@
 #/usr/bin/env bash
-# Fetched from Peter Möllers site: http://cs.lth.se/kontakt/peter_moller/unix/bash/
+# Fetched from Peter Möller's site: http://cs.lth.se/kontakt/peter_moller/unix/bash/
 # Test bash operators on a file.
 
 testt ()
