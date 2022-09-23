@@ -160,6 +160,7 @@
 # Cask: default {
     cask 'amethyst'
     cask 'appcleaner'
+    cask 'chrysalis' # Configurator for Atreus keyboard.
     cask 'clipy'
     cask 'dash'
     cask 'dictcc-en-de-dictionary-plugin' # From https://www.dict.cc/?s=about%3Awordlist&l=e

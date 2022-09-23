@@ -348,12 +348,16 @@ endfunction
 nnoremap <silent> <S-F2> :call NvimTreeCloseAll()<CR>	" Close NvimTree in all tabs.
 
 lua <<EOF
-	require("nvim-tree").setup {
-		open_on_setup = true,
-		open_on_setup_file = false,
-		open_on_tab = true,
-		filters = { custom = { "^.git$" } }
-	}
+require("nvim-tree").setup {
+	open_on_setup = true,
+	open_on_setup_file = false,
+	open_on_tab = true,
+	filters = { custom = { "^.git$" } },
+	view = {
+		width = "15%",
+		side = "left",
+	},
+}
 EOF
 " }
 
