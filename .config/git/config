@@ -109,12 +109,9 @@
 [push]
 	;default = upstream
 	default = current	; Avoid "fatal: The current branch advanced-login has no upstream branch" and $(git push -u ...)
+	autoSetupRemote = true  ; Automatically $(git push -u) i.e. track remote branch from first push. Ref: https://stackoverflow.com/a/6089415/265508
 [merge]
 	log = true
-[branch]
-	; Automatically link local and remote branch of same name. Then don't need to do $(git push -u) first time. Ref: https://stackoverflow.com/a/29928863/265508
-	; NOPE this did not work well. With this, need to do $(git push remote branch) instead of simply $(git push). Use $(git push -u) on first push instead.
-	;autosetupmerge = always
 [init]
 	defaultBranch = main	; Until this is default.
 [pager]
