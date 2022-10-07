@@ -268,3 +268,11 @@ dashs() {
 	local term="$*"
 	open "dash://${term}"
 }
+
+# Ref: https://github.com/thuanpham2311/tmux-fzf-session-switch
+function tmuxSessionSwitch() {
+  local session
+  session=$(tmux list-sessions -F "#{session_name}" | fzf)
+  tmux switch-client -t "$session"
+}
+alias af='tmuxSessionSwitch'
