@@ -73,7 +73,7 @@ set history=512			" Store much history.
 
 
 "set complete-=k complete+=k		" Put the dictionaries in the normal completion set.
-set shortmess=filmnrxtTo		" Abbreviate messages.
+set shortmess=filmnrxtToA		" Abbreviate messages. 'A' disables the attention prompt when editing a file that is already open (beware: https://superuser.com/a/1065503)
 set autoread				" Autoreload buffer from file if not changed in vim, e.g. with the :checktime command.
 set modelines=5				" Number of lines from head of file to check for modelines. Setting this explicitly as on some syste*m (like macos in /usr/share/vim/vimrc) disables modelined by default. "
 set ttyfast				" Smoother changes.

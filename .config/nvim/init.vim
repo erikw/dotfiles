@@ -99,7 +99,7 @@ execute "source " . stdpath('config') . "/commons.vim"
 " }
 
 " General {
-set shortmess=filmnrxtToO		" Abbreviate messages.
+set shortmess=filmnrxtToOA		" Abbreviate messages. 'A' disables the attention prompt when editing a file that is already open (beware: https://superuser.com/a/1065503)
 "set clipboard+=unnamed			" Use register "* instead of unnamed register. This means what is being yanked in vim gets put to external clipboard automatically.
 " }
 
