@@ -14,5 +14,7 @@ snippet main
 
 
 snippet init
-	apadef __init__(self, *args, **kwargs):
+	def __init__(self, *args, **kwargs):
 		${1:super().__init__(*args, **kwargs)}
+snippet pp
+	__import__('pprint').pprint(${1})
