@@ -59,22 +59,12 @@ open /Applications/Apparency.app
 # }
 
 # Install tmux session on login.
-# TODO could replace with https://github.com/tmux-plugins/tmux-continuum/blob/master/docs/automatic_start.md ?
-# Reference: http://www.launchd.info/
-# NOPE starting tmux with launchctl makes it run with less access e.g. doing $(ls /volumes/somevolume) gives "Operation not permitted".
+# Starting tmux with launchctl makes it run with less access e.g. doing $(ls /volumes/somevolume) gives "Operation not permitted".
 # thus, instead go for a simpler solution: Autostart;
 # 1. Set Iterm.app to auto-start
-# 2. Set iterm2 default profile to start irctor, and then have an additional profile that just runs zsh. see #irctorautostart below in the iterm section.
+# 2. Set iterm2 default profile to start irctor, and then have an additional profile that just runs zsh. See #irctorautostart below in the iterm section.
+# NOPE #irctorautostart is replaced with tmux-continuum
 # old below:
-#mkdir -p $HOME/Library/LaunchAgents
-#ln -s $HOME/.config/LaunchAgents/com.user.irctor.plist $HOME/Library/LaunchAgents/
-#launchctl bootstrap gui/$UID $HOME/Library/LaunchAgents/com.user.irctor.plist
-#launchctl enable gui/$UID/com.user.irctor
-#launchctl list | grep com.user.irctor
-# Start iterm2.app with tmux session loaded on login.
-#ln -s $HOME/.config/LaunchAgents/com.user.iterm.plist $HOME/Library/LaunchAgents/
-#launchctl bootstrap gui/$UID $HOME/Library/LaunchAgents/com.user.iterm.plist
-#launchctl enable gui/$UID/com.user.iterm
 
 
 # Notification queue service
@@ -251,15 +241,13 @@ echo "$tab_new" | crontab -
 # * Make it easier to restart/poweroff by not confirming closing multiple windows - I always use tmux so it's not a problem.
 #   - Uncheck: Confirm closing multiple sessions.
 #   - Uncheck: Confirm "iTerm2 (#Q)""
-# * iterm.sh: If iterm2.app is closed, 2 windows will be opended by this script. To prevent this:
-#	- Startup > Select "Only Restore Hotkey Window" NOPE don't do this anymore as of #irctorautostart
 ### Selection
 # * Check "Applications in terminal may access clipboard" so that I can e.g. copy from vim buffer to GUI clipboard.
 ## Profiles
-#* After configuring the default profile, clone it in to a profile called "zsh" and remove the "Send text at start" #irctorautostart
+#* NOPE (replaced with tmux-continuum) After configuring the default profile, clone it in to a profile called "zsh" and remove the "Send text at start" #irctorautostart
 # * Set keyboard shortcut for profile "zsh" to Ctrl + Cmd + z
 ### General
-# * Send text at start: "irctor"   #irctorautostart
+# * NOPE (replaced with tmux-continuum) Send text at start: "irctor" #irctorautostart
 ### Colors
 # * Select color preset "Solarized Ligt". With macOs appearance following the sun, it's much more likely to be day time and thus no need to switch color in irctor on start.
 ### Text
