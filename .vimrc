@@ -50,6 +50,10 @@ execute "source " . g:xdg_config_home . "/nvim/commons_plugin.vim"
 	Plug 'rbonvall/snipmate-snippets-bib', { 'for': 'tex' }	" Bibtex snippets.
 " }
 
+" UI {
+	Plug 'overcache/NeoSolarized'
+" }
+
 " Setup - end {
 " Initialize plugin system
 call plug#end()
@@ -133,6 +137,9 @@ set dictionary+=~/.vim/spell/		" Use custom dictionaries.
 " }
 
 " UI {
+" Ignore if don't exist. This is the case when $(vim -c PlugInstall) the firs time. Ref: https://stackoverflow.com/a/5703164/265508
+silent! colorscheme NeoSolarized
+
 set t_Co=256		" Set number of colors.
 "hi Normal ctermbg=NONE	" Transparent background.
 set title		" Show title in console title bar.

@@ -85,6 +85,7 @@ execute "source " . stdpath('config') . "/commons_plugin.vim"
 	Plug 'kyazdani42/nvim-web-devicons'	" Dependency for: nvim-tree.lua, lualine.nvim, barbar.nvim
 	Plug 'nvim-lualine/lualine.nvim'	" Statusline
 	Plug 'sitiom/nvim-numbertoggle'		" Automatic relative / static line number toggling.
+	Plug 'ishan9299/nvim-solarized-lua'	" Solarized theme that works with nvim-treesitter highlights.
 "}
 
 " Setup - end {
@@ -183,6 +184,11 @@ set spellsuggest=best,10	" Limit spell suggestions.
 execute "set spellfile=" . stdpath('config') . "/spell/" . matchstr(&spelllang, "[a-zA-Z][a-zA-Z]") . "." . &encoding . ".add"
 " Use a thesaurus file. Could load all, but that makes lookup slower. Instead let ToggleSpell() set per language.
 execute "set thesaurus=" . stdpath('config') . "/thesaurus/" . matchstr(&spelllang, "[a-zA-Z][a-zA-Z]") . ".txt"
+" }
+
+" UI {
+" Ignore if don't exist. This is the case when $(vim -c PlugInstall) the firs time. Ref: https://stackoverflow.com/a/5703164/265508
+silent! colorscheme solarized
 " }
 
 " Plugin Config {
@@ -366,7 +372,7 @@ lua <<EOF
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all". Install manually with :TSINstall <parser>
   -- comment - for parsing e.g. TODO markers in comments.
-  ensure_installed = { "comment","lua", "ruby", "python", "javascript" },
+  ensure_installed = { "comment", "lua", "ruby", "python", "javascript" },
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = false,
@@ -374,7 +380,10 @@ require'nvim-treesitter.configs'.setup {
   -- Automatically install missing parsers when entering buffer
   auto_install = true,
   highlight = {
-     enable = true,
+     -- Disabled until themes support the new way:
+     -- https://github.com/nvim-treesitter/nvim-treesitter/issues/3680#issuecomment-1281883658
+     -- https://github.com/ishan9299/nvim-solarized-lua/issues/52
+     enable = false,
    },
    indent = {
      enable = true

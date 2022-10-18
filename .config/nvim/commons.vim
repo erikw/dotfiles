@@ -205,9 +205,6 @@ set nowrapscan	" Don't wrap search around file.
 " }
 
 " UI {
-" Ignore if don't exist. This is the case when $(vim -c PlugInstall) the firs time. Ref: https://stackoverflow.com/a/5703164/265508
-silent! colorscheme NeoSolarized
-
 " Adjust colors to this background.
 let s:solarized_status = g:xdg_state_home . "/solarizedtoggle/status"
 if filereadable(s:solarized_status)

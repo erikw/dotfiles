@@ -106,6 +106,5 @@
 	"Plug 'altercation/vim-colors-solarized'	" The one theme to rule them all.
 	"Plug 'mhartington/oceanic-next'
 	"Plug 'morhetz/gruvbox'
-	Plug 'overcache/NeoSolarized'
 " }
 "}
