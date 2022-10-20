@@ -534,8 +534,8 @@ brew install bash curl unzip jq
 
 # asdf version manager - ruby
 asdf plugin-add ruby
-# Build requirements from https://github.com/asdf-vm/asdf-ruby
-brew install openssl@1.1 readline
+# Build requirements for building all ruby versions from https://github.com/asdf-vm/asdf-ruby
+brew install openssl@1.1 openssl@3 readline libyaml gmp rust
 export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"  # Also set in shell commons for future builds
 
 # Install latest ruby
