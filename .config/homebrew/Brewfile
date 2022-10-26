@@ -61,6 +61,7 @@
     brew 'graphviz'
     brew 'grep'
     brew 'grip'
+    brew 'gron'
     brew 'htop'
     brew 'httpie'
     brew 'iftop'
