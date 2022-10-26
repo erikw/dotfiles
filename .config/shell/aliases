@@ -292,6 +292,9 @@ fi
 	alias restic_env_b2='source $HOMEBREW_PREFIX/etc/restic/default.env.sh'		# Init restic env for B2.
 	alias git_top_contribs='git log | grep Author | sort | uniq -c | sort -n -r'	# Show top authors of a git repo.
 
+	# Testing
+	#alias t="bin/rails test"
+
 	# Enable/disable git change tracking on irssi conf. Have it off by default, as awl plugin keeps changing it all the time.
 	alias dotf_irssiconf_untrack='cd ~/.dotfiles && git update-index --assume-unchange .irssi/config'
 	alias dotf_irssiconf_track='cd ~/.dotfiles && git update-index --no-assume-unchange .irssi/config'

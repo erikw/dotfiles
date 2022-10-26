@@ -276,3 +276,23 @@ function tmuxSessionSwitch() {
   tmux switch-client -t "$session"
 }
 alias af='tmuxSessionSwitch'
+
+# Run rails test. Usage:
+# t
+# t <file> <method>
+# t <file1> <file2> <file3> ...
+# t <file1> <dir/path1> <dir/path2> ...
+# t test/pattern/*
+# Assumption: a test method should not have the name of a file/dir that exist...
+function t() {
+  local files=($@)
+  local method_args=()
+
+  if [ ${#files[@]} -eq 2 ] && ! [ -e "${files[-1]}" ]; then
+	method_args=(-n ${files[-1]})
+	unset 'files[-1]'
+  fi
+
+  echo bin/rails test "${files[@]}" "${method_args[@]}"
+  bin/rails test "${files[@]}" "${method_args[@]}"
+}
