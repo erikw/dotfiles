@@ -51,6 +51,7 @@ execute "source " . stdpath('config') . "/commons_plugin.vim"
 	Plug 'phaazon/hop.nvim'			" Easy motion jumps in buffer.
 	"Plug 'gennaro-tedesco/nvim-peekup'	" Register viewer and selector. Not compatible with vim-yoink.
 	Plug 'axieax/urlview.nvim'		" Open URLs in buffer.
+	Plug 'stevearc/dressing.nvim' | Plug 'ziontee113/icon-picker.nvim'	" Emoji picker.
 " }
 
 " Development {
@@ -251,6 +252,15 @@ EOF
 "lua <<EOF
 "require('hlargs').setup()
 "EOF
+" }
+
+" icon-picker.nvim {
+lua << EOF
+require("icon-picker").setup({ disable_legacy_commands = true })
+local opts = { noremap = true, silent = true }
+
+vim.keymap.set("n", "<Leader><Leader>i", "<cmd>IconPickerNormal<cr>", opts)
+EOF
 " }
 
 " indent-blankline.nvim {
