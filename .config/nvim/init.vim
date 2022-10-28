@@ -51,7 +51,6 @@ execute "source " . stdpath('config') . "/commons_plugin.vim"
 	Plug 'phaazon/hop.nvim'			" Easy motion jumps in buffer.
 	"Plug 'gennaro-tedesco/nvim-peekup'	" Register viewer and selector. Not compatible with vim-yoink.
 	Plug 'axieax/urlview.nvim'		" Open URLs in buffer.
-	Plug 'stevearc/dressing.nvim' | Plug 'ziontee113/icon-picker.nvim'	" Emoji picker.
 " }
 
 " Development {
@@ -67,6 +66,7 @@ execute "source " . stdpath('config') . "/commons_plugin.vim"
 	Plug 'nvim-lua/plenary.nvim' | Plug 'sindrets/diffview.nvim' " Better than fugative ':Git difftool'.
 	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " NVim interface for tree-sitter (language parser).
 	Plug 'rgroli/other.nvim'			" Open related file like test.
+	Plug 'nvim-lua/plenary.nvim' | Plug 'andythigpen/nvim-coverage' " Show code coverage in sign column.
 " }
 
 " Development: DAP {
@@ -255,12 +255,12 @@ EOF
 " }
 
 " icon-picker.nvim {
-lua << EOF
-require("icon-picker").setup({ disable_legacy_commands = true })
-local opts = { noremap = true, silent = true }
+"lua << EOF
+"require("icon-picker").setup({ disable_legacy_commands = true })
+"local opts = { noremap = true, silent = true }
 
-vim.keymap.set("n", "<Leader><Leader>i", "<cmd>IconPickerNormal<cr>", opts)
-EOF
+"vim.keymap.set("n", "<Leader><Leader>i", "<cmd>IconPickerNormal<cr>", opts)
+"EOF
 " }
 
 " indent-blankline.nvim {
@@ -362,6 +362,13 @@ require('snippy').setup({
 EOF
 " }
 
+" nvim-coverage {
+lua << EOF
+require("coverage").setup({
+})
+EOF
+" }
+
 " nvim-cursorline {
 "lua << EOF
 "require('nvim-cursorline').setup { }
@@ -448,6 +455,15 @@ vim.api.nvim_set_keymap("n", "<leader>lc", "<cmd>:OtherClear<CR>", { noremap = t
 -- Context specific bindings
 vim.api.nvim_set_keymap("n", "<leader>lt", "<cmd>:OtherVSplit test<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<leader>ls", "<cmd>:OtherVSplit src<CR>", { noremap = true, silent = true })
+EOF
+" }
+
+" urlview.nvim {
+lua << EOF
+require("urlview").setup({
+})
+
+vim.keymap.set("n", "\\u", "<Cmd>UrlView<CR>", { desc = "view buffer URLs" })
 EOF
 " }
 
