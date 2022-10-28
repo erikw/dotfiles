@@ -288,7 +288,7 @@ function t() {
   local files=($@)
   local method_args=()
 
-  if [ ${#files[@]} -eq 2 ] && ! [ -e "${files[-1]}" ]; then
+  if ! [ -e "${files[-1]}" ]; then
 	method_args=(-n ${files[-1]})
 	unset 'files[-1]'
   fi

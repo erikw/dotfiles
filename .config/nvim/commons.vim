@@ -466,7 +466,8 @@ let g:instant_markdown_autostart=1
 " Did not work to put this in .vimlocal file, as it's loaded too late.
 augroup InstantMarkdownGroup
   autocmd!
-  au! BufReadPre,BufNewFile,BufEnter,BufFilePre ~/src/github.com/erikw/hackerrank-solutions/*.md,~/src/github.com/erikw/leetcode-solutions/*.md let g:instant_markdown_autostart=0
+  " [1-9]*.md - PR body by gh(1) have file names with this pattern.
+  au! BufReadPre,BufNewFile,BufEnter,BufFilePre ~/src/github.com/erikw/hackerrank-solutions/*.md,~/src/github.com/erikw/leetcode-solutions/*.md,[1-9]*.md let g:instant_markdown_autostart=0
 augroup END
 " }
 
