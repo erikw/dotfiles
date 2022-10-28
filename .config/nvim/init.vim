@@ -51,6 +51,7 @@ execute "source " . stdpath('config') . "/commons_plugin.vim"
 	Plug 'phaazon/hop.nvim'			" Easy motion jumps in buffer.
 	"Plug 'gennaro-tedesco/nvim-peekup'	" Register viewer and selector. Not compatible with vim-yoink.
 	Plug 'axieax/urlview.nvim'		" Open URLs in buffer.
+	Plug 'folke/which-key.nvim'		" Show matching keybindings e.g. when tapping Leader.
 " }
 
 " Development {
@@ -94,6 +95,7 @@ execute "source " . stdpath('config') . "/commons_plugin.vim"
 	Plug 'nvim-lualine/lualine.nvim'	" Statusline
 	Plug 'sitiom/nvim-numbertoggle'		" Automatic relative / static line number toggling.
 	Plug 'ishan9299/nvim-solarized-lua'	" Solarized theme that works with nvim-treesitter highlights.
+	Plug 'karb94/neoscroll.nvim'		" Smoth scrolling.
 "}
 
 " Setup - end {
@@ -291,6 +293,10 @@ EOF
 lua <<EOF
 require'marks'.setup {}
 EOF
+" }
+
+" neoscroll.nvim {
+lua require('neoscroll').setup()
 " }
 
 " nvim-cmp {
@@ -516,5 +522,12 @@ let g:startify_custom_header = s:ascii
 
 " Show version in fooder. Reference: https://github.com/mhinz/vim-startify/issues/449
 "let g:startify_custom_footer = "startify#pad(['', '\ufa76' . matchstr(execute('version'), 'NVIM v\\z\\s[^\\n]\*'), ''])"
+" }
+
+" which-key.nvim {
+lua << EOF
+  require("which-key").setup {
+  }
+EOF
 " }
 " }
