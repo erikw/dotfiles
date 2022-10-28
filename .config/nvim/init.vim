@@ -372,7 +372,7 @@ lua <<EOF
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all". Install manually with :TSINstall <parser>
   -- comment - for parsing e.g. TODO markers in comments.
-  ensure_installed = { "comment", "lua", "ruby", "python", "javascript" },
+  ensure_installed = { "comment", "lua", "ruby", "python", "javascript", "markdown" },
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = false,
@@ -380,10 +380,7 @@ require'nvim-treesitter.configs'.setup {
   -- Automatically install missing parsers when entering buffer
   auto_install = true,
   highlight = {
-     -- Disabled until themes support the new way:
-     -- https://github.com/nvim-treesitter/nvim-treesitter/issues/3680#issuecomment-1281883658
-     -- https://github.com/ishan9299/nvim-solarized-lua/issues/52
-     enable = false,
+     enable = true,
    },
    indent = {
      enable = true
