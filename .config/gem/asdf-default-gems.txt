@@ -18,6 +18,9 @@ rubocop
 # LSP
 solargraph
 
+# DAP
+debug
+
 # Add git-bump version tagger sub-command.
 git-bump
 

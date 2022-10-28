@@ -67,6 +67,13 @@ execute "source " . stdpath('config') . "/commons_plugin.vim"
 	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " NVim interface for tree-sitter (language parser).
 	Plug 'rgroli/other.nvim'			" Open related file like test.
 " }
+
+" Development: DAP {
+	"Plug 'mfussenegger/nvim-dap' " Debug Adapter Protocol
+	"Plug 'rcarriga/nvim-dap-ui'  " UI for DAP
+	"Plug 'suketa/nvim-dap-ruby'  " Config for ruby. Requries the `debug` gem. No rails support yet: https://github.com/suketa/nvim-dap-ruby/issues/25
+" }
+
 " }
 
 " Snippets {
@@ -302,6 +309,27 @@ EOF
 
 " INSERT CONFIG FROM README HERE.
 "" }
+" }
+
+" nvim-dap {
+" Suggested mappings from *dap-mappings* https://github.com/mfussenegger/nvim-dap/blob/master/doc/dap.txt
+"nnoremap <silent> <F5> <Cmd>lua require'dap'.continue()<CR>
+"nnoremap <silent> <F10> <Cmd>lua require'dap'.step_over()<CR>
+"nnoremap <silent> <F11> <Cmd>lua require'dap'.step_into()<CR>
+"nnoremap <silent> <F12> <Cmd>lua require'dap'.step_out()<CR>
+"nnoremap <silent> <Leader>b <Cmd>lua require'dap'.toggle_breakpoint()<CR>
+"nnoremap <silent> <Leader>B <Cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>
+"nnoremap <silent> <Leader>lp <Cmd>lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>
+"nnoremap <silent> <Leader>dr <Cmd>lua require'dap'.repl.open()<CR>
+"nnoremap <silent> <Leader>dl <Cmd>lua require'dap'.run_last()<CR>
+" }
+
+" nvim-dap-ruby {
+"lua require('dap-ruby').setup()
+" }
+
+" nvim-dap-ui {
+"lua require("dapui").setup()
 " }
 
 " nvim-numbertoggle {
