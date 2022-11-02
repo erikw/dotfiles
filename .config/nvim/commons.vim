@@ -333,6 +333,14 @@ nnoremap <Leader>H :History<CR>
 nnoremap <Leader>m :Maps<CR>
 " Search with rg (aka live grep).
 nnoremap <Leader>g :Rg<CR>
+
+" To ignore a certain path in a git project from both RG and FD used by FZF,
+" the eaiest way is to create ignore files and exclude the in local git clone.
+" Ref: https://stackoverflow.com/a/1753078/265508
+" $ cd git_proj/
+" $ echo "path/to/exclude" > .rgignore
+" $ echo "path/to/exclude" > .fdignore
+" $ printf ".rgignore\n.fdignore" >> .git/info/exclude
 " }
 
 " local_vimrc {

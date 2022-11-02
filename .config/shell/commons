@@ -539,6 +539,9 @@
 			export FZF_DEFAULT_COMMAND='find . -type d \( -path './.git' -o -path './node_modules'  \) -prune -o -print'
 		fi
 		export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+		# To exclude path:
+		#export FZF_DEFAULT_COMMAND="$FZF_DEFAULT_COMMAND --exclude 'vcr_cassettes/'"
 	fi
 
 	# Homebrew sqlite to shadow old version shipped with macOS.
