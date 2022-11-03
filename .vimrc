@@ -43,6 +43,10 @@ call plug#begin('~/.vim/plugged')
 execute "source " . g:xdg_config_home . "/nvim/commons_plugin.vim"
 " }
 
+" Development {
+	Plug 'cohama/lexima.vim'			" Autmoatically close opened braces etc. Replaces old 'Townk/vim-autoclose'.
+" }
+
 " Snippets {
 	" Snippet engine. Not very active. https://github.com/honza/vim-snippets list altenatives. neosnippet.vim seems nice, but require python provider.
 	Plug 'garbas/vim-snipmate' | Plug 'MarcWeber/vim-addon-mw-utils' | Plug 'tomtom/tlib_vim'
@@ -184,6 +188,15 @@ set statusline+=\ 0x%B		" Character value under cursor.
 " }
 
 " Plugin Config {
+" lexima.vim {
+" Don't auto-close quotes at "word" (more like non-whitespaces places )boundaries. Reference: https://github.com/cohama/lexima.vim/issues/129
+if exists("lexima#add_rule")
+	call lexima#add_rule({'char': '"', 'at': '\%#\S\|\S\%#'})
+	call lexima#add_rule({'char': "'", 'at': '\%#\S\|\S\%#'})
+	call lexima#add_rule({'char': "[", 'at': '\%#\S\|\S\%#'})  " for []() url syntax around word.
+endif
+" }
+
 " netrw {
 " Ships by default with vim mostly.
 " Reference: https://shapeshed.com/vim-netrw/

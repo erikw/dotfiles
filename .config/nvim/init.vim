@@ -68,6 +68,7 @@ execute "source " . stdpath('config') . "/commons_plugin.vim"
 	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " NVim interface for tree-sitter (language parser).
 	Plug 'rgroli/other.nvim'			" Open related file like test.
 	Plug 'nvim-lua/plenary.nvim' | Plug 'andythigpen/nvim-coverage' " Show code coverage in sign column.
+	Plug 'windwp/nvim-autopairs'			" Autoclose brackets etc.
 " }
 
 " Development: DAP {
@@ -297,6 +298,16 @@ EOF
 
 " neoscroll.nvim {
 lua require('neoscroll').setup()
+" }
+
+" nvim-autopairs {
+lua << EOF
+require('nvim-autopairs').setup({
+	check_ts = true, --  Use treesitter to check for a pair
+	map_c_h = true, -- Map the <C-h> key to delete a pair
+	map_c_w = true, -- map <c-w> to delete a pair if possible
+})
+EOF
 " }
 
 " nvim-cmp {

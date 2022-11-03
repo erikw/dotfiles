@@ -35,7 +35,6 @@
 	Plug 'AndrewRadev/sideways.vim'			" Shift function arguments left and right.
 	Plug 'airblade/vim-gitgutter'			" Git modified status in sign column
 	Plug 'andymass/vim-matchup'			" Extend % matching. Replaces old the matchit plugin.
-	Plug 'cohama/lexima.vim'			" Autmoatically close opened braces etc. Replaces old 'Townk/vim-autoclose'.
 	Plug 'dense-analysis/ale'			" LSP linting engine.
 	Plug 'editorconfig/editorconfig-vim'		" Standard .editorconfig file in shared projects.
 	Plug 'preservim/tagbar'				" Sidepane showing info from tags file.
