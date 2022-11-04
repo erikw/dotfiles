@@ -7,6 +7,7 @@ Find the profile direcotry by going to Hamburger menu > Help > More troubleshoot
 
 ## URL bar
 * Hide things like Pocket by right clicking on it.
+* To the left of the URL bar, add: Firefox View (might be hiddeen by userChrome.css)
 * To the right of the URL bar, keep: TreeStyleTabs, Downloads, <space>, Pushbullet, DarkReader, Lastpass
 
 ## Preferences (manual GUI)
