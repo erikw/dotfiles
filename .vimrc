@@ -349,9 +349,9 @@ function! ToggleSpell(lang)
 	if !&l:spell || a:lang != &l:spelllang
 		setlocal spell
 		let l:newMode = "spell, " . a:lang
-		execute "setlocal spellfile=" . g:xdg_config_home . "/nvim/spell/" . matchstr(a:lang, "[a-zA-Z][a-zA-Z]") . "." . &encoding . ".add"
-		execute "setlocal dictionary=" . g:xdg_config_home ."/nvim/spell/" . a:lang . "." . &encoding . ".dic"
-		execute "setlocal thesaurus=" . g:xdg_config_home . "/nvim/thesaurus/" . a:lang . ".txt"
+		execute "setlocal spellfile=" . "~/.vim/spell/" . matchstr(a:lang, "[a-zA-Z][a-zA-Z]") . "." . &encoding . ".add"
+		execute "setlocal dictionary=" . "~/.vim/spell/" . a:lang . "." . &encoding . ".dic"
+		execute "setlocal thesaurus=" . "~/.vim/thesaurus/" . a:lang . ".txt"
 		execute "setlocal spelllang=" . a:lang
 	else
 		setlocal nospell
@@ -412,9 +412,9 @@ set incsearch	" Incremental search.
 set spelllang=en_us		" Languages to do spell checking for.
 set spellsuggest=best,10	" Limit spell suggestions.
 " Set spellfile dynamically.
-execute "set spellfile=" . g:xdg_config_home ."/nvim/spell/" . matchstr(&spelllang, "[a-zA-Z][a-zA-Z]") . "." . &encoding . ".add"
+execute "set spellfile=" . "~/.vim/spell/" . matchstr(&spelllang, "[a-zA-Z][a-zA-Z]") . "." . &encoding . ".add"
 " Use a thesaurus file. Could load all, but that makes lookup slower. Instead let ToggleSpell() set per language.
-execute "set thesaurus=" . g:xdg_config_home . "/nvim/thesaurus/" . matchstr(&spelllang, "[a-zA-Z][a-zA-Z]") . ".txt"
+execute "set thesaurus=" . "~/.vim/thesaurus/" . matchstr(&spelllang, "[a-zA-Z][a-zA-Z]") . ".txt"
 set dictionary+=~/.vim/spell/		" Use custom dictionaries.
 "set dictionary+=/usr/share/dict/words	" Use system dictionary.
 " }
