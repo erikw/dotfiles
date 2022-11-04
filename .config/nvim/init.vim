@@ -80,9 +80,9 @@ execute "source " . stdpath('config') . "/commons_plugin.vim"
 " }
 
 " Snippets {
+	"Plug 'rbonvall/snipmate-snippets-bib', { 'for': 'tex' }	" Bibtex snippets.
 	Plug 'dcampos/nvim-snippy'				" Snippets engine compatible with the SnipMate format.
 	Plug 'honza/vim-snippets'				" Snippet library
-	Plug 'rbonvall/snipmate-snippets-bib', { 'for': 'tex' }	" Bibtex snippets.
 " }
 
 " UI {
