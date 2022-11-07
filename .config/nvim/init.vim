@@ -54,6 +54,7 @@ let g:loaded_node_provider = 0
 	Plug 'folke/which-key.nvim'		" Show matching keybindings e.g. when tapping Leader.
 	Plug 'instant-markdown/vim-instant-markdown', {'for': 'markdown', 'do': 'yarn install'}	" Live preview markdown files in browser.
 	Plug 'kyazdani42/nvim-tree.lua'		" File explorer tree
+	Plug 'kylechui/nvim-surround'				" Work on surrond delimiters or its content. Like tpope/vim-surround but with TreeSitter.
 	Plug 'mbbill/undotree'					" Navigate history in a sidebar. Replaces old 'mbbill/undotree'
 	Plug 'michaeljsmith/vim-indent-object'			" Operate on intendtation as text objects
 	Plug 'ntpeters/vim-better-whitespace'			" Highlight and remove trailing whitespaces.
@@ -63,9 +64,8 @@ let g:loaded_node_provider = 0
 	Plug 'tpope/vim-capslock'				" Software CAPSLOCK.
 	Plug 'tpope/vim-characterize'				" 'ga' on steroid.
 	Plug 'tpope/vim-fugitive'				" Git wrapper and shorthands.
-	Plug 'tpope/vim-repeat'					" Extend '.' repetition for plugins like vim-surround, vim-speeddating.
+	Plug 'tpope/vim-repeat'					" Extend '.' repetition for plugins like vim-surround, vim-speeddating, vim-unimpaired.
 	Plug 'tpope/vim-speeddating'				" Increment dates with C-a.
-	Plug 'tpope/vim-surround'				" Work on surrond delimiters or its content. TODO replace with https://github.com/kylechui/nvim-surround ?
 	Plug 'tpope/vim-unimpaired'				" Bracket mappings like [<space>
 " }
 
@@ -817,8 +817,13 @@ EOF
 "EOF
 " }
 
+" nvim-surround {
+lua << EOF
+require("nvim-surround").setup()
+EOF
+" }
+
 " nvim-toggler {
-" init.vim or .vimrc
 lua << EOF
 require('nvim-toggler').setup()
 EOF
@@ -886,6 +891,9 @@ require("other-nvim").setup({
 		-- builtin mappings
 		"rails",
 		-- custom mappings
+	},
+	style = {
+		width = 0.7,
 	},
 })
 
