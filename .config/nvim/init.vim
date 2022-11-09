@@ -71,13 +71,10 @@ let g:loaded_node_provider = 0
 
 " Development {
 " Development: General {
-	"Plug 'hrsh7th/nvim-cmp' | Plug 'hrsh7th/cmp-nvim-lsp' | Plug 'hrsh7th/cmp-buffer' | Plug 'hrsh7th/cmp-vsnip' | Plug 'hrsh7th/vim-vsnip'	" Autocompletion when typing with LSP backend. Disabled as too fast-moving development and bugs.
 	"Plug 'mfussenegger/nvim-dap'			" Debug Adapter Protocol client. Like LSP for debuggers. TODO try again when more mature. Currently LUA config is not working (freezes nvim).
-	"Plug 'neovim/nvim-lspconfig'			" Plug-n-play configurations for LSP server. Disabled in favour of simpler to use ALE.
 	Plug 'AndrewRadev/sideways.vim'			" Shift function arguments left and right.
 	Plug 'airblade/vim-gitgutter'			" Git modified status in sign column
 	Plug 'andymass/vim-matchup'			" Extend % matching. Replaces old the matchit plugin.
-	Plug 'dense-analysis/ale'			" LSP linting engine.
 	Plug 'editorconfig/editorconfig-vim'		" Standard .editorconfig file in shared projects.
 	Plug 'github/copilot.vim'			" AI powered code completion.
 	Plug 'godlygeek/tabular' | Plug 'preservim/vim-markdown' " Markdown utilties like list indention, TOC.
@@ -94,6 +91,13 @@ let g:loaded_node_provider = 0
 	Plug 'superDross/ticket.vim'			" Manage vim Sessions per git branch.
 	Plug 'vim-scripts/argtextobj.vim'		" Make function arguments text objects that can be operated on with.
 	Plug 'windwp/nvim-autopairs'			" Autoclose brackets etc.
+" }
+
+" Development: LSP/Completion {
+	"Plug 'hrsh7th/nvim-cmp' | Plug 'hrsh7th/cmp-nvim-lsp' | Plug 'hrsh7th/cmp-buffer' | Plug 'hrsh7th/cmp-vsnip' | Plug 'hrsh7th/vim-vsnip'	" Autocompletion when typing with LSP backend. Disabled as too fast-moving development and bugs.
+	"Plug 'neovim/nvim-lspconfig'			" Plug-n-play configurations for LSP server. Disabled in favour of simpler to use ALE.
+	Plug 'dense-analysis/ale'			" LSP linting engine.
+	Plug 'ray-x/lsp_signature.nvim'			" Method signature window, as ALE does not support it. Ref: https://www.reddit.com/r/vim/comments/jhqzsv/signature_help_via_ale/
 	Plug 'liuchengxu/vista.vim'			" LSP symbols and tags viewer, like TagBar but with LSP support.
 " }
 
@@ -692,6 +696,15 @@ if exists("lh#local_vimrc")
 end
 " }
 
+" lsp_signature.nvim {
+lua << EOF
+require "lsp_signature".setup({
+	toggle_key = '<M-x>', -- toggle signature on and off in insert mode
+	select_signature_key='<M-n>' , -- cycle to next signature
+})
+EOF
+" }
+
 " lualine.nvim {
 lua <<EOF
 require('lualine').setup {
@@ -1105,8 +1118,9 @@ nmap <expr> <c-p> yoink#canSwap() ? '<plug>(YoinkPostPasteSwapForward)' : ':File
 
 " vista.vim {
 nmap <silent> <F3> :Vista!! <CR>	" Toggle the tag sidewindow.
+let g:vista_default_executive = 'ale'	" Default executive.
+let g:vista_sidebar_width = 50	" Window width.
 " }
-
 
 " which-key.nvim {
 lua << EOF
