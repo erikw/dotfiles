@@ -542,6 +542,7 @@
 
 		# To exclude path:
 		#export FZF_DEFAULT_COMMAND="$FZF_DEFAULT_COMMAND --exclude 'vcr_cassettes/'"
+		export FZF_DEFAULT_COMMAND="$FZF_DEFAULT_COMMAND --exclude '.git/'"
 	fi
 
 	# Homebrew sqlite to shadow old version shipped with macOS.

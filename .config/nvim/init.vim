@@ -88,13 +88,13 @@ let g:loaded_node_provider = 0
 	Plug 'nvim-lua/plenary.nvim' | Plug 'andythigpen/nvim-coverage' " Show code coverage in sign column.
 	Plug 'nvim-lua/plenary.nvim' | Plug 'sindrets/diffview.nvim' " Better than fugative ':Git difftool'.
 	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " NVim interface for tree-sitter (language parser).
-	Plug 'preservim/tagbar'				" Sidepane showing info from tags file.
 	Plug 'rgroli/other.nvim'			" Open related file like test.
 	Plug 'rhysd/conflict-marker.vim'		" Navigate and edit VCS conflicts. Replace unmaintained 'vim-script/ConflictMotions'
 	Plug 'ruanyl/vim-gh-line'			" Copy lik to file on GitHub.
 	Plug 'superDross/ticket.vim'			" Manage vim Sessions per git branch.
 	Plug 'vim-scripts/argtextobj.vim'		" Make function arguments text objects that can be operated on with.
 	Plug 'windwp/nvim-autopairs'			" Autoclose brackets etc.
+	Plug 'liuchengxu/vista.vim'			" LSP symbols and tags viewer, like TagBar but with LSP support.
 " }
 
 " Development: DAP {
@@ -912,18 +912,6 @@ nnoremap <silent> <a :SidewaysLeft<CR>		" Move function argument to the left.
 nnoremap <silent> >a :SidewaysRight<CR>		" Move function argument to the right.
 " }
 
-" tagbar {
-nmap <silent> <F3> :TagbarToggle<CR>	" Toggle the Tagbar window.
-let g:tagbar_left = 0			" Keep the window on the right side.
-let g:tagbar_width = 50			" Width of window.
-let g:tagbar_autoclose = 1		" Close tagbar when jumping to a tag.
-let g:tagbar_autofocus = 1		" Give tagbar focus when it's opened.
-let g:tagbar_sort = 0			" Sort tags alphabetically.
-let g:tagbar_compact = 1		" Omit the help text.
-let g:tagbar_singleclick = 1		" Jump to tag with a single click.
-let g:tagbar_autoshowtag = 1		" Open folds if tag is not visible.
-" }
-
 " tickets.vim {
 " Alternatives that also support per-branch saving to some extent:
 " * https://piet.me/branch-based-sessions-in-vim/
@@ -1114,6 +1102,11 @@ nmap <expr> <c-p> yoink#canSwap() ? '<plug>(YoinkPostPasteSwapForward)' : ':File
 " Toggle formatted paste.
 "nmap <c-=> <plug>(YoinkPostPasteToggleFormat)
 " }
+
+" vista.vim {
+nmap <silent> <F3> :Vista!! <CR>	" Toggle the tag sidewindow.
+" }
+
 
 " which-key.nvim {
 lua << EOF
