@@ -16,7 +16,6 @@ let g:xdg_state_home = empty($XDG_STATE_HOME) ? "$HOME/.local/state" : $XDG_STAT
 " }
 
 " Plugins {
-
 " Setup {
 let g:ale_completion_enabled = 1	" Must be set before ALE is loaded.
 
@@ -61,7 +60,6 @@ let g:loaded_node_provider = 0
 	Plug 'preservim/nerdcommenter'				" Comment source code.
 	Plug 'tpope/vim-capslock'				" Software CAPSLOCK with <C-g>c in insert mode.
 	Plug 'tpope/vim-characterize'				" 'ga' on steroid.
-	Plug 'tpope/vim-fugitive'				" Git wrapper and shorthands.
 	Plug 'tpope/vim-repeat'					" Extend '.' repetition for plugins like vim-surround, vim-speeddating, vim-unimpaired.
 	Plug 'tpope/vim-speeddating'				" Increment dates with C-a.
 	Plug 'tpope/vim-unimpaired'				" Bracket mappings like [<space>
@@ -87,13 +85,12 @@ let g:loaded_node_provider = 0
 	Plug 'rhysd/conflict-marker.vim'		" Navigate and edit VCS conflicts. Navigate: [x, ]x. Resolve: ct, co, cb.
 	Plug 'ruanyl/vim-gh-line'			" Copy link to file on GitHub.
 	Plug 'superDross/ticket.vim'			" Manage vim Sessions per git branch.
+	Plug 'tpope/vim-fugitive'			" Git wrapper and shorthands.
 	Plug 'wellle/targets.vim'			" Extra text objects to operate on e.g. function arguments.
 	Plug 'windwp/nvim-autopairs'			" Autoclose brackets etc.
 " }
 
 " Development: LSP/Completion {
-	" TODO cleanup marker.
-	"Plug 'hrsh7th/nvim-cmp' | Plug 'hrsh7th/cmp-nvim-lsp' | Plug 'hrsh7th/cmp-buffer' | Plug 'hrsh7th/cmp-vsnip' | Plug 'hrsh7th/vim-vsnip'	" Autocompletion when typing with LSP backend. Disabled as too fast-moving development and bugs.
 	"Plug 'neovim/nvim-lspconfig'			" Plug-n-play configurations for LSP server. Disabled in favour of simpler to use ALE.
 	Plug 'dense-analysis/ale'			" LSP linting engine.
 	Plug 'ray-x/lsp_signature.nvim'			" Method signature window, as ALE does not support it. Ref: https://www.reddit.com/r/vim/comments/jhqzsv/signature_help_via_ale/
@@ -107,11 +104,10 @@ let g:loaded_node_provider = 0
 " }
 
 " Development: C/C++ {
-	"Plug 'Rip-Rip/clang_complete', { 'for': ['c', 'cpp'] }
-	"Plug 'chazy/cscope_maps'					" More macros than autoload_cscope.vom
+	"Plug 'chazy/cscope_maps'						" More macros than autoload_cscope.vim
 	"Plug 'rhysd/vim-clang-format', { 'for': ['c', 'cpp'] }
-	Plug 'vim-scripts/autoload_cscope.vim', { 'for': ['c', 'cpp'] }	" Load cscope file and define macros for using it. https://github.com/vim-scripts/autoload_cscope.vim/blob/master/plugin/autoload_cscope.vim#L81-L88
-	Plug 'craigemery/vim-autotag'				" Autogenerate new tags file. Could replace with https://github.com/ludovicchabant/vim-gutentags
+	"Plug 'vim-scripts/autoload_cscope.vim', { 'for': ['c', 'cpp'] }	" Load cscope file and define macros for using it. https://github.com/vim-scripts/autoload_cscope.vim/blob/master/plugin/autoload_cscope.vim#L81-L88
+	Plug 'ludovicchabant/vim-gutentags'					" Autogenerate new tags file.
 "}
 
 " Development: Go {
@@ -124,8 +120,7 @@ let g:loaded_node_provider = 0
 "}
 
 " Development: LaTeX {
-	"Plug 'donRaphaco/neotex'				" Live preview PDF output from latex.
-	Plug 'LaTeX-Box-Team/LaTeX-Box'			" TODO replace with https://github.com/latex-lsp/texlab
+	"Plug 'donRaphaco/neotex'	" Live preview PDF output from latex.
 " }
 
 " Development: Python {
@@ -152,9 +147,8 @@ let g:loaded_node_provider = 0
 " }
 
 " Snippets {
-	"Plug 'rbonvall/snipmate-snippets-bib', { 'for': 'tex' }	" Bibtex snippets.
-	Plug 'dcampos/nvim-snippy'				" Snippets engine compatible with the SnipMate format.
-	Plug 'honza/vim-snippets'				" Snippet library
+	Plug 'dcampos/nvim-snippy'	" Snippets engine compatible with the SnipMate format.
+	Plug 'honza/vim-snippets'	" Snippet library
 " }
 
 " Syntax {
@@ -164,18 +158,14 @@ let g:loaded_node_provider = 0
 
 " UI {
 	"Plug 'RRethy/vim-illuminate'		" Highlight current word under cursor. Not compatible with dark-notify: https://github.com/cormacrelf/dark-notify/issues/8
-	"Plug 'dstein64/nvim-scrollview'	" Visual and interactive scroll bar.
-	"Plug 'itchyny/lightline.vim'
-	"Plug 'romgrk/barbar.nvim'		" Tab bar improvements. Cool but too much.
-	"Plug 'vim-scripts/ScrollColors'	" Cycle though available colorschemes.
 	"Plug 'yamatsum/nvim-cursorline'	" Highlight current word under cursor. Not compatible with dark-notify: https://github.com/cormacrelf/dark-notify/issues/8
 	Plug 'chentoast/marks.nvim'		" Visualize marks in the sign column.
-	Plug 'cormacrelf/dark-notify'		" Watch system light/dark mode changes.  Requires dark-notify(1).
+	Plug 'cormacrelf/dark-notify'		" Watch system light/dark mode changes. Requires dark-notify(1).
 	Plug 'karb94/neoscroll.nvim'		" Smoth scrolling.
 	Plug 'kyazdani42/nvim-web-devicons'	" Dependency for: nvim-tree.lua, lualine.nvim, barbar.nvim
 	Plug 'mhinz/vim-startify'		" Start screen with recently opended files.
-	Plug 'mkitt/tabline.vim'		" More informative tab titles.
-	Plug 'nvim-lualine/lualine.nvim'	" Statusline
+	Plug 'crispgm/nvim-tabline'		" More informative tab titles.
+	Plug 'nvim-lualine/lualine.nvim'	" Statusline.
 	Plug 'sitiom/nvim-numbertoggle'		" Automatic relative / static line number toggling.
 
 " Colorschemes {
@@ -183,7 +173,7 @@ let g:loaded_node_provider = 0
 	"Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 	"Plug 'mhartington/oceanic-next'
 	"Plug 'morhetz/gruvbox'
-	Plug 'ishan9299/nvim-solarized-lua'	" Solarized theme that works with nvim-treesitter highlights.
+	Plug 'ishan9299/nvim-solarized-lua'		" Solarized theme that works with nvim-treesitter highlights.
 " }
 "}
 
@@ -514,7 +504,6 @@ set listchars=eol:$,space:·,tab:>-,trail:¬,extends:>,precedes:<,nbsp:.	" Chara
 " Linting {
 " Disabled linters:
 		"\ 'sql': ['sqls'],
-		"\ 'tex': ['texlab'],
 let g:ale_linters = {
 		\ 'go': ['gopls'],
 		\ 'javascript': ['eslint'],
@@ -522,6 +511,7 @@ let g:ale_linters = {
 		\ 'python': ['pyright', 'flake8'],
 		\ 'ruby': ['solargraph', 'ruby'],
 		\ 'sh': ['language_server'],
+		\ 'tex': ['texlab'],
 		\ 'vim': ['vimls'],
 		\ }
 " }
@@ -564,15 +554,6 @@ nmap <silent> <C-j> <Plug>(ale_next_wrap)
 " Toggle command for fixers
 " Reference: https://github.com/dense-analysis/ale/issues/1353#issuecomment-424677810
 command! ALEToggleFixer execute "let g:ale_fix_on_save = get(g:, 'ale_fix_on_save', 0) ? 0 : 1"
-" }
-
-" clang_complete {
-	"let g:clang_auto_select = 1				" Select first entry but don't insert.
-	"let g:clang_complete_copen = 1				" Open quickfix on error.
-	"let g:clang_close_preview = 1				" Close preview after completion.
-	"let g:clang_user_options = '2>/dev/null || exit 0'	" Ignore clang errors.
-	"let g:clang_complete_macros = 1			" Complete preprocessor macros and constants.
-	"let g:clang_complete_patterns = 1			" Complete code patters e.g. loop constructs.
 " }
 
 " copilot.vim {
@@ -671,15 +652,6 @@ EOF
 "EOF
 " }
 
-" icon-picker.nvim {
-"lua << EOF
-"require("icon-picker").setup({ disable_legacy_commands = true })
-"local opts = { noremap = true, silent = true }
-
-"vim.keymap.set("n", "<Leader><Leader>i", "<cmd>IconPickerNormal<cr>", opts)
-"EOF
-" }
-
 " indent-blankline.nvim {
 "lua <<EOF
 "require("indent_blankline").setup {
@@ -733,10 +705,6 @@ lua require('neoscroll').setup()
 " }
 
 " nerdcommenter {
-" Swap invert comment toggle.
-	"map <silent> <Leader>c<Space> <plug>NERDCommenterInvert
-	"map <silent> <Leader>ci <plug>NERDCommenterToggle
-
 " Align line-wise comment delimiters flush left instead of following code indentation
 let g:NERDDefaultAlign = 'left'
 " }
@@ -836,6 +804,12 @@ EOF
 " nvim-surround {
 lua << EOF
 require("nvim-surround").setup()
+EOF
+" }
+
+" nvim-tabline {
+lua <<EOF
+require('tabline').setup({})
 EOF
 " }
 
@@ -951,13 +925,6 @@ vim.keymap.set("n", "\\u", "<Cmd>UrlView<CR>", { desc = "view buffer URLs" })
 EOF
 " }
 
-" vim-autoclose {
-"let g:AutoClosePairs = "() [] {} <> «» ` \" '"	" Pairs to auto-close.
-""let g:AutoCloseProtectedRegions = ["Comment", "String", "Character"]	" Syntax regions to ignore.
-
-"noremap <silent> <Leader>ac :AutoCloseToggle<CR>				" Toggle vim-autoclose plugin mode.
-" }
-
 " vim-better-whitespace {
 let g:strip_whitelines_at_eof=1		" Also strip empty lines at end of file on save.
 let g:show_spaces_that_precede_tabs=1	" Highlight spaces that happens before tab.
@@ -982,26 +949,6 @@ command! Wqs call StripWhitespaceWrapper() | wq
 command! Wqas bufdo call StripWhitespaceWrapper() | wq
 " }
 
-" vim-clang-format {
-"let g:clang_format#auto_format = 0			" Auto format on save.
-"let g:clang_format#auto_formatexpr = 1			" Let vim's formatexpr be set to clang-format (format with gq).
-"autocmd FileType c,cpp,objc map <buffer><Leader>x <Plug>(operator-clang-format)
-
-"" Git pull request for this: https://github.com/rhysd/vim-clang-format/pull/17
-"function! ClangFormatAutoToggleFunc()
-	"if !exists("g:clang_format#auto_format") || g:clang_format#auto_format == 0
-		"let g:clang_format#auto_format = 1
-		"echo "Auto clang-format: enabled"
-	"else
-		"let g:clang_format#auto_format = 0
-		"echo "Auto clang-format: disabled"
-	"endif
-"endfunction
-"" Toggle auto clang-format.
-"command! ClangFormatAutoToggle call ClangFormatAutoToggleFunc()
-"nmap <Leader>C :ClangFormatAutoToggle<CR>
-"}
-
 " vim-fugative {
 autocmd BufReadPost fugitive://* set bufhidden=delete	" Close Fugitive buffers when leaving.
 " }
@@ -1018,7 +965,6 @@ autocmd BufReadPost fugitive://* set bufhidden=delete	" Close Fugitive buffers w
 
 " vim-gitgutter {
 set updatetime=100		" Speedier update of file status.
-
 " }
 
 " vim-illuminate {
@@ -1120,7 +1066,7 @@ let g:startify_custom_header = s:ascii
 " vista.vim {
 nmap <silent> <F3> :Vista!! <CR>	" Toggle the tag sidewindow.
 let g:vista_default_executive = 'ale'	" Default executive.
-let g:vista_sidebar_width = 50	" Window width.
+let g:vista_sidebar_width = 50		" Window width.
 " }
 
 " which-key.nvim {
