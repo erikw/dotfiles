@@ -39,29 +39,27 @@ let g:loaded_node_provider = 0
 " }
 
 " General {
+	"Plug 'LucHermitte/local_vimrc' | Plug 'LucHermitte/lh-vim-lib' " Project local vim config.
 	"Plug 'dhruvasagar/vim-table-mode'			" Create ASCII tables
-	"Plug 'gennaro-tedesco/nvim-peekup'	" Register viewer and selector. Not compatible with vim-yoink.
+	"Plug 'fidian/hexmode'					" Open binary files as a HEX dump with :Hexmode
+	"Plug 'gennaro-tedesco/nvim-peekup'			" Register viewer and selector. TODO not working to paste
 	"Plug 'godlygeek/tabular'				" Create tables. Disabled: not used and have some startup time.
 	"Plug 'mattn/vim-gist' | Plug 'mattn/webapi-vim'	" Post a new Gist.
 	"Plug 'salsifis/vim-transpose'				" Matrix transposition of texts.
-	"Plug 'scrooloose/nerdtree'				" Replaced by built-in netrw
-	"Plug 'vim-scripts/lbdbq'				" Mutt: Query lbdb for recipinents.
+	"Plug 'svermeulen/vim-yoink'				" Yankring implementation.
 	"Plug 'voldikss/vim-translator'				" Async language translator.
-	Plug 'LucHermitte/local_vimrc' | Plug 'LucHermitte/lh-vim-lib' " Project local vim config.
-	Plug 'axieax/urlview.nvim'		" Open URLs in buffer.
+	Plug 'axieax/urlview.nvim'				" Open URLs in buffer.
 	Plug 'danro/rename.vim'					" Provides the :Rename command
-	Plug 'fidian/hexmode'					" Open binary files as a HEX dump with :Hexmode
-	Plug 'folke/which-key.nvim'		" Show matching keybindings e.g. when tapping Leader.
+	Plug 'folke/which-key.nvim'				" Show matching keybindings e.g. when tapping Leader.
 	Plug 'instant-markdown/vim-instant-markdown', {'for': 'markdown', 'do': 'yarn install'}	" Live preview markdown files in browser.
-	Plug 'kyazdani42/nvim-tree.lua'		" File explorer tree
+	Plug 'kyazdani42/nvim-tree.lua'				" File explorer tree
 	Plug 'kylechui/nvim-surround'				" Work on surrond delimiters or its content. Like tpope/vim-surround but with TreeSitter.
 	Plug 'mbbill/undotree'					" Navigate history in a sidebar. Replaces old 'mbbill/undotree'
-	Plug 'michaeljsmith/vim-indent-object'			" Operate on intendtation as text objects
+	Plug 'michaeljsmith/vim-indent-object'			" Operate on intendtation as text objects.
 	Plug 'ntpeters/vim-better-whitespace'			" Highlight and remove trailing whitespaces.
-	Plug 'phaazon/hop.nvim'			" Easy motion jumps in buffer.
+	Plug 'phaazon/hop.nvim'					" Easy motion jumps in buffer.
 	Plug 'preservim/nerdcommenter'				" Comment source code.
-	Plug 'svermeulen/vim-yoink'				" Yankring implementation.
-	Plug 'tpope/vim-capslock'				" Software CAPSLOCK.
+	Plug 'tpope/vim-capslock'				" Software CAPSLOCK with <C-g>c in insert mode.
 	Plug 'tpope/vim-characterize'				" 'ga' on steroid.
 	Plug 'tpope/vim-fugitive'				" Git wrapper and shorthands.
 	Plug 'tpope/vim-repeat'					" Extend '.' repetition for plugins like vim-surround, vim-speeddating, vim-unimpaired.
@@ -71,29 +69,30 @@ let g:loaded_node_provider = 0
 
 " Development {
 " Development: General {
+	"Plug 'github/copilot.vim'			" AI powered code completion.
+	"Plug 'lukas-reineke/indent-blankline.nvim'	" Indent vertical markers.
 	"Plug 'mfussenegger/nvim-dap'			" Debug Adapter Protocol client. Like LSP for debuggers. TODO try again when more mature. Currently LUA config is not working (freezes nvim).
 	Plug 'AndrewRadev/sideways.vim'			" Shift function arguments left and right.
 	Plug 'airblade/vim-gitgutter'			" Git modified status in sign column
-	Plug 'andymass/vim-matchup'			" Extend % matching. Replaces old the matchit plugin.
+	Plug 'andymass/vim-matchup'			" Extend % matching.
 	Plug 'editorconfig/editorconfig-vim'		" Standard .editorconfig file in shared projects.
-	Plug 'github/copilot.vim'			" AI powered code completion.
-	Plug 'godlygeek/tabular' | Plug 'preservim/vim-markdown' " Markdown utilties like list indention, TOC.
+	Plug 'godlygeek/tabular' | Plug 'preservim/vim-markdown' " Markdown utilties like automatic list indention, TOC.
 	Plug 'ibhagwan/fzf-lua' | Plug 'mrjones2014/dash.nvim', { 'do': 'make install' } " Search dash.app from nvim.
-	Plug 'lukas-reineke/indent-blankline.nvim'	" Indent vertical markers.
 	Plug 'm-demare/hlargs.nvim'			" Highlight usage of method arguments.
 	Plug 'nguyenvukhang/nvim-toggler'		" Toggle values like true/false with <leader>i.
 	Plug 'nvim-lua/plenary.nvim' | Plug 'andythigpen/nvim-coverage' " Show code coverage in sign column.
-	Plug 'nvim-lua/plenary.nvim' | Plug 'sindrets/diffview.nvim' " Better than fugative ':Git difftool'.
+	Plug 'nvim-lua/plenary.nvim' | Plug 'sindrets/diffview.nvim' " Better than fugative ':Git difftool'. Browser file history with ':DiffviewFileHistory %'
 	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " NVim interface for tree-sitter (language parser).
 	Plug 'rgroli/other.nvim'			" Open related file like test.
-	Plug 'rhysd/conflict-marker.vim'		" Navigate and edit VCS conflicts. Replace unmaintained 'vim-script/ConflictMotions'
-	Plug 'ruanyl/vim-gh-line'			" Copy lik to file on GitHub.
+	Plug 'rhysd/conflict-marker.vim'		" Navigate and edit VCS conflicts. Navigate: [x, ]x. Resolve: ct, co, cb.
+	Plug 'ruanyl/vim-gh-line'			" Copy link to file on GitHub.
 	Plug 'superDross/ticket.vim'			" Manage vim Sessions per git branch.
-	Plug 'vim-scripts/argtextobj.vim'		" Make function arguments text objects that can be operated on with.
+	Plug 'wellle/targets.vim'			" Extra text objects to operate on e.g. function arguments.
 	Plug 'windwp/nvim-autopairs'			" Autoclose brackets etc.
 " }
 
 " Development: LSP/Completion {
+	" TODO cleanup marker.
 	"Plug 'hrsh7th/nvim-cmp' | Plug 'hrsh7th/cmp-nvim-lsp' | Plug 'hrsh7th/cmp-buffer' | Plug 'hrsh7th/cmp-vsnip' | Plug 'hrsh7th/vim-vsnip'	" Autocompletion when typing with LSP backend. Disabled as too fast-moving development and bugs.
 	"Plug 'neovim/nvim-lspconfig'			" Plug-n-play configurations for LSP server. Disabled in favour of simpler to use ALE.
 	Plug 'dense-analysis/ale'			" LSP linting engine.
@@ -264,7 +263,6 @@ set undofile				" Save undo to file in undodir.
 set undolevels=2048			" Levels of undo to keep in memory.
 set timeoutlen=500			" Timout (ms) for mappings and keycodes. Make it a bit snappier.
 set shortmess=filmnrxtToOA		" Abbreviate messages. 'A' disables the attention prompt when editing a file that is already open (beware: https://superuser.com/a/1065503)
-"set clipboard+=unnamed			" Use register "* instead of unnamed register. This means what is being yanked in vim gets put to external clipboard automatically.
 " }
 
 " LSP {
@@ -578,21 +576,21 @@ command! ALEToggleFixer execute "let g:ale_fix_on_save = get(g:, 'ale_fix_on_sav
 " }
 
 " copilot.vim {
-" Disable/enable per filetype
-      "\ '*': v:false, # global toggle, all on or all off.
-let g:copilot_filetypes = {
-      \ '*': v:false,
-      \ 'txt': v:false,
-      \ 'markdown': v:false,
-      \ 'sh': v:true,
-      \ 'py': v:true,
-      \ 'rb': v:true,
-      \ }
+"" Disable/enable per filetype
+"      "\ '*': v:false, # global toggle, all on or all off.
+"let g:copilot_filetypes = {
+"      \ '*': v:false,
+"      \ 'txt': v:false,
+"      \ 'markdown': v:false,
+"      \ 'sh': v:true,
+"      \ 'py': v:true,
+"      \ 'rb': v:true,
+"      \ }
 
-" Remap from <tab> as this is used by snipmate.
-" Reference: https://github.com/github/feedback/discussions/6919#discussioncomment-1553837
-inoremap <silent><expr> <C-Space> copilot#Accept("")
-let g:copilot_no_tab_map = 1
+"" Remap from <tab> as this is used by snipmate.
+"" Reference: https://github.com/github/feedback/discussions/6919#discussioncomment-1553837
+"inoremap <silent><expr> <C-Space> copilot#Accept("")
+"let g:copilot_no_tab_map = 1
 " }
 
 " dark-notify {
@@ -612,6 +610,11 @@ nmap <silent> <F5> :lua require('dark_notify').toggle()<CR> " Override mapping f
 " dash.vim {
 nnoremap <Leader>d :DashWord<CR>
 nnoremap <Leader>D :Dash<CR>
+lua <<EOF
+require('dash').setup({
+  -- your config here
+})
+EOF
 " }
 
 " fzf.vim {
@@ -621,8 +624,8 @@ nnoremap <Leader>D :Dash<CR>
 nnoremap <Leader>f :FZF<space>
 " Search for files starting at current directory.
 " Sublime-like shortcut 'go to file' ctrl+p.
-" Disabled here; see vim-yoink section for a re-mapping for :Files
-"nnoremap <C-p> :Files<CR>
+" Disable this when using yoink; see vim-yoink section for a re-mapping for :Files
+nnoremap <C-p> :Files<CR>
 " Search for files starting at current directory.
 " Sublime-like shortcut 'go to file' ctrl+shift+p. Note: <C-S-p> is not mappable in vim. <M-P> is in neovim but not vim.
 nnoremap <leader>c :Commands<CR>
@@ -678,22 +681,22 @@ EOF
 " }
 
 " indent-blankline.nvim {
-lua <<EOF
-require("indent_blankline").setup {
-    use_treesitter = true,  -- use treesitter to calculate indentation.
-    show_current_context = true,  -- highlight current indent block.
-    show_current_context_start = true, -- underline first line of current indent block.
-}
-EOF
+"lua <<EOF
+"require("indent_blankline").setup {
+"    use_treesitter = true,  -- use treesitter to calculate indentation.
+"    show_current_context = true,  -- highlight current indent block.
+"    show_current_context_start = true, -- underline first line of current indent block.
+"}
+"EOF
 " }
 
 " local_vimrc {
-" File names to recognize.
-let g:local_vimrc = ['.vimlocal', '_vimrc_local.vim']
-" Paths to not ask before loading.
-if exists("lh#local_vimrc")
-	call lh#local_vimrc#munge('whitelist', $HOME.'/src/github.com/erikw')
-end
+"" File names to recognize.
+"let g:local_vimrc = ['.vimlocal', '_vimrc_local.vim']
+"" Paths to not ask before loading.
+"if exists("lh#local_vimrc")
+"        call lh#local_vimrc#munge('whitelist', $HOME.'/src/github.com/erikw')
+"end
 " }
 
 " lsp_signature.nvim {
@@ -1004,13 +1007,13 @@ autocmd BufReadPost fugitive://* set bufhidden=delete	" Close Fugitive buffers w
 " }
 
 " vim-gist {
-let g:gist_detect_filetype = 1				" Detect filetype from name.
-let g:gist_show_privates = 1				" Let Gist -l show private gists.
-let g:gist_private = 1					" Make private the default for new Gists.
-let g:gist_open_browser_after_post = 1			" Open in browser after post.
-"let g:gist_clip_command = 'xclip -selection clipboard'	" Copy command.
-"let g:gist_browser_command = 'w3m %URL%'		" Browser to use.
-let g:gist_browser_command = 'firefox  %URL%'		" Browser to use.
+"let g:gist_detect_filetype = 1				" Detect filetype from name.
+"let g:gist_show_privates = 1				" Let Gist -l show private gists.
+"let g:gist_private = 1					" Make private the default for new Gists.
+"let g:gist_open_browser_after_post = 1			" Open in browser after post.
+""let g:gist_clip_command = 'xclip -selection clipboard'	" Copy command.
+""let g:gist_browser_command = 'w3m %URL%'		" Browser to use.
+"let g:gist_browser_command = 'firefox  %URL%'		" Browser to use.
 " }
 
 " vim-gitgutter {
@@ -1088,32 +1091,30 @@ let g:startify_custom_header = s:ascii
 " }
 
 " vim-yoink {
-let g:yoinkMaxItems=16			" Increase from default 10.
-let g:yoinkSyncNumberedRegisters=1	" Repurpose the registers to be a history stack!
-let g:yoinkIncludeDeleteOperations=1	" Include text delete operations in the yank history.
-let g:yoinkSyncSystemClipboardOnFocus=0	" Don't integrate with system clipboard.
+"let g:yoinkMaxItems=16			" Increase from default 10.
+"let g:yoinkSyncNumberedRegisters=1	" Repurpose the registers to be a history stack!
+"let g:yoinkIncludeDeleteOperations=1	" Include text delete operations in the yank history.
+"let g:yoinkSyncSystemClipboardOnFocus=0	" Don't integrate with system clipboard.
 
-if has("nvim")
-	let g:yoinkSavePersistently=1		" Persist history across sessions.
-endif
+"let g:yoinkSavePersistently=1		" Persist history across sessions.
 
 
-" Replace default paste with Yoink. "xp still works
-nmap p <plug>(YoinkPaste_p)
-nmap P <plug>(YoinkPaste_P)
+"" Replace default paste with Yoink. "xp still works
+"nmap p <plug>(YoinkPaste_p)
+"nmap P <plug>(YoinkPaste_P)
 
-" Also replace the default gp with yoink paste so we can toggle paste in this case too
-nmap gp <plug>(YoinkPaste_gp)
-nmap gP <plug>(YoinkPaste_gP)
+"" Also replace the default gp with yoink paste so we can toggle paste in this case too
+"nmap gp <plug>(YoinkPaste_gp)
+"nmap gP <plug>(YoinkPaste_gP)
 
-" Cycle yankring immediately after pasting.
-nmap <c-n> <plug>(YoinkPostPasteSwapBack)
-"nmap <c-p> <plug>(YoinkPostPasteSwapForward)
-" Let c-p execute fzf if we're not in paste mode.
-nmap <expr> <c-p> yoink#canSwap() ? '<plug>(YoinkPostPasteSwapForward)' : ':Files<CR>'
+"" Cycle yankring immediately after pasting.
+"nmap <c-n> <plug>(YoinkPostPasteSwapBack)
+""nmap <c-p> <plug>(YoinkPostPasteSwapForward)
+"" Let c-p execute fzf if we're not in paste mode.
+"nmap <expr> <c-p> yoink#canSwap() ? '<plug>(YoinkPostPasteSwapForward)' : ':Files<CR>'
 
-" Toggle formatted paste.
-"nmap <c-=> <plug>(YoinkPostPasteToggleFormat)
+"" Toggle formatted paste.
+""nmap <c-=> <plug>(YoinkPostPasteToggleFormat)
 " }
 
 " vista.vim {
