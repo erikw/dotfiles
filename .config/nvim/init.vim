@@ -75,7 +75,7 @@ let g:loaded_node_provider = 0
 	Plug 'andymass/vim-matchup'			" Extend % matching.
 	Plug 'editorconfig/editorconfig-vim'		" Standard .editorconfig file in shared projects.
 	Plug 'godlygeek/tabular' | Plug 'preservim/vim-markdown' " Markdown utilties like automatic list indention, TOC.
-	Plug 'ibhagwan/fzf-lua' | Plug 'mrjones2014/dash.nvim', { 'do': 'make install' } " Search dash.app from nvim.
+	Plug 'ibhagwan/fzf-lua' | Plug 'mrjones2014/dash.nvim', { 'do': 'make install' } " Search dash.app from nvim. Currently broken: https://github.com/mrjones2014/dash.nvim/issues/137
 	Plug 'm-demare/hlargs.nvim'			" Highlight usage of method arguments.
 	Plug 'nguyenvukhang/nvim-toggler'		" Toggle values like true/false with <leader>i.
 	Plug 'nvim-lua/plenary.nvim' | Plug 'andythigpen/nvim-coverage' " Show code coverage in sign column.
