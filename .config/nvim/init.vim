@@ -41,7 +41,7 @@ let g:loaded_node_provider = 0
 	"Plug 'LucHermitte/local_vimrc' | Plug 'LucHermitte/lh-vim-lib' " Project local vim config.
 	"Plug 'dhruvasagar/vim-table-mode'			" Create ASCII tables
 	"Plug 'fidian/hexmode'					" Open binary files as a HEX dump with :Hexmode
-	"Plug 'gennaro-tedesco/nvim-peekup'			" Register viewer and selector. TODO not working to paste
+	"Plug 'gennaro-tedesco/nvim-peekup'			" Register viewer and selector. TODO not working to paste https://github.com/gennaro-tedesco/nvim-peekup/issues/27
 	"Plug 'godlygeek/tabular'				" Create tables. Disabled: not used and have some startup time.
 	"Plug 'mattn/vim-gist' | Plug 'mattn/webapi-vim'	" Post a new Gist.
 	"Plug 'salsifis/vim-transpose'				" Matrix transposition of texts.
