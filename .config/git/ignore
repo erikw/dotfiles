@@ -11,6 +11,10 @@ Session.vim
 /tags
 /TAGS
 
+# vim-gutentags
+tags.lock
+tags.temp
+
 # Cscope
 cscope.files
 cscope.out

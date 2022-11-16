@@ -41,7 +41,6 @@ let g:loaded_node_provider = 0
 	"Plug 'LucHermitte/local_vimrc' | Plug 'LucHermitte/lh-vim-lib' " Project local vim config.
 	"Plug 'dhruvasagar/vim-table-mode'			" Create ASCII tables
 	"Plug 'fidian/hexmode'					" Open binary files as a HEX dump with :Hexmode
-	"Plug 'gennaro-tedesco/nvim-peekup'			" Register viewer and selector. TODO not working to paste https://github.com/gennaro-tedesco/nvim-peekup/issues/27
 	"Plug 'godlygeek/tabular'				" Create tables. Disabled: not used and have some startup time.
 	"Plug 'mattn/vim-gist' | Plug 'mattn/webapi-vim'	" Post a new Gist.
 	"Plug 'salsifis/vim-transpose'				" Matrix transposition of texts.
@@ -50,6 +49,7 @@ let g:loaded_node_provider = 0
 	Plug 'axieax/urlview.nvim'				" Open URLs in buffer.
 	Plug 'danro/rename.vim'					" Provides the :Rename command
 	Plug 'folke/which-key.nvim'				" Show matching keybindings e.g. when tapping Leader.
+	Plug 'gennaro-tedesco/nvim-peekup'			" Register viewer and selector.
 	Plug 'instant-markdown/vim-instant-markdown', {'for': 'markdown', 'do': 'yarn install'}	" Live preview markdown files in browser.
 	Plug 'kyazdani42/nvim-tree.lua'				" File explorer tree
 	Plug 'kylechui/nvim-surround'				" Work on surrond delimiters or its content. Like tpope/vim-surround but with TreeSitter.
@@ -199,6 +199,8 @@ command! Wmake update | silent !make >/dev/null
 command! Wdiff w !diff % -
 " A stronger quit that unloads the buffer
 command! Q bd
+" Clear all registers. Ref: https://stackoverflow.com/a/41003241/265508
+command! WipeReg for i in range(34,122) | silent! call setreg(nr2char(i), []) | endfor
 
 " Change to directory of current file.
 command! Cdpwd cd %:p:h
@@ -799,6 +801,14 @@ EOF
 "lua << EOF
 "require('nvim-cursorline').setup { }
 "EOF
+" }
+
+" nvim-peekup {
+lua <<EOF
+-- Paste selection to register ", so that it can be pasted directly with 'p'.
+-- Ref: https://github.com/gennaro-tedesco/nvim-peekup/issues/27
+require('nvim-peekup.config').on_keystroke["paste_reg"] = '"'
+EOF
 " }
 
 " nvim-surround {
