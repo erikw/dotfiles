@@ -11,5 +11,6 @@ bash-language-server
 vim-language-server
 vscode-langservers-extracted
 
-# Linters
+# Linters & fixers
 eslint
+prettier

@@ -521,11 +521,17 @@ let g:ale_linters = {
 " Fixing {
 " * - disabled 'trim_whitespace' and 'remove_trailing_lines' as it overlaps with the functionally already provided by vim-better-whitespace.
 " python - disabled autoimport as it messes up ifx in taiga_stats.commands import  fix. Could be resolved by https://github.com/myint/autoflake/issues/59
+" javascript - eslint
 let g:ale_fixers = {
-	\ '*': ['prettier'],
-	\ 'javascript': ['eslint'],
-	\ 'ruby': ['rubocop'],
+	\ 'css': ['prettier'],
+	\ 'javascript': ['prettier'],
+	\ 'json': ['prettier'],
+	\ 'markdown': ['prettier'],
 	\ 'python': ['autoflake', 'black', 'isort'],
+	\ 'ruby': ['rubocop'],
+	\ 'scss': ['prettier'],
+	\ 'typescript': ['prettier'],
+	\ 'yaml': ['prettier'],
 	\}
 let g:ale_fix_on_save = 1
 " }
