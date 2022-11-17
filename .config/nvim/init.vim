@@ -524,7 +524,7 @@ let g:ale_linters = {
 " javascript - eslint
 let g:ale_fixers = {
 	\ 'css': ['prettier'],
-	\ 'javascript': ['prettier'],
+	\ 'javascript': ['prettier', 'eslint'],
 	\ 'json': ['prettier'],
 	\ 'markdown': ['prettier'],
 	\ 'python': ['autoflake', 'black', 'isort'],
@@ -719,11 +719,17 @@ let g:NERDDefaultAlign = 'left'
 
 " nvim-autopairs {
 lua << EOF
-require('nvim-autopairs').setup({
+local npairs = require("nvim-autopairs")
+npairs.setup({
 	check_ts = true, --  Use treesitter to check for a pair
 	map_c_h = true, -- Map the <C-h> key to delete a pair
 	map_c_w = true, -- map <c-w> to delete a pair if possible
 })
+
+-- Ref: https://github.com/windwp/nvim-autopairs/wiki/Endwise
+-- Could use https://github.com/RRethy/nvim-treesitter-endwise instead
+npairs.add_rules(require('nvim-autopairs.rules.endwise-lua'))
+npairs.add_rules(require('nvim-autopairs.rules.endwise-ruby'))
 EOF
 " }
 
