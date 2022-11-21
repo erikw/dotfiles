@@ -606,6 +606,10 @@ require('dash').setup({
 EOF
 " }
 
+" diffview.nvim {
+command! Gdiff :DiffviewFileHistory %
+" }
+
 " fzf.vim {
 " Stolen from my friend https://github.com/erikagnvall/dotfiles/blob/master/vim/init.vim
 " Comment must be on line of its own...
