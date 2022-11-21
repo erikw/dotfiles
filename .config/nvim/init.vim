@@ -519,14 +519,14 @@ let g:ale_linters = {
 " }
 
 " Fixing {
-" * - disabled 'trim_whitespace' and 'remove_trailing_lines' as it overlaps with the functionally already provided by vim-better-whitespace.
-" python - disabled autoimport as it messes up ifx in taiga_stats.commands import  fix. Could be resolved by https://github.com/myint/autoflake/issues/59
-" javascript - eslint
+" Disabled fixers:
+" - *: 'trim_whitespace' & 'remove_trailing_lines' (overlaps with the functionally already provided by vim-better-whitespace)
+" - python: autoimport (messes up ifx in taiga_stats.commands import  fix. Could be resolved by https://github.com/myint/autoflake/issues/59)
+" - markdown: prettier (converts * to - in lists)
 let g:ale_fixers = {
 	\ 'css': ['prettier'],
 	\ 'javascript': ['prettier', 'eslint'],
 	\ 'json': ['prettier'],
-	\ 'markdown': ['prettier'],
 	\ 'python': ['autoflake', 'black', 'isort'],
 	\ 'ruby': ['rubocop'],
 	\ 'scss': ['prettier'],
@@ -842,20 +842,8 @@ EOF
 " }
 
 " nvim-tree.lua {
-"noremap <silent> <F2> :NvimTreeToggle<CR> " Toggle file explorer tree
-
-" Global toggles until https://github.com/kyazdani42/nvim-tree.lua/issues/1493
-" Could extend this by having just one Toggle function that keeps state in a
-" global variable.
-noremap <silent> <F2> :NvimTreeOpen<CR> " Toggle file explorer tree.
-" NvimTreeCloseAll() {
-function! NvimTreeCloseAll()
-	let current_tab = tabpagenr()
-	tabdo NvimTreeClose
-	execute 'tabnext' current_tab
-endfunction
-" }
-nnoremap <silent> <S-F2> :call NvimTreeCloseAll()<CR>	" Close NvimTree in all tabs.
+" Toggle file explorer tree. When open_on_tab=true, syncs toggle globally acoss tabs.
+noremap <silent> <F2> :NvimTreeToggle<CR>
 
 lua <<EOF
 require("nvim-tree").setup {
