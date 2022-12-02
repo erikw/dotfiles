@@ -91,6 +91,7 @@ sudo dseditgroup -o edit -u $USER -p -a $USER -t user power
 sudo sed -i -e '1s;^;auth       optional        /opt/homebrew/lib/pam/pam_reattach.so\nauth       sufficient     pam_tid.so # Sudo with Touch ID\n;' /etc/pam.d/sudo
 # }
 
+# TODO adapt this to System Settings in macOS Ventura
 # System Preferences {
 # Apple ID {
 ## Media & Purchases

@@ -357,8 +357,9 @@ echo "$tab_new" | crontab -
 #   until it is marked as auto_updates $(brew info stretchly)
 
 # Dropbox
+# Remove ~/Dropbox symlink and create: $ ln -s /Users/erikw/Library/CloudStorage/Dropbox ~/dropbox
 ## General
-# * Dropbox badge: Never show
+# * Dropbox badge: Never show (integrates in to MS Office for example)
 
 
 # Denon PMA-50 (amplifier). Reference: http://manuals.denon.com/PMA50/EU/EN/WBSPSYknckyjju.php#WBSPMLurphubft

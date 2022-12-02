@@ -286,7 +286,7 @@ fi
 	alias path_print='echo $PATH | tr : \\n'			# Easier to read $PATH.
 	alias goaccess_nginx='goaccess --log-format=COMBINED -m /var/log/nginx/access.log'	# Get web server stats based on log file.
 	alias goaccess_uberspace='uberspace_collect_access_log.sh && goaccess -m --agent-list --ignore-crawlers --config-file ~/etc/goaccess.conf --log-format=COMBINED --log-file ~/logs/www_access_log_all'
-	alias find_dropbox_conflicts='find ~/.dropbox-data/Dropbox/doc -name "*conflicted copy*"'	# Find conflicting synced dropbox files.
+	alias find_dropbox_conflicts='find ~/dropbox/doc -name "*conflicted copy*"'	# Find conflicting synced dropbox files.
 	alias find_large_files="find . -type f -size +5M -print0 | xargs -0 ls -lh | sort -k5,5 -h | awk '{print \$5, \$9}'"	# Find large files.
 	alias find_large_pdfs="find . -name \"*.pdf\" -type f -size +5M -print0 | xargs -0 ls -lh | sort -k5,5 -h | awk '{print \$5, \$9}'"	# Find large PDFs.
 	alias restic_env_b2='source $HOMEBREW_PREFIX/etc/restic/default.env.sh'		# Init restic env for B2.

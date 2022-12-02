@@ -36,6 +36,11 @@
 	# Completion: Increase from default 100 before asking:
 	# Display all \d+ possibilities? (y or n)
 	set completion-query-items 500
+
+	# Colored completion of partial matches (e.g. in bash)
+	# Ref: https://www.masteringemacs.org/article/keyboard-shortcuts-every-command-line-hacker-should-know-about-gnu-readline
+	#set colored-stats on
+	#set colored-completion-prefix on
 # }
 
 # Bindings {

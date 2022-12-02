@@ -49,7 +49,6 @@
     cask 'google-cloud-sdk'  # for gcloud cli used for tardbot.
     cask 'gramps'
     cask 'handbrake'
-    cask 'isyncr'
     cask 'jettison'
     cask 'keybase'
     cask 'kid3'
@@ -58,9 +57,7 @@
     cask 'microsoft-powerpoint'
     cask 'microsoft-word'
     cask 'mullvadvpn'
-    cask 'musicbrainz-picard'
     cask 'mutify'
-    cask 'rekordbox'
     cask 'send-to-kindle'
     cask 'signal'
     cask 'skype'
@@ -72,8 +69,11 @@
     cask 'ableton-live-suite' # If using latest version, which I'm not.
     cask 'bitwarden'
     cask 'ferdium'
+    cask 'rekordbox'
+    cask 'isyncr'
     cask 'microsoft-office'  # License managed at https://account.microsoft.com/services/
     cask 'mixed-in-key'    # If using latest version, which I'm not.
+    cask 'musicbrainz-picard'
     cask 'mutify'
 =end
 # }
