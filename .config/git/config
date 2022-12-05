@@ -22,6 +22,7 @@
 	br = branch
 	ci = commit
 	cia = commit --amend
+	cir = !"git commit --amend --reset-author --no-edit && git --no-pager show --no-patch --pretty='format:author: %aD, commit: %cD'" # Reset author/timestamp of last commit. Ref: https://stackoverflow.com/a/31540373/265508
 	cicc = !"git commit --quiet -m \"Collected changes\" && git --no-pager show -s --format='format:Committed: %s%n'"
 	cl = clone
 	co = checkout
