@@ -15,6 +15,7 @@
 *.sw?
 *~
 .DS_STORE
+.config/tmux/sidebar/directory_widths.txt
 /!.ipython/profile_default/ipython_config.py
 /.atom
 /.config/MusicBrainz/

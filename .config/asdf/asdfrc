@@ -1,7 +1,11 @@
 # Reference: https://asdf-vm.com/manage/configuration.html
 
+# Notes
+# nodejs - to support .nvmrc with bare versions like "14", make symlinks. Ref: https://github.com/asdf-vm/asdf-nodejs/issues/295#issuecomment-1167475013
+# $ ln -s $ASDF_DATA_DIR/installs/nodejs/14.21.1 $ASDF_DATA_DIR/installs/nodejs/14
+
 # General
-# Support e.g. .ruby-version files
+# Support e.g. .ruby-version files from other version manager tools
 legacy_version_file = yes
 
 # Plugin - java
