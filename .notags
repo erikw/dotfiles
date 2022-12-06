@@ -1,0 +1,2 @@
+This file tells vim-gutentags to ignore this git repo and not generate a tags file for it.
+Ref: https://github.com/ludovicchabant/vim-gutentags/blob/master/doc/gutentags.txt

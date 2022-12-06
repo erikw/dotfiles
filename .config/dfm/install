@@ -1,6 +1,7 @@
-README.md skip
 .gitignore skip
 .gitmodules skip
+.notags skip
+README.md skip
 Session.vim skip
 install.sh skip
 
