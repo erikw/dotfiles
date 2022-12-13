@@ -123,8 +123,8 @@
 	postBuffer = 524288000	; Increase post byte size. Could also set this per project with $(git config http.postBuffer 524288000). Reference: https://stackoverflow.com/a/3605544/265508
 [remote]
 	prune = true ; Automatically prune branches on fetch and pull. Ref: https://stackoverflow.com/a/40842589/265508
-[notes]
-	rewriteRef = refs/notes/commits ; Rebase notes. Ref: https://stackoverflow.com/a/14601464/265508
+;[notes]
+;        rewriteRef = refs/notes/commits ; Rebase notes. Ref: https://stackoverflow.com/a/14601464/265508
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
