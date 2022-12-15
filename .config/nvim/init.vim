@@ -788,9 +788,10 @@ EOF
 
 " nvim-numbertoggle {
 " init.vim or .vimrc
-lua << EOF
-require("numbertoggle").setup()
-EOF
+" TODO disabled as of https://github.com/sitiom/nvim-numbertoggle/issues/15
+"lua << EOF
+"require("numbertoggle").setup()
+"EOF
 " }
 
 " nvim-snippy {
