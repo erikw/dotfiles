@@ -158,15 +158,15 @@ let g:loaded_node_provider = 0
 
 " UI {
 	"Plug 'RRethy/vim-illuminate'		" Highlight current word under cursor. Not compatible with dark-notify: https://github.com/cormacrelf/dark-notify/issues/8
+	"Plug 'sitiom/nvim-numbertoggle'		" Automatic relative / static line number toggling. Disabled as of https://github.com/sitiom/nvim-numbertoggle/issues/15
 	"Plug 'yamatsum/nvim-cursorline'	" Highlight current word under cursor. Not compatible with dark-notify: https://github.com/cormacrelf/dark-notify/issues/8
 	Plug 'chentoast/marks.nvim'		" Visualize marks in the sign column.
 	Plug 'cormacrelf/dark-notify'		" Watch system light/dark mode changes. Requires dark-notify(1).
+	Plug 'crispgm/nvim-tabline'		" More informative tab titles.
 	Plug 'karb94/neoscroll.nvim'		" Smoth scrolling.
 	Plug 'kyazdani42/nvim-web-devicons'	" Dependency for: nvim-tree.lua, lualine.nvim, barbar.nvim
 	Plug 'mhinz/vim-startify'		" Start screen with recently opended files.
-	Plug 'crispgm/nvim-tabline'		" More informative tab titles.
 	Plug 'nvim-lualine/lualine.nvim'	" Statusline.
-	Plug 'sitiom/nvim-numbertoggle'		" Automatic relative / static line number toggling.
 
 " Colorschemes {
 	"Plug 'altercation/vim-colors-solarized'	" The one theme to rule them all.
@@ -784,14 +784,6 @@ EOF
 
 " nvim-dap-ui {
 "lua require("dapui").setup()
-" }
-
-" nvim-numbertoggle {
-" init.vim or .vimrc
-" TODO disabled as of https://github.com/sitiom/nvim-numbertoggle/issues/15
-"lua << EOF
-"require("numbertoggle").setup()
-"EOF
 " }
 
 " nvim-snippy {
