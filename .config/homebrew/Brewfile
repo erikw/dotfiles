@@ -17,7 +17,6 @@
 # }
 
 # Formula: default {
-    #brew 'urlview'        # For tmux link opening
     brew 'ack'
     brew 'as-tree'	# A tree view of the contents of a directory. $(fd ... | as-tree)
     brew 'asdf'
@@ -152,6 +151,7 @@
     brew 'swiftlint'
     brew 'task'
     brew 'tasksh'
+    brew 'urlview'        # For tmux link opening
     brew 'valgrind'
     brew 'wakeonlan'
     brew 'wego'

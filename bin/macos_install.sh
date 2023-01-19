@@ -362,12 +362,6 @@ echo "$tab_new" | crontab -
 # * Dropbox badge: Never show (integrates in to MS Office for example)
 
 
-# Denon PMA-50 (amplifier). Reference: http://manuals.denon.com/PMA50/EU/EN/WBSPSYknckyjju.php#WBSPMLurphubft
-# * Connect via USB
-# * Open Audio MIDI Setup app
-# * Right click on PMA-50 and check "Use this Device for Sound Output"
-# * Set format to: “192 kHz: 2ch-24 bit Interger”.
-
 # Crontab backup automation
 # Add to crontab an entry like:
 #@monthly			   if_fail_do_notification bak_crontab.sh

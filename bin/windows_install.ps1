@@ -142,7 +142,6 @@ Invoke-Expression "choco install vim --params /NoDesktopShortcuts"
 # * Intel HD Graphics Driver for Windows 10
 
 
-# * Denon PMA-50 (amplifier) USB audio drivers: https://usa.denon.com/us/product/hifi/amplifiers/pma50
 # * Brother DCP-7070DW drivers "Printer Driver & Scanner Driver for Local Connection": http://support.brother.com/g/b/downloadlist.aspx?c=eu_ot&lang=en&prod=dcp7070dw_eu&os=10013
 # ** Then go to Settings > Devices > Printers & Scanners, find the printer on the network and add it.
 # ** Then Press "Manage" to set paper size, Duplex etc.
