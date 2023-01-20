@@ -418,14 +418,12 @@ echo "$tab_new" | crontab -
 # * Bind to shortcut ctrl+cmd+y
 
 
-# NOPE skip this, not used
 # Automator command: cycle output devices. Do this for all ~/bin/macos_media_control/SwitchAudioSource*.command
 # * Create an automator Quick Action named "SwitchAudioSource_cycle" with AppleScript for the contents in ~/bin/macos_media_control/SwitchAudioSource_cycle.command
 # * Bind to shortcuts like:
-#  - cycle: OPT+CMD+F9.
-#  - Built-in: OPT+CMD+F10.
-#  - PMA-50: OPT+CMD+F11.
-#  - USB Soundcard/headset: OPT+CMD+F12
+#  - Built-in: CMD+OPT+F11.
+#  - USB Soundcard/headset: CMD+OPT+F12
+#  - Cycle: CMD+OPT+F13.
 
 
 # NOPE skip this, using Jettison instead.
