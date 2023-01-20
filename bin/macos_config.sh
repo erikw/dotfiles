@@ -420,9 +420,9 @@ defaults write com.apple.finder _FXSortFoldersFirst -bool true
 # - ~/.config/finder/---------/
 # - /Applications
 # - /private/tmp
-# - /Volumes/toshiba_music/daw/ableton/projects
-# - /Volumes/toshiba_music/daw/plugins/
-# - /Volumes/toshiba_music/music/samples/
+# - /Volumes/ext0/daw/ableton/projects
+# - /Volumes/ext0/daw/plugins/
+# - /Volumes/ext0/music/samples/
 # * OPTIONAL: Copy icon from ~/Downloads to ~/dl in cmd+i dialog.
 
 

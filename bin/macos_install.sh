@@ -614,7 +614,7 @@ asdf global nodejs latest
 # DJing {
 # Serato DJ Pro:
 # * Download at https://serato.com/dj/pro/downloads
-# * Click the Rec buton > Set recording location to /Volumes/toshiba_music/music/sets/my_sets/serato_live_sets/
+# * Click the Rec buton > Set recording location to /Volumes/ext0/music/sets/my_sets/serato_live_sets/
 ## Preferences:
 ### DJ Preferences
 # * Check: Track End Warning
@@ -637,7 +637,7 @@ asdf global nodejs latest
 # * Uncheck: Reset (EQ, effect, controls)
 # * Stop time: 0,0 seconds
 ## Devices:
-# * See ~/doc/music/djing/dj_setups.txt
+# * See ~/doc/music/device_setups.xlsx Dj tap
 ## Library:
 # * Check: Hide unavailalbe tracks
 ## Appearance:
@@ -657,10 +657,10 @@ asdf global nodejs latest
 # * Waveform - Color: RGB
 ## Controller
 ### Recordings tab
-# * Location /Volumes/toshiba_music/music/sets/my_sets/rekordbox_live_sets/
+# * Location /Volumes/ext0/music/sets/my_sets/rekordbox_live_sets/
 ## Advanced
 ### Database
-# * Database Management drive: /Volumes/toshiba_music/
+# * Database Management drive: /Volumes/ext0/
 
 
 
@@ -711,7 +711,7 @@ asdf global nodejs latest
 
 # Ableton Live
 # * Download from https://www.ableton.com/en/account/
-# root=/Volumes/toshiba_music/daw/
+# root=/Volumes/ext0/daw/
 ## Look and Feel
 # * Theme: Dark
 ## Audio
@@ -759,7 +759,7 @@ asdf global nodejs latest
 # $root/ableton/max/
 
 # Kontakt Player
-# Right-click on the Rack area > In the quick-load, drag-and-drop /Volumes/toshiba_music/daw/kontakt_user_library/. Reference: https://vi-control.net/community/threads/how-do-i-add-libraries-in-kontakt-6.95343/
+# Right-click on the Rack area > In the quick-load, drag-and-drop /Volumes/ext0/daw/kontakt_user_library/. Reference: https://vi-control.net/community/threads/how-do-i-add-libraries-in-kontakt-6.95343/
 
 # }
 # }

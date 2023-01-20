@@ -82,10 +82,10 @@
     mas 'Kindle', id: 405399194
     mas 'Pixelmator Pro', id: 1289583905
     mas 'WhatsApp Desktop', id: 1147396723
-    mas 'djay', id: 450527929
 # }
 
 # Mas: optional {
+    #mas 'djay', id: 450527929
 # }
 
 # Misc {
