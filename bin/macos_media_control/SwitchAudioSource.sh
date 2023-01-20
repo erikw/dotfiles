@@ -2,8 +2,15 @@
 # Inspired by http://apetronix.com/switch-audio-outputs-with-a-keyboard-shortcut-on-os-x/
 # brew dependencies: switchaudio-osx
 
+# When this is run from Automator: we can't use $(brew --prefix) as we don't know where brew(1) is, neither rely on $BREW_PREFIX as shell files are not read.
+# thus, HARDCODE-ish!
+brew_prefix=/usr/local
+if [ -d /opt/homebrew/ ]; then
+	brew_prefix=/opt/homebrew
+fi
+bin="${brew_prefix}/bin/SwitchAudioSource"
+
 # Default: cycle devices
-bin=/opt/homebrew/bin/SwitchAudioSource
 cmd="$bin -t output -n"
 
 # Output device obtained via $(SwitchAudioSource -a -t output)
