@@ -17,7 +17,9 @@ let g:xdg_state_home = empty($XDG_STATE_HOME) ? "$HOME/.local/state" : $XDG_STAT
 
 " Plugins {
 " Setup {
-let g:ale_completion_enabled = 1	" Must be set before ALE is loaded.
+lua << EOF
+	vim.g.ale_completion_enabled = 1	-- Must be set before ALE is loaded.
+EOF
 
 " vim-plug data folder
 call plug#begin(stdpath('data') . '/plugged')
@@ -230,19 +232,19 @@ command! DebuggerClear :call DebuggerClear()  " Clear all debugger statement lin
 " }
 
 " Formatting {
-set linebreak			" Wrap on 'breakat'-chars.
-"set showbreak=>		" Indicate wrapped lines.
-set showbreak=…			" Indicate wrapped lines.
-set smartindent			" Indent smart on C-like files.
-set preserveindent		" Try to preserve indent structure on changes of current line.
-set copyindent			" Copy indentstructure from existing lines.
-set tabstop=8			" Let a tab be X spaces wide. 8 spaces for a tab render best as HTML on e.g. GithHub.
-set shiftwidth=8		" Tab width for auto indent and >> shifting.
-"set softtabstop=8		" Number of spaces to count a tab for on ops like BS and tab.
-set matchpairs+=<:>		" Also match <> with %.
-set formatoptions=tcroqwnl	" How automatic formatting should happen.
-set cinoptions+=g=		" Left-indent C++ access labels.
-"set pastetoggle  = <Leader>p   " Toggle 'paste' for sane pasting.
+lua << EOF
+vim.opt.linebreak = false	-- Wrap on 'breakat'-chars.
+vim.opt.showbreak = '…'		-- Indicate wrapped lines.
+vim.opt.smartindent = true	-- Indent smart on C-like files.
+vim.opt.preserveindent = true	-- Try to preserve indent structure on changes of current line.
+vim.opt.copyindent = true	-- Copy indentstructure from existing lines.
+
+vim.opt.tabstop = 8			-- Let a tab be X spaces wide. 8 spaces for a tab render best as HTML on e.g. GithHub.
+vim.opt.shiftwidth = 8			-- Tab width for auto indent and >> shifting.
+vim.opt.matchpairs:append("<:>")	-- Also match <> with %.
+vim.opt.formatoptions = "tcroqwnl"	-- How automatic formatting should happen.
+EOF
+
 " }
 
 " General {
