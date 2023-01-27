@@ -9,12 +9,12 @@
 # }
 
 # Formula: default {
-    brew 'restic'
-    brew 'restic-automatic-backup-scheduler'
 # }
 #
 # Formula: optional {
 =begin
+    brew 'restic'
+    brew 'restic-automatic-backup-scheduler'
 =end
 # }
 
