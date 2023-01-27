@@ -41,6 +41,7 @@ let g:loaded_node_provider = 0
 	"Plug 'LucHermitte/local_vimrc' | Plug 'LucHermitte/lh-vim-lib' " Project local vim config.
 	"Plug 'dhruvasagar/vim-table-mode'			" Create ASCII tables
 	"Plug 'fidian/hexmode'					" Open binary files as a HEX dump with :Hexmode
+	"Plug 'folke/which-key.nvim'				" Show matching keybindings e.g. when tapping Leader.
 	"Plug 'godlygeek/tabular'				" Create tables. Disabled: not used and have some startup time.
 	"Plug 'mattn/vim-gist' | Plug 'mattn/webapi-vim'	" Post a new Gist.
 	"Plug 'salsifis/vim-transpose'				" Matrix transposition of texts.
@@ -48,7 +49,6 @@ let g:loaded_node_provider = 0
 	"Plug 'voldikss/vim-translator'				" Async language translator.
 	Plug 'axieax/urlview.nvim'				" Open URLs in buffer.
 	Plug 'danro/rename.vim'					" Provides the :Rename command
-	Plug 'folke/which-key.nvim'				" Show matching keybindings e.g. when tapping Leader.
 	Plug 'gennaro-tedesco/nvim-peekup'			" Register viewer and selector.
 	Plug 'instant-markdown/vim-instant-markdown', {'for': 'markdown', 'do': 'yarn install'}	" Live preview markdown files in browser.
 	Plug 'kyazdani42/nvim-tree.lua'				" File explorer tree
@@ -1083,10 +1083,10 @@ let g:vista_sidebar_width = 50		" Window width.
 " }
 
 " which-key.nvim {
-lua << EOF
-  require("which-key").setup {
-  }
-EOF
+"lua << EOF
+"  require("which-key").setup {
+"  }
+"EOF
 " }
 
 " undotree {
