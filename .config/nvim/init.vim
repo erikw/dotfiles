@@ -11,17 +11,22 @@
 " }
 
 " Environment {
-let g:xdg_config_home = empty($XDG_CONFIG_HOME) ? "$HOME/.config" : $XDG_CONFIG_HOME
-let g:xdg_state_home = empty($XDG_STATE_HOME) ? "$HOME/.local/state" : $XDG_STATE_HOME
+lua << EOF
+vim.g.xdg_config_home = os.getenv("XDG_CONFIG_HOME") or "$HOME/.config"
+vim.g.xdg_state_home = os.getenv("XDG_STATE_HOME") or "$HOME/.local/state"
+--vim.g.xdg_data_home = os.getenv("XDG_DATA_HOME") or "$HOME/.local/share"
+EOF
+
 " }
 
 " Plugins {
 " Setup {
 lua << EOF
-	vim.g.ale_completion_enabled = 1	-- Must be set before ALE is loaded.
+vim.g.ale_completion_enabled = 1	-- Must be set before ALE is loaded.
 EOF
 
 " vim-plug data folder
+" TODO migrate to plugin manager in lua.
 call plug#begin(stdpath('data') . '/plugged')
 
 " The python provider (pythonx.vim) checker takes alomost 1 second on startup.
@@ -70,6 +75,7 @@ let g:loaded_node_provider = 0
 " Development {
 " Development: General {
 	"Plug 'github/copilot.vim'			" AI powered code completion.
+	"Plug 'ibhagwan/fzf-lua' | Plug 'mrjones2014/dash.nvim', { 'do': 'make install' } " Search dash.app from nvim. Currently broken: https://github.com/mrjones2014/dash.nvim/issues/137
 	"Plug 'lukas-reineke/indent-blankline.nvim'	" Indent vertical markers.
 	"Plug 'mfussenegger/nvim-dap'			" Debug Adapter Protocol client. Like LSP for debuggers. TODO try again when more mature. Currently LUA config is not working (freezes nvim).
 	Plug 'AndrewRadev/sideways.vim'			" Shift function arguments left and right.
@@ -77,7 +83,6 @@ let g:loaded_node_provider = 0
 	Plug 'andymass/vim-matchup'			" Extend % matching.
 	Plug 'editorconfig/editorconfig-vim'		" Standard .editorconfig file in shared projects.
 	Plug 'godlygeek/tabular' | Plug 'preservim/vim-markdown' " Markdown utilties like automatic list indention, TOC.
-	Plug 'ibhagwan/fzf-lua' | Plug 'mrjones2014/dash.nvim', { 'do': 'make install' } " Search dash.app from nvim. Currently broken: https://github.com/mrjones2014/dash.nvim/issues/137
 	Plug 'm-demare/hlargs.nvim'			" Highlight usage of method arguments.
 	Plug 'nguyenvukhang/nvim-toggler'		" Toggle values like true/false with <leader>i.
 	Plug 'nvim-lua/plenary.nvim' | Plug 'andythigpen/nvim-coverage' " Show code coverage in sign column.
@@ -599,13 +604,13 @@ nmap <silent> <F5> :lua require('dark_notify').toggle()<CR> " Override mapping f
 " }
 
 " dash.vim {
-nnoremap <Leader>d :DashWord<CR>
-nnoremap <Leader>D :Dash<CR>
-lua <<EOF
-require('dash').setup({
-  -- your config here
-})
-EOF
+"nnoremap <Leader>d :DashWord<CR>
+"nnoremap <Leader>D :Dash<CR>
+"lua <<EOF
+"require('dash').setup({
+"  -- your config here
+"})
+"EOF
 " }
 
 " diffview.nvim {
@@ -852,8 +857,6 @@ noremap <silent> <F2> :NvimTreeToggle<CR>
 
 lua <<EOF
 require("nvim-tree").setup {
-	open_on_setup = true,
-	open_on_setup_file = false,
 	open_on_tab = true,
 	filters = { custom = { "^.git$" } },
 	view = {
