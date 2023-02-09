@@ -29,19 +29,21 @@ EOF
 " TODO migrate to plugin manager in lua.
 call plug#begin(stdpath('data') . '/plugged')
 
-" The python provider (pythonx.vim) checker takes alomost 1 second on startup.
-" Do one of:
-" * Install neovim package in used version: $ pip install neovim, then
-" :checkhealth
-" * Disable the provider (not used by curret plugins anyways.)
-" Reference: https://www.reddit.com/r/neovim/comments/ksf0i4/slow_startup_time_when_opening_python_files_with/
-let g:loaded_python3_provider = 0
+lua << EOF
+-- The python provider (pythonx.vim) checker takes alomost 1 second on startup.
+-- Do one of:
+-- * Install neovim package in used version: $ pip install neovim, then
+-- :checkhealth
+-- * Disable the provider (not used by curret plugins anyways.)
+-- Reference: https://www.reddit.com/r/neovim/comments/ksf0i4/slow_startup_time_when_opening_python_files_with/
+vim.g.loaded_python3_provider = 0
 
-" Let's disable more that is not used to gain startup time.
-let g:loaded_python_provider = 0
-let g:loaded_ruby_provider = 0
-let g:loaded_provider_provider = 0
-let g:loaded_node_provider = 0
+-- Let's disable more that is not used to gain startup time.
+vim.g.loaded_python_provider = 0
+vim.g.loaded_ruby_provider = 0
+vim.g.loaded_provider_provider = 0
+vim.g.loaded_node_provider = 0
+EOF
 " }
 
 " General {
@@ -190,44 +192,38 @@ call plug#end()
 " }
 " }
 
-" Abbreviations {
-" Expand my name.
-"iabbrev ew Erik Westrup
-" }
-
 " Commands {
-" Sort words on the current line.
-command! Sortline call setline(line('.'),join(sort(split(getline('.'))), ' '))
-" Write with extended privileges.
-command! Wsudo silent w !sudo tee % > /dev/null
-" Update and run make.
-command! Wmake update | silent !make >/dev/null
-" See buffer and file diff.
-command! Wdiff w !diff % -
-" A stronger quit that unloads the buffer
-command! Q bd
-" Clear all registers. Ref: https://stackoverflow.com/a/41003241/265508
-command! WipeReg for i in range(34,122) | silent! call setreg(nr2char(i), []) | endfor
+lua << EOF
+vim.api.nvim_create_user_command('Sortline', 'call setline(line("."),join(sort(split(getline("."))), " "))', {force = true, desc = "Sort words on the current line."})
+vim.api.nvim_create_user_command('Wsudo', 'silent write !sudo tee % > /dev/null', {force = true, desc = "Write with extended privileges."})
+-- Ref: https://stackoverflow.com/a/41003241/265508
+vim.api.nvim_create_user_command('WipeReg', 'for i in range(34,122) | silent! call setreg(nr2char(i), []) | endfor', {force = true, desc = "Clear all registers."})
+vim.api.nvim_create_user_command('Cdpwd', 'cd %:p:h', {force = true, desc = "Change to directory of current file."})
+vim.api.nvim_create_user_command('Lcdpwd', 'lcd %:p:h', {force = true, desc = "Show the directory of current file."})
+vim.api.nvim_create_user_command('DisableFixers', 'execute "DisableStripWhitespaceOnSave" | execute "let g:ale_fix_on_save = 0"', {force = true, desc = "Disable all fixers. Good when editing non-owned code bases."})
+EOF
 
-" Change to directory of current file.
-command! Cdpwd cd %:p:h
-command! Lcdpwd lcd %:p:h
+"command! -nargs=* Wrap set wrap linebreak nolist	" Set softwrap correctly.
+"autocmd BufWinLeave * silent! mkview			" Save fold views.
+"autocmd BufWinEnter * silent! loadview			" Load fold views on start.
 
-command! -nargs=* Wrap set wrap linebreak nolist	" Set softwrap correctly.
-autocmd BufWinLeave * silent! mkview			" Save fold views.
-autocmd BufWinEnter * silent! loadview			" Load fold views on start.
+"function! DebuggerClear()
+"        let current_buf = bufnr()
+"        silent :bufdo exe "g/^\\s*debugger\\s*$/d | update"
+"        execute 'buffer' current_buf
+"endfunction
+lua << EOF
 
+-- TODO 
+function DebuggerClear()
+	local current_buf = vim.fn.bufnr()
+	print(current_buf)
+	-- silent :bufdo exe "g/^\\s*debugger\\s*$/d | update"
+	-- execute 'buffer' current_buf
+end
 
-" Disable all fixers. Good when editing non-owned code bases.
-command! DisableFixers execute "DisableStripWhitespaceOnSave" | execute "let g:ale_fix_on_save = 0"
-
-
-function! DebuggerClear()
-	let current_buf = bufnr()
-	silent :bufdo exe "g/^\\s*debugger\\s*$/d | update"
-	execute 'buffer' current_buf
-endfunction
-command! DebuggerClear :call DebuggerClear()  " Clear all debugger statement lines in all open buffers.
+vim.api.nvim_create_user_command('DebuggerClear', 'call DebuggerClear()', {force = true, desc = "Clear all debugger statement lines in all open buffers."})
+EOF
 
 " }
 
