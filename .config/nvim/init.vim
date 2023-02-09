@@ -214,7 +214,7 @@ EOF
 "endfunction
 lua << EOF
 
--- TODO 
+-- TODO
 function DebuggerClear()
 	local current_buf = vim.fn.bufnr()
 	print(current_buf)
