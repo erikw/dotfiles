@@ -194,12 +194,12 @@ call plug#end()
 
 " Commands {
 lua << EOF
-vim.api.nvim_create_user_command('Sortline', 'call setline(line("."),join(sort(split(getline("."))), " "))', {force = true, desc = "Sort words on the current line."})
 vim.api.nvim_create_user_command('Wsudo', 'silent write !sudo tee % > /dev/null', {force = true, desc = "Write with extended privileges."})
 -- Ref: https://stackoverflow.com/a/41003241/265508
 vim.api.nvim_create_user_command('WipeReg', 'for i in range(34,122) | silent! call setreg(nr2char(i), []) | endfor', {force = true, desc = "Clear all registers."})
 vim.api.nvim_create_user_command('Cdpwd', 'cd %:p:h', {force = true, desc = "Change to directory of current file."})
 vim.api.nvim_create_user_command('Lcdpwd', 'lcd %:p:h', {force = true, desc = "Show the directory of current file."})
+vim.api.nvim_create_user_command('Sortline', 'call setline(line("."),join(sort(split(getline("."))), " "))', {force = true, desc = "Sort words on the current line."})
 vim.api.nvim_create_user_command('DisableFixers', 'execute "DisableStripWhitespaceOnSave" | execute "let g:ale_fix_on_save = 0"', {force = true, desc = "Disable all fixers. Good when editing non-owned code bases."})
 EOF
 
@@ -207,29 +207,16 @@ EOF
 "autocmd BufWinLeave * silent! mkview			" Save fold views.
 "autocmd BufWinEnter * silent! loadview			" Load fold views on start.
 
-"function! DebuggerClear()
-"        let current_buf = bufnr()
-"        silent :bufdo exe "g/^\\s*debugger\\s*$/d | update"
-"        execute 'buffer' current_buf
-"endfunction
 lua << EOF
-
--- TODO
 function DebuggerClear()
 	local current_buf = vim.fn.bufnr()
-	print(current_buf)
-	-- silent :bufdo exe "g/^\\s*debugger\\s*$/d | update"
-	-- execute 'buffer' current_buf
+	vim.cmd("silent :bufdo exe 'g/^\\s*debugger\\s*$/d | update'")
+	vim.cmd("execute 'buffer' " .. current_buf)
 end
 
-vim.api.nvim_create_user_command('DebuggerClear', 'call DebuggerClear()', {force = true, desc = "Clear all debugger statement lines in all open buffers."})
+vim.api.nvim_create_user_command('DebuggerClear', DebuggerClear, {force = true, desc = "Clear all debugger statement lines in all open buffers."})
 EOF
 
-" }
-
-" Completion {
-"set completeopt=longest,menu,preview	" Insert most common completion and show menu.
-"set omnifunc=syntaxcomplete#Complete	" Let Omni completion (^x^o) use vim's builtin syntax files for language keywords.
 " }
 
 " Formatting {
@@ -249,15 +236,15 @@ EOF
 " }
 
 " General {
-set nrformats=alpha,octal,hex		" What to increment/decrement with ^A and ^X.
-set tabpagemax=100			" Upper limit on number of tabs.
-set hidden				" Work with hidden buffers more easily. Enables to leave buffer with unwritten changes (by :edit another buffer).
-set sessionoptions-=options		" Don't store global and local variables in sessions.
-set sessionoptions-=folds		" Don't store folds in sessions.
-set undofile				" Save undo to file in undodir.
-set undolevels=2048			" Levels of undo to keep in memory.
-set timeoutlen=500			" Timout (ms) for mappings and keycodes. Make it a bit snappier.
-set shortmess=filmnrxtToOA		" Abbreviate messages. 'A' disables the attention prompt when editing a file that is already open (beware: https://superuser.com/a/1065503)
+lua << EOF
+vim.opt.nrformats = {'alpha' , 'octal' , 'hex' } -- What to increment/decrement with ^A and ^X.
+vim.opt.tabpagemax = 100	-- Upper limit on number of tabs.
+vim.opt.hidden = true		-- Work with hidden buffers more easily. Enables to leave buffer with unwritten changes (by :edit another buffer).
+vim.opt.undofile = true		-- Save undo to file in undodir.
+vim.opt.undolevels = 2048	-- Levels of undo to keep in memory.
+vim.opt.timeoutlen = 700	-- Timout (ms) for mappings and keycodes. Make it a bit snappier.
+vim.opt.shortmess = "filmnrxtToOA"	-- Abbreviate messages. 'A' disables the attention prompt when editing a file that is already open (beware: https://superuser.com/a/1065503)
+EOF
 " }
 
 " LSP {
@@ -328,9 +315,13 @@ set shortmess=filmnrxtToOA		" Abbreviate messages. 'A' disables the attention pr
 " }
 
 " Mappings {
-let mapleader = "\\"					" The key for <Leader>.
-nmap <silent> <C-_> :nohlsearch<CR>			" Clear search matches highlighting. (Ctrl+/ => ^_). Note: neovim has <c-l> doing this be default now. https://neovim.io/doc/user/vim_diff.html#nvim-features-new
-nmap <silent> <Leader>v :source $MYVIMRC<CR>		" Source init.vim
+lua << EOF
+-- (Ctrl+/ => ^_). Note: neovim has <c-l> doing this be default now. https://neovim.io/doc/user/vim_diff.html#nvim-features-new
+vim.keymap.set('n', '<C-_>', ':nohlsearch<CR>', { silent = true, desc = "Clear search matches highlighting." })
+vim.keymap.set('n', '<Leader>v', ':source $MYVIMRC<CR>', { silent = true, desc = "Source init.vim" })
+EOF
+
+"nmap <silent> <Leader>v :source $MYVIMRC<CR>		" Source init.vim
 nmap <silent> <Leader>V :tabe $MYVIMRC<CR>		" Edit init.vim
 noremap <silent> <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>	" Open tags definition in a new tab.
 noremap <silent> <Leader>] :vsp<CR>:exec("tag ".expand("<cword>"))<CR>		" Open tags definition in a vertical split.

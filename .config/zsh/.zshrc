@@ -114,7 +114,6 @@ fi
 # }}
 
 # History {{
-	#export HISTFILE=~/.zsh_history		# Where to save history.
 	test -d ${XDG_STATE_HOME:-$HOME/.local/state}/zsh || mkdir -p ${XDG_STATE_HOME:-$HOME/.local/state}/zsh
 	export HISTFILE=${XDG_STATE_HOME:-$HOME/.local/state}/zsh/history
 	export HISTSIZE=1000000				# How many lines in the current session to remember.
@@ -237,7 +236,7 @@ fi
 		bindkey "^E" history-beginning-search-forward	# Complete from history with prefix
 	fi
 
-	# Enable char deleteion on command from history.
+	# Enable char deletion on command from history.
 	bindkey "^?" backward-delete-char
 	bindkey "^H" backward-delete-char
 	bindkey "^W" backward-kill-word
