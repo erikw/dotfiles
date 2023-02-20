@@ -320,6 +320,7 @@ vim.keymap.set('n', 'g$t', ':tablast<CR>', { silent = true, desc = 'Go to the la
 vim.keymap.set('n', 'Yf', ':let @" = expand("%")<CR>', { silent = true, desc = 'Yank current file name.' })
 vim.keymap.set('n', 'YF', ':let @" = expand("%:p")<CR>', { silent = true, desc = 'Yank current (fully expanded) file name.' })
 vim.keymap.set('n', 'gV', '`[v`]', { silent = true, desc = 'Visually select the text that was last edited/pasted' })
+vim.keymap.set('c', 'w\\', ':lua vim.api.nvim_err_writeln("Using a Swedish keyboard?")<CR>', { silent = true, desc = "Prevent saving buffer to a file '\'." })
 
 
 -- Toggles:
@@ -347,66 +348,59 @@ vim.keymap.set('n', 'gft', ':tab wincmd f<CR>', { silent = true, desc = 'Open pa
 --vim.keymap.set('n', 'n', 'nzz', { silent = true, desc = 'Next search result (with recentered window)' })
 --vim.keymap.set('n', 'N', 'Nzz', { silent = true, desc = 'Previous search result (with recentered window)' })
 
+-- TabWinAdjustSplit {
 function TabWinAdjustSplit()
 	local current_tab = vim.fn.tabpagenr()
 	vim.cmd("tabdo wincmd =")
 	vim.cmd("tabnext" .. current_tab)
 end
 vim.keymap.set('n', '<Leader>=', 'TabWinAdjustSplit', { silent = true, desc = 'Ctrl+w+= in all tabs: adjust window splits equally in all tabs.' })
+-- }
+
+-- ToggleSpell {
+-- Set language completely in the local buffer.
+function ToggleSpell(lang)
+	if not vim.b.old_spelllang then
+		vim.b.old_spellfile = vim.o.spellfile
+		vim.b.old_dictionary = vim.o.dictionary
+		vim.b.old_thesaurus = vim.o.thesaurus
+		vim.b.old_spelllang = vim.o.spelllang
+	end
+
+	local new_mode = ""
+	if not vim.o.spell or lang ~= vim.o.spelllang then
+		new_mode = "spell, " .. lang
+
+		vim.opt_local.spell = true
+		vim.opt_local.spelllang = lang
+		vim.opt_local.spellfile = vim.g.xdg_config_home .. '/nvim/spell/' .. vim.fn.matchstr(lang, '[a-zA-Z][a-zA-Z]') .. '.' .. vim.o.encoding .. '.add'
+		vim.opt_local.dictionary = vim.g.xdg_config_home .. '/nvim/spell/' .. lang .. '.' .. vim.o.encoding .. '.dic'
+		vim.opt_local.thesaurus = vim.g.xdg_config_home .. '/nvim/thesaurus/' .. lang .. '.txt'
+	else
+		new_mode = "nospell"
+
+		vim.opt_local.spell = false
+		vim.opt_local.spelllang = vim.b.old_spelllang
+		vim.opt_local.spellfile = vim.b.old_spellfile
+		vim.opt_local.dictionary = vim.b.old_dictionary
+		vim.opt_local.thesaurus = vim.b.old_thesaurus
+	end
+	return new_mode
+end
+vim.keymap.set('n', '<F6>', ':lua print(ToggleSpell("en_us"))<CR>', { silent = true, desc = 'Toggle English spell.' })
+vim.keymap.set('n', '<F7>', ':lua print(ToggleSpell("sv"))<CR>', { silent = true, desc = 'Toggle Swedish spell.' })
+vim.keymap.set('n', '<F8>', ':lua print(ToggleSpell("de"))<CR>', { silent = true, desc = 'Toggle German spell.' })
+-- }
+
+-- ToggleBackgroundMode {
+function ToggleBackgroundMode()
+	local bg_new = vim.o.background == "light" and 'dark' or 'light'
+	vim.opt.background = bg_new
+	return bg_new
+end
+vim.keymap.set('n', '<F5>', ':lua print(ToggleBackgroundMode())', { silent = true, desc = 'Toggle between light and dark background mode.' })
 EOF
-
-
-" Toggles {
-" Toggle spell with a language. {
-" Set 'spellang' last, otherwise vim (but not nvim) complaines that ~/.vim/spell dont' exist.
-function! ToggleSpell(lang)
-	if !exists("b:old_spelllang")
-		let b:old_spellfile = &spellfile
-		let b:old_dictionary = &dictionary
-		let b:old_thesaurus = &thesaurus
-		let b:old_spelllang = &spelllang
-	endif
-
-	let l:newMode = ""
-	if !&l:spell || a:lang != &l:spelllang
-		setlocal spell
-		let l:newMode = "spell, " . a:lang
-		execute "setlocal spellfile=" . g:xdg_config_home . "/nvim/spell/" . matchstr(a:lang, "[a-zA-Z][a-zA-Z]") . "." . &encoding . ".add"
-		execute "setlocal dictionary=" . g:xdg_config_home ."/nvim/spell/" . a:lang . "." . &encoding . ".dic"
-		execute "setlocal thesaurus=" . g:xdg_config_home . "/nvim/thesaurus/" . a:lang . ".txt"
-		execute "setlocal spelllang=" . a:lang
-	else
-		setlocal nospell
-		let l:newMode = "nospell"
-		execute "setlocal spellfile=" . b:old_spellfile
-		execute "setlocal dictionary=" . b:old_dictionary
-		execute "setlocal thesaurus=" . b:old_thesaurus
-		execute "setlocal spelllang=" . b:old_spelllang
-	endif
-	return l:newMode
-endfunction
-" }
-nmap <silent> <F6> :echo ToggleSpell("en_us")<CR>	" Toggle English spell.
-nmap <silent> <F7> :echo ToggleSpell("sv")<CR>		" Toggle Swedish spell.
-nmap <silent> <F8> :echo ToggleSpell("de")<CR>		" Toggle German spell.
-
-" Toggle background mode {
-function! ToggleBackgroundMode()
-	if &background == "light"
-		set background=dark
-	else
-		set background=light
-	endif
-	set background?
-endfunction
-" }
-nmap <silent> <F5> :call ToggleBackgroundMode()<CR>	" Toggle between light and dark background mode.
-" }
-
-" Cmaps {
-" Prevent saving buffer to a file '\'.
-cmap w\ echoerr "Using a Swedish keyboard?"<CR>
-" }
+-- }
 " }
 
 " Searching {
