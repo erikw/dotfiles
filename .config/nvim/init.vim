@@ -373,9 +373,9 @@ function ToggleSpell(lang)
 
 		vim.opt_local.spell = true
 		vim.opt_local.spelllang = lang
-		vim.opt_local.spellfile = vim.g.xdg_config_home .. '/nvim/spell/' .. vim.fn.matchstr(lang, '[a-zA-Z][a-zA-Z]') .. '.' .. vim.o.encoding .. '.add'
-		vim.opt_local.dictionary = vim.g.xdg_config_home .. '/nvim/spell/' .. lang .. '.' .. vim.o.encoding .. '.dic'
-		vim.opt_local.thesaurus = vim.g.xdg_config_home .. '/nvim/thesaurus/' .. lang .. '.txt'
+		vim.opt_local.spellfile = vim.fn.stdpath('config') .. '/spell/' .. vim.fn.matchstr(lang, '[a-zA-Z][a-zA-Z]') .. '.' .. vim.o.encoding .. '.add'
+		vim.opt_local.dictionary = vim.fn.stdpath('config') .. '/spell/' .. lang .. '.' .. vim.o.encoding .. '.dic'
+		vim.opt_local.thesaurus = vim.fn.stdpath('config') .. '/thesaurus/' .. lang .. '.txt'
 	else
 		new_mode = "nospell"
 
@@ -399,43 +399,67 @@ function ToggleBackgroundMode()
 	return bg_new
 end
 vim.keymap.set('n', '<F5>', ':lua print(ToggleBackgroundMode())', { silent = true, desc = 'Toggle between light and dark background mode.' })
-EOF
 -- }
+EOF
 " }
 
 " Searching {
-set ignorecase	" Case insensitive search.
-set smartcase	" Smart case search.
-set nowrapscan	" Don't wrap search around file.
+lua << EOF
+vim.opt.ignorecase = true	-- Case insensitive search.
+vim.opt.smartcase = true	-- Smart case search.
+vim.opt.wrapscan = false	-- Don't wrap search around file.
+EOF
 " }
 
 " Spelling {
-set spelllang=en_us		" Languages to do spell checking for.
-set spellsuggest=best,10	" Limit spell suggestions.
-" Set spellfile dynamically.
-execute "set spellfile=" . stdpath('config') . "/spell/" . matchstr(&spelllang, "[a-zA-Z][a-zA-Z]") . "." . &encoding . ".add"
-" Use a thesaurus file. Could load all, but that makes lookup slower. Instead let ToggleSpell() set per language.
-execute "set thesaurus=" . stdpath('config') . "/thesaurus/" . matchstr(&spelllang, "[a-zA-Z][a-zA-Z]") . ".txt"
+lua << EOF
+vim.opt.spelllang = 'en_us'		-- Languages to do spell checking for.
+vim.opt.spellsuggest = 'best,10'	-- Limit spell suggestions.
+
+
+-- Set spellfile dynamically.
+vim.opt.spellfile = vim.fn.stdpath('config') .. '/spell/' .. vim.fn.matchstr(vim.o.spelllang, '[a-zA-Z][a-zA-Z]') .. '.' .. vim.o.encoding .. '.add'
+-- Use a thesaurus file. Could load all, but that makes lookup slower. Instead let ToggleSpell() set per language.
+vim.opt.thesaurus = vim.fn.stdpath('config') .. '/thesaurus/' .. vim.fn.matchstr(vim.o.spelllang, '[a-zA-Z][a-zA-Z]') .. '.txt'
+EOF
 " }
 
 " UI {
-" Ignore if don't exist. This is the case when $(vim -c PlugInstall) the firs time. Ref: https://stackoverflow.com/a/5703164/265508
-silent! colorscheme solarized
+lua << EOF
+-- Ignore if don't exist. This is the case when $(vim -c PlugInstall) the first time. Ref: https://stackoverflow.com/a/5703164/265508
+vim.cmd('silent! colorscheme solarized')
+
+-- Adjust colors to this background. NOTE replaced by dark-notify.
+--local solarized_status = vim.g.xdg_state_home .. "/solarizedtoggle/status"
+--if vim.fn.filereadable(solarized_status) == 1 then
+--	vim.opt.background = vim.fn.readfile(solarized_status)[1]
+--else
+--	-- Lighter bg during night.
+--	-- Source:  http://benjamintan.io/blog/2014/04/10/switch-solarized-light-slash-dark-depending-on-the-time-of-day/
+--	local hour = tonumber(vim.fn.strftime("%H"))
+--	if 7 <= hour and hour < 18 then
+--		vim.opt.background = 'light'
+--	else
+--		vim.opt.background = 'dark'
+--	end
+--end
+EOF
+
 
 " Adjust colors to this background.
-let s:solarized_status = g:xdg_state_home . "/solarizedtoggle/status"
-if filereadable(s:solarized_status)
-	let &background = readfile(s:solarized_status)[0]
-else
-	" Lighter bg during night.
-	" Source:  http://benjamintan.io/blog/2014/04/10/switch-solarized-light-slash-dark-depending-on-the-time-of-day/
-	let s:hour = strftime("%H")
-	if 7 <= s:hour && s:hour < 18
-		set background=light
-	else
-		set background=dark
-	endif
-endif
+"let s:solarized_status = g:xdg_state_home . "/solarizedtoggle/status"
+"if filereadable(s:solarized_status)
+"	let &background = readfile(s:solarized_status)[0]
+"else
+"	" Lighter bg during night.
+"	" Source:  http://benjamintan.io/blog/2014/04/10/switch-solarized-light-slash-dark-depending-on-the-time-of-day/
+"	let s:hour = strftime("%H")
+"	if 7 <= s:hour && s:hour < 18
+"		set background=light
+"	else
+"		set background=dark
+"	endif
+"endif
 
 set termguicolors	" Enable 24-bit RGB. Required by NeoSolarized.
 set mouse=a		" Enable mouse in all modes.
