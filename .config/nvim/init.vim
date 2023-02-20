@@ -321,6 +321,16 @@ vim.keymap.set('n', 'Yf', ':let @" = expand("%")<CR>', { silent = true, desc = '
 vim.keymap.set('n', 'YF', ':let @" = expand("%:p")<CR>', { silent = true, desc = 'Yank current (fully expanded) file name.' })
 vim.keymap.set('n', 'gV', '`[v`]', { silent = true, desc = 'Visually select the text that was last edited/pasted' })
 
+
+-- Toggles:
+vim.keymap.set('n', '<Leader>w', ':set wrap! wrap?<CR>', { silent = true, desc = 'Toggle line wrapping.' })
+vim.keymap.set('n', '<Leader>`', ':set list!<CR>', { silent = true, desc = 'Toggle listing of characters. See listchars.' })
+vim.keymap.set('n', '<Leader>l', ':set relativenumber!<CR>', { silent = true, desc = 'Toggle :number between absolute and line relative' })
+vim.keymap.set('n', '<ESC>p', ':set paste! paste?<CR>', { silent = true, desc = 'Toggle \'paste\' for sane pasting.' })
+vim.keymap.set('n', '<Leader>p', ':set paste<CR>o<ESC>:normal "*p<CR>:set nopaste<CR>', { silent = true, desc = 'Paste on line after in paste-mode from register "*.' })
+vim.keymap.set('n', '<Leader>P', ':set paste<CR>O<ESC>:normal "*P<CR>:set nopaste<CR>', { silent = true, desc = 'Paste on line before in paste-mode from register "*.' })
+
+
 -- Complement 'gf'
 vim.keymap.set('n', 'gfs', ':wincmd f<CR>', { silent = true, desc = 'Open path under cursor in a split.' })
 vim.keymap.set('n', 'gfv', ':vertical wincmd f<CR>', { silent = true, desc = 'Open path under cursor in a vertical split.' })
@@ -337,25 +347,16 @@ vim.keymap.set('n', 'gft', ':tab wincmd f<CR>', { silent = true, desc = 'Open pa
 --vim.keymap.set('n', 'n', 'nzz', { silent = true, desc = 'Next search result (with recentered window)' })
 --vim.keymap.set('n', 'N', 'Nzz', { silent = true, desc = 'Previous search result (with recentered window)' })
 
+function TabWinAdjustSplit()
+	local current_tab = vim.fn.tabpagenr()
+	vim.cmd("tabdo wincmd =")
+	vim.cmd("tabnext" .. current_tab)
+end
+vim.keymap.set('n', '<Leader>=', 'TabWinAdjustSplit', { silent = true, desc = 'Ctrl+w+= in all tabs: adjust window splits equally in all tabs.' })
 EOF
 
-" TabWinAdjustSplit() {
-function! TabWinAdjustSplit()
-	let current_tab = tabpagenr()
-	tabdo wincmd =
-	execute 'tabnext' current_tab
-endfunction
-" }
-nnoremap <silent> <leader>= :call TabWinAdjustSplit()<cr>	" Ctrl+w+= in all tabs: adjust window splits equally in all tabs
 
 " Toggles {
-noremap <silent> <Leader>w :set wrap!<CR>:set wrap?<CR>		" Toggle line wrapping.
-noremap <silent> <Leader>` :set list!<CR>			" Toggle listing of characters. See listchars.
-noremap <Leader>l :set relativenumber!<CR>			" Toggle :number between absolute and line relative.
-noremap <silent> <ESC>p :set paste! paste?<CR>			" Toggle 'paste' for sane pasting.
-noremap <silent> <leader>p :set paste<CR>o<ESC>:normal "*p<CR>:set nopaste<CR>	" Paste on line after in paste-mode from register "*.
-noremap <silent> <leader>P :set paste<CR>O<ESC>:normal "*P<CR>:set nopaste<CR>	" Paste on line before in paste-mode from register "*.
-
 " Toggle spell with a language. {
 " Set 'spellang' last, otherwise vim (but not nvim) complaines that ~/.vim/spell dont' exist.
 function! ToggleSpell(lang)
