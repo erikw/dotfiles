@@ -239,11 +239,11 @@ EOF
 " General {
 lua << EOF
 vim.opt.nrformats = {'alpha' , 'octal' , 'hex' } -- What to increment/decrement with ^A and ^X.
-vim.opt.tabpagemax = 100	-- Upper limit on number of tabs.
-vim.opt.hidden = true		-- Work with hidden buffers more easily. Enables to leave buffer with unwritten changes (by :edit another buffer).
-vim.opt.undofile = true		-- Save undo to file in undodir.
-vim.opt.undolevels = 2048	-- Levels of undo to keep in memory.
-vim.opt.timeoutlen = 700	-- Timout (ms) for mappings and keycodes. Make it a bit snappier.
+vim.opt.tabpagemax = 100		-- Upper limit on number of tabs.
+vim.opt.hidden = true			-- Work with hidden buffers more easily. Enables to leave buffer with unwritten changes (by :edit another buffer).
+vim.opt.undofile = true			-- Save undo to file in undodir.
+vim.opt.undolevels = 2048		-- Levels of undo to keep in memory.
+vim.opt.timeoutlen = 700		-- Timout (ms) for mappings and keycodes. Make it a bit snappier.
 vim.opt.shortmess = "filmnrxtToOA"	-- Abbreviate messages. 'A' disables the attention prompt when editing a file that is already open (beware: https://superuser.com/a/1065503)
 EOF
 " }
