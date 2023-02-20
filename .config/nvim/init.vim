@@ -4,6 +4,11 @@
 " 8 spaces for a tab render best as HTML.
 " }
 
+" Documentation {
+" * https://learnxinyminutes.com/docs/lua/
+" * https://neovim.io/doc/user/lua-guide.html
+" }
+
 " Profiling {
 " $ nvim --startuptime /tmp/nvim.log
 " $ nvim --startuptime /dev/stdout +qall
@@ -428,6 +433,7 @@ EOF
 lua << EOF
 -- Ignore if don't exist. This is the case when $(vim -c PlugInstall) the first time. Ref: https://stackoverflow.com/a/5703164/265508
 vim.cmd('silent! colorscheme solarized')
+vim.opt.background = 'light' -- Be light (most likely right) be default as dark-notify toggles ugly otherwise
 
 -- Adjust colors to this background. NOTE replaced by dark-notify.
 --local solarized_status = vim.g.xdg_state_home .. "/solarizedtoggle/status"
@@ -446,21 +452,7 @@ vim.cmd('silent! colorscheme solarized')
 EOF
 
 
-" Adjust colors to this background.
-"let s:solarized_status = g:xdg_state_home . "/solarizedtoggle/status"
-"if filereadable(s:solarized_status)
-"	let &background = readfile(s:solarized_status)[0]
-"else
-"	" Lighter bg during night.
-"	" Source:  http://benjamintan.io/blog/2014/04/10/switch-solarized-light-slash-dark-depending-on-the-time-of-day/
-"	let s:hour = strftime("%H")
-"	if 7 <= s:hour && s:hour < 18
-"		set background=light
-"	else
-"		set background=dark
-"	endif
-"endif
-
+" TODO migrate
 set termguicolors	" Enable 24-bit RGB. Required by NeoSolarized.
 set mouse=a		" Enable mouse in all modes.
 set title		" Show title in console title bar.
