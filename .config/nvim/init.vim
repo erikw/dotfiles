@@ -203,10 +203,6 @@ vim.api.nvim_create_user_command('Sortline', 'call setline(line("."),join(sort(s
 vim.api.nvim_create_user_command('DisableFixers', 'execute "DisableStripWhitespaceOnSave" | execute "let g:ale_fix_on_save = 0"', {force = true, desc = "Disable all fixers. Good when editing non-owned code bases."})
 EOF
 
-"command! -nargs=* Wrap set wrap linebreak nolist	" Set softwrap correctly.
-"autocmd BufWinLeave * silent! mkview			" Save fold views.
-"autocmd BufWinEnter * silent! loadview			" Load fold views on start.
-
 lua << EOF
 function DebuggerClear()
 	local current_buf = vim.fn.bufnr()
@@ -316,49 +312,32 @@ EOF
 
 " Mappings {
 lua << EOF
+vim.keymap.set('n', '<Leader>v', ':source $MYVIMRC<CR>', { silent = true, desc = 'Source init.vim.' })
+vim.keymap.set('n', '<Leader>V', ':tabe $MYVIMRC<CR>', { silent = true, desc = 'Edit init.vim.' })
+vim.keymap.set('n', '<C-\\>', ':tab split<CR>:exec("tag ".expand("<cword>"))<CR>', { silent = true, desc = 'Open tags definition in a new tab.' })
+vim.keymap.set('n', 'g^t', ':tabfirst<CR>', { silent = true, desc = 'Go to the first tab.' })
+vim.keymap.set('n', 'g$t', ':tablast<CR>', { silent = true, desc = 'Go to the last tab.' })
+vim.keymap.set('n', 'Yf', ':let @" = expand("%")<CR>', { silent = true, desc = 'Yank current file name.' })
+vim.keymap.set('n', 'YF', ':let @" = expand("%:p")<CR>', { silent = true, desc = 'Yank current (fully expanded) file name.' })
+vim.keymap.set('n', 'gV', '`[v`]', { silent = true, desc = 'Visually select the text that was last edited/pasted' })
+
+-- Complement 'gf'
+vim.keymap.set('n', 'gfs', ':wincmd f<CR>', { silent = true, desc = 'Open path under cursor in a split.' })
+vim.keymap.set('n', 'gfv', ':vertical wincmd f<CR>', { silent = true, desc = 'Open path under cursor in a vertical split.' })
+vim.keymap.set('n', 'gft', ':tab wincmd f<CR>', { silent = true, desc = 'Open path under cursor in a tab.' })
+
 -- (Ctrl+/ => ^_). Note: neovim has <c-l> doing this be default now. https://neovim.io/doc/user/vim_diff.html#nvim-features-new
-vim.keymap.set('n', '<C-_>', ':nohlsearch<CR>', { silent = true, desc = "Clear search matches highlighting." })
-vim.keymap.set('n', '<Leader>v', ':source $MYVIMRC<CR>', { silent = true, desc = "Source init.vim" })
+--vim.keymap.set('n', '<C-_>', ':nohlsearch<CR>', { silent = true, desc = 'Clear search matches highlighting.' })
+
+-- NOTE replaced with tickets.vim
+--vim.keymap.set('n', '<Leader>s', ':mksession! <bar> echo "Session saved"<CR>', { silent = true, desc = 'Save (force) current session.' })
+--vim.keymap.set('n', '<Leader>o', ':source Session.vim <bar> echo "Session loaded"<CR>', { silent = true, desc = 'Save (force) current session.' })
+
+-- TODO delete?
+--vim.keymap.set('n', 'n', 'nzz', { silent = true, desc = 'Next search result (with recentered window)' })
+--vim.keymap.set('n', 'N', 'Nzz', { silent = true, desc = 'Previous search result (with recentered window)' })
+
 EOF
-
-"nmap <silent> <Leader>v :source $MYVIMRC<CR>		" Source init.vim
-nmap <silent> <Leader>V :tabe $MYVIMRC<CR>		" Edit init.vim
-noremap <silent> <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>	" Open tags definition in a new tab.
-noremap <silent> <Leader>] :vsp<CR>:exec("tag ".expand("<cword>"))<CR>		" Open tags definition in a vertical split.
-nnoremap g^t :tabfirst<CR>				" Go to first tab.
-nnoremap g$t :tablast<CR>				" Go to last tab.
-noremap Yf :let @" = expand("%")<CR>			" Yank current file name.
-noremap YF :let @" = expand("%:p")<CR>			" Yank current (fully expanded) file name.
-nnoremap <silent> <Leader>R :checktime<CR>		" Reload buffers from file if changed.
-"nmap <silent> <Leader>d "=strftime("%Y-%m-%d")<CR>P	" Insert the current date.
-"nmap <silent> <Leader>S :%s/\s\+$//ge<CR>		" Remove all trailing spaces.
-
-nnoremap <silent> gfs :wincmd f<CR>			" Open path under cursor in a split.
-nnoremap <silent> gfv :vertical wincmd f<CR>		" Open path under cursor in a vertical split.
-nnoremap <silent> gft :tab wincmd f<CR>			" Open path under cursor in a tab.
-nnoremap <silent> gV `[v`]				" Visually select the text that was last edited/pasted.
-
-" Save (force) current session.
-"nnoremap <silent> <C-S> :mksession! <bar> echo "Session saved"<CR>
-"nnoremap <silent> <Leader>s :mksession! <bar> echo "Session saved"<CR>
-" Load saved session
-"nnoremap <silent> <C-O> :source Session.vim <bar> echo "Session loaded"<CR>
-"nnoremap <silent> <Leader>o :source Session.vim <bar> echo "Session loaded"<CR>
-
-" Redraw window so that search terms are centered.
-nnoremap n nzz
-nnoremap N Nzz
-
-" Calculate current Word e.g. type 1+2 and press ^c.
-inoremap <C-c> <C-O>yiW<End>=<C-R>=<C-R>0<CR>=
-
-" Enable ^d and ^u movement in completion dialog.
-inoremap <expr> <C-d> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<C-d>"
-inoremap <expr> <C-u> pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<C-u>"
-
-if &l:term  =~ "screen.*"
-	noremap <silent> <C-x>x <C-x>	" Decrement for consistency with GNU Screen.
-endif
 
 " TabWinAdjustSplit() {
 function! TabWinAdjustSplit()
@@ -409,18 +388,6 @@ endfunction
 nmap <silent> <F6> :echo ToggleSpell("en_us")<CR>	" Toggle English spell.
 nmap <silent> <F7> :echo ToggleSpell("sv")<CR>		" Toggle Swedish spell.
 nmap <silent> <F8> :echo ToggleSpell("de")<CR>		" Toggle German spell.
-
-" Toggle mouse {
-"function! ToggleMouse()
-	"if &mouse == "a"
-		"set mouse=
-	"else
-		"set mouse=a
-	"endif
-	"set mouse?
-"endfunction
-" }
-"nmap <Leader>m :call ToggleMouse()<CR>	" Toggles mouse on and off.
 
 " Toggle background mode {
 function! ToggleBackgroundMode()
@@ -488,10 +455,6 @@ set scrolloff=3		" Minimum lines to keep above and below cursor.
 set splitbelow		" Open horizontal split below.
 set splitright		" Open vertical split to the right.
 set listchars=eol:$,space:·,tab:>-,trail:¬,extends:>,precedes:<,nbsp:.	" Characters to use for :list.
-"set cursorcolumn	" Highlight the current column.
-" Colors of the CursorLine.
-"hi CursorLine cterm=NONE ctermbg=LightGray ctermfg=Black guibg=LightGray guifg=Black
-"hi CursorColumn cterm=NONE ctermbg=LightGray ctermfg=Black guibg=LightGray guifg=Black
 " }
 
 " Plugin Config {
