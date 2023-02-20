@@ -449,23 +449,26 @@ vim.opt.background = 'light' -- Be light (most likely right) be default as dark-
 --		vim.opt.background = 'dark'
 --	end
 --end
+
+
+vim.opt.termguicolors = true	-- Enable 24-bit RGB. Required by NeoSolarized.
+vim.opt.mouse = 'a'		-- Enable mouse in all modes.
+vim.opt.title = true		-- Show title in console title bar.
+vim.opt.number = true		-- Show line numbers.
+--vim.opt.relativenumber = true	-- Show relative line numbers.
+vim.opt.showmatch = true	-- Shortly jump to a matching bracket when match.
+vim.opt.cursorline = true	-- Highlight the current line.
+vim.opt.wildignorecase = true	-- Case insensitive filename completion.
+vim.opt.scrolljump = 5		-- Lines to scroll when cursor leaves screen.
+vim.opt.scrolloff = 3		-- Minimum lines to keep above and below cursor.
+vim.opt.splitbelow = true	-- Open horizontal split below.
+vim.opt.splitright = true	-- Open vertical split to the right.
+
+-- Characters to use for :list.
+vim.opt.listchars= { eol = '$', space = '·', tab = '>-', trail = '¬', extends = '>', precedes = '<', nbsp = '.' }
 EOF
 
 
-" TODO migrate
-set termguicolors	" Enable 24-bit RGB. Required by NeoSolarized.
-set mouse=a		" Enable mouse in all modes.
-set title		" Show title in console title bar.
-set number		" Show line numbers.
-"set relativenumber	" Show relative line numbers.
-set showmatch		" Shortly jump to a matching bracket when match.
-set cursorline		" Highlight the current line.
-set wildignorecase	" Case insensitive filename completion.
-set scrolljump=5	" Lines to scroll when cursor leaves screen.
-set scrolloff=3		" Minimum lines to keep above and below cursor.
-set splitbelow		" Open horizontal split below.
-set splitright		" Open vertical split to the right.
-set listchars=eol:$,space:·,tab:>-,trail:¬,extends:>,precedes:<,nbsp:.	" Characters to use for :list.
 " }
 
 " Plugin Config {
