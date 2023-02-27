@@ -18,7 +18,7 @@
 " Environment {
 lua << EOF
 vim.g.xdg_config_home = os.getenv("XDG_CONFIG_HOME") or "$HOME/.config"
-vim.g.xdg_state_home = os.getenv("XDG_STATE_HOME") or "$HOME/.local/state"
+--vim.g.xdg_state_home = os.getenv("XDG_STATE_HOME") or "$HOME/.local/state"
 --vim.g.xdg_data_home = os.getenv("XDG_DATA_HOME") or "$HOME/.local/share"
 EOF
 
