@@ -209,7 +209,7 @@ vim.api.nvim_create_user_command('DisableFixers', 'execute "DisableStripWhitespa
 EOF
 
 lua << EOF
-function DebuggerClear()
+local function DebuggerClear()
 	local current_buf = vim.fn.bufnr()
 	vim.cmd("silent :bufdo exe 'g/^\\s*debugger\\s*$/d | update'")
 	vim.cmd("execute 'buffer' " .. current_buf)
@@ -354,12 +354,12 @@ vim.keymap.set('n', 'gft', ':tab wincmd f<CR>', { silent = true, desc = 'Open pa
 --vim.keymap.set('n', 'N', 'Nzz', { silent = true, desc = 'Previous search result (with recentered window)' })
 
 -- TabWinAdjustSplit {
-function TabWinAdjustSplit()
+local function TabWinAdjustSplit()
 	local current_tab = vim.fn.tabpagenr()
 	vim.cmd("tabdo wincmd =")
 	vim.cmd("tabnext" .. current_tab)
 end
-vim.keymap.set('n', '<Leader>=', 'TabWinAdjustSplit', { silent = true, desc = 'Ctrl+w+= in all tabs: adjust window splits equally in all tabs.' })
+vim.keymap.set('n', '<Leader>=', TabWinAdjustSplit, { silent = true, desc = 'Ctrl+w+= in all tabs: adjust window splits equally in all tabs.' })
 -- }
 
 -- ToggleSpell {
