@@ -26,16 +26,8 @@ EOF
 
 " }
 
-" Plugins {
-" Setup {
-lua << EOF
-vim.g.ale_completion_enabled = 1	-- Must be set before ALE is loaded.
-EOF
 
-" vim-plug data folder
-" TODO migrate to plugin manager in lua.
-"call plug#begin(stdpath('data') . '/plugged')
-
+" TODO where put this?
 lua << EOF
 -- The python provider (pythonx.vim) checker takes alomost 1 second on startup.
 -- Do one of:
@@ -51,157 +43,12 @@ vim.g.loaded_ruby_provider = 0
 vim.g.loaded_provider_provider = 0
 vim.g.loaded_node_provider = 0
 EOF
-" }
+
 
 lua << EOF
+vim.g.ale_completion_enabled = 1	-- Must be set before ALE is loaded.
 require('plugins')
 EOF
-
-"" General {
-"	"Plug 'LucHermitte/local_vimrc' | Plug 'LucHermitte/lh-vim-lib' " Project local vim config.
-"	"Plug 'dhruvasagar/vim-table-mode'			" Create ASCII tables
-"	"Plug 'fidian/hexmode'					" Open binary files as a HEX dump with :Hexmode
-"	"Plug 'folke/which-key.nvim'				" Show matching keybindings e.g. when tapping Leader.
-"	"Plug 'godlygeek/tabular'				" Create tables. Disabled: not used and have some startup time.
-"	"Plug 'mattn/vim-gist' | Plug 'mattn/webapi-vim'	" Post a new Gist.
-"	"Plug 'salsifis/vim-transpose'				" Matrix transposition of texts.
-"	"Plug 'svermeulen/vim-yoink'				" Yankring implementation.
-"	"Plug 'voldikss/vim-translator'				" Async language translator.
-"	Plug 'axieax/urlview.nvim'				" Open URLs in buffer.
-"	Plug 'danro/rename.vim'					" Provides the :Rename command
-"	Plug 'gennaro-tedesco/nvim-peekup'			" Register viewer and selector.
-"	Plug 'instant-markdown/vim-instant-markdown', {'for': 'markdown', 'do': 'yarn install'}	" Live preview markdown files in browser.
-"	Plug 'kyazdani42/nvim-tree.lua'				" File explorer tree
-"	Plug 'kylechui/nvim-surround'				" Work on surrond delimiters or its content. Like tpope/vim-surround but with TreeSitter.
-"	Plug 'mbbill/undotree'					" Navigate history in a sidebar. Replaces old 'mbbill/undotree'
-"	Plug 'michaeljsmith/vim-indent-object'			" Operate on intendtation as text objects.
-"	Plug 'ntpeters/vim-better-whitespace'			" Highlight and remove trailing whitespaces.
-"	Plug 'phaazon/hop.nvim'					" Easy motion jumps in buffer.
-"	Plug 'preservim/nerdcommenter'				" Comment source code.
-"	Plug 'tpope/vim-capslock'				" Software CAPSLOCK with <C-g>c in insert mode.
-"	Plug 'tpope/vim-characterize'				" 'ga' on steroid.
-"	Plug 'tpope/vim-repeat'					" Extend '.' repetition for plugins like vim-surround, vim-speeddating, vim-unimpaired.
-"	Plug 'tpope/vim-speeddating'				" Increment dates with C-a.
-"	Plug 'tpope/vim-unimpaired'				" Bracket mappings like [<space>
-"" }
-"
-"" Development {
-"" Development: General {
-"	"Plug 'github/copilot.vim'			" AI powered code completion.
-"	"Plug 'ibhagwan/fzf-lua' | Plug 'mrjones2014/dash.nvim', { 'do': 'make install' } " Search dash.app from nvim. Currently broken: https://github.com/mrjones2014/dash.nvim/issues/137
-"	"Plug 'lukas-reineke/indent-blankline.nvim'	" Indent vertical markers.
-"	"Plug 'mfussenegger/nvim-dap'			" Debug Adapter Protocol client. Like LSP for debuggers. TODO try again when more mature. Currently LUA config is not working (freezes nvim).
-"	Plug 'AndrewRadev/sideways.vim'			" Shift function arguments left and right.
-"	Plug 'airblade/vim-gitgutter'			" Git modified status in sign column
-"	Plug 'andymass/vim-matchup'			" Extend % matching.
-"	Plug 'editorconfig/editorconfig-vim'		" Standard .editorconfig file in shared projects.
-"	Plug 'godlygeek/tabular' | Plug 'preservim/vim-markdown' " Markdown utilties like automatic list indention, TOC.
-"	Plug 'm-demare/hlargs.nvim'			" Highlight usage of method arguments.
-"	Plug 'nguyenvukhang/nvim-toggler'		" Toggle values like true/false with <leader>i.
-"	Plug 'nvim-lua/plenary.nvim' | Plug 'andythigpen/nvim-coverage' " Show code coverage in sign column.
-"	Plug 'nvim-lua/plenary.nvim' | Plug 'sindrets/diffview.nvim' " Better than fugative ':Git difftool'. Browser file history with ':DiffviewFileHistory %'
-"	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " NVim interface for tree-sitter (language parser).
-"	Plug 'rgroli/other.nvim'			" Open related file like test.
-"	Plug 'rhysd/conflict-marker.vim'		" Navigate and edit VCS conflicts. Navigate: [x, ]x. Resolve: ct, co, cb.
-"	Plug 'ruanyl/vim-gh-line'			" Copy link to file on GitHub.
-"	Plug 'superDross/ticket.vim'			" Manage vim Sessions per git branch.
-"	Plug 'tpope/vim-fugitive'			" Git wrapper and shorthands.
-"	Plug 'wellle/targets.vim'			" Extra text objects to operate on e.g. function arguments.
-"	Plug 'windwp/nvim-autopairs'			" Autoclose brackets etc.
-"" }
-"
-"" Development: LSP/Completion {
-"	"Plug 'neovim/nvim-lspconfig'			" Plug-n-play configurations for LSP server. Disabled in favour of simpler to use ALE.
-"	Plug 'dense-analysis/ale'			" LSP linting engine.
-"	Plug 'ray-x/lsp_signature.nvim'			" Method signature window, as ALE does not support it. Ref: https://www.reddit.com/r/vim/comments/jhqzsv/signature_help_via_ale/
-"	Plug 'liuchengxu/vista.vim'			" LSP symbols and tags viewer, like TagBar but with LSP support.
-"" }
-"
-"" Development: DAP {
-"	"Plug 'mfussenegger/nvim-dap' " Debug Adapter Protocol
-"	"Plug 'rcarriga/nvim-dap-ui'  " UI for DAP
-"	"Plug 'suketa/nvim-dap-ruby'  " Config for ruby. Requries the `debug` gem. No rails support yet: https://github.com/suketa/nvim-dap-ruby/issues/25
-"" }
-"
-"" Development: C/C++ {
-"	"Plug 'chazy/cscope_maps'						" More macros than autoload_cscope.vim
-"	"Plug 'rhysd/vim-clang-format', { 'for': ['c', 'cpp'] }
-"	"Plug 'vim-scripts/autoload_cscope.vim', { 'for': ['c', 'cpp'] }	" Load cscope file and define macros for using it. https://github.com/vim-scripts/autoload_cscope.vim/blob/master/plugin/autoload_cscope.vim#L81-L88
-"	Plug 'ludovicchabant/vim-gutentags'					" Autogenerate new tags file.
-""}
-"
-"" Development: Go {
-"	"Plug 'fatih/vim-go', { 'for': 'go' }	" Compilation commands etc.
-""}
-"
-"" Development: Java {
-"	"Plugin 'artur-shaik/vim-javacomplete2', { 'for': 'java' }	" Omni-complete for Java
-"	"Plugin 'erikw/jcommenter.vim', { 'for': 'java' }		" Generate javadoc.
-""}
-"
-"" Development: LaTeX {
-"	"Plug 'donRaphaco/neotex'	" Live preview PDF output from latex.
-"" }
-"
-"" Development: Python {
-"	"Plugin 'davidhalter/jedi-vim', { 'for': 'python' }	" Autocompletion using jedi library.
-"	"Plugin 'python-rope/ropevim', { 'for': 'python' }	" Refactoring with rope library.
-"	"Plugin 'fisadev/vim-isort', { 'for': 'python' }	" Sort imports
-""}
-"
-"" Development: Swift {
-"	"Plugin 'keith/swift.vim', { 'for': 'switft' }	" Syntax files for Switch
-""}
-"
-"" Development: Web {
-"	Plug 'ap/vim-css-color', { 'for': ['css', 'scss'] }	" Display CSS colors in vim.
-"" }
-"
-"" }
-"
-"" Navigation {
-"	" FZF - Fuzzy finding
-"	" - Keyboard shortcuts: https://github.com/junegunn/fzf/blob/master/README-VIM.md#fzf
-"	" - Commands: https://github.com/junegunn/fzf.vim#commands
-"	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } | Plug 'junegunn/fzf.vim'
-"" }
-"
-"" Snippets {
-"	Plug 'dcampos/nvim-snippy'	" Snippets engine compatible with the SnipMate format.
-"	Plug 'honza/vim-snippets'	" Snippet library
-"" }
-"
-"" Syntax {
-"	Plug 'bfontaine/Brewfile.vim', { 'for': 'brewfile' }		" Syntax for Brewfiles
-"	Plug 'kalekundert/vim-nestedtext', { 'for': 'nestedtext' }	" Syntax for NestedText .nt files.
-"" }
-"
-"" UI {
-"	"Plug 'RRethy/vim-illuminate'		" Highlight current word under cursor. Not compatible with dark-notify: https://github.com/cormacrelf/dark-notify/issues/8
-"	"Plug 'sitiom/nvim-numbertoggle'		" Automatic relative / static line number toggling. Disabled as of https://github.com/sitiom/nvim-numbertoggle/issues/15
-"	"Plug 'yamatsum/nvim-cursorline'	" Highlight current word under cursor. Not compatible with dark-notify: https://github.com/cormacrelf/dark-notify/issues/8
-"	Plug 'chentoast/marks.nvim'		" Visualize marks in the sign column.
-"	Plug 'cormacrelf/dark-notify'		" Watch system light/dark mode changes. Requires dark-notify(1).
-"	Plug 'crispgm/nvim-tabline'		" More informative tab titles.
-"	Plug 'karb94/neoscroll.nvim'		" Smoth scrolling.
-"	Plug 'kyazdani42/nvim-web-devicons'	" Dependency for: nvim-tree.lua, lualine.nvim, barbar.nvim
-"	Plug 'mhinz/vim-startify'		" Start screen with recently opended files.
-"	Plug 'nvim-lualine/lualine.nvim'	" Statusline.
-"
-"" Colorschemes {
-"	"Plug 'altercation/vim-colors-solarized'	" The one theme to rule them all.
-"	"Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
-"	"Plug 'mhartington/oceanic-next'
-"	"Plug 'morhetz/gruvbox'
-"	Plug 'ishan9299/nvim-solarized-lua'		" Solarized theme that works with nvim-treesitter highlights.
-"" }
-""}
-"
-"" Setup - end {
-"" Initialize plugin system
-"call plug#end()
-"" }
-"" }
 
 " Commands {
 lua << EOF
@@ -798,13 +645,13 @@ EOF
 ""EOF
 "" }
 
-"" nvim-peekup {
-"lua <<EOF
-"-- Paste selection to register ", so that it can be pasted directly with 'p'.
-"-- Ref: https://github.com/gennaro-tedesco/nvim-peekup/issues/27
-"require('nvim-peekup.config').on_keystroke["paste_reg"] = '"'
-"EOF
-"" }
+" nvim-peekup {
+lua <<EOF
+-- Paste selection to register ", so that it can be pasted directly with 'p'.
+-- Ref: https://github.com/gennaro-tedesco/nvim-peekup/issues/27
+require('nvim-peekup.config').on_keystroke["paste_reg"] = '"'
+EOF
+" }
 
 "" nvim-surround {
 "lua << EOF
@@ -824,21 +671,20 @@ EOF
 "EOF
 "" }
 
-"" nvim-tree.lua {
-"" Toggle file explorer tree. When open_on_tab=true, syncs toggle globally acoss tabs.
-"noremap <silent> <F2> :NvimTreeToggle<CR>
-"
-"lua <<EOF
-"require("nvim-tree").setup {
-"	open_on_tab = true,
-"	filters = { custom = { "^.git$" } },
-"	view = {
-"		width = "15%",
-"		side = "left",
-"	},
-"}
-"EOF
-"" }
+" nvim-tree.lua {
+lua <<EOF
+vim.keymap.set('n', '<F2>', ':NvimTreeToggle<CR>', { silent = true, desc = 'Toggle file explorer tree. When open_on_tab=true, syncs toggle globally acoss tabs.' })
+
+require("nvim-tree").setup {
+	open_on_tab = true,
+	filters = { custom = { "^.git$" } },
+	view = {
+		width = "15%",
+		side = "left",
+	},
+}
+EOF
+" }
 
 " nvim-treesitter {
 lua <<EOF
@@ -909,14 +755,14 @@ EOF
 "nnoremap <silent> <C-M-o> :execute ':OpenSession' <bar> echo "Session loaded"<CR>
 "" }
 
-"" urlview.nvim {
-"lua << EOF
-"require("urlview").setup({
-"})
-"
-"vim.keymap.set("n", "\\u", "<Cmd>UrlView<CR>", { desc = "view buffer URLs" })
-"EOF
-"" }
+" urlview.nvim {
+lua << EOF
+require("urlview").setup({
+})
+
+vim.keymap.set("n", "\\u", "<Cmd>UrlView<CR>", { desc = "view buffer URLs" })
+EOF
+" }
 
 "" vim-better-whitespace {
 "let g:strip_whitelines_at_eof=1		" Also strip empty lines at end of file on save.

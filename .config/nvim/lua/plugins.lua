@@ -23,31 +23,32 @@ return require("packer").startup(function(use)
     use("wbthomason/packer.nvim")
 
 -- General {
--- 	--use('LucHermitte/local_vimrc' | use('LucHermitte/lh-vim-lib' " Project local vim config.
--- 	--use('dhruvasagar/vim-table-mode'			-- Create ASCII tables
--- 	--use('fidian/hexmode'					-- Open binary files as a HEX dump with :Hexmode
--- 	--use('folke/which-key.nvim'				-- Show matching keybindings e.g. when tapping Leader.
--- 	--use('godlygeek/tabular'				-- Create tables. Disabled: not used and have some startup time.
+-- 	--use('LucHermitte/local_vimrc') | use('LucHermitte/lh-vim-lib' " Project local vim config.
+-- 	--use('dhruvasagar/vim-table-mode')			-- Create ASCII tables
+-- 	--use('fidian/hexmode')			    		-- Open binary files as a HEX dump with :Hexmode
+-- 	--use('folke/which-key.nvim')				-- Show matching keybindings e.g. when tapping Leader.
+-- 	--use('godlygeek/tabular')		    		-- Create tables. Disabled: not used and have some startup time.
 -- 	--use('mattn/vim-gist' | use('mattn/webapi-vim'	-- Post a new Gist.
--- 	--use('salsifis/vim-transpose'				-- Matrix transposition of texts.
--- 	--use('svermeulen/vim-yoink'				-- Yankring implementation.
--- 	--use('voldikss/vim-translator'				-- Async language translator.
--- 	use('axieax/urlview.nvim'				-- Open URLs in buffer.
--- 	use('danro/rename.vim'					-- Provides the :Rename command
--- 	use('gennaro-tedesco/nvim-peekup'			-- Register viewer and selector.
--- 	use('instant-markdown/vim-instant-markdown', {'for': 'markdown', 'do': 'yarn install'}	-- Live preview markdown files in browser.
--- 	use('kyazdani42/nvim-tree.lua'				-- File explorer tree
--- 	use('kylechui/nvim-surround'				-- Work on surrond delimiters or its content. Like tpope/vim-surround but with TreeSitter.
--- 	use('mbbill/undotree'					-- Navigate history in a sidebar. Replaces old 'mbbill/undotree'
--- 	use('michaeljsmith/vim-indent-object'			-- Operate on intendtation as text objects.
--- 	use('ntpeters/vim-better-whitespace'			-- Highlight and remove trailing whitespaces.
--- 	use('phaazon/hop.nvim'					-- Easy motion jumps in buffer.
+-- 	--use('salsifis/vim-transpose')				-- Matrix transposition of texts.
+-- 	--use('svermeulen/vim-yoink')				-- Yankring implementation.
+-- 	--use('voldikss/vim-translator')			-- Async language translator.
+ 	use('axieax/urlview.nvim')		    		-- Open URLs in buffer.
+ 	use('danro/rename.vim')			    		-- Provides the :Rename command
+ 	use('gennaro-tedesco/nvim-peekup')			-- Register viewer and selector.
+ 	--use{'instant-markdown/vim-instant-markdown', ft = {'markdown'}, run = 'yarn install' }	
+    use {'instant-markdown/vim-instant-markdown', ft='markdown', run='yarn install'} 
+    use {'nvim-tree/nvim-tree.lua', requires = { 'nvim-tree/nvim-web-devicons' } } -- File explorer tree
+-- 	use('kylechui/nvim-surround')				-- Work on surrond delimiters or its content. Like tpope/vim-surround but with TreeSitter.
+-- 	use('mbbill/undotree')					-- Navigate history in a sidebar. Replaces old 'mbbill/undotree'
+-- 	use('michaeljsmith/vim-indent-object')			-- Operate on intendtation as text objects.
+-- 	use('ntpeters/vim-better-whitespace')			-- Highlight and remove trailing whitespaces.
+-- 	use('phaazon/hop.nvim')					-- Easy motion jumps in buffer.
  	use('preservim/nerdcommenter')				-- Comment source code.
--- 	use('tpope/vim-capslock'				-- Software CAPSLOCK with <C-g>c in insert mode.
--- 	use('tpope/vim-characterize'				-- 'ga' on steroid.
--- 	use('tpope/vim-repeat'					-- Extend '.' repetition for plugins like vim-surround, vim-speeddating, vim-unimpaired.
--- 	use('tpope/vim-speeddating'				-- Increment dates with C-a.
--- 	use('tpope/vim-unimpaired'				-- Bracket mappings like [<space>
+-- 	use('tpope/vim-capslock')				-- Software CAPSLOCK with <C-g>c in insert mode.
+-- 	use('tpope/vim-characterize')				-- 'ga' on steroid.
+-- 	use('tpope/vim-repeat')					-- Extend '.' repetition for plugins like vim-surround, vim-speeddating, vim-unimpaired.
+-- 	use('tpope/vim-speeddating')				-- Increment dates with C-a.
+-- 	use('tpope/vim-unimpaired')				-- Bracket mappings like [<space>
 -- " }
 -- 
 -- Development {
@@ -83,9 +84,9 @@ return require("packer").startup(function(use)
 -- " }
 -- 
 -- Development: DAP {
--- 	--use('mfussenegger/nvim-dap' " Debug Adapter Protocol
--- 	--use('rcarriga/nvim-dap-ui'  " UI for DAP
--- 	--use('suketa/nvim-dap-ruby'  " Config for ruby. Requries the `debug` gem. No rails support yet: https://github.com/suketa/nvim-dap-ruby/issues/25
+-- 	--use('mfussenegger/nvim-dap') " Debug Adapter Protocol
+-- 	--use('rcarriga/nvim-dap-ui')  " UI for DAP
+-- 	--use('suketa/nvim-dap-ruby')  " Config for ruby. Requries the `debug` gem. No rails support yet: https://github.com/suketa/nvim-dap-ruby/issues/25
 -- " }
 -- 
 -- Development: C/C++ {
@@ -96,11 +97,11 @@ return require("packer").startup(function(use)
 -- "}
 -- 
 -- Development: Go {
--- 	--use('fatih/vim-go', { 'for': 'go' }	-- Compilation commands etc.
+-- 	--use('fatih/vim-go',) { 'for': 'go' }	-- Compilation commands etc.
 -- "}
 -- 
 -- Development: Java {
--- 	--Plugin 'artur-shaik/vim-javacomplete2', { 'for': 'java' }	-- Omni-complete for Java
+-- 	--Plugin) 'artur-shaik/vim-javacomplete2', { 'for': 'java' }	-- Omni-complete for Java
 -- 	--Plugin 'erikw/jcommenter.vim', { 'for': 'java' }		-- Generate javadoc.
 -- "}
 -- 

@@ -84,6 +84,16 @@ _G.packer_plugins = {
     path = "/Users/erikw/.local/share/nvim/site/pack/packer/start/hlargs.nvim",
     url = "https://github.com/m-demare/hlargs.nvim"
   },
+  nerdcommenter = {
+    loaded = true,
+    path = "/Users/erikw/.local/share/nvim/site/pack/packer/start/nerdcommenter",
+    url = "https://github.com/preservim/nerdcommenter"
+  },
+  ["nvim-peekup"] = {
+    loaded = true,
+    path = "/Users/erikw/.local/share/nvim/site/pack/packer/start/nvim-peekup",
+    url = "https://github.com/gennaro-tedesco/nvim-peekup"
+  },
   ["nvim-solarized-lua"] = {
     loaded = true,
     path = "/Users/erikw/.local/share/nvim/site/pack/packer/start/nvim-solarized-lua",
@@ -99,14 +109,38 @@ _G.packer_plugins = {
     path = "/Users/erikw/.local/share/nvim/site/pack/packer/start/packer.nvim",
     url = "https://github.com/wbthomason/packer.nvim"
   },
+  ["rename.vim"] = {
+    loaded = true,
+    path = "/Users/erikw/.local/share/nvim/site/pack/packer/start/rename.vim",
+    url = "https://github.com/danro/rename.vim"
+  },
   ["sideways.vim"] = {
     loaded = true,
     path = "/Users/erikw/.local/share/nvim/site/pack/packer/start/sideways.vim",
     url = "https://github.com/AndrewRadev/sideways.vim"
+  },
+  ["urlview.nvim"] = {
+    loaded = true,
+    path = "/Users/erikw/.local/share/nvim/site/pack/packer/start/urlview.nvim",
+    url = "https://github.com/axieax/urlview.nvim"
+  },
+  ["vim-instant-markdown"] = {
+    loaded = false,
+    needs_bufread = true,
+    only_cond = false,
+    path = "/Users/erikw/.local/share/nvim/site/pack/packer/opt/vim-instant-markdown",
+    url = "https://github.com/instant-markdown/vim-instant-markdown"
   }
 }
 
 time([[Defining packer_plugins]], false)
+vim.cmd [[augroup packer_load_aucmds]]
+vim.cmd [[au!]]
+  -- Filetype lazy-loads
+time([[Defining lazy-load filetype autocommands]], true)
+vim.cmd [[au FileType markdown ++once lua require("packer.load")({'vim-instant-markdown'}, { ft = "markdown" }, _G.packer_plugins)]]
+time([[Defining lazy-load filetype autocommands]], false)
+vim.cmd("augroup END")
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then
