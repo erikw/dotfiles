@@ -69,6 +69,7 @@
     brew 'jq'
     brew 'less'
     brew 'lsd'
+    brew 'luacheck'  # Linter used with ALE.
     brew 'mosh'
     brew 'multitime'
     brew 'ncdu'
@@ -91,6 +92,7 @@
     brew 'sd'
     brew 'shellcheck'
     brew 'source-highlight'
+    brew 'stylua' # Fixer used with ALE.
     brew 'switchaudio-osx'
     brew 'telnet'
     brew 'texlab' # Language server for LaTeX

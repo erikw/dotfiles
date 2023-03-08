@@ -479,6 +479,7 @@ EOF
 let g:ale_linters = {
 		\ 'go': ['gopls'],
 		\ 'javascript': ['eslint'],
+		\ 'lua': ['luacheck'],
 		\ 'json': ['jsonls'],
 		\ 'python': ['pyright', 'flake8'],
 		\ 'ruby': ['solargraph', 'ruby'],
@@ -497,6 +498,7 @@ let g:ale_fixers = {
 	\ 'css': ['prettier'],
 	\ 'javascript': ['prettier', 'eslint'],
 	\ 'json': ['prettier'],
+	\ 'lua': ['stylua'],
 	\ 'python': ['autoflake', 'black', 'isort'],
 	\ 'ruby': ['rubocop'],
 	\ 'scss': ['prettier'],
