@@ -36,6 +36,7 @@
 /.config/irb/irb_history
 /.config/iterm2/
 /.config/kde/
+/.config/nvim/plugin/packer_compiled.lua
 /.config/pudb/internal-cmdline-history.txt
 /.config/pudb/saved-breakpoints-*
 /.config/subversion/

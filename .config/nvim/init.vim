@@ -14,7 +14,7 @@
 " Profiling {
 " $ nvim --startuptime /tmp/nvim.log
 " $ nvim --startuptime /dev/stdout +qall
-" Reference: https://stackoverflow.com/questions/1687799/profiling-vim-startup-time
+" Ref:g https://stackoverflow.com/questions/1687799/profiling-vim-startup-time
 " }
 
 " Environment {
@@ -34,7 +34,7 @@ lua << EOF
 -- * Install neovim package in used version: $ pip install neovim, then
 -- :checkhealth
 -- * Disable the provider (not used by curret plugins anyways.)
--- Reference: https://www.reddit.com/r/neovim/comments/ksf0i4/slow_startup_time_when_opening_python_files_with/
+-- Ref:g https://www.reddit.com/r/neovim/comments/ksf0i4/slow_startup_time_when_opening_python_files_with/
 vim.g.loaded_python3_provider = 0
 
 -- Let's disable more that is not used to gain startup time.
@@ -323,6 +323,7 @@ EOF
 
 " }
 
+" TODO move this to the 'config' function inside the packer use() method, as  nvim-surround is already configured
 " Plugin Config {
 "" ALE {
 "" Reference https://github.com/dense-analysis/ale/blob/master/doc/ale.txt
@@ -385,7 +386,7 @@ EOF
 "" }
 "
 "" Toggle command for fixers
-"" Reference: https://github.com/dense-analysis/ale/issues/1353#issuecomment-424677810
+"" Ref:g https://github.com/dense-analysis/ale/issues/1353#issuecomment-424677810
 "command! ALEToggleFixer execute "let g:ale_fix_on_save = get(g:, 'ale_fix_on_save', 0) ? 0 : 1"
 "" }
 
@@ -402,7 +403,7 @@ EOF
 ""      \ }
 "
 """ Remap from <tab> as this is used by snipmate.
-""" Reference: https://github.com/github/feedback/discussions/6919#discussioncomment-1553837
+""" Ref:g https://github.com/github/feedback/discussions/6919#discussioncomment-1553837
 ""inoremap <silent><expr> <C-Space> copilot#Accept("")
 ""let g:copilot_no_tab_map = 1
 "" }
@@ -472,13 +473,13 @@ EOF
 "" $ printf ".rgignore\n.fdignore" >> .git/info/exclude
 "" }
 
-"" hop.nvim {
-"lua <<EOF
-"	require'hop'.setup()
-"	-- Keybindings
-"	-- Vim Command to Lua function mapping: https://github.com/phaazon/hop.nvim/wiki/Advanced-Hop#lua-equivalents-of-hop-commands
-"	vim.api.nvim_set_keymap('', '<leader>h', "<cmd>lua require'hop'.hint_words()<cr>", {})
-"EOF
+" hop.nvim {
+lua <<EOF
+	require'hop'.setup()
+	-- Keybindings
+	-- Vim Command to Lua function mapping: https://github.com/phaazon/hop.nvim/wiki/Advanced-Hop#lua-equivalents-of-hop-commands
+	vim.api.nvim_set_keymap('', '<leader>h', "<cmd>lua require'hop'.hint_words()<cr>", {})
+EOF
 "" }
 
 " hlargs.vim {
@@ -653,12 +654,6 @@ require('nvim-peekup.config').on_keystroke["paste_reg"] = '"'
 EOF
 " }
 
-"" nvim-surround {
-"lua << EOF
-"require("nvim-surround").setup()
-"EOF
-"" }
-
 "" nvim-tabline {
 "lua <<EOF
 "require('tabline').setup({})
@@ -764,29 +759,21 @@ vim.keymap.set("n", "\\u", "<Cmd>UrlView<CR>", { desc = "view buffer URLs" })
 EOF
 " }
 
-"" vim-better-whitespace {
-"let g:strip_whitelines_at_eof=1		" Also strip empty lines at end of file on save.
-"let g:show_spaces_that_precede_tabs=1	" Highlight spaces that happens before tab.
-"let g:strip_whitespace_on_save = 1	" Activate by default.
-"let g:strip_whitespace_confirm=0	" Don't ask for permission.
-"" Filetypes to ignore even when strip_whitespace_on_save=1
-""let g:better_whitespace_filetypes_blacklist=['<filetype1>', '<filetype2>', '<etc>',
-"
-"
-"" Use same command as in the old ~/.vim/plugin/stripspaces.vim
-"" Need to wrap the command in a function as we can't chain
-"" commands unless they were declared to support this.
-"" Reference: " https://unix.stackexchange.com/questions/144568/how-do-i-write-a-command-in-vim-to-run-multiple-commands
-"function! StripWhitespaceWrapper()
-"	execute 'StripWhitespace'
-"endfunction
-"command! Ws call StripWhitespaceWrapper() | update
-"
-"" Like :wq but strip whitespaces first.
-"command! Wqs call StripWhitespaceWrapper() | wq
-"" Like :wqa but strip whitespaces in each buffer first.
-"command! Wqas bufdo call StripWhitespaceWrapper() | wq
-"" }
+" vim-better-whitespace {
+lua << EOF
+vim.g.strip_whitelines_at_eof = 1	-- Also strip empty lines at end of file on save.
+vim.g.show_spaces_that_precede_tabs = 1	-- Highlight spaces that happens before tab.
+vim.g.strip_whitespace_on_save  =  1	-- Activate by default.
+vim.g.strip_whitespace_confirm = 0	-- Don't ask for permission.
+
+-- Filetypes to ignore even when strip_whitespace_on_save=1
+--vim.g.better_whitespace_filetypes_blacklist = ['<filetype1>', '<filetype2>', '<etc>']
+
+vim.api.nvim_create_user_command('Ws', ":execute 'StripWhitespace' | update", {force = true, desc = ":w with StripWhitespace."})
+vim.api.nvim_create_user_command('Wqs', ":execute 'StripWhitespace' | wq", {force = true, desc = ":wq with StripWhitespace."})
+vim.api.nvim_create_user_command('Wqas', ":execute 'bufdo StripWhitespace' | wqa", {force = true, desc = ":wqa with StripWhitespace."})
+EOF
+" }
 
 "" vim-fugative {
 "autocmd BufReadPost fugitive://* set bufhidden=delete	" Close Fugitive buffers when leaving.
@@ -844,7 +831,7 @@ EOF
 "	\ ]
 "
 "
-"" Reference: https://vi.stackexchange.com/a/9942
+"" Ref:g https://vi.stackexchange.com/a/9942
 "let s:nvim_version = matchstr(execute('version'), 'NVIM v\zs[^\n]*')
 "
 "" Custom logo instead of cowsay.
@@ -872,35 +859,8 @@ EOF
 ""let g:startify_custom_header = s:ascii + startify#fortune#boxed()
 "let g:startify_custom_header = s:ascii
 "
-"" Show version in fooder. Reference: https://github.com/mhinz/vim-startify/issues/449
+"" Show version in fooder. Ref:g https://github.com/mhinz/vim-startify/issues/449
 ""let g:startify_custom_footer = "startify#pad(['', '\ufa76' . matchstr(execute('version'), 'NVIM v\\z\\s[^\\n]\*'), ''])"
-"" }
-
-"" vim-yoink {
-""let g:yoinkMaxItems=16			" Increase from default 10.
-""let g:yoinkSyncNumberedRegisters=1	" Repurpose the registers to be a history stack!
-""let g:yoinkIncludeDeleteOperations=1	" Include text delete operations in the yank history.
-""let g:yoinkSyncSystemClipboardOnFocus=0	" Don't integrate with system clipboard.
-"
-""let g:yoinkSavePersistently=1		" Persist history across sessions.
-"
-"
-""" Replace default paste with Yoink. "xp still works
-""nmap p <plug>(YoinkPaste_p)
-""nmap P <plug>(YoinkPaste_P)
-"
-""" Also replace the default gp with yoink paste so we can toggle paste in this case too
-""nmap gp <plug>(YoinkPaste_gp)
-""nmap gP <plug>(YoinkPaste_gP)
-"
-""" Cycle yankring immediately after pasting.
-""nmap <c-n> <plug>(YoinkPostPasteSwapBack)
-"""nmap <c-p> <plug>(YoinkPostPasteSwapForward)
-""" Let c-p execute fzf if we're not in paste mode.
-""nmap <expr> <c-p> yoink#canSwap() ? '<plug>(YoinkPostPasteSwapForward)' : ':Files<CR>'
-"
-""" Toggle formatted paste.
-"""nmap <c-=> <plug>(YoinkPostPasteToggleFormat)
 "" }
 
 "" vista.vim {
@@ -916,9 +876,11 @@ EOF
 ""EOF
 "" }
 
-"" undotree {
-"nmap <silent> <F4> :UndotreeToggle<CR>	" Toggle side pane.
-"let g:undotree_WindowLayout=2		" Set style to have diff window below.
-"let g:undotree_SetFocusWhenToggle=1	" Put cursor in undo window on open.
-"" }
+" undotree {
+lua << EOF
+vim.keymap.set('n', '<F4>', ':UndotreeToggle<CR>', { silent = true, desc = 'Toggle Undotree side pane.' })
+vim.g.undotree_WindowLayout = 2		-- Set style to have diff window below.
+vim.g.undotree_SetFocusWhenToggle = 1	-- Put cursor in undo window on open.
+EOF
+" }
 " }

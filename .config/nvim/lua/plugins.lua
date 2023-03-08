@@ -22,27 +22,32 @@ local packer_bootstrap = ensure_packer()
 return require("packer").startup(function(use)
     use("wbthomason/packer.nvim")
 
+-- TODO check README of all .nvim plugins, to see if they have sample packer instructions for optimized loading.
 -- General {
 -- 	--use('LucHermitte/local_vimrc') | use('LucHermitte/lh-vim-lib' " Project local vim config.
 -- 	--use('dhruvasagar/vim-table-mode')			-- Create ASCII tables
 -- 	--use('fidian/hexmode')			    		-- Open binary files as a HEX dump with :Hexmode
 -- 	--use('folke/which-key.nvim')				-- Show matching keybindings e.g. when tapping Leader.
 -- 	--use('godlygeek/tabular')		    		-- Create tables. Disabled: not used and have some startup time.
--- 	--use('mattn/vim-gist' | use('mattn/webapi-vim'	-- Post a new Gist.
 -- 	--use('salsifis/vim-transpose')				-- Matrix transposition of texts.
--- 	--use('svermeulen/vim-yoink')				-- Yankring implementation.
 -- 	--use('voldikss/vim-translator')			-- Async language translator.
  	use('axieax/urlview.nvim')		    		-- Open URLs in buffer.
  	use('danro/rename.vim')			    		-- Provides the :Rename command
  	use('gennaro-tedesco/nvim-peekup')			-- Register viewer and selector.
- 	--use{'instant-markdown/vim-instant-markdown', ft = {'markdown'}, run = 'yarn install' }	
     use {'instant-markdown/vim-instant-markdown', ft='markdown', run='yarn install'} 
     use {'nvim-tree/nvim-tree.lua', requires = { 'nvim-tree/nvim-web-devicons' } } -- File explorer tree
--- 	use('kylechui/nvim-surround')				-- Work on surrond delimiters or its content. Like tpope/vim-surround but with TreeSitter.
--- 	use('mbbill/undotree')					-- Navigate history in a sidebar. Replaces old 'mbbill/undotree'
--- 	use('michaeljsmith/vim-indent-object')			-- Operate on intendtation as text objects.
--- 	use('ntpeters/vim-better-whitespace')			-- Highlight and remove trailing whitespaces.
--- 	use('phaazon/hop.nvim')					-- Easy motion jumps in buffer.
+
+    -- Work on surrond delimiters or its content. Like tpope/vim-surround but with TreeSitter.
+    use{ "kylechui/nvim-surround",
+        tag = "*", -- Use for stability; omit to use `main` branch for the latest features
+        config = function()
+            require("nvim-surround").setup()
+        end
+    }
+ 	use('mbbill/undotree')					-- Navigate history in a sidebar. Replaces old 'mbbill/undotree'
+ 	use('michaeljsmith/vim-indent-object')			-- Operate on intendtation as text objects.
+ 	use('ntpeters/vim-better-whitespace')			-- Highlight and remove trailing whitespaces.
+ 	use('phaazon/hop.nvim')					-- Easy motion jumps in buffer.
  	use('preservim/nerdcommenter')				-- Comment source code.
 -- 	use('tpope/vim-capslock')				-- Software CAPSLOCK with <C-g>c in insert mode.
 -- 	use('tpope/vim-characterize')				-- 'ga' on steroid.
