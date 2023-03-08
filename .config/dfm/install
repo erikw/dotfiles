@@ -18,4 +18,3 @@ bin recurse
 .config/offlineimap/config chmod 0600
 .irssi/config chmod 0600
 .netrc chmod 0600
-bin/loopiadns.sh chmod 0700

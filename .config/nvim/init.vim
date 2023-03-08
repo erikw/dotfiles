@@ -432,7 +432,7 @@ EOF
 lua << EOF
 -- Ignore if don't exist. This is the case when $(vim -c PlugInstall) the first time. Ref: https://stackoverflow.com/a/5703164/265508
 vim.cmd('silent! colorscheme solarized')
-vim.opt.background = 'light' -- Be light (most likely right) be default as dark-notify toggles ugly otherwise
+vim.opt.background = 'light' -- Be light (most likely right) be default as dark-notify toggles ugly otherwise.
 
 -- Adjust colors to this background. NOTE replaced by dark-notify.
 --local solarized_status = vim.g.xdg_state_home .. "/solarizedtoggle/status"
