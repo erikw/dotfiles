@@ -88,14 +88,14 @@ return require("packer").startup(function(use)
 	use('rhysd/conflict-marker.vim')		-- Navigate and edit VCS conflicts. Navigate: [x, ]x. Resolve: ct, co, cb.
 	use('ruanyl/vim-gh-line')			-- Copy link to file on GitHub.
 	use('superDross/ticket.vim')			-- Manage vim Sessions per git branch.
---	use('tpope/vim-fugitive')			-- Git wrapper and shorthands.
---	use('wellle/targets.vim')			-- Extra text objects to operate on e.g. function arguments.
---	use('windwp/nvim-autopairs')			-- Autoclose brackets etc.
+	use('tpope/vim-fugitive')			-- Git wrapper and shorthands.
+	use('wellle/targets.vim')			-- Extra text objects to operate on e.g. function arguments.
+	use('windwp/nvim-autopairs')			-- Autoclose brackets etc.
 -- " }
 --
 -- Development: LSP/Completion {
 --	--use('neovim/nvim-lspconfig')			-- Plug-n-play configurations for LSP server. Disabled in favour of simpler to use ALE.
---	use('dense-analysis/ale')			-- LSP linting engine.
+	use('dense-analysis/ale')			-- LSP linting engine.
 --	use('ray-x/lsp_signature.nvim')			-- Method signature window, as ALE does not support it. Ref: https://www.reddit.com/r/vim/comments/jhqzsv/signature_help_via_ale/
 --	use('liuchengxu/vista.vim')			-- LSP symbols and tags viewer, like TagBar but with LSP support.
 -- " }

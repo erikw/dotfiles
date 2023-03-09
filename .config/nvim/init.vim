@@ -325,70 +325,69 @@ EOF
 
 " TODO move this to the 'config' function inside the packer use() method, as  nvim-surround is already configured
 " Plugin Config {
-"" ALE {
-"" Reference https://github.com/dense-analysis/ale/blob/master/doc/ale.txt
-"" Linting {
-"" Disabled linters:
-"		"\ 'sql': ['sqls'],
-"let g:ale_linters = {
-"		\ 'go': ['gopls'],
-"		\ 'javascript': ['eslint'],
-"		\ 'lua': ['luacheck'],
-"		\ 'json': ['jsonls'],
-"		\ 'python': ['pyright', 'flake8'],
-"		\ 'ruby': ['solargraph', 'ruby'],
-"		\ 'sh': ['language_server'],
-"		\ 'tex': ['texlab'],
-"		\ 'vim': ['vimls'],
-"		\ }
-"" }
-"
-"" Fixing {
-"" Disabled fixers:
-"" - *: 'trim_whitespace' & 'remove_trailing_lines' (overlaps with the functionally already provided by vim-better-whitespace)
-"" - python: autoimport (messes up ifx in taiga_stats.commands import  fix. Could be resolved by https://github.com/myint/autoflake/issues/59)
-"" - markdown: prettier (converts * to - in lists)
-"let g:ale_fixers = {
-"	\ 'css': ['prettier'],
-"	\ 'javascript': ['prettier', 'eslint'],
-"	\ 'json': ['prettier'],
-"	\ 'lua': ['stylua'],
-"	\ 'python': ['autoflake', 'black', 'isort'],
-"	\ 'ruby': ['rubocop'],
-"	\ 'scss': ['prettier'],
-"	\ 'typescript': ['prettier'],
-"	\ 'yaml': ['prettier'],
-"	\}
-"let g:ale_fix_on_save = 1
-"" }
-"
-"" Completion {
-"let g:ale_completion_autoimport = 1
-"" Trigger on ^x^o
-"set omnifunc=ale#completion#OmniFunc
-"" 'longest' seems to tirgger a variation of :h ale-completion-completeopt-bug
-"" See https://github.com/dense-analysis/ale/issues/1700#issuecomment-991643960
-"set completeopt=menu,preview
-"" }
-"
-"" Mappings {
-"" See :help ale-commands
-"" Make similar keybindings to https://github.com/neovim/nvim-lspconfig#keybindings-and-completion
-"nmap <silent> gd <Plug>(ale_go_to_definition)
-"nmap <silent> gr <Plug>(ale_find_references)
-"nmap <silent> K <Plug>(ale_hover)
-"nmap <silent> <space>rn <Plug>(ale_rename)
-"
-"" Navigate between errors
-"nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-"nmap <silent> <C-j> <Plug>(ale_next_wrap)
-"
-"" }
-"
-"" Toggle command for fixers
-"" Ref:g https://github.com/dense-analysis/ale/issues/1353#issuecomment-424677810
-"command! ALEToggleFixer execute "let g:ale_fix_on_save = get(g:, 'ale_fix_on_save', 0) ? 0 : 1"
-"" }
+" ALE {
+lua << EOF
+-- Reference https://github.com/dense-analysis/ale/blob/master/doc/ale.txt
+-- Disabled linters:
+		-- ['sql'] = {'sqls'},
+vim.g.ale_linters = {
+	['go'] = {'gopls'},
+	['javascript'] = {'eslint'},
+	['lua'] = {'luacheck'},
+	['json'] = {'jsonls'},
+	['python'] = {'pyright', 'flake8'},
+	['ruby'] = {'solargraph', 'ruby'},
+	['sh'] = {'language_server'},
+	['tex'] = {'texlab'},
+	['vim'] = {'vimls'},
+	}
+
+
+-- Disabled fixers:
+-- - *: 'trim_whitespace' & 'remove_trailing_lines' (overlaps with the functionally already provided by vim-better-whitespace)
+-- - python: autoimport (messes up ifx in taiga_stats.commands import  fix. Could be resolved by https://github.com/myint/autoflake/issues/59)
+-- - markdown: prettier (converts * to - in lists)
+vim.g.ale_fixers = {
+	 ['css'] = {'prettier'},
+	 ['javascript'] = {'prettier', 'eslint'},
+	 ['json'] = {'prettier'},
+	 ['lua'] = {'stylua'},
+	 ['python'] = {'autoflake', 'black', 'isort'},
+	 ['ruby'] = {'rubocop'},
+	 ['scss'] = {'prettier'},
+	 ['typescript'] = {'prettier'},
+	 ['yaml'] = {'prettier'},
+	}
+vim.g.ale_fix_on_save = 1
+
+-- Completion {
+vim.g.ale_completion_autoimport = 1
+-- Trigger on ^x^o
+vim.opt.omnifunc = 'ale#completion#OmniFunc'
+-- 'longest' seems to tirgger a variation of :h ale-completion-completeopt-bug
+-- See https://github.com/dense-analysis/ale/issues/1700#issuecomment-991643960
+vim.opt.completeopt = {'menu', 'preview'}
+-- }
+EOF
+
+" Mappings {
+" See :help ale-commands
+" Make similar keybindings to https://github.com/neovim/nvim-lspconfig#keybindings-and-completion
+nmap <silent> gd <Plug>(ale_go_to_definition)
+nmap <silent> gr <Plug>(ale_find_references)
+nmap <silent> K <Plug>(ale_hover)
+nmap <silent> <space>rn <Plug>(ale_rename)
+
+" Navigate between errors
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
+
+" }
+
+" Toggle command for fixers
+" Ref:g https://github.com/dense-analysis/ale/issues/1353#issuecomment-424677810
+command! ALEToggleFixer execute "let g:ale_fix_on_save = get(g:, 'ale_fix_on_save', 0) ? 0 : 1"
+" }
 
 "" copilot.vim {
 """ Disable/enable per filetype
@@ -557,21 +556,21 @@ vim.g.NERDDefaultAlign = 'left'
 EOF
 " }
 
-"" nvim-autopairs {
-"lua << EOF
-"local npairs = require("nvim-autopairs")
-"npairs.setup({
-"	check_ts = true, --  Use treesitter to check for a pair
-"	map_c_h = true, -- Map the <C-h> key to delete a pair
-"	map_c_w = true, -- map <c-w> to delete a pair if possible
-"})
-"
-"-- Ref: https://github.com/windwp/nvim-autopairs/wiki/Endwise
-"-- Could use https://github.com/RRethy/nvim-treesitter-endwise instead
-"npairs.add_rules(require('nvim-autopairs.rules.endwise-lua'))
-"npairs.add_rules(require('nvim-autopairs.rules.endwise-ruby'))
-"EOF
-"" }
+" nvim-autopairs {
+lua << EOF
+local npairs = require("nvim-autopairs")
+npairs.setup({
+	check_ts = true, --  Use treesitter to check for a pair
+	map_c_h = true, -- Map the <C-h> key to delete a pair
+	map_c_w = true, -- map <c-w> to delete a pair if possible
+})
+
+-- Ref: https://github.com/windwp/nvim-autopairs/wiki/Endwise
+-- Could use https://github.com/RRethy/nvim-treesitter-endwise instead
+npairs.add_rules(require('nvim-autopairs.rules.endwise-lua'))
+npairs.add_rules(require('nvim-autopairs.rules.endwise-ruby'))
+EOF
+" }
 
 "" nvim-cmp {
 ""set completeopt=menu,menuone,noselect
@@ -771,10 +770,6 @@ vim.api.nvim_create_user_command('Wqs', ":execute 'StripWhitespace' | wq", {forc
 vim.api.nvim_create_user_command('Wqas', ":execute 'bufdo StripWhitespace' | wqa", {force = true, desc = ":wqa with StripWhitespace."})
 EOF
 " }
-
-"" vim-fugative {
-"autocmd BufReadPost fugitive://* set bufhidden=delete	" Close Fugitive buffers when leaving.
-"" }
 
 "" vim-gist {
 ""let g:gist_detect_filetype = 1				" Detect filetype from name.
