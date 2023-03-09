@@ -633,13 +633,6 @@ EOF
 "EOF
 "" }
 
-"" nvim-coverage {
-"lua << EOF
-"require("coverage").setup({
-"})
-"EOF
-"" }
-
 "" nvim-cursorline {
 ""lua << EOF
 ""require('nvim-cursorline').setup { }
@@ -660,11 +653,11 @@ EOF
 "EOF
 "" }
 
-"" nvim-toggler {
-"lua << EOF
-"require('nvim-toggler').setup()
-"EOF
-"" }
+" nvim-toggler {
+lua << EOF
+require('nvim-toggler').setup()
+EOF
+" }
 
 " nvim-tree.lua {
 lua <<EOF
@@ -789,9 +782,11 @@ EOF
 ""let g:gist_browser_command = 'firefox  %URL%'		" Browser to use.
 "" }
 
-"" vim-gitgutter {
-"set updatetime=100		" Speedier update of file status.
-"" }
+" vim-gitgutter {
+lua << EOF
+vim.opt.updatetime = 100	-- Speedier update of file status.
+EOF
+" }
 
 "" vim-illuminate {
 ""lua << EOF

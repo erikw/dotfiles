@@ -62,14 +62,23 @@ return require("packer").startup(function(use)
 --	--use('ibhagwan/fzf-lua' | use('mrjones2014/dash.nvim', { 'do': 'make install' } " Search dash.app from nvim. Currently broken: https://github.com/mrjones2014/dash.nvim/issues/137
 --	--use('lukas-reineke/indent-blankline.nvim')	-- Indent vertical markers.
 --	--use('mfussenegger/nvim-dap')			-- Debug Adapter Protocol client. Like LSP for debuggers. TODO try again when more mature. Currently LUA config is not working (freezes nvim).
-    use('AndrewRadev/sideways.vim')			-- Shift function arguments left and right.
---	use('airblade/vim-gitgutter')			-- Git modified status in sign column
---	use('andymass/vim-matchup')			-- Extend % matching.
---	use('editorconfig/editorconfig-vim')		-- Standard .editorconfig file in shared projects.
---	use('godlygeek/tabular' | use('preservim/vim-markdown' " Markdown utilties like automatic list indention, TOC.
-    use { 'm-demare/hlargs.nvim', requires = { 'nvim-treesitter/nvim-treesitter' } } -- Highlight usage of method arguments.
---	use('nguyenvukhang/nvim-toggler')		-- Toggle values like true/false with <leader>i.
---	use('nvim-lua/plenary.nvim' | use('andythigpen/nvim-coverage' " Show code coverage in sign column.
+	use('AndrewRadev/sideways.vim')			-- Shift function arguments left and right.
+	use('airblade/vim-gitgutter')			-- Git modified status in sign column
+	use('andymass/vim-matchup')			-- Extend % matching.
+	use('editorconfig/editorconfig-vim')		-- Standard .editorconfig file in shared projects.
+	use{'godlygeek/tabular',  requires = {'preservim/vim-markdown' }}	 -- Markdown utilties like automatic list indention, TOC.
+    use {'m-demare/hlargs.nvim', requires = { 'nvim-treesitter/nvim-treesitter' } } -- Highlight usage of method arguments.
+	use('nguyenvukhang/nvim-toggler')		-- Toggle values like true/false with <leader>i.
+
+    -- Show code coverage in sign column.
+	use {
+	  'andythigpen/nvim-coverage',
+	  requires = 'nvim-lua/plenary.nvim',
+	  config = function()
+	    require('coverage').setup()
+	  end,
+	}
+
 --	use('nvim-lua/plenary.nvim' | use('sindrets/diffview.nvim' " Better than fugative ':Git difftool'. Browser file history with ':DiffviewFileHistory %'
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }  -- NVim interface for tree-sitter (language parser).
 --	use('rgroli/other.nvim')			-- Open related file like test.
