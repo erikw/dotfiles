@@ -28,11 +28,18 @@ if program_is_in_path vim && program_is_in_path curl; then
 	vim -c 'PlugInstall | qa'
 fi
 
-if program_is_in_path nvim && program_is_in_path curl; then
-	step "Setting up Neovim"
-	sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-	nvim -c 'PlugInstall | qa'
-fi
+#if program_is_in_path nvim && program_is_in_path curl; then
+#    step "Setting up Neovim"
+#    sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+#    nvim -c 'PlugInstall | qa'
+#fi
+
+# NOPE not needed as of bootstrap https://github.com/wbthomason/packer.nvim#bootstrapping
+#if program_is_in_path nvim && program_is_in_path git; then
+#    step "Setting up Neovim"
+#    git clone --depth 1 https://github.com/wbthomason/packer.nvim "${XDG_DATA_HOME:-$HOME/.local/share}/nvim/site/pack/packer/start/packer.nvim"
+#    nvim -c 'PackerInstall | qa'
+#fi
 
 if program_is_in_path git-lfs; then
 	# git-lfs must have been installed on the system already.

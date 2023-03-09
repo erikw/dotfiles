@@ -4,6 +4,8 @@
 " 8 spaces for a tab render best as HTML.
 " }
 
+" Plugins: ~/.config/nvim/lua/plugins.lua
+
 " Documentation {
 " * https://learnxinyminutes.com/docs/lua/
 " * https://neovim.io/doc/user/lua-guide.html
@@ -32,7 +34,7 @@ EOF
 
 " vim-plug data folder
 " TODO migrate to plugin manager in lua.
-call plug#begin(stdpath('data') . '/plugged')
+"call plug#begin(stdpath('data') . '/plugged')
 
 lua << EOF
 -- The python provider (pythonx.vim) checker takes alomost 1 second on startup.
@@ -51,151 +53,155 @@ vim.g.loaded_node_provider = 0
 EOF
 " }
 
-" General {
-	"Plug 'LucHermitte/local_vimrc' | Plug 'LucHermitte/lh-vim-lib' " Project local vim config.
-	"Plug 'dhruvasagar/vim-table-mode'			" Create ASCII tables
-	"Plug 'fidian/hexmode'					" Open binary files as a HEX dump with :Hexmode
-	"Plug 'folke/which-key.nvim'				" Show matching keybindings e.g. when tapping Leader.
-	"Plug 'godlygeek/tabular'				" Create tables. Disabled: not used and have some startup time.
-	"Plug 'mattn/vim-gist' | Plug 'mattn/webapi-vim'	" Post a new Gist.
-	"Plug 'salsifis/vim-transpose'				" Matrix transposition of texts.
-	"Plug 'svermeulen/vim-yoink'				" Yankring implementation.
-	"Plug 'voldikss/vim-translator'				" Async language translator.
-	Plug 'axieax/urlview.nvim'				" Open URLs in buffer.
-	Plug 'danro/rename.vim'					" Provides the :Rename command
-	Plug 'gennaro-tedesco/nvim-peekup'			" Register viewer and selector.
-	Plug 'instant-markdown/vim-instant-markdown', {'for': 'markdown', 'do': 'yarn install'}	" Live preview markdown files in browser.
-	Plug 'kyazdani42/nvim-tree.lua'				" File explorer tree
-	Plug 'kylechui/nvim-surround'				" Work on surrond delimiters or its content. Like tpope/vim-surround but with TreeSitter.
-	Plug 'mbbill/undotree'					" Navigate history in a sidebar. Replaces old 'mbbill/undotree'
-	Plug 'michaeljsmith/vim-indent-object'			" Operate on intendtation as text objects.
-	Plug 'ntpeters/vim-better-whitespace'			" Highlight and remove trailing whitespaces.
-	Plug 'phaazon/hop.nvim'					" Easy motion jumps in buffer.
-	Plug 'preservim/nerdcommenter'				" Comment source code.
-	Plug 'tpope/vim-capslock'				" Software CAPSLOCK with <C-g>c in insert mode.
-	Plug 'tpope/vim-characterize'				" 'ga' on steroid.
-	Plug 'tpope/vim-repeat'					" Extend '.' repetition for plugins like vim-surround, vim-speeddating, vim-unimpaired.
-	Plug 'tpope/vim-speeddating'				" Increment dates with C-a.
-	Plug 'tpope/vim-unimpaired'				" Bracket mappings like [<space>
-" }
+lua << EOF
+require('plugins')
+EOF
 
-" Development {
-" Development: General {
-	"Plug 'github/copilot.vim'			" AI powered code completion.
-	"Plug 'ibhagwan/fzf-lua' | Plug 'mrjones2014/dash.nvim', { 'do': 'make install' } " Search dash.app from nvim. Currently broken: https://github.com/mrjones2014/dash.nvim/issues/137
-	"Plug 'lukas-reineke/indent-blankline.nvim'	" Indent vertical markers.
-	"Plug 'mfussenegger/nvim-dap'			" Debug Adapter Protocol client. Like LSP for debuggers. TODO try again when more mature. Currently LUA config is not working (freezes nvim).
-	Plug 'AndrewRadev/sideways.vim'			" Shift function arguments left and right.
-	Plug 'airblade/vim-gitgutter'			" Git modified status in sign column
-	Plug 'andymass/vim-matchup'			" Extend % matching.
-	Plug 'editorconfig/editorconfig-vim'		" Standard .editorconfig file in shared projects.
-	Plug 'godlygeek/tabular' | Plug 'preservim/vim-markdown' " Markdown utilties like automatic list indention, TOC.
-	Plug 'm-demare/hlargs.nvim'			" Highlight usage of method arguments.
-	Plug 'nguyenvukhang/nvim-toggler'		" Toggle values like true/false with <leader>i.
-	Plug 'nvim-lua/plenary.nvim' | Plug 'andythigpen/nvim-coverage' " Show code coverage in sign column.
-	Plug 'nvim-lua/plenary.nvim' | Plug 'sindrets/diffview.nvim' " Better than fugative ':Git difftool'. Browser file history with ':DiffviewFileHistory %'
-	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " NVim interface for tree-sitter (language parser).
-	Plug 'rgroli/other.nvim'			" Open related file like test.
-	Plug 'rhysd/conflict-marker.vim'		" Navigate and edit VCS conflicts. Navigate: [x, ]x. Resolve: ct, co, cb.
-	Plug 'ruanyl/vim-gh-line'			" Copy link to file on GitHub.
-	Plug 'superDross/ticket.vim'			" Manage vim Sessions per git branch.
-	Plug 'tpope/vim-fugitive'			" Git wrapper and shorthands.
-	Plug 'wellle/targets.vim'			" Extra text objects to operate on e.g. function arguments.
-	Plug 'windwp/nvim-autopairs'			" Autoclose brackets etc.
-" }
-
-" Development: LSP/Completion {
-	"Plug 'neovim/nvim-lspconfig'			" Plug-n-play configurations for LSP server. Disabled in favour of simpler to use ALE.
-	Plug 'dense-analysis/ale'			" LSP linting engine.
-	Plug 'ray-x/lsp_signature.nvim'			" Method signature window, as ALE does not support it. Ref: https://www.reddit.com/r/vim/comments/jhqzsv/signature_help_via_ale/
-	Plug 'liuchengxu/vista.vim'			" LSP symbols and tags viewer, like TagBar but with LSP support.
-" }
-
-" Development: DAP {
-	"Plug 'mfussenegger/nvim-dap' " Debug Adapter Protocol
-	"Plug 'rcarriga/nvim-dap-ui'  " UI for DAP
-	"Plug 'suketa/nvim-dap-ruby'  " Config for ruby. Requries the `debug` gem. No rails support yet: https://github.com/suketa/nvim-dap-ruby/issues/25
-" }
-
-" Development: C/C++ {
-	"Plug 'chazy/cscope_maps'						" More macros than autoload_cscope.vim
-	"Plug 'rhysd/vim-clang-format', { 'for': ['c', 'cpp'] }
-	"Plug 'vim-scripts/autoload_cscope.vim', { 'for': ['c', 'cpp'] }	" Load cscope file and define macros for using it. https://github.com/vim-scripts/autoload_cscope.vim/blob/master/plugin/autoload_cscope.vim#L81-L88
-	Plug 'ludovicchabant/vim-gutentags'					" Autogenerate new tags file.
-"}
-
-" Development: Go {
-	"Plug 'fatih/vim-go', { 'for': 'go' }	" Compilation commands etc.
-"}
-
-" Development: Java {
-	"Plugin 'artur-shaik/vim-javacomplete2', { 'for': 'java' }	" Omni-complete for Java
-	"Plugin 'erikw/jcommenter.vim', { 'for': 'java' }		" Generate javadoc.
-"}
-
-" Development: LaTeX {
-	"Plug 'donRaphaco/neotex'	" Live preview PDF output from latex.
-" }
-
-" Development: Python {
-	"Plugin 'davidhalter/jedi-vim', { 'for': 'python' }	" Autocompletion using jedi library.
-	"Plugin 'python-rope/ropevim', { 'for': 'python' }	" Refactoring with rope library.
-	"Plugin 'fisadev/vim-isort', { 'for': 'python' }	" Sort imports
-"}
-
-" Development: Swift {
-	"Plugin 'keith/swift.vim', { 'for': 'switft' }	" Syntax files for Switch
-"}
-
-" Development: Web {
-	Plug 'ap/vim-css-color', { 'for': ['css', 'scss'] }	" Display CSS colors in vim.
-" }
-
-" }
-
-" Navigation {
-	" FZF - Fuzzy finding
-	" - Keyboard shortcuts: https://github.com/junegunn/fzf/blob/master/README-VIM.md#fzf
-	" - Commands: https://github.com/junegunn/fzf.vim#commands
-	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } | Plug 'junegunn/fzf.vim'
-" }
-
-" Snippets {
-	Plug 'dcampos/nvim-snippy'	" Snippets engine compatible with the SnipMate format.
-	Plug 'honza/vim-snippets'	" Snippet library
-" }
-
-" Syntax {
-	Plug 'bfontaine/Brewfile.vim', { 'for': 'brewfile' }		" Syntax for Brewfiles
-	Plug 'kalekundert/vim-nestedtext', { 'for': 'nestedtext' }	" Syntax for NestedText .nt files.
-" }
-
-" UI {
-	"Plug 'RRethy/vim-illuminate'		" Highlight current word under cursor. Not compatible with dark-notify: https://github.com/cormacrelf/dark-notify/issues/8
-	"Plug 'sitiom/nvim-numbertoggle'		" Automatic relative / static line number toggling. Disabled as of https://github.com/sitiom/nvim-numbertoggle/issues/15
-	"Plug 'yamatsum/nvim-cursorline'	" Highlight current word under cursor. Not compatible with dark-notify: https://github.com/cormacrelf/dark-notify/issues/8
-	Plug 'chentoast/marks.nvim'		" Visualize marks in the sign column.
-	Plug 'cormacrelf/dark-notify'		" Watch system light/dark mode changes. Requires dark-notify(1).
-	Plug 'crispgm/nvim-tabline'		" More informative tab titles.
-	Plug 'karb94/neoscroll.nvim'		" Smoth scrolling.
-	Plug 'kyazdani42/nvim-web-devicons'	" Dependency for: nvim-tree.lua, lualine.nvim, barbar.nvim
-	Plug 'mhinz/vim-startify'		" Start screen with recently opended files.
-	Plug 'nvim-lualine/lualine.nvim'	" Statusline.
-
-" Colorschemes {
-	"Plug 'altercation/vim-colors-solarized'	" The one theme to rule them all.
-	"Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
-	"Plug 'mhartington/oceanic-next'
-	"Plug 'morhetz/gruvbox'
-	Plug 'ishan9299/nvim-solarized-lua'		" Solarized theme that works with nvim-treesitter highlights.
-" }
-"}
-
-" Setup - end {
-" Initialize plugin system
-call plug#end()
-" }
-" }
+"" General {
+"	"Plug 'LucHermitte/local_vimrc' | Plug 'LucHermitte/lh-vim-lib' " Project local vim config.
+"	"Plug 'dhruvasagar/vim-table-mode'			" Create ASCII tables
+"	"Plug 'fidian/hexmode'					" Open binary files as a HEX dump with :Hexmode
+"	"Plug 'folke/which-key.nvim'				" Show matching keybindings e.g. when tapping Leader.
+"	"Plug 'godlygeek/tabular'				" Create tables. Disabled: not used and have some startup time.
+"	"Plug 'mattn/vim-gist' | Plug 'mattn/webapi-vim'	" Post a new Gist.
+"	"Plug 'salsifis/vim-transpose'				" Matrix transposition of texts.
+"	"Plug 'svermeulen/vim-yoink'				" Yankring implementation.
+"	"Plug 'voldikss/vim-translator'				" Async language translator.
+"	Plug 'axieax/urlview.nvim'				" Open URLs in buffer.
+"	Plug 'danro/rename.vim'					" Provides the :Rename command
+"	Plug 'gennaro-tedesco/nvim-peekup'			" Register viewer and selector.
+"	Plug 'instant-markdown/vim-instant-markdown', {'for': 'markdown', 'do': 'yarn install'}	" Live preview markdown files in browser.
+"	Plug 'kyazdani42/nvim-tree.lua'				" File explorer tree
+"	Plug 'kylechui/nvim-surround'				" Work on surrond delimiters or its content. Like tpope/vim-surround but with TreeSitter.
+"	Plug 'mbbill/undotree'					" Navigate history in a sidebar. Replaces old 'mbbill/undotree'
+"	Plug 'michaeljsmith/vim-indent-object'			" Operate on intendtation as text objects.
+"	Plug 'ntpeters/vim-better-whitespace'			" Highlight and remove trailing whitespaces.
+"	Plug 'phaazon/hop.nvim'					" Easy motion jumps in buffer.
+"	Plug 'preservim/nerdcommenter'				" Comment source code.
+"	Plug 'tpope/vim-capslock'				" Software CAPSLOCK with <C-g>c in insert mode.
+"	Plug 'tpope/vim-characterize'				" 'ga' on steroid.
+"	Plug 'tpope/vim-repeat'					" Extend '.' repetition for plugins like vim-surround, vim-speeddating, vim-unimpaired.
+"	Plug 'tpope/vim-speeddating'				" Increment dates with C-a.
+"	Plug 'tpope/vim-unimpaired'				" Bracket mappings like [<space>
+"" }
+"
+"" Development {
+"" Development: General {
+"	"Plug 'github/copilot.vim'			" AI powered code completion.
+"	"Plug 'ibhagwan/fzf-lua' | Plug 'mrjones2014/dash.nvim', { 'do': 'make install' } " Search dash.app from nvim. Currently broken: https://github.com/mrjones2014/dash.nvim/issues/137
+"	"Plug 'lukas-reineke/indent-blankline.nvim'	" Indent vertical markers.
+"	"Plug 'mfussenegger/nvim-dap'			" Debug Adapter Protocol client. Like LSP for debuggers. TODO try again when more mature. Currently LUA config is not working (freezes nvim).
+"	Plug 'AndrewRadev/sideways.vim'			" Shift function arguments left and right.
+"	Plug 'airblade/vim-gitgutter'			" Git modified status in sign column
+"	Plug 'andymass/vim-matchup'			" Extend % matching.
+"	Plug 'editorconfig/editorconfig-vim'		" Standard .editorconfig file in shared projects.
+"	Plug 'godlygeek/tabular' | Plug 'preservim/vim-markdown' " Markdown utilties like automatic list indention, TOC.
+"	Plug 'm-demare/hlargs.nvim'			" Highlight usage of method arguments.
+"	Plug 'nguyenvukhang/nvim-toggler'		" Toggle values like true/false with <leader>i.
+"	Plug 'nvim-lua/plenary.nvim' | Plug 'andythigpen/nvim-coverage' " Show code coverage in sign column.
+"	Plug 'nvim-lua/plenary.nvim' | Plug 'sindrets/diffview.nvim' " Better than fugative ':Git difftool'. Browser file history with ':DiffviewFileHistory %'
+"	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " NVim interface for tree-sitter (language parser).
+"	Plug 'rgroli/other.nvim'			" Open related file like test.
+"	Plug 'rhysd/conflict-marker.vim'		" Navigate and edit VCS conflicts. Navigate: [x, ]x. Resolve: ct, co, cb.
+"	Plug 'ruanyl/vim-gh-line'			" Copy link to file on GitHub.
+"	Plug 'superDross/ticket.vim'			" Manage vim Sessions per git branch.
+"	Plug 'tpope/vim-fugitive'			" Git wrapper and shorthands.
+"	Plug 'wellle/targets.vim'			" Extra text objects to operate on e.g. function arguments.
+"	Plug 'windwp/nvim-autopairs'			" Autoclose brackets etc.
+"" }
+"
+"" Development: LSP/Completion {
+"	"Plug 'neovim/nvim-lspconfig'			" Plug-n-play configurations for LSP server. Disabled in favour of simpler to use ALE.
+"	Plug 'dense-analysis/ale'			" LSP linting engine.
+"	Plug 'ray-x/lsp_signature.nvim'			" Method signature window, as ALE does not support it. Ref: https://www.reddit.com/r/vim/comments/jhqzsv/signature_help_via_ale/
+"	Plug 'liuchengxu/vista.vim'			" LSP symbols and tags viewer, like TagBar but with LSP support.
+"" }
+"
+"" Development: DAP {
+"	"Plug 'mfussenegger/nvim-dap' " Debug Adapter Protocol
+"	"Plug 'rcarriga/nvim-dap-ui'  " UI for DAP
+"	"Plug 'suketa/nvim-dap-ruby'  " Config for ruby. Requries the `debug` gem. No rails support yet: https://github.com/suketa/nvim-dap-ruby/issues/25
+"" }
+"
+"" Development: C/C++ {
+"	"Plug 'chazy/cscope_maps'						" More macros than autoload_cscope.vim
+"	"Plug 'rhysd/vim-clang-format', { 'for': ['c', 'cpp'] }
+"	"Plug 'vim-scripts/autoload_cscope.vim', { 'for': ['c', 'cpp'] }	" Load cscope file and define macros for using it. https://github.com/vim-scripts/autoload_cscope.vim/blob/master/plugin/autoload_cscope.vim#L81-L88
+"	Plug 'ludovicchabant/vim-gutentags'					" Autogenerate new tags file.
+""}
+"
+"" Development: Go {
+"	"Plug 'fatih/vim-go', { 'for': 'go' }	" Compilation commands etc.
+""}
+"
+"" Development: Java {
+"	"Plugin 'artur-shaik/vim-javacomplete2', { 'for': 'java' }	" Omni-complete for Java
+"	"Plugin 'erikw/jcommenter.vim', { 'for': 'java' }		" Generate javadoc.
+""}
+"
+"" Development: LaTeX {
+"	"Plug 'donRaphaco/neotex'	" Live preview PDF output from latex.
+"" }
+"
+"" Development: Python {
+"	"Plugin 'davidhalter/jedi-vim', { 'for': 'python' }	" Autocompletion using jedi library.
+"	"Plugin 'python-rope/ropevim', { 'for': 'python' }	" Refactoring with rope library.
+"	"Plugin 'fisadev/vim-isort', { 'for': 'python' }	" Sort imports
+""}
+"
+"" Development: Swift {
+"	"Plugin 'keith/swift.vim', { 'for': 'switft' }	" Syntax files for Switch
+""}
+"
+"" Development: Web {
+"	Plug 'ap/vim-css-color', { 'for': ['css', 'scss'] }	" Display CSS colors in vim.
+"" }
+"
+"" }
+"
+"" Navigation {
+"	" FZF - Fuzzy finding
+"	" - Keyboard shortcuts: https://github.com/junegunn/fzf/blob/master/README-VIM.md#fzf
+"	" - Commands: https://github.com/junegunn/fzf.vim#commands
+"	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } | Plug 'junegunn/fzf.vim'
+"" }
+"
+"" Snippets {
+"	Plug 'dcampos/nvim-snippy'	" Snippets engine compatible with the SnipMate format.
+"	Plug 'honza/vim-snippets'	" Snippet library
+"" }
+"
+"" Syntax {
+"	Plug 'bfontaine/Brewfile.vim', { 'for': 'brewfile' }		" Syntax for Brewfiles
+"	Plug 'kalekundert/vim-nestedtext', { 'for': 'nestedtext' }	" Syntax for NestedText .nt files.
+"" }
+"
+"" UI {
+"	"Plug 'RRethy/vim-illuminate'		" Highlight current word under cursor. Not compatible with dark-notify: https://github.com/cormacrelf/dark-notify/issues/8
+"	"Plug 'sitiom/nvim-numbertoggle'		" Automatic relative / static line number toggling. Disabled as of https://github.com/sitiom/nvim-numbertoggle/issues/15
+"	"Plug 'yamatsum/nvim-cursorline'	" Highlight current word under cursor. Not compatible with dark-notify: https://github.com/cormacrelf/dark-notify/issues/8
+"	Plug 'chentoast/marks.nvim'		" Visualize marks in the sign column.
+"	Plug 'cormacrelf/dark-notify'		" Watch system light/dark mode changes. Requires dark-notify(1).
+"	Plug 'crispgm/nvim-tabline'		" More informative tab titles.
+"	Plug 'karb94/neoscroll.nvim'		" Smoth scrolling.
+"	Plug 'kyazdani42/nvim-web-devicons'	" Dependency for: nvim-tree.lua, lualine.nvim, barbar.nvim
+"	Plug 'mhinz/vim-startify'		" Start screen with recently opended files.
+"	Plug 'nvim-lualine/lualine.nvim'	" Statusline.
+"
+"" Colorschemes {
+"	"Plug 'altercation/vim-colors-solarized'	" The one theme to rule them all.
+"	"Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+"	"Plug 'mhartington/oceanic-next'
+"	"Plug 'morhetz/gruvbox'
+"	Plug 'ishan9299/nvim-solarized-lua'		" Solarized theme that works with nvim-treesitter highlights.
+"" }
+""}
+"
+"" Setup - end {
+"" Initialize plugin system
+"call plug#end()
+"" }
+"" }
 
 " Commands {
 lua << EOF
@@ -471,90 +477,90 @@ EOF
 " }
 
 " Plugin Config {
-" ALE {
-" Reference https://github.com/dense-analysis/ale/blob/master/doc/ale.txt
-" Linting {
-" Disabled linters:
-		"\ 'sql': ['sqls'],
-let g:ale_linters = {
-		\ 'go': ['gopls'],
-		\ 'javascript': ['eslint'],
-		\ 'lua': ['luacheck'],
-		\ 'json': ['jsonls'],
-		\ 'python': ['pyright', 'flake8'],
-		\ 'ruby': ['solargraph', 'ruby'],
-		\ 'sh': ['language_server'],
-		\ 'tex': ['texlab'],
-		\ 'vim': ['vimls'],
-		\ }
-" }
+"" ALE {
+"" Reference https://github.com/dense-analysis/ale/blob/master/doc/ale.txt
+"" Linting {
+"" Disabled linters:
+"		"\ 'sql': ['sqls'],
+"let g:ale_linters = {
+"		\ 'go': ['gopls'],
+"		\ 'javascript': ['eslint'],
+"		\ 'lua': ['luacheck'],
+"		\ 'json': ['jsonls'],
+"		\ 'python': ['pyright', 'flake8'],
+"		\ 'ruby': ['solargraph', 'ruby'],
+"		\ 'sh': ['language_server'],
+"		\ 'tex': ['texlab'],
+"		\ 'vim': ['vimls'],
+"		\ }
+"" }
+"
+"" Fixing {
+"" Disabled fixers:
+"" - *: 'trim_whitespace' & 'remove_trailing_lines' (overlaps with the functionally already provided by vim-better-whitespace)
+"" - python: autoimport (messes up ifx in taiga_stats.commands import  fix. Could be resolved by https://github.com/myint/autoflake/issues/59)
+"" - markdown: prettier (converts * to - in lists)
+"let g:ale_fixers = {
+"	\ 'css': ['prettier'],
+"	\ 'javascript': ['prettier', 'eslint'],
+"	\ 'json': ['prettier'],
+"	\ 'lua': ['stylua'],
+"	\ 'python': ['autoflake', 'black', 'isort'],
+"	\ 'ruby': ['rubocop'],
+"	\ 'scss': ['prettier'],
+"	\ 'typescript': ['prettier'],
+"	\ 'yaml': ['prettier'],
+"	\}
+"let g:ale_fix_on_save = 1
+"" }
+"
+"" Completion {
+"let g:ale_completion_autoimport = 1
+"" Trigger on ^x^o
+"set omnifunc=ale#completion#OmniFunc
+"" 'longest' seems to tirgger a variation of :h ale-completion-completeopt-bug
+"" See https://github.com/dense-analysis/ale/issues/1700#issuecomment-991643960
+"set completeopt=menu,preview
+"" }
+"
+"" Mappings {
+"" See :help ale-commands
+"" Make similar keybindings to https://github.com/neovim/nvim-lspconfig#keybindings-and-completion
+"nmap <silent> gd <Plug>(ale_go_to_definition)
+"nmap <silent> gr <Plug>(ale_find_references)
+"nmap <silent> K <Plug>(ale_hover)
+"nmap <silent> <space>rn <Plug>(ale_rename)
+"
+"" Navigate between errors
+"nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+"nmap <silent> <C-j> <Plug>(ale_next_wrap)
+"
+"" }
+"
+"" Toggle command for fixers
+"" Reference: https://github.com/dense-analysis/ale/issues/1353#issuecomment-424677810
+"command! ALEToggleFixer execute "let g:ale_fix_on_save = get(g:, 'ale_fix_on_save', 0) ? 0 : 1"
+"" }
 
-" Fixing {
-" Disabled fixers:
-" - *: 'trim_whitespace' & 'remove_trailing_lines' (overlaps with the functionally already provided by vim-better-whitespace)
-" - python: autoimport (messes up ifx in taiga_stats.commands import  fix. Could be resolved by https://github.com/myint/autoflake/issues/59)
-" - markdown: prettier (converts * to - in lists)
-let g:ale_fixers = {
-	\ 'css': ['prettier'],
-	\ 'javascript': ['prettier', 'eslint'],
-	\ 'json': ['prettier'],
-	\ 'lua': ['stylua'],
-	\ 'python': ['autoflake', 'black', 'isort'],
-	\ 'ruby': ['rubocop'],
-	\ 'scss': ['prettier'],
-	\ 'typescript': ['prettier'],
-	\ 'yaml': ['prettier'],
-	\}
-let g:ale_fix_on_save = 1
-" }
+"" copilot.vim {
+""" Disable/enable per filetype
+""      "\ '*': v:false, # global toggle, all on or all off.
+""let g:copilot_filetypes = {
+""      \ '*': v:false,
+""      \ 'txt': v:false,
+""      \ 'markdown': v:false,
+""      \ 'sh': v:true,
+""      \ 'py': v:true,
+""      \ 'rb': v:true,
+""      \ }
+"
+""" Remap from <tab> as this is used by snipmate.
+""" Reference: https://github.com/github/feedback/discussions/6919#discussioncomment-1553837
+""inoremap <silent><expr> <C-Space> copilot#Accept("")
+""let g:copilot_no_tab_map = 1
+"" }
 
-" Completion {
-let g:ale_completion_autoimport = 1
-" Trigger on ^x^o
-set omnifunc=ale#completion#OmniFunc
-" 'longest' seems to tirgger a variation of :h ale-completion-completeopt-bug
-" See https://github.com/dense-analysis/ale/issues/1700#issuecomment-991643960
-set completeopt=menu,preview
-" }
-
-" Mappings {
-" See :help ale-commands
-" Make similar keybindings to https://github.com/neovim/nvim-lspconfig#keybindings-and-completion
-nmap <silent> gd <Plug>(ale_go_to_definition)
-nmap <silent> gr <Plug>(ale_find_references)
-nmap <silent> K <Plug>(ale_hover)
-nmap <silent> <space>rn <Plug>(ale_rename)
-
-" Navigate between errors
-nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-nmap <silent> <C-j> <Plug>(ale_next_wrap)
-
-" }
-
-" Toggle command for fixers
-" Reference: https://github.com/dense-analysis/ale/issues/1353#issuecomment-424677810
-command! ALEToggleFixer execute "let g:ale_fix_on_save = get(g:, 'ale_fix_on_save', 0) ? 0 : 1"
-" }
-
-" copilot.vim {
-"" Disable/enable per filetype
-"      "\ '*': v:false, # global toggle, all on or all off.
-"let g:copilot_filetypes = {
-"      \ '*': v:false,
-"      \ 'txt': v:false,
-"      \ 'markdown': v:false,
-"      \ 'sh': v:true,
-"      \ 'py': v:true,
-"      \ 'rb': v:true,
-"      \ }
-
-"" Remap from <tab> as this is used by snipmate.
-"" Reference: https://github.com/github/feedback/discussions/6919#discussioncomment-1553837
-"inoremap <silent><expr> <C-Space> copilot#Accept("")
-"let g:copilot_no_tab_map = 1
-" }
-
-" dark-notify {
+"" dark-notify {
 lua <<EOF
 	require('dark_notify').run({
 		onchange = function(mode)
@@ -565,68 +571,68 @@ lua <<EOF
 	    end
 })
 EOF
-nmap <silent> <F5> :lua require('dark_notify').toggle()<CR> " Override mapping from above.
-" }
+"nmap <silent> <F5> :lua require('dark_notify').toggle()<CR> " Override mapping from above.
+"" }
 
-" dash.vim {
-"nnoremap <Leader>d :DashWord<CR>
-"nnoremap <Leader>D :Dash<CR>
+"" dash.vim {
+""nnoremap <Leader>d :DashWord<CR>
+""nnoremap <Leader>D :Dash<CR>
+""lua <<EOF
+""require('dash').setup({
+""  -- your config here
+""})
+""EOF
+"" }
+
+"" diffview.nvim {
+"command! Gdiff :DiffviewFileHistory %
+"" }
+
+"" fzf.vim {
+"" Stolen from my friend https://github.com/erikagnvall/dotfiles/blob/master/vim/init.vim
+"" Comment must be on line of its own...
+"" Search for files in given path.
+"nnoremap <Leader>f :FZF<space>
+"" Search for files starting at current directory.
+"" Sublime-like shortcut 'go to file' ctrl+p.
+"" Disable this when using yoink; see vim-yoink section for a re-mapping for :Files
+"nnoremap <C-p> :Files<CR>
+"" Search for files starting at current directory.
+"" Sublime-like shortcut 'go to file' ctrl+shift+p. Note: <C-S-p> is not mappable in vim. <M-P> is in neovim but not vim.
+"nnoremap <leader>c :Commands<CR>
+"" Search in tags file.
+"nnoremap <Leader>T :Tags<CR>
+"" Search open buffers.
+"" ; conflicts with repeating search for characther (fF]
+""nnoremap ; :Buffers<CR>
+""nnoremap <leader>; :Buffers<CR>
+"nnoremap <Leader>b :Buffers<CR>
+"" Search open tabs (indirectly; " https://medium.com/@paulodiovani/vim-buffers-windows-and-tabs-an-overview-8e2a57c57afa).
+"nnoremap <Leader>t :Windows<CR>
+"" Search history of opended files
+"nnoremap <Leader>H :History<CR>
+"" Search mappings.
+"nnoremap <Leader>m :Maps<CR>
+"" Search with rg (aka live grep).
+"nnoremap <Leader>g :Rg<CR>
+"
+"" To ignore a certain path in a git project from both RG and FD used by FZF,
+"" the eaiest way is to create ignore files and exclude the in local git clone.
+"" Ref: https://stackoverflow.com/a/1753078/265508
+"" $ cd git_proj/
+"" $ echo "path/to/exclude" > .rgignore
+"" $ echo "path/to/exclude" > .fdignore
+"" $ printf ".rgignore\n.fdignore" >> .git/info/exclude
+"" }
+
+"" hop.nvim {
 "lua <<EOF
-"require('dash').setup({
-"  -- your config here
-"})
+"	require'hop'.setup()
+"	-- Keybindings
+"	-- Vim Command to Lua function mapping: https://github.com/phaazon/hop.nvim/wiki/Advanced-Hop#lua-equivalents-of-hop-commands
+"	vim.api.nvim_set_keymap('', '<leader>h', "<cmd>lua require'hop'.hint_words()<cr>", {})
 "EOF
-" }
-
-" diffview.nvim {
-command! Gdiff :DiffviewFileHistory %
-" }
-
-" fzf.vim {
-" Stolen from my friend https://github.com/erikagnvall/dotfiles/blob/master/vim/init.vim
-" Comment must be on line of its own...
-" Search for files in given path.
-nnoremap <Leader>f :FZF<space>
-" Search for files starting at current directory.
-" Sublime-like shortcut 'go to file' ctrl+p.
-" Disable this when using yoink; see vim-yoink section for a re-mapping for :Files
-nnoremap <C-p> :Files<CR>
-" Search for files starting at current directory.
-" Sublime-like shortcut 'go to file' ctrl+shift+p. Note: <C-S-p> is not mappable in vim. <M-P> is in neovim but not vim.
-nnoremap <leader>c :Commands<CR>
-" Search in tags file.
-nnoremap <Leader>T :Tags<CR>
-" Search open buffers.
-" ; conflicts with repeating search for characther (fF]
-"nnoremap ; :Buffers<CR>
-"nnoremap <leader>; :Buffers<CR>
-nnoremap <Leader>b :Buffers<CR>
-" Search open tabs (indirectly; " https://medium.com/@paulodiovani/vim-buffers-windows-and-tabs-an-overview-8e2a57c57afa).
-nnoremap <Leader>t :Windows<CR>
-" Search history of opended files
-nnoremap <Leader>H :History<CR>
-" Search mappings.
-nnoremap <Leader>m :Maps<CR>
-" Search with rg (aka live grep).
-nnoremap <Leader>g :Rg<CR>
-
-" To ignore a certain path in a git project from both RG and FD used by FZF,
-" the eaiest way is to create ignore files and exclude the in local git clone.
-" Ref: https://stackoverflow.com/a/1753078/265508
-" $ cd git_proj/
-" $ echo "path/to/exclude" > .rgignore
-" $ echo "path/to/exclude" > .fdignore
-" $ printf ".rgignore\n.fdignore" >> .git/info/exclude
-" }
-
-" hop.nvim {
-lua <<EOF
-	require'hop'.setup()
-	-- Keybindings
-	-- Vim Command to Lua function mapping: https://github.com/phaazon/hop.nvim/wiki/Advanced-Hop#lua-equivalents-of-hop-commands
-	vim.api.nvim_set_keymap('', '<leader>h', "<cmd>lua require'hop'.hint_words()<cr>", {})
-EOF
-" }
+"" }
 
 " hlargs.vim {
 " Due to a bug when dark-notify is enabled, do the hlargs init is done in the  dark-notify callback.
@@ -636,201 +642,203 @@ EOF
 "EOF
 " }
 
-" indent-blankline.nvim {
+"" indent-blankline.nvim {
+""lua <<EOF
+""require("indent_blankline").setup {
+""    use_treesitter = true,  -- use treesitter to calculate indentation.
+""    show_current_context = true,  -- highlight current indent block.
+""    show_current_context_start = true, -- underline first line of current indent block.
+""}
+""EOF
+"" }
+
+"" local_vimrc {
+""" File names to recognize.
+""let g:local_vimrc = ['.vimlocal', '_vimrc_local.vim']
+""" Paths to not ask before loading.
+""if exists("lh#local_vimrc")
+""        call lh#local_vimrc#munge('whitelist', $HOME.'/src/github.com/erikw')
+""end
+"" }
+
+"" lsp_signature.nvim {
+"lua << EOF
+"require "lsp_signature".setup({
+"	toggle_key = '<M-x>', -- toggle signature on and off in insert mode
+"	select_signature_key='<M-n>' , -- cycle to next signature
+"})
+"EOF
+"" }
+
+"" lualine.nvim {
 "lua <<EOF
-"require("indent_blankline").setup {
-"    use_treesitter = true,  -- use treesitter to calculate indentation.
-"    show_current_context = true,  -- highlight current indent block.
-"    show_current_context_start = true, -- underline first line of current indent block.
+"require('lualine').setup {
+"  sections = {
+"    lualine_c = {{
+"	'filename',
+"	path = 1 -- relative path
+"	}},
+"  },
+"  inactive_sections = {
+"    lualine_c = {{
+"	'filename',
+"	path = 1 -- relative path
+"	}},
+"  },
+"  extensions = {'fugitive', 'fzf', 'nvim-tree', 'quickfix'}
 "}
 "EOF
-" }
+"" }
 
-" local_vimrc {
-"" File names to recognize.
-"let g:local_vimrc = ['.vimlocal', '_vimrc_local.vim']
-"" Paths to not ask before loading.
-"if exists("lh#local_vimrc")
-"        call lh#local_vimrc#munge('whitelist', $HOME.'/src/github.com/erikw')
-"end
-" }
+"" marks.nvim {
+"lua <<EOF
+"require'marks'.setup {}
+"EOF
+"" }
 
-" lsp_signature.nvim {
-lua << EOF
-require "lsp_signature".setup({
-	toggle_key = '<M-x>', -- toggle signature on and off in insert mode
-	select_signature_key='<M-n>' , -- cycle to next signature
-})
-EOF
-" }
-
-" lualine.nvim {
-lua <<EOF
-require('lualine').setup {
-  sections = {
-    lualine_c = {{
-	'filename',
-	path = 1 -- relative path
-	}},
-  },
-  inactive_sections = {
-    lualine_c = {{
-	'filename',
-	path = 1 -- relative path
-	}},
-  },
-  extensions = {'fugitive', 'fzf', 'nvim-tree', 'quickfix'}
-}
-EOF
-" }
-
-" marks.nvim {
-lua <<EOF
-require'marks'.setup {}
-EOF
-" }
-
-" neoscroll.nvim {
-lua require('neoscroll').setup()
-" }
+"" neoscroll.nvim {
+"lua require('neoscroll').setup()
+"" }
 
 " nerdcommenter {
-" Align line-wise comment delimiters flush left instead of following code indentation
-let g:NERDDefaultAlign = 'left'
-" }
-
-" nvim-autopairs {
-lua << EOF
-local npairs = require("nvim-autopairs")
-npairs.setup({
-	check_ts = true, --  Use treesitter to check for a pair
-	map_c_h = true, -- Map the <C-h> key to delete a pair
-	map_c_w = true, -- map <c-w> to delete a pair if possible
-})
-
--- Ref: https://github.com/windwp/nvim-autopairs/wiki/Endwise
--- Could use https://github.com/RRethy/nvim-treesitter-endwise instead
-npairs.add_rules(require('nvim-autopairs.rules.endwise-lua'))
-npairs.add_rules(require('nvim-autopairs.rules.endwise-ruby'))
-EOF
-" }
-
-" nvim-cmp {
-"set completeopt=menu,menuone,noselect
-
-"" Lua Setup {
-" Copy and paste latest setup from https://github.com/hrsh7th/nvim-cmp#setup
-" Not possible to comment out as lua code is interpreted still somehow.
-" The essential custom part is kept here:
-  "-- Setup lspconfig.
-  "require('lspconfig')['bashls'].setup {
-    "capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-    "}
-  "require('lspconfig')['jsonls'].setup {
-    "capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-    "}
-  "require('lspconfig')['pyright'].setup {
-    "capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-    "}
-  "require('lspconfig')['solargraph'].setup {
-    "capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-    "}
-  "require('lspconfig')['vimls'].setup {
-    "capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-  "}
-
-" INSERT CONFIG FROM README HERE.
-"" }
-" }
-
-" nvim-dap {
-" Suggested mappings from *dap-mappings* https://github.com/mfussenegger/nvim-dap/blob/master/doc/dap.txt
-"nnoremap <silent> <F5> <Cmd>lua require'dap'.continue()<CR>
-"nnoremap <silent> <F10> <Cmd>lua require'dap'.step_over()<CR>
-"nnoremap <silent> <F11> <Cmd>lua require'dap'.step_into()<CR>
-"nnoremap <silent> <F12> <Cmd>lua require'dap'.step_out()<CR>
-"nnoremap <silent> <Leader>b <Cmd>lua require'dap'.toggle_breakpoint()<CR>
-"nnoremap <silent> <Leader>B <Cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>
-"nnoremap <silent> <Leader>lp <Cmd>lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>
-"nnoremap <silent> <Leader>dr <Cmd>lua require'dap'.repl.open()<CR>
-"nnoremap <silent> <Leader>dl <Cmd>lua require'dap'.run_last()<CR>
-" }
-
-" nvim-dap-ruby {
-"lua require('dap-ruby').setup()
-" }
-
-" nvim-dap-ui {
-"lua require("dapui").setup()
-" }
-
-" nvim-snippy {
 lua <<EOF
-require('snippy').setup({
-    mappings = {
-        is = {
-            ['<Tab>'] = 'expand_or_advance',
-            ['<S-Tab>'] = 'previous',
-        },
-    },
-})
+-- Align line-wise comment delimiters flush left instead of following code indentation
+vim.g.NERDDefaultAlign = 'left'
 EOF
 " }
 
-" nvim-coverage {
-lua << EOF
-require("coverage").setup({
-})
-EOF
-" }
-
-" nvim-cursorline {
+"" nvim-autopairs {
 "lua << EOF
-"require('nvim-cursorline').setup { }
+"local npairs = require("nvim-autopairs")
+"npairs.setup({
+"	check_ts = true, --  Use treesitter to check for a pair
+"	map_c_h = true, -- Map the <C-h> key to delete a pair
+"	map_c_w = true, -- map <c-w> to delete a pair if possible
+"})
+"
+"-- Ref: https://github.com/windwp/nvim-autopairs/wiki/Endwise
+"-- Could use https://github.com/RRethy/nvim-treesitter-endwise instead
+"npairs.add_rules(require('nvim-autopairs.rules.endwise-lua'))
+"npairs.add_rules(require('nvim-autopairs.rules.endwise-ruby'))
 "EOF
-" }
+"" }
 
-" nvim-peekup {
-lua <<EOF
--- Paste selection to register ", so that it can be pasted directly with 'p'.
--- Ref: https://github.com/gennaro-tedesco/nvim-peekup/issues/27
-require('nvim-peekup.config').on_keystroke["paste_reg"] = '"'
-EOF
-" }
+"" nvim-cmp {
+""set completeopt=menu,menuone,noselect
+"
+""" Lua Setup {
+"" Copy and paste latest setup from https://github.com/hrsh7th/nvim-cmp#setup
+"" Not possible to comment out as lua code is interpreted still somehow.
+"" The essential custom part is kept here:
+"  "-- Setup lspconfig.
+"  "require('lspconfig')['bashls'].setup {
+"    "capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+"    "}
+"  "require('lspconfig')['jsonls'].setup {
+"    "capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+"    "}
+"  "require('lspconfig')['pyright'].setup {
+"    "capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+"    "}
+"  "require('lspconfig')['solargraph'].setup {
+"    "capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+"    "}
+"  "require('lspconfig')['vimls'].setup {
+"    "capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+"  "}
+"
+"" INSERT CONFIG FROM README HERE.
+""" }
+"" }
 
-" nvim-surround {
-lua << EOF
-require("nvim-surround").setup()
-EOF
-" }
+"" nvim-dap {
+"" Suggested mappings from *dap-mappings* https://github.com/mfussenegger/nvim-dap/blob/master/doc/dap.txt
+""nnoremap <silent> <F5> <Cmd>lua require'dap'.continue()<CR>
+""nnoremap <silent> <F10> <Cmd>lua require'dap'.step_over()<CR>
+""nnoremap <silent> <F11> <Cmd>lua require'dap'.step_into()<CR>
+""nnoremap <silent> <F12> <Cmd>lua require'dap'.step_out()<CR>
+""nnoremap <silent> <Leader>b <Cmd>lua require'dap'.toggle_breakpoint()<CR>
+""nnoremap <silent> <Leader>B <Cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>
+""nnoremap <silent> <Leader>lp <Cmd>lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>
+""nnoremap <silent> <Leader>dr <Cmd>lua require'dap'.repl.open()<CR>
+""nnoremap <silent> <Leader>dl <Cmd>lua require'dap'.run_last()<CR>
+"" }
 
-" nvim-tabline {
-lua <<EOF
-require('tabline').setup({})
-EOF
-" }
+"" nvim-dap-ruby {
+""lua require('dap-ruby').setup()
+"" }
 
-" nvim-toggler {
-lua << EOF
-require('nvim-toggler').setup()
-EOF
-" }
+"" nvim-dap-ui {
+""lua require("dapui").setup()
+"" }
 
-" nvim-tree.lua {
-" Toggle file explorer tree. When open_on_tab=true, syncs toggle globally acoss tabs.
-noremap <silent> <F2> :NvimTreeToggle<CR>
+"" nvim-snippy {
+"lua <<EOF
+"require('snippy').setup({
+"    mappings = {
+"        is = {
+"            ['<Tab>'] = 'expand_or_advance',
+"            ['<S-Tab>'] = 'previous',
+"        },
+"    },
+"})
+"EOF
+"" }
 
-lua <<EOF
-require("nvim-tree").setup {
-	open_on_tab = true,
-	filters = { custom = { "^.git$" } },
-	view = {
-		width = "15%",
-		side = "left",
-	},
-}
-EOF
-" }
+"" nvim-coverage {
+"lua << EOF
+"require("coverage").setup({
+"})
+"EOF
+"" }
+
+"" nvim-cursorline {
+""lua << EOF
+""require('nvim-cursorline').setup { }
+""EOF
+"" }
+
+"" nvim-peekup {
+"lua <<EOF
+"-- Paste selection to register ", so that it can be pasted directly with 'p'.
+"-- Ref: https://github.com/gennaro-tedesco/nvim-peekup/issues/27
+"require('nvim-peekup.config').on_keystroke["paste_reg"] = '"'
+"EOF
+"" }
+
+"" nvim-surround {
+"lua << EOF
+"require("nvim-surround").setup()
+"EOF
+"" }
+
+"" nvim-tabline {
+"lua <<EOF
+"require('tabline').setup({})
+"EOF
+"" }
+
+"" nvim-toggler {
+"lua << EOF
+"require('nvim-toggler').setup()
+"EOF
+"" }
+
+"" nvim-tree.lua {
+"" Toggle file explorer tree. When open_on_tab=true, syncs toggle globally acoss tabs.
+"noremap <silent> <F2> :NvimTreeToggle<CR>
+"
+"lua <<EOF
+"require("nvim-tree").setup {
+"	open_on_tab = true,
+"	filters = { custom = { "^.git$" } },
+"	view = {
+"		width = "15%",
+"		side = "left",
+"	},
+"}
+"EOF
+"" }
 
 " nvim-treesitter {
 lua <<EOF
@@ -854,214 +862,217 @@ require'nvim-treesitter.configs'.setup {
 EOF
 " }
 
-" other.nvim {
-" init.vim or .vimrc
-lua << EOF
-require("other-nvim").setup({
-	-- Show menu each time for multiple other files.
-	rememberBuffers = false,
-	mappings = {
-		-- builtin mappings
-		"rails",
-		-- custom mappings
-	},
-	style = {
-		width = 0.7,
-	},
-})
-
-vim.api.nvim_set_keymap("n", "<leader>ll", "<cmd>:Other<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<leader>lx", "<cmd>:OtherSplit<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<leader>lv", "<cmd>:OtherVSplit<CR>", { noremap = true, silent = true })
---vim.api.nvim_set_keymap("n", "<leader>lc", "<cmd>:OtherClear<CR>", { noremap = true, silent = true })
-
--- Context specific bindings
-vim.api.nvim_set_keymap("n", "<leader>lt", "<cmd>:OtherVSplit test<CR>", { noremap = true, silent = true })
-EOF
-" }
+"" other.nvim {
+"" init.vim or .vimrc
+"lua << EOF
+"require("other-nvim").setup({
+"	-- Show menu each time for multiple other files.
+"	rememberBuffers = false,
+"	mappings = {
+"		-- builtin mappings
+"		"rails",
+"		-- custom mappings
+"	},
+"	style = {
+"		width = 0.7,
+"	},
+"})
+"
+"vim.api.nvim_set_keymap("n", "<leader>ll", "<cmd>:Other<CR>", { noremap = true, silent = true })
+"vim.api.nvim_set_keymap("n", "<leader>lx", "<cmd>:OtherSplit<CR>", { noremap = true, silent = true })
+"vim.api.nvim_set_keymap("n", "<leader>lv", "<cmd>:OtherVSplit<CR>", { noremap = true, silent = true })
+"--vim.api.nvim_set_keymap("n", "<leader>lc", "<cmd>:OtherClear<CR>", { noremap = true, silent = true })
+"
+"-- Context specific bindings
+"vim.api.nvim_set_keymap("n", "<leader>lt", "<cmd>:OtherVSplit test<CR>", { noremap = true, silent = true })
+"EOF
+"" }
 
 " sideways.vim {
-nnoremap <silent> <a :SidewaysLeft<CR>		" Move function argument to the left.
-nnoremap <silent> >a :SidewaysRight<CR>		" Move function argument to the right.
-" }
-
-" tickets.vim {
-" Alternatives that also support per-branch saving to some extent:
-" * https://piet.me/branch-based-sessions-in-vim/
-" * https://github.com/dhruvasagar/vim-prosession
-" * https://github.com/wting/gitsessions.vim
-" * https://github.com/rmagatti/auto-session
-
-let g:auto_ticket = 0  " Automatically load tickets when starting vim without file arguments.
-
- " Save current session.
-nnoremap <silent> <C-M-s> :execute ':SaveSession' <bar> echo "Session saved"<CR>
-nnoremap <silent> <C-M-o> :execute ':OpenSession' <bar> echo "Session loaded"<CR>
-" }
-
-" urlview.nvim {
 lua << EOF
-require("urlview").setup({
-})
-
-vim.keymap.set("n", "\\u", "<Cmd>UrlView<CR>", { desc = "view buffer URLs" })
+vim.keymap.set('n', '<a', ':SidewaysLeft<CR>', { silent = true, desc = 'Move function argument to the left.' })
+vim.keymap.set('n', '>a', ':SidewaysRight<CR>', { silent = true, desc = 'Move function argument to the right.' })
 EOF
 " }
 
-" vim-better-whitespace {
-let g:strip_whitelines_at_eof=1		" Also strip empty lines at end of file on save.
-let g:show_spaces_that_precede_tabs=1	" Highlight spaces that happens before tab.
-let g:strip_whitespace_on_save = 1	" Activate by default.
-let g:strip_whitespace_confirm=0	" Don't ask for permission.
-" Filetypes to ignore even when strip_whitespace_on_save=1
-"let g:better_whitespace_filetypes_blacklist=['<filetype1>', '<filetype2>', '<etc>',
+"" tickets.vim {
+"" Alternatives that also support per-branch saving to some extent:
+"" * https://piet.me/branch-based-sessions-in-vim/
+"" * https://github.com/dhruvasagar/vim-prosession
+"" * https://github.com/wting/gitsessions.vim
+"" * https://github.com/rmagatti/auto-session
+"
+"let g:auto_ticket = 0  " Automatically load tickets when starting vim without file arguments.
+"
+" " Save current session.
+"nnoremap <silent> <C-M-s> :execute ':SaveSession' <bar> echo "Session saved"<CR>
+"nnoremap <silent> <C-M-o> :execute ':OpenSession' <bar> echo "Session loaded"<CR>
+"" }
 
-
-" Use same command as in the old ~/.vim/plugin/stripspaces.vim
-" Need to wrap the command in a function as we can't chain
-" commands unless they were declared to support this.
-" Reference: " https://unix.stackexchange.com/questions/144568/how-do-i-write-a-command-in-vim-to-run-multiple-commands
-function! StripWhitespaceWrapper()
-	execute 'StripWhitespace'
-endfunction
-command! Ws call StripWhitespaceWrapper() | update
-
-" Like :wq but strip whitespaces first.
-command! Wqs call StripWhitespaceWrapper() | wq
-" Like :wqa but strip whitespaces in each buffer first.
-command! Wqas bufdo call StripWhitespaceWrapper() | wq
-" }
-
-" vim-fugative {
-autocmd BufReadPost fugitive://* set bufhidden=delete	" Close Fugitive buffers when leaving.
-" }
-
-" vim-gist {
-"let g:gist_detect_filetype = 1				" Detect filetype from name.
-"let g:gist_show_privates = 1				" Let Gist -l show private gists.
-"let g:gist_private = 1					" Make private the default for new Gists.
-"let g:gist_open_browser_after_post = 1			" Open in browser after post.
-""let g:gist_clip_command = 'xclip -selection clipboard'	" Copy command.
-""let g:gist_browser_command = 'w3m %URL%'		" Browser to use.
-"let g:gist_browser_command = 'firefox  %URL%'		" Browser to use.
-" }
-
-" vim-gitgutter {
-set updatetime=100		" Speedier update of file status.
-" }
-
-" vim-illuminate {
+"" urlview.nvim {
 "lua << EOF
-"require('illuminate').configure()
+"require("urlview").setup({
+"})
+"
+"vim.keymap.set("n", "\\u", "<Cmd>UrlView<CR>", { desc = "view buffer URLs" })
 "EOF
-" }
+"" }
 
-" vim-instant-markdown {
-let g:instant_markdown_autostart=1
+"" vim-better-whitespace {
+"let g:strip_whitelines_at_eof=1		" Also strip empty lines at end of file on save.
+"let g:show_spaces_that_precede_tabs=1	" Highlight spaces that happens before tab.
+"let g:strip_whitespace_on_save = 1	" Activate by default.
+"let g:strip_whitespace_confirm=0	" Don't ask for permission.
+"" Filetypes to ignore even when strip_whitespace_on_save=1
+""let g:better_whitespace_filetypes_blacklist=['<filetype1>', '<filetype2>', '<etc>',
+"
+"
+"" Use same command as in the old ~/.vim/plugin/stripspaces.vim
+"" Need to wrap the command in a function as we can't chain
+"" commands unless they were declared to support this.
+"" Reference: " https://unix.stackexchange.com/questions/144568/how-do-i-write-a-command-in-vim-to-run-multiple-commands
+"function! StripWhitespaceWrapper()
+"	execute 'StripWhitespace'
+"endfunction
+"command! Ws call StripWhitespaceWrapper() | update
+"
+"" Like :wq but strip whitespaces first.
+"command! Wqs call StripWhitespaceWrapper() | wq
+"" Like :wqa but strip whitespaces in each buffer first.
+"command! Wqas bufdo call StripWhitespaceWrapper() | wq
+"" }
 
-" Blocklist certain paths for previewing files (recursively).
-" See https://github.com/instant-markdown/vim-instant-markdown/issues/198
-" Did not work to put this in .vimlocal file, as it's loaded too late.
-augroup InstantMarkdownGroup
-  autocmd!
-  " [1-9]*.md - PR body by gh(1) have file names with this pattern.
-  au! BufReadPre,BufNewFile,BufEnter,BufFilePre ~/src/github.com/erikw/hackerrank-solutions/*.md,~/src/github.com/erikw/leetcode-solutions/*.md,[1-9]*.md let g:instant_markdown_autostart=0
-augroup END
-" }
+"" vim-fugative {
+"autocmd BufReadPost fugitive://* set bufhidden=delete	" Close Fugitive buffers when leaving.
+"" }
 
-" vim-markdown {
-let g:vim_markdown_folding_disabled = 1		" No fold by default
-let g:vim_markdown_toc_autofit = 1		" Make :Toc smaller
-let g:vim_markdown_follow_anchor = 1		" Let ge follow #anchors
-let g:vim_markdown_new_list_item_indent = 2	" Bullent space indents.
-" }
+"" vim-gist {
+""let g:gist_detect_filetype = 1				" Detect filetype from name.
+""let g:gist_show_privates = 1				" Let Gist -l show private gists.
+""let g:gist_private = 1					" Make private the default for new Gists.
+""let g:gist_open_browser_after_post = 1			" Open in browser after post.
+"""let g:gist_clip_command = 'xclip -selection clipboard'	" Copy command.
+"""let g:gist_browser_command = 'w3m %URL%'		" Browser to use.
+""let g:gist_browser_command = 'firefox  %URL%'		" Browser to use.
+"" }
 
-" vim-startify {
-"let g:startify_fortune_use_unicode = 1	" Draw fortune with Unicode instead of ASCII. Not needed with startify_custom_header.
-"let g:startify_files_number = 15	" Nubmer of files to show.
-" Bookmarks
-let g:startify_bookmarks = [
-	\ {'v': g:xdg_config_home . '/nvim/init.vim'},
-	\ g:xdg_config_home . '/shell/commons',
-	\ g:xdg_config_home . '/shell/aliases'
-	\ ]
+"" vim-gitgutter {
+"set updatetime=100		" Speedier update of file status.
+"" }
 
+"" vim-illuminate {
+""lua << EOF
+""require('illuminate').configure()
+""EOF
+"" }
 
-" Reference: https://vi.stackexchange.com/a/9942
-let s:nvim_version = matchstr(execute('version'), 'NVIM v\zs[^\n]*')
+"" vim-instant-markdown {
+"let g:instant_markdown_autostart=1
+"
+"" Blocklist certain paths for previewing files (recursively).
+"" See https://github.com/instant-markdown/vim-instant-markdown/issues/198
+"" Did not work to put this in .vimlocal file, as it's loaded too late.
+"augroup InstantMarkdownGroup
+"  autocmd!
+"  " [1-9]*.md - PR body by gh(1) have file names with this pattern.
+"  au! BufReadPre,BufNewFile,BufEnter,BufFilePre ~/src/github.com/erikw/hackerrank-solutions/*.md,~/src/github.com/erikw/leetcode-solutions/*.md,[1-9]*.md let g:instant_markdown_autostart=0
+"augroup END
+"" }
 
-" Custom logo instead of cowsay.
-let s:ascii = [
-  \ '    ##############..... ##############',
-  \ '    ##############......##############',
-  \ '      ##########..........##########',
-  \ '      ##########........##########',
-  \ '      ##########.......##########',
-  \ '      ##########.....##########..',
-  \ '      ##########....##########.....',
-  \ '    ..##########..##########.........',
-  \ '  ....##########.#########.............',
-  \ '    ..##################.............',
-  \ '      ################.............',
-  \ '      ##############.............',
-  \ '      ############.............',
-  \ '      ##########.............',
-  \ '      ########.............',
-  \ '      ######    .........',
-  \ '                  .....',
-  \ '                    .',
-  \ '    Neovim v' . s:nvim_version
-  \]
-"let g:startify_custom_header = s:ascii + startify#fortune#boxed()
-let g:startify_custom_header = s:ascii
+"" vim-markdown {
+"let g:vim_markdown_folding_disabled = 1		" No fold by default
+"let g:vim_markdown_toc_autofit = 1		" Make :Toc smaller
+"let g:vim_markdown_follow_anchor = 1		" Let ge follow #anchors
+"let g:vim_markdown_new_list_item_indent = 2	" Bullent space indents.
+"" }
 
-" Show version in fooder. Reference: https://github.com/mhinz/vim-startify/issues/449
-"let g:startify_custom_footer = "startify#pad(['', '\ufa76' . matchstr(execute('version'), 'NVIM v\\z\\s[^\\n]\*'), ''])"
-" }
+"" vim-startify {
+""let g:startify_fortune_use_unicode = 1	" Draw fortune with Unicode instead of ASCII. Not needed with startify_custom_header.
+""let g:startify_files_number = 15	" Nubmer of files to show.
+"" Bookmarks
+"let g:startify_bookmarks = [
+"	\ {'v': g:xdg_config_home . '/nvim/init.vim'},
+"	\ {'p': g:xdg_config_home . '/nvim/lua/plugins.lua'},
+"	\ g:xdg_config_home . '/shell/commons',
+"	\ g:xdg_config_home . '/shell/aliases'
+"	\ ]
+"
+"
+"" Reference: https://vi.stackexchange.com/a/9942
+"let s:nvim_version = matchstr(execute('version'), 'NVIM v\zs[^\n]*')
+"
+"" Custom logo instead of cowsay.
+"let s:ascii = [
+"  \ '    ##############..... ##############',
+"  \ '    ##############......##############',
+"  \ '      ##########..........##########',
+"  \ '      ##########........##########',
+"  \ '      ##########.......##########',
+"  \ '      ##########.....##########..',
+"  \ '      ##########....##########.....',
+"  \ '    ..##########..##########.........',
+"  \ '  ....##########.#########.............',
+"  \ '    ..##################.............',
+"  \ '      ################.............',
+"  \ '      ##############.............',
+"  \ '      ############.............',
+"  \ '      ##########.............',
+"  \ '      ########.............',
+"  \ '      ######    .........',
+"  \ '                  .....',
+"  \ '                    .',
+"  \ '    Neovim v' . s:nvim_version
+"  \]
+""let g:startify_custom_header = s:ascii + startify#fortune#boxed()
+"let g:startify_custom_header = s:ascii
+"
+"" Show version in fooder. Reference: https://github.com/mhinz/vim-startify/issues/449
+""let g:startify_custom_footer = "startify#pad(['', '\ufa76' . matchstr(execute('version'), 'NVIM v\\z\\s[^\\n]\*'), ''])"
+"" }
 
-" vim-yoink {
-"let g:yoinkMaxItems=16			" Increase from default 10.
-"let g:yoinkSyncNumberedRegisters=1	" Repurpose the registers to be a history stack!
-"let g:yoinkIncludeDeleteOperations=1	" Include text delete operations in the yank history.
-"let g:yoinkSyncSystemClipboardOnFocus=0	" Don't integrate with system clipboard.
+"" vim-yoink {
+""let g:yoinkMaxItems=16			" Increase from default 10.
+""let g:yoinkSyncNumberedRegisters=1	" Repurpose the registers to be a history stack!
+""let g:yoinkIncludeDeleteOperations=1	" Include text delete operations in the yank history.
+""let g:yoinkSyncSystemClipboardOnFocus=0	" Don't integrate with system clipboard.
+"
+""let g:yoinkSavePersistently=1		" Persist history across sessions.
+"
+"
+""" Replace default paste with Yoink. "xp still works
+""nmap p <plug>(YoinkPaste_p)
+""nmap P <plug>(YoinkPaste_P)
+"
+""" Also replace the default gp with yoink paste so we can toggle paste in this case too
+""nmap gp <plug>(YoinkPaste_gp)
+""nmap gP <plug>(YoinkPaste_gP)
+"
+""" Cycle yankring immediately after pasting.
+""nmap <c-n> <plug>(YoinkPostPasteSwapBack)
+"""nmap <c-p> <plug>(YoinkPostPasteSwapForward)
+""" Let c-p execute fzf if we're not in paste mode.
+""nmap <expr> <c-p> yoink#canSwap() ? '<plug>(YoinkPostPasteSwapForward)' : ':Files<CR>'
+"
+""" Toggle formatted paste.
+"""nmap <c-=> <plug>(YoinkPostPasteToggleFormat)
+"" }
 
-"let g:yoinkSavePersistently=1		" Persist history across sessions.
+"" vista.vim {
+"nmap <silent> <F3> :Vista!! <CR>	" Toggle the tag sidewindow.
+"let g:vista_default_executive = 'ale'	" Default executive.
+"let g:vista_sidebar_width = 50		" Window width.
+"" }
 
+"" which-key.nvim {
+""lua << EOF
+""  require("which-key").setup {
+""  }
+""EOF
+"" }
 
-"" Replace default paste with Yoink. "xp still works
-"nmap p <plug>(YoinkPaste_p)
-"nmap P <plug>(YoinkPaste_P)
-
-"" Also replace the default gp with yoink paste so we can toggle paste in this case too
-"nmap gp <plug>(YoinkPaste_gp)
-"nmap gP <plug>(YoinkPaste_gP)
-
-"" Cycle yankring immediately after pasting.
-"nmap <c-n> <plug>(YoinkPostPasteSwapBack)
-""nmap <c-p> <plug>(YoinkPostPasteSwapForward)
-"" Let c-p execute fzf if we're not in paste mode.
-"nmap <expr> <c-p> yoink#canSwap() ? '<plug>(YoinkPostPasteSwapForward)' : ':Files<CR>'
-
-"" Toggle formatted paste.
-""nmap <c-=> <plug>(YoinkPostPasteToggleFormat)
-" }
-
-" vista.vim {
-nmap <silent> <F3> :Vista!! <CR>	" Toggle the tag sidewindow.
-let g:vista_default_executive = 'ale'	" Default executive.
-let g:vista_sidebar_width = 50		" Window width.
-" }
-
-" which-key.nvim {
-"lua << EOF
-"  require("which-key").setup {
-"  }
-"EOF
-" }
-
-" undotree {
-nmap <silent> <F4> :UndotreeToggle<CR>	" Toggle side pane.
-let g:undotree_WindowLayout=2		" Set style to have diff window below.
-let g:undotree_SetFocusWhenToggle=1	" Put cursor in undo window on open.
-" }
+"" undotree {
+"nmap <silent> <F4> :UndotreeToggle<CR>	" Toggle side pane.
+"let g:undotree_WindowLayout=2		" Set style to have diff window below.
+"let g:undotree_SetFocusWhenToggle=1	" Put cursor in undo window on open.
+"" }
 " }
