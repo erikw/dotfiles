@@ -23,7 +23,6 @@ return require("packer").startup(function(use)
 	use("wbthomason/packer.nvim")
 
 	-- General {
-	--use('LucHermitte/local_vimrc') | use('LucHermitte/lh-vim-lib' " Project local vim config.
 	--use('dhruvasagar/vim-table-mode')			-- Create ASCII tables
 	--use('fidian/hexmode')						-- Open binary files as a HEX dump with :Hexmode
 	--use('folke/which-key.nvim')				-- Show matching keybindings e.g. when tapping Leader.

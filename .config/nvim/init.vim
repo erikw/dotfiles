@@ -423,15 +423,15 @@ vim.keymap.set('n', '<F5>', ":lua require('dark_notify').toggle()<CR>", { silent
 EOF
 "" }
 
-"" dash.vim {
-""nnoremap <Leader>d :DashWord<CR>
-""nnoremap <Leader>D :Dash<CR>
-""lua <<EOF
-""require('dash').setup({
-""  -- your config here
-""})
-""EOF
-"" }
+" dash.vim {
+"lua <<EOF
+"require('dash').setup({
+"  -- your config here
+"})
+"vim.keymap.set('n', '<Leader>d', ':DashWord<CR>', { silent = true, desc = 'Dash: lookup word.' })
+"vim.keymap.set('n', '<Leader>D', ':Dash<CR>', { silent = true, desc = 'Dash' })
+"EOF
+" }
 
 " diffview.nvim {
 lua <<EOF
@@ -455,23 +455,23 @@ vim.keymap.set('n', '<Leader>t', ':Windows<CR>', { silent = true, desc = 'FZF: s
 vim.keymap.set('n', '<Leader>H', ':History<CR>', { silent = true, desc = 'FZF: search history of opended files' })
 vim.keymap.set('n', '<Leader>m', ':Maps<CR>', { silent = true, desc = 'FZF: search mappings.' })
 vim.keymap.set('n', '<Leader>g', ':Rg<CR>', { silent = true, desc = 'FZF: search with rg (aka live grep).' })
-EOF
 
-" To ignore a certain path in a git project from both RG and FD used by FZF,
-" the eaiest way is to create ignore files and exclude the in local git clone.
-" Ref: https://stackoverflow.com/a/1753078/265508
-" $ cd git_proj/
-" $ echo "path/to/exclude" > .rgignore
-" $ echo "path/to/exclude" > .fdignore
-" $ printf ".rgignore\n.fdignore" >> .git/info/exclude
+-- To ignore a certain path in a git project from both RG and FD used by FZF,
+-- the eaiest way is to create ignore files and exclude the in local git clone.
+-- Ref: https://stackoverflow.com/a/1753078/265508
+-- $ cd git_proj/
+-- $ echo "path/to/exclude" > .rgignore
+-- $ echo "path/to/exclude" > .fdignore
+-- $ printf ".rgignore\n.fdignore" >> .git/info/exclude
+EOF
 " }
 
 " hop.nvim {
 lua <<EOF
-	require'hop'.setup()
-	-- Keybindings
-	-- Vim Command to Lua function mapping: https://github.com/phaazon/hop.nvim/wiki/Advanced-Hop#lua-equivalents-of-hop-commands
-	vim.api.nvim_set_keymap('', '<leader>h', "<cmd>lua require'hop'.hint_words()<cr>", {})
+require'hop'.setup()
+-- Keybindings
+-- Vim Command to Lua function mapping: https://github.com/phaazon/hop.nvim/wiki/Advanced-Hop#lua-equivalents-of-hop-commands
+vim.api.nvim_set_keymap('', '<leader>h', "<cmd>lua require'hop'.hint_words()<cr>", {})
 EOF
 "" }
 
@@ -491,15 +491,6 @@ EOF
 ""    show_current_context_start = true, -- underline first line of current indent block.
 ""}
 ""EOF
-"" }
-
-"" local_vimrc {
-""" File names to recognize.
-""let g:local_vimrc = ['.vimlocal', '_vimrc_local.vim']
-""" Paths to not ask before loading.
-""if exists("lh#local_vimrc")
-""        call lh#local_vimrc#munge('whitelist', $HOME.'/src/github.com/erikw')
-""end
 "" }
 
 " lsp_signature.nvim {
@@ -563,55 +554,6 @@ npairs.add_rules(require('nvim-autopairs.rules.endwise-lua'))
 npairs.add_rules(require('nvim-autopairs.rules.endwise-ruby'))
 EOF
 " }
-
-"" nvim-cmp {
-""set completeopt=menu,menuone,noselect
-"
-""" Lua Setup {
-"" Copy and paste latest setup from https://github.com/hrsh7th/nvim-cmp#setup
-"" Not possible to comment out as lua code is interpreted still somehow.
-"" The essential custom part is kept here:
-"  "-- Setup lspconfig.
-"  "require('lspconfig')['bashls'].setup {
-"    "capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-"    "}
-"  "require('lspconfig')['jsonls'].setup {
-"    "capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-"    "}
-"  "require('lspconfig')['pyright'].setup {
-"    "capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-"    "}
-"  "require('lspconfig')['solargraph'].setup {
-"    "capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-"    "}
-"  "require('lspconfig')['vimls'].setup {
-"    "capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-"  "}
-"
-"" INSERT CONFIG FROM README HERE.
-""" }
-"" }
-
-"" nvim-dap {
-"" Suggested mappings from *dap-mappings* https://github.com/mfussenegger/nvim-dap/blob/master/doc/dap.txt
-""nnoremap <silent> <F5> <Cmd>lua require'dap'.continue()<CR>
-""nnoremap <silent> <F10> <Cmd>lua require'dap'.step_over()<CR>
-""nnoremap <silent> <F11> <Cmd>lua require'dap'.step_into()<CR>
-""nnoremap <silent> <F12> <Cmd>lua require'dap'.step_out()<CR>
-""nnoremap <silent> <Leader>b <Cmd>lua require'dap'.toggle_breakpoint()<CR>
-""nnoremap <silent> <Leader>B <Cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>
-""nnoremap <silent> <Leader>lp <Cmd>lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>
-""nnoremap <silent> <Leader>dr <Cmd>lua require'dap'.repl.open()<CR>
-""nnoremap <silent> <Leader>dl <Cmd>lua require'dap'.run_last()<CR>
-"" }
-
-"" nvim-dap-ruby {
-""lua require('dap-ruby').setup()
-"" }
-
-"" nvim-dap-ui {
-""lua require("dapui").setup()
-"" }
 
 " nvim-snippy {
 lua <<EOF
