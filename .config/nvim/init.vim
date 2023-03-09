@@ -804,47 +804,43 @@ EOF
 "" }
 
 " vim-startify {
-"let g:startify_fortune_use_unicode = 1	" Draw fortune with Unicode instead of ASCII. Not needed with startify_custom_header.
-"let g:startify_files_number = 15	" Nubmer of files to show.
-" Bookmarks
-let g:startify_bookmarks = [
-	\ {'v': g:xdg_config_home . '/nvim/init.vim'},
-	\ {'p': g:xdg_config_home . '/nvim/lua/plugins.lua'},
-	\ g:xdg_config_home . '/shell/commons',
-	\ g:xdg_config_home . '/shell/aliases'
-	\ ]
+lua << EOF
+--vim.g.startify_fortune_use_unicode = 1	-- Draw fortune with Unicode instead of ASCII. Not needed with startify_custom_header.
+--vim.g.startify_files_number = 15		-- Nubmer of files to show.
 
+-- Bookmarks
+vim.g.startify_bookmarks = {
+	 {['v'] = vim.g.xdg_config_home .. '/nvim/init.vim'},
+	 {['p'] = vim.g.xdg_config_home .. '/nvim/lua/plugins.lua'},
+	 vim.g.xdg_config_home .. '/shell/commons',
+	 vim.g.xdg_config_home .. '/shell/aliases',
+	}
 
-" Ref:g https://vi.stackexchange.com/a/9942
-let s:nvim_version = matchstr(execute('version'), 'NVIM v\zs[^\n]*')
-
-" Custom logo instead of cowsay.
-let s:ascii = [
-  \ '    ##############..... ##############',
-  \ '    ##############......##############',
-  \ '      ##########..........##########',
-  \ '      ##########........##########',
-  \ '      ##########.......##########',
-  \ '      ##########.....##########..',
-  \ '      ##########....##########.....',
-  \ '    ..##########..##########.........',
-  \ '  ....##########.#########.............',
-  \ '    ..##################.............',
-  \ '      ################.............',
-  \ '      ##############.............',
-  \ '      ############.............',
-  \ '      ##########.............',
-  \ '      ########.............',
-  \ '      ######    .........',
-  \ '                  .....',
-  \ '                    .',
-  \ '    Neovim v' . s:nvim_version
-  \]
-"let g:startify_custom_header = s:ascii + startify#fortune#boxed()
-let g:startify_custom_header = s:ascii
-
-" Show version in fooder. Ref:g https://github.com/mhinz/vim-startify/issues/449
-"let g:startify_custom_footer = "startify#pad(['', '\ufa76' . matchstr(execute('version'), 'NVIM v\\z\\s[^\\n]\*'), ''])"
+local nver = vim.version()
+local semnver = nver.major .. '.' .. nver.minor .. '.' .. nver.patch
+local ascii = {
+   '    ##############..... ##############',
+   '    ##############......##############',
+   '      ##########..........##########',
+   '      ##########........##########',
+   '      ##########.......##########',
+   '      ##########.....##########..',
+   '      ##########....##########.....',
+   '    ..##########..##########.........',
+   '  ....##########.#########.............',
+   '    ..##################.............',
+   '      ################.............',
+   '      ##############.............',
+   '      ############.............',
+   '      ##########.............',
+   '      ########.............',
+   '      ######    .........',
+   '                  .....',
+   '                    .',
+   '    Neovim v' .. semnver
+  }
+vim.g.startify_custom_header = ascii
+EOF
 " }
 
 " vista.vim {
