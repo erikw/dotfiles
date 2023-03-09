@@ -141,31 +141,30 @@ return require("packer").startup(function(use)
 --	-- * Keyboard shortcuts: https://github.com/junegunn/fzf/blob/master/README-VIM.md#fzf
 --	-- * Commands: https://github.com/junegunn/fzf.vim#commands
 	use {
-	        'junegunn/fzf.vim',
-	        requires = { 'junegunn/fzf', run = ':call fzf#install()' }
+	    'junegunn/fzf.vim',
+	    requires = { 'junegunn/fzf', run = ':call fzf#install()' }
 	    }
 -- " }
 --
 -- Snippets {
---	use('dcampos/nvim-snippy')	-- Snippets engine compatible with the SnipMate format.
---	use('honza/vim-snippets')	-- Snippet library
+    use('dcampos/nvim-snippy')	-- Snippets engine compatible with the SnipMate format.
+    use('honza/vim-snippets')	-- Snippet library
 -- " }
 --
 -- Syntax {
---	use('bfontaine/Brewfile.vim', { 'for': 'brewfile' }		-- Syntax for Brewfiles
---	use('kalekundert/vim-nestedtext', { 'for': 'nestedtext' }	-- Syntax for NestedText .nt files.
+	use{'bfontaine/Brewfile.vim', ft = {  'brewfile' }}		-- Syntax for Brewfiles
+	use{'kalekundert/vim-nestedtext', ft = { 'nestedtext' } }	-- Syntax for NestedText .nt files.
 -- " }
 --
 -- UI {
 --	--use('RRethy/vim-illuminate')		-- Highlight current word under cursor. Not compatible with dark-notify: https://github.com/cormacrelf/dark-notify/issues/8
 --	--use('sitiom/nvim-numbertoggle')		-- Automatic relative / static line number toggling. Disabled as of https://github.com/sitiom/nvim-numbertoggle/issues/15
 --	--use('yamatsum/nvim-cursorline')	-- Highlight current word under cursor. Not compatible with dark-notify: https://github.com/cormacrelf/dark-notify/issues/8
---	use('chentoast/marks.nvim')		-- Visualize marks in the sign column.
+	use('chentoast/marks.nvim')		-- Visualize marks in the sign column.
     use('cormacrelf/dark-notify')		-- Watch system light/dark mode changes. Requires dark-notify(1).
---	use('crispgm/nvim-tabline')		-- More informative tab titles.
---	use('karb94/neoscroll.nvim')		-- Smoth scrolling.
---	use('kyazdani42/nvim-web-devicons')	-- Dependency for: nvim-tree.lua, lualine.nvim, barbar.nvim
---	use('mhinz/vim-startify')		-- Start screen with recently opended files.
+    use {'crispgm/nvim-tabline', requires = { 'nvim-tree/nvim-web-devicons' } }	-- More informative tab titles
+    use('karb94/neoscroll.nvim')		-- Smoth scrolling.
+	use('mhinz/vim-startify')		-- Start screen with recently opended files.
 --	use('nvim-lualine/lualine.nvim')	-- Statusline.
 --
 -- Colorschemes {
@@ -173,7 +172,7 @@ return require("packer").startup(function(use)
 --	--use('folke/tokyonight.nvim', { 'branch': 'main' }
 --	--use('mhartington/oceanic-next'
 --	--use('morhetz/gruvbox'
-    use('ishan9299/nvim-solarized-lua')		-- Solarized theme that works with nvim-treesitter highlights.
+    use {'ishan9299/nvim-solarized-lua', requires = { 'nvim-tree/nvim-web-devicons' } }	-- Solarized theme that works with nvim-treesitter highlights.
 -- " }
 -- "}
 --

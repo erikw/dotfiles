@@ -529,15 +529,15 @@ EOF
 "EOF
 "" }
 
-"" marks.nvim {
-"lua <<EOF
-"require'marks'.setup {}
-"EOF
-"" }
+" marks.nvim {
+lua <<EOF
+require'marks'.setup {}
+EOF
+" }
 
-"" neoscroll.nvim {
-"lua require('neoscroll').setup()
-"" }
+" neoscroll.nvim {
+lua require('neoscroll').setup()
+" }
 
 " nerdcommenter {
 lua <<EOF
@@ -611,18 +611,18 @@ EOF
 ""lua require("dapui").setup()
 "" }
 
-"" nvim-snippy {
-"lua <<EOF
-"require('snippy').setup({
-"    mappings = {
-"        is = {
-"            ['<Tab>'] = 'expand_or_advance',
-"            ['<S-Tab>'] = 'previous',
-"        },
-"    },
-"})
-"EOF
-"" }
+" nvim-snippy {
+lua <<EOF
+require('snippy').setup({
+    mappings = {
+        is = {
+            ['<Tab>'] = 'expand_or_advance',
+            ['<S-Tab>'] = 'previous',
+        },
+    },
+})
+EOF
+" }
 
 "" nvim-cursorline {
 ""lua << EOF
@@ -638,11 +638,11 @@ require('nvim-peekup.config').on_keystroke["paste_reg"] = '"'
 EOF
 " }
 
-"" nvim-tabline {
-"lua <<EOF
-"require('tabline').setup({})
-"EOF
-"" }
+" nvim-tabline {
+lua <<EOF
+require('tabline').setup({})
+EOF
+" }
 
 " nvim-toggler {
 lua << EOF
@@ -803,49 +803,49 @@ EOF
 "let g:vim_markdown_new_list_item_indent = 2	" Bullent space indents.
 "" }
 
-"" vim-startify {
-""let g:startify_fortune_use_unicode = 1	" Draw fortune with Unicode instead of ASCII. Not needed with startify_custom_header.
-""let g:startify_files_number = 15	" Nubmer of files to show.
-"" Bookmarks
-"let g:startify_bookmarks = [
-"	\ {'v': g:xdg_config_home . '/nvim/init.vim'},
-"	\ {'p': g:xdg_config_home . '/nvim/lua/plugins.lua'},
-"	\ g:xdg_config_home . '/shell/commons',
-"	\ g:xdg_config_home . '/shell/aliases'
-"	\ ]
-"
-"
-"" Ref:g https://vi.stackexchange.com/a/9942
-"let s:nvim_version = matchstr(execute('version'), 'NVIM v\zs[^\n]*')
-"
-"" Custom logo instead of cowsay.
-"let s:ascii = [
-"  \ '    ##############..... ##############',
-"  \ '    ##############......##############',
-"  \ '      ##########..........##########',
-"  \ '      ##########........##########',
-"  \ '      ##########.......##########',
-"  \ '      ##########.....##########..',
-"  \ '      ##########....##########.....',
-"  \ '    ..##########..##########.........',
-"  \ '  ....##########.#########.............',
-"  \ '    ..##################.............',
-"  \ '      ################.............',
-"  \ '      ##############.............',
-"  \ '      ############.............',
-"  \ '      ##########.............',
-"  \ '      ########.............',
-"  \ '      ######    .........',
-"  \ '                  .....',
-"  \ '                    .',
-"  \ '    Neovim v' . s:nvim_version
-"  \]
-""let g:startify_custom_header = s:ascii + startify#fortune#boxed()
-"let g:startify_custom_header = s:ascii
-"
-"" Show version in fooder. Ref:g https://github.com/mhinz/vim-startify/issues/449
-""let g:startify_custom_footer = "startify#pad(['', '\ufa76' . matchstr(execute('version'), 'NVIM v\\z\\s[^\\n]\*'), ''])"
-"" }
+" vim-startify {
+"let g:startify_fortune_use_unicode = 1	" Draw fortune with Unicode instead of ASCII. Not needed with startify_custom_header.
+"let g:startify_files_number = 15	" Nubmer of files to show.
+" Bookmarks
+let g:startify_bookmarks = [
+	\ {'v': g:xdg_config_home . '/nvim/init.vim'},
+	\ {'p': g:xdg_config_home . '/nvim/lua/plugins.lua'},
+	\ g:xdg_config_home . '/shell/commons',
+	\ g:xdg_config_home . '/shell/aliases'
+	\ ]
+
+
+" Ref:g https://vi.stackexchange.com/a/9942
+let s:nvim_version = matchstr(execute('version'), 'NVIM v\zs[^\n]*')
+
+" Custom logo instead of cowsay.
+let s:ascii = [
+  \ '    ##############..... ##############',
+  \ '    ##############......##############',
+  \ '      ##########..........##########',
+  \ '      ##########........##########',
+  \ '      ##########.......##########',
+  \ '      ##########.....##########..',
+  \ '      ##########....##########.....',
+  \ '    ..##########..##########.........',
+  \ '  ....##########.#########.............',
+  \ '    ..##################.............',
+  \ '      ################.............',
+  \ '      ##############.............',
+  \ '      ############.............',
+  \ '      ##########.............',
+  \ '      ########.............',
+  \ '      ######    .........',
+  \ '                  .....',
+  \ '                    .',
+  \ '    Neovim v' . s:nvim_version
+  \]
+"let g:startify_custom_header = s:ascii + startify#fortune#boxed()
+let g:startify_custom_header = s:ascii
+
+" Show version in fooder. Ref:g https://github.com/mhinz/vim-startify/issues/449
+"let g:startify_custom_footer = "startify#pad(['', '\ufa76' . matchstr(execute('version'), 'NVIM v\\z\\s[^\\n]\*'), ''])"
+" }
 
 " vista.vim {
 lua << EOF
