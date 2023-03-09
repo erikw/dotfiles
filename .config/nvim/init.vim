@@ -369,25 +369,24 @@ vim.opt.omnifunc = 'ale#completion#OmniFunc'
 -- See https://github.com/dense-analysis/ale/issues/1700#issuecomment-991643960
 vim.opt.completeopt = {'menu', 'preview'}
 -- }
+
+-- Mappings {
+-- See :help ale-commands
+-- Make similar keybindings to https://github.com/neovim/nvim-lspconfig#keybindings-and-completion
+vim.keymap.set('n', 'gd', '<Plug>(ale_go_to_definition)', { silent = true, desc = 'ALE: go to definition.' })
+vim.keymap.set('n', 'gr', '<Plug>(ale_find_references)', { silent = true, desc = 'ALE: find references.' })
+vim.keymap.set('n', 'K', '<Plug>(ale_hover)', { silent = true, desc = 'ALE: hover.' })
+vim.keymap.set('n', '<Space>rn', '<Plug>(ale_rename)', { silent = true, desc = 'ALE: rename.' })
+
+-- Navigate between errors
+vim.keymap.set('n', '<C-k>', '<Plug>(ale_previous_wrap)', { silent = true, desc = 'ALE: navigate to previous error.' })
+vim.keymap.set('n', '<C-j>', '<Plug>(ale_next_wrap)', { silent = true, desc = 'ALE: navigate to next error.' })
+-- }
+
+-- Toggle command for fixers
+-- Ref:g https://github.com/dense-analysis/ale/issues/1353#issuecomment-424677810
+vim.api.nvim_create_user_command('ALEToggleFixer', 'execute "let g:ale_fix_on_save = get(g:, \'ale_fix_on_save\', 0) ? 0 : 1"', {force = true, desc = "ALE: toggle ale_fix_on_save"})
 EOF
-
-" Mappings {
-" See :help ale-commands
-" Make similar keybindings to https://github.com/neovim/nvim-lspconfig#keybindings-and-completion
-nmap <silent> gd <Plug>(ale_go_to_definition)
-nmap <silent> gr <Plug>(ale_find_references)
-nmap <silent> K <Plug>(ale_hover)
-nmap <silent> <space>rn <Plug>(ale_rename)
-
-" Navigate between errors
-nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-nmap <silent> <C-j> <Plug>(ale_next_wrap)
-
-" }
-
-" Toggle command for fixers
-" Ref:g https://github.com/dense-analysis/ale/issues/1353#issuecomment-424677810
-command! ALEToggleFixer execute "let g:ale_fix_on_save = get(g:, 'ale_fix_on_save', 0) ? 0 : 1"
 " }
 
 "" copilot.vim {
