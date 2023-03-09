@@ -92,61 +92,58 @@ return require("packer").startup(function(use)
 	use('wellle/targets.vim')			-- Extra text objects to operate on e.g. function arguments.
 	use('windwp/nvim-autopairs')			-- Autoclose brackets etc.
 -- " }
---
+
 -- Development: LSP/Completion {
 --	--use('neovim/nvim-lspconfig')			-- Plug-n-play configurations for LSP server. Disabled in favour of simpler to use ALE.
 	use('dense-analysis/ale')			-- LSP linting engine.
---	use('ray-x/lsp_signature.nvim')			-- Method signature window, as ALE does not support it. Ref: https://www.reddit.com/r/vim/comments/jhqzsv/signature_help_via_ale/
---	use('liuchengxu/vista.vim')			-- LSP symbols and tags viewer, like TagBar but with LSP support.
+	use('ray-x/lsp_signature.nvim')			-- Method signature window, as ALE does not support it. Ref: https://www.reddit.com/r/vim/comments/jhqzsv/signature_help_via_ale/
+	use('liuchengxu/vista.vim')			-- LSP symbols and tags viewer, like TagBar but with LSP support.
 -- " }
---
+
 -- Development: DAP {
---	--use('mfussenegger/nvim-dap') " Debug Adapter Protocol
---	--use('rcarriga/nvim-dap-ui')  " UI for DAP
---	--use('suketa/nvim-dap-ruby')  " Config for ruby. Requries the `debug` gem. No rails support yet: https://github.com/suketa/nvim-dap-ruby/issues/25
+--	--use('mfussenegger/nvim-dap') -- Debug Adapter Protocol
+--	--use('rcarriga/nvim-dap-ui')  -- UI for DAP
+--	--use('suketa/nvim-dap-ruby')  -- Config for ruby. Requries the `debug` gem. No rails support yet: https://github.com/suketa/nvim-dap-ruby/issues/25
 -- " }
---
+
 -- Development: C/C++ {
---	--use('chazy/cscope_maps')						-- More macros than autoload_cscope.vim
---	--use('rhysd/vim-clang-format', { 'for': ['c', 'cpp'] }
---	--use('vim-scripts/autoload_cscope.vim', { 'for': ['c', 'cpp'] }	-- Load cscope file and define macros for using it. https://github.com/vim-scripts/autoload_cscope.vim/blob/master/plugin/autoload_cscope.vim#L81-L88
---	use('ludovicchabant/vim-gutentags')					-- Autogenerate new tags file.
+    use('ludovicchabant/vim-gutentags')		-- Autogenerate new tags file.
 -- "}
 --
 -- Development: Go {
---	--use('fatih/vim-go',) { 'for': 'go' }	-- Compilation commands etc.
+--	--use{'fatih/vim-go', ft = { 'go' } }	-- Compilation commands etc.
 -- "}
 --
 -- Development: Java {
---	--Plugin) 'artur-shaik/vim-javacomplete2', { 'for': 'java' }	-- Omni-complete for Java
---	--Plugin 'erikw/jcommenter.vim', { 'for': 'java' }		-- Generate javadoc.
+--	--use{'erikw/jcommenter.vim', ft = { 'java' } }		-- Generate javadoc.
 -- "}
 --
 -- Development: LaTeX {
---	--use('donRaphaco/neotex')	-- Live preview PDF output from latex.
+--	--use{'donRaphaco/neotex', ft = { 'tex' }	-- Live preview PDF output from latex.
 -- " }
 --
 -- Development: Python {
---	--Plugin 'davidhalter/jedi-vim', { 'for': 'python' }	-- Autocompletion using jedi library.
---	--Plugin 'python-rope/ropevim', { 'for': 'python' }	-- Refactoring with rope library.
---	--Plugin 'fisadev/vim-isort', { 'for': 'python' }	-- Sort imports
+--	--use{'python-rope/ropevim', ft = { 'python' } }	-- Refactoring with rope library.
+--	--use{'fisadev/vim-isort', ft = { 'python' } }	    -- Sort imports
 -- "}
 --
 -- Development: Swift {
---	--Plugin 'keith/swift.vim', { 'for': 'switft' }	-- Syntax files for Switch
+--	--use{'keith/swift.vim', ft = { 'switft' } }	    -- Syntax files for Switch
 -- "}
 --
 -- Development: Web {
---	use('ap/vim-css-color', { 'for': ['css', 'scss'] }	-- Display CSS colors in vim.
+	use{'ap/vim-css-color', ft = { 'css', 'scss'} }	-- Display CSS colors.
 -- " }
---
+
 -- " }
---
+
 -- Navigation {
---	-- FZF - Fuzzy finding
---	-- - Keyboard shortcuts: https://github.com/junegunn/fzf/blob/master/README-VIM.md#fzf
---	-- - Commands: https://github.com/junegunn/fzf.vim#commands
---	use('junegunn/fzf', { 'do': { -> fzf#install() } } | use('junegunn/fzf.vim'
+--	-- * Keyboard shortcuts: https://github.com/junegunn/fzf/blob/master/README-VIM.md#fzf
+--	-- * Commands: https://github.com/junegunn/fzf.vim#commands
+	use {
+	        'junegunn/fzf.vim',
+	        requires = { 'junegunn/fzf', run = ':call fzf#install()' }
+	    }
 -- " }
 --
 -- Snippets {

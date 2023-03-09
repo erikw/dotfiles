@@ -437,42 +437,32 @@ vim.api.nvim_create_user_command('Gdiff', ':DiffviewFileHistory %', {force = tru
 EOF
 " }
 
-"" fzf.vim {
-"" Stolen from my friend https://github.com/erikagnvall/dotfiles/blob/master/vim/init.vim
-"" Comment must be on line of its own...
-"" Search for files in given path.
-"nnoremap <Leader>f :FZF<space>
-"" Search for files starting at current directory.
-"" Sublime-like shortcut 'go to file' ctrl+p.
-"" Disable this when using yoink; see vim-yoink section for a re-mapping for :Files
-"nnoremap <C-p> :Files<CR>
-"" Search for files starting at current directory.
-"" Sublime-like shortcut 'go to file' ctrl+shift+p. Note: <C-S-p> is not mappable in vim. <M-P> is in neovim but not vim.
-"nnoremap <leader>c :Commands<CR>
-"" Search in tags file.
-"nnoremap <Leader>T :Tags<CR>
-"" Search open buffers.
-"" ; conflicts with repeating search for characther (fF]
-""nnoremap ; :Buffers<CR>
-""nnoremap <leader>; :Buffers<CR>
-"nnoremap <Leader>b :Buffers<CR>
-"" Search open tabs (indirectly; " https://medium.com/@paulodiovani/vim-buffers-windows-and-tabs-an-overview-8e2a57c57afa).
-"nnoremap <Leader>t :Windows<CR>
-"" Search history of opended files
-"nnoremap <Leader>H :History<CR>
-"" Search mappings.
-"nnoremap <Leader>m :Maps<CR>
-"" Search with rg (aka live grep).
-"nnoremap <Leader>g :Rg<CR>
-"
-"" To ignore a certain path in a git project from both RG and FD used by FZF,
-"" the eaiest way is to create ignore files and exclude the in local git clone.
-"" Ref: https://stackoverflow.com/a/1753078/265508
-"" $ cd git_proj/
-"" $ echo "path/to/exclude" > .rgignore
-"" $ echo "path/to/exclude" > .fdignore
-"" $ printf ".rgignore\n.fdignore" >> .git/info/exclude
-"" }
+" fzf.vim {
+lua << EOF
+-- Stolen from my friend https://github.com/erikagnvall/dotfiles/blob/master/vim/init.vim
+-- Comment must be on line of its own...
+-- Search for files in given path.
+vim.keymap.set('n', '<Leader>f', ':FZF<space>', { silent = true, desc = 'FZF: search for files in given path.' })
+-- Sublime-like shortcut 'go to file' ctrl+p.
+vim.keymap.set('n', '<C-p>', ':Files<CR>', { silent = true, desc = 'FZF: search for files starting at current directory.' })
+vim.keymap.set('n', '<Leader>c', ':Commands<CR>', { silent = true, desc = 'FZF: search commands.' })
+vim.keymap.set('n', '<Leader>T', ':Tags<CR>', { silent = true, desc = 'FZF: search in tags file' })
+vim.keymap.set('n', '<Leader>b', ':Buffers<CR>', { silent = true, desc = 'FZF: search open buffers.' })
+-- Ref: https://medium.com/@paulodiovani/vim-buffers-windows-and-tabs-an-overview-8e2a57c57afa).
+vim.keymap.set('n', '<Leader>t', ':Windows<CR>', { silent = true, desc = 'FZF: search open tabs.' })
+vim.keymap.set('n', '<Leader>H', ':History<CR>', { silent = true, desc = 'FZF: search history of opended files' })
+vim.keymap.set('n', '<Leader>m', ':Maps<CR>', { silent = true, desc = 'FZF: search mappings.' })
+vim.keymap.set('n', '<Leader>g', ':Rg<CR>', { silent = true, desc = 'FZF: search with rg (aka live grep).' })
+EOF
+
+" To ignore a certain path in a git project from both RG and FD used by FZF,
+" the eaiest way is to create ignore files and exclude the in local git clone.
+" Ref: https://stackoverflow.com/a/1753078/265508
+" $ cd git_proj/
+" $ echo "path/to/exclude" > .rgignore
+" $ echo "path/to/exclude" > .fdignore
+" $ printf ".rgignore\n.fdignore" >> .git/info/exclude
+" }
 
 " hop.nvim {
 lua <<EOF
@@ -510,14 +500,14 @@ EOF
 ""end
 "" }
 
-"" lsp_signature.nvim {
-"lua << EOF
-"require "lsp_signature".setup({
-"	toggle_key = '<M-x>', -- toggle signature on and off in insert mode
-"	select_signature_key='<M-n>' , -- cycle to next signature
-"})
-"EOF
-"" }
+" lsp_signature.nvim {
+lua << EOF
+require "lsp_signature".setup({
+	toggle_key = '<M-x>', -- toggle signature on and off in insert mode
+	select_signature_key='<M-n>' , -- cycle to next signature
+})
+EOF
+" }
 
 "" lualine.nvim {
 "lua <<EOF
@@ -857,11 +847,13 @@ EOF
 ""let g:startify_custom_footer = "startify#pad(['', '\ufa76' . matchstr(execute('version'), 'NVIM v\\z\\s[^\\n]\*'), ''])"
 "" }
 
-"" vista.vim {
-"nmap <silent> <F3> :Vista!! <CR>	" Toggle the tag sidewindow.
-"let g:vista_default_executive = 'ale'	" Default executive.
-"let g:vista_sidebar_width = 50		" Window width.
-"" }
+" vista.vim {
+lua << EOF
+vim.keymap.set('n', '<F3>', ':Vista!! <CR>', { silent = true, desc = 'Toggle Vista tag sidewindow.' })
+vim.g.vista_default_executive = 'ale'	-- Default executive.
+vim.g.vista_sidebar_width = 50		-- Window width.
+EOF
+" }
 
 "" which-key.nvim {
 ""lua << EOF
