@@ -418,8 +418,9 @@ lua <<EOF
 			require('hlargs').setup()
 	    end
 })
+-- Override mapping from above to work without <CR>.
+vim.keymap.set('n', '<F5>', ":lua require('dark_notify').toggle()<CR>", { silent = true, desc = 'Toggle dark/light mode.' })
 EOF
-"nmap <silent> <F5> :lua require('dark_notify').toggle()<CR> " Override mapping from above.
 "" }
 
 "" dash.vim {
