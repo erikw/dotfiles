@@ -65,7 +65,7 @@ return require("packer").startup(function(use)
 	use("airblade/vim-gitgutter") -- Git modified status in sign column
 	use("andymass/vim-matchup") -- Extend % matching.
 	use("editorconfig/editorconfig-vim") -- Standard .editorconfig file in shared projects.
-	use({ "godlygeek/tabular", requires = { "preservim/vim-markdown" } }) -- Markdown utilties like automatic list indention, TOC.
+	use({ "preservim/vim-markdown", requires = { "godlygeek/tabular" } }) -- Markdown utilties like automatic list indention, TOC.
 	use({ "m-demare/hlargs.nvim", requires = { "nvim-treesitter/nvim-treesitter" } }) -- Highlight usage of method arguments.
 	use("nguyenvukhang/nvim-toggler") -- Toggle values like true/false with <leader>i.
 
@@ -158,7 +158,7 @@ return require("packer").startup(function(use)
 
 	-- UI {
 	--use('RRethy/vim-illuminate')			-- Highlight current word under cursor. Not compatible with dark-notify: https://github.com/cormacrelf/dark-notify/issues/8
-	--use('yamatsum/nvim-cursorline')		-- Highlight current word under cursor. Not compatible with dark-notify: https://github.com/cormacrelf/dark-notify/issues/8
+	--use('yamatsum/nvim-/ursorline')		-- Highlight current word under cursor. Not compatible with dark-notify: https://github.com/cormacrelf/dark-notify/issues/8
 	--use('sitiom/nvim-numbertoggle')		-- Automatic relative / static line number toggling. Disabled as of https://github.com/sitiom/nvim-numbertoggle/issues/15
 	use("chentoast/marks.nvim") -- Visualize marks in the sign column.
 	use("cormacrelf/dark-notify") -- Watch system light/dark mode changes. Requires dark-notify(1).

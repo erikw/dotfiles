@@ -568,11 +568,11 @@ require('snippy').setup({
 EOF
 " }
 
-"" nvim-cursorline {
-""lua << EOF
-""require('nvim-cursorline').setup { }
-""EOF
-"" }
+" nvim-cursorline {
+"lua << EOF
+"require('nvim-cursorline').setup { }
+"EOF
+" }
 
 " nvim-peekup {
 lua <<EOF
@@ -705,47 +705,42 @@ vim.api.nvim_create_user_command('Wqas', ":execute 'bufdo StripWhitespace' | wqa
 EOF
 " }
 
-"" vim-gist {
-""let g:gist_detect_filetype = 1				" Detect filetype from name.
-""let g:gist_show_privates = 1				" Let Gist -l show private gists.
-""let g:gist_private = 1					" Make private the default for new Gists.
-""let g:gist_open_browser_after_post = 1			" Open in browser after post.
-"""let g:gist_clip_command = 'xclip -selection clipboard'	" Copy command.
-"""let g:gist_browser_command = 'w3m %URL%'		" Browser to use.
-""let g:gist_browser_command = 'firefox  %URL%'		" Browser to use.
-"" }
-
 " vim-gitgutter {
 lua << EOF
 vim.opt.updatetime = 100	-- Speedier update of file status.
 EOF
 " }
 
-"" vim-illuminate {
-""lua << EOF
-""require('illuminate').configure()
-""EOF
-"" }
+" vim-illuminate {
+"lua << EOF
+"require('illuminate').configure()
+"EOF
+" }
 
-"" vim-instant-markdown {
-"let g:instant_markdown_autostart=1
-"
-"" Blocklist certain paths for previewing files (recursively).
-"" See https://github.com/instant-markdown/vim-instant-markdown/issues/198
-"" Did not work to put this in .vimlocal file, as it's loaded too late.
-"augroup InstantMarkdownGroup
-"  autocmd!
-"  " [1-9]*.md - PR body by gh(1) have file names with this pattern.
-"  au! BufReadPre,BufNewFile,BufEnter,BufFilePre ~/src/github.com/erikw/hackerrank-solutions/*.md,~/src/github.com/erikw/leetcode-solutions/*.md,[1-9]*.md let g:instant_markdown_autostart=0
-"augroup END
-"" }
+" vim-instant-markdown {
+lua << EOF
+vim.g.instant_markdown_autostart = 1
 
-"" vim-markdown {
-"let g:vim_markdown_folding_disabled = 1		" No fold by default
-"let g:vim_markdown_toc_autofit = 1		" Make :Toc smaller
-"let g:vim_markdown_follow_anchor = 1		" Let ge follow #anchors
-"let g:vim_markdown_new_list_item_indent = 2	" Bullent space indents.
-"" }
+-- Blocklist certain paths for previewing files (recursively).
+-- See https://github.com/instant-markdown/vim-instant-markdown/issues/198
+-- [1-9]*.md - PR body by gh(1) have file names with this pattern.
+local imark_group = vim.api.nvim_create_augroup('InstantMarkdownGroup', { clear = true })
+vim.api.nvim_create_autocmd({ 'BufReadPre', 'BufNewFile', 'BufEnter', 'BufFilePre' }, {
+  pattern = '*/src/github.com/erikw/hackerrank-solutions/*.md,*/src/github.com/erikw/leetcode-solutions/*.md,[1-9]*.md',
+  group = imark_group,
+  command = 'let g:instant_markdown_autostart=0',
+})
+EOF
+" }
+
+" vim-markdown {
+lua << EOF
+vim.g.vim_markdown_folding_disabled = 1		-- No fold by default
+vim.g.vim_markdown_toc_autofit = 1		-- Make :Toc smaller
+vim.g.vim_markdown_follow_anchor = 1		-- Let ge follow #anchors
+vim.g.vim_markdown_new_list_item_indent = 2	-- Bullent space indents.
+EOF
+" }
 
 " vim-startify {
 lua << EOF
@@ -795,12 +790,12 @@ vim.g.vista_sidebar_width = 50		-- Window width.
 EOF
 " }
 
-"" which-key.nvim {
-""lua << EOF
-""  require("which-key").setup {
-""  }
-""EOF
-"" }
+" which-key.nvim {
+"lua << EOF
+"  require("which-key").setup {
+"  }
+"EOF
+" }
 
 " undotree {
 lua << EOF
