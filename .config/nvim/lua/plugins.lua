@@ -23,12 +23,12 @@ return require("packer").startup(function(use)
 	use("wbthomason/packer.nvim")
 
 	-- General {
-	--	--use('LucHermitte/local_vimrc') | use('LucHermitte/lh-vim-lib' " Project local vim config.
-	--	--use('dhruvasagar/vim-table-mode')			-- Create ASCII tables
-	--	--use('fidian/hexmode')						-- Open binary files as a HEX dump with :Hexmode
-	--	--use('folke/which-key.nvim')				-- Show matching keybindings e.g. when tapping Leader.
-	--	--use('godlygeek/tabular')					-- Create tables. Disabled: not used and have some startup time.
-	--	--use('voldikss/vim-translator')			-- Async language translator.
+	--use('LucHermitte/local_vimrc') | use('LucHermitte/lh-vim-lib' " Project local vim config.
+	--use('dhruvasagar/vim-table-mode')			-- Create ASCII tables
+	--use('fidian/hexmode')						-- Open binary files as a HEX dump with :Hexmode
+	--use('folke/which-key.nvim')				-- Show matching keybindings e.g. when tapping Leader.
+	--use('godlygeek/tabular')					-- Create tables. Disabled: not used and have some startup time.
+	--use('voldikss/vim-translator')			-- Async language translator.
 	use("axieax/urlview.nvim") -- Open URLs in buffer.
 	use("danro/rename.vim") -- Provides the :Rename command
 	use("gennaro-tedesco/nvim-peekup") -- Register viewer and selector.
@@ -54,14 +54,14 @@ return require("packer").startup(function(use)
 	use("tpope/vim-speeddating") -- Increment dates with C-a.
 	use("tpope/vim-unimpaired") -- Bracket mappings like [<space>
 	-- " }
-	--
+
 	-- Development {
 	-- Development: General {
-	--	--use('github/copilot.vim')			-- AI powered code completion.
-	--	--use('ibhagwan/fzf-lua' | use('mrjones2014/dash.nvim', { 'do': 'make install' } " Search dash.app from nvim. Currently broken: https://github.com/mrjones2014/dash.nvim/issues/137
-	--	--use{'mrjones2014/dash.nvim', run = 'make install', requires = { 'ibhagwan/fzf-lua'}	-- Search dash.app from nvim. Currently broken: https://github.com/mrjones2014/dash.nvim/issues/137
-	--	--use('lukas-reineke/indent-blankline.nvim')	-- Indent vertical markers.
-	--	--use('mfussenegger/nvim-dap')			-- Debug Adapter Protocol client. Like LSP for debuggers. TODO try again when more mature. Currently LUA config is not working (freezes nvim).
+	--use('github/copilot.vim')			-- AI powered code completion.
+	--use('ibhagwan/fzf-lua' | use('mrjones2014/dash.nvim', { 'do': 'make install' } " Search dash.app from nvim. Currently broken: https://github.com/mrjones2014/dash.nvim/issues/137
+	--use{'mrjones2014/dash.nvim', run = 'make install', requires = { 'ibhagwan/fzf-lua'}	-- Search dash.app from nvim. Currently broken: https://github.com/mrjones2014/dash.nvim/issues/137
+	--use('lukas-reineke/indent-blankline.nvim')	-- Indent vertical markers.
+	--use('mfussenegger/nvim-dap')			-- Debug Adapter Protocol client. Like LSP for debuggers. TODO try again when more mature. Currently LUA config is not working (freezes nvim).
 	use("AndrewRadev/sideways.vim") -- Shift function arguments left and right.
 	use("airblade/vim-gitgutter") -- Git modified status in sign column
 	use("andymass/vim-matchup") -- Extend % matching.
@@ -93,16 +93,16 @@ return require("packer").startup(function(use)
 	-- " }
 
 	-- Development: LSP/Completion {
-	--	--use('neovim/nvim-lspconfig')			-- Plug-n-play configurations for LSP server. Disabled in favour of simpler to use ALE.
+	--use('neovim/nvim-lspconfig')			-- Plug-n-play configurations for LSP server. Disabled in favour of simpler to use ALE.
 	use("dense-analysis/ale") -- LSP linting engine.
 	use("ray-x/lsp_signature.nvim") -- Method signature window, as ALE does not support it. Ref: https://www.reddit.com/r/vim/comments/jhqzsv/signature_help_via_ale/
 	use("liuchengxu/vista.vim") -- LSP symbols and tags viewer, like TagBar but with LSP support.
 	-- " }
 
 	-- Development: DAP {
-	--	--use('mfussenegger/nvim-dap') -- Debug Adapter Protocol
-	--	--use('rcarriga/nvim-dap-ui')  -- UI for DAP
-	--	--use('suketa/nvim-dap-ruby')  -- Config for ruby. Requries the `debug` gem. No rails support yet: https://github.com/suketa/nvim-dap-ruby/issues/25
+	--use('mfussenegger/nvim-dap') -- Debug Adapter Protocol
+	--use('rcarriga/nvim-dap-ui')  -- UI for DAP
+	--use('suketa/nvim-dap-ruby')  -- Config for ruby. Requries the `debug` gem. No rails support yet: https://github.com/suketa/nvim-dap-ruby/issues/25
 	-- " }
 
 	-- Development: C/C++ {
@@ -110,24 +110,24 @@ return require("packer").startup(function(use)
 	-- "}
 	--
 	-- Development: Go {
-	--	--use{'fatih/vim-go', ft = { 'go' } }	-- Compilation commands etc.
+	--use{'fatih/vim-go', ft = { 'go' } }	-- Compilation commands etc.
 	-- "}
 	--
 	-- Development: Java {
-	--	--use{'erikw/jcommenter.vim', ft = { 'java' } }		-- Generate javadoc.
+	--use{'erikw/jcommenter.vim', ft = { 'java' } }		-- Generate javadoc.
 	-- "}
 	--
 	-- Development: LaTeX {
-	--	--use{'donRaphaco/neotex', ft = { 'tex' }	-- Live preview PDF output from latex.
+	--use{'donRaphaco/neotex', ft = { 'tex' }	-- Live preview PDF output from latex.
 	-- " }
 	--
 	-- Development: Python {
-	--	--use{'python-rope/ropevim', ft = { 'python' } }	-- Refactoring with rope library.
-	--	--use{'fisadev/vim-isort', ft = { 'python' } }	    -- Sort imports
+	--use{'python-rope/ropevim', ft = { 'python' } }	-- Refactoring with rope library.
+	--use{'fisadev/vim-isort', ft = { 'python' } }	    -- Sort imports
 	-- "}
 	--
 	-- Development: Swift {
-	--	--use{'keith/swift.vim', ft = { 'switft' } }	    -- Syntax files for Switch
+	--use{'keith/swift.vim', ft = { 'switft' } }	    -- Syntax files for Switch
 	-- "}
 	--
 	-- Development: Web {
@@ -135,16 +135,18 @@ return require("packer").startup(function(use)
 	-- " }
 
 	-- " }
+	-- " }
+	-- }
 
 	-- Navigation {
-	--	-- * Keyboard shortcuts: https://github.com/junegunn/fzf/blob/master/README-VIM.md#fzf
-	--	-- * Commands: https://github.com/junegunn/fzf.vim#commands
+	-- * Keyboard shortcuts: https://github.com/junegunn/fzf/blob/master/README-VIM.md#fzf
+	-- * Commands: https://github.com/junegunn/fzf.vim#commands
 	use({
 		"junegunn/fzf.vim",
 		requires = { "junegunn/fzf", run = ":call fzf#install()" },
 	})
 	-- " }
-	--
+
 	-- Snippets {
 	use("dcampos/nvim-snippy") -- Snippets engine compatible with the SnipMate format.
 	use("honza/vim-snippets") -- Snippet library
@@ -154,16 +156,17 @@ return require("packer").startup(function(use)
 	use({ "bfontaine/Brewfile.vim", ft = { "brewfile" } }) -- Syntax for Brewfiles
 	use({ "kalekundert/vim-nestedtext", ft = { "nestedtext" } }) -- Syntax for NestedText .nt files.
 	-- " }
-	--
+
 	-- UI {
-	--	--use('RRethy/vim-illuminate')			-- Highlight current word under cursor. Not compatible with dark-notify: https://github.com/cormacrelf/dark-notify/issues/8
-	--	--use('yamatsum/nvim-cursorline')		-- Highlight current word under cursor. Not compatible with dark-notify: https://github.com/cormacrelf/dark-notify/issues/8
-	--	--use('sitiom/nvim-numbertoggle')		-- Automatic relative / static line number toggling. Disabled as of https://github.com/sitiom/nvim-numbertoggle/issues/15
+	--use('RRethy/vim-illuminate')			-- Highlight current word under cursor. Not compatible with dark-notify: https://github.com/cormacrelf/dark-notify/issues/8
+	--use('yamatsum/nvim-cursorline')		-- Highlight current word under cursor. Not compatible with dark-notify: https://github.com/cormacrelf/dark-notify/issues/8
+	--use('sitiom/nvim-numbertoggle')		-- Automatic relative / static line number toggling. Disabled as of https://github.com/sitiom/nvim-numbertoggle/issues/15
 	use("chentoast/marks.nvim") -- Visualize marks in the sign column.
 	use("cormacrelf/dark-notify") -- Watch system light/dark mode changes. Requires dark-notify(1).
 	use({ "crispgm/nvim-tabline", requires = { "nvim-tree/nvim-web-devicons" } }) -- More informative tab titles
 	use("karb94/neoscroll.nvim") -- Smoth scrolling.
 	use("mhinz/vim-startify") -- Start screen with recently opended files.
+
 	-- Statusline.
 	use({
 		"nvim-lualine/lualine.nvim",
@@ -171,13 +174,12 @@ return require("packer").startup(function(use)
 	})
 
 	-- Colorschemes {
-	--	--use('folke/tokyonight.nvim')
-	--	--use('mhartington/oceanic-next')
-	--	--use('morhetz/gruvbox')
+	--use('folke/tokyonight.nvim')
+	--use('mhartington/oceanic-next')
+	--use('morhetz/gruvbox')
 	use("ishan9299/nvim-solarized-lua") -- Solarized theme that works with nvim-treesitter highlights.
 	-- " }
 	-- "}
-	--
 
 	-- Auto set up conf after cloning packer.nvim. Must be after the use():es.
 	if packer_bootstrap then
