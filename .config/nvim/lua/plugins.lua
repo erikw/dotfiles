@@ -79,12 +79,15 @@ return require("packer").startup(function(use)
 	  end,
 	}
 
---	use('nvim-lua/plenary.nvim' | use('sindrets/diffview.nvim' " Better than fugative ':Git difftool'. Browser file history with ':DiffviewFileHistory %'
+    -- Better than fugative ':Git difftool'. Browser file history with ':DiffviewFileHistory %'
+	use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
+
+
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }  -- NVim interface for tree-sitter (language parser).
---	use('rgroli/other.nvim')			-- Open related file like test.
---	use('rhysd/conflict-marker.vim')		-- Navigate and edit VCS conflicts. Navigate: [x, ]x. Resolve: ct, co, cb.
---	use('ruanyl/vim-gh-line')			-- Copy link to file on GitHub.
---	use('superDross/ticket.vim')			-- Manage vim Sessions per git branch.
+	use('rgroli/other.nvim')				-- Open related file like test.
+	use('rhysd/conflict-marker.vim')		-- Navigate and edit VCS conflicts. Navigate: [x, ]x. Resolve: ct, co, cb.
+	use('ruanyl/vim-gh-line')			-- Copy link to file on GitHub.
+	use('superDross/ticket.vim')			-- Manage vim Sessions per git branch.
 --	use('tpope/vim-fugitive')			-- Git wrapper and shorthands.
 --	use('wellle/targets.vim')			-- Extra text objects to operate on e.g. function arguments.
 --	use('windwp/nvim-autopairs')			-- Autoclose brackets etc.

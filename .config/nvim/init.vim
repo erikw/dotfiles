@@ -432,9 +432,11 @@ EOF
 ""EOF
 "" }
 
-"" diffview.nvim {
-"command! Gdiff :DiffviewFileHistory %
-"" }
+" diffview.nvim {
+lua <<EOF
+vim.api.nvim_create_user_command('Gdiff', ':DiffviewFileHistory %', {force = true, desc = "View diff file history of current buffer."})
+EOF
+" }
 
 "" fzf.vim {
 "" Stolen from my friend https://github.com/erikagnvall/dotfiles/blob/master/vim/init.vim
@@ -696,31 +698,31 @@ require'nvim-treesitter.configs'.setup {
 EOF
 " }
 
-"" other.nvim {
-"" init.vim or .vimrc
-"lua << EOF
-"require("other-nvim").setup({
-"	-- Show menu each time for multiple other files.
-"	rememberBuffers = false,
-"	mappings = {
-"		-- builtin mappings
-"		"rails",
-"		-- custom mappings
-"	},
-"	style = {
-"		width = 0.7,
-"	},
-"})
-"
-"vim.api.nvim_set_keymap("n", "<leader>ll", "<cmd>:Other<CR>", { noremap = true, silent = true })
-"vim.api.nvim_set_keymap("n", "<leader>lx", "<cmd>:OtherSplit<CR>", { noremap = true, silent = true })
-"vim.api.nvim_set_keymap("n", "<leader>lv", "<cmd>:OtherVSplit<CR>", { noremap = true, silent = true })
-"--vim.api.nvim_set_keymap("n", "<leader>lc", "<cmd>:OtherClear<CR>", { noremap = true, silent = true })
-"
-"-- Context specific bindings
-"vim.api.nvim_set_keymap("n", "<leader>lt", "<cmd>:OtherVSplit test<CR>", { noremap = true, silent = true })
-"EOF
-"" }
+" other.nvim {
+" init.vim or .vimrc
+lua << EOF
+require("other-nvim").setup({
+	-- Show menu each time for multiple other files.
+	rememberBuffers = false,
+	mappings = {
+		-- builtin mappings
+		"rails",
+		-- custom mappings
+	},
+	style = {
+		width = 0.7,
+	},
+})
+
+vim.api.nvim_set_keymap("n", "<leader>ll", "<cmd>:Other<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>lx", "<cmd>:OtherSplit<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>lv", "<cmd>:OtherVSplit<CR>", { noremap = true, silent = true })
+--vim.api.nvim_set_keymap("n", "<leader>lc", "<cmd>:OtherClear<CR>", { noremap = true, silent = true })
+
+-- Context specific bindings
+vim.api.nvim_set_keymap("n", "<leader>lt", "<cmd>:OtherVSplit test<CR>", { noremap = true, silent = true })
+EOF
+" }
 
 " sideways.vim {
 lua << EOF
@@ -729,19 +731,21 @@ vim.keymap.set('n', '>a', ':SidewaysRight<CR>', { silent = true, desc = 'Move fu
 EOF
 " }
 
-"" tickets.vim {
-"" Alternatives that also support per-branch saving to some extent:
-"" * https://piet.me/branch-based-sessions-in-vim/
-"" * https://github.com/dhruvasagar/vim-prosession
-"" * https://github.com/wting/gitsessions.vim
-"" * https://github.com/rmagatti/auto-session
-"
-"let g:auto_ticket = 0  " Automatically load tickets when starting vim without file arguments.
-"
-" " Save current session.
-"nnoremap <silent> <C-M-s> :execute ':SaveSession' <bar> echo "Session saved"<CR>
-"nnoremap <silent> <C-M-o> :execute ':OpenSession' <bar> echo "Session loaded"<CR>
-"" }
+" tickets.vim {
+lua << EOF
+-- Alternatives that also support per-branch saving to some extent:
+-- * https://piet.me/branch-based-sessions-in-vim/
+-- * https://github.com/dhruvasagar/vim-prosession
+-- * https://github.com/wting/gitsessions.vim
+-- * https://github.com/rmagatti/auto-session
+
+vim.g.auto_ticket = 0  -- Automatically load tickets when starting vim without file arguments.
+
+-- Save current session.
+vim.keymap.set('n', '<C-M-s>', ':execute ":SaveSession" <bar> echo "Session saved"<CR>', { silent = true, desc = 'Save current tickets.vim session.' })
+vim.keymap.set('n', '<C-M-o>', ':execute ":OpenSession" <bar> echo "Session loaded"<CR>', { silent = true, desc = 'Open saved tickets.vim session.' })
+EOF
+" }
 
 " urlview.nvim {
 lua << EOF
