@@ -57,7 +57,7 @@ return require("packer").startup(function(use)
 
 	-- Development {
 	-- Development: General {
-	--use('github/copilot.vim')			-- AI powered code completion.
+	--use("github/copilot.vim") -- AI powered code completion.
 	--use('ibhagwan/fzf-lua' | use('mrjones2014/dash.nvim', { 'do': 'make install' } " Search dash.app from nvim. Currently broken: https://github.com/mrjones2014/dash.nvim/issues/137
 	--use{'mrjones2014/dash.nvim', run = 'make install', requires = { 'ibhagwan/fzf-lua'}	-- Search dash.app from nvim. Currently broken: https://github.com/mrjones2014/dash.nvim/issues/137
 	--use('lukas-reineke/indent-blankline.nvim')	-- Indent vertical markers.

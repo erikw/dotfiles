@@ -14,7 +14,7 @@
 " Profiling {
 " $ nvim --startuptime /tmp/nvim.log
 " $ nvim --startuptime /dev/stdout +qall
-" Ref:g https://stackoverflow.com/questions/1687799/profiling-vim-startup-time
+" Ref: https://stackoverflow.com/questions/1687799/profiling-vim-startup-time
 " }
 
 " Providers {
@@ -24,7 +24,7 @@ lua << EOF
 -- * Install neovim package in used version: $ pip install neovim, then
 -- :checkhealth
 -- * Disable the provider (not used by curret plugins anyways.)
--- Ref:g https://www.reddit.com/r/neovim/comments/ksf0i4/slow_startup_time_when_opening_python_files_with/
+-- Ref: https://www.reddit.com/r/neovim/comments/ksf0i4/slow_startup_time_when_opening_python_files_with/
 vim.g.loaded_python3_provider = 0
 
 -- Let's disable more that is not used to gain startup time.
@@ -384,27 +384,28 @@ vim.keymap.set('n', '<C-j>', '<Plug>(ale_next_wrap)', { silent = true, desc = 'A
 -- }
 
 -- Toggle command for fixers
--- Ref:g https://github.com/dense-analysis/ale/issues/1353#issuecomment-424677810
+-- Ref: https://github.com/dense-analysis/ale/issues/1353#issuecomment-424677810
 vim.api.nvim_create_user_command('ALEToggleFixer', 'execute "let g:ale_fix_on_save = get(g:, \'ale_fix_on_save\', 0) ? 0 : 1"', {force = true, desc = "ALE: toggle ale_fix_on_save"})
 EOF
 " }
 
 "" copilot.vim {
-""" Disable/enable per filetype
-""      "\ '*': v:false, # global toggle, all on or all off.
-""let g:copilot_filetypes = {
-""      \ '*': v:false,
-""      \ 'txt': v:false,
-""      \ 'markdown': v:false,
-""      \ 'sh': v:true,
-""      \ 'py': v:true,
-""      \ 'rb': v:true,
-""      \ }
+"lua << EOF
+"-- Disable/enable per filetype
+"vim.g.copilot_filetypes = {
+"	['*'] = false, -- Setting to false disable for all types; can't be overriden.
+"        ['txt'] = false,
+"        ['markdown'] = false,
+"        ['sh'] = true,
+"        ['py'] = true,
+"        ['rb'] = true,
+"	}
 "
-""" Remap from <tab> as this is used by snipmate.
-""" Ref:g https://github.com/github/feedback/discussions/6919#discussioncomment-1553837
-""inoremap <silent><expr> <C-Space> copilot#Accept("")
-""let g:copilot_no_tab_map = 1
+"-- Remap from <tab> as this is used by snipmate.
+"-- Ref: https://github.com/github/feedback/discussions/6919#discussioncomment-1553837
+"vim.keymap.set('i', '<C-Space>', 'copilot#Accept("")', { silent = true, expr = true, desc = 'Source init.vim.' })
+"vim.g.copilot_no_tab_map = 1
+"EOF
 "" }
 
 "" dark-notify {
