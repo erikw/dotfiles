@@ -17,17 +17,7 @@
 " Ref:g https://stackoverflow.com/questions/1687799/profiling-vim-startup-time
 " }
 
-" Environment {
-lua << EOF
-vim.g.xdg_config_home = os.getenv("XDG_CONFIG_HOME") or "$HOME/.config"
---vim.g.xdg_state_home = os.getenv("XDG_STATE_HOME") or "$HOME/.local/state"
---vim.g.xdg_data_home = os.getenv("XDG_DATA_HOME") or "$HOME/.local/share"
-EOF
-
-" }
-
-
-" TODO where put this?
+" Providers {
 lua << EOF
 -- The python provider (pythonx.vim) checker takes alomost 1 second on startup.
 -- Do one of:
@@ -43,12 +33,23 @@ vim.g.loaded_ruby_provider = 0
 vim.g.loaded_provider_provider = 0
 vim.g.loaded_node_provider = 0
 EOF
+" }
 
+" Environment {
+lua << EOF
+vim.g.xdg_config_home = os.getenv("XDG_CONFIG_HOME") or "$HOME/.config"
+--vim.g.xdg_state_home = os.getenv("XDG_STATE_HOME") or "$HOME/.local/state"
+--vim.g.xdg_data_home = os.getenv("XDG_DATA_HOME") or "$HOME/.local/share"
+EOF
 
+" }
+
+" Plugins {
 lua << EOF
 vim.g.ale_completion_enabled = 1	-- Must be set before ALE is loaded.
 require('plugins')
 EOF
+" }
 
 " Commands {
 lua << EOF
