@@ -170,18 +170,18 @@ return require("packer").startup(function(use)
 	  'nvim-lualine/lualine.nvim',
 	  requires = { 'kyazdani42/nvim-web-devicons', opt = true }
 	}
---
+
 -- Colorschemes {
 --	--use('altercation/vim-colors-solarized')	-- The one theme to rule them all.
---	--use('folke/tokyonight.nvim', { 'branch': 'main' }
---	--use('mhartington/oceanic-next'
---	--use('morhetz/gruvbox'
-    use {'ishan9299/nvim-solarized-lua', requires = { 'nvim-tree/nvim-web-devicons' } }	-- Solarized theme that works with nvim-treesitter highlights.
+--	--use('folke/tokyonight.nvim')
+--	--use('mhartington/oceanic-next')
+--	--use('morhetz/gruvbox')
+    use('ishan9299/nvim-solarized-lua')	-- Solarized theme that works with nvim-treesitter highlights.
 -- " }
 -- "}
 --
 
-	-- Auto  set up conf after cloning packer.nvim. Must be after the use()s
+	-- Auto set up conf after cloning packer.nvim. Must be after the use():es.
 	if packer_bootstrap then
 		require("packer").sync()
 	end
