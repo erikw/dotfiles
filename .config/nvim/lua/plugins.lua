@@ -165,7 +165,11 @@ return require("packer").startup(function(use)
     use {'crispgm/nvim-tabline', requires = { 'nvim-tree/nvim-web-devicons' } }	-- More informative tab titles
     use('karb94/neoscroll.nvim')		-- Smoth scrolling.
 	use('mhinz/vim-startify')		-- Start screen with recently opended files.
---	use('nvim-lualine/lualine.nvim')	-- Statusline.
+	-- Statusline.
+	use {
+	  'nvim-lualine/lualine.nvim',
+	  requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+	}
 --
 -- Colorschemes {
 --	--use('altercation/vim-colors-solarized')	-- The one theme to rule them all.

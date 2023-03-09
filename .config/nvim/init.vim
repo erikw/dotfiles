@@ -509,25 +509,25 @@ require "lsp_signature".setup({
 EOF
 " }
 
-"" lualine.nvim {
-"lua <<EOF
-"require('lualine').setup {
-"  sections = {
-"    lualine_c = {{
-"	'filename',
-"	path = 1 -- relative path
-"	}},
-"  },
-"  inactive_sections = {
-"    lualine_c = {{
-"	'filename',
-"	path = 1 -- relative path
-"	}},
-"  },
-"  extensions = {'fugitive', 'fzf', 'nvim-tree', 'quickfix'}
-"}
-"EOF
-"" }
+" lualine.nvim {
+lua <<EOF
+require('lualine').setup {
+  sections = {
+    lualine_c = {{
+	'filename',
+	path = 1 -- relative path
+	}},
+  },
+  inactive_sections = {
+    lualine_c = {{
+	'filename',
+	path = 1 -- relative path
+	}},
+  },
+  extensions = {'fugitive', 'fzf', 'nvim-tree', 'quickfix'}
+}
+EOF
+" }
 
 " marks.nvim {
 lua <<EOF
