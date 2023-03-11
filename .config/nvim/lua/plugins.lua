@@ -25,7 +25,15 @@ return require("packer").startup(function(use)
 	-- General {
 	--use('dhruvasagar/vim-table-mode')			-- Create ASCII tables
 	--use('fidian/hexmode')						-- Open binary files as a HEX dump with :Hexmode
-	--use('folke/which-key.nvim')				-- Show matching keybindings e.g. when tapping Leader.
+
+	-- Show matching keybindings e.g. when tapping Leader.
+	--use({
+	--    "folke/which-key.nvim",
+	--    config = function()
+	--        require("which-key").setup()
+	--    end,
+	--})
+
 	--use('godlygeek/tabular')					-- Create tables. Disabled: not used and have some startup time.
 	--use('voldikss/vim-translator')			-- Async language translator.
 
@@ -96,7 +104,17 @@ return require("packer").startup(function(use)
 			require("nvim-surround").setup()
 		end,
 	})
-	use("mbbill/undotree") -- Navigate history in a sidebar. Replaces old 'mbbill/undotree'
+
+	-- Navigate history in a sidebar. Replaces old 'mbbill/undotree'
+	use({
+		"mbbill/undotree",
+		config = function()
+			vim.keymap.set("n", "<F4>", ":UndotreeToggle<CR>", { silent = true, desc = "Toggle Undotree side pane." })
+			vim.g.undotree_WindowLayout = 2 -- Set style to have diff window below.
+			vim.g.undotree_SetFocusWhenToggle = 1 -- Put cursor in undo window on open.
+		end,
+	})
+
 	use("michaeljsmith/vim-indent-object") -- Operate on intendtation as text objects.
 
 	-- Highlight and remove trailing whitespaces.
@@ -237,7 +255,18 @@ return require("packer").startup(function(use)
 
 	use("andymass/vim-matchup") -- Extend % matching.
 	use("editorconfig/editorconfig-vim") -- Standard .editorconfig file in shared projects.
-	use({ "preservim/vim-markdown", requires = { "godlygeek/tabular" } }) -- Markdown utilties like automatic list indention, TOC.
+
+	-- Markdown utilties like automatic list indention, TOC.
+	use({
+		"preservim/vim-markdown",
+		requires = { "godlygeek/tabular" },
+		config = function()
+			vim.g.vim_markdown_folding_disabled = 1 -- No fold by default
+			vim.g.vim_markdown_toc_autofit = 1 -- Make :Toc smaller
+			vim.g.vim_markdown_follow_anchor = 1 -- Let ge follow #anchors
+			vim.g.vim_markdown_new_list_item_indent = 2 -- Bullent space indents.
+		end,
+	})
 
 	-- Highlight usage of method arguments.
 	use({
@@ -483,7 +512,15 @@ return require("packer").startup(function(use)
 		end,
 	})
 
-	use("liuchengxu/vista.vim") -- LSP symbols and tags viewer, like TagBar but with LSP support.
+	-- LSP symbols and tags viewer, like TagBar but with LSP support.
+	use({
+		"liuchengxu/vista.vim",
+		config = function()
+			vim.keymap.set("n", "<F3>", ":Vista!! <CR>", { silent = true, desc = "Toggle Vista tag sidewindow." })
+			vim.g.vista_default_executive = "ale" -- Default executive.
+			vim.g.vista_sidebar_width = 50 -- Window width.
+		end,
+	})
 	-- " }
 
 	-- Development: DAP {
@@ -660,7 +697,48 @@ return require("packer").startup(function(use)
 			require("neoscroll").setup()
 		end,
 	})
-	use("mhinz/vim-startify") -- Start screen with recently opended files.
+
+	-- Start screen with recently opended files.
+	use({
+		"mhinz/vim-startify",
+		config = function()
+			--vim.g.startify_fortune_use_unicode = 1	-- Draw fortune with Unicode instead of ASCII. Not needed with startify_custom_header.
+			--vim.g.startify_files_number = 15		-- Nubmer of files to show.
+
+			-- Bookmarks
+			vim.g.startify_bookmarks = {
+				{ ["v"] = vim.g.xdg_config_home .. "/nvim/init.vim" },
+				{ ["p"] = vim.g.xdg_config_home .. "/nvim/lua/plugins.lua" },
+				vim.g.xdg_config_home .. "/shell/commons",
+				vim.g.xdg_config_home .. "/shell/aliases",
+			}
+
+			local nver = vim.version()
+			local semnver = nver.major .. "." .. nver.minor .. "." .. nver.patch
+			local ascii = {
+				"    ##############..... ##############",
+				"    ##############......##############",
+				"      ##########..........##########",
+				"      ##########........##########",
+				"      ##########.......##########",
+				"      ##########.....##########..",
+				"      ##########....##########.....",
+				"    ..##########..##########.........",
+				"  ....##########.#########.............",
+				"    ..##################.............",
+				"      ################.............",
+				"      ##############.............",
+				"      ############.............",
+				"      ##########.............",
+				"      ########.............",
+				"      ######    .........",
+				"                  .....",
+				"                    .",
+				"    Neovim v" .. semnver,
+			}
+			vim.g.startify_custom_header = ascii
+		end,
+	})
 
 	-- Statusline.
 	use({
