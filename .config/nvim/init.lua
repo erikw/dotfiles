@@ -4,12 +4,12 @@
 -- vi: foldmarker={,} foldmethod=marker foldlevel=0 tabstop=8 shiftwidth=8:
 -- 8 spaces for a tab render best as HTML.
 -- }
---
+
 -- Documentation {
 -- * https://learnxinyminutes.com/docs/lua/
 -- * https://neovim.io/doc/user/lua-guide.html
 -- }
---
+
 -- Profiling {
 -- $ nvim --startuptime /tmp/nvim.log
 -- $ nvim --startuptime /dev/stdout +qall
@@ -106,8 +106,8 @@ vim.opt.shortmess = "filmnrxtToOA" -- Abbreviate messages. 'A' disables the atte
 -- }
 
 -- Mappings {
-vim.keymap.set("n", "<Leader>v", ":source $MYVIMRC<CR>", { silent = true, desc = "Source init.vim." })
-vim.keymap.set("n", "<Leader>V", ":tabe $MYVIMRC<CR>", { silent = true, desc = "Edit init.vim." })
+vim.keymap.set("n", "<Leader>v", ":luafile $MYVIMRC<CR>", { silent = true, desc = "Source init.lua." })
+vim.keymap.set("n", "<Leader>V", ":tabe $MYVIMRC<CR>", { silent = true, desc = "Edit init.lua." })
 vim.keymap.set(
 	"n",
 	"<C-\\>",

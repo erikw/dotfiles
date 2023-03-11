@@ -193,7 +193,7 @@ return require("packer").startup(function(use)
 	--            "i",
 	--            "<C-Space>",
 	--            'copilot#Accept("")',
-	--            { silent = true, expr = true, desc = "Source init.vim." }
+	--            { silent = true, expr = true, desc = "Accept copilot suggestion." }
 	--        )
 	--        vim.g.copilot_no_tab_map = 1
 	--    end,
@@ -699,7 +699,7 @@ return require("packer").startup(function(use)
 
 			-- Bookmarks
 			vim.g.startify_bookmarks = {
-				{ ["v"] = vim.g.xdg_config_home .. "/nvim/init.vim" },
+				{ ["v"] = vim.g.xdg_config_home .. "/nvim/init.lua" },
 				{ ["p"] = vim.g.xdg_config_home .. "/nvim/lua/plugins.lua" },
 				vim.g.xdg_config_home .. "/shell/commons",
 				vim.g.xdg_config_home .. "/shell/aliases",
