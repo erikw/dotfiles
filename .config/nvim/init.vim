@@ -328,23 +328,6 @@ EOF
 " TODO move this to the 'config' function inside the packer use() method, as  nvim-surround is already configured
 " Plugin Config {
 
-" hlargs.vim {
-" Due to a bug when dark-notify is enabled, do the hlargs init is done in the  dark-notify callback.
-" Ref: https://github.com/m-demare/hlargs.nvim/issues/37#issuecomment-1237395420
-"lua <<EOF
-"require('hlargs').setup()
-"EOF
-" }
-
-"" indent-blankline.nvim {
-""lua <<EOF
-""require("indent_blankline").setup {
-""    use_treesitter = true,  -- use treesitter to calculate indentation.
-""    show_current_context = true,  -- highlight current indent block.
-""    show_current_context_start = true, -- underline first line of current indent block.
-""}
-""EOF
-"" }
 
 " lsp_signature.nvim {
 lua << EOF
