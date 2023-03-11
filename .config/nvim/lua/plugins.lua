@@ -50,7 +50,24 @@ return require("packer").startup(function(use)
 		end,
 	})
 
-	use({ "instant-markdown/vim-instant-markdown", ft = "markdown", run = "yarn install" })
+	use({
+		"instant-markdown/vim-instant-markdown",
+		ft = "markdown",
+		run = "yarn install",
+		config = function()
+			vim.g.instant_markdown_autostart = 1
+
+			-- Blocklist certain paths for previewing files (recursively).
+			-- See https://github.com/instant-markdown/vim-instant-markdown/issues/198
+			-- [1-9]*.md - PR body by gh(1) have file names with this pattern.
+			local augroup_imark = vim.api.nvim_create_augroup("InstantMarkdownGroup", { clear = true })
+			vim.api.nvim_create_autocmd({ "BufReadPre", "BufNewFile", "BufEnter", "BufFilePre" }, {
+				pattern = "*/src/github.com/erikw/hackerrank-solutions/*.md,*/src/github.com/erikw/leetcode-solutions/*.md,[1-9]*.md",
+				group = augroup_imark,
+				command = "let g:instant_markdown_autostart=0",
+			})
+		end,
+	})
 
 	-- File explorer tree
 	use({
@@ -587,7 +604,14 @@ return require("packer").startup(function(use)
 	-- " }
 
 	-- UI {
-	--use('RRethy/vim-illuminate')			-- Highlight current word under cursor. Not compatible with dark-notify: https://github.com/cormacrelf/dark-notify/issues/8
+	-- Highlight current word under cursor. Not compatible with dark-notify: https://github.com/cormacrelf/dark-notify/issues/8
+	--use({
+	--    "RRethy/vim-illuminate",
+	--    config = function()
+	--        require("illuminate").configure()
+	--    end,
+	--})
+
 	--use('yamatsum/nvim-/ursorline')		-- Highlight current word under cursor. Not compatible with dark-notify: https://github.com/cormacrelf/dark-notify/issues/8
 	--use('sitiom/nvim-numbertoggle')		-- Automatic relative / static line number toggling. Disabled as of https://github.com/sitiom/nvim-numbertoggle/issues/15
 

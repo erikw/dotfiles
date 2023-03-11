@@ -328,28 +328,6 @@ EOF
 " TODO move this to the 'config' function inside the packer use() method, as  nvim-surround is already configured
 " Plugin Config {
 
-" vim-illuminate {
-"lua << EOF
-"require('illuminate').configure()
-"EOF
-" }
-
-" vim-instant-markdown {
-lua << EOF
-vim.g.instant_markdown_autostart = 1
-
--- Blocklist certain paths for previewing files (recursively).
--- See https://github.com/instant-markdown/vim-instant-markdown/issues/198
--- [1-9]*.md - PR body by gh(1) have file names with this pattern.
-local augroup_imark= vim.api.nvim_create_augroup('InstantMarkdownGroup', { clear = true })
-vim.api.nvim_create_autocmd({ 'BufReadPre', 'BufNewFile', 'BufEnter', 'BufFilePre' }, {
-  pattern = '*/src/github.com/erikw/hackerrank-solutions/*.md,*/src/github.com/erikw/leetcode-solutions/*.md,[1-9]*.md',
-  group = augroup_imark,
-  command = 'let g:instant_markdown_autostart=0',
-})
-EOF
-" }
-
 " vim-markdown {
 lua << EOF
 vim.g.vim_markdown_folding_disabled = 1		-- No fold by default
