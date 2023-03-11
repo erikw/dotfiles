@@ -45,7 +45,15 @@ return require("packer").startup(function(use)
 	use("mbbill/undotree") -- Navigate history in a sidebar. Replaces old 'mbbill/undotree'
 	use("michaeljsmith/vim-indent-object") -- Operate on intendtation as text objects.
 	use("ntpeters/vim-better-whitespace") -- Highlight and remove trailing whitespaces.
-	use("phaazon/hop.nvim") -- Easy motion jumps in buffer.
+	use({
+		"phaazon/hop.nvim",
+		config = function()
+			require("hop").setup()
+			-- Keybindings
+			-- Vim Command to Lua function mapping: https://github.com/phaazon/hop.nvim/wiki/Advanced-Hop#lua-equivalents-of-hop-commands
+			vim.api.nvim_set_keymap("", "<leader>h", "<cmd>lua require'hop'.hint_words()<cr>", {})
+		end,
+	}) -- Easy motion jumps in buffer.
 	use("preservim/nerdcommenter") -- Comment source code.
 	use("tpope/vim-capslock") -- Software CAPSLOCK with <C-g>c in insert mode.
 	use("tpope/vim-characterize") -- 'ga' on steroid.
@@ -94,14 +102,36 @@ return require("packer").startup(function(use)
 	--    end,
 	--})
 
-	--use('lukas-reineke/indent-blankline.nvim')	-- Indent vertical markers.
+	-- Indent vertical markers.
+	--use({
+	--    "lukas-reineke/indent-blankline.nvim",
+	--    config = function()
+	--        require("indent_blankline").setup({
+	--            use_treesitter = true, -- use treesitter to calculate indentation.
+	--            show_current_context = true, -- highlight current indent block.
+	--            show_current_context_start = true, -- underline first line of current indent block.
+	--        })
+	--    end,
+	--})
+
 	--use('mfussenegger/nvim-dap')			-- Debug Adapter Protocol client. Like LSP for debuggers. TODO try again when more mature. Currently LUA config is not working (freezes nvim).
 	use("AndrewRadev/sideways.vim") -- Shift function arguments left and right.
 	use("airblade/vim-gitgutter") -- Git modified status in sign column
 	use("andymass/vim-matchup") -- Extend % matching.
 	use("editorconfig/editorconfig-vim") -- Standard .editorconfig file in shared projects.
 	use({ "preservim/vim-markdown", requires = { "godlygeek/tabular" } }) -- Markdown utilties like automatic list indention, TOC.
-	use({ "m-demare/hlargs.nvim", requires = { "nvim-treesitter/nvim-treesitter" } }) -- Highlight usage of method arguments.
+
+	-- Highlight usage of method arguments.
+	use({
+		"m-demare/hlargs.nvim",
+		requires = { "nvim-treesitter/nvim-treesitter" },
+		--config = function()
+		--    -- Due to a bug when dark-notify is enabled, do the hlargs init is done in the  dark-notify callback.
+		--    -- Ref: https://github.com/m-demare/hlargs.nvim/issues/37#issuecomment-1237395420
+		--    require("hlargs").setup()
+		--end,
+	})
+
 	use("nguyenvukhang/nvim-toggler") -- Toggle values like true/false with <leader>i.
 
 	-- Show code coverage in sign column.

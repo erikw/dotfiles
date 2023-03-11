@@ -328,15 +328,6 @@ EOF
 " TODO move this to the 'config' function inside the packer use() method, as  nvim-surround is already configured
 " Plugin Config {
 
-" hop.nvim {
-lua <<EOF
-require'hop'.setup()
--- Keybindings
--- Vim Command to Lua function mapping: https://github.com/phaazon/hop.nvim/wiki/Advanced-Hop#lua-equivalents-of-hop-commands
-vim.api.nvim_set_keymap('', '<leader>h', "<cmd>lua require'hop'.hint_words()<cr>", {})
-EOF
-"" }
-
 " hlargs.vim {
 " Due to a bug when dark-notify is enabled, do the hlargs init is done in the  dark-notify callback.
 " Ref: https://github.com/m-demare/hlargs.nvim/issues/37#issuecomment-1237395420
