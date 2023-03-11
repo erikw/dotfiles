@@ -302,6 +302,7 @@ return require("packer").startup(function(use)
 		"sindrets/diffview.nvim",
 		requires = "nvim-lua/plenary.nvim",
 		config = function()
+			require("diffview").setup()
 			vim.api.nvim_create_user_command(
 				"Gdiff",
 				":DiffviewFileHistory %",
