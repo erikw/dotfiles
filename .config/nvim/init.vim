@@ -250,14 +250,15 @@ vim.keymap.set('n', '<F7>', ':lua print(ToggleSpell("sv"))<CR>', { silent = true
 vim.keymap.set('n', '<F8>', ':lua print(ToggleSpell("de"))<CR>', { silent = true, desc = 'Toggle German spell.' })
 -- }
 
--- ToggleBackgroundMode {
-function ToggleBackgroundMode()
-	local bg_new = vim.o.background == "light" and 'dark' or 'light'
-	vim.opt.background = bg_new
-	return bg_new
-end
-vim.keymap.set('n', '<F5>', ':lua print(ToggleBackgroundMode())', { silent = true, desc = 'Toggle between light and dark background mode.' })
--- }
+-- -- ToggleBackgroundMode {
+-- NOPE replaced by dark-notify mapping.
+-- function ToggleBackgroundMode()
+--	local bg_new = vim.o.background == "light" and 'dark' or 'light'
+--	vim.opt.background = bg_new
+--	return bg_new
+-- end
+-- vim.keymap.set('n', '<F5>', ':lua print(ToggleBackgroundMode())', { silent = true, desc = 'Toggle between light and dark background mode.' })
+-- -- }
 EOF
 " }
 
@@ -326,102 +327,6 @@ EOF
 
 " TODO move this to the 'config' function inside the packer use() method, as  nvim-surround is already configured
 " Plugin Config {
-" ALE {
-lua << EOF
--- Reference https://github.com/dense-analysis/ale/blob/master/doc/ale.txt
--- Disabled linters:
-		-- ['sql'] = {'sqls'},
-vim.g.ale_linters = {
-	['go'] = {'gopls'},
-	['javascript'] = {'eslint'},
-	['lua'] = {'luacheck'},
-	['json'] = {'jsonls'},
-	['python'] = {'pyright', 'flake8'},
-	['ruby'] = {'solargraph', 'ruby'},
-	['sh'] = {'language_server'},
-	['tex'] = {'texlab'},
-	['vim'] = {'vimls'},
-	}
-
-
--- Disabled fixers:
--- - *: 'trim_whitespace' & 'remove_trailing_lines' (overlaps with the functionally already provided by vim-better-whitespace)
--- - python: autoimport (messes up ifx in taiga_stats.commands import  fix. Could be resolved by https://github.com/myint/autoflake/issues/59)
--- - markdown: prettier (converts * to - in lists)
-vim.g.ale_fixers = {
-	 ['css'] = {'prettier'},
-	 ['javascript'] = {'prettier', 'eslint'},
-	 ['json'] = {'prettier'},
-	 ['lua'] = {'stylua'},
-	 ['python'] = {'autoflake', 'black', 'isort'},
-	 ['ruby'] = {'rubocop'},
-	 ['scss'] = {'prettier'},
-	 ['typescript'] = {'prettier'},
-	 ['yaml'] = {'prettier'},
-	}
-vim.g.ale_fix_on_save = 1
-
--- Completion {
-vim.g.ale_completion_autoimport = 1
--- Trigger on ^x^o
-vim.opt.omnifunc = 'ale#completion#OmniFunc'
--- 'longest' seems to tirgger a variation of :h ale-completion-completeopt-bug
--- See https://github.com/dense-analysis/ale/issues/1700#issuecomment-991643960
-vim.opt.completeopt = {'menu', 'preview'}
--- }
-
--- Mappings {
--- See :help ale-commands
--- Make similar keybindings to https://github.com/neovim/nvim-lspconfig#keybindings-and-completion
-vim.keymap.set('n', 'gd', '<Plug>(ale_go_to_definition)', { silent = true, desc = 'ALE: go to definition.' })
-vim.keymap.set('n', 'gr', '<Plug>(ale_find_references)', { silent = true, desc = 'ALE: find references.' })
-vim.keymap.set('n', 'K', '<Plug>(ale_hover)', { silent = true, desc = 'ALE: hover.' })
-vim.keymap.set('n', '<Space>rn', '<Plug>(ale_rename)', { silent = true, desc = 'ALE: rename.' })
-
--- Navigate between errors
-vim.keymap.set('n', '<C-k>', '<Plug>(ale_previous_wrap)', { silent = true, desc = 'ALE: navigate to previous error.' })
-vim.keymap.set('n', '<C-j>', '<Plug>(ale_next_wrap)', { silent = true, desc = 'ALE: navigate to next error.' })
--- }
-
--- Toggle command for fixers
--- Ref: https://github.com/dense-analysis/ale/issues/1353#issuecomment-424677810
-vim.api.nvim_create_user_command('ALEToggleFixer', 'execute "let g:ale_fix_on_save = get(g:, \'ale_fix_on_save\', 0) ? 0 : 1"', {force = true, desc = "ALE: toggle ale_fix_on_save"})
-EOF
-" }
-
-"" copilot.vim {
-"lua << EOF
-"-- Disable/enable per filetype
-"vim.g.copilot_filetypes = {
-"	['*'] = false, -- Setting to false disable for all types; can't be overriden.
-"        ['txt'] = false,
-"        ['markdown'] = false,
-"        ['sh'] = true,
-"        ['py'] = true,
-"        ['rb'] = true,
-"	}
-"
-"-- Remap from <tab> as this is used by snipmate.
-"-- Ref: https://github.com/github/feedback/discussions/6919#discussioncomment-1553837
-"vim.keymap.set('i', '<C-Space>', 'copilot#Accept("")', { silent = true, expr = true, desc = 'Source init.vim.' })
-"vim.g.copilot_no_tab_map = 1
-"EOF
-"" }
-
-"" dark-notify {
-lua <<EOF
-	require('dark_notify').run({
-		onchange = function(mode)
-			-- Init hlargs.nvim.
-			-- Ref: https://github.com/m-demare/hlargs.nvim/issues/37#issuecomment-1237395420
-			-- Ref: https://github.com/cormacrelf/dark-notify/issues/8
-			require('hlargs').setup()
-	    end
-})
--- Override mapping from above to work without <CR>.
-vim.keymap.set('n', '<F5>', ":lua require('dark_notify').toggle()<CR>", { silent = true, desc = 'Toggle dark/light mode.' })
-EOF
-"" }
 
 " dash.vim {
 "lua <<EOF
@@ -724,10 +629,10 @@ vim.g.instant_markdown_autostart = 1
 -- Blocklist certain paths for previewing files (recursively).
 -- See https://github.com/instant-markdown/vim-instant-markdown/issues/198
 -- [1-9]*.md - PR body by gh(1) have file names with this pattern.
-local imark_group = vim.api.nvim_create_augroup('InstantMarkdownGroup', { clear = true })
+local augroup_imark= vim.api.nvim_create_augroup('InstantMarkdownGroup', { clear = true })
 vim.api.nvim_create_autocmd({ 'BufReadPre', 'BufNewFile', 'BufEnter', 'BufFilePre' }, {
   pattern = '*/src/github.com/erikw/hackerrank-solutions/*.md,*/src/github.com/erikw/leetcode-solutions/*.md,[1-9]*.md',
-  group = imark_group,
+  group = augroup_imark,
   command = 'let g:instant_markdown_autostart=0',
 })
 EOF
