@@ -83,7 +83,19 @@ return require("packer").startup(function(use)
 	--})
 
 	--use('ibhagwan/fzf-lua' | use('mrjones2014/dash.nvim', { 'do': 'make install' } " Search dash.app from nvim. Currently broken: https://github.com/mrjones2014/dash.nvim/issues/137
-	--use{'mrjones2014/dash.nvim', run = 'make install', requires = { 'ibhagwan/fzf-lua'}	-- Search dash.app from nvim. Currently broken: https://github.com/mrjones2014/dash.nvim/issues/137
+
+	-- Search dash.app from nvim. Currently broken: https://github.com/mrjones2014/dash.nvim/issues/137
+	--use({
+	--    "mrjones2014/dash.nvim",
+	--    run = "make install",
+	--    requires = { "ibhagwan/fzf-lua" },
+	--    config = function()
+	--        require("dash").setup()
+	--        vim.keymap.set("n", "<Leader>d", ":DashWord<CR>", { silent = true, desc = "Dash: lookup word." })
+	--        vim.keymap.set("n", "<Leader>D", ":Dash<CR>", { silent = true, desc = "Dash" })
+	--    end,
+	--})
+
 	--use('lukas-reineke/indent-blankline.nvim')	-- Indent vertical markers.
 	--use('mfussenegger/nvim-dap')			-- Debug Adapter Protocol client. Like LSP for debuggers. TODO try again when more mature. Currently LUA config is not working (freezes nvim).
 	use("AndrewRadev/sideways.vim") -- Shift function arguments left and right.
@@ -104,7 +116,17 @@ return require("packer").startup(function(use)
 	})
 
 	-- Better than fugative ':Git difftool'. Browser file history with ':DiffviewFileHistory %'
-	use({ "sindrets/diffview.nvim", requires = "nvim-lua/plenary.nvim" })
+	use({
+		"sindrets/diffview.nvim",
+		requires = "nvim-lua/plenary.nvim",
+		config = function()
+			vim.api.nvim_create_user_command(
+				"Gdiff",
+				":DiffviewFileHistory %",
+				{ force = true, desc = "View diff file history of current buffer." }
+			)
+		end,
+	})
 
 	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }) -- NVim interface for tree-sitter (language parser).
 	use("rgroli/other.nvim") -- Open related file like test.

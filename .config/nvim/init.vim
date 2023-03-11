@@ -328,22 +328,6 @@ EOF
 " TODO move this to the 'config' function inside the packer use() method, as  nvim-surround is already configured
 " Plugin Config {
 
-" dash.vim {
-"lua <<EOF
-"require('dash').setup({
-"  -- your config here
-"})
-"vim.keymap.set('n', '<Leader>d', ':DashWord<CR>', { silent = true, desc = 'Dash: lookup word.' })
-"vim.keymap.set('n', '<Leader>D', ':Dash<CR>', { silent = true, desc = 'Dash' })
-"EOF
-" }
-
-" diffview.nvim {
-lua <<EOF
-vim.api.nvim_create_user_command('Gdiff', ':DiffviewFileHistory %', {force = true, desc = "View diff file history of current buffer."})
-EOF
-" }
-
 " fzf.vim {
 lua << EOF
 -- Stolen from my friend https://github.com/erikagnvall/dotfiles/blob/master/vim/init.vim
