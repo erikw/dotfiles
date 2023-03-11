@@ -328,33 +328,6 @@ EOF
 " TODO move this to the 'config' function inside the packer use() method, as  nvim-surround is already configured
 " Plugin Config {
 
-" fzf.vim {
-lua << EOF
--- Stolen from my friend https://github.com/erikagnvall/dotfiles/blob/master/vim/init.vim
--- Comment must be on line of its own...
--- Search for files in given path.
-vim.keymap.set('n', '<Leader>f', ':FZF<space>', { silent = true, desc = 'FZF: search for files in given path.' })
--- Sublime-like shortcut 'go to file' ctrl+p.
-vim.keymap.set('n', '<C-p>', ':Files<CR>', { silent = true, desc = 'FZF: search for files starting at current directory.' })
-vim.keymap.set('n', '<Leader>c', ':Commands<CR>', { silent = true, desc = 'FZF: search commands.' })
-vim.keymap.set('n', '<Leader>T', ':Tags<CR>', { silent = true, desc = 'FZF: search in tags file' })
-vim.keymap.set('n', '<Leader>b', ':Buffers<CR>', { silent = true, desc = 'FZF: search open buffers.' })
--- Ref: https://medium.com/@paulodiovani/vim-buffers-windows-and-tabs-an-overview-8e2a57c57afa).
-vim.keymap.set('n', '<Leader>t', ':Windows<CR>', { silent = true, desc = 'FZF: search open tabs.' })
-vim.keymap.set('n', '<Leader>H', ':History<CR>', { silent = true, desc = 'FZF: search history of opended files' })
-vim.keymap.set('n', '<Leader>m', ':Maps<CR>', { silent = true, desc = 'FZF: search mappings.' })
-vim.keymap.set('n', '<Leader>g', ':Rg<CR>', { silent = true, desc = 'FZF: search with rg (aka live grep).' })
-
--- To ignore a certain path in a git project from both RG and FD used by FZF,
--- the eaiest way is to create ignore files and exclude the in local git clone.
--- Ref: https://stackoverflow.com/a/1753078/265508
--- $ cd git_proj/
--- $ echo "path/to/exclude" > .rgignore
--- $ echo "path/to/exclude" > .fdignore
--- $ printf ".rgignore\n.fdignore" >> .git/info/exclude
-EOF
-" }
-
 " hop.nvim {
 lua <<EOF
 require'hop'.setup()
