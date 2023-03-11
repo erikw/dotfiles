@@ -1,8 +1,8 @@
+-- Erik Westrup's Neovim plugin configuration.
 -- init: ~/.config/nvim/init.lua
 -- Modeline {
 -- vi: foldmarker={,} foldmethod=marker foldlevel=0:
 -- }
--- TODO foldmarkers
 
 -- Bootstrap {
 -- Bootstrapping of packer.nvim. Ref: https://github.com/wbthomason/packer.nvim#bootstrapping
@@ -20,8 +20,6 @@ local packer_bootstrap = ensure_packer()
 -- }
 
 return require("packer").startup(function(use)
-	use("wbthomason/packer.nvim")
-
 	-- General {
 	--use('dhruvasagar/vim-table-mode')			-- Create ASCII tables
 	--use('fidian/hexmode')						-- Open binary files as a HEX dump with :Hexmode
@@ -43,6 +41,7 @@ return require("packer").startup(function(use)
 	use("tpope/vim-repeat") -- Extend '.' repetition for plugins like vim-surround, vim-speeddating, vim-unimpaired.
 	use("tpope/vim-speeddating") -- Increment dates with C-a.
 	use("tpope/vim-unimpaired") -- Bracket mappings like [<space>
+	use("wbthomason/packer.nvim")
 
 	-- Open URLs in buffer.
 	use({
@@ -556,7 +555,6 @@ return require("packer").startup(function(use)
 
 	-- }
 	-- }
-	-- }
 
 	-- Navigation {
 	-- * Keyboard shortcuts: https://github.com/junegunn/fzf/blob/master/README-VIM.md#fzf
@@ -771,6 +769,7 @@ return require("packer").startup(function(use)
 	-- }
 	-- }
 
+	-- packer.nvim Automations {
 	-- Auto set up conf after cloning packer.nvim. Must be after the use():es.
 	-- Ref: https://github.com/wbthomason/packer.nvim#bootstrapping
 	if packer_bootstrap then
@@ -785,4 +784,5 @@ return require("packer").startup(function(use)
 		group = augroup_packer,
 		command = "source <afile> | PackerCompile",
 	})
+	-- }
 end)
