@@ -28,7 +28,16 @@ return require("packer").startup(function(use)
 	--use('folke/which-key.nvim')				-- Show matching keybindings e.g. when tapping Leader.
 	--use('godlygeek/tabular')					-- Create tables. Disabled: not used and have some startup time.
 	--use('voldikss/vim-translator')			-- Async language translator.
-	use("axieax/urlview.nvim") -- Open URLs in buffer.
+
+	-- Open URLs in buffer.
+	use({
+		"axieax/urlview.nvim",
+		config = function()
+			require("urlview").setup()
+			vim.keymap.set("n", "\\u", "<Cmd>UrlView<CR>", { desc = "view buffer URLs" })
+		end,
+	})
+
 	use("danro/rename.vim") -- Provides the :Rename command
 
 	-- Register viewer and selector.
@@ -72,7 +81,37 @@ return require("packer").startup(function(use)
 	})
 	use("mbbill/undotree") -- Navigate history in a sidebar. Replaces old 'mbbill/undotree'
 	use("michaeljsmith/vim-indent-object") -- Operate on intendtation as text objects.
-	use("ntpeters/vim-better-whitespace") -- Highlight and remove trailing whitespaces.
+
+	-- Highlight and remove trailing whitespaces.
+	use({
+		"ntpeters/vim-better-whitespace",
+		config = function()
+			vim.g.strip_whitelines_at_eof = 1 -- Also strip empty lines at end of file on save.
+			vim.g.show_spaces_that_precede_tabs = 1 -- Highlight spaces that happens before tab.
+			vim.g.strip_whitespace_on_save = 1 -- Activate by default.
+			vim.g.strip_whitespace_confirm = 0 -- Don't ask for permission.
+
+			-- Filetypes to ignore even when strip_whitespace_on_save=1
+			--vim.g.better_whitespace_filetypes_blacklist = ['<filetype1>', '<filetype2>', '<etc>']
+
+			vim.api.nvim_create_user_command(
+				"Ws",
+				":execute 'StripWhitespace' | update",
+				{ force = true, desc = ":w with StripWhitespace." }
+			)
+			vim.api.nvim_create_user_command(
+				"Wqs",
+				":execute 'StripWhitespace' | wq",
+				{ force = true, desc = ":wq with StripWhitespace." }
+			)
+			vim.api.nvim_create_user_command(
+				"Wqas",
+				":execute 'bufdo StripWhitespace' | wqa",
+				{ force = true, desc = ":wqa with StripWhitespace." }
+			)
+		end,
+	})
+
 	use({
 		"phaazon/hop.nvim",
 		config = function()
@@ -151,8 +190,34 @@ return require("packer").startup(function(use)
 	--})
 
 	--use('mfussenegger/nvim-dap')			-- Debug Adapter Protocol client. Like LSP for debuggers. TODO try again when more mature. Currently LUA config is not working (freezes nvim).
-	use("AndrewRadev/sideways.vim") -- Shift function arguments left and right.
-	use("airblade/vim-gitgutter") -- Git modified status in sign column
+
+	-- Shift function arguments left and right.
+	use({
+		"AndrewRadev/sideways.vim",
+		config = function()
+			vim.keymap.set(
+				"n",
+				"<a",
+				":SidewaysLeft<CR>",
+				{ silent = true, desc = "Move function argument to the left." }
+			)
+			vim.keymap.set(
+				"n",
+				">a",
+				":SidewaysRight<CR>",
+				{ silent = true, desc = "Move function argument to the right." }
+			)
+		end,
+	})
+
+	-- Git modified status in sign column
+	use({
+		"airblade/vim-gitgutter",
+		config = function()
+			vim.opt.updatetime = 100 -- Speedier update of file status.
+		end,
+	})
+
 	use("andymass/vim-matchup") -- Extend % matching.
 	use("editorconfig/editorconfig-vim") -- Standard .editorconfig file in shared projects.
 	use({ "preservim/vim-markdown", requires = { "godlygeek/tabular" } }) -- Markdown utilties like automatic list indention, TOC.
@@ -223,10 +288,64 @@ return require("packer").startup(function(use)
 		end,
 	})
 
-	use("rgroli/other.nvim") -- Open related file like test.
+	-- Open related file like test.
+	use({
+		"rgroli/other.nvim",
+		config = function()
+			require("other-nvim").setup({
+				-- Show menu each time for multiple other files.
+				rememberBuffers = false,
+				mappings = {
+					-- builtin mappings
+					"rails",
+					-- custom mappings
+				},
+				style = {
+					width = 0.7,
+				},
+			})
+
+			vim.api.nvim_set_keymap("n", "<leader>ll", "<cmd>:Other<CR>", { noremap = true, silent = true })
+			vim.api.nvim_set_keymap("n", "<leader>lx", "<cmd>:OtherSplit<CR>", { noremap = true, silent = true })
+			vim.api.nvim_set_keymap("n", "<leader>lv", "<cmd>:OtherVSplit<CR>", { noremap = true, silent = true })
+			--vim.api.nvim_set_keymap("n", "<leader>lc", "<cmd>:OtherClear<CR>", { noremap = true, silent = true })
+
+			-- Context specific bindings
+			vim.api.nvim_set_keymap("n", "<leader>lt", "<cmd>:OtherVSplit test<CR>", { noremap = true, silent = true })
+		end,
+	})
+
 	use("rhysd/conflict-marker.vim") -- Navigate and edit VCS conflicts. Navigate: [x, ]x. Resolve: ct, co, cb.
 	use("ruanyl/vim-gh-line") -- Copy link to file on GitHub.
-	use("superDross/ticket.vim") -- Manage vim Sessions per git branch.
+
+	-- Manage vim Sessions per git branch.
+	use({
+		"superDross/ticket.vim",
+		config = function()
+			-- Alternatives that also support per-branch saving to some extent:
+			-- * https://piet.me/branch-based-sessions-in-vim/
+			-- * https://github.com/dhruvasagar/vim-prosession
+			-- * https://github.com/wting/gitsessions.vim
+			-- * https://github.com/rmagatti/auto-session
+
+			vim.g.auto_ticket = 0 -- Automatically load tickets when starting vim without file arguments.
+
+			-- Save current session.
+			vim.keymap.set(
+				"n",
+				"<C-M-s>",
+				':execute ":SaveSession" <bar> echo "Session saved"<CR>',
+				{ silent = true, desc = "Save current tickets.vim session." }
+			)
+			vim.keymap.set(
+				"n",
+				"<C-M-o>",
+				':execute ":OpenSession" <bar> echo "Session loaded"<CR>',
+				{ silent = true, desc = "Open saved tickets.vim session." }
+			)
+		end,
+	})
+
 	use("tpope/vim-fugitive") -- Git wrapper and shorthands.
 	use("wellle/targets.vim") -- Extra text objects to operate on e.g. function arguments.
 
