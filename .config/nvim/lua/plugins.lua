@@ -1,8 +1,8 @@
+-- init: ~/.config/nvim/init.lua
 -- Modeline {
 -- vi: foldmarker={,} foldmethod=marker foldlevel=0:
 -- }
 -- TODO foldmarkers
--- init: ~/.config/nvim/init.lua
 
 -- Bootstrap {
 -- Bootstrapping of packer.nvim. Ref: https://github.com/wbthomason/packer.nvim#bootstrapping
@@ -25,6 +25,8 @@ return require("packer").startup(function(use)
 	-- General {
 	--use('dhruvasagar/vim-table-mode')			-- Create ASCII tables
 	--use('fidian/hexmode')						-- Open binary files as a HEX dump with :Hexmode
+	--use('godlygeek/tabular')					-- Create tables. Disabled: not used and have some startup time.
+	--use('voldikss/vim-translator')			-- Async language translator.
 
 	-- Show matching keybindings e.g. when tapping Leader.
 	--use({
@@ -34,8 +36,13 @@ return require("packer").startup(function(use)
 	--    end,
 	--})
 
-	--use('godlygeek/tabular')					-- Create tables. Disabled: not used and have some startup time.
-	--use('voldikss/vim-translator')			-- Async language translator.
+	use("danro/rename.vim") -- Provides the :Rename command
+	use("michaeljsmith/vim-indent-object") -- Operate on intendtation as text objects.
+	use("tpope/vim-capslock") -- Software CAPSLOCK with <C-g>c in insert mode.
+	use("tpope/vim-characterize") -- 'ga' on steroid.
+	use("tpope/vim-repeat") -- Extend '.' repetition for plugins like vim-surround, vim-speeddating, vim-unimpaired.
+	use("tpope/vim-speeddating") -- Increment dates with C-a.
+	use("tpope/vim-unimpaired") -- Bracket mappings like [<space>
 
 	-- Open URLs in buffer.
 	use({
@@ -45,8 +52,6 @@ return require("packer").startup(function(use)
 			vim.keymap.set("n", "\\u", "<Cmd>UrlView<CR>", { desc = "view buffer URLs" })
 		end,
 	})
-
-	use("danro/rename.vim") -- Provides the :Rename command
 
 	-- Register viewer and selector.
 	use({
@@ -115,8 +120,6 @@ return require("packer").startup(function(use)
 		end,
 	})
 
-	use("michaeljsmith/vim-indent-object") -- Operate on intendtation as text objects.
-
 	-- Highlight and remove trailing whitespaces.
 	use({
 		"ntpeters/vim-better-whitespace",
@@ -165,15 +168,12 @@ return require("packer").startup(function(use)
 			vim.g.NERDDefaultAlign = "left"
 		end,
 	})
-	use("tpope/vim-capslock") -- Software CAPSLOCK with <C-g>c in insert mode.
-	use("tpope/vim-characterize") -- 'ga' on steroid.
-	use("tpope/vim-repeat") -- Extend '.' repetition for plugins like vim-surround, vim-speeddating, vim-unimpaired.
-	use("tpope/vim-speeddating") -- Increment dates with C-a.
-	use("tpope/vim-unimpaired") -- Bracket mappings like [<space>
-	-- " }
+	-- }
 
 	-- Development {
 	-- Development: General {
+	--use('mfussenegger/nvim-dap')			-- Debug Adapter Protocol client. Like LSP for debuggers. TODO try again when more mature. Currently LUA config is not working (freezes nvim).
+
 	-- AI powered code completion.
 	--use({
 	--    "github/copilot.vim",
@@ -224,7 +224,12 @@ return require("packer").startup(function(use)
 	--    end,
 	--})
 
-	--use('mfussenegger/nvim-dap')			-- Debug Adapter Protocol client. Like LSP for debuggers. TODO try again when more mature. Currently LUA config is not working (freezes nvim).
+	use("andymass/vim-matchup") -- Extend % matching.
+	use("editorconfig/editorconfig-vim") -- Standard .editorconfig file in shared projects.
+	use("rhysd/conflict-marker.vim") -- Navigate and edit VCS conflicts. Navigate: [x, ]x. Resolve: ct, co, cb.
+	use("ruanyl/vim-gh-line") -- Copy link to file on GitHub.
+	use("tpope/vim-fugitive") -- Git wrapper and shorthands.
+	use("wellle/targets.vim") -- Extra text objects to operate on e.g. function arguments.
 
 	-- Shift function arguments left and right.
 	use({
@@ -252,9 +257,6 @@ return require("packer").startup(function(use)
 			vim.opt.updatetime = 100 -- Speedier update of file status.
 		end,
 	})
-
-	use("andymass/vim-matchup") -- Extend % matching.
-	use("editorconfig/editorconfig-vim") -- Standard .editorconfig file in shared projects.
 
 	-- Markdown utilties like automatic list indention, TOC.
 	use({
@@ -361,9 +363,6 @@ return require("packer").startup(function(use)
 		end,
 	})
 
-	use("rhysd/conflict-marker.vim") -- Navigate and edit VCS conflicts. Navigate: [x, ]x. Resolve: ct, co, cb.
-	use("ruanyl/vim-gh-line") -- Copy link to file on GitHub.
-
 	-- Manage vim Sessions per git branch.
 	use({
 		"superDross/ticket.vim",
@@ -392,9 +391,6 @@ return require("packer").startup(function(use)
 		end,
 	})
 
-	use("tpope/vim-fugitive") -- Git wrapper and shorthands.
-	use("wellle/targets.vim") -- Extra text objects to operate on e.g. function arguments.
-
 	-- Autoclose brackets etc.
 	use({
 		"windwp/nvim-autopairs",
@@ -412,7 +408,7 @@ return require("packer").startup(function(use)
 			npairs.add_rules(require("nvim-autopairs.rules.endwise-ruby"))
 		end,
 	})
-	-- " }
+	-- }
 
 	-- Development: LSP/Completion {
 	--use('neovim/nvim-lspconfig')			-- Plug-n-play configurations for LSP server. Disabled in favour of simpler to use ALE.
@@ -521,45 +517,45 @@ return require("packer").startup(function(use)
 			vim.g.vista_sidebar_width = 50 -- Window width.
 		end,
 	})
-	-- " }
+	-- }
 
 	-- Development: DAP {
 	--use('mfussenegger/nvim-dap') -- Debug Adapter Protocol
 	--use('rcarriga/nvim-dap-ui')  -- UI for DAP
 	--use('suketa/nvim-dap-ruby')  -- Config for ruby. Requries the `debug` gem. No rails support yet: https://github.com/suketa/nvim-dap-ruby/issues/25
-	-- " }
+	-- }
 
 	-- Development: C/C++ {
 	use("ludovicchabant/vim-gutentags") -- Autogenerate new tags file.
-	-- "}
+	-- }
 	--
 	-- Development: Go {
 	--use{'fatih/vim-go', ft = { 'go' } }	-- Compilation commands etc.
-	-- "}
+	-- }
 	--
 	-- Development: Java {
 	--use{'erikw/jcommenter.vim', ft = { 'java' } }		-- Generate javadoc.
-	-- "}
+	-- }
 	--
 	-- Development: LaTeX {
 	--use{'donRaphaco/neotex', ft = { 'tex' }	-- Live preview PDF output from latex.
-	-- " }
+	-- }
 	--
 	-- Development: Python {
 	--use{'python-rope/ropevim', ft = { 'python' } }	-- Refactoring with rope library.
 	--use{'fisadev/vim-isort', ft = { 'python' } }	    -- Sort imports
-	-- "}
+	-- }
 	--
 	-- Development: Swift {
 	--use{'keith/swift.vim', ft = { 'switft' } }	    -- Syntax files for Switch
-	-- "}
+	-- }
 	--
 	-- Development: Web {
 	use({ "ap/vim-css-color", ft = { "css", "scss" } }) -- Display CSS colors.
-	-- " }
+	-- }
 
-	-- " }
-	-- " }
+	-- }
+	-- }
 	-- }
 
 	-- Navigation {
@@ -613,7 +609,7 @@ return require("packer").startup(function(use)
 			-- $ printf ".rgignore\n.fdignore" >> .git/info/exclude
 		end,
 	})
-	-- " }
+	-- }
 
 	-- Snippets {
 
@@ -633,12 +629,12 @@ return require("packer").startup(function(use)
 	})
 
 	use("honza/vim-snippets") -- Snippet library
-	-- " }
+	-- }
 	--
 	-- Syntax {
 	use({ "bfontaine/Brewfile.vim", ft = { "brewfile" } }) -- Syntax for Brewfiles
 	use({ "kalekundert/vim-nestedtext", ft = { "nestedtext" } }) -- Syntax for NestedText .nt files.
-	-- " }
+	-- }
 
 	-- UI {
 	-- Highlight current word under cursor. Not compatible with dark-notify: https://github.com/cormacrelf/dark-notify/issues/8
@@ -772,8 +768,8 @@ return require("packer").startup(function(use)
 	--use('mhartington/oceanic-next')
 	--use('morhetz/gruvbox')
 	use("ishan9299/nvim-solarized-lua") -- Solarized theme that works with nvim-treesitter highlights.
-	-- " }
-	-- "}
+	-- }
+	-- }
 
 	-- Auto set up conf after cloning packer.nvim. Must be after the use():es.
 	-- Ref: https://github.com/wbthomason/packer.nvim#bootstrapping
