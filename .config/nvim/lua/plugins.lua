@@ -1,10 +1,10 @@
 -- Erik Westrup's Neovim plugin configuration.
 -- init: ~/.config/nvim/init.lua
--- Modeline {
--- vi: foldmarker={,} foldmethod=marker foldlevel=0:
--- }
+-- Modeline {{
+-- vi: foldmarker={{,}} foldmethod=marker foldlevel=0:
+-- }}
 
--- Bootstrap {
+-- packer.nvim Bootstrap {{
 -- Bootstrapping of packer.nvim. Ref: https://github.com/wbthomason/packer.nvim#bootstrapping
 local ensure_packer = function()
 	local fn = vim.fn
@@ -17,10 +17,10 @@ local ensure_packer = function()
 	return false
 end
 local packer_bootstrap = ensure_packer()
--- }
+-- }}
 
 return require("packer").startup(function(use)
-	-- General {
+	-- General {{
 	--use('dhruvasagar/vim-table-mode')			-- Create ASCII tables
 	--use('fidian/hexmode')						-- Open binary files as a HEX dump with :Hexmode
 	--use('godlygeek/tabular')					-- Create tables. Disabled: not used and have some startup time.
@@ -167,10 +167,10 @@ return require("packer").startup(function(use)
 			vim.g.NERDDefaultAlign = "left"
 		end,
 	})
-	-- }
+	-- }}
 
-	-- Development {
-	-- Development: General {
+	-- Development {{
+	-- Development: General {{
 	--use('mfussenegger/nvim-dap')			-- Debug Adapter Protocol client. Like LSP for debuggers. TODO try again when more mature. Currently LUA config is not working (freezes nvim).
 
 	-- AI powered code completion.
@@ -408,9 +408,9 @@ return require("packer").startup(function(use)
 			npairs.add_rules(require("nvim-autopairs.rules.endwise-ruby"))
 		end,
 	})
-	-- }
+	-- }}
 
-	-- Development: LSP/Completion {
+	-- Development: LSP/Completion {{
 	--use('neovim/nvim-lspconfig')			-- Plug-n-play configurations for LSP server. Disabled in favour of simpler to use ALE.
 	--
 
@@ -517,47 +517,45 @@ return require("packer").startup(function(use)
 			vim.g.vista_sidebar_width = 50 -- Window width.
 		end,
 	})
-	-- }
+	-- }}
 
-	-- Development: DAP {
+	-- Development: DAP {{
 	--use('mfussenegger/nvim-dap') -- Debug Adapter Protocol
 	--use('rcarriga/nvim-dap-ui')  -- UI for DAP
 	--use('suketa/nvim-dap-ruby')  -- Config for ruby. Requries the `debug` gem. No rails support yet: https://github.com/suketa/nvim-dap-ruby/issues/25
-	-- }
+	-- }}
 
-	-- Development: C/C++ {
+	-- Development: C/C++ {{
 	use("ludovicchabant/vim-gutentags") -- Autogenerate new tags file.
-	-- }
-	--
-	-- Development: Go {
+	-- }}
+
+	-- Development: Go {{
 	--use{'fatih/vim-go', ft = { 'go' } }	-- Compilation commands etc.
-	-- }
-	--
-	-- Development: Java {
+	-- }}
+
+	-- Development: Java {{
 	--use{'erikw/jcommenter.vim', ft = { 'java' } }		-- Generate javadoc.
-	-- }
-	--
-	-- Development: LaTeX {
+	-- }}
+
+	-- Development: LaTeX {{
 	--use{'donRaphaco/neotex', ft = { 'tex' }	-- Live preview PDF output from latex.
-	-- }
-	--
-	-- Development: Python {
+	-- }}
+
+	-- Development: Python {{
 	--use{'python-rope/ropevim', ft = { 'python' } }	-- Refactoring with rope library.
 	--use{'fisadev/vim-isort', ft = { 'python' } }	    -- Sort imports
-	-- }
-	--
-	-- Development: Swift {
+	-- }}
+
+	-- Development: Swift {{
 	--use{'keith/swift.vim', ft = { 'switft' } }	    -- Syntax files for Switch
-	-- }
-	--
-	-- Development: Web {
+	-- }}
+
+	-- Development: Web {{
 	use({ "ap/vim-css-color", ft = { "css", "scss" } }) -- Display CSS colors.
-	-- }
+	-- }}
+	-- }}
 
-	-- }
-	-- }
-
-	-- Navigation {
+	-- Navigation {{
 	-- * Keyboard shortcuts: https://github.com/junegunn/fzf/blob/master/README-VIM.md#fzf
 	-- * Commands: https://github.com/junegunn/fzf.vim#commands
 	use({
@@ -608,10 +606,9 @@ return require("packer").startup(function(use)
 			-- $ printf ".rgignore\n.fdignore" >> .git/info/exclude
 		end,
 	})
-	-- }
+	-- }}
 
-	-- Snippets {
-
+	-- Snippets {{
 	-- Snippets engine compatible with the SnipMate format.
 	use({
 		"dcampos/nvim-snippy",
@@ -628,14 +625,17 @@ return require("packer").startup(function(use)
 	})
 
 	use("honza/vim-snippets") -- Snippet library
-	-- }
-	--
-	-- Syntax {
+	-- }}
+
+	-- Syntax {{
 	use({ "bfontaine/Brewfile.vim", ft = { "brewfile" } }) -- Syntax for Brewfiles
 	use({ "kalekundert/vim-nestedtext", ft = { "nestedtext" } }) -- Syntax for NestedText .nt files.
-	-- }
+	-- }}
 
-	-- UI {
+	-- UI {{
+	--use('yamatsum/nvim-/ursorline')		-- Highlight current word under cursor. Not compatible with dark-notify: https://github.com/cormacrelf/dark-notify/issues/8
+	--use('sitiom/nvim-numbertoggle')		-- Automatic relative / static line number toggling. Disabled as of https://github.com/sitiom/nvim-numbertoggle/issues/15
+
 	-- Highlight current word under cursor. Not compatible with dark-notify: https://github.com/cormacrelf/dark-notify/issues/8
 	--use({
 	--    "RRethy/vim-illuminate",
@@ -643,9 +643,6 @@ return require("packer").startup(function(use)
 	--        require("illuminate").configure()
 	--    end,
 	--})
-
-	--use('yamatsum/nvim-/ursorline')		-- Highlight current word under cursor. Not compatible with dark-notify: https://github.com/cormacrelf/dark-notify/issues/8
-	--use('sitiom/nvim-numbertoggle')		-- Automatic relative / static line number toggling. Disabled as of https://github.com/sitiom/nvim-numbertoggle/issues/15
 
 	-- Visualize marks in the sign column.
 	use({
@@ -762,15 +759,15 @@ return require("packer").startup(function(use)
 		end,
 	})
 
-	-- Colorschemes {
+	-- Colorschemes {{
 	--use('folke/tokyonight.nvim')
 	--use('mhartington/oceanic-next')
 	--use('morhetz/gruvbox')
 	use("ishan9299/nvim-solarized-lua") -- Solarized theme that works with nvim-treesitter highlights.
-	-- }
-	-- }
+	-- }}
+	-- }}
 
-	-- packer.nvim Automations {
+	-- packer.nvim Automations {{
 	-- Auto set up conf after cloning packer.nvim. Must be after the use():es.
 	-- Ref: https://github.com/wbthomason/packer.nvim#bootstrapping
 	if packer_bootstrap then
@@ -785,5 +782,5 @@ return require("packer").startup(function(use)
 		group = augroup_packer,
 		command = "source <afile> | PackerCompile",
 	})
-	-- }
+	-- }}
 end)
