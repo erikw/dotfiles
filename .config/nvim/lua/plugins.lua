@@ -30,9 +30,37 @@ return require("packer").startup(function(use)
 	--use('voldikss/vim-translator')			-- Async language translator.
 	use("axieax/urlview.nvim") -- Open URLs in buffer.
 	use("danro/rename.vim") -- Provides the :Rename command
-	use("gennaro-tedesco/nvim-peekup") -- Register viewer and selector.
+
+	-- Register viewer and selector.
+	use({
+		"gennaro-tedesco/nvim-peekup",
+		config = function()
+			-- Paste selection to register ", so that it can be pasted directly with 'p'.
+			-- Ref: https://github.com/gennaro-tedesco/nvim-peekup/issues/27
+			require("nvim-peekup.config").on_keystroke["paste_reg"] = '"'
+		end,
+	})
+
 	use({ "instant-markdown/vim-instant-markdown", ft = "markdown", run = "yarn install" })
-	use({ "nvim-tree/nvim-tree.lua", requires = { "nvim-tree/nvim-web-devicons" } }) -- File explorer tree
+
+	-- File explorer tree
+	use({
+		"nvim-tree/nvim-tree.lua",
+		requires = { "nvim-tree/nvim-web-devicons" },
+		config = function()
+			require("nvim-tree").setup({
+				open_on_tab = true,
+				filters = { custom = { "^.git$" } },
+				view = {
+					width = "15%",
+					side = "left",
+				},
+			})
+
+			-- When open_on_tab=true, syncs toggle globally acoss tabs.
+			vim.keymap.set("n", "<F2>", ":NvimTreeToggle<CR>", { silent = true, desc = "Toggle file explorer tree." })
+		end,
+	})
 
 	-- Work on surrond delimiters or its content. Like tpope/vim-surround but with TreeSitter.
 	use({
@@ -54,7 +82,15 @@ return require("packer").startup(function(use)
 			vim.api.nvim_set_keymap("", "<leader>h", "<cmd>lua require'hop'.hint_words()<cr>", {})
 		end,
 	}) -- Easy motion jumps in buffer.
-	use("preservim/nerdcommenter") -- Comment source code.
+
+	-- Comment source code.
+	use({
+		"preservim/nerdcommenter",
+		config = function()
+			-- Align line-wise comment delimiters flush left instead of following code indentation
+			vim.g.NERDDefaultAlign = "left"
+		end,
+	})
 	use("tpope/vim-capslock") -- Software CAPSLOCK with <C-g>c in insert mode.
 	use("tpope/vim-characterize") -- 'ga' on steroid.
 	use("tpope/vim-repeat") -- Extend '.' repetition for plugins like vim-surround, vim-speeddating, vim-unimpaired.
@@ -132,7 +168,13 @@ return require("packer").startup(function(use)
 		--end,
 	})
 
-	use("nguyenvukhang/nvim-toggler") -- Toggle values like true/false with <leader>i.
+	-- Toggle values like true/false with <Leader>i.
+	use({
+		"nguyenvukhang/nvim-toggler",
+		config = function()
+			require("nvim-toggler").setup()
+		end,
+	})
 
 	-- Show code coverage in sign column.
 	use({
@@ -156,14 +198,55 @@ return require("packer").startup(function(use)
 		end,
 	})
 
-	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }) -- NVim interface for tree-sitter (language parser).
+	-- NVim interface for tree-sitter (language parser).
+	use({
+		"nvim-treesitter/nvim-treesitter",
+		run = ":TSUpdate",
+		config = function()
+			require("nvim-treesitter.configs").setup({
+				-- A list of parser names, or "all". Install manually with :TSINstall <parser>
+				-- comment - for parsing e.g. TODO markers in comments.
+				ensure_installed = { "comment", "lua", "ruby", "python", "javascript", "markdown" },
+
+				-- Install parsers synchronously (only applied to `ensure_installed`)
+				sync_install = false,
+
+				-- Automatically install missing parsers when entering buffer
+				auto_install = true,
+				highlight = {
+					enable = true,
+				},
+				indent = {
+					enable = true,
+				},
+			})
+		end,
+	})
+
 	use("rgroli/other.nvim") -- Open related file like test.
 	use("rhysd/conflict-marker.vim") -- Navigate and edit VCS conflicts. Navigate: [x, ]x. Resolve: ct, co, cb.
 	use("ruanyl/vim-gh-line") -- Copy link to file on GitHub.
 	use("superDross/ticket.vim") -- Manage vim Sessions per git branch.
 	use("tpope/vim-fugitive") -- Git wrapper and shorthands.
 	use("wellle/targets.vim") -- Extra text objects to operate on e.g. function arguments.
-	use("windwp/nvim-autopairs") -- Autoclose brackets etc.
+
+	-- Autoclose brackets etc.
+	use({
+		"windwp/nvim-autopairs",
+		config = function()
+			local npairs = require("nvim-autopairs")
+			npairs.setup({
+				check_ts = true, --  Use treesitter to check for a pair
+				map_c_h = true, -- Map the <C-h> key to delete a pair
+				map_c_w = true, -- map <c-w> to delete a pair if possible
+			})
+
+			-- Ref: https://github.com/windwp/nvim-autopairs/wiki/Endwise
+			-- Could use https://github.com/RRethy/nvim-treesitter-endwise instead
+			npairs.add_rules(require("nvim-autopairs.rules.endwise-lua"))
+			npairs.add_rules(require("nvim-autopairs.rules.endwise-ruby"))
+		end,
+	})
 	-- " }
 
 	-- Development: LSP/Completion {
@@ -253,7 +336,17 @@ return require("packer").startup(function(use)
 		end,
 	})
 
-	use("ray-x/lsp_signature.nvim") -- Method signature window, as ALE does not support it. Ref: https://www.reddit.com/r/vim/comments/jhqzsv/signature_help_via_ale/
+	-- Method signature window, as ALE does not support it. Ref: https://www.reddit.com/r/vim/comments/jhqzsv/signature_help_via_ale/
+	use({
+		"ray-x/lsp_signature.nvim",
+		config = function()
+			require("lsp_signature").setup({
+				toggle_key = "<M-x>", -- toggle signature on and off in insert mode
+				select_signature_key = "<M-n>", -- cycle to next signature
+			})
+		end,
+	})
+
 	use("liuchengxu/vista.vim") -- LSP symbols and tags viewer, like TagBar but with LSP support.
 	-- " }
 
@@ -350,7 +443,22 @@ return require("packer").startup(function(use)
 	-- " }
 
 	-- Snippets {
-	use("dcampos/nvim-snippy") -- Snippets engine compatible with the SnipMate format.
+
+	-- Snippets engine compatible with the SnipMate format.
+	use({
+		"dcampos/nvim-snippy",
+		config = function()
+			require("snippy").setup({
+				mappings = {
+					is = {
+						["<Tab>"] = "expand_or_advance",
+						["<S-Tab>"] = "previous",
+					},
+				},
+			})
+		end,
+	})
+
 	use("honza/vim-snippets") -- Snippet library
 	-- " }
 	--
@@ -363,7 +471,14 @@ return require("packer").startup(function(use)
 	--use('RRethy/vim-illuminate')			-- Highlight current word under cursor. Not compatible with dark-notify: https://github.com/cormacrelf/dark-notify/issues/8
 	--use('yamatsum/nvim-/ursorline')		-- Highlight current word under cursor. Not compatible with dark-notify: https://github.com/cormacrelf/dark-notify/issues/8
 	--use('sitiom/nvim-numbertoggle')		-- Automatic relative / static line number toggling. Disabled as of https://github.com/sitiom/nvim-numbertoggle/issues/15
-	use("chentoast/marks.nvim") -- Visualize marks in the sign column.
+
+	-- Visualize marks in the sign column.
+	use({
+		"chentoast/marks.nvim",
+		config = function()
+			require("marks").setup({})
+		end,
+	})
 
 	-- Watch system light/dark mode changes. Requires dark-notify(1).
 	use({
@@ -386,14 +501,49 @@ return require("packer").startup(function(use)
 		end,
 	})
 
-	use({ "crispgm/nvim-tabline", requires = { "nvim-tree/nvim-web-devicons" } }) -- More informative tab titles
-	use("karb94/neoscroll.nvim") -- Smoth scrolling.
+	-- More informative tab titles.
+	use({
+		"crispgm/nvim-tabline",
+		requires = { "nvim-tree/nvim-web-devicons" },
+		config = function()
+			require("tabline").setup({})
+		end,
+	})
+
+	-- Smoth scrolling.
+	use({
+		"karb94/neoscroll.nvim",
+		config = function()
+			require("neoscroll").setup()
+		end,
+	})
 	use("mhinz/vim-startify") -- Start screen with recently opended files.
 
 	-- Statusline.
 	use({
 		"nvim-lualine/lualine.nvim",
 		requires = { "kyazdani42/nvim-web-devicons", opt = true },
+		config = function()
+			require("lualine").setup({
+				sections = {
+					lualine_c = {
+						{
+							"filename",
+							path = 1, -- relative path
+						},
+					},
+				},
+				inactive_sections = {
+					lualine_c = {
+						{
+							"filename",
+							path = 1, -- relative path
+						},
+					},
+				},
+				extensions = { "fugitive", "fzf", "nvim-tree", "quickfix" },
+			})
+		end,
 	})
 
 	-- Colorschemes {
