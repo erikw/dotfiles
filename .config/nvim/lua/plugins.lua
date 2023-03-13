@@ -417,6 +417,9 @@ return require("packer").startup(function(use)
 	-- LSP linting engine.
 	use({
 		"dense-analysis/ale",
+		setup = function()
+			vim.g.ale_completion_enabled = 1 -- Must be set before ALE is loaded.
+		end,
 		config = function()
 			-- Reference https://github.com/dense-analysis/ale/blob/master/doc/ale.txt
 			-- Disabled linters:

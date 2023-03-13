@@ -39,7 +39,6 @@ vim.g.xdg_config_home = os.getenv("XDG_CONFIG_HOME") or "$HOME/.config"
 -- }
 
 -- Plugins {
-vim.g.ale_completion_enabled = 1 -- Must be set before ALE is loaded.
 require("plugins")
 -- }
 
