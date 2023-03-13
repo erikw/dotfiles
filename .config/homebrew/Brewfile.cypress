@@ -1,6 +1,6 @@
 # Brewfile for cypress
 # Modeline {
-#    vi: foldmarker={,} foldmethod=marker foldlevel=0 tabstop=8 ft=brewfile:
+#    vi: foldmarker={,} foldmethod=marker foldlevel=0 tabstop=8 ft=brewfile
 #    The syntax highlight via vim plugin https://github.com/bfontaine/Brewfile.vim
 # }
 

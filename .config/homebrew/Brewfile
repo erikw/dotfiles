@@ -1,7 +1,7 @@
 # Brewfile for general base systems. Host specifics can be found in .Brewfile.$HOSTNAME files.
 # Manual: https://docs.brew.sh/Manpage#bundle-subcommand
 # Modeline {
-#    vi: foldmarker={,} foldmethod=marker foldlevel=0 tabstop=8 ft=brewfile:
+#    vi: foldmarker={,} foldmethod=marker foldlevel=0 tabstop=8 ft=brewfile
 #    The syntax highlight via vim plugin https://github.com/bfontaine/Brewfile.vim
 # }
 

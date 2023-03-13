@@ -2,7 +2,7 @@
 " To enable support for reading this file, run :installnative then :source in Tridactyl.
 
 " Modeline {{
-"	 vi: foldmarker={{,}} foldmethod=marker foldlevel=0: tabstop=8: filetype=vim:
+"	 vi: foldmarker={{,}} foldmethod=marker foldlevel=0: tabstop=8 filetype=vim
 " }}
 
 " General {{

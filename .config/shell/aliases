@@ -1,6 +1,6 @@
 # Erik Westrup's shell aliases.
 # Modeline {
-#	 vi: foldmarker={,} foldmethod=marker foldlevel=0: tabstop=8 ft=sh:
+#	 vi: foldmarker={,} foldmethod=marker foldlevel=0 tabstop=8 ft=sh
 # }
 
 # Suppress alias expansion:: $ \aliasname || 'aliasname'

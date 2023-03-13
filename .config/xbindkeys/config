@@ -3,7 +3,7 @@
 # Keysymbols are defined in /usr/include/X11/keysymdef.h (exclude the XL_ prefix).
 # List of modifier: Release, Control, Shift, Mod1 (Alt), Mod2 (NumLock), Mod3 (CapsLock), Mod4 (Windows key), Mod5 (Scroll).
 # Modeline {
-#	 vi: foldmarker={,} foldmethod=marker foldlevel=0: tabstop=8: ft=rc
+#	 vi: foldmarker={,} foldmethod=marker foldlevel=0 tabstop=8 ft=rc
 # }
 
 # Programs {

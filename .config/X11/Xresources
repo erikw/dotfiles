@@ -2,7 +2,7 @@
 ! Reload with `xrdb -load $XDG_STATE_HOME/X11/Xresouces` or -merge to not overwrite all settings.
 
 ! Modeline {
-!	 vi: foldmarker={,} foldmethod=marker foldlevel=0: tabstop=8:
+!	 vi: foldmarker={,} foldmethod=marker foldlevel=0 tabstop=8
 ! }
 
 !! XTerm. {

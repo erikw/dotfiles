@@ -1,7 +1,7 @@
 # Erik Westrup's CGDB configuration.
 
 # Modeline {
-#	 vi: foldmarker={,} foldmethod=marker foldlevel=0: tabstop=8:
+#	 vi: foldmarker={,} foldmethod=marker foldlevel=0 tabstop=8
 # }
 
 # Options {
@@ -36,7 +36,7 @@
 	map f :finish<CR>
 	map n :next<CR>
 	map s :step<CR>
-	
+
 	map sta :start<CR>
 # }
 

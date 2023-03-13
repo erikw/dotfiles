@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Modeline {
-#	 vi: foldmarker={,} foldmethod=marker foldlevel=0:
+#	 vi: foldmarker={,} foldmethod=marker foldlevel=0
 # }
 
 # Initialize my X session. Different files are used depending on how X is started.

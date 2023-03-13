@@ -1,7 +1,7 @@
 " Settings for IdeaVim plugin for Intellij.
 " List of avaialbe configurations: https://github.com/JetBrains/ideavim/wiki/%22set%22-commands
 " Modeline [[
-"	 vi: foldmarker=[[,]] foldmethod=marker foldlevel=0: tabstop=8: filetype=vim:
+"	 vi: foldmarker=[[,]] foldmethod=marker foldlevel=0: tabstop=8 filetype=vim
 " ]]
 
 # Settings [[

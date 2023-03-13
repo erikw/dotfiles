@@ -1,6 +1,6 @@
 # Xinit for irvine
 # Modeline {
-#	 vi: foldmarker={,} foldmethod=marker foldlevel=0:
+#	 vi: foldmarker={,} foldmethod=marker foldlevel=0
 # }
 
 # TODO Migrate xintrc to systemd user session When there is a official way of starting X as a systemd user unit.  Current it does not work very well; dbus crashes.  Currently "Xorg as a systemd user service" requires Xorg to run as root, which is bad!  https://wiki.archlinux.org/index.php/Systemd/User
