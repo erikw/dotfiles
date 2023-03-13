@@ -1,8 +1,7 @@
 -- Erik Westrup's Neovim configuration.
 -- Plugins: ~/.config/nvim/lua/plugins.lua
 -- Modeline {
--- vi: foldmarker={,} foldmethod=marker foldlevel=0 tabstop=8 shiftwidth=8:
--- 8 spaces for a tab render best as HTML.
+-- vi: foldmarker={,} foldmethod=marker foldlevel=0
 -- }
 
 -- Documentation {
