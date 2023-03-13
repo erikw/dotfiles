@@ -1,7 +1,7 @@
 -- Erik Westrup's Neovim plugin configuration.
 -- init: ~/.config/nvim/init.lua
 -- Modeline {{
--- vi: foldmarker={{,}} foldmethod=marker foldlevel=0:
+-- vi: foldmarker={{,}} foldmethod=marker foldlevel=0
 -- }}
 
 -- packer.nvim Bootstrap {{
