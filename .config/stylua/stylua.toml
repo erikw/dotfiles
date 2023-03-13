@@ -1,0 +1,4 @@
+# Ref: https://github.com/JohnnyMorganz/StyLua#configuration
+indent_type = "Spaces"
+indent_width = 4
+column_width = 180	# Sync this with ~/.config/luacheck/.luacheckr

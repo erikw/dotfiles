@@ -1,0 +1,8 @@
+-- vi: ft=lua
+
+max_line_length = 180 -- Sync this with ~/.config/stylua/stylua.toml
+allow_defined = true -- Avoid warn on own global variables. Ref: https://github.com/mpeterv/luacheck/issues/3
+
+std = {
+    globals = { "vim", "require", "os" }, -- these globals can be set and accessed. For init.lua.
+}
