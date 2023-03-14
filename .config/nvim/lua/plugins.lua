@@ -399,7 +399,7 @@ return require("packer").startup(function(use)
                 ["tex"] = { "texlab" },
                 ["vim"] = { "vimls" },
             }
-            -- XDG path seems to be used for Linux but not macOS.
+            -- XDG path seems to be used for Linux but not macOS, until fixed https://github.com/mpeterv/luacheck/issues/231
             vim.g.ale_lua_luacheck_options = "--config $XDG_CONFIG_HOME/luacheck/.luacheckr"
 
             -- Disabled fixers:
