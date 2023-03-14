@@ -132,7 +132,7 @@ vim.keymap.set("n", "<Leader>=", TabWinAdjustSplit, { silent = true, desc = "Ctr
 
 -- ToggleSpell {
 -- Set language completely in the local buffer.
-function ToggleSpell(lang)
+local function ToggleSpell(lang)
     if not vim.b.old_spelllang then
         vim.b.old_spellfile = vim.o.spellfile
         vim.b.old_dictionary = vim.o.dictionary
@@ -158,11 +158,23 @@ function ToggleSpell(lang)
         vim.opt_local.dictionary = vim.b.old_dictionary
         vim.opt_local.thesaurus = vim.b.old_thesaurus
     end
-    return new_mode
+    print(new_mode)
 end
-vim.keymap.set("n", "<F6>", ':lua print(ToggleSpell("en_us"))<CR>', { silent = true, desc = "Toggle English spell." })
-vim.keymap.set("n", "<F7>", ':lua print(ToggleSpell("sv"))<CR>', { silent = true, desc = "Toggle Swedish spell." })
-vim.keymap.set("n", "<F8>", ':lua print(ToggleSpell("de"))<CR>', { silent = true, desc = "Toggle German spell." })
+--
+local function ToggleSpellEn()
+    ToggleSpell("en_us")
+end
+local function ToggleSpellSv()
+    ToggleSpell("sv")
+end
+local function ToggleSpellDe()
+    ToggleSpell("de")
+end
+
+-- Use local functions with bounded args instead of ':lua print(ToggleSpell("sv"))<CR>' so that linter don't complain about unused vars.
+vim.keymap.set("n", "<F6>", ToggleSpellEn, { silent = true, desc = "Toggle English spell." })
+vim.keymap.set("n", "<F7>", ToggleSpellSv, { silent = true, desc = "Toggle Swedish spell." })
+vim.keymap.set("n", "<F8>", ToggleSpellDe, { silent = true, desc = "Toggle German spell." })
 -- }
 
 -- -- ToggleBackgroundMode {
