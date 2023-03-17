@@ -286,10 +286,6 @@ fi
 	# Testing
 	#alias t="bin/rails test"
 
-	# Enable/disable git change tracking on irssi conf. Have it off by default, as awl plugin keeps changing it all the time.
-	alias dotf_irssiconf_untrack='cd ~/.dotfiles && git update-index --assume-unchange .irssi/config'
-	alias dotf_irssiconf_track='cd ~/.dotfiles && git update-index --no-assume-unchange .irssi/config'
-
 	#alias x-proxy='ssh x -L 8080:x.com:123 -N'				# Start SSH tunnel web proxy to some server.
 	#alias chromium-xproxy='chromium --proxy-server="http://localhost:8080"'	# Starts Chromium that uses X proxy tunnel.
 
