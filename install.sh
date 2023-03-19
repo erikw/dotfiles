@@ -42,28 +42,14 @@ git checkout -b local
 step "Installing dotfiles with dfm"
 bin/dfm install
 
-# Must be after dfm-install, otherwise it gets moved to ~/.backup
-# NOTE disabled as this script should work as non-interactive e.g. GitHub Codespaces VSCode setup.
-#email=
-#while [ -z "$email" ]; do
-	#echo -n "Enter email address for ~/.config/git/config-local: "
-	#read email
-#done;
-#cat << EOF >> ~/.config/git/config-local
-#[user]
-	#email = $email
-#EOF
-
 step "Listing backed up dotfiles at \$HOME/.backup"
 echo "Please check $HOME/.backup/ & commit changes to the local branch."
 ls -la $HOME/.backup
 
-step "Trying post-install configuration of programs"
-# e.g. for GitHub Coderspaces, Vim will be installed.
-bin/dotfiles_postinstall.sh
-
 step "Install OS-specific tooling"
-printf "Run OS-specific installer scripts e.g. \n"
-printf "\t$ ~/bin/macos_config.sh \n"
-printf "\t$ ~/bin/macos_install.sh \n"
-printf "\t$ ~/bin/windows_install.ps1 \n"
+printf "Run OS-specific installer scripts e.g.:\n"
+printf "\t$ ~/bin/macos_config.sh\n"
+printf "\t$ ~/bin/macos_install.sh\n"
+printf "\t$ ~/bin/windows_install.ps1\n"
+printf "\nAfter this, run common configurations:"
+printf "\t$ ~/bin/dotfiles_postinstall.sh\n"

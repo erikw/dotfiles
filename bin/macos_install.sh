@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Modeline {
-#	vi: foldmarker={,} foldmethod=marker foldlevel=0: tabstop=4:
+#	vi: foldmarker={,} foldmethod=marker foldlevel=0
 # }
 
 set -euxo pipefail
@@ -12,7 +12,7 @@ set -euxo pipefail
 #brew bundle install
 # NOPE don't set global HOMEBREW_BUNDLE_FILE path, interferes with local projects.
 
-# Need to add brew to PATH
+# Add brew to PATH with eval.
 brew_bin=
 if [ -e /opt/homebrew/bin/brew ]; then  # Apple Silicon macs
 	brew_bin=/opt/homebrew/bin/brew
@@ -45,36 +45,15 @@ brew tap homebrew/autoupdate
 brew autoupdate start 43200 --upgrade --cleanup
 brew autoupdate status
 
-# QuickLook Plugins {
-# Fix attributes for QuickLook plugins..
-# Reference: https://github.com/sindresorhus/quick-look-plugins
-xattr -d -r com.apple.quarantine ~/Library/QuickLook && killall Finder
-
-# qlmarkdown needs to be opended once to work.
-# Reference: https://github.com/sbarex/QLMarkdown
-open /Applications/QLMarkdown.app
-
-# Same for Apparency
-open /Applications/Apparency.app
-# }
-
-# Install tmux session on login.
-# Starting tmux with launchctl makes it run with less access e.g. doing $(ls /volumes/somevolume) gives "Operation not permitted".
-# thus, instead go for a simpler solution: Autostart;
-# 1. Set Iterm.app to auto-start
-# 2. Set iterm2 default profile to start irctor, and then have an additional profile that just runs zsh. See #irctorautostart below in the iterm section.
-# NOPE #irctorautostart is replaced with tmux-continuum
-# old below:
-
-
 # Notification queue service
-mkdir -p $HOME/Library/LaunchAgents
-ln -s $HOME/.config/LaunchAgents/com.user.notificationqueue.plist $HOME/Library/LaunchAgents/
-launchctl bootstrap gui/$UID $HOME/Library/LaunchAgents/com.user.notificationqueue.plist
-launchctl enable gui/$UID/com.user.notificationqueue
+#mkdir -p $HOME/Library/LaunchAgents
+#ln -s $HOME/.config/LaunchAgents/com.user.notificationqueue.plist $HOME/Library/LaunchAgents/
+#launchctl bootstrap gui/$UID $HOME/Library/LaunchAgents/com.user.notificationqueue.plist
+#launchctl enable gui/$UID/com.user.notificationqueue
 
 
 # solarized_toggle.sh
+# TODO hopefully replace all this with iTerm 3.5 light theme support.
 ## solarized_toggle.sh require
 # - pip3 package iterm2 mus be installed
 pip3 install iterm2
@@ -92,17 +71,6 @@ ln -s $HOME/Library/Application\ Support $HOME/Library/ApplicationSupport
 # * Bind to Service shortcut CTRL+OPT+CMD+t (shortcut used when feature was first introduced in the OS).
 
 
-# Update gnu locate database on schedule by appending crontab.
-#newtab="* */2 * * * /usr/local/Cellar/findutils/4.6.0/bin/updatedb --prunepaths='/tmp' >/dev/null 2>&1"
-# NOTE disabled as updatedb takes too much CPU on macOS, making other work hard.
-#newtab="* */2 * * * /usr/local/Cellar/findutils/4.6.0/bin/updatedb --localpaths='/etc $HOME' >/dev/null 2>&1"
-#oldtab=$(sudo crontab -l)
-#if [ -n "$oldtab" ]; then
-	#newtab=$(printf "%s\n%s\n" "$oldtab" "$newtab")
-#fi
-#sudo sh -c "echo \"$newtab\" | crontab -"
-
-
 # fzf fuzzy finder. Installed via brew
 $(brew --prefix)/opt/fzf/install --xdg
 
@@ -118,11 +86,6 @@ echo "$tab_new" | crontab -
 
 # EurKey
 # Enable the keymap from System Preferences > Keyboard > Input Sources. Replace US with EurKey.
-
-
-# General manual install list
-# * easytag
-# * Xcode XVim: https://github.com/XVimProject/XVim, https://github.com/XVimProject/XVim/blob/master/INSTALL_Xcode8.md
 
 
 # Brother DCP-7070dw
@@ -144,12 +107,7 @@ echo "$tab_new" | crontab -
 #   - Two-Sided Printing: Long-Edge Binding
 
 
-# Antivirus: Avast Security for Mac
-# https://www.avast.com/en-us/free-mac-security
-# the cask brew does not work
-#brew install avast-security
-# NOPE too much pop-ups and upsells, instead
-# Antivirus: Avira: https://www.avira.com/en/free-antivirus-mac
+# Anti malware: Avira: https://www.avira.com/en/free-antivirus-mac
 # the cask brew does not work with system extension
 #brew install avira-antivirus
 
@@ -186,38 +144,6 @@ echo "$tab_new" | crontab -
 # Create snipets for some common items in ~/doc/tech/word_expansions.txt
 
 
-# Firefox
-## Firefox (menu bar) > Customize Touch Bar..
-# * Replace Share with Reading mode.
-# * Set up according to firefox.txt
-
-# FreshBackMac
-# NOPE replace by Irvue
-# * Add to auto start in Settings > Users & Groups > Login items.
-# * Set daily refresh
-# * Turn off desktop notifications.
-
-# Irvue
-# Prefer this to Freshbackmac as one can get info about the selected wallpaper.
-# NOTE switch to built-in dynamic wallpapers with dark/light mode.
-## General
-# * Folder for saved wallpaper: ~/media/images/wallpapers/usplash/
-# * Uncheck Notifications
-# * Check Load at startup:
-## Shortcuts
-# * Change wallpaper: Ctrl + Shift + Cmd + W (to be consistent with Freshbackmac)
-# * Disable all other shortcuts as e.g. opt+cmd+r conflicts with Firefox reading mode, cmd+opt+s with iTerm solarized toggle.
-# ** It's not enough to uncheck a shortcut, it's value has to be deleted otherwise it will be enabled again.
-
-# Spotify Notifications
-# NOPE Replaced with native Now Playing Menu Bar.
-# * Set shortcut to show current playing to: Ctrl + Opt + Cmd + p
-
-# MacVim
-# * Make the app quit when the last buffer is closee: " MacVim > Preferences > After the last window closes: QuitMacVim.
-# * Open text files with MacVim
-#	* Find any .txt file in Finder > cmd+i on it > Open with > MacVim > Change for all
-
 # Scroll Reverser
 ## Scrolling
 # * Check: Enable Scroll Reverser
@@ -243,11 +169,6 @@ echo "$tab_new" | crontab -
 #   - Uncheck: Confirm "iTerm2 (#Q)""
 ### Selection
 # * Check "Applications in terminal may access clipboard" so that I can e.g. copy from vim buffer to GUI clipboard.
-## Profiles
-#* NOPE (replaced with tmux-continuum) After configuring the default profile, clone it in to a profile called "zsh" and remove the "Send text at start" #irctorautostart
-# * Set keyboard shortcut for profile "zsh" to Ctrl + Cmd + z
-### General
-# * NOPE (replaced with tmux-continuum) Send text at start: "irctor" #irctorautostart
 ### Colors
 # * Select color preset "Solarized Ligt". With macOs appearance following the sun, it's much more likely to be day time and thus no need to switch color in irctor on start.
 ### Text
@@ -273,11 +194,6 @@ echo "$tab_new" | crontab -
 #		- Action: "Load Color Preset" > "Solarized Dark"
 
 
-
-# Logitech G700s drivers
-# * https://support.logitech.com/en_us/product/g700s-rechargable-wireless-gaming-mouse/downloads#
-
-
 # Karabiner elements
 # Karabiner elements works much better than built-in opt<->cmd swap in system preferences because this bult-in swap does not work properly in iTerm, as alt key is only working on laptop keyboard and not on external PC keyboard.
 ## HOWEVER, only use if needed. If having an external mac keyboard, keep to System Preferences bindings!
@@ -294,31 +210,6 @@ echo "$tab_new" | crontab -
 #	* left_option -> left_command
 
 
-# Itsycal
-# NOPE This is replaced with native Calendar widget!
-# Preferences Save space by hiding built-in time in System Preferences > Date & Time > Clock > uncheck "Show date & time in menu bar".
-## Appearance
-# * Check "Use outline icon"
-# * Check "Show day of week in the icon".
-# * Datetime pattern: "" (as macOS clock can't be hidden starting from macOS 11).
-# * Check "Show event location"
-# * Check "Show calendar weeks"
-
-
-# Semulov preferences
-# NOPE replaced by Jettison
-# NOTE Install again when https://github.com/kainjow/Semulov/issues/14 is solved, until then use ~/bin/macos_eject_external_disks.command
-## Interface
-# * Check "Show number of mounted in menubar"
-# * Check "Show Ejec All menu item" and set the shortcut to Ctrl+Cmd+F12 or Cmd+Opt+Shift+E
-## Ignore Volumes
-#Recovery
-#Boot OS X
-#macOS Base System
-#Macintosh HD - Data
-## Miscellaneous
-# * Launch at login
-
 # Jettison
 ## Options
 # * Check Launch at start
@@ -332,30 +223,6 @@ echo "$tab_new" | crontab -
 ## Extraction
 # * Uncheck "Reveal expanded items in Finder".
 
-
-# restic_backup.sh
-# * If running restic from cron, then it seems like giving /usr/sbin/cron (and actually not restic(1)) full disk access prevents problems like
-# "scan: Open: open /Users/$USER/Desktop: operation not permitted"
-# System Preferences > Security & Privacy > Privacy > Full Disk Access > add /usr/sbin/cron
-## * Add an user crontab entries like:
-## Environment
-##SHELL=/bin/sh
-## ~/ works, but not $HOME strangely enough.
-#PATH=~/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/local/sbin:/sbin:/usr/sbin:/usr/bin:/bin
-## Reference: crontab(5).
-## Helper: https://crontab.guru/
-## Order of crontab fields
-## minute hour mday month wday	command
-#
-#
-#30	 19	 *	 *	 *	if_fail_do_notification restic_backup.sh
-#@monthly			   if_fail_do_notification restic_check.sh
-
-
-# Stretchly
-# * Turn off version update check in Preferences > About
-#   until it is marked as auto_updates $(brew info stretchly)
-
 # Dropbox
 # Remove ~/Dropbox symlink and create: $ ln -s /Users/erikw/Library/CloudStorage/Dropbox ~/dropbox
 ## General
@@ -364,7 +231,10 @@ echo "$tab_new" | crontab -
 
 # Crontab backup automation
 # Add to crontab an entry like:
-#@monthly			   if_fail_do_notification bak_crontab.sh
+tab_entry="@monthly			   if_fail_do_notification bak_crontab.sh"
+tab_old=$(crontab -l)
+tab_new=$(printf "%s\n%s\n" "$tab_old" "$tab_entry")
+echo "$tab_new" | crontab -
 
 # Taskwarrior
 # * Edit `~/.taskrc` to chose path for holiday files and set up remote sync server.
@@ -373,7 +243,6 @@ echo "$tab_new" | crontab -
 # Custom fonts
 # * Open Font Book.app > File > Add Fonts > ~/media/fonts/
 #   * Skip all fonts with warnings/errors on
-
 
 # Pixelmator Pro
 ## General
@@ -391,10 +260,6 @@ echo "$tab_new" | crontab -
 # From https://www.dict.cc/?s=about%3Awordlist&l=e
 # To use it;
 # - open Dictionary.app > Preferences > enable and up the pref order of the "Deutsch-Englisch" dictionary.
-
-
-# Mute Me button
-# Download https://muteme.com/download
 # }
 
 # Automator Actions {
@@ -426,12 +291,6 @@ echo "$tab_new" | crontab -
 #  - Cycle: CMD+OPT+F13.
 
 
-# NOPE skip this, using Jettison instead.
-# Automator command: eject USB drives
-# * Create an automator Quick Action named "eject_external_disks" with AppleScript for the contents in ~/bin/macos_eject_external_disks.command
-# * Bind to shortcut CTRL+CMD+F12
-
-
 # Automator command: showing Control Center.
 # TODO replace this with native System Preferences shortcut when supported.
 # * Create an automator Quick Action named "open_controlcenter" with AppleScript for the contents in ~/bin/macos_open_controlcenter.command
@@ -444,11 +303,6 @@ echo "$tab_new" | crontab -
 # * Create an automator Quick Action named "open_nowplaying" with AppleScript for the contents in ~/bin/macos_open_nowplaying.command
 # * Bind to shortcut CMD+F9
 # * For this to work, System Preferences > Security & Privacy > Privacy > Accessibillity > allow System Preferences.app.
-
-# NOPE does not seem to work
-# Automator command: toggling muting microphone input
-# * Create an automator Quick Action named "mic_mute_toggle" with AppleScript for the contents in ~/bin/macos_mic_mute_toggle.command
-# * Bind to shortcut Kinesis Freestyle2 button right arrow (cmd+rightArrow).
 # }
 
 # Development {
@@ -501,30 +355,6 @@ brew install bash curl unzip jq
 # }
 
 # Ruby {
-## RVM
-# NOPE replaced by ruby-build + rbenv
-# Install RVM according to instructions at https://rvm.io/rvm/install
-# For the gpg command, currently fails as the keyserver is not being available. Use another: https://unix.stackexchange.com/a/617320
-#rvm list
-#rvm install 3.0.1
-#rvm --default use 3.0.1
-
-
-## ruby-build + rbenv
-# NOTE replace with asdf
-# ruby-build install and manage different ruby versions. https://github.com/rbenv/ruby-build
-# rbenv - switch to the right ruby version for projects. Autmatically uses ruby-build as install plugin. https://github.com/rbenv/rbenv
-# Note env requirements at https://github.com/rbenv/ruby-build/wiki#suggested-build-environment
-# Possibly workaround like this as well: https://github.com/rbenv/ruby-build/issues/1353
-#brew install ruby-build rbenv readline openssl@1.1
-#rbenv init >> ~/.zshrc
-#rbenv install --list
-#rbenv install 3.0.2
-#rbenv global 3.0.2
-#
-# Install global gems:
-#~/bin/glob_pkg_install_gem.sh
-
 # asdf version manager - ruby
 asdf plugin-add ruby
 # Build requirements for building all ruby versions from https://github.com/asdf-vm/asdf-ruby
@@ -560,12 +390,6 @@ asdf global ruby latest
 # * Global python tools - pipx
 
 
-# * Manage python versions with pyenv or asdf from homebrew
-# * Manage python projects (with dependencies) with poetry. https://github.com/python-poetry/poetry
-#    * pipenv more established, but a lot of issues wih this project.
-# curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/install-poetry.py | python -
-# poetry completions zsh > $XDG_CONFIG_HOME/zsh/funcs/_poetry
-# and reload compinit
 
 # asdf version manager - python
 asdf plugin-add python
@@ -574,34 +398,19 @@ brew install openssl readline sqlite3 xz zlib
 asdf install python latest
 asdf global python latest
 
-# Global python packages
-# asdf manages this now.
-#~/bin/glob_pkg_install_pip.sh
-#asdf reshim python # to add binaires from global pip installed above to PATH.
+#curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/install-poetry.py | python -
+#poetry completions zsh > $XDG_CONFIG_HOME/zsh/funcs/_poetry
+# and reload compinit
 
-# LSP server
-#brew install pyright
 # }
 
 # JavaScript {
-# OLD, switch to asdf
-#brew install n
-#n lts
-#n latest
-# After switching from system node from brew, need to install my global npm packages to ~/.n/lib/node_modules/
-#~/bin/glob_pkg_install_npm.sh
-
 # asdf version manager - nodejs
 asdf plugin add nodejs
 # Build requirements from https://github.com/asdf-vm/asdf-nodejs/
 brew install gpg gawk
 asdf install nodejs latest
 asdf global nodejs latest
-
-# Global node packages
-# asdf manages this now.
-#glob_pkg_install_npm.sh
-
 # }
 
 # Xcode {
@@ -612,24 +421,6 @@ asdf global nodejs latest
 # }
 
 # DJing {
-# Serato DJ Pro:
-# * Download at https://serato.com/dj/pro/downloads
-# * Click the Rec buton > Set recording location to /Volumes/ext0/music/sets/my_sets/serato_live_sets/
-## Preferences:
-### DJ Preferences
-# * Check: Track End Warning
-### Library + Display
-# * Check: Center on selected Song
-# * Played Track Color: Gray
-# * Library Text Size: Step 6 out of 8
-# * Check: Show Tempo Matching Display
-# * Check: EQ Colored Waveforms
-# * Check: Hi-Res Screen Display
-# * Uncheck: Show Streaming Services
-## Live stream setup: https://support.serato.com/hc/en-us/articles/360001784415-Getting-Serato-DJ-Pro-ready-to-Live-Stream
-#  brew install ishowu obs
-#  * Android setup: https://muddoo.com/tutorials/use-android-phone-as-a-camera-for-obs-how-to-guide/
-
 # Djay Pro AI
 ## General
 # * Slide Range +-: 8% # Compromise of 6% or 10%. https://www.reddit.com/r/Beatmatch/comments/c9012w/pitch_control_6_or_10_my_thoughts_and_asking_for/
@@ -646,69 +437,9 @@ asdf global nodejs latest
 # * Check: Show minute markers
 # * Check: Dim inactive deck
 
-# Rekordbox
-# * File browser: add Key and Comments column
-# * File browser > iTunes > All Audio >  select all files > right click > Reload Tags
-# * Mixer: Disable crossfader by unclicking the channels [1][2][3][4] so that it does not controll them.
-## View
-# * Browse - Font size: middle
-# * Browse - Line space: middle
-# * Layout - Tree View: keep  Related Tracks, iTunes, Explorer
-# * Waveform - Color: RGB
-## Controller
-### Recordings tab
-# * Location /Volumes/ext0/music/sets/my_sets/rekordbox_live_sets/
-## Advanced
-### Database
-# * Database Management drive: /Volumes/ext0/
-
-
-
-# Musicbrainz Picard
-## Metadata
-# * Remove text from "Non-album track", to not tag wit this tag when there's no found Album.
-### Genres
-# * Check "Use genres from musicbrainz".
-## Plugins
-# * Install "Amazon cover art", "Wikidata genre"
-## Advanced
-
-
-# iSyncr
-# Set-up guide at https://www.jrtstudio.com/iSyncr/Tutorials/WiFi
-
-# Mixedinkey
-# * Download from https://account.mixedinkey.com/
-## Update Tags
-# * What to write: Write the key and energy level with the word Energy
-# * Where to write it: In front of the comments
-# * Check "Update Tempo tag"
-## Export cue points
-# Uncheck Traktor for fast export.
-
 # }
 
 # Music Production {
-# Focusrite Scarlett 2i2
-# * Install Focusrite control https://focusrite.com/en/focusrite-control (https://customer.focusrite.com/en/getstarted/begin)
-# But prefer cask setup in Brewfile
-# Bundled software at https://customer.focusrite.com/en/my-software (Nsame as https://customer.novationmusic.com/en/my-software, novation is a brand in Focusrite group).
-
-# Akai MPKmini keyboard
-# * https://www.akaipro.com/productregistration/customer/
-# - Akai MPC Essentials Software  -
-# - Akai MPKmini MK2 Editor - https://www.akaipro.com/productregistration/customer/
-# - Air Hybrid synth
-
-
-# Novation Launchkey 3
-# * Set up Ableton MIDI input/output according to ~/doc/man/music/novation_launchkey_mk3_manual_v1.03.pdf page 12.
-# Additional software can be found at
-# * https://customer.novationmusic.com/en/my-software
-# * https://customer.novationmusic.com/en/support/downloads?brand=Novation&product_by_type=1431&download_type=software
-
-
-
 # Ableton Live
 # * Download from https://www.ableton.com/en/account/
 # root=/Volumes/ext0/daw/

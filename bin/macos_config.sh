@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 # Configure macOS to my linking.
 # Modeline {
-#	vi: foldmarker={,} foldmethod=marker foldlevel=0: tabstop=4:
+#	vi: foldmarker={,} foldmethod=marker foldlevel=0
 # }
 
 # Notes {
@@ -35,18 +35,6 @@ sudo sh -c " cat >>/etc/hosts" << EOF
 # $ dscacheutil -flushcache; sudo killall -HUP mDNSResponder
 # Reference: https://www.tekrevue.com/tip/edit-hosts-file-mac-os-x/
 EOF
-
-# Enable locate(1).
-# NOTE disabled in favour for findutil's GNU locate which can find dot files.
-#sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.locate.plist
-# Build its database.
-# Needs to cd / nowadays, otherwise gives errors.
-#sudo /usr/libexec/locate.updatedb
-#sudo -s -- <<EOF
-#cd /
-#echo "Running locate.updatedb; it will take a while..."
-#/usr/libexec/locate.updatedb
-#EOF
 
 # Make zsh default shell for local user.
 # NOTE not needed since macos 10.15 Catalina. https://apple.slashdot.org/story/19/06/04/1645240/apple-replaces-bash-with-zsh-as-the-default-shell-in-macos-catalina?utm_source=rss1.0mainlinkanon&utm_medium=feed

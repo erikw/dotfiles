@@ -7,7 +7,7 @@
 # $ iex (new-object net.webclient).downloadstring('https://raw.githubusercontent.com/erikw/dotfiles/personal/bin/windows_install.ps1')
 
 # Modeline {
-#	vi: foldmarker={,} filetype=sh foldmethod=marker foldlevel=0: tabstop=4 shiftwidth=4:
+#	vi: foldmarker={,} filetype=sh foldmethod=marker foldlevel=0 tabstop=4 shiftwidth=4
 # }
 
 

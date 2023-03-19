@@ -81,8 +81,8 @@ while [ -z "$git_email" ]; do
 	echo -n "Enter your Git email: "
 	read git_email
 done;
-mkdir -p $HOME/.config/git
-cat << EOF > $HOME/.config/git/config-local
+mkdir -p ${XDG_CONFIG_HOME:-$HOME/.config}/git
+cat << EOF > ${XDG_CONFIG_HOME:-$HOME/.config}/git/config-local
 [user]
 	email = $git_email
 EOF
