@@ -1,6 +1,6 @@
 # Erik Westrup's shell aliases.
 # Modeline {
-#	 vi: foldmarker={,} foldmethod=marker foldlevel=0 tabstop=8 ft=sh
+#	 vi: foldmarker={,} foldmethod=marker foldlevel=0 ft=sh
 # }
 
 # Suppress alias expansion:: $ \aliasname || 'aliasname'
@@ -8,31 +8,29 @@
 
 # Desktop Environment specific {
 	# Defaults.
-	alias open='xdg-open'				# Open files.
+	alias open='xdg-open'						# Open files.
 	alias afk='xscreensaver-command -lock'		# Start screensaver.
 
 	case $DESKTYPE in
 	kde)
-		alias open='kde-open'					# Open files like in Dolphin.
+		alias open='kde-open'
 		# Log out
 		alias xlogout='qdbus org.kde.ksmserver /KSMServer org.kde.KSMServerInterface.logout 0 0 2'
-		#alias xlogout='kdeinit4_shutdown'
-		# Start screensaver.
 		alias afk='qdbus org.kde.screensaver /ScreenSaver org.freedesktop.ScreenSaver.SetActive true > /dev/null'
 		# Empty KDE trash folders.
 		alias emptytrash='rm -rf ~/.local/share/Trash/info/* ~/.local/share/Trash/files/*'
 		;;
 	gnome)
-		alias open='gnome-open'								# Open files like in Nautilus.
-		alias xlogout='gnome-session-save --force-logout'	# Log out.
+		alias open='gnome-open'
+		alias xlogout='gnome-session-save --force-logout'
 		;;
 	mate)
-		alias open='mate-open'								# Open files like in Nautilus.
-		alias xlogout='mate-session-save --force-logout'	# Log out.
+		alias open='mate-open'
+		alias xlogout='mate-session-save --force-logout'
 		;;
 	openbox)
-		alias open='thunar'					# Open files.
-		alias xlogout='openbox-logout'		# Log out.
+		alias open='thunar'
+		alias xlogout='openbox-logout'
 		;;
 	dwm)
 		alias xlogout='pkill -f startdwm.sh'
@@ -40,18 +38,22 @@
 		;;
 	macos)
 		unalias open
+		alias afk='/System/Library/CoreServices/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine'
+
 		# Enable or disable the Dashboard.
 		alias mac_dashboard_enable='defaults write com.apple.dashboard mcx-disabled -boolean NO'
 		alias mac_dashboard_disable='defaults write com.apple.dashboard mcx-disabled -boolean YES'
+
 		# Show or hide dotfiles in Finder.app.
 		alias mac_showhidden='defaults write com.apple.finder AppleShowAllFiles TRUE; killall Finder'
 		alias mac_hidehidden='defaults write com.apple.finder AppleShowAllFiles FALSE; killall Finder'
+
 		# Hibernate the Mac.
 		alias mac_hibernate='sudo pmset -a hibernatemode'
 		alias mac_listhibernate='sudo pmset -g | grep hibernatemode'
-		alias mac_emptytrash='rm -rf ~/.Trash/*' 		# Empty trash bin.
+
+		alias mac_emptytrash='rm -rf ~/.Trash/*'		# Empty trash bin.
 		alias mac_app_store_apps="find /Applications \-maxdepth 4 \-path '*Contents/_MASReceipt/receipt' -print |\sed 's#.app/Contents/_MASReceipt/receipt#.app#g; s#/Applications/##'"		# List apps installed from App Store.
-		alias afk='/System/Library/CoreServices/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine'
 		;;
 	esac
 # }

@@ -238,6 +238,7 @@ return require("packer").startup(function(use)
     -- Markdown utilties like automatic list indention, TOC.
     use({
         "preservim/vim-markdown",
+        ft = "markdown",
         requires = { "godlygeek/tabular" },
         config = function()
             vim.g.vim_markdown_folding_disabled = 1 -- No fold by default

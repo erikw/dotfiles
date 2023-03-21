@@ -4,44 +4,40 @@
 -- vi: foldmarker={,} foldmethod=marker foldlevel=0
 -- }
 
--- Documentation {
+-- Documentation {{
 -- * https://learnxinyminutes.com/docs/lua/
 -- * https://neovim.io/doc/user/lua-guide.html
--- }
+-- }}
 
--- Profiling {
+-- Profiling {{
 -- $ nvim --startuptime /tmp/nvim.log
 -- $ nvim --startuptime /dev/stdout +qall
 -- Ref: https://stackoverflow.com/questions/1687799/profiling-vim-startup-time
--- }
+-- }}
 
--- Providers {
+-- Providers {{
 -- The python provider (pythonx.vim) checker takes alomost 1 second on startup.
 -- Do one of:
--- * Install neovim package in used version: $ pip install neovim, then
--- :checkhealth
+-- * Install neovim package in used version: $ pip install neovim, then :checkhealth
 -- * Disable the provider (not used by curret plugins anyways.)
 -- Ref: https://www.reddit.com/r/neovim/comments/ksf0i4/slow_startup_time_when_opening_python_files_with/
 vim.g.loaded_python3_provider = 0
 
--- Let's disable more that is not used to gain startup time.
+-- Let's disable smore more that are not used to reduce startup time.
 vim.g.loaded_python_provider = 0
 vim.g.loaded_ruby_provider = 0
 vim.g.loaded_provider_provider = 0
 vim.g.loaded_node_provider = 0
--- }
+-- }}
 
--- Environment {
+-- Environment {{
+--
 vim.g.xdg_config_home = os.getenv("XDG_CONFIG_HOME") or "$HOME/.config"
 --vim.g.xdg_state_home = os.getenv("XDG_STATE_HOME") or "$HOME/.local/state"
 --vim.g.xdg_data_home = os.getenv("XDG_DATA_HOME") or "$HOME/.local/share"
--- }
+-- }}
 
--- Plugins {
-require("plugins")
--- }
-
--- Commands {
+-- Commands {{
 vim.api.nvim_create_user_command("Wsudo", "silent write !sudo tee % > /dev/null", { force = true, desc = "Write with extended privileges." })
 -- Ref: https://stackoverflow.com/a/41003241/265508
 vim.api.nvim_create_user_command("WipeReg", "for i in range(34,122) | silent! call setreg(nr2char(i), []) | endfor", { force = true, desc = "Clear all registers." })
@@ -62,9 +58,9 @@ end
 
 vim.api.nvim_create_user_command("DebuggerClear", DebuggerClear, { force = true, desc = "Clear all debugger statement lines in all open buffers." })
 
--- }
+-- }}
 
--- Formatting {
+-- Formatting {{
 vim.opt.linebreak = false -- Wrap on 'breakat'-chars.
 vim.opt.showbreak = "…" -- Indicate wrapped lines.
 vim.opt.smartindent = true -- Indent smart on C-like files.
@@ -75,9 +71,9 @@ vim.opt.tabstop = 8 -- Let a tab be X spaces wide. 8 spaces for a tab render bes
 vim.opt.shiftwidth = 8 -- Tab width for auto indent and >> shifting.
 vim.opt.matchpairs:append("<:>") -- Also match <> with %.
 vim.opt.formatoptions = "tcroqwnl" -- How automatic formatting should happen.
--- }
+-- }}
 
--- General {
+-- General {{
 vim.opt.nrformats = { "alpha", "octal", "hex" } -- What to increment/decrement with ^A and ^X.
 vim.opt.tabpagemax = 100 -- Upper limit on number of tabs.
 vim.opt.hidden = true -- Work with hidden buffers more easily. Enables to leave buffer with unwritten changes (by :edit another buffer).
@@ -85,9 +81,9 @@ vim.opt.undofile = true -- Save undo to file in undodir.
 vim.opt.undolevels = 2048 -- Levels of undo to keep in memory.
 vim.opt.timeoutlen = 700 -- Timout (ms) for mappings and keycodes. Make it a bit snappier.
 vim.opt.shortmess = "filmnrxtToOA" -- Abbreviate messages. 'A' disables the attention prompt when editing a file that is already open (beware: https://superuser.com/a/1065503)
--- }
+-- }}
 
--- Mappings {
+-- Mappings {{
 vim.keymap.set("n", "<Leader>v", ":luafile $MYVIMRC<CR>", { silent = true, desc = "Source init.lua." })
 vim.keymap.set("n", "<Leader>V", ":tabe $MYVIMRC<CR>", { silent = true, desc = "Edit init.lua." })
 vim.keymap.set("n", "<C-\\>", ':tab split<CR>:exec("tag ".expand("<cword>"))<CR>', { silent = true, desc = "Open tags definition in a new tab." })
@@ -121,16 +117,16 @@ vim.keymap.set("n", "gft", ":tab wincmd f<CR>", { silent = true, desc = "Open pa
 --vim.keymap.set('n', 'n', 'nzz', { silent = true, desc = 'Next search result (with recentered window)' })
 --vim.keymap.set('n', 'N', 'Nzz', { silent = true, desc = 'Previous search result (with recentered window)' })
 
--- TabWinAdjustSplit {
+-- TabWinAdjustSplit {{
 local function TabWinAdjustSplit()
     local current_tab = vim.fn.tabpagenr()
     vim.cmd("tabdo wincmd =")
     vim.cmd("tabnext" .. current_tab)
 end
 vim.keymap.set("n", "<Leader>=", TabWinAdjustSplit, { silent = true, desc = "Ctrl+w+= in all tabs: adjust window splits equally in all tabs." })
--- }
+-- }}
 
--- ToggleSpell {
+-- ToggleSpell {{
 -- Set language completely in the local buffer.
 local function ToggleSpell(lang)
     if not vim.b.old_spelllang then
@@ -160,7 +156,7 @@ local function ToggleSpell(lang)
     end
     print(new_mode)
 end
---
+
 local function ToggleSpellEn()
     ToggleSpell("en_us")
 end
@@ -175,9 +171,9 @@ end
 vim.keymap.set("n", "<F6>", ToggleSpellEn, { silent = true, desc = "Toggle English spell." })
 vim.keymap.set("n", "<F7>", ToggleSpellSv, { silent = true, desc = "Toggle Swedish spell." })
 vim.keymap.set("n", "<F8>", ToggleSpellDe, { silent = true, desc = "Toggle German spell." })
--- }
+-- }}
 
--- -- ToggleBackgroundMode {
+-- -- ToggleBackgroundMode {{
 -- NOPE replaced by dark-notify mapping.
 -- function ToggleBackgroundMode()
 --    local bg_new = vim.o.background == "light" and 'dark' or 'light'
@@ -185,16 +181,16 @@ vim.keymap.set("n", "<F8>", ToggleSpellDe, { silent = true, desc = "Toggle Germa
 --    return bg_new
 -- end
 -- vim.keymap.set('n', '<F5>', ':lua print(ToggleBackgroundMode())', { silent = true, desc = 'Toggle between light and dark background mode.' })
--- -- }
--- }
+-- -- }}
+-- }}
 
--- Searching {
+-- Search {{
 vim.opt.ignorecase = true -- Case insensitive search.
 vim.opt.smartcase = true -- Smart case search.
 vim.opt.wrapscan = false -- Don't wrap search around file.
--- }
+-- }}
 
--- Spelling {
+-- Spell {{
 vim.opt.spelllang = "en_us" -- Languages to do spell checking for.
 vim.opt.spellsuggest = "best,10" -- Limit spell suggestions.
 
@@ -202,9 +198,9 @@ vim.opt.spellsuggest = "best,10" -- Limit spell suggestions.
 vim.opt.spellfile = vim.fn.stdpath("config") .. "/spell/" .. vim.fn.matchstr(vim.o.spelllang, "[a-zA-Z][a-zA-Z]") .. "." .. vim.o.encoding .. ".add"
 -- Use a thesaurus file. Could load all, but that makes lookup slower. Instead let ToggleSpell() set per language.
 vim.opt.thesaurus = vim.fn.stdpath("config") .. "/thesaurus/" .. vim.fn.matchstr(vim.o.spelllang, "[a-zA-Z][a-zA-Z]") .. ".txt"
--- }
+-- }}
 
--- UI {
+-- UI {{
 -- Ignore if don't exist. This is the case when $(vim -c PlugInstall) the first time. Ref: https://stackoverflow.com/a/5703164/265508
 vim.cmd("silent! colorscheme solarized")
 vim.opt.background = "light" -- Be light (most likely right) be default as dark-notify toggles ugly otherwise.
@@ -239,4 +235,8 @@ vim.opt.splitright = true -- Open vertical split to the right.
 
 -- Characters to use for :list.
 vim.opt.listchars = { eol = "$", space = "·", tab = ">-", trail = "¬", extends = ">", precedes = "<", nbsp = "." }
--- }
+-- }}
+
+-- Plugins {{
+require("plugins")
+-- }}
