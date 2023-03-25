@@ -239,12 +239,14 @@ return require("packer").startup(function(use)
     use({
         "preservim/vim-markdown",
         ft = "markdown",
+        branch = "master", -- Otherwise loading on ft=markdown does not work. Ref: https://github.com/preservim/vim-markdown#installation
         requires = { "godlygeek/tabular" },
         config = function()
             vim.g.vim_markdown_folding_disabled = 1 -- No fold by default
             vim.g.vim_markdown_toc_autofit = 1 -- Make :Toc smaller
             vim.g.vim_markdown_follow_anchor = 1 -- Let ge follow #anchors
             vim.g.vim_markdown_new_list_item_indent = 2 -- Bullent space indents.
+            vim.keymap.set("n", "<Leader>3", ":Toc<CR>", { silent = true, desc = "Open markdown TOC in a quickfix window." })
         end,
     })
 

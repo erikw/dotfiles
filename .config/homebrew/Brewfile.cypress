@@ -5,7 +5,7 @@
 # }
 
 # Taps {
-    tap 'homebrew/cask-drivers' # For focusrite-control
+    #tap 'homebrew/cask-drivers' # For focusrite-control
 # }
 
 # Formula: default {
@@ -45,12 +45,10 @@
     cask 'cron'
     cask 'cryptomator'
     cask 'dropbox'
-    cask 'focusrite-control'
     cask 'google-cloud-sdk'  # for gcloud cli used for tardbot.
     cask 'gramps'
     cask 'handbrake'
     cask 'jettison'
-    cask 'keybase'
     cask 'kid3'
     cask 'mactex'
     cask 'microsoft-excel'
@@ -67,6 +65,7 @@
 # Cask: optional {
 =begin
     cask 'ableton-live-suite' # If using latest version, which I'm not.
+    cask 'focusrite-control' # Needs the driver tap
     cask 'bitwarden'
     cask 'ferdium'
     cask 'rekordbox'
