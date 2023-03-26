@@ -4,7 +4,7 @@
 
 
 dest=$HOME/bak/systems/$(hostname -s)/cron
-output=$dest/crontab.$USER_$(date +%Y-%m-%d)
+output=$dest/$(date +%Y-%m-%d)_${USER}.crontab
 
 test -e $dest || mkdir -p $dest
 crontab -l > $output
