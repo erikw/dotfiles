@@ -55,16 +55,10 @@ brew autoupdate status
 # solarized_toggle.sh
 # TODO hopefully replace all this with iTerm 3.5 light theme support.
 ## solarized_toggle.sh require
-# - pip3 package iterm2 mus be installed
-pip3 install iterm2
-# - iterm2 preference enable Python API: General > Magic tab > Enable Python API: Require "automation" permission.
-#	(if this is not enough Iterm2 > Scripts (menu) > Manager > Install runtime)
 ## Start macos_appearance_monitor.sh on login.
-ln -s $HOME/.config/LaunchAgents/com.user.appearancemon.plist $HOME/Library/LaunchAgents/
-launchctl bootstrap gui/$UID $HOME/Library/LaunchAgents/com.user.appearancemon.plist
-launchctl enable gui/$UID/com.user.appearancemon
-# Create symlink so that ~/bin/solarized_iterm2_set.py works.
-ln -s $HOME/Library/Application\ Support $HOME/Library/ApplicationSupport
+ln -s $HOME/.config/LaunchAgents/com.user.tmux-dark-notify.plist $HOME/Library/LaunchAgents/
+launchctl bootstrap gui/$UID $HOME/Library/LaunchAgents/com.user.tmux-dark-notify.plist
+launchctl enable gui/$UID/com.user.tmux-dark-notify
 ## Automate command for toggling system appearance mode
 # * Create an Automator.app Quick Action named "appearance_toggle" with AppleScript for the contents in ~/bin/macos_appearance_toggle.command
 #	* NOPE use the build-in action "Change System Appearace" by dragging it in to the right, and set "Change Appearance" to "Toggle Light/Dark". This seems to go faster when toggling than the custom script.

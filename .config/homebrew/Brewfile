@@ -14,6 +14,7 @@ tap 'erikw/tap'       # For xdg-urlview
 tap 'homebrew/autoupdate' # https://github.com/Homebrew/homebrew-autoupdate
 tap 'wader/tap' # For fq
 tap 'universal-ctags/universal-ctags' # For universal-ctags
+tap 'homebrew/cask-versions' # for iterm2-beta
 # }
 
 # Formula: default {
@@ -44,7 +45,6 @@ brew 'dos2unix'
 brew 'erikw/tap/xdg-urlview'
 brew 'fd'	# A powerful alternative to find.
 brew 'findutils'
-brew 'fswatch'	# For macos_appearance_monitor.sh
 brew 'fzf'
 brew 'gawk'
 brew 'gh'
@@ -116,6 +116,7 @@ brew 'zsh-syntax-highlighting'
 # Formula: optional {
 # brew 'antiword'
 # brew 'asciinema'
+# brew 'fswatch'	# For macos_appearance_monitor.sh
 # brew 'bashdb'
 # brew 'ccls'
 # brew 'cgdb'
@@ -171,7 +172,8 @@ cask 'eurkey' # For ErgoDox
 cask 'firefox'
 cask 'gimp'
 cask 'google-chrome'
-cask 'iterm2'
+# cask 'iterm2'
+cask 'iterm2-beta' # Until 3.5 is released (that has dark/light automatic modes).
 cask 'keepingyouawake'
 cask 'mimestream'
 cask 'scroll-reverser'
