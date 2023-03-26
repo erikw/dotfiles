@@ -52,10 +52,7 @@ brew autoupdate status
 #launchctl enable gui/$UID/com.user.notificationqueue
 
 
-# solarized_toggle.sh
-# TODO hopefully replace all this with iTerm 3.5 light theme support.
-## solarized_toggle.sh require
-## Start macos_appearance_monitor.sh on login.
+# Start dark-notify for tmux on login.
 ln -s $HOME/.config/LaunchAgents/com.user.tmux-dark-notify.plist $HOME/Library/LaunchAgents/
 launchctl bootstrap gui/$UID $HOME/Library/LaunchAgents/com.user.tmux-dark-notify.plist
 launchctl enable gui/$UID/com.user.tmux-dark-notify

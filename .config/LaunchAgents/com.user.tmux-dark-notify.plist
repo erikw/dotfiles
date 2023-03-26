@@ -7,9 +7,9 @@
         <string>com.user.tmux-dark-notify</string>
         <key>ProgramArguments</key>
         <array>
-            <string>/usr/local/bin/dark-notify</string>
+            <string>/opt/homebrew/bin/dark-notify</string>
             <string>-c</string>
-            <string>/Users/erikw/src/github.com/erikw/dotfiles/bin/tmux_theme_mode.sh</string>
+            <string>/Users/erikw/bin/tmux_theme_mode.sh</string>
         </array>
         <key>EnvironmentVariables</key>
         <dict>
@@ -20,5 +20,10 @@
         <true/>
         <key>KeepAlive</key>
         <true/>
+        <!-- Output logging for debugging. -->
+	<!--<key>StandardOutPath</key>-->
+        <!--<string>/Users/erikw/.local/state/tmux/launchd_stdout.txt</string>-->
+        <!--<key>StandardErrorPath</key>-->
+	<!--<string>/Users/erikw/.local/state/tmux/launchd_stderr.txt</string>-->
     </dict>
 </plist>
