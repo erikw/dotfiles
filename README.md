@@ -1,4 +1,10 @@
 # Dotfiles
+[![GitHub Stars](https://img.shields.io/github/stars/erikw/dotfiles?style=social)](#)
+[![GitHub Forks](https://img.shields.io/github/forks/erikw/dotfiles?style=social)](#)
+<br>
+[![SLOC](https://img.shields.io/tokei/lines/github/erikw/dotfiles?logo=codefactor&logoColor=lightgrey)](#)
+[![Number of programming languages used](https://img.shields.io/github/languages/count/erikw/dotfiles)](#)
+[![Top programming languages used](https://img.shields.io/github/languages/top/erikw/dotfiles)](#)
 
 Most of my personal dotfiles can be found in this branch. I use dfm (dot file manager) to install and managed the dotfiles. See [justone/dotfiles](https://github.com/justone/dotfiles) & [justone/dfm](https://github.com/justone/dfm) for details on how to use it.
 
