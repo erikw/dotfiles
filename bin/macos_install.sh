@@ -52,13 +52,9 @@ brew autoupdate status
 #launchctl enable gui/$UID/com.user.notificationqueue
 
 
-# Start dark-notify for tmux on login.
-ln -s $HOME/.config/LaunchAgents/com.user.tmux-dark-notify.plist $HOME/Library/LaunchAgents/
-launchctl bootstrap gui/$UID $HOME/Library/LaunchAgents/com.user.tmux-dark-notify.plist
-launchctl enable gui/$UID/com.user.tmux-dark-notify
-## Automate command for toggling system appearance mode
-# * Create an Automator.app Quick Action named "appearance_toggle" with AppleScript for the contents in ~/bin/macos_appearance_toggle.command
-#	* NOPE use the build-in action "Change System Appearace" by dragging it in to the right, and set "Change Appearance" to "Toggle Light/Dark". This seems to go faster when toggling than the custom script.
+# Automate command for toggling system light/dark mode.
+# * Create an Automator.app Quick Action named "appearance_toggle".
+# * Use the build-in action "Change System Appearace" by dragging it in to the right, and set "Change Appearance" to "Toggle Light/Dark". This seems to go faster when toggling than the custom script ~/bin/macos_appearance_toggle.command
 # * Bind to Service shortcut CTRL+OPT+CMD+t (shortcut used when feature was first introduced in the OS).
 
 
