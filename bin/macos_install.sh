@@ -157,7 +157,8 @@ echo "$tab_new" | crontab -
 ### Selection
 # * Check "Applications in terminal may access clipboard" so that I can e.g. copy from vim buffer to GUI clipboard.
 ### Colors
-# * Select color preset "Solarized Ligt". With macOs appearance following the sun, it's much more likely to be day time and thus no need to switch color in irctor on start.
+# * Check "use different colors for light and dark mode"
+#   * For Light Mode and Dark Mode, select Color Preset.. with Solarized Light/Dark respectively.
 ### Text
 # * Set font to either
 # ** DM Mono, Regular, 14pt
