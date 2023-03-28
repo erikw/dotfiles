@@ -624,45 +624,24 @@ return require("packer").startup(function(use)
         end,
     })
 
-    -- Start screen with recently opended files.
+    -- The fastest greeter plugin.
     use({
-        "mhinz/vim-startify",
+        "goolord/alpha-nvim",
+        requires = { "nvim-tree/nvim-web-devicons" },
         config = function()
-            --vim.g.startify_fortune_use_unicode = 1  -- Draw fortune with Unicode instead of ASCII. Not needed with startify_custom_header.
-            --vim.g.startify_files_number = 15    -- Nubmer of files to show.
+            local startify = require("alpha.themes.startify")
 
-            -- Bookmarks
-            vim.g.startify_bookmarks = {
-                { ["v"] = vim.g.xdg_config_home .. "/nvim/init.lua" },
-                { ["p"] = vim.g.xdg_config_home .. "/nvim/lua/plugins.lua" },
-                vim.g.xdg_config_home .. "/shell/commons",
-                vim.g.xdg_config_home .. "/shell/aliases",
-            }
+            -- Add bookmarks buttons. Ref: https://github.com/goolord/alpha-nvim/issues/14
+            startify.section.bottom_buttons.val = {
+                -- Preserving the button from https://github.com/goolord/alpha-nvim/blob/dafa11a6218c2296df044e00f88d9187222ba6b0/lua/alpha/themes/startify.lua#LL208C13-L208C47
+                startify.button("q", "Quit", "<cmd>q <CR>"),
 
-            local nver = vim.version()
-            local semnver = nver.major .. "." .. nver.minor .. "." .. nver.patch
-            local ascii = {
-                "    ##############..... ##############",
-                "    ##############......##############",
-                "      ##########..........##########",
-                "      ##########........##########",
-                "      ##########.......##########",
-                "      ##########.....##########..",
-                "      ##########....##########.....",
-                "    ..##########..##########.........",
-                "  ....##########.#########.............",
-                "    ..##################.............",
-                "      ################.............",
-                "      ##############.............",
-                "      ############.............",
-                "      ##########.............",
-                "      ########.............",
-                "      ######    .........",
-                "                  .....",
-                "                    .",
-                "    Neovim v" .. semnver,
+                startify.file_button(vim.fn.stdpath("config") .. "/init.lua", "v"),
+                startify.file_button(vim.fn.stdpath("config") .. "/lua/plugins.lua", "p"),
+                startify.file_button(vim.g.xdg_config_home .. "/shell/commons", "c"),
+                startify.file_button(vim.g.xdg_config_home .. "/shell/aliases", "a"),
             }
-            vim.g.startify_custom_header = ascii
+            require("alpha").setup(startify.config)
         end,
     })
 
