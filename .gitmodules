@@ -22,9 +22,6 @@
 [submodule ".local/tmux-colors-solarized"]
 	path = .repos/tmux-colors-solarized
 	url = https://github.com/seebi/tmux-colors-solarized.git
-[submodule ".config/tmux/plugins/tpm"]
-	path = .config/tmux/plugins/tpm
-	url = https://github.com/tmux-plugins/tpm
 [submodule ".repos/fzf-marks"]
 	path = .repos/fzf-marks
 	url = https://github.com/urbainvaes/fzf-marks.git
