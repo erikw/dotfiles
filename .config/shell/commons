@@ -426,13 +426,6 @@
 		fi
 	fi
 
-
-	# Tmuxinator initialization.
-	#if [ -d $HOME/src/github.com/tmuxinator/tmuxinator/bin/ ]; then
-		#PATH="$PATH:$HOME/src/github.com/tmuxinator/tmuxinator/bin/"
-		#source $HOME/src/github.com/tmuxinator/tmuxinator/completion/tmuxinator.$SHELL_NAME
-	#fi
-
 	# cloc.pl
 	if [ -d "$HOME/src/github.com/AlDanial/cloc" ]; then
 		PATH="$PATH:$HOME/src/github.com/AlDanial/cloc"

@@ -38,12 +38,6 @@ fi
 step "Making tig behave"
 mkdir -p ${XDG_DATA_HOME:-$HOME/.local/share}/tig
 
-if program_is_in_path tmux ; then
-	step "Setting up tmux plugins with tpm."
-	tmux new-session -d # Need session before running commands.
-	tmux run ${XDG_CONFIG_HOME:-$HOME/.config}/tmux/plugins/tpm/bindings/install_plugins
-fi
-
 # Perl
 # Requirements for ~/bin/rename_sane.sh
 step "rename_sane.sh dependency: cpan module Unicode"
