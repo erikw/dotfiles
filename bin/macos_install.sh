@@ -212,7 +212,8 @@ echo "$tab_new" | crontab -
 # * Uncheck "Reveal expanded items in Finder".
 
 # Dropbox
-# Remove ~/Dropbox symlink and create: $ ln -s /Users/erikw/Library/CloudStorage/Dropbox ~/dropbox
+# * Remove ~/Dropbox symlink and create: $ ln -s /Users/erikw/Library/CloudStorage/Dropbox ~/dropbox
+# * Create symlinks from ~/Library/CloudStorage/Dropbox/* to ~/. Don't create from ~/dropbox because when there's >1 level of indirection, the macOS doc won't follow the symlinks in the Stacks (list) folder feature.
 ## General
 # * Dropbox badge: Never show (integrates in to MS Office for example)
 
