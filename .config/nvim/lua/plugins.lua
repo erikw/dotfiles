@@ -215,8 +215,15 @@ return require("packer").startup(function(use)
     use("editorconfig/editorconfig-vim") -- Standard .editorconfig file in shared projects.
     use("rhysd/conflict-marker.vim") -- Navigate and edit VCS conflicts. Navigate: [x, ]x. Resolve: ct, co, cb.
     use("ruanyl/vim-gh-line") -- Copy link to file on GitHub.
-    use("tpope/vim-fugitive") -- Git wrapper and shorthands.
     use("wellle/targets.vim") -- Extra text objects to operate on e.g. function arguments.
+
+    -- Git wrapper and shorthands.
+    use({
+        "tpope/vim-fugitive",
+        config = function()
+            vim.keymap.set("n", "gb", ":Git blame<CR>", { silent = true, desc = "Git blame" })
+        end,
+    })
 
     -- Shift function arguments left and right.
     use({
@@ -278,7 +285,7 @@ return require("packer").startup(function(use)
         end,
     })
 
-    -- Better than fugative ':Git difftool'. Browser file history with ':DiffviewFileHistory %'
+    -- Better than fugitive ':Git difftool'. Browser file history with ':DiffviewFileHistory %'
     use({
         "sindrets/diffview.nvim",
         requires = "nvim-lua/plenary.nvim",
