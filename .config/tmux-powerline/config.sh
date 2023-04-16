@@ -20,6 +20,10 @@
 	export TMUX_POWERLINE_STATUS_LEFT_LENGTH=""
 	# The maximum length of the right status bar.
 	export TMUX_POWERLINE_STATUS_RIGHT_LENGTH="160"
+
+	# Uncomment these if you want to enable tmux bindings for muting (hiding) one of the statusbars.
+	export TMUX_POWERLINE_MUTE_LEFT_KEYBINDING="C-["
+	export TMUX_POWERLINE_MUTE_RIGHT_KEYBINDING="C-]"
 # }
 
 # battery.sh {
