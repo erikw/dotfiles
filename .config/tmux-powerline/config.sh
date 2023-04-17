@@ -17,9 +17,9 @@
 	export TMUX_POWERLINE_DIR_USER_SEGMENTS="${XDG_CONFIG_HOME:-$HOME/.config}/tmux-powerline/segments"
 
 	# The maximum length of the left status bar.
-	export TMUX_POWERLINE_STATUS_LEFT_LENGTH=""
+	export TMUX_POWERLINE_STATUS_LEFT_LENGTH="70"
 	# The maximum length of the right status bar.
-	export TMUX_POWERLINE_STATUS_RIGHT_LENGTH="160"
+	export TMUX_POWERLINE_STATUS_RIGHT_LENGTH="80"
 
 	# Uncomment these if you want to enable tmux bindings for muting (hiding) one of the statusbars.
 	export TMUX_POWERLINE_MUTE_LEFT_KEYBINDING="C-["
