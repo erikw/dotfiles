@@ -18,16 +18,7 @@
 	export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
 	export XDG_RUNTIME_DIR="${XDG_RUNTIME_DIR:-$HOME/.local/run}"  # Need to be set for yarn(1).
 
-	# On Linux, should be done by xdg-user-dirs
-	# NOTE disabled as I'm not really using this.
-	#if shell_is_macos && [ -e $XDG_CONFIG_HOME/user-dirs.dirs ] ; then
-		##while read -r line; do
-			##eval "export $line"
-		##done <  $XDG_CONFIG_HOME/user-dirs.dirs
-		#eval "export $(paste -s -d' ' $XDG_CONFIG_HOME/user-dirs.dirs)"
-	#fi
-
-	# Make programs respect XDG
+	# Make programs respect XDG.
 	export INPUTRC=$XDG_CONFIG_HOME/readline/inputrc
 	export KDEHOME=$XDG_CONFIG_HOME/kde
 	export MPLAYER_HOME=$XDG_CONFIG_HOME/mplayer
@@ -56,7 +47,7 @@
 	export FZF_MARKS_FILE=$XDG_CONFIG_HOME/fzf-marks/marks
 	export GOPATH="$XDG_DATA_HOME/go"
 
-	# asdf; Not yet fully compliant; https://github.com/asdf-vm/asdf/issues/687
+	# asdf; Not yet fully compliant: https://github.com/asdf-vm/asdf/issues/687
 	export ASDF_CONFIG_FILE=${XDG_CONFIG_HOME}/asdf/asdfrc
 	export ASDF_DATA_DIR=${XDG_DATA_HOME}/asdf
 	# asdf plugins:
@@ -64,16 +55,18 @@
 	export ASDF_NPM_DEFAULT_PACKAGES_FILE=${XDG_CONFIG_HOME}/npm/asdf-default-npm-packages.txt
 	export ASDF_GEM_DEFAULT_PACKAGES_FILE=${XDG_CONFIG_HOME}/gem/asdf-default-gems.txt
 
-
+	# Gems
 	export GEM_SPEC_CACHE=$XDG_CACHE_HOME/gem
 	export GEM_HOME=$XDG_DATA_HOME/gem
 	export PATH="$GEM_HOME/bin:$PATH"
 
+	# NPM
 	export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
 	export PATH="$XDG_DATA_HOME/npm/bin:$PATH"
 
-	# Load utility functions.
-	source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/functions
+	# Load utility functions & aliases.
+	source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/functions"
+	sourceifexists "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliases"
 # }
 
 # Paths {
@@ -101,22 +94,10 @@
 		eval "$(${brew_bin} shellenv)"
 	fi
 	unset brew_bin
-
-	# Set common bin paths.
-	#PATH=${PATH}:$(find ~/bin -maxdepth 2 -type d | tr '\n' ':' | sed 's/:$//')
-	#common_bin_dirs=(mutt mkdirs)
-	#for common_dir in "${common_bin_dirs[@]}"; do
-		#if [ -d "$HOME/bin/$common_dir" ]; then
-			#PATH="$PATH:$HOME/bin/$common_dir"
-		#fi
-	#done
-
-	# Convenient cdpaths.
-	#CDPATH=$HOME
 # }
 
 # Environment {
-	# Use THE text editor.
+	# Use THE text editor
 	if program_is_in_path nvim; then
 		export EDITOR=nvim VISUAL=nvim CSHEDIT=nvim
 	elif program_is_in_path vim; then
@@ -135,59 +116,14 @@
 		export DESKTYPE=dwm
 	fi
 
-	# GNU coreutils etc. {
-	# Add homebrew coreutils with default names to PATH, and also to MANPATH.
-	# Instructions comes from the output of $(brew install coreutils).
-	# NOTE this can have unexpected side effects. $(brew doctor): Warning: Putting non-prefixed coreutils in your path can cause gmp builds to fail. Better not do this!
-	# findutils seems to break numpy e.g.
-	#if shell_is_macos; then
-		#gnu_packages=(gnu-indent findutils gnu-sed gnu-tar grep)
-		#for gnu_package in "${gnu_packages[@]}"; do
-			#gpathbase=/usr/local/opt/${gnu_package}/libexec
-			#if [ -d $gpathbase/gnubin ]; then
-				#PATH="$gpathbase/gnubin:$PATH"
-				#MANPATH="$gpathbase/gnuman:$MANPATH"
-			#fi
-		#done
-		#unset gnu_packages gnu_package gpathbase
-		## However brew should not run with gnu utils in PATH as this can mess up builds $(brew doctor complains)
-		## NOPE this is a bad idea; when 'brew' is used with aliases, this alieas is expanded e.g. $(psg brew) would ps-aux grep for the whole env PATH... below.
-		##alias brew='env PATH="$(echo "$PATH" | sed -e "s/:\/usr\/local\/opt\/[^:]*://g")" brew'
-	#fi
-	# }
-
-	# Source aliases.
-	sourceifexists ${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliases
-
-
 	# Locale
 	export LANG=EN_US
 
 	# Let others know what underlying terminal emulator is used. This is needed since $TERM does not always represent the real terminal e.g. in tmux when you want colors.
 	shell_is_linux && program_is_in_path urxvt && export TERMEMU=urxvt
 
-	# Enable forward history search with ^s
-	#stty stop ""
-
-	# Web browser to use. urlscan (and others?) uses this variable.
-	#if [ -n "$DISPLAY" ]; then
-		#export BROWSER=firefox
-	#else
-		#export BROWSER=w3m
-	#fi
-
-	#if [ "$DESKTYPE" = "dwm" ]; then
-		## Java does not know about dwm so GUI apps will not be displayed correctly (if at all).
-		## Reference: https://wiki.archlinux.org/index.php/Dwm#Fixing_misbehaving_Java_applications
-		#export _JAVA_AWT_WM_NONREPARENTING=1
-	#fi
-
 	# Brew bundler
-	if shell_is_macos; then
-		# Location of Brewfile. Reference: https://docs.brew.sh/Manpage#bundle-subcommand
-		# Alternatively could use $(brew bundle --global) to use this file, but as I'm not dealing with other Brewfile, might as well make this one default.
-		# NOPE when Brewfile is used in a project, this will interfere, don't set this globally.
-		#export HOMEBREW_BUNDLE_FILE=${XDG_CONFIG_HOME:-$HOME/.config}/homebrew/Brewfile
+	if program_is_in_path brew; then
 		# Not using the Brewfile.lock.json feature.
 		export HOMEBREW_BUNDLE_NO_LOCK=1
 	fi
@@ -201,34 +137,32 @@
 
 	# Personal log folder used by some program configurations.
 	test -d ${XDG_STATE_HOME:-$HOME/.local/state}/tmux || mkdir -p ${XDG_STATE_HOME:-$HOME/.local/state}/tmux
-	test -d ${XDG_STATE_HOME:-$HOME/.local/state}/irssi || mkdir -p ${XDG_STATE_HOME:-$HOME/.local/state}/irssi
+	#test -d ${XDG_STATE_HOME:-$HOME/.local/state}/irssi || mkdir -p ${XDG_STATE_HOME:-$HOME/.local/state}/irssi
 
 	# Enable sandboxing a.k.a. lazy loading of shell initialization for some programs.
 	# Not possible with dfm to install to .local/share as 2 levels of recurse in dfminstall does not work.
 	# See https://github.com/justone/dfm/issues/39
-	sourceifexists $HOME/.repos/sandboxd/sandboxd
+	sourceifexists "$HOME/.repos/sandboxd/sandboxd"
 
 	# Needed for gnupg's gpg(1) to work, thus for git commit signing.
-	export GPG_TTY=$(tty)
+	program_is_in_path gnupg && export GPG_TTY=$(tty)
 
 	# Nice to have when fetching scanned documents
 	export SCANNED=$HOME/media/images/scanned/
 	# Ditto screenshots
 	export SCREENSHOTS=$HOME/media/images/screenshots/
 
-	if shell_is_macos; then
-		# Disable macos shell restore feature (/etc/bashrc_Apple_Terminal) that creates e.g. ~/.zsh_session
-		export SHELL_SESSIONS_DISABLE=1
-	fi
+	# Disable macos shell restore feature (/etc/bashrc_Apple_Terminal) that creates e.g. ~/.zsh_session
+	shell_is_macos && export SHELL_SESSIONS_DISABLE=1
 
 	# Speed up dfm by telling it where the source is
-	export DFM_REPO=$HOME/src/github.com/erikw/dotfiles/
+	test -d "$HOME/src/github.com/erikw/dotfiles" && export DFM_REPO="$HOME/src/github.com/erikw/dotfiles"
 # }
 
 # UI {
 	# Solarized ls colors.
 	dircolorsdb=$HOME/.repos/dircolors-solarized/dircolors.256dark
-	if ! [ -f $dircolorsdb ]; then
+	if ! [ -f "$dircolorsdb" ]; then
 		dircolorsdb=${XDG_CONFIG_HOME:-$HOME/.config}/shell/dircolors
 	fi
 	if program_is_in_path dircolors; then
@@ -239,17 +173,14 @@
 	unset dircolorsdb
 
 	# Colorize ls(1) on BSD/Mac systems.
-	if shell_is_bsd; then
-		export CLICOLOR=1
-	fi
+	shell_is_bsd && export CLICOLOR=1
 
 	 # Use colorful terminal.
 	 case "$TERM" in
-	xterm*)		export TERM=xterm-256color ;;
-	screen*)	export TERM=screen-256color ;;
-	rxvt*)		export TERM=rxvt-unicode-256color ;;
+		xterm*)		export TERM=xterm-256color ;;
+		screen*)	export TERM=screen-256color ;;
+		rxvt*)		export TERM=rxvt-unicode-256color ;;
 	 esac
-
 
 
 	# Colored man pages. Reference: https://wiki.archlinux.org/index.php/Man_Page#Colored_man_pages
@@ -274,10 +205,10 @@
 	if [ -d "$GOPATH/bin" ]; then
 		PATH="$GOPATH/bin::$PATH"
 	fi
-	if [ -d "$HOME/src/github.com/golang/go" ]; then
-		export GOROOT="$HOME/src/golang/go"
-		PATH="$GOROOT/bin:$GOROOT/pkg/tool/linux_amd64:$PATH"
-	fi
+	#if [ -d "$HOME/src/github.com/golang/go" ]; then
+	#        export GOROOT="$HOME/src/golang/go"
+	#        PATH="$GOROOT/bin:$GOROOT/pkg/tool/linux_amd64:$PATH"
+	#fi
 # }
 
 # Java {
@@ -292,7 +223,7 @@
 	#fi
 
 	# Set $JAVA_HOME from asdf. Reference: https://github.com/halcyon/asdf-java
-	sourceifexists ${XDG_DATA_HOME:-$HOME/.local/share}/asdf/plugins/java/set-java-home.$SHELL_NAME
+	sourceifexists "${XDG_DATA_HOME:-$HOME/.local/share}/asdf/plugins/java/set-java-home.$SHELL_NAME"
 
 # }
 
@@ -310,26 +241,14 @@
 		#export LESSOPEN="| source-highlight --failsafe -f esc-solarized --style-file=esc-solarized.style -i %s -o STDOUT"
 	fi
 
-	LESS=		# Debians /etc/zsh/zshenv sets LESS to values that quits less when hitting the bottom.
-	#LESS="$LESS --no-lessopen"			# Disable usage of LESSOPEN.
-	LESS="$LESS --RAW-CONTROL-CHARS"	# Display colors.
-	LESS="$LESS --ignore-case"			# Case insensitive search. However using capital letter(s) will enable case sensitive search.
-	LESS="$LESS --status-column"		# Status column with number of lines etc.
-	#LESS="$LESS --LINE-NUMBERS"		# Show line numbers.
-	export LESS
+	# --RAW-CONTROL-CHARS"	- Display colors.
+	# --ignore-case"	- Case insensitive search. However using capital letter(s) will enable case sensitive search.
+	# --status-column"	- Status column with number of lines etc.
+	#  --LINE-NUMBERS"	- Show line numbers.
+	export LESS="--RAW-CONTROL-CHARS --ignore-case --status-column"
 # }
 
 # Ruby {
-	# Homebrew ruby. NOTE not neeed when using rbenv.
-	#if [ -d /usr/local/opt/ruby/bin ]; then
-		# Ruby & Gems binaries
-		# Correct gem dir is GEMSDIR=$(gem environment gemdir)/bin
-		#PATH="/usr/local/opt/ruby/bin:/usr/local/lib/ruby/gems/3.0.0/bin:$PATH"
-	#fi
-
-	# RVM
-	#sourceifexists $HOME/.rvm/scripts/rvm
-
 	# ruby-build: recommended build env.
 	# Reference: https://github.com/rbenv/ruby-build/wiki#suggested-build-environment
 	#export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
@@ -339,17 +258,6 @@
 		# For Ruby versions >3.0
 		export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$HOMEBREW_PREFIX/opt/openssl@3"
 	fi
-
-	# rbenv NOTE is sandboxed
-	# replaced by asdf
-	# https://github.com/rbenv/rbenv
-	#if program_is_in_path rbenv; then
-		#export RBENV_ROOT=${XDG_DATA_HOME:-$HOME/.local/share}/rbenv
-		#PATH="$RBENV_ROOT/bin:$PATH"
-		#export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
-		#eval "$(rbenv init - $SHELL_NAME)"
-	#fi
-
 # }
 
 # Python {
@@ -365,40 +273,10 @@
 	#	export WORKON_HOME=$HOME/.virtualenvs
 	#	export PROJECT_HOME=$HOME/dev
 	#fi
-
-
-	#if program_is_in_path pyenv; then
-		# NOTE is sandboxed
-		#export PYENV_ROOT=${XDG_DATA_HOME:-$HOME/.local/share}/pyenv
-		#PATH="$PYENV_ROOT/bin:$PATH"
-		#eval "$(pyenv init --path)"  # Adds shims to PATH.
-		#eval "$(pyenv init -)"
-		##export VIRTUAL_ENV_DISABLE_PROMPT=1
-		##eval "$(pyenv virtualenv-init -)"
-
-		# Brew should use system default python when building packages $(brew doctor) complains with
-		# "config" scripts exist outside your system or Homebrew directories.
-		# Solution: make an alias for brew that excludes pyenv from PATH
-		# Reference: https://github.com/pyenv/pyenv/issues/106#issuecomment-625334706
-		#alias brew='env PATH="${PATH//$(pyenv root)\/shims:/}" brew'
-		# Combined with removal of gnubins from above (make sure to comment the first alias out for speed)
-		#alias brew='env PATH="$(echo "$PATH" | sed -e "s/:\/usr\/local\/opt\/[^:]*://g" -e "s/:.*pyenv\/shims://g")" brew'
-	#fi
 # }
 
-	# pkgfile (arch) "command not found" hook.
-	#sourceifexists /usr/share/doc/pkgfile/command-not-found.$SHELL_NAME
-
 	# iTerm2 shell integration. Reference: https://www.iterm2.com/documentation-shell-integration.html
-	sourceifexists $HOME/.iterm2_shell_integration.$SHELL_NAME
-
-
-	# Tell gPodder to reside in multimedia directory. KDE4 uses ~/.kde4/env/
-	#export GPODDER_HOME=$HOME/media/music/gPodder
-
-	# Source MPD environment variables.
-	#sourceifexists ${XDG_CONFIG_HOME:-$HOME/.config}/mpd/env.sh
-
+	#sourceifexists $HOME/.iterm2_shell_integration.$SHELL_NAME
 
 	# Start SSH agent, unless this is an SSH session already
 	# Ref: https://stackoverflow.com/a/18915067
@@ -406,29 +284,24 @@
 		SSH_ENV="$HOME/.ssh/env"
 
 		function start_agent {
-		    #echo -n "Initialising new SSH agent... "
-		    /usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
-		    #echo succeeded
-		    chmod 600 "${SSH_ENV}"
-		    . "${SSH_ENV}" > /dev/null
-		    /usr/bin/ssh-add;
+			#echo -n "Initialising new SSH agent... "
+			/usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
+			#echo succeeded
+			chmod 600 "${SSH_ENV}"
+			. "${SSH_ENV}" > /dev/null
+			/usr/bin/ssh-add;
 		}
 
 		# Source SSH settings, if applicable
 		if [ -f "${SSH_ENV}" ]; then
-		    . "${SSH_ENV}" > /dev/null
-		    #ps ${SSH_AGENT_PID} doesn't work under cywgin
-		    ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
+			. "${SSH_ENV}" > /dev/null
+			#ps ${SSH_AGENT_PID} doesn't work under cywgin
+			ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
 			start_agent;
 		    }
 		else
-		    start_agent;
+			start_agent;
 		fi
-	fi
-
-	# cloc.pl
-	if [ -d "$HOME/src/github.com/AlDanial/cloc" ]; then
-		PATH="$PATH:$HOME/src/github.com/AlDanial/cloc"
 	fi
 
 	# Add tab completion to daemonize.
@@ -458,30 +331,11 @@
 	export PATH="$PERL_BASE/bin:$PATH"
 	export MANPATH="$PERL_BASE/man:$MANPATH"
 
-	# Powerline plugin.
-	#if shell_is_macos; then
-		#export POWERLINE_ROOT=$macos_py3path/lib/python/site-packages/powerline
-		#export LC_ALL=en_US.UTF-8
-		#export LANG=en_US.UTF-8
-	#elif shell_is_bsd; then
-		#export POWERLINE_ROOT=/usr/local/lib/python3.6/site-packages/powerline
-	#elif shell_is_linux; then
-		#export POWERLINE_ROOT=/usr/lib/python3.7/site-packages/powerline
-	#fi
-
-	#if program_is_in_path powerline-daemon; then
-		#powerline-daemon -q
-	#fi
-
 	# Load custom keymap
 	# NOTE allow me or %wheeler to issue loadkeys with no password.
 	#if shell_is_linux && [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/loadkeys/keymap" ]; then
 		#sudo loadkeys -q ${XDG_CONFIG_HOME:-$HOME/.config}/loadkeys/keymap &>/dev/null
 	#fi
-
-	# iTerm2 integration: https://iterm2.com/documentation-shell-integration.html
-	# Disabled. Not used and makes shell load slower
-	#test -e "${HOME}/.iterm2_shell_integration.${SHELL_NAME}" && source "${HOME}/.iterm2_shell_integration.${SHELL_NAME}"
 
 	# Must be at the end of shell init file. but here should do...
 	if program_is_in_path sdk; then
@@ -491,10 +345,7 @@
 
 	# Add MacTex binaries (macos) to PATH.
 	# Reference: http://rkrug.github.io/LMS-test/downloads/UpdatingForElCapitan.pdf
-	if [ -e /Library/TeX/texbin ]; then
-		PATH="/Library/TeX/texbin:$PATH"
-	fi
-
+	test -e /Library/TeX/texbin && PATH="/Library/TeX/texbin:$PATH"
 
 	# ghq
 	# https://github.com/motemen/ghq
@@ -530,37 +381,22 @@
 	fi
 
 	# Homebrew sqlite to shadow old version shipped with macOS.
-	if [ -d /usr/local/opt/sqlite/ ]; then
-		PATH="/usr/local/opt/sqlite/bin:$PATH"
+	if [ -d "$HOMEBREW_PREFIX/opt/sqlite/bin" ]; then
+		PATH="$HOMEBREW_PREFIX/opt/sqlite/bin:$PATH"
 	fi
 
-	# NVM
-	# Let's not use NVM; slows down every shell, puts a git repo in $XDG_CONFIG_HOME...
-	#if [ -d ${XDG_CONFIG_HOME:-$HOME/.config}/nvm ]; then
-		#export NVM_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/nvm"
-		#[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-		#[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-	#fi
-
-	# Node manager n: https://github.com/tj/n
-	# Replaced by asdf
-	#export N_PREFIX=${XDG_DATA_HOME:-$HOME/.local/share}/n
-	#if [ -d $HOME/.n ]; then
-		#PATH=$N_PREFIX/bin:$PATH
-	#fi
-
 	# Homebrew curl
-	if [ -d /usr/local/opt/curl/bin ]; then
-		PATH="/usr/local/opt/curl/bin:$PATH"
+	if [ -d "$HOMEBREW_PREFIX/opt/curl/bin" ]; then
+		PATH="$HOMEBREW_PREFIX/opt/curl/bin:$PATH"
 	fi
 
 	# asdf
 	if program_is_in_path asdf; then
-		if shell_is_macos; then
+		if [ -n "$HOMEBREW_PREFIX" ]; then
 			source "$HOMEBREW_PREFIX/opt/asdf/libexec/asdf.sh"
-			# Hide ASDF from brew, otherwise brew-doctor will complain on python-config files in PATH.
+			# Hide asdf from brew, otherwise brew-doctor will complain on python-config files in PATH.
 			# Reference: https://github.com/pyenv/pyenv/issues/106#issuecomment-94921352
-			alias brew="env PATH=${PATH//$ASDF_DATA_DIR\/shims:/} brew"
+			shell_is_macos && alias brew="env PATH=${PATH//$ASDF_DATA_DIR\/shims:/} brew"
 		elif shell_is_linux; then
 			source /opt/asdf-vm/asdf.sh
 		fi
@@ -581,5 +417,4 @@
 	if program_is_in_path direnv; then
 		eval "$(direnv hook $SHELL_NAME)"
 	fi
-
 # }
