@@ -174,6 +174,15 @@ defaults write NSGlobalDomain AppleLanguages -array en-us sv-se de-de
 defaults write NSGlobalDomain AppleLocale en_DE
 # }
 
+# Network {
+## CloudflareDNS
+# * Ref: https://developers.cloudflare.com/1.1.1.1/setup/macos/
+# * For each network connection, manually add DNS servers: 1.1.1.1 & 1.0.0.1
+# * Could do this kind of, but don't know name of all adapters and dont' want to set for all
+#	$ sudo networksetup -listallnetworkservices
+#	$ sudo networksetup -setdnsservers Wi-Fi 1.1.1.1 1.0.0.1
+# }
+
 # Notifications & Focus {
 ## Notifications
 # * Uncheck "Show notification on lock screen" for all apps individually, to not leak notifications.
