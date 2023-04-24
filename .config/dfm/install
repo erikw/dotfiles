@@ -5,7 +5,6 @@ README.md skip
 Session.vim skip
 install.sh skip
 
-.gnupg recurse
 .repos recurse
 bin recurse
 
