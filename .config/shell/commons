@@ -64,6 +64,9 @@
 	export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
 	export PATH="$XDG_DATA_HOME/npm/bin:$PATH"
 
+	# Mailcap. Seems like can use envvar at least for NeoMutt. Ref: https://manpages.debian.org/testing/neomutt/neomutt.1.en.html
+	export MAILCAPS="$XDG_DATA_HOME:$MAILCAPS"
+
 	# Load utility functions
 	source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/functions"
 # }

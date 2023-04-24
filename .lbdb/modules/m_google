@@ -1,6 +1,0 @@
-#! /bin/bash -posix
-
-m_google_query ()
-{
-	goobook query "$@" | grep -v '^$' | sed -e 's/$/\tgoogle/'
-}
