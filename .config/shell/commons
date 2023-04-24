@@ -30,9 +30,6 @@
 	export XCOMPOSEFILE=$XDG_CONFIG_HOME/X11/XCompose
 	export CGDB_DIR=$XDG_CONFIG_HOME/cgdb
 	export GRADLE_USER_HOME=$XDG_DATA_HOME/gradle
-	export BUNDLE_USER_CONFIG=$XDG_CONFIG_HOME/bundle/config
-	export BUNDLE_USER_CACHE=$XDG_CACHE_HOME/bundle
-	export BUNDLE_USER_PLUGIN=$XDG_DATA_HOME/bundle
 	export GRIPHOME=$XDG_CONFIG_HOME/grip
 	export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
 	export SQLITE_HISTORY=$XDG_DATA_HOME/sqlite_history
@@ -46,6 +43,7 @@
 	export RIPGREP_CONFIG_PATH=$XDG_CONFIG_HOME/ripgrep/config
 	export FZF_MARKS_FILE=$XDG_CONFIG_HOME/fzf-marks/marks
 	export GOPATH="$XDG_DATA_HOME/go"
+	export GNUPGHOME="$XDG_DATA_HOME"/gnupg
 
 	# asdf; Not yet fully compliant: https://github.com/asdf-vm/asdf/issues/687
 	export ASDF_CONFIG_FILE=${XDG_CONFIG_HOME}/asdf/asdfrc
@@ -59,6 +57,11 @@
 	export GEM_SPEC_CACHE=$XDG_CACHE_HOME/gem
 	export GEM_HOME=$XDG_DATA_HOME/gem
 	export PATH="$GEM_HOME/bin:$PATH"
+
+	# Bundle
+	export BUNDLE_USER_CONFIG=$XDG_CONFIG_HOME/bundle/config
+	export BUNDLE_USER_CACHE=$XDG_CACHE_HOME/bundle
+	export BUNDLE_USER_PLUGIN=$XDG_DATA_HOME/bundle
 
 	# NPM
 	export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
