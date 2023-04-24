@@ -64,9 +64,8 @@
 	export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
 	export PATH="$XDG_DATA_HOME/npm/bin:$PATH"
 
-	# Load utility functions & aliases.
+	# Load utility functions
 	source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/functions"
-	sourceifexists "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliases"
 # }
 
 # Paths {
@@ -157,6 +156,9 @@
 
 	# Speed up dfm by telling it where the source is
 	test -d "$HOME/src/github.com/erikw/dotfiles" && export DFM_REPO="$HOME/src/github.com/erikw/dotfiles"
+
+	# Source aliases (must be done after setting $DESKTYPE)
+	sourceifexists "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliases"
 # }
 
 # UI {
