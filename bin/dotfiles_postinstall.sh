@@ -24,7 +24,7 @@ step() {
 
 if program_is_in_path vim && program_is_in_path curl; then
 	step "Setting up Vim"
-	curl -fLo $HOME/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+	curl -fLo $HOME/.config/vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 	vim -c 'PlugInstall | qa'
 fi
 
