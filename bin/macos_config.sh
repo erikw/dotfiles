@@ -14,7 +14,10 @@
 # }
 
 # Script Environment {
-set -euxo pipefail
+set -o errexit
+set -o nounset
+set -o pipefail
+set -o xtrace
 
 # From: https://github.com/mathiasbynens/dotfiles/blob/main/.macos
 # Close any open System Preferences panes, to prevent them from overriding

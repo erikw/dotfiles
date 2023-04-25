@@ -3,7 +3,10 @@
 #	vi: foldmarker={,} foldmethod=marker foldlevel=0
 # }
 
-set -euxo pipefail
+set -o errexit
+set -o nounset
+set -o pipefail
+set -o xtrace
 
 # Installs: Automated {
 # Install homebrew.

@@ -2,7 +2,10 @@
 # Boot strap my dotfiles by setting up Git with SSH keys and then cloning and install my dotfiles repo.
 # NOTE avoid having exec perm set on this file to not accidentially execute it on a system already set-up.
 
-set -euxo pipefail
+set -o errexit
+set -o nounset
+set -o pipefail
+[[ "${TRACE-0}" =~ ^1|t|y|true|yes$ ]] && set -o xtrace
 
 is_macos() {
   [[ "$OSTYPE" == "darwin"* ]]

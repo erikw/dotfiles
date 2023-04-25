@@ -5,7 +5,10 @@
 # Installation to be done after dotfiles are installed, and ideally after OS-specific tooling too.
 # NOTE this must be non-interactive as it's called from non-interactive dotfiles install.sh
 
-set -euxo pipefail
+set -o errexit
+set -o nounset
+set -o pipefail
+[[ "${TRACE-0}" =~ ^1|t|y|true|yes$ ]] && set -o xtrace
 
 # cd to dotfiles root
 # Reference: https://stackoverflow.com/a/43919044/265508

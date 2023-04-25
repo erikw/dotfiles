@@ -8,7 +8,10 @@
 # * https://docs.github.com/en/codespaces/customizing-your-codespace/personalizing-codespaces-for-your-account
 # * https://docs.github.com/en/codespaces/troubleshooting/troubleshooting-dotfiles-for-codespaces
 
-set -exo pipefail
+set -o errexit
+set -o nounset
+set -o pipefail
+[[ "${TRACE-0}" =~ ^1|t|y|true|yes$ ]] && set -o xtrace
 
 step() {
 	local msg="$@"
