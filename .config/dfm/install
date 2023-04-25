@@ -10,10 +10,10 @@ bin recurse
 
 .Xsession chmod 0744
 .config/X11/xinitrc chmod 0744
+.config/irssi/config chmod 0600
 .config/mpd/env.sh chmod 0600
 .config/mpd/mpd.conf chmod 0660
 .config/msmtp/config chmod 0600
 .config/ncmpcpp/config chmod  0600
 .config/offlineimap/config chmod 0600
-.irssi/config chmod 0600
 .netrc chmod 0600

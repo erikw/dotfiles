@@ -136,6 +136,7 @@ fi
 	alias bashdb='bashdb -x ${XDG_CONFIG_HOME:-$HOME/.config}/bashdb/bashdbinit'
 	alias svn='svn --config-dir ${XDG_CONFIG_HOME:-$HOME/.config}/subversion'
 	alias yarn='yarn --use-yarnrc $XDG_CONFIG_HOME/yarn/config'
+	alias irssi='irssi --config="$XDG_CONFIG_HOME"/irssi/config --home="$XDG_DATA_HOME"/irssi'
 # }
 
 # Sudo {

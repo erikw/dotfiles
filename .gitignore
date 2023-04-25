@@ -15,7 +15,7 @@
 *~
 .DS_STORE
 .config/tmux/sidebar/directory_widths.txt
-/!.ipython/profile_default/ipython_config.py
+/!.config/ipython/profile_default/ipython_config.py
 /.atom
 /.config/MusicBrainz/
 /.config/broot/launcher/
@@ -32,6 +32,7 @@
 /.config/grip/cache-*
 /.config/gtk-2.0/
 /.config/htop/
+/.config/ipython/
 /.config/irb/irb_history
 /.config/iterm2/
 /.config/kde/
@@ -47,10 +48,9 @@
 /.config/zsh/.zsh_history
 /.config/zsh/.zsh_sessions/
 /.config/zsh/funcs/_poetry
-/.ipython/
-/.irssi/away.log
-/.irssi/dcc/
-/.irssi/nicklistfifo
+/.config/irssi/away.log
+/.config/irssi/dcc/
+/.config/irssi/nicklistfifo
 /.netrc
 /.vim/.netrwhist
 /.vim/after/ftplugin/markdown/instant-markdown.vim
