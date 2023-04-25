@@ -15,7 +15,6 @@
 *.sw?
 *~
 .DS_STORE
-/.config/tmux/sidebar/directory_widths.txt
 /.config/MusicBrainz/
 /.config/aws/
 /.config/broot/launcher/
@@ -45,6 +44,7 @@
 /.config/subversion/
 /.config/taiga-stats/
 /.config/tmux/plugins/
+/.config/tmux/sidebar/directory_widths.txt
 /.config/travis/
 /.config/vim/.netrwhist
 /.config/vim/after/ftplugin/markdown/instant-markdown.vim
@@ -55,4 +55,3 @@
 /.config/yarn/config
 /.config/zsh/.zsh_funcs/_netlify
 /.config/zsh/.zsh_funcs/_poetry
-/.config/docker/
