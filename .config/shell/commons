@@ -22,19 +22,13 @@
 	export INPUTRC=$XDG_CONFIG_HOME/readline/inputrc
 	export KDEHOME=$XDG_CONFIG_HOME/kde
 	export MPLAYER_HOME=$XDG_CONFIG_HOME/mplayer
-	export NOTMUCH_CONFIG=$XDG_CONFIG_HOME/notmuch/notmuchrc
-	export OCTAVE_SITE_INITFILE=$XDG_CONFIG_HOME/octave/octaverc
-	export OCTAVE_HISTFILE=$XDG_CACHE_HOME/octave-hsts
 	export SCREENRC=$XDG_CONFIG_HOME/screen/screenrc
-	export XCOMPOSECACHE=$XDG_CACHE_HOME/X11/XCompose
-	export XCOMPOSEFILE=$XDG_CONFIG_HOME/X11/XCompose
 	export CGDB_DIR=$XDG_CONFIG_HOME/cgdb
 	export GRADLE_USER_HOME=$XDG_DATA_HOME/gradle
 	export GRIPHOME=$XDG_CONFIG_HOME/grip
 	export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
 	export SQLITE_HISTORY=$XDG_DATA_HOME/sqlite_history
 	export XINITRC=$XDG_CONFIG_HOME/X11/xinitrc
-	#export XSERVERRC=$XDG_CONFIG_HOME/X11/xserverrc
 	export ACKRC=$XDG_CONFIG_HOME/ack/ackrc	# Project local .ackrc is still possible.
 	export WGETRC=$XDG_CONFIG_HOME/wget/wgetrc
 	export GDBHISTFILE=$XDG_DATA_HOME/gdb/history
@@ -44,6 +38,7 @@
 	export FZF_MARKS_FILE=$XDG_CONFIG_HOME/fzf-marks/marks
 	export GOPATH="$XDG_DATA_HOME/go"
 	export GNUPGHOME="$XDG_DATA_HOME"/gnupg
+	export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
 
 	# asdf; Not yet fully compliant: https://github.com/asdf-vm/asdf/issues/687
 	export ASDF_CONFIG_FILE=${XDG_CONFIG_HOME}/asdf/asdfrc
@@ -52,6 +47,14 @@
 	export ASDF_PYTHON_DEFAULT_PACKAGES_FILE=${XDG_CONFIG_HOME}/pip/asdf-default-python-packages.txt
 	export ASDF_NPM_DEFAULT_PACKAGES_FILE=${XDG_CONFIG_HOME}/npm/asdf-default-npm-packages.txt
 	export ASDF_GEM_DEFAULT_PACKAGES_FILE=${XDG_CONFIG_HOME}/gem/asdf-default-gems.txt
+
+	# Octave
+	export OCTAVE_SITE_INITFILE=$XDG_CONFIG_HOME/octave/octaverc
+	export OCTAVE_HISTFILE=$XDG_CACHE_HOME/octave-hsts
+
+	# XCompose
+	export XCOMPOSECACHE=$XDG_CACHE_HOME/X11/XCompose
+	export XCOMPOSEFILE=$XDG_CONFIG_HOME/X11/XCompose
 
 	# Gems
 	export GEM_SPEC_CACHE=$XDG_CACHE_HOME/gem
