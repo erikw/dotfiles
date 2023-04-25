@@ -1,0 +1,13 @@
+--recurse
+--sort=foldcase
+--tag-relative=yes
+
+--fields=+iaSnm
+--extras=+qf
+--if0=yes
+
+--c-kinds=+x
+--c++-kinds=+p
+
+# Skip import statement in python files.
+--python-kinds=-i
