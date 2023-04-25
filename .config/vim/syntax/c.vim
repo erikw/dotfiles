@@ -2,5 +2,5 @@
 
 "syntax keyword cTodo contained NOTE NOPE
 
-source ~/.vim/syntax/my_todo.vim
+source ~/.config/vim/syntax/my_todo.vim
 call ExtendTodoSyntaxWithCustom('cTodo')

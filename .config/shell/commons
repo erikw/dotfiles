@@ -327,6 +327,10 @@
 		#PATH="$HOME/src/android-sdk-linux/tools/:$HOME/src/android-sdk-linux/platform-tools/:$PATH"
 	#fi
 
+	# Vim XDG. Ref: https://wiki.archlinux.org/title/XDG_Base_Directory
+	export GVIMINIT='let $MYGVIMRC = !has("nvim") ? "$XDG_CONFIG_HOME/vim/gvimrc" : "$XDG_CONFIG_HOME/nvim/init.gvim" | so $MYGVIMRC'
+	export VIMINIT='let $MYVIMRC = !has("nvim") ? "$XDG_CONFIG_HOME/vim/vimrc" : "$XDG_CONFIG_HOME/nvim/init.lua" | so $MYVIMRC'
+
 	# Perl
 	# cpan(1): avoid interactive configuration on first launch.
 	export PERL_MM_USE_DEFAULT=1

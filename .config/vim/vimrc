@@ -10,6 +10,27 @@
 " Reference: https://stackoverflow.com/questions/1687799/profiling-vim-startup-time
 " }
 
+" XDG {
+" Ref: https://wiki.archlinux.org/title/XDG_Base_Directory
+
+set runtimepath^=$XDG_CONFIG_HOME/vim
+set runtimepath+=$XDG_DATA_HOME/vim
+set runtimepath+=$XDG_CONFIG_HOME/vim/after
+
+set packpath^=$XDG_DATA_HOME/vim,$XDG_CONFIG_HOME/vim
+set packpath+=$XDG_CONFIG_HOME/vim/after,$XDG_DATA_HOME/vim/after
+
+let g:netrw_home = $XDG_DATA_HOME."/vim"
+call mkdir($XDG_DATA_HOME."/vim/spell", 'p')
+
+set backupdir=$XDG_STATE_HOME/vim/backup | call mkdir(&backupdir, 'p')
+set directory=$XDG_STATE_HOME/vim/swap   | call mkdir(&directory, 'p')
+set undodir=$XDG_STATE_HOME/vim/undo     | call mkdir(&undodir,   'p')
+set viewdir=$XDG_STATE_HOME/vim/view     | call mkdir(&viewdir,   'p')
+
+if !has('nvim') | set viminfofile=$XDG_STATE_HOME/vim/viminfo | endif
+" }
+
 " Environment {
 if v:version < 703
 	echoerr 'WARNING: This vimrc is written for Vim >= v.703; this is' v:version
@@ -32,7 +53,7 @@ endif
 let g:ale_completion_enabled = 1	" Must be set before ALE is loaded.
 
 " vim-plug data folder
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.local/share/vim/plugged')
 " }
 
 " General {
@@ -794,7 +815,7 @@ let g:snipMate.always_choose_first = 1		" Make it easy to override snippet from 
 " vim-startify {
 " Bookmarks
 let g:startify_bookmarks = [
-	\ {'v': '$HOME/.vimrc'},
+	\ {'v': g:xdg_config_home . '/vim/vimrc' },
 	\ g:xdg_config_home . '/shell/commons',
 	\ g:xdg_config_home . '/shell/aliases'
 	\ ]
