@@ -14,6 +14,7 @@
 *~
 .DS_STORE
 .config/MusicBrainz/
+.config/android/
 .config/aws/
 .config/broot/launcher/
 .config/bundle/Gemfile.lock
@@ -53,5 +54,4 @@
 .config/yarn/config
 .config/zsh/.zsh_funcs/_netlify
 .config/zsh/.zsh_funcs/_poetry
-.config/zsh/.zsh_funcs/_poetry
-.config/android/
+.config/subversion/
