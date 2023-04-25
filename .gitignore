@@ -45,9 +45,8 @@
 /.config/travis/
 /.config/wireshark/
 /.config/yarn/config
-/.config/zsh/.zsh_history
-/.config/zsh/.zsh_sessions/
-/.config/zsh/funcs/_poetry
+/.config/zsh/.zsh_funcs/_poetry
+/.config/zsh/.zsh_funcs/_netlify
 /.config/irssi/away.log
 /.config/irssi/dcc/
 /.config/irssi/nicklistfifo
