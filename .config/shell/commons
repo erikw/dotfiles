@@ -39,6 +39,7 @@
 	export GOPATH="$XDG_DATA_HOME/go"
 	export GNUPGHOME="$XDG_DATA_HOME"/gnupg
 	export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
+	export ANDROID_HOME="$XDG_DATA_HOME"/android
 
 	# asdf; Not yet fully compliant: https://github.com/asdf-vm/asdf/issues/687
 	export ASDF_CONFIG_FILE=${XDG_CONFIG_HOME}/asdf/asdfrc
