@@ -36,6 +36,7 @@ brew 'coreutils'	# Note that some gnu pakcages comes with g-prefix in the bin na
 brew 'cormacrelf/tap/dark-notify' # To detect chagnes in OS light/dark appearens. Used by https://github.com/cormacrelf/dark-notify/
 brew 'cowsay'
 brew 'curl'
+brew 'detox'
 brew 'dfc'
 brew 'dict'
 brew 'diff-pdf'
