@@ -54,4 +54,3 @@
 .config/yarn/config
 .config/zsh/.zsh_funcs/_netlify
 .config/zsh/.zsh_funcs/_poetry
-.config/subversion/
