@@ -78,8 +78,8 @@
 	export MAILCAPS="$XDG_DATA_HOME:$MAILCAPS"
 
 	# AWS cli
-	export AWS_SHARED_CREDENTIALS_FILE="$XDG_CONFIG_HOME"/aws/credentials
-	export AWS_CONFIG_FILE="$XDG_CONFIG_HOME"/aws/config
+	#export AWS_SHARED_CREDENTIALS_FILE="$XDG_CONFIG_HOME"/aws/credentials
+	#export AWS_CONFIG_FILE="$XDG_CONFIG_HOME"/aws/config
 
 	# Load utility functions
 	source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/functions"

@@ -15,7 +15,6 @@
 .DS_STORE
 .config/MusicBrainz/
 .config/android/
-.config/aws/
 .config/broot/launcher/
 .config/bundle/Gemfile.lock
 .config/cd-bookmark/bookmarks
