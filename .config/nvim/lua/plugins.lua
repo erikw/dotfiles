@@ -396,6 +396,7 @@ return require("packer").startup(function(use)
         end,
         config = function()
             -- Reference https://github.com/dense-analysis/ale/blob/master/doc/ale.txt
+            -- gopls seems to work properly only when the source is in $GOPATH in a module?
             -- Disabled linters:
             -- ['sql'] = {'sqls'},
             vim.g.ale_linters = {
@@ -412,6 +413,7 @@ return require("packer").startup(function(use)
             -- XDG path seems to be used for Linux but not macOS, until fixed https://github.com/mpeterv/luacheck/issues/231
             vim.g.ale_lua_luacheck_options = "--config $XDG_CONFIG_HOME/luacheck/.luacheckr"
 
+            -- gopls seems to work properly only when the source is in $GOPATH in a module?
             -- Disabled fixers:
             -- - *: 'trim_whitespace' & 'remove_trailing_lines' (overlaps with the functionally already provided by vim-better-whitespace)
             -- - python: autoimport (messes up ifx in taiga_stats.commands import  fix. Could be resolved by https://github.com/myint/autoflake/issues/59)
@@ -420,6 +422,7 @@ return require("packer").startup(function(use)
                 ["css"] = { "prettier" },
                 ["javascript"] = { "prettier", "eslint" },
                 ["json"] = { "prettier" },
+                ["go"] = { "gopls" },
                 ["lua"] = { "stylua" },
                 ["python"] = { "autoflake", "black", "isort" },
                 ["ruby"] = { "rubocop" },
@@ -427,6 +430,7 @@ return require("packer").startup(function(use)
                 ["typescript"] = { "prettier" },
                 ["yaml"] = { "prettier" },
             }
+
             vim.g.ale_fix_on_save = 1
             -- Let stylua find $XDG_CONFIG_HOME/stylua/stylua.toml
             vim.g.ale_lua_stylua_options = "--search-parent-directories"

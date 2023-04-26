@@ -134,7 +134,7 @@ brew 'zsh-syntax-highlighting'
 # brew 'entr'
 # brew 'ffmpeg2theora'
 # brew 'go'
-# brew 'gopls'
+# brew 'gopls' # Official LSP server for Go
 # brew 'irssi'
 # brew 'jsonlint'
 # brew 'knock'
