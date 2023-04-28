@@ -36,7 +36,6 @@
 	export TRAVIS_CONFIG_PATH=$XDG_CONFIG_HOME/travis
 	export RIPGREP_CONFIG_PATH=$XDG_CONFIG_HOME/ripgrep/config
 	export FZF_MARKS_FILE=$XDG_CONFIG_HOME/fzf-marks/marks
-	export GOPATH="$XDG_DATA_HOME/go"
 	export GNUPGHOME="$XDG_DATA_HOME"/gnupg
 	export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
 	export ANDROID_HOME="$XDG_DATA_HOME"/android
@@ -221,6 +220,9 @@
 
 # Programs {
 #  Go {
+	#export GOPATH="$XDG_DATA_HOME/go"
+	export GOPATH="$HOME/src/go"
+
 	if [ -d "$GOPATH/bin" ]; then
 		PATH="$GOPATH/bin::$PATH"
 	fi
