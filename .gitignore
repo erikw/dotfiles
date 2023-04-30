@@ -41,6 +41,7 @@
 .config/pudb/saved-breakpoints-*
 .config/subversion/
 .config/taiga-stats/
+.config/tmux-powerline/config.sh.default
 .config/tmux/plugins/
 .config/tmux/sidebar/directory_widths.txt
 .config/travis/
