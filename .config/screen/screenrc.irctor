@@ -4,25 +4,21 @@ source $HOME/.screenrc
 # Name of the session.
 sessionname irctor
 
-# Start app a with name b in window c. reverse order due to 'select torrent' won't work with ubuntu when rc -dmA.
+# Start app a with name b in window c.
 #screen -t b c a
-screen -t shell4	10
-screen -t shell3	9
-screen -t shell2	8 
-screen -t shell		7
-screen -t oam		6 	# operation, adimistration & maintenance.
-screen -t octave	5	octave
-screen -t rtorrent	4	rtorrent
+screen -t shell4	9
+screen -t shell3	8
+screen -t shell2	7
+screen -t shell		6
+screen -t oam		5	# operation, adimistration & maintenance.
+screen -t octave	4	octave
 screen -t ncmpcpp	3	ncmpcpp
 screen -t irrsi		2	irssi
 screen -t newsbeuter	1	newsbeuter
 screen -t mutt		0	mutt
 
-# Make torrent the defalt screen.
-#select rtorrent
-
 # Split screen and run top at the bottom.
-#eval "only" "split" "focus down" "fit" "screen top" "focus top" "select torrent"
+#eval "only" "split" "focus down" "fit" "screen top" "focus top" "select irssi"
 
 # Detach screen.
 #detach

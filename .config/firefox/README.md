@@ -28,11 +28,9 @@ Find the profile direcotry by going to Hamburger menu > Help > More troubleshoot
 Protocol handlers. Looks like the paths has to be absolute.
 1. Add the *expose=false values in about:config
 1. Click on a link with that protocol and firefox will ask what application to use. http://kb.mozillazine.org/Register_protocol
-   .torrent is configured in ~/.mailcap
 ```
 network.protocol-handler.expose.mailto;false
 network.protocol-handler.expose.spotify;false
-network.protocol-handler.expose.magnet;false
 ```
 
 ### Spotify URIs
@@ -50,7 +48,7 @@ For some addons, go to Manage and enable usage in private mode.
 * https://addons.mozilla.org/en-US/firefox/addon/check4change/
 * https://addons.mozilla.org/en-US/firefox/addon/darkreader/
 * https://addons.mozilla.org/en-US/firefox/addon/google-translator-webextension/
-* https://addons.mozilla.org/en-US/firefox/addon/i-dont-care-about-cookies/
+* https://addons.mozilla.org/en-US/firefox/addon/istilldontcareaboutcookies/
 * https://addons.mozilla.org/en-US/firefox/addon/pushbullet/
 * https://addons.mozilla.org/en-US/firefox/addon/tree-style-tab/
 * https://addons.mozilla.org/en-US/firefox/addon/tst-more-tree-commands/

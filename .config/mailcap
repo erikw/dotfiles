@@ -52,4 +52,3 @@ application/msword; antiword -ftw 80 -i 1 %s; copiousoutput
 application/octet-stream; od -t x %s ; copiousoutput; description="Hex dump of data"
 application/x-uudecode; uudecode -o- %s; copiousoutput
 application/x-java-jnlp-file;/usr/bin/javaws "%s"
-application/x-bittorrent; $HOME/bin/protocol-handlers/magnet-torrent.sh "%s"; test=test -n "$DISPLAY"

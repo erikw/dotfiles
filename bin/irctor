@@ -58,8 +58,6 @@ do_start() {
 do_stop() {
 	echo "Stopping ${session_name}...  "
 
-	#killall -w -s 2 rtorrent
-
 	tmux select-window -t "$session_name":3
 	tmux send-keys -t "$session_name"  "quit" C-m
 	sleep 0.5s
