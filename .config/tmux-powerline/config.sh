@@ -114,7 +114,9 @@
 	export TMUX_POWERLINE_SEG_NOW_PLAYING_MPD_SIMPLE_FORMAT="%artist% - %title%"
 
 	# Username for Last.fm if that music player is used.
-	export TMUX_POWERLINE_SEG_NOW_PLAYING_LASTFM_USERNAME="ErikWestrup"
+	export TMUX_POWERLINE_SEG_NOW_PLAYING_LASTFM_USERNAME="erikw187"
+	# API Key for the API.
+	export TMUX_POWERLINE_SEG_NOW_PLAYING_LASTFM_API_KEY=""
 	# How often in seconds to update the data from last.fm.
 	export TMUX_POWERLINE_SEG_NOW_PLAYING_LASTFM_UPDATE_PERIOD="30"
 # }
