@@ -1,6 +1,8 @@
 - defaults:
     link:
       relink: true
+    create:
+      mode: 0700
 
 - clean: ['~']
 
@@ -15,7 +17,9 @@
 - create:
     - ~/dl
     - ~/pub
+    - ~/src
     - ~/tmp
+    - ~/.local/share/tig # Make tig use $XDG_DATA_HOME. Reference: https://wiki.archlinux.org/title/XDG_Base_Directory#Partial
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]

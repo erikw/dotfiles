@@ -36,14 +36,3 @@ if program_is_in_path git-lfs; then
 	step "Installing git-lfs configuration."
 	git lfs install
 fi
-
-# Make tig use $XDG_DATA_HOME. Reference: https://wiki.archlinux.org/title/XDG_Base_Directory#Partial
-step "Making tig behave"
-mkdir -p ${XDG_DATA_HOME:-$HOME/.local/share}/tig
-
-# Perl
-## Requirements for ~/bin/rename_sane.sh
-#step "rename_sane.sh dependency: cpan module Unicode"
-##cpan Text::Unidecode
-## Non-interactive, answer questions with default. Ref: https://stackoverflow.com/a/977996/265508
-#PERL_MM_USE_DEFAULT=1 perl -MCPAN -e 'install Text::Unidecode'
