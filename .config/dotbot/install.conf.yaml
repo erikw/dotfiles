@@ -1,0 +1,21 @@
+- defaults:
+    link:
+      relink: true
+
+- clean: ['~']
+
+- link:
+    ~/.bashrc: .bashrc
+    ~/.config: .config
+    ~/.hushlogin: .hushlogin
+    ~/.repos: .repos
+    ~/.zshenv: .zshenv
+    ~/bin: bin
+
+- create:
+    - ~/dl
+    - ~/pub
+    - ~/tmp
+
+- shell:
+  - [git submodule update --init --recursive, Installing submodules]
