@@ -22,3 +22,6 @@
 [submodule ".repos/fzf-marks"]
 	path = .repos/fzf-marks
 	url = https://github.com/urbainvaes/fzf-marks.git
+[submodule ".repos/dotbot"]
+	path = .repos/dotbot
+	url = https://github.com/anishathalye/dotbot
