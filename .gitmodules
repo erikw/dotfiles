@@ -13,9 +13,6 @@
 #[submodule ".irssi/scripts/irssi-bitlbee-facebook-rename"]
 	#path = .irssi/scripts/irssi-bitlbee-facebook-rename
 	#url = git@github.com:erikw/irssi-bitlbee-facebook-rename.git
-[submodule ".local/cd-bookmark"]
-	path = .repos/cd-bookmark
-	url = https://github.com/erikw/cd-bookmark.git
 [submodule ".local/dircolors-solarized"]
 	path = .repos/dircolors-solarized
 	url = https://github.com/seebi/dircolors-solarized.git
