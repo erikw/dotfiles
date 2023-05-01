@@ -386,7 +386,7 @@
 
 	# fzf https://github.com/junegunn/fzf#using-homebrew
 	if program_is_in_path fzf; then
-		source ${XDG_CONFIG_HOME:-$HOME/.config}/fzf/fzf.${SHELL_NAME}
+		sourceifexists ${XDG_CONFIG_HOME:-$HOME/.config}/fzf/fzf.${SHELL_NAME}
 		# Default cli options. See fzf(1)
 		export FZF_COMPLETION_OPTS='--multi'
 
@@ -429,7 +429,7 @@
 
 	# fzf-marks: https://github.com/urbainvaes/fzf-marks
 	if [ -d $HOME/.repos/fzf-marks ]; then
-		source $HOME/.repos/fzf-marks/fzf-marks.plugin.$SHELL_NAME
+		sourceifexists $HOME/.repos/fzf-marks/fzf-marks.plugin.$SHELL_NAME
 		# --exact --select-1: jump to exact match directly if only match.
 		# --nth=1 --delimiter=' : ': only search the bookmark names, not values.
 		FZF_MARKS_COMMAND="$FZF_MARKS_COMMAND --exact --select-1 --nth=1 --delimiter=' : '"
