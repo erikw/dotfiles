@@ -19,3 +19,9 @@
 	path = .local/repos/dotbot-plugins/ifplatform
 	url = https://github.com/erikw/dotbot-ifplatform.git
 	branch = fix-module-import
+[submodule ".local/repos/dotbot-plugins/brew"]
+	path = .local/repos/dotbot-plugins/brew
+	url = https://github.com/d12frosted/dotbot-brew.git
+[submodule ".local/repos/dotbot-plugins/if"]
+	path = .local/repos/dotbot-plugins/if
+	url = https://github.com/wonderbeyond/dotbot-if.git

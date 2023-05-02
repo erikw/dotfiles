@@ -4,7 +4,7 @@
     create:
       mode: 0700
     shell:
-      stdin: true
+      stderr: true
       stdout: true
 
 - clean: ['~']
@@ -28,11 +28,15 @@
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
-  #-
-    #command: chsh -s $(which zsh)
-    #description: Making zsh the default shell
-    #stdout: true
 
-- ifmacos:
-    - shell:
-        - echo "is mac!"
+# TODO enable when using again on ~erikw
+#- ifmacos:
+#    - brewfile:
+#      - .config/homebrew/Brewfile
+    # Disabled as of bug: https://github.com/wonderbeyond/dotbot-if/issues/1
+    # Hanlded in macos_install.sh for now.
+    #- if:
+    #    cond: 'test -e ~/.config/homebrew/Brewfile.$(hostname)'
+    #    met:
+    #    - shell:
+    #      - [git submodule update --init --recursive, Installing submodules]
