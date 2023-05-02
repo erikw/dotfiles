@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Poor mans implementation of GNU watch fro FreeBSD.
+# Poor man's implementation of GNU watch for FreeBSD.
 # See http://www.stevekamerman.com/2008/07/freebsd-watch-command-is-not-gnulinux-watch-command/
 
 wait=1
