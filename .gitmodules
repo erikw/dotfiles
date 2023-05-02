@@ -1,28 +1,21 @@
-# Prefer t use https URLs instead of ssh, so that the computer where i clone my dotfiles does not need to have SSH keys set up to my Github account.
-[submodule ".sandboxd"]
+# Prefer to use https URLs instead of ssh, so that the computer where i clone my dotfiles does not need to have SSH keys set up to my Github account.
+[submodule ".local/repos/sandboxd"]
 	path = .local/repos/sandboxd
 	url = https://github.com/benvan/sandboxd.git
-#[submodule ".emacs.d/themes/emacs-color-theme-solarize"]
-	#path = .emacs.d/themes/emacs-color-theme-solarize
-	#url = git://github.com/sellout/emacs-color-theme-solarized.git
-
-# My repos.
-#[submodule "$XDG_CONFIG_HOME/mutt/colors/mutt-colors-solarized"]
-	#path = $XDG_CONFIG_HOME/mutt/colors/mutt-colors-solarized
-	#url = git@github.com:erikw/mutt-colors-solarized.git
-#[submodule ".irssi/scripts/irssi-bitlbee-facebook-rename"]
-	#path = .irssi/scripts/irssi-bitlbee-facebook-rename
-	#url = git@github.com:erikw/irssi-bitlbee-facebook-rename.git
-[submodule ".local/dircolors-solarized"]
+[submodule ".local/repos/dircolors-solarized"]
 	path = .local/repos/dircolors-solarized
 	url = https://github.com/seebi/dircolors-solarized.git
-[submodule ".local/tmux-colors-solarized"]
+[submodule ".local/repos/tmux-colors-solarized"]
 	path = .local/repos/tmux-colors-solarized
 	url = https://github.com/seebi/tmux-colors-solarized.git
-[submodule ".repos/fzf-marks"]
+[submodule ".local/repos/fzf-marks"]
 	path = .local/repos/fzf-marks
 	url = https://github.com/urbainvaes/fzf-marks.git
-[submodule ".repos/dotbot"]
+[submodule ".local/repos/dotbot"]
 	path = .local/repos/dotbot
 	url = https://github.com/anishathalye/dotbot
 	ignore = dirty
+[submodule ".local/repos/dotbot-plugins/ifplatform"]
+	path = .local/repos/dotbot-plugins/ifplatform
+	url = https://github.com/erikw/dotbot-ifplatform.git
+	branch = fix-module-import
