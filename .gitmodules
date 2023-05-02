@@ -1,6 +1,6 @@
 # Prefer t use https URLs instead of ssh, so that the computer where i clone my dotfiles does not need to have SSH keys set up to my Github account.
 [submodule ".sandboxd"]
-	path = .repos/sandboxd
+	path = .local/repos/sandboxd
 	url = https://github.com/benvan/sandboxd.git
 #[submodule ".emacs.d/themes/emacs-color-theme-solarize"]
 	#path = .emacs.d/themes/emacs-color-theme-solarize
@@ -14,15 +14,15 @@
 	#path = .irssi/scripts/irssi-bitlbee-facebook-rename
 	#url = git@github.com:erikw/irssi-bitlbee-facebook-rename.git
 [submodule ".local/dircolors-solarized"]
-	path = .repos/dircolors-solarized
+	path = .local/repos/dircolors-solarized
 	url = https://github.com/seebi/dircolors-solarized.git
 [submodule ".local/tmux-colors-solarized"]
-	path = .repos/tmux-colors-solarized
+	path = .local/repos/tmux-colors-solarized
 	url = https://github.com/seebi/tmux-colors-solarized.git
 [submodule ".repos/fzf-marks"]
-	path = .repos/fzf-marks
+	path = .local/repos/fzf-marks
 	url = https://github.com/urbainvaes/fzf-marks.git
 [submodule ".repos/dotbot"]
-	path = .repos/dotbot
+	path = .local/repos/dotbot
 	url = https://github.com/anishathalye/dotbot
 	ignore = dirty

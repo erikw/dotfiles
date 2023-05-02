@@ -307,9 +307,9 @@ fi
 
 	# Bookmark shell paths. No dependencies like jump who needs ruby.
 	# Aliases in ~/.config/shell/aliases
-	if [ -d ~/.repos/cd-bookmark ]; then
+	if [ -d ~/.local/repos/cd-bookmark ]; then
 		#fpath=(~/src/github.com/erikw/cd-bookmark/(N-/) $fpath)
-		fpath=(~/.repos/cd-bookmark(N-/) $fpath)
+		fpath=(~/.local/repos/cd-bookmark(N-/) $fpath)
 		autoload -Uz cd-bookmark
 	fi
 

@@ -93,10 +93,10 @@ fi
 		#source $HOME/src/github.com/simonwhitaker/gibo/gibo-completion.bash
 	#fi
 
-	if [ -d $HOME/.repos/cd-bookmark ]; then
+	if [ -d $HOME/.local/repos/cd-bookmark ]; then
 		# sourceifexists not working here...
 		#source $HOME/src/github.com/erikw/cd-bookmark/cd-bookmark
-		source $HOME/.repos/cd-bookmark/cd-bookmark
+		source $HOME/.local/repos/cd-bookmark/cd-bookmark
 
 		# A modified version of cd-bookmark's _cdbookmarks_bash_completions that can be used to complete bookmarks for aliases (as bash don't complete aliases.)
 		# Complete bookmarks for all aliases that take bookmark_id as argument.

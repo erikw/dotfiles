@@ -159,7 +159,7 @@
 	# Enable sandboxing a.k.a. lazy loading of shell initialization for some programs.
 	# Not possible with dfm to install to .local/share as 2 levels of recurse in dfminstall does not work.
 	# See https://github.com/justone/dfm/issues/39
-	sourceifexists "$HOME/.repos/sandboxd/sandboxd"
+	sourceifexists "$HOME/.local/repos/sandboxd/sandboxd"
 
 	# Needed for gnupg's gpg(1) to work, thus for git commit signing.
 	program_is_in_path gnupg && export GPG_TTY=$(tty)
@@ -181,7 +181,7 @@
 
 # UI {
 	# Solarized ls colors.
-	dircolorsdb=$HOME/.repos/dircolors-solarized/dircolors.256dark
+	dircolorsdb=$HOME/.local/repos/dircolors-solarized/dircolors.256dark
 	if ! [ -f "$dircolorsdb" ]; then
 		dircolorsdb=${XDG_CONFIG_HOME:-$HOME/.config}/shell/dircolors
 	fi
@@ -431,8 +431,8 @@
 	fi
 
 	# fzf-marks: https://github.com/urbainvaes/fzf-marks
-	if [ -d $HOME/.repos/fzf-marks ]; then
-		sourceifexists $HOME/.repos/fzf-marks/fzf-marks.plugin.$SHELL_NAME
+	if [ -d $HOME/.local/repos/fzf-marks ]; then
+		sourceifexists $HOME/.local/repos/fzf-marks/fzf-marks.plugin.$SHELL_NAME
 		# --exact --select-1: jump to exact match directly if only match.
 		# --nth=1 --delimiter=' : ': only search the bookmark names, not values.
 		FZF_MARKS_COMMAND="$FZF_MARKS_COMMAND --exact --select-1 --nth=1 --delimiter=' : '"

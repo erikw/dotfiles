@@ -1,7 +1,7 @@
 $ErrorActionPreference = "Stop"
 
 $CONFIG = ".config/dotbot/install.conf.yaml"
-$DOTBOT_DIR = ".repos/dotbot"
+$DOTBOT_DIR = ".local/repos/dotbot"
 
 $DOTBOT_BIN = "bin/dotbot"
 $BASEDIR = $PSScriptRoot

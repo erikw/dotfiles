@@ -10,7 +10,9 @@
     ~/.bashrc: .bashrc
     ~/.config: .config
     ~/.hushlogin: .hushlogin
-    ~/.repos: .repos
+    ~/.local/repos:
+      path: .local/repos
+      create: true
     ~/.zshenv: .zshenv
     ~/bin: bin
 

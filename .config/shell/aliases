@@ -177,7 +177,7 @@ fi
 
 # fzf-marks {
 	# Bashmark style aliases
-	if [ -d $HOME/.repos/fzf-marks ]; then
+	if [ -d $HOME/.local/repos/fzf-marks ]; then
 	    alias g='fzm'
 	    alias s='mark'
 	    alias e="vi $FZF_MARKS_FILE"
