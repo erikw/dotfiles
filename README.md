@@ -6,7 +6,7 @@
 [![Number of programming languages used](https://img.shields.io/github/languages/count/erikw/dotfiles)](#)
 [![Top programming languages used](https://img.shields.io/github/languages/top/erikw/dotfiles)](#)
 
-Most of my personal dotfiles can be found in this branch. I use dfm (dot file manager) to install and managed the dotfiles. See [justone/dotfiles](https://github.com/justone/dotfiles) & [justone/dfm](https://github.com/justone/dfm) for details on how to use it.
+Most of my personal dotfiles can be found in this branch. I use [dotbot](https://github.com/anishathalye/dotbot) to install and managed the dotfiles.
 
 # Highlights
 * [.config/](.config/) - I've spent quite some effort to make my dotfiles adhere to the [XDG](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html) Base Directory Standard as much as possible, using and contributing to the [Arch wiki page](https://wiki.archlinux.org/title/XDG_Base_Directory). As far from all programs that I use support this natively, quite some custom configuration neeeded to be done. Grep for `XDG` in [.config/shell/commons](.config/shell/commons).
