@@ -29,7 +29,27 @@
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
 
+
+# TODO disabled as of bug executing command twice: https://github.com/ssbanerje/dotbot-ifplatform/pull/4#issuecomment-1532112176
+#- ifmacos:
+#  - shell:
+#    -
+#      command: ~/bin/macos_config.sh
+#      description: Running macos_config.sh
+#      stdin: true
+
+# TODO not working due to https://github.com/wonderbeyond/dotbot-if/issues/1
+- if:
+    cond: test $(uname) = Darwin
+    met:
+      - shell:
+        -
+          command: ~/bin/macos_config.sh
+          description: Running macos_config.sh
+          stdin: true
+
 # TODO enable when using again on ~erikw
+# TODO rewrite using `if` as above.
 #- ifmacos:
 #    - brewfile:
 #      - .config/homebrew/Brewfile

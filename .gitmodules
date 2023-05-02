@@ -15,10 +15,6 @@
 	path = .local/repos/dotbot
 	url = https://github.com/anishathalye/dotbot
 	ignore = dirty
-[submodule ".local/repos/dotbot-plugins/ifplatform"]
-	path = .local/repos/dotbot-plugins/ifplatform
-	url = https://github.com/erikw/dotbot-ifplatform.git
-	branch = fix-module-import
 [submodule ".local/repos/dotbot-plugins/brew"]
 	path = .local/repos/dotbot-plugins/brew
 	url = https://github.com/d12frosted/dotbot-brew.git

@@ -1,5 +1,6 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 # Configure macOS to my linking.
+# NOTE make sure this script is idempotent!
 # Modeline {
 #	vi: foldmarker={,} foldmethod=marker foldlevel=0
 # }
@@ -30,21 +31,6 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 # }
 
 # System {
-# Add a note to /etc/host to make it easier
-sudo sh -c " cat >>/etc/hosts" << EOF
-
-
-# After editing this file, execute:
-# $ dscacheutil -flushcache; sudo killall -HUP mDNSResponder
-# Reference: https://www.tekrevue.com/tip/edit-hosts-file-mac-os-x/
-EOF
-
-# Make zsh default shell for local user.
-# NOTE not needed since macos 10.15 Catalina. https://apple.slashdot.org/story/19/06/04/1645240/apple-replaces-bash-with-zsh-as-the-default-shell-in-macos-catalina?utm_source=rss1.0mainlinkanon&utm_medium=feed
-#chsh -s $(which zsh)
-#chsh -s /bin/zsh
-
-
 
 # Allow a sudo session to last a bit longer, across terminals.
 sudo sh -c " cat >/etc/sudoers.d/99_my_settings" << EOF
@@ -62,24 +48,19 @@ EOF
 
 
 # Create power group and add user for sudo rule above.
-sudo dseditgroup -o create power
-sudo dseditgroup -o edit -u $USER -p -a $USER -t user power
-
-# Track /etc in git
-# NOTE skip this as it's almost only official distribution upgrades that modifies /etc on macOS.
-#sudo -s -- <<EOF
-#cd /etc
-#git init
-#touch .gitignore
-#git add .
-#git config --global user.email "$USER@HOST"
-#git config --global user.name "$(id -un)"
-#git commit -m "Initital commit"
-#EOF
+if ! dscacheutil -q group | grep -q "name: power"; then
+	sudo dseditgroup -o create power
+fi
+if ! groups | grep -q power; then
+	sudo dseditgroup -o edit -u $USER -p -a $USER -t user power
+fi
 
 # Sudo with Touch ID. Ref: https://news.ycombinator.com/item?id=26303170
 # To work within tmux, need to use pam_reattach. Ref: https://github.com/fabianishere/pam_reattach
-sudo sed -i -e '1s;^;auth       optional        /opt/homebrew/lib/pam/pam_reattach.so\nauth       sufficient     pam_tid.so # Sudo with Touch ID\n;' /etc/pam.d/sudo
+# Try detect if TouchID exist. Ref: https://apple.stackexchange.com/a/450646
+if (bioutil -r | grep -q "Touch ID for unlock") && (! grep -q pam_tid.so /etc/pam.d/sudo) ; then
+	sudo sed -i -e '1s;^;auth       optional        /opt/homebrew/lib/pam/pam_reattach.so\nauth       sufficient     pam_tid.so # Sudo with Touch ID\n;' /etc/pam.d/sudo
+fi
 # }
 
 # TODO adapt this to System Settings in macOS Ventura
@@ -160,8 +141,10 @@ defaults write com.apple.Dock position-immutable -bool true
 defaults write com.apple.Dock showhidden -boolean yes
 
 # Add two space separators in dock, to organize icons to correspond to which monitor I want them to be open on. Let them be order by the Spaces order too.
-defaults write com.apple.dock persistent-apps -array-add '{tile-data={}; tile-type="spacer-tile";}'
-defaults write com.apple.dock persistent-apps -array-add '{tile-data={}; tile-type="spacer-tile";}'
+if ! defaults read com.apple.dock | grep -q spacer-tile; then
+	defaults write com.apple.dock persistent-apps -array-add '{tile-data={}; tile-type="spacer-tile";}'
+	defaults write com.apple.dock persistent-apps -array-add '{tile-data={}; tile-type="spacer-tile";}'
+fi
 # }
 # }
 
@@ -350,12 +333,15 @@ defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
 # Sharing {
 # * Set "Computer Name". Unfortunately different from system hostname (below).
 # * Set computers hostname.
+# Semi-idempotent; assume setting hostname is only desired to do 1 time, and that a default hostname is *.local something.
+if  hostname | grep -q .local; then
 new_hostname=
 while [ -z "$new_hostname" ]; do
 	echo -n "Enter new computer hostname: "
 	read new_hostname
 done;
 sudo scutil --set HostName $new_hostname
+fi
 
 
 # * If want SMB file sharing:
@@ -545,6 +531,7 @@ defaults write -g NSWindowShouldDragOnGesture -bool true
 
 
 # Prepare user's crontab header.
+set +o errexit
 read -r -d '' newtab <<'EOF'
 # Environment
 #SHELL=/bin/sh
@@ -559,11 +546,14 @@ PATH=~/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/local/sbin:/
 #30	 19	 *	 *	 *	if_fail_do_notification restic_backup.sh
 #@monthly			   if_fail_do_notification restic_check.sh
 EOF
+set -o errexit
 oldtab=$(crontab -l)
-if [ -n "$oldtab" ]; then
-	newtab=$(printf "%s\n%s\n" "$oldtab" "$newtab")
+if ! crontab -l | grep -q "# Environment"; then
+	if [ -n "$oldtab" ]; then
+		newtab=$(printf "%s\n%s\n" "$oldtab" "$newtab")
+	fi
+	echo "$newtab" | crontab -
 fi
-echo "$newtab" | crontab -
 
 # }
 

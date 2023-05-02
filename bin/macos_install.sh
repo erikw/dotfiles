@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# NOTE make sure this script is idempotent!
 # Modeline {
 #	vi: foldmarker={,} foldmethod=marker foldlevel=0
 # }
@@ -9,12 +10,6 @@ set -o pipefail
 set -o xtrace
 
 # Installs: Automated {
-# Install homebrew.
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-# Using Brewfile at $HOMEBREW_BUNDLE_FILE
-#brew bundle install
-# NOPE don't set global HOMEBREW_BUNDLE_FILE path, interferes with local projects.
-
 # Add brew to PATH with eval.
 brew_bin=
 if [ -e /opt/homebrew/bin/brew ]; then  # Apple Silicon macs
@@ -27,9 +22,6 @@ else
 fi
 eval "$(${brew_bin} shellenv)"
 
-
-brewfile_global="${XDG_CONFIG_HOME:-$HOME/.config}/homebrew/Brewfile"
-brew bundle install --file $brewfile_global
 
 brewfile_host_specific="${brewfile_global}.$(hostname)"
 if [ -e $brewfile_host_specific ]; then
