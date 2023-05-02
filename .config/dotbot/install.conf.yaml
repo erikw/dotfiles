@@ -3,6 +3,9 @@
       relink: true
     create:
       mode: 0700
+    shell:
+      stdin: true
+      stdout: true
 
 - clean: ['~']
 
@@ -25,3 +28,7 @@
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
+  #-
+    #command: chsh -s $(which zsh)
+    #description: Making zsh the default shell
+    #stdout: true
