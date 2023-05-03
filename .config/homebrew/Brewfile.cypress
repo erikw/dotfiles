@@ -49,7 +49,6 @@
     cask 'gramps'
     cask 'handbrake'
     cask 'jettison'
-    cask 'kid3'
     cask 'mactex'
     cask 'microsoft-excel'
     cask 'microsoft-powerpoint'
@@ -59,21 +58,22 @@
     cask 'send-to-kindle'
     cask 'signal'
     cask 'skype'
-    cask 'transmission'
 # }
 
 # Cask: optional {
 =begin
     cask 'ableton-live-suite' # If using latest version, which I'm not.
-    cask 'focusrite-control' # Needs the driver tap
     cask 'bitwarden'
     cask 'ferdium'
-    cask 'rekordbox'
+    cask 'focusrite-control' # Needs the driver tap
     cask 'isyncr'
+    cask 'kid3'  # MP3 metadata editor
     cask 'microsoft-office'  # License managed at https://account.microsoft.com/services/
     cask 'mixed-in-key'    # If using latest version, which I'm not.
     cask 'musicbrainz-picard'
     cask 'mutify'
+    cask 'rekordbox'
+    cask 'transmission'
 =end
 # }
 
