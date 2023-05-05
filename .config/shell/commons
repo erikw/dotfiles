@@ -50,6 +50,7 @@
 	export ASDF_PYTHON_DEFAULT_PACKAGES_FILE=${XDG_CONFIG_HOME}/pip/asdf-default-python-packages.txt
 	export ASDF_NPM_DEFAULT_PACKAGES_FILE=${XDG_CONFIG_HOME}/npm/asdf-default-npm-packages.txt
 	export ASDF_GEM_DEFAULT_PACKAGES_FILE=${XDG_CONFIG_HOME}/gem/asdf-default-gems.txt
+	export ASDF_GOLANG_DEFAULT_PACKAGES_FILE=${XDG_CONFIG_HOME}/golang/asdf-default-golang-pkgs.txt
 
 	# Octave
 	export OCTAVE_SITE_INITFILE=$XDG_CONFIG_HOME/octave/octaverc

@@ -1,0 +1,6 @@
+// LSP
+golang.org/x/tools/gopls@latest
+
+// Other
+// REPL
+github.com/x-motemen/gore/cmd/gore@latest

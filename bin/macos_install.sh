@@ -320,6 +320,11 @@ npm install -g vscode-langservers-extracted
 # }
 
 # Go {
+# asdf version manager - golang
+asdf plugin-add golang
+asdf install golang latest
+asdf global golang latest
+
 # LSP server
 # brew install gopls
 # }
