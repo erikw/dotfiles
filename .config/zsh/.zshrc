@@ -248,6 +248,16 @@ fi
 		bindkey "^[[3~"  delete-char
 		bindkey "^[3;5~" delete-char
 	fi
+
+	# Add text object extension -- eg ci" da(:
+	autoload -U select-quoted
+	zle -N select-quoted
+	for m in visual viopp; do
+		for c in {a,i}{\',\",\`}; do
+			bindkey -M $m $c select-quoted
+		done
+	done
+
 # }}
 
 # ZLE {{
