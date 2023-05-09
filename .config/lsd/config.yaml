@@ -8,7 +8,7 @@ color:
   #theme: default  # TODO find solarized theme
   theme: erikw
 
-date: '+%Y-%m-%d %H:%M'
+date: "+%Y-%m-%d %H:%M"
 
 icons:
   when: auto
@@ -23,7 +23,6 @@ icons:
 # Whether to add indicator characters to certain listed files.
 # Possible values: false, true
 indicators: false
-
 
 # Specifies the format of the size column.
 # Possible values: default, short, bytes
