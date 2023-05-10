@@ -1,6 +1,8 @@
 // LSP
 golang.org/x/tools/gopls@latest
 
-// Other
+// Debugger
+github.com/go-delve/delve/cmd/dlv@latest
+
 // REPL
 github.com/x-motemen/gore/cmd/gore@latest

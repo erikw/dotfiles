@@ -1,0 +1,7 @@
+# Configuration file for the delve debugger.
+
+# The number of lines printed above and below cursor when  listing source code.
+source-list-line-count: 10
+# Provided aliases will be added to the default aliases for a given command.
+#aliases:
+# command: ["alias1", "alias2"]

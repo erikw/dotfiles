@@ -21,6 +21,7 @@
 .config/cgdb/logs/
 .config/cheat/
 .config/configstore/
+.config/dlv/.dbg_history
 .config/fzf-marks/marks
 .config/fzf/
 .config/gcloud/
