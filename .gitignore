@@ -18,6 +18,7 @@
 .config/broot/launcher/
 .config/bundle/Gemfile.lock
 .config/cd-bookmark/bookmarks
+.config/cgdb/logs/
 .config/cheat/
 .config/configstore/
 .config/fzf-marks/marks

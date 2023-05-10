@@ -331,6 +331,17 @@ return require("packer").startup(function(use)
                     -- builtin mappings
                     "rails",
                     -- custom mappings
+                    -- Golang
+                    {
+                        context = "test",
+                        pattern = "(.*).go$",
+                        target = "%1_test.go",
+                    },
+                    {
+                        context = "implementation",
+                        pattern = "(.*)_test.go$",
+                        target = "%1.go",
+                    },
                 },
                 style = {
                     width = 0.7,
