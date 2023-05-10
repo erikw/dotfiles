@@ -10,3 +10,11 @@ snippet mainf
 	}
 snippet log
 	log.Printf("%${1:s}\n", ${2:var})${3}
+
+# Run ALEImport after this to import "runtime".
+snippet d
+	 runtime.Breakpoint()
+snippet dbg
+	 runtime.Breakpoint()
+snippet debug
+	 runtime.Breakpoint()

@@ -462,6 +462,7 @@ return require("packer").startup(function(use)
             vim.keymap.set("n", "gr", "<Plug>(ale_find_references)", { silent = true, desc = "ALE: find references." })
             vim.keymap.set("n", "K", "<Plug>(ale_hover)", { silent = true, desc = "ALE: hover." })
             vim.keymap.set("n", "<Space>rn", "<Plug>(ale_rename)", { silent = true, desc = "ALE: rename." })
+            vim.keymap.set("n", "<Leader>I", "<Plug>(ale_import)", { silent = true, desc = "ALE: import." })
 
             -- Navigate between errors
             vim.keymap.set("n", "<C-k>", "<Plug>(ale_previous_wrap)", { silent = true, desc = "ALE: navigate to previous error." })
@@ -512,6 +513,7 @@ return require("packer").startup(function(use)
 
     -- Development: Go {{
     --use{'fatih/vim-go', ft = { 'go' } }  -- Compilation commands etc.
+    use({ "sebdah/vim-delve", ft = { "go" } }) -- Debugger.
     -- }}
 
     -- Development: Java {{
