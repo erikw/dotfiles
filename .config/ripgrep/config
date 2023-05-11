@@ -14,6 +14,8 @@
 
 
 # Ignores
+# NOTE ignore golang tests: $ rg --glob='!*_test.go'
+
 # Ignore git directories.
 --glob=!.git/
 

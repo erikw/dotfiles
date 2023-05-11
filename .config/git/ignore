@@ -38,3 +38,8 @@ cscope.in.out
 # Ruby development
 # byebug
 .byebug_history
+
+
+# Golang development
+# Produced by delve
+debug.test
