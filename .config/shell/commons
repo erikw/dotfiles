@@ -421,8 +421,9 @@
 		if [ -n "$HOMEBREW_PREFIX" ]; then
 			source "$HOMEBREW_PREFIX/opt/asdf/libexec/asdf.sh"
 			# Hide asdf from brew, otherwise brew-doctor will complain on python-config files in PATH.
-			# Reference: https://github.com/pyenv/pyenv/issues/106#issuecomment-94921352
-			shell_is_macos && alias brew="env PATH=${PATH//$ASDF_DATA_DIR\/shims:/} brew"
+			# Reference: https://github.com/pyenv/pyenv#homebrew-in-macos
+			# NOTE seems not needed anymore?
+			#shell_is_macos && alias brew="env PATH=${PATH//$ASDF_DATA_DIR\/shims:/} brew"
 		elif shell_is_linux; then
 			source /opt/asdf-vm/asdf.sh
 		fi
