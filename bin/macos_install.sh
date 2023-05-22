@@ -153,6 +153,13 @@ fi
 # * Launch it one time to set right permissions needed.
 # * From menu bar icon: hide icon
 
+
+# Mail.app
+## GMailinator plug-in. The most maintained fork is https://github.com/wwwjfy/GMailinator, but using another fork's install.sh makes it easier: https://github.com/jasoncodes/GMailinator/blob/master/install.sh
+# ghq-get git@github.com:jasoncodes/GMailinator.git
+# ./install.sh
+# Then go to Mail.app > Preferences > General > Manage Plug-ins... > enable GMailinator
+
 # iTerm2
 # * Load settings from Preferencs > General > Preferences tab > Load from custom folder or URL. Reference: https://stackoverflow.com/a/23356086/265508
 # * Give iterm full disk access, to avoid may different permission request popups later

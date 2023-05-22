@@ -177,7 +177,6 @@ cask 'google-chrome'
 # cask 'iterm2'
 cask 'iterm2-beta' # Until 3.5 is released (that has dark/light automatic modes).
 cask 'keepingyouawake'
-cask 'mimestream'
 cask 'scroll-reverser'
 cask 'sensiblesidebuttons' # Need to manually add it to System Preferences > Users & Groups > Login items
 cask 'spotify'
