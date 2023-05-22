@@ -23,12 +23,11 @@ fi
 eval "$(${brew_bin} shellenv)"
 
 
-# TODO re-eanble
-#brewfile_global="${XDG_CONFIG_HOME:-$HOME/.config}/homebrew/Brewfile"
-#brewfile_host_specific="${brewfile_global}.$(hostname)"
-#if [ -e $brewfile_host_specific ]; then
-#    brew bundle install --file $brewfile_host_specific
-#fi
+brewfile_global="${XDG_CONFIG_HOME:-$HOME/.config}/homebrew/Brewfile"
+brewfile_host_specific="${brewfile_global}.$(hostname)"
+if [ -e $brewfile_host_specific ]; then
+	brew bundle install --file $brewfile_host_specific
+fi
 
 # Make homebrew zsh default shell. Reference: https://rick.cogley.info/post/use-homebrew-zsh-instead-of-the-osx-default/
 cur_sh=$(dscl . -read /Users/$USER UserShell | cut -d' ' -f2)
