@@ -60,8 +60,9 @@ if ! [ -e $HOME/.config/fzf/fzf.zsh ]; then
 	$(brew --prefix)/opt/fzf/install --xdg  --key-bindings --no-update-rc --no-completion
 fi
 
+## Crontab {
 # Install ~/bin/dotfiles_backup_local.sh cron entry.
-tab_entry="0 13 * * *			dotfiles_backup_local.sh >/dev/null"
+tab_entry="0 13 * * *			if_fail_do_notification dotfiles_backup_local.sh >/dev/null"
 tab_old=$(crontab -l)
 if ! echo "$tab_old" | grep -qF "$tab_entry"; then
 	tab_new=$(printf "%s\n%s\n" "$tab_old" "$tab_entry")
@@ -70,13 +71,14 @@ fi
 
 
 # Crontab backup automation
-tab_entry="@monthly			if_fail_do_notification bak_crontab.sh"
+tab_entry="@monthly			if_fail_do_notification crontab_backup.sh"
 tab_old=$(crontab -l)
 if ! echo "$tab_old" | grep -qF "$tab_entry"; then
 	tab_new=$(printf "%s\n%s\n" "$tab_old" "$tab_entry")
 	echo "$tab_new" | crontab -
 fi
 
+## }
 # }
 
 # Installs: Manual {
@@ -231,6 +233,11 @@ fi
 # From https://www.dict.cc/?s=about%3Awordlist&l=e
 # To use it;
 # - open Dictionary.app > Preferences > enable and up the pref order of the "Deutsch-Englisch" dictionary.
+
+# Crontabs
+# If using Spotify, add an entry to local user's crontab:
+# @monthly			if_fail_do_notification spotify-backup.sh
+
 # }
 
 # Automator Actions {
