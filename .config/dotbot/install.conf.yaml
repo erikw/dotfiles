@@ -76,7 +76,7 @@
 #- if:
 #    cond: 'echo "$OSTYPE | grep -q "msys*"'
 
-# TODO Linux: set up one of the apt-get plugins https://github.com/anishathalye/dotbot/wiki/Plugins
+# TODO Linux: set up one of the apt-get plugins https://github.com/anishathalye/dotbot/wiki/Plugins possibly with the sudo plugin.
 # and base it of ~/doc/tech/irvine/arch_packages.txt
 
 - asdf:
