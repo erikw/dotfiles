@@ -22,13 +22,14 @@ Most of my personal dotfiles can be found in this branch. I use [dotbot](https:/
   * [permute_aliases.sh](bin/permute_aliases.sh) -- generate shell aliases on all permutations of a command; for fast typers!
 
 ## Installation
+## Bootstrap
 Bootstrap using [bin/dotfiles_bootstrap.sh](bin/dotfiles_bootstrap.sh):
 ```shell
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/erikw/dotfiles/personal/bin/dotfiles_bootstrap.sh)"
 ```
 This will interactively set up GitHub SSH key, clone this repo and run `./install`
 
-### Post-install
+### Local branch
 Switch to a local branch for secret changes:
 ```shell
 cd ~/src/github.com/erikw/dotfiles
