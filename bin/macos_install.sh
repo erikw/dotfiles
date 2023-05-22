@@ -357,6 +357,7 @@ asdf plugin-add ruby
 # Build requirements for building all ruby versions from https://github.com/asdf-vm/asdf-ruby
 brew install openssl@1.1 openssl@3 readline libyaml gmp rust
 export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"  # Also set in shell commons for future builds
+# NOTE might have to unset $GEM_HOME before installing with rbenv: https://github.com/asdf-vm/asdf-ruby/issues/206#issuecomment-860106503
 
 # Install latest ruby
 asdf install ruby latest

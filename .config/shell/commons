@@ -62,6 +62,7 @@
 
 	# Gems
 	export GEM_SPEC_CACHE=$XDG_CACHE_HOME/gem
+	# NOTE GEM_HOME seems to cause issues when using rbevn to install new ruby versions. https://github.com/asdf-vm/asdf-ruby/issues/206#issuecomment-860106503
 	export GEM_HOME=$XDG_DATA_HOME/gem
 	export PATH="$GEM_HOME/bin:$PATH"
 
