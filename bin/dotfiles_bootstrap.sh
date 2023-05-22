@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 # Boot strap my dotfiles by setting up Git with SSH keys and then cloning and install my dotfiles repo.
+# Usage: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/erikw/dotfiles/personal/bin/dotfiles_bootstrap.sh)"
 # NOTE avoid having exec perm set on this file to not accidentially execute it on a system already set-up.
 
 set -o errexit
@@ -7,9 +8,6 @@ set -o nounset
 set -o pipefail
 [[ "${TRACE-0}" =~ ^1|t|y|true|yes$ ]] && set -o xtrace
 
-is_macos() {
-  [[ "$OSTYPE" == "darwin"* ]]
-}
 
 SSH_DIR="$HOME/.ssh"
 SSH_ID_DIR="$SSH_DIR/identityfiles"
@@ -19,6 +17,10 @@ DOTFILES_REPO=git@github.com:erikw/dotfiles.git
 REPOS_ROOT="$HOME/src/github.com/erikw"
 DOTFILES_ROOT="$REPOS_ROOT/dotfiles"
 SSH_CONFIG_SCRIPT_URL="https://github.com/erikw/dotfiles/blob/personal/bin/ssh-config-create.sh"
+
+is_macos() {
+  [[ "$OSTYPE" == "darwin"* ]]
+}
 
 step() {
 	local msg="$@"
@@ -73,19 +75,4 @@ git clone $DOTFILES_REPO $DOTFILES_ROOT
 
 step "Installing dotfiles"
 cd $DOTFILES_ROOT
-./install.sh
-
-
-
-step "Git email setup"
-# Needs to be after dfm-install in install.sh, otherwise this just gets moved to ~/.backup.
-git_email=""
-while [ -z "$git_email" ]; do
-	echo -n "Enter your Git email: "
-	read git_email
-done;
-mkdir -p ${XDG_CONFIG_HOME:-$HOME/.config}/git
-cat << EOF > ${XDG_CONFIG_HOME:-$HOME/.config}/git/config-local
-[user]
-	email = $git_email
-EOF
+./install

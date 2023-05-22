@@ -1,6 +1,6 @@
 [user]
 	name = Erik Westrup
-	;email = user@host.tld  ; Set in ~/.gitconfig.local or ~/.config/git/config-local
+	email = erik.westrup@gmail.com
 	signingkey = D5EFDF013574AE9BE8343C327C16B1148E432F36
 	editor = nvim	# Will be overriden by $EDITOR
 [github]
@@ -141,8 +141,8 @@
 ;[url "https://"]
 	;insteadOf = git://
 
-[include]
-  path = ~/.config/git/config-local ; set e.g. user.email
+;[include]
+;  path = ~/.config/git/config-local ; set e.g. user.email
 
 ; Conditional config
 ; Available for git >=v2.13

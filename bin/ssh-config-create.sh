@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 # Create an ssh base config unless it already exist.
-# Extracted from ssh-keygen.sh, so that it can be used also by dotfiels_bootstrap.sh
+# Extracted from ssh-keygen.sh, so that it can be used also by dotfiles_bootstrap.sh
 
 is_macos() {
   [[ "$OSTYPE" == "darwin"* ]]
