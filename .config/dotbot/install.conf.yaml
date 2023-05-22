@@ -70,6 +70,7 @@
     - command: ~/bin/macos_install.sh
       description: Running macos_config.sh
 # TODO conditionally execute:  ~/bin/windows_install.ps1
+#      and migrate to use https://github.com/JamJar00/dotbot-scoop
 # ifplatform has no ifwindows
 # But could do something like
 #- if:
