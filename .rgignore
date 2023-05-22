@@ -1,4 +1,4 @@
 # ripgrep ignores additional to .gitignore
-/.local/repos/
-/.config/nvim/spell/
-/.config/nvim/thesaurus/
+.local/repos/
+.config/nvim/spell/
+.config/nvim/thesaurus/
