@@ -77,3 +77,25 @@
 
 # TODO Linux: set up one of the apt-get plugins https://github.com/anishathalye/dotbot/wiki/Plugins
 # and base it of ~/doc/tech/irvine/arch_packages.txt
+
+- asdf:
+    - plugin: ruby
+      versions:
+        - latest
+      global: latest
+    - plugin: python
+      versions:
+        - latest
+      global: latest
+    - plugin: golang
+      versions:
+        - latest
+      global: latest
+    - plugin: nodejs
+      versions:
+        - latest
+      global: latest
+    #- plugin: java
+    #  versions:
+    #    - latest
+    #  global: latest

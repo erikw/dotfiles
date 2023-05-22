@@ -21,3 +21,6 @@
 [submodule ".local/repos/dotbot-plugins/if"]
 	path = .local/repos/dotbot-plugins/if
 	url = https://github.com/wonderbeyond/dotbot-if.git
+[submodule ".local/repos/dotbot-plugins/asdf"]
+	path = .local/repos/dotbot-plugins/asdf
+	url = https://github.com/sobolevn/dotbot-asdf.git
