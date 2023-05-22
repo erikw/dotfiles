@@ -31,7 +31,7 @@ This will interactively set up GitHub SSH key, clone this repo and run `./instal
 ### Post-install
 Switch to a local branch for secret changes:
 ```shell
-cd ~/.dotfiles
+cd ~/src/github.com/erikw/dotfiles
 git checkout -b local
 ```
 
