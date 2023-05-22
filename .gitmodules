@@ -30,3 +30,6 @@
 [submodule ".local/repos/dotbot-plugins/firefox"]
 	path = .local/repos/dotbot-plugins/firefox
 	url = https://github.com/kurtmckee/dotbot-firefox.git
+[submodule ".local/repos/dotbot-plugins/ghq"]
+	path = .local/repos/dotbot-plugins/ghq
+	url = https://github.com/klane/dotbot-ghq.git

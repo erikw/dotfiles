@@ -108,3 +108,11 @@
 
 - firefox:
     user.js: .config/firefox/user.js
+
+- ghq:
+    - repo: erikw/templates
+      flags: [-p]
+    - repo: erikw/erikw
+      flags: [-p]
+    - repo: erikw/erikw.me-jekyll
+      flags: [-p]
