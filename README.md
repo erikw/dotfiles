@@ -20,56 +20,11 @@ Most of my personal dotfiles can be found in this branch. I use [dotbot](https:/
   * [pdf_compress.sh](bin/pdf_compress.sh) -- compress file size of PDFs!
 
 ## Installation
-### Bootstrapped
+Bootstrap using [bin/dotfiles_bootstrap.sh](bin/dotfiles_bootstrap.sh):
 ```shell
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/erikw/dotfiles/personal/bin/dotfiles_bootstrap.sh)"
 ```
-
-### Manual
-#### Git
-##### Generate a pair of new SSH keys for GitHub
-```shell
-cd /tmp
-curl -O https://raw.githubusercontent.com/erikw/dotfiles/personal/bin/ssh-keygen.sh
-curl -O https://raw.githubusercontent.com/erikw/dotfiles/personal/bin/ssh-config-create.sh
-chmod 744 ssh-keygen.sh ssh-config-create.sh
-./ssh-keygen.sh
-```
-
-Add a config for GitHub, but don't bother about the values. Instead after this open up `~/.ssh/config` and remove the newly added github section and replace it with
-```
-Host *github.com
-	Port 22
-	User git
-	IdentityFile ~/.ssh/identityfiles/github_id_rsa
-	IdentitiesOnly yes
-	ServerAliveInterval 15
-```
-
-
-##### Upload keys
-Upload the public key to your [GitHub profile](https://github.com/settings/keys)
-
-```shell
-# Linux:
-xclip ~/.ssh/identityfiles/github_id_rsa.pub
-$ # or, macOS:
-pbcopy <  ~/.ssh/identityfiles/github_id_rsa.pub
-```
-
-##### Git E-Mail
-Set up git user email address in `~/.config/git/config-local`:
-```
-[user]
-	email = user@doman.tld
-```
-##### Clone dotfiles repo and install
-* Clone repo
-```shell
-git clone git@github.com:erikw/dotfiles.git ~/src/github.com/erikw/dotfiles
-cd !$
-./install.sh
-```
+This will interactively set up GitHub SSH key, clone this repo and run `./install`
 
 ### Post-install
 Switch to a local branch for secret changes:
