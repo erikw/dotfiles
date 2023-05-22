@@ -99,3 +99,9 @@
     #  versions:
     #    - latest
     #  global: latest
+
+- crontab:
+    - cron: "@monthly"
+      command: if_fail_do_notification crontab_backup.sh
+    - cron: 0 13 * * *
+      command: if_fail_do_notification dotfiles_backup_local.sh

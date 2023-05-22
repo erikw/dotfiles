@@ -24,3 +24,6 @@
 [submodule ".local/repos/dotbot-plugins/asdf"]
 	path = .local/repos/dotbot-plugins/asdf
 	url = https://github.com/sobolevn/dotbot-asdf.git
+[submodule ".local/repos/dotbot-plugins/crontab"]
+	path = .local/repos/dotbot-plugins/crontab
+	url = https://github.com/fundor333/crontab-dotbot.git

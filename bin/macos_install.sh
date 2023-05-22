@@ -60,22 +60,23 @@ if ! [ -e $HOME/.config/fzf/fzf.zsh ]; then
 fi
 
 ## Crontab {
+# NOTE migrated to dotbot plugin
 # Install ~/bin/dotfiles_backup_local.sh cron entry.
-tab_entry="0 13 * * *			if_fail_do_notification dotfiles_backup_local.sh"
-tab_old=$(crontab -l)
-if ! echo "$tab_old" | grep -qF "$tab_entry"; then
-	tab_new=$(printf "%s\n%s\n" "$tab_old" "$tab_entry")
-	echo "$tab_new" | crontab -
-fi
+#tab_entry="0 13 * * *			if_fail_do_notification dotfiles_backup_local.sh"
+#tab_old=$(crontab -l)
+#if ! echo "$tab_old" | grep -qF "$tab_entry"; then
+#    tab_new=$(printf "%s\n%s\n" "$tab_old" "$tab_entry")
+#    echo "$tab_new" | crontab -
+#fi
 
 
 # Crontab backup automation
-tab_entry="@monthly			if_fail_do_notification crontab_backup.sh"
-tab_old=$(crontab -l)
-if ! echo "$tab_old" | grep -qF "$tab_entry"; then
-	tab_new=$(printf "%s\n%s\n" "$tab_old" "$tab_entry")
-	echo "$tab_new" | crontab -
-fi
+#tab_entry="@monthly			if_fail_do_notification crontab_backup.sh"
+#tab_old=$(crontab -l)
+#if ! echo "$tab_old" | grep -qF "$tab_entry"; then
+#    tab_new=$(printf "%s\n%s\n" "$tab_old" "$tab_entry")
+#    echo "$tab_new" | crontab -
+#fi
 
 ## }
 # }
