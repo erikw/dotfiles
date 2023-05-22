@@ -52,7 +52,3 @@ git commit -m "SQUASHED passwords"
 	grep -nr LINUX-CONFIG . 2>/dev/null | grep -v README.md
 	grep -nr FREEBSD-CONFIG . 2>/dev/null | grep -v README.md
 	```
-
-
-### Firefox
-See [.config/firefox/](.config/firefox/).
