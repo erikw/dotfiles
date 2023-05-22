@@ -19,11 +19,8 @@ Most of my personal dotfiles can be found in this branch. I use [dotbot](https:/
 * [bin/](bin/) -- many handy and time saving scripts.
   * [pdf_compress.sh](bin/pdf_compress.sh) -- compress file size of PDFs!
 
-## Development 
 ## Installation
-
 ### Install DFM
-
 #### Bootstrapped
 Either bootstrap like:
 ```shell
