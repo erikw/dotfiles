@@ -39,14 +39,21 @@
 #      stdin: true
 
 # TODO not working due to https://github.com/wonderbeyond/dotbot-if/issues/1
-- if:
-    cond: test $(uname) = Darwin
-    met:
-      - shell:
-        -
-          command: ~/bin/macos_config.sh
-          description: Running macos_config.sh
-          stdin: true
+#- if:
+#    cond: test $(uname) = Darwin
+#    met:
+#      - shell:
+#        -
+#          command: ~/bin/macos_config.sh
+#          description: Running macos_config.sh
+#          stdin: true
+
+# Just always run this for now, until some plugin like ifmacos/if works.
+- shell:
+  -
+    command: ~/bin/macos_config.sh
+    description: Running macos_config.sh
+    stdin: true
 
 # TODO enable when using again on ~erikw
 # TODO rewrite using `if` as above.
