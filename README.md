@@ -20,16 +20,14 @@ Most of my personal dotfiles can be found in this branch. I use [dotbot](https:/
   * [pdf_compress.sh](bin/pdf_compress.sh) -- compress file size of PDFs!
 
 ## Installation
-### Install DFM
-#### Bootstrapped
-Either bootstrap like:
+### Bootstrapped
 ```shell
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/erikw/dotfiles/personal/bin/dotfiles_bootstrap.sh)"
 ```
 
-#### Manual
-##### Git
-###### Generate a pair of new SSH keys for GitHub
+### Manual
+#### Git
+##### Generate a pair of new SSH keys for GitHub
 ```shell
 cd /tmp
 curl -O https://raw.githubusercontent.com/erikw/dotfiles/personal/bin/ssh-keygen.sh
@@ -39,7 +37,6 @@ chmod 744 ssh-keygen.sh ssh-config-create.sh
 ```
 
 Add a config for GitHub, but don't bother about the values. Instead after this open up `~/.ssh/config` and remove the newly added github section and replace it with
-
 ```
 Host *github.com
 	Port 22
@@ -50,7 +47,7 @@ Host *github.com
 ```
 
 
-###### Upload keys
+##### Upload keys
 Upload the public key to your [GitHub profile](https://github.com/settings/keys)
 
 ```shell
@@ -60,13 +57,13 @@ $ # or, macOS:
 pbcopy <  ~/.ssh/identityfiles/github_id_rsa.pub
 ```
 
-###### Git E-Mail
+##### Git E-Mail
 Set up git user email address in `~/.config/git/config-local`:
 ```
 [user]
 	email = user@doman.tld
 ```
-##### Clone dotfiles repo
+##### Clone dotfiles repo and install
 * Clone repo
 ```shell
 git clone git@github.com:erikw/dotfiles.git ~/src/github.com/erikw/dotfiles
@@ -74,42 +71,7 @@ cd !$
 ./install.sh
 ```
 
-
-
-
-### OS Dependent Tooling
-The dotfiles will work without the base tooling, but much better if it's already in place!
-
-#### macOS
-For macOS, install homebrew and run configs:
-```shell
-bin/macos_config.sh
-bin/macos_install.sh
-```
-
-#### Windows
-Run:
-```shell
-bin/windows_config.ps1
-bin/windows_install.ps1
-```
-
-
-
-
-### Dotfiles setup
-Now it's time make the final configurations to the dotfiles repo itself once the OS-dependant tooling is setup:
-```shell
-./install.sh
-```
-
-#### Post-install
-Check what dotfiles that were overriden, and handle this with a merge or discard.
-```shell
-cd ~/.backup
-ls -la
-```
-
+### Post-install
 Switch to a local branch for secret changes:
 ```shell
 cd ~/.dotfiles
@@ -121,7 +83,7 @@ and after making some changes to the branch, squash to one commit
 git commit -m "SQUASHED passwords"
 ```
 
-#### Host specific configuration
+### Host specific configuration
 * Passwords and other secretes are censored. To find these and substitue them for the real thing, do:
 	```shell
 	grep -nr GIT-CENSORED . | grep -v README.md | grep -v "/.git/"
@@ -133,7 +95,6 @@ git commit -m "SQUASHED passwords"
 	grep -nr LINUX-CONFIG . 2>/dev/null | grep -v README.md
 	grep -nr FREEBSD-CONFIG . 2>/dev/null | grep -v README.md
 	```
-
 
 
 ### Firefox

@@ -71,3 +71,6 @@
     #      - [git submodule update --init --recursive, Installing submodules]
 - brewfile:
   - .config/homebrew/Brewfile
+
+
+# TODO ifwindows:  ~/bin/windows_install.ps1
