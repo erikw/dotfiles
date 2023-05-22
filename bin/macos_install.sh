@@ -23,22 +23,30 @@ fi
 eval "$(${brew_bin} shellenv)"
 
 
-brewfile_host_specific="${brewfile_global}.$(hostname)"
-if [ -e $brewfile_host_specific ]; then
-	brew bundle install --file $brewfile_host_specific
-fi
+# TODO re-eanble
+#brewfile_global="${XDG_CONFIG_HOME:-$HOME/.config}/homebrew/Brewfile"
+#brewfile_host_specific="${brewfile_global}.$(hostname)"
+#if [ -e $brewfile_host_specific ]; then
+#    brew bundle install --file $brewfile_host_specific
+#fi
 
 # Make homebrew zsh default shell. Reference: https://rick.cogley.info/post/use-homebrew-zsh-instead-of-the-osx-default/
-# Check current: $ dscl . -read /Users/$USER UserShell
-sudo dscl . -create /Users/$USER UserShell $(brew --prefix)/bin/zsh
-
+cur_sh=$(dscl . -read /Users/$USER UserShell | cut -d' ' -f2)
+brew_zsh=$(brew --prefix)/bin/zsh
+if [ "$cur_sh" != "$brew_zsh" ]; then
+	echo "Setting Homebrew zsh as the default shell."
+	sudo dscl . -create /Users/$USER UserShell $(brew --prefix)/bin/zsh
+fi
 
 # Automatic upgrades. Reference: https://github.com/Homebrew/homebrew-autoupdate
 # There's no nice way to set this up with brew-bundler. Only the tap can be put there, but not of the configuration, so might as well keep it all here until then.
-brew tap homebrew/autoupdate
-# Start upgrade (including casks) every 12 hours.
-brew autoupdate start 43200 --upgrade --cleanup
-brew autoupdate status
+if ! [ -e "$HOME/Library/LaunchAgents/com.github.domt4.homebrew-autoupdate.plist" ]; then
+	mkdir -p $HOME/Library/LaunchAgents # Might not exist.
+	brew tap homebrew/autoupdate
+	# Start upgrade (including casks) every 12 hours.
+	brew autoupdate start 43200 --upgrade --cleanup
+	brew autoupdate status
+fi
 
 # Notification queue service
 #mkdir -p $HOME/Library/LaunchAgents
@@ -47,20 +55,29 @@ brew autoupdate status
 #launchctl enable gui/$UID/com.user.notificationqueue
 
 
-# Automate command for toggling system light/dark mode.
-# * Create an Automator.app Quick Action named "appearance_toggle".
-# * Use the build-in action "Change System Appearace" by dragging it in to the right, and set "Change Appearance" to "Toggle Light/Dark". This seems to go faster when toggling than the custom script ~/bin/macos_appearance_toggle.command
-# * Bind to Service shortcut CTRL+OPT+CMD+t (shortcut used when feature was first introduced in the OS).
-
-
 # fzf fuzzy finder. Installed via brew. Specify all options on cli for a non-interative setup.
-$(brew --prefix)/opt/fzf/install --xdg  --key-bindings --no-update-rc --no-completion
+if ! [ -e $HOME/.config/fzf/fzf.zsh ]; then
+	$(brew --prefix)/opt/fzf/install --xdg  --key-bindings --no-update-rc --no-completion
+fi
 
 # Install ~/bin/dotfiles_backup_local.sh cron entry.
-tab_entry="0 13 * * * dotfiles_backup_local.sh >/dev/null"
+tab_entry="0 13 * * *			dotfiles_backup_local.sh >/dev/null"
 tab_old=$(crontab -l)
-tab_new=$(printf "%s\n%s\n" "$tab_old" "$tab_entry")
-echo "$tab_new" | crontab -
+if ! echo "$tab_old" | grep -qF "$tab_entry"; then
+	tab_new=$(printf "%s\n%s\n" "$tab_old" "$tab_entry")
+	echo "$tab_new" | crontab -
+fi
+
+
+# Crontab backup automation
+tab_entry="@monthly			if_fail_do_notification bak_crontab.sh"
+tab_old=$(crontab -l)
+if ! echo "$tab_old" | grep -qF "$tab_entry"; then
+	tab_new=$(printf "%s\n%s\n" "$tab_old" "$tab_entry")
+	echo "$tab_new" | crontab -
+fi
+exit
+
 # }
 
 # Installs: Manual {
@@ -213,12 +230,6 @@ echo "$tab_new" | crontab -
 # * Dropbox badge: Never show (integrates in to MS Office for example)
 
 
-# Crontab backup automation
-# Add to crontab an entry like:
-tab_entry="@monthly			   if_fail_do_notification bak_crontab.sh"
-tab_old=$(crontab -l)
-tab_new=$(printf "%s\n%s\n" "$tab_old" "$tab_entry")
-echo "$tab_new" | crontab -
 
 # Taskwarrior
 # * Edit `~/.taskrc` to chose path for holiday files and set up remote sync server.
@@ -260,6 +271,12 @@ echo "$tab_new" | crontab -
 # 5. Save with the name "start_screensaver.
 # 6. Open System Peferences>Keyboard>Shortcuts>Services>General and assign this quick action the shortcutl CTRL+CMD+L.
 # If start_screensaver save did not show up, try logging in and out or restarting the computer.
+
+
+# Automate command: toggling system light/dark mode.
+# * Create an Automator.app Quick Action named "appearance_toggle".
+# * Use the build-in action "Change System Appearace" by dragging it in to the right, and set "Change Appearance" to "Toggle Light/Dark". This seems to go faster when toggling than the custom script ~/bin/macos_appearance_toggle.command
+# * Bind to Service shortcut CTRL+OPT+CMD+t (shortcut used when feature was first introduced in the OS).
 
 
 # Automator command: start Microsoft To Do

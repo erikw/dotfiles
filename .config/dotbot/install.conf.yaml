@@ -55,7 +55,6 @@
     description: Running macos_config.sh
     stdin: true
 
-# TODO enable when using again on ~erikw
 # TODO rewrite using `if` as above.
 #- ifmacos:
 #    - brewfile:
@@ -67,3 +66,5 @@
     #    met:
     #    - shell:
     #      - [git submodule update --init --recursive, Installing submodules]
+- brewfile:
+  - .config/homebrew/Brewfile

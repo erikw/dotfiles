@@ -532,7 +532,7 @@ defaults write -g NSWindowShouldDragOnGesture -bool true
 
 # Prepare user's crontab header.
 set +o errexit
-read -r -d '' newtab <<'EOF'
+read -r -d '' tab_new <<'EOF'
 # Environment
 #SHELL=/bin/sh
 # ~/ works, but not $HOME strangely enough.
@@ -547,12 +547,12 @@ PATH=~/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/local/sbin:/
 #@monthly			   if_fail_do_notification restic_check.sh
 EOF
 set -o errexit
-oldtab=$(crontab -l)
+tab_old=$(crontab -l)
 if ! crontab -l | grep -q "# Environment"; then
-	if [ -n "$oldtab" ]; then
-		newtab=$(printf "%s\n%s\n" "$oldtab" "$newtab")
+	if [ -n "$tab_old" ]; then
+		tab_new=$(printf "%s\n%s\n" "$tab_old" "$tab_new")
 	fi
-	echo "$newtab" | crontab -
+	echo "$tab_new" | crontab -
 fi
 
 # }
