@@ -13,26 +13,26 @@
 
 Most of my personal dotfiles can be found in this branch. I use [dotbot](https://github.com/anishathalye/dotbot) to install and managed the dotfiles.
 
-# Highlights
+## Highlights
 * [.config/](.config/) - I've spent quite some effort to make my dotfiles adhere to the [XDG](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html) Base Directory Standard as much as possible, using and contributing to the [Arch wiki page](https://wiki.archlinux.org/title/XDG_Base_Directory). As far from all programs that I use support this natively, quite some custom configuration neeeded to be done. Grep for `XDG` in [.config/shell/commons](.config/shell/commons).
 * Check out my Neovim configurations [.config/nvim/](.config/nvim)-- they are pretty cool!
 * [bin/](bin/) -- many handy and time saving scripts.
   * [pdf_compress.sh](bin/pdf_compress.sh) -- compress file size of PDFs!
 
-# Development 
-# Installation
+## Development 
+## Installation
 
-## Install DFM
+### Install DFM
 
-### Bootstrapped
+#### Bootstrapped
 Either bootstrap like:
 ```shell
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/erikw/dotfiles/personal/bin/dotfiles_bootstrap.sh)"
 ```
 
-### Manual
-#### Git
-##### Generate a pair of new SSH keys for GitHub
+#### Manual
+##### Git
+###### Generate a pair of new SSH keys for GitHub
 ```shell
 cd /tmp
 curl -O https://raw.githubusercontent.com/erikw/dotfiles/personal/bin/ssh-keygen.sh
@@ -53,7 +53,7 @@ Host *github.com
 ```
 
 
-##### Upload keys
+###### Upload keys
 Upload the public key to your [GitHub profile](https://github.com/settings/keys)
 
 ```shell
@@ -63,13 +63,13 @@ $ # or, macOS:
 pbcopy <  ~/.ssh/identityfiles/github_id_rsa.pub
 ```
 
-##### Git E-Mail
+###### Git E-Mail
 Set up git user email address in `~/.config/git/config-local`:
 ```
 [user]
 	email = user@doman.tld
 ```
-#### Clone dotfiles repo
+##### Clone dotfiles repo
 * Clone repo
 ```shell
 git clone git@github.com:erikw/dotfiles.git ~/src/github.com/erikw/dotfiles
@@ -80,17 +80,17 @@ cd !$
 
 
 
-## OS Dependent Tooling
+### OS Dependent Tooling
 The dotfiles will work without the base tooling, but much better if it's already in place!
 
-### macOS
+#### macOS
 For macOS, install homebrew and run configs:
 ```shell
 bin/macos_config.sh
 bin/macos_install.sh
 ```
 
-### Windows
+#### Windows
 Run:
 ```shell
 bin/windows_config.ps1
@@ -100,13 +100,13 @@ bin/windows_install.ps1
 
 
 
-## Dotfiles setup
+### Dotfiles setup
 Now it's time make the final configurations to the dotfiles repo itself once the OS-dependant tooling is setup:
 ```shell
 ./install.sh
 ```
 
-### Post-install
+#### Post-install
 Check what dotfiles that were overriden, and handle this with a merge or discard.
 ```shell
 cd ~/.backup
@@ -124,7 +124,7 @@ and after making some changes to the branch, squash to one commit
 git commit -m "SQUASHED passwords"
 ```
 
-### Host specific configuration
+#### Host specific configuration
 * Passwords and other secretes are censored. To find these and substitue them for the real thing, do:
 	```shell
 	grep -nr GIT-CENSORED . | grep -v README.md | grep -v "/.git/"
@@ -139,10 +139,5 @@ git commit -m "SQUASHED passwords"
 
 
 
-## Firefox
+### Firefox
 See [.config/firefox/](.config/firefox/).
-
-# Future
-* Migrate to [homeschick](https://github.com/andsens/homeshick) to be able to split Linux from macOS-only configs, and have a main general one?
-* Could replace dfm with GNU stove: https://www.stevenrbaker.com/tech/managing-dotfiles-with-gnu-stow.html ?
-
