@@ -156,6 +156,7 @@ fi
 
 # Mail.app
 ## GMailinator plug-in. The most maintained fork is https://github.com/wwwjfy/GMailinator, but using another fork's install.sh makes it easier: https://github.com/jasoncodes/GMailinator/blob/master/install.sh
+# Req: full XCode.app installed from app store.
 # ghq-get git@github.com:jasoncodes/GMailinator.git
 # ./install.sh
 # Then go to Mail.app > Preferences > General > Manage Plug-ins... > enable GMailinator
