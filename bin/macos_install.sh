@@ -53,8 +53,8 @@ brew autoupdate status
 # * Bind to Service shortcut CTRL+OPT+CMD+t (shortcut used when feature was first introduced in the OS).
 
 
-# fzf fuzzy finder. Installed via brew
-$(brew --prefix)/opt/fzf/install --xdg
+# fzf fuzzy finder. Installed via brew. Specify all options on cli for a non-interative setup.
+$(brew --prefix)/opt/fzf/install --xdg  --key-bindings --no-update-rc --no-completion
 
 # Install ~/bin/dotfiles_backup_local.sh cron entry.
 tab_entry="0 13 * * * dotfiles_backup_local.sh >/dev/null"
