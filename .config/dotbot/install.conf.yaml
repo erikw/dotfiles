@@ -73,4 +73,8 @@
   - .config/homebrew/Brewfile
 
 
-# TODO ifwindows:  ~/bin/windows_install.ps1
+# TODO conditionally execute:  ~/bin/windows_install.ps1
+  # ifplatform has no ifwindows
+  # But could do something like
+    #- if:
+    #    cond: 'echo "$OSTYPE | grep -q "msys*"'
