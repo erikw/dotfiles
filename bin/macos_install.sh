@@ -76,7 +76,6 @@ if ! echo "$tab_old" | grep -qF "$tab_entry"; then
 	tab_new=$(printf "%s\n%s\n" "$tab_old" "$tab_entry")
 	echo "$tab_new" | crontab -
 fi
-exit
 
 # }
 
@@ -110,10 +109,6 @@ exit
 # the cask brew does not work with system extension
 #brew install avira-antivirus
 
-
-# BankId på fil
-# Instructions: https://swedbank.se/privat/digitala-tjanster/mobilt-bankid/bankid-pa-kort-och-fil/bankid-pa-fil.html
-# Install: https://install.bankid.com/, prefer cask!
 
 # Amethyst
 ## General
@@ -194,21 +189,6 @@ exit
 #		- Action: "Load Color Preset" > "Solarized Dark"
 
 
-# Karabiner elements
-# Karabiner elements works much better than built-in opt<->cmd swap in system preferences because this bult-in swap does not work properly in iTerm, as alt key is only working on laptop keyboard and not on external PC keyboard.
-## HOWEVER, only use if needed. If having an external mac keyboard, keep to System Preferences bindings!
-# * Disable all custom modifier keys remappings done in System Preferences.
-# * For all keyboard
-#	* caps_lock -> escape
-#	* grave_accent_and_tilde(`) -> non_us_backslash
-#		* Only when having the problem that tilde key is producing ± instead. Reference: https://apple.stackexchange.com/a/367644/197493
-# * For internal keyboard
-#	* fn -> left_control
-#	* left_control -> fn
-# * For external keyboard (unless it's a proper Mac keyboard with comand and alt keys)
-#	* left_command -> left_option
-#	* left_option -> left_command
-
 
 # Jettison
 ## Options
@@ -229,10 +209,6 @@ exit
 ## General
 # * Dropbox badge: Never show (integrates in to MS Office for example)
 
-
-
-# Taskwarrior
-# * Edit `~/.taskrc` to chose path for holiday files and set up remote sync server.
 
 
 # Custom fonts
@@ -315,13 +291,6 @@ exit
 # * Check "Show menu bar icon"
 # * Sync: set folder ~/dropbox/data/dash/    # own subdir so this dir can be shared with work Dropbox account.
 # }
-# LSP Servers {
-#cargo install --git https://github.com/latex-lsp/texlab.git --locked
-#go get github.com/lighttiger2505/sqls
-npm install -g bash-language-server
-npm install -g vim-language-server
-npm install -g vscode-langservers-extracted
-# }
 
 # C/C++ {
 # LSP server
@@ -330,30 +299,16 @@ npm install -g vscode-langservers-extracted
 
 # Go {
 # asdf version manager - golang
-asdf plugin-add golang
-asdf install golang latest
-asdf global golang latest
-
-# LSP server
-# brew install gopls
+#asdf plugin-add golang
+#asdf install golang latest
+#asdf global golang latest
 # }
 
 # Java {
-## SDKMan: https://sdkman.io/install
-#curl -s "https://get.sdkman.io" | bash
-#sdk install gradle x.y
-#sdk install java 15.0.0.hs-adpt
-# ## Brew
-# See Brewfile
-#
-# TODO next time, replace sdkman with asdf
 # asdf version manager - java
-asdf plugin-add java
+#asdf plugin-add java
 # Build requirements from https://github.com/halcyon/asdf-java
-brew install bash curl unzip jq
-#asdf list-all java
-#asdf install java temurin-* # the rebranded adoptopenjdk
-#asdf global java temurin-*
+#brew install bash curl unzip jq
 
 # LSP server
 # No good one exist that are easily installable. https://microsoft.github.io/language-server-protocol/implementors/servers/
@@ -362,15 +317,15 @@ brew install bash curl unzip jq
 
 # Ruby {
 # asdf version manager - ruby
-asdf plugin-add ruby
+#asdf plugin-add ruby
 # Build requirements for building all ruby versions from https://github.com/asdf-vm/asdf-ruby
-brew install openssl@1.1 openssl@3 readline libyaml gmp rust
-export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"  # Also set in shell commons for future builds
+#brew install openssl@1.1 openssl@3 readline libyaml gmp rust
+#export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"  # Also set in shell commons for future builds
 # NOTE might have to unset $GEM_HOME before installing with rbenv: https://github.com/asdf-vm/asdf-ruby/issues/206#issuecomment-860106503
 
 # Install latest ruby
-asdf install ruby latest
-asdf global ruby latest
+#asdf install ruby latest
+#asdf global ruby latest
 
 
 # Rails
@@ -384,10 +339,6 @@ asdf global ruby latest
 # yarn - better than npm
 #npm install -g yarn
 # NOTE unset CC=clang if creating a new rails app, as dependency byebug fails with clang.
-
-
-# LSP server
-#gem install --user solargraph
 # }
 
 # Python {
@@ -396,14 +347,12 @@ asdf global ruby latest
 # * Project dependences - poetry
 # * Global python tools - pipx
 
-
-
 # asdf version manager - python
-asdf plugin-add python
+#asdf plugin-add python
 # Build requirements from https://github.com/danhper/asdf-python
-brew install openssl readline sqlite3 xz zlib
-asdf install python latest
-asdf global python latest
+#brew install openssl readline sqlite3 xz zlib
+#asdf install python latest
+#asdf global python latest
 
 #curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/install-poetry.py | python -
 #poetry completions zsh > $XDG_CONFIG_HOME/zsh/funcs/_poetry
@@ -413,17 +362,11 @@ asdf global python latest
 
 # JavaScript {
 # asdf version manager - nodejs
-asdf plugin add nodejs
+#asdf plugin add nodejs
 # Build requirements from https://github.com/asdf-vm/asdf-nodejs/
-brew install gpg gawk
-asdf install nodejs latest
-asdf global nodejs latest
-# }
-
-# Xcode {
-#* [Xvim](http://xvim.org/) Vim keybindings. See Xcode 8 [instructions](https://github.com/XVimProject/XVim/blob/master/INSTALL_Xcode8.md)
-#* [stackia/solarized-xcode](https://github.com/stackia/solarized-xcode) for dark & light themes.
-#* [ArtSabintsev/Solarized-Dark-for-Xcode](https://github.com/ArtSabintsev/Solarized-Dark-for-Xcode) for a (better?) dark theme.
+#brew install gpg gawk
+#asdf install nodejs latest
+#asdf global nodejs latest
 # }
 # }
 
@@ -495,9 +438,5 @@ asdf global nodejs latest
 # $root/ableton/templates/
 # $root/ableton/ableton_template_sets/
 # $root/ableton/max/
-
-# Kontakt Player
-# Right-click on the Rack area > In the quick-load, drag-and-drop /Volumes/ext0/daw/kontakt_user_library/. Reference: https://vi-control.net/community/threads/how-do-i-add-libraries-in-kontakt-6.95343/
-
 # }
 # }

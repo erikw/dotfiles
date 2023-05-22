@@ -54,6 +54,9 @@
     command: ~/bin/macos_config.sh
     description: Running macos_config.sh
     stdin: true
+  -
+    command: ~/bin/macos_install.sh
+    description: Running macos_config.sh
 
 # TODO rewrite using `if` as above.
 #- ifmacos:

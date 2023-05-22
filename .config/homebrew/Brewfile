@@ -292,12 +292,43 @@ mas  'Todoist', id: 585_829_637
 #
 # tap 'adoptopenjdk/openjdk'
 # brew 'adoptopenjdk11'
+#
+
+# asdf reqs - Java
+brew 'bash'
+brew 'curl'
+brew 'unzip'
+brew 'jq'
 # }
 
 # Development: Python {
 # brew 'ipython'
 # brew 'pyright' # Language Server for python https://langserver.org/
 # brew 'python@2'
+brew 'pyright'      # LSP server.
+brew 'python-tk'	# Needed for pyenv when using some pip packages.
+
+# asdf reqs - Python
+brew 'openssl'
+brew 'readline'
+brew 'sqlite3'
+brew 'xz'
+brew 'zlib'
+# }
+
+# Developmenht: Ruby {
+#brew 'rbenv'        # includes 'ruby-build' as dependency
+#brew 'ruby-build'
+
+# ruby-build dependencies: https://github.com/rbenv/ruby-build/wiki#suggested-build-environment
+brew 'openssl@1.1'
+brew 'openssl@3' # Ruby >= 3.1 uses this instead of openssl1.1
+brew 'readline'
+brew 'gmp'
+brew 'rust'
+brew 'libyaml'      # Seems to be a runtime dependency for ruby from rbenv: https://stackoverflow.com/a/10958585/265508
+
+#brew 'sqlite3'	# For rails
 # }
 
 # Misc {

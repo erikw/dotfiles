@@ -18,26 +18,6 @@
 =end
 # }
 
-# Formula: python-dev {
-    #brew 'pyenv'
-    brew 'pyright'      # LSP server.
-    brew 'python-tk'	# Needed for pyenv when using some pip packages.
-# }
-
-# Formula: ruby-dev {
-    #brew 'rbenv'        # includes 'ruby-build' as dependency
-    #brew 'ruby-build'
-
-    # ruby-build dependencies: https://github.com/rbenv/ruby-build/wiki#suggested-build-environment
-    #brew 'openssl@1.1'
-    #brew 'openssl@3'
-    #brew 'readline'
-    #brew 'rust'
-    #brew 'libyaml'      # Seems to be a runtime dependency for ruby from rbenv: https://stackoverflow.com/a/10958585/265508
-
-    #brew 'sqlite3'	# For rails
-# }
-
 # Cask: default {
     cask 'android-file-transfer'
     cask 'android-platform-tools'
