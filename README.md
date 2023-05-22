@@ -2,8 +2,9 @@
 <p align="center">
 <img alt="log" width="100%" height="100%" src="img/logo.png" />
 </p>
-<p align="center"><i>Empowering your tmux (status bar) experience!</i></p>
+<p align="center"><i>Files that makes me feel at home!</i></p>
 <hr>
+
 [![GitHub Stars](https://img.shields.io/github/stars/erikw/dotfiles?style=social)](#)
 [![GitHub Forks](https://img.shields.io/github/forks/erikw/dotfiles?style=social)](#)
 <br>
