@@ -18,6 +18,7 @@ Most of my personal dotfiles can be found in this branch. I use [dotbot](https:/
 * [.config/nvim/](.config/nvim) - Check out my Neovim configurations , they are pretty cool!
 * [bin/](bin/) -- many handy and time saving scripts.
   * [brew_upgrade.sh](bin/brew_upgrade.sh) -- interactively upgrade a Homebrew system.
+  * [macos_touchid_sudo_enable.sh](bin/macos_touchid_sudo_enable.sh) - Enable sudo with TouchID.
   * [pdf_compress.sh](bin/pdf_compress.sh) -- compress file size of PDFs!
   * [permute_aliases.sh](bin/permute_aliases.sh) -- generate shell aliases on all permutations of a command; for fast typers!
 
