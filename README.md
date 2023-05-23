@@ -27,7 +27,7 @@ Bootstrap using [bin/dotfiles_bootstrap.sh](bin/dotfiles_bootstrap.sh):
 ```shell
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/erikw/dotfiles/personal/bin/dotfiles_bootstrap.sh)"
 ```
-This will interactively set up GitHub SSH key, clone this repo and run `./install`
+This will interactively set up a GitHub SSH key, clone this repo and run `./install`
 
 ### Local branch
 Switch to a local branch for secret changes:
