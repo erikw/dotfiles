@@ -433,7 +433,7 @@ return require("packer").startup(function(use)
                 ["css"] = { "prettier" },
                 ["javascript"] = { "prettier", "eslint" },
                 ["json"] = { "prettier" },
-                ["go"] = { "gopls" },
+                ["go"] = { "gopls", "goimports" },
                 ["lua"] = { "stylua" },
                 ["python"] = { "autoflake", "black", "isort" },
                 ["ruby"] = { "rubocop" },

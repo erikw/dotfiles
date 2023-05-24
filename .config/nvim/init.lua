@@ -236,6 +236,7 @@ vim.opt.splitright = true -- Open vertical split to the right.
 -- Characters to use for :list.
 vim.opt.listchars = { eol = "$", space = "·", tab = ">-", trail = "¬", extends = ">", precedes = "<", nbsp = "." }
 -- }}
+
 -- Plugins {{
 require("plugins")
 -- }}
