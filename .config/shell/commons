@@ -61,10 +61,11 @@
 	export XCOMPOSEFILE=$XDG_CONFIG_HOME/X11/XCompose
 
 	# Gems
-	export GEM_SPEC_CACHE=$XDG_CACHE_HOME/gem
-	# NOTE GEM_HOME seems to cause issues when using rbevn to install new ruby versions. https://github.com/asdf-vm/asdf-ruby/issues/206#issuecomment-860106503
-	export GEM_HOME=$XDG_DATA_HOME/gem
-	export PATH="$GEM_HOME/bin:$PATH"
+	#export GEM_SPEC_CACHE=$XDG_CACHE_HOME/gem # TODO maybe also not needed, try disable to prevent ruby build issues.
+	# NOTE GEM_HOME cause issues (openssl lib can't be compiled) when using rbevn to install new ruby versions. https://github.com/asdf-vm/asdf-ruby/issues/206#issuecomment-860106503
+	# It might not be necessary to do this when using asdf, as gems are installed to asdf version dirs.
+	#export GEM_HOME=$XDG_DATA_HOME/gem
+	#export PATH="$GEM_HOME/bin:$PATH"
 
 	# Bundle
 	export BUNDLE_USER_CONFIG=$XDG_CONFIG_HOME/bundle/config

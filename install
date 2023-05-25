@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Installation directives: .config/dotbot/install.conf.yaml
 
 set -e
 
@@ -14,5 +15,3 @@ git -C "${DOTBOT_DIR}" submodule sync --quiet --recursive
 git submodule update --init --recursive "${DOTBOT_DIR}"
 
 "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${CONFIG}" --plugin-dir "${DOTBOT_PLUGIN_DIR}/*" "${@}"
-#"${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${CONFIG}" -p "${DOTBOT_PLUGIN_DIR}/if/if.py" --plugin-dir "${DOTBOT_PLUGIN_DIR}/brew" "${@}"
-#"${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${CONFIG}" -p "${DOTBOT_PLUGIN_DIR}/if/if.py" "${@}"
