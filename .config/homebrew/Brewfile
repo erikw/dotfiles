@@ -169,7 +169,6 @@ cask 'chrysalis' # Configurator for Atreus keyboard.
 cask 'clipy' # If needed, could replace with https://github.com/p0deje/Maccy even though pinned items not exactly like snippets
 cask 'dash'
 cask 'dictcc-en-de-dictionary-plugin' # From https://www.dict.cc/?s=about%3Awordlist&l=e
-cask 'electric-sheep'
 cask 'eurkey' # For ErgoDox
 cask 'firefox'
 cask 'gimp'
@@ -187,7 +186,6 @@ cask 'vlc'
 
 # Cask: optional {
 # cask 'adium'
-# cask 'jabra-direct'
 # cask 'android-studio'
 # cask 'atom'
 # cask 'audacity'
@@ -203,6 +201,7 @@ cask 'vlc'
 # cask 'docker'
 # cask 'dozer'  # Hide menubar icons. Alternative to bartender
 # cask 'eclipse-ide'
+# cask 'electric-sheep'
 # cask 'epic-games'
 # cask 'eqmac'
 # cask 'flip4mac'
@@ -216,6 +215,7 @@ cask 'vlc'
 # cask 'insync'
 # cask 'intellij-idea-ce'
 # cask 'itsycal'
+# cask 'jabra-direct'
 # cask 'karabiner-elements'
 # cask 'keepassxc'
 # cask 'keybase'
@@ -304,7 +304,7 @@ brew 'jq'
 # brew 'ipython'
 # brew 'pyright' # Language Server for python https://langserver.org/
 # brew 'python@2'
-brew 'pyright'      # LSP server.
+brew 'pyright' # LSP server.
 brew 'python-tk'	# Needed for pyenv when using some pip packages.
 
 # asdf reqs - Python
@@ -316,8 +316,8 @@ brew 'zlib'
 # }
 
 # Developmenht: Ruby {
-#brew 'rbenv'        # includes 'ruby-build' as dependency
-#brew 'ruby-build'
+# brew 'rbenv'        # includes 'ruby-build' as dependency
+# brew 'ruby-build'
 
 # ruby-build dependencies: https://github.com/rbenv/ruby-build/wiki#suggested-build-environment
 brew 'openssl@1.1'
@@ -325,9 +325,9 @@ brew 'openssl@3' # Ruby >= 3.1 uses this instead of openssl1.1
 brew 'readline'
 brew 'gmp'
 brew 'rust'
-brew 'libyaml'      # Seems to be a runtime dependency for ruby from rbenv: https://stackoverflow.com/a/10958585/265508
+brew 'libyaml' # Seems to be a runtime dependency for ruby from rbenv: https://stackoverflow.com/a/10958585/265508
 
-#brew 'sqlite3'	# For rails
+# brew 'sqlite3'	# For rails
 # }
 
 # Misc {
