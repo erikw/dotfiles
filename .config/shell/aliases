@@ -40,17 +40,9 @@
 		unalias open
 		alias afk='/System/Library/CoreServices/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine'
 
-		# Enable or disable the Dashboard.
-		alias mac_dashboard_enable='defaults write com.apple.dashboard mcx-disabled -boolean NO'
-		alias mac_dashboard_disable='defaults write com.apple.dashboard mcx-disabled -boolean YES'
-
 		# Show or hide dotfiles in Finder.app.
 		alias mac_showhidden='defaults write com.apple.finder AppleShowAllFiles TRUE; killall Finder'
 		alias mac_hidehidden='defaults write com.apple.finder AppleShowAllFiles FALSE; killall Finder'
-
-		# Hibernate the Mac.
-		alias mac_hibernate='sudo pmset -a hibernatemode'
-		alias mac_listhibernate='sudo pmset -g | grep hibernatemode'
 
 		alias mac_emptytrash='rm -rf ~/.Trash/*'		# Empty trash bin.
 		alias mac_app_store_apps="find /Applications \-maxdepth 4 \-path '*Contents/_MASReceipt/receipt' -print |\sed 's#.app/Contents/_MASReceipt/receipt#.app#g; s#/Applications/##'"		# List apps installed from App Store.
@@ -71,29 +63,15 @@
 		alias grep="grep --color=auto"
 		# Force color e.g. to use when piping to less.
 		alias grepc='grep --color=always'
-		#alias fgrepc='fgrep --color=always'
-		#alias egrepc='egrep --color=always'
 
-		# Colored cows, yeah!
-		#if program_is_in_path cower; then
-			#alias cower='cower --color=auto'
-		#fi
-
-		# Use colored diff if it can be found.
-		#if program_is_in_path colordiff ; then
-			##alias cdiff='colordiff'
-			#alias diff='colordiff'
-		#fi
+		if program_is_in_path colordiff ; then
+			alias cdiff='colordiff'
+		fi
 
 		# Use colored du if exists.
 		if program_is_in_path cdu ; then
 			alias du='cdu -idh'
 		fi
-
-		# Colorize SVN.
-		#if program_is_in_path colorsvn; then
-			#alias svn='colorsvn'
-		#fi
 
 		# Make colors.
 		#if program_is_in_path colormake; then
@@ -118,10 +96,10 @@
 # }
 
 # Coreutils {
-# Hand picked tools that we use use instead of the basic BSD versions in macOS
+# Hand-picked tools that we use use instead of the basic BSD versions in macOS
 # AVOID gfind, ggrep as they can break source compilation builds.
-if shell_is_macos; then
-    program_is_in_path grm && alias rm='grm'	# Same reason as for keeping gls; BSD version can't append arguments after filenames.
+if shell_is_macos && program_is_in_path grm; then
+	alias rm='grm'	# The BSD version can't append arguments after filenames.
 fi
 #
 # }
@@ -136,35 +114,23 @@ fi
 	alias bashdb='bashdb -x ${XDG_CONFIG_HOME:-$HOME/.config}/bashdb/bashdbinit'
 	alias svn='svn --config-dir ${XDG_CONFIG_HOME:-$HOME/.config}/subversion'
 	alias yarn='yarn --use-yarnrc $XDG_CONFIG_HOME/yarn/config'
-	alias irssi='irssi --config="$XDG_CONFIG_HOME"/irssi/config --home="$XDG_DATA_HOME"/irssi'
+	#alias irssi='irssi --config="$XDG_CONFIG_HOME"/irssi/config --home="$XDG_DATA_HOME"/irssi'
 # }
 
 # Sudo {
 	# Prefix these sudo aliases with \ so that e.g. the freebsd sudo alias is not used here, as sudoers POWER group command does not work then.
-	alias loadkeys='\sudo loadkeys'
+	#alias loadkeys='\sudo loadkeys'
 	alias poweroff='\sudo poweroff'
 	alias halt='\sudo halt'
 	alias shutdown='\sudo shutdown'
 	alias reboot='\sudo reboot'
 
-	#alias pm-suspend='sudo pm-suspend'
-	#alias pm-hibernate='sudo pm-hibernate'
 	alias sudo='sudo '			# Bring my aliases with me.
-	if shell_is_freebsd; then
-		alias sudo='sudo -u toor ' # Use toor by default.
-	fi
 # }
 
-# jump {
-	# Bashmark style aliases for https://github.com/flavio/jump
-	#alias g="jump"
-	#alias s="jump --add"
-	#alias d="jump --del"
-	#alias l="jump --list"
-# }
 
 # cd-bookmark {
-	# Bashmark style aliases
+	# Bashmark-style aliases
 	#if [ -e $XDG_CONFIG_HOME/cd-bookmark/bookmarks ]; then
 	    #alias g='cd-bookmark -c'
 	    #alias s='cd-bookmark -a'
@@ -196,12 +162,14 @@ fi
 # }
 
 # Libreoffice {
+if program_is_in_path libreoffice; then
 	alias lbase='libreoffice --base'		# Writer.
 	alias lcalc='libreoffice --calc'		# Calc.
 	alias ldraw='libreoffice --draw'		# Draw.
-	alias limpress='libreoffice --impress'		# Impress.
+	alias limpress='libreoffice --impress'	# Impress.
 	alias lmath='libreoffice --math'		# Math.
-	alias lwriter='libreoffice --writer'		# Writer.
+	alias lwriter='libreoffice --writer'	# Writer.
+fi
 # }
 
 # Vim {
@@ -215,54 +183,38 @@ fi
 	    alias vis='nvim -c OpenSession'  # Load ticket.vim session on start.
 	elif program_is_in_path vim; then
 	    alias vi='vim'						# Be IMproved.
-	    alias view='vim -R'					# Not all distributions of vim provide the readonly bin.
+	    alias view='vim -R'					# Not all distributions of Vim provide the readonly bin.
 	    alias viplain="vim -u NONE -i NONE"				# Start wiht without reading ~/.vimrc and using ~/.viminfo.
 	    alias vim_clean='rm -rf ~/.vim/{.netrwhist,fuf-data,swap,view,viminfo,yankring_v2.txt} ~/.vim/undo/* ~/.cache/vim/swap/'		# It's a new-start!
 	fi
 # }
 
 # Program enhancements {
-	alias emacs='emacs --no-window-system'			# Emacs belongs to the terminal.
-	alias gdb='gdb -q'					# Suppress legal info.
-	#alias gdb='gdb -q -x $GOPATH/.gdbinit'			# Suppress legal info + Go support.
-	alias cgdb='cgdb -q'					# Suppress legal info.
-	#alias cgdb='cgdb -q -x $GOPATH/.gdbinit'		# Suppress legal info + Go support.
+	alias emacs='emacs --no-window-system'		# Emacs belongs to the terminal.
+	alias gdb='gdb -q'							# Suppress legal info.
+	alias cgdb='cgdb -q'						# Suppress legal info.
 
-	#alias df='df -h'						# Always show in human readable.
-	alias dfc='dfc -d'						# Show used column.
-	alias octave='octave-cli --silent'				# Run in terminal without greeting message.
+	alias dfc='dfc -d'							# Show used column.
+	alias octave='octave-cli --silent'			# Run in terminal without greeting message.
 	alias xoctave='\octave'						# Default X version.
-	alias matlab='matlab -nodesktop -nosplash'			# Run in terminal with no splash screen.
-	#alias xmatlab='\matlab'						# Default X version.
-	alias gimp='gimp --no-splash'					# Splash screens are just annoying.
-	alias dmenu="dmenu -i"						# Ignore case.
-	alias cal='cal --monday'					# Monday IS the first day of the week.
-	alias gpg='gpg --list-options no-show-photos'			# Don't open profile photos on listings - super annoying!
-	alias grip='grip --browser'					# Open new tab in browser, until this can be configured: https://github.com/joeyespo/grip/issues/340
+	#alias matlab='matlab -nodesktop -nosplash'	# Run in terminal with no splash screen.
+	#alias xmatlab='\matlab'					# Default X version.
+	alias gimp='gimp --no-splash'				# Splash screens are just annoying.
+	#alias dmenu="dmenu -i"						# Ignore case.
+	alias gpg='gpg --list-options no-show-photos'	# Don't open profile photos on listings - super annoying!
+	alias grip='grip --browser'						# Open new tab in browser, until this can be configured: https://github.com/joeyespo/grip/issues/340
 	alias pdflatex='pdflatex -interaction=nonstopmode -halt-on-error' # Quit on error.
 
 	program_is_in_path batman && alias man='batman'			# Using bat from bat-extras package.
-
-	# Not needed anymore, installing with brew --with-default-names.
-	#if type gsed >/dev/null 2>&1 && shell_is_macos; then
-		#alias sed='gsed'	# The default sed on macOS is utter crap..
-	#fi
-	#if type ggrep >/dev/null 2>&1 && shell_is_macos; then
-		#alias grep='ggrep'	# The default sed on macOS is utter crap..
-	#fi
 # }
 
 # Short-hands {
-	#alias t='task'
-	#alias c='gcalcli'
 	alias vboxmanage='VBoxManage'							# Who likes caps?- I don't.
 	alias ll='ls -l'										# I don't use it but aliens on my systems presumes its existence.
-	#unalias l &>/dev/null									# I use bashmarks.
 	alias shredzr='shred --zero --remove'					# Zero out and delete file.
 	alias sysc='systemctl'									# The length of a name should correspond to its importance, see vi.
 	alias syscu='systemctl --user'							# Systemd user sessions.
 	alias journal='journalctl'
-	# Take a screenshot of selected window.
 	alias pkillf="pkill -9 -f"								# Force kill full name matched process.
 	alias iperl="perl -de 0"								# Interactive perl.
 	alias catu="cat -vet"									# A cat that likes unprintable characters.
@@ -273,13 +225,11 @@ fi
 	alias reload_zsh='source $HOME/.zshrc'				# Reload zsh configuration.
 	alias reload_bash='source $HOME/.bashrc'			# Reload bash configuration.
 	alias remove_swap_files='find . -name "*.sw[op]" -delete'	# Delete all swap files in current path recursively.
-	alias wol_local_cpt='wakeonlan -i 10.255.255.255 GIT-CENSORED'	# Wake up on the local net broadcast address and cpt's MAC addr.
-	alias wol_remote_cpt='wakeonlan -i cpt.erikw.me GIT-CENSORED'	# Wake up from remote.
 	alias ghq-get='ghq get --look'					# Fetch and cd to repository.
 	alias clone=ghq-get
 	alias path_print='echo $PATH | tr : \\n'			# Easier to read $PATH.
-	alias goaccess_nginx='goaccess --log-format=COMBINED -m /var/log/nginx/access.log'	# Get web server stats based on log file.
-	alias goaccess_uberspace='uberspace_collect_access_log.sh && goaccess -m --agent-list --ignore-crawlers --config-file ~/etc/goaccess.conf --log-format=COMBINED --log-file ~/logs/www_access_log_all'
+	#alias goaccess_nginx='goaccess --log-format=COMBINED -m /var/log/nginx/access.log'	# Get web server stats based on log file.
+	#alias goaccess_uberspace='uberspace_collect_access_log.sh && goaccess -m --agent-list --ignore-crawlers --config-file ~/etc/goaccess.conf --log-format=COMBINED --log-file ~/logs/www_access_log_all'
 	alias find_dropbox_conflicts='find ~/dropbox/doc -name "*conflicted copy*"'	# Find conflicting synced dropbox files.
 	alias find_large_files="find . -type f -size +5M -print0 | xargs -0 ls -lh | sort -k5,5 -h | awk '{print \$5, \$9}'"	# Find large files.
 	alias find_large_pdfs="find . -name \"*.pdf\" -type f -size +5M -print0 | xargs -0 ls -lh | sort -k5,5 -h | awk '{print \$5, \$9}'"	# Find large PDFs.
@@ -295,18 +245,6 @@ fi
 	if type ack-grep >/dev/null 2>&1; then
 		alias ack='ack-grep'	# Debain renames ack.
 	fi
-
-	# Ctags with JDK source code included.
-	# Get JDK source e.g. with
-	# $ cd ~/src
-	# $ hg clone http://hg.openjdk.java.net/jdk8/jdk8
-	# $ cd jdk8 && chmod 744 get_source.sh && ./get_source.sh
-	# -or-
-	# $ ghq get http://hg.openjdk.java.net/jdk8/jdk8
-	# Reference: http://blog.vinceliu.com/2007/08/vim-tips-for-java-2-using-exuberant.html
-	# Reference: https://stackoverflow.com/questions/20457107/how-to-clone-the-openjdk-java-8-repository
-	#alias ctags-jdk='ctags -R --language-force=java ~/src/hg.openjdk.java.net/jdk8/jdk8/jdk/src/share/'
-
 
 	if shell_is_macos; then
 		alias intellijopen='open -a IntelliJ\ IDEA\ CE'	# Open Intellij with a path as an argument.
@@ -333,14 +271,12 @@ fi
 
 # Misc {
 	#alias psg='ps aux | grep -i '					# Moved to shell function to avoid bug.
-	alias dusch='du -sch'						# The best file size calculator is a shower.
+	alias dusch='du -sch'							# The best file size calculator is a shower.
 	alias beep='echo -en "\007"'					# Whoop whoop'
 	alias image_dim="identify -format '%w %h\n'"			# Get dimmensions of an image.
-	alias git-root='cd $(git rev-parse --show-cdup)'		# Go to the root of a git.
+	alias git-root='cd $(git rev-parse --show-cdup)'		# Go to the root of a git. See overlay in ./functions as well.
 	alias cursh="ps -p \$\$ | tail -1 | awk '{print \$NF}' | sed -e 's/^-//g'| tr -d '()'"		# Current shell.
 	alias history-off='unset HISTFILE'				# Disable command history for the current shell.
-	# Simple network speed test.
-	# ZO RELAXEN
 	alias whatismyip='curl ifconfig.me && echo'		# Get external IP-address
 	#alias whatismyip='curl ifconfig.co'			# Get external IP-address
 # }
