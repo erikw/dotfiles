@@ -277,9 +277,9 @@
 	# Reference: https://github.com/rbenv/ruby-build/wiki#suggested-build-environment
 	#export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
 	if program_is_in_path ruby-build || program_is_in_path asdf ; then
-		# For Ruby versions 2.x–3.0
+		# For Ruby versions 2.x-3.0
 		#export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$HOMEBREW_PREFIX/opt/openssl@1.1"
-		# For Ruby versions >3.0
+		# For Ruby versions >=3.1
 		export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$HOMEBREW_PREFIX/opt/openssl@3"
 	fi
 # }

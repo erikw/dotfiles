@@ -2,6 +2,7 @@
 #markdown-toc	# GitHub renders ToC automatically now.
 instant-markdown-d
 netlify-cli
+npm-check-updates  # Upgrade all packages in package.json with $(ncu -u). Ref: https://stackoverflow.com/a/22849716/265508
 
 # RoR requirements
 yarn
