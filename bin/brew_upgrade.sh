@@ -4,8 +4,10 @@
 # Requirements:
 # - Install cask upgrade command with: $ brew tap buo/cask-upgrade NOPE not anymore.
 
-# Exit script on SIGINT.
-set -e
+set -o errexit
+set -o nounset
+set -o pipefail
+[[ "${TRACE-0}" =~ ^1|t|y|true|yes$ ]] && set -o xtrace
 
 CLI_PREFIX="📦$(tput setaf 1) ======>$(tput sgr0)"
 
