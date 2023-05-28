@@ -33,3 +33,4 @@
 [submodule ".local/repos/dotbot-plugins/ghq"]
 	path = .local/repos/dotbot-plugins/ghq
 	url = https://github.com/klane/dotbot-ghq.git
+	ignore = dirty # Until merged my fix: https://github.com/klane/dotbot-ghq/pull/3
