@@ -18,6 +18,8 @@ ali: https://www.aliexpress.com/wholesale?SearchText=%s AliExpress
 amazons: http://www.amazon.de/s/field-keywords=%s Amazon Deutschland
 aur: https://aur.archlinux.org/packages/?K=%s AUR search
 d: http://www.dict.cc/?s=%s dict.cc
+di: https://duckduckgo.com/?iax=images&ia=images&q=%s DuckDuckGo Images
+duck: https://duckduckgo.com/?q=%s DuckDuckGo
 g: https://www.google.com/search?hl=en&q=%s Google -English
 gd :https://www.google.de/search?hl=de&q=%s Google - Deutschland
 gi: http://google.com/search?hl=en&tbm=isch&q=%s Google Images
@@ -25,12 +27,10 @@ gs: http://www.google.se/search?hl=sv&q=%s Google - Sverige
 imdb: http://www.imdb.com/find?q=%s IMDB
 leo: https://dict.leo.org/englisch-deutsch/%s Leo
 map: http://maps.google.com/maps?q=%s Google Maps
+ports: https://www.freebsd.org/cgi/ports.cgi?stype=all&query=%s FreeBSD Ports
 t: https://translate.google.com/#auto/en/%s Google Translate Auto -> En
-ts: https://translate.google.com/#auto/sv/%s Google Translate  Auto -> Sv
 td: https://translate.google.com/#auto/de/%s Google Translate Auto -> De
+ts: https://translate.google.com/#auto/sv/%s Google Translate  Auto -> Sv
 w: http://en.wikipedia.org/wiki/Special:Search?search=%s Wikipedia - English
 ws: http://sv.wikipedia.org/wiki/Special:Search?search=%s Wikipedia - Swedish
 y: http://www.youtube.com/results?search_query=%s Youtube
-ports: https://www.freebsd.org/cgi/ports.cgi?stype=all&query=%s FreeBSD Ports
-duck: https://duckduckgo.com/?q=%s DuckDuckGo
-ducki: https://duckduckgo.com/?iax=images&ia=images&q=%s DuckDuckGo Images

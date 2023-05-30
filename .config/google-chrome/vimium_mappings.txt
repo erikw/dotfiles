@@ -27,6 +27,9 @@ map gns createTab https://online.swedbank.se/
 # TODO emulate goX to open URL in current tab, when there exist such a command in Vimium
 
 # Misc
+map R reload hard
 #map y copyCurrentUrl
 map <left> previousTab
 map <right> nextTab
+map X toggleMuteTab all
+map Y toggleMuteTab other
