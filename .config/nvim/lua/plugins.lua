@@ -327,21 +327,14 @@ return require("packer").startup(function(use)
             require("other-nvim").setup({
                 -- Show menu each time for multiple other files.
                 rememberBuffers = false,
+                keybindings = {
+                    x = "open_file_sp()", -- Align with other plugin common binding for horizontral split. Default here is 's'.
+                },
                 mappings = {
                     -- builtin mappings
                     "rails",
+                    "golang",
                     -- custom mappings
-                    -- Golang
-                    {
-                        context = "test",
-                        pattern = "(.*).go$",
-                        target = "%1_test.go",
-                    },
-                    {
-                        context = "implementation",
-                        pattern = "(.*)_test.go$",
-                        target = "%1.go",
-                    },
                 },
                 style = {
                     width = 0.7,
