@@ -442,12 +442,15 @@ chflags hidden ~/Public
 
 # Mail.app {
 # * Drag my Gmail account to the top in the mailboxes left side list and collapse all other.
+# * In the top toolbar: move archive|trash|span button cluster all the way to the left for easier access to most commonly used button.
 # * In the New Mail window toolbar, click Aa to activate formatting options.
 ## Settings
 ### General
 # * Downloads folder: ~/dl
 ### Accounts
 # * Disable iCloud
+### Viewing
+# * Check "mark all messages as read when opening a conversation"
 ### Composing
 # * Message format: plain text. NOPE use Rich Text, it's not the 90s anymore....
 ### Signatures

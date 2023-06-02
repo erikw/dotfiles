@@ -1,3 +1,5 @@
+#!/bin/env bash
+# Shebang set to make shellcheck happy.
 # Erik Westrup's shell aliases.
 # Modeline {
 #	 vi: foldmarker={,} foldmethod=marker foldlevel=0 ft=sh

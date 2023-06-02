@@ -1,3 +1,5 @@
+#!/bin/env bash
+# Shebang set to make shellcheck happy.
 # Common shelll settings (used by at least my .bashrc and .zshrc)
 # Find out which are good sandboxing candidates with profileing like in: https://kev.inburke.com/kevin/profiling-zsh-startup-time/
 # Modeline {

@@ -1,9 +1,12 @@
+#!/bin/env bash
+# Shebang set to make shellcheck happy.
 # Utility shell functions.
 # vi: foldmarker={,} filetype=sh foldmethod=marker foldlevel=0: tabstop=4 shiftwidth=4:
 
-# Dynamically source functions from the drop-in directory. {
-if [ -d ${XDG_CONFIG_HOME:-$HOME/.config}/shell/functions.d ]; then
-	for funcfile in ${XDG_CONFIG_HOME:-$HOME/.config}/shell/functions.d/*.sh; do
+# source functions.d/ {
+# Dynamically source functions from the drop-in directory.
+if [ -d "${XDG_CONFIG_HOME:-$HOME/.config}/shell/functions.d" ]; then
+	for funcfile in "${XDG_CONFIG_HOME:-$HOME/.config}"/shell/functions.d/*.sh; do
 		source $funcfile
 	done;
 fi
@@ -13,13 +16,13 @@ fi
 # Check if we have a program in PATH
 program_is_in_path() {
 	local program="$1"
-	type "$1" >/dev/null 2>&1
+	type "$program" >/dev/null 2>&1
 }
 
 # Shell detect functions {
 	export SHELL_PLATFORM=unknown
 	#ostype() { echo $OSTYPE | tr '[:upper:]' '[:lower:]'; }
-	ostype() { echo $OSTYPE; } # tr is not built-in => expensive. See if this works in practive, to not lowercase.
+	ostype() { echo "$OSTYPE"; } # tr is not built-in => expensive. See if this works in practice, to not lowercase.
 	case "$(ostype)" in
 		*'linux'*	) SHELL_PLATFORM=linux	;;
 		*'darwin'*	) SHELL_PLATFORM=macos	;;
@@ -50,6 +53,7 @@ psg() {
 	ps aux | grep "$*"
 }
 
+# cd-which
 # cd to the directory containing the program found in PATH.
 cdw() {
 	local prog="$1"
@@ -65,57 +69,46 @@ export cdw >/dev/null
 [ -n "$completion_func" ] && shell_is_interactive && $completion_func -cf cdw
 
 # Time conversions.
+# Usage: $ epoch2iso8601 1685708111
 epoch2iso8601() {
 	local epoch="$1"
-	local len=$(echo -n $epoch | wc -m)
+	local len=$(echo -n "$epoch" | wc -m)
 	# Assume that a longer string means we have ms or ns - simply strip down to seconds.
-	if [ $len -gt 10 ]; then
+	if [ "$len" -gt 10 ]; then
 		epoch=$(echo $epoch | cut -c 1-10)
 	fi
-	date -d @$epoch +%Y-%m-%dT%H:%M:%S%z
+
+	if shell_is_linux; then
+		date -d "@$epoch" +%Y-%m-%dT%H:%M:%S%z
+	elif shell_is_bsd; then
+		date -r "$epoch" "+%FT%TZ"
+	fi
 }
 export epoch2iso8601 >/dev/null
 
 iso86012epoch() {
 	local iso="$1"
-	date -d "$iso" +%s
+	if shell_is_linux; then
+		date "$iso" +%s
+	elif shell_is_bsd; then
+		date -j -f "%FT%TZ" "$iso" +%s
+	fi
 }
 export iso86012epoch >/dev/null
 
-# Stopwatch, press enter to time.
-# Source: http://superuser.com/questions/611538/is-there-a-way-to-display-a-countdown-or-stopwatch-timer-in-a-terminal
-stopwatch() {
-	date1=$(date +%s);
-	while :; do
-		days=$(( $(($(date +%s) - date1)) / 86400 ))
-		echo -ne "$days day(s) and $(date -u --date @$(($(date +%s) - $date1)) +%H:%M:%S)\r";
-		sleep 0.1
-	done
-}
-
-# Visual countdown with voice announcing that the time is up.
-#termdownsay() {
-	#termdown -b -q 1 $@ && espeak -v en -s 130 -a 120 "Time has ended"
-#}
-
 # Git overlay which adds a command to cd to the root of a git repo.
 git() {
-	# TODO whereis find /usr/bin/git from Xcode and not /usr/local/bin git from brew
-	# -q: macOS, supress name prefix. Replaced with cut(1); not avilable on GNU/Linux it seems.
-	# -b: macOS, only search binary not manual
-	local gitbin=$( whereis -b git | cut -d ' ' -f 2)
-
 	if [ "$1" = root ]; then
 		# Try get root from git submodule:
-		local root="$($gitbin rev-parse --show-superproject-working-tree)"
+		local root="$(command git rev-parse --show-superproject-working-tree)"
 		# Else we're in the main repo already:
 		# --show-cdup will not take us to the root if we came here from a symlink.
 		#test -n "$root" || root="$($gitbin rev-parse --show-cdup)"
 		# Instead get full path with --show-to-level https://stackoverflow.com/q/39746533/265508
-		test -n "$root" || root="$($gitbin rev-parse --show-toplevel)"
+		test -n "$root" || root="$(command git rev-parse --show-toplevel)"
 		[ -n "$root" ] && cd "$root"
 	else
-		$gitbin $@
+		command git $@
 	fi
 }
 
@@ -159,11 +152,6 @@ virg() {
 vifd() {
 	vi="$(vi_path)"
 	"$vi" -p $(fd $@)
-}
-
-_dev_log() {
-	local message="$@"
-	echo "🔨 > $message..."
 }
 
 # Encrypt file with a symmetric cipher.
@@ -269,14 +257,6 @@ dashs() {
 	open "dash://${term}"
 }
 
-# Ref: https://github.com/thuanpham2311/tmux-fzf-session-switch
-function tmuxSessionSwitch() {
-  local session
-  session=$(tmux list-sessions -F "#{session_name}" | fzf)
-  tmux switch-client -t "$session"
-}
-alias af='tmuxSessionSwitch'
-
 # Run rails test. Usage:
 # t
 # t <file> <method>
@@ -298,17 +278,15 @@ function t() {
 }
 
 
-# Allow .clocignore
+# Allow local .clocignore
 # Though not supporting to look for .clocignore in a possible path argument.
 # Ref: https://stackoverflow.com/a/26679008/265508
 function cloc() {
 	local args="$@"
 
-	local clocbin=$( whereis -b cloc | cut -d ' ' -f 2)
-
 	if  [ -e .clocignore ]; then
-		$clocbin --exclude-dir=$(tr '\n' ',' < .clocignore) $args
+		command cloc --exclude-dir=$(tr '\n' ',' < .clocignore) $args
 	else
-		$clocbin $args
+		command cloc $args
 	fi
 }
