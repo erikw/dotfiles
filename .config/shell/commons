@@ -208,7 +208,7 @@
 
 	# Colored man pages. Reference: https://wiki.archlinux.org/index.php/Man_Page#Colored_man_pages
 	# But only if we don't use batman (alias set in ~/.config/shell/aliases).
-	if ! program_is_in_path batman; then
+	#if ! program_is_in_path batman; then
 		function man() {
 		env \
 			LESS_TERMCAP_mb=$(printf "\e[1;31m") \
@@ -220,7 +220,7 @@
 			LESS_TERMCAP_us=$(printf "\e[1;32m") \
 				man "$@"
 	}
-	fi
+	#fi
 # }
 
 # Programs {
