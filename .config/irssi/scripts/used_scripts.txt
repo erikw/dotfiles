@@ -1,0 +1,9 @@
+adv_windowlist.pl
+chansort.pl
+dispatch.pl
+mouse.pl
+nicklist.pl
+notify.pl
+tmux_away.pl
+trackbar.pl
+vim_mode.pl

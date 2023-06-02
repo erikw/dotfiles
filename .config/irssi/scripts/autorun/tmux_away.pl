@@ -1,1 +1,0 @@
-../tmux_away.pl
