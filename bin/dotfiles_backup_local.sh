@@ -11,7 +11,7 @@ test -d "$BAK_DIR" || mkdir -p "$BAK_DIR"
 timestamp=$(date "+%Y-%m-%d-%H%M%S")
 patch_file=$(printf "$PATCH_FMT" "$timestamp")
 
-git format-patch --output "$patch_file" personal..local
+git format-patch --output "$patch_file" main..local
 if [ $? -eq 0 ]; then
 	echo "Backed up as patch: ${patch_file}"
 else

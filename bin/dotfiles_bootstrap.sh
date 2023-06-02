@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Boot strap my dotfiles by setting up Git with SSH keys and then cloning and install my dotfiles repo.
-# Usage: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/erikw/dotfiles/personal/bin/dotfiles_bootstrap.sh)"
+# Usage: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/erikw/dotfiles/main/bin/dotfiles_bootstrap.sh)"
 # NOTE avoid having exec perm set on this file to not accidentially execute it on a system already set-up.
 
 set -o errexit
@@ -16,7 +16,7 @@ SSH_PUB_KEY="${SSH_PRIV_KEY}.pub"
 DOTFILES_REPO=git@github.com:erikw/dotfiles.git
 REPOS_ROOT="$HOME/src/github.com/erikw"
 DOTFILES_ROOT="$REPOS_ROOT/dotfiles"
-SSH_CONFIG_SCRIPT_URL="https://github.com/erikw/dotfiles/blob/personal/bin/ssh-config-create.sh"
+SSH_CONFIG_SCRIPT_URL="https://github.com/erikw/dotfiles/blob/main/bin/ssh-config-create.sh"
 
 is_macos() {
   [[ "$OSTYPE" == "darwin"* ]]
@@ -34,7 +34,7 @@ step "Generating SSH key pair for GitHub"
 mkdir -p $SSH_ID_DIR
 chmod 700 $SSH_DIR
 chmod 700 $SSH_ID_DIR
-curl -O https://raw.githubusercontent.com/erikw/dotfiles/personal/bin/ssh-config-create.sh
+curl -O https://raw.githubusercontent.com/erikw/dotfiles/main/bin/ssh-config-create.sh
 chmod 744 ssh-config-create.sh
 ./ssh-config-create.sh
 ssh-keygen -t rsa -f $SSH_ID_DIR/github_id_rsa -C "${USER}@${HOSTNAME} for erikw@github"

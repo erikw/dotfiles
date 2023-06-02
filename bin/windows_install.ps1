@@ -4,7 +4,7 @@
 # Install script for my Windows setup.
 # Run this in an administrative Powershell prompt (for chocolately).
 # To download-and-execute:
-# $ iex (new-object net.webclient).downloadstring('https://raw.githubusercontent.com/erikw/dotfiles/personal/bin/windows_install.ps1')
+# $ iex (new-object net.webclient).downloadstring('https://raw.githubusercontent.com/erikw/dotfiles/main/bin/windows_install.ps1')
 
 # Modeline {
 #	vi: foldmarker={,} filetype=sh foldmethod=marker foldlevel=0 tabstop=4 shiftwidth=4
