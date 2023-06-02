@@ -26,7 +26,7 @@
 	cicc = !"git commit --quiet -m \"Collected changes\" && git --no-pager show -s --format='format:Committed: %s%n'"
 	cl = clone
 	co = checkout
-	committers = shortlog -s -n --all
+	committers = shortlog --summary --numbered
 	cp = cherry-pick
 	desc0= describe --abbrev=0
 	desc= describe
