@@ -38,7 +38,7 @@ cd ~/src/github.com/erikw/dotfiles
 git checkout -b local
 ```
 
-and after making some changes to the branch, squash to one commit
+and after making some changes to the branch, squash to one commit:
 ```shell
 git commit -m "SQUASHED passwords"
 ```
