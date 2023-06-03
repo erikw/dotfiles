@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-# Why not add this to cron...? Like:
+# Tip: add this to cron like:
 # @monthly                       if_fail_do_notification bak_crontab.sh
 
 

@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
-# Interactively upgrade my homebrew system.
-# Usage: brew_upgrade.sh
-# Requirements:
-# - Install cask upgrade command with: $ brew tap buo/cask-upgrade NOPE not anymore.
+# Interactively upgrade a homebrew system.
 
 set -o errexit
 set -o nounset

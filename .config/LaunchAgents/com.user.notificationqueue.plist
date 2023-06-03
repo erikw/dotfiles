@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Start notification-queue-notifier.sh login. -->
+<!-- Start notification_queue_notifier.sh login. -->
 <!-- To install: -->
-<!-- $ cp notification-queue-notifier.sh ~/bin/ -->
+<!-- $ cp notification_queue_notifier.sh ~/bin/ -->
 <!-- $ cp com.user.notificationqueue.plist ~/Library/LaunchAgents/ -->
 <!-- $ launchctl bootstrap gui/$UID ~/Library/LaunchAgents/com.user.notificationqueue.plist -->
 <!-- $ launchctl enable gui/$UID/com.user.notificationqueue -->
@@ -11,7 +11,7 @@
         <key>Label</key>
         <string>com.user.notificationqueue</string>
         <key>Program</key>
-        <string>/Users/erikw/bin/notification-queue-notifier.sh</string>
+        <string>/Users/erikw/bin/notification_queue_notifier.sh</string>
         <key>EnvironmentVariables</key>
         <dict>
             <key>PATH</key>
