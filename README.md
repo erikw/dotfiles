@@ -43,7 +43,7 @@ and after making some changes to the branch, squash to one commit:
 git commit -m "SQUASHED passwords"
 ```
 
-### Host specific configuration
+### Host-specific configuration
 * Passwords and other secretes are censored. To find these and substitue them for the real thing, do:
 	```shell
 	grep -nr GIT-CENSORED . | grep -v README.md | grep -v "/.git/"
