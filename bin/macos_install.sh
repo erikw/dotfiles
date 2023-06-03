@@ -254,7 +254,7 @@ fi
 # 2. Create a new service (now named Quick Action)
 # 3. Choose "Run AppleScript"
 # 4. In the top of the window, select for "Service receives selected" to "no input" and "in any application".
-# 5. Paste contents of ~/bin/macos_start_screensaver.command so it basically becomes:
+# 5. Paste contents of ~/bin/automator/start_screensaver.command so it basically becomes:
 #on run {input, parameters}
 	#do shell script "/System/Library/CoreServices/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine"
 	#return input
@@ -266,7 +266,7 @@ fi
 
 # Automate command: toggling system light/dark mode.
 # * Create an Automator.app Quick Action named "appearance_toggle".
-# * Use the build-in action "Change System Appearace" by dragging it in to the right, and set "Change Appearance" to "Toggle Light/Dark". This seems to go faster when toggling than the custom script ~/bin/macos_appearance_toggle.command
+# * Use the build-in action "Change System Appearace" by dragging it in to the right, and set "Change Appearance" to "Toggle Light/Dark". This seems to go faster when toggling than the custom script ~/bin/automator/appearance_toggle.command
 # * Bind to Service shortcut CTRL+OPT+CMD+t (shortcut used when feature was first introduced in the OS).
 
 
@@ -275,8 +275,8 @@ fi
 # * Bind to shortcut ctrl+cmd+y
 
 
-# Automator command: cycle output devices. Do this for all ~/bin/macos_media_control/SwitchAudioSource*.command
-# * Create an automator Quick Action named "SwitchAudioSource_cycle" with AppleScript for the contents in ~/bin/macos_media_control/SwitchAudioSource_cycle.command
+# Automator command: cycle output devices. Do this for all ~/bin/automator/SwitchAudioSource*.command
+# * Create an automator Quick Action named "SwitchAudioSource_cycle" with AppleScript for the contents in ~/bin/automator/SwitchAudioSource_cycle.command
 # * Bind to shortcuts like:
 #  - Built-in: CMD+OPT+F11.
 #  - USB Soundcard/headset: CMD+OPT+F12
@@ -285,14 +285,14 @@ fi
 
 # Automator command: showing Control Center.
 # TODO replace this with native System Preferences shortcut when supported.
-# * Create an automator Quick Action named "open_controlcenter" with AppleScript for the contents in ~/bin/macos_open_controlcenter.command
+# * Create an automator Quick Action named "open_controlcenter" with AppleScript for the contents in ~/bin/automator/open_controlcenter.command
 # * Bind to shortcut CMD+F10
 # * For this to work, System Preferences > Security & Privacy > Privacy > Accessibillity > allow System Preferences.app.
 
 
 # Automator command: showing Now Playing
 # TODO replace this with native System Preferences shortcut when supported.
-# * Create an automator Quick Action named "open_nowplaying" with AppleScript for the contents in ~/bin/macos_open_nowplaying.command
+# * Create an automator Quick Action named "open_nowplaying" with AppleScript for the contents in ~/bin/automator/open_nowplaying.command
 # * Bind to shortcut CMD+F9
 # * For this to work, System Preferences > Security & Privacy > Privacy > Accessibillity > allow System Preferences.app.
 # }

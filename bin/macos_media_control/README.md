@@ -1,8 +1,0 @@
-This is a combination of
-https://gist.github.com/NoobsArePeople2/5121597
-and
-https://blog.gskinner.com/archives/2011/10/media-keys-in-osx-for-any-keyboard.html
-
-To make these as shortcuts:
-* Automator > new Service > Apple Script > paste contents of file inside the run function (and utility functions before run()).
-* System Preferences > Keyboard > Shortcuts > Quick Action (Service) > assign same shortcuts as in $XDG_CONFIG_HOME/xbindkeys/config but CMD instead of CTRL as CTRL+Fx does not seem to work.

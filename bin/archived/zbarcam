@@ -1,4 +1,0 @@
-#!/usr/bin/env sh
-# Overlay for zbarcam that preloads the video4linux library.
-
-LD_PRELOAD=/usr/lib/libv4l/v4l1compat.so /usr/bin/zbarcam --raw /dev/video0 $* 

@@ -1,5 +1,0 @@
-#!/usr/bin/env ruby
-# Generate and preview a markdown document.
-# Requires `gem install redcarpet`
-raise "gime a file!!" unless ARGV[0]
-exec "redcarpet #{ARGV[0]} > /tmp/markdown.html && firefox /tmp/markdown.html"
