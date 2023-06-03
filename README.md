@@ -26,31 +26,31 @@ My personal dotfiles, installed and managed with [dotbot](https://github.com/ani
 ## Installation
 ### Bootstrap
 Bootstrap using [bin/dotfiles_bootstrap.sh](bin/dotfiles_bootstrap.sh):
-```shell
+```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/erikw/dotfiles/main/bin/dotfiles_bootstrap.sh)"
 ```
 This will interactively set up a GitHub SSH key, clone this repo and run `./install`
 
 ### Local branch
 Switch to a local branch for secret changes:
-```shell
+```bash
 cd ~/src/github.com/erikw/dotfiles
 git checkout -b local
 ```
 
 and after making some changes to the branch, squash to one commit:
-```shell
+```bash
 git commit -m "SQUASHED passwords"
 ```
 
 ### Host-specific configuration
 * Passwords and other secretes are censored. To find these and substitue them for the real thing, do:
-	```shell
+	```bash
 	grep -nr GIT-CENSORED . | grep -v README.md | grep -v "/.git/"
 	```
 * Set `DESKTYPE` in `$XDG_CONFIG_HOME/shell/commons`, unless system is macos.
 * Default desktop is assumed to be macOS. Go through host-specific manual settings by searching for the corresponding tag.
-	```shell
+	```bash
 	grep -nr MACOS-CONFIG . 2>/dev/null | grep -v README.md
 	grep -nr LINUX-CONFIG . 2>/dev/null | grep -v README.md
 	grep -nr FREEBSD-CONFIG . 2>/dev/null | grep -v README.md
