@@ -149,6 +149,7 @@ fi
 	    alias g='fzm'
 	    alias s='mark'
 	    alias e="vi $FZF_MARKS_FILE"
+	    alias l="sort $FZF_MARKS_FILE"
 
 	    _fzf_marks_delete() {
 		local mark="$1"
@@ -160,6 +161,17 @@ fi
 		sed -i.bak -e "/^${mark} : /d" "$FZF_MARKS_FILE" && rm "$FZF_MARKS_FILE.bak"
 	    }
 	    alias d='_fzf_marks_delete'
+
+	    _fzf_marks_print() {
+		local mark="$1"
+
+		if ! grep -q "^$mark : " $FZF_MARKS_FILE; then
+		    echo "$mark is not in bookmark" >&2
+		    return 2
+		fi
+			grep "^$mark :" $FZF_MARKS_FILE | awk '{print $3}'
+	    }
+	    alias p='_fzf_marks_print'
 	fi
 # }
 
