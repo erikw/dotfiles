@@ -1,6 +1,4 @@
 # Erik Westrup's zshrc.
-# TODO maybe, just maybe, try a plugin manager? https://github.com/zsh-users/antigen
-#      fzf-tab or https://github.com/unixorn/awesome-zsh-plugins#plugins
 # Modeline {{
 #	vi: foldmarker={{,}} filetype=zsh foldmethod=marker foldlevel=0 tabstop=4 shiftwidth=4
 # }}
