@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Installation directives: .config/dotbot/install.conf.yaml
+# Install dotfiles with dotbot.
 
 set -e
 
