@@ -45,8 +45,6 @@ Host *github.com
 	Port 22
 	User git
 	IdentityFile ${SSH_ID_DIR}/github_id_rsa
-	IdentitiesOnly yes
-	ServerAliveInterval 15
 EOF
 
 # Set up ssh-agent
