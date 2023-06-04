@@ -261,7 +261,6 @@ fi
 			bindkey -M $m $c select-quoted
 		done
 	done
-
 # }}
 
 # ZLE {{
@@ -305,14 +304,26 @@ fi
 
 	# Bookmark shell paths. No dependencies like jump who needs ruby.
 	# Aliases in ~/.config/shell/aliases
-	if [ -d ~/.local/repos/cd-bookmark ]; then
-		#fpath=(~/src/github.com/erikw/cd-bookmark/(N-/) $fpath)
-		fpath=(~/.local/repos/cd-bookmark(N-/) $fpath)
-		autoload -Uz cd-bookmark
-	fi
+	#if [ -d ~/.local/repos/cd-bookmark ]; then
+	#    #fpath=(~/src/github.com/erikw/cd-bookmark/(N-/) $fpath)
+	#    fpath=(~/.local/repos/cd-bookmark(N-/) $fpath)
+	#    autoload -Uz cd-bookmark
+	#fi
 
 	# Not working. Program only activated when interactivly sourced from shell for some reason.
 	#eval $(mcfly init zsh)
+
+	# fzf-marks: https://github.com/urbainvaes/fzf-marks
+	# Done here and not in commons, as it must be after $(bindkeys -v)
+	if [ -d $HOME/.local/repos/fzf-marks ]; then
+		sourceifexists $HOME/.local/repos/fzf-marks/fzf-marks.plugin.$SHELL_NAME
+		# --exact --select-1: jump to exact match directly if only match.
+		# --nth=1 --delimiter=' : ': only search the bookmark names, not values.
+		FZF_MARKS_COMMAND="$FZF_MARKS_COMMAND --exact --select-1 --nth=1 --delimiter=' : '"
+
+		# Be consistent with default fzf behaviour. ctrl-d should close selection window, not delete things.
+		FZF_MARKS_DELETE=ctrl-r
+	fi
 # }}
 
 #sourceifexists ${XDG_CONFIG_HOME:-$HOME/.config}/X11/startx.sh

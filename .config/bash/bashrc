@@ -93,35 +93,47 @@ fi
 		#source $HOME/src/github.com/simonwhitaker/gibo/gibo-completion.bash
 	#fi
 
-	if [ -d $HOME/.local/repos/cd-bookmark ]; then
-		# sourceifexists not working here...
-		#source $HOME/src/github.com/erikw/cd-bookmark/cd-bookmark
-		source $HOME/.local/repos/cd-bookmark/cd-bookmark
+	#if [ -d $HOME/.local/repos/cd-bookmark ]; then
+	#    # sourceifexists not working here...
+	#    #source $HOME/src/github.com/erikw/cd-bookmark/cd-bookmark
+	#    source $HOME/.local/repos/cd-bookmark/cd-bookmark
 
-		# A modified version of cd-bookmark's _cdbookmarks_bash_completions that can be used to complete bookmarks for aliases (as bash don't complete aliases.)
-		# Complete bookmarks for all aliases that take bookmark_id as argument.
-		function _cdbookmarks_bash_completions_aliases() {
-			if [ "${#COMP_WORDS[@]}" = "2" ]; then
-				local comp_word="${COMP_WORDS[1]}"
+	#    # A modified version of cd-bookmark's _cdbookmarks_bash_completions that can be used to complete bookmarks for aliases (as bash don't complete aliases.)
+	#    # Complete bookmarks for all aliases that take bookmark_id as argument.
+	#    function _cdbookmarks_bash_completions_aliases() {
+	#        if [ "${#COMP_WORDS[@]}" = "2" ]; then
+	#            local comp_word="${COMP_WORDS[1]}"
 
-				if [[ "$comp_word" == */* ]]; then
-					local strip_bookmark_id="${comp_word%%/*}"
-					local dir_path="${comp_word#*/}"
-					local bookmark_dir="$(_cdbookmark_get_bookmark $strip_bookmark_id)"
+	#            if [[ "$comp_word" == */* ]]; then
+	#                local strip_bookmark_id="${comp_word%%/*}"
+	#                local dir_path="${comp_word#*/}"
+	#                local bookmark_dir="$(_cdbookmark_get_bookmark $strip_bookmark_id)"
 
-					if [ -n "$bookmark_dir" ]; then
-						bookmark_dir="${bookmark_dir}/${dir_path}"
-						local word_list=$(ls -d "${bookmark_dir}"*/ 2>/dev/null | \
-						sed -e "s|${bookmark_dir}||" -e 's|/$||' -e "s|^|${comp_word}|")
-						COMPREPLY=($(compgen -W "${word_list[*]}" -- "${comp_word}"))
-					fi
-				else
-					local word_list="$(_cdbookmark_list_bookmark_id)"
-					COMPREPLY=($(compgen -W "${word_list[*]}" -- "${comp_word}"))
-				fi
-			fi
-		}
-		complete -F _cdbookmarks_bash_completions_aliases g s p d
+	#                if [ -n "$bookmark_dir" ]; then
+	#                    bookmark_dir="${bookmark_dir}/${dir_path}"
+	#                    local word_list=$(ls -d "${bookmark_dir}"*/ 2>/dev/null | \
+	#                    sed -e "s|${bookmark_dir}||" -e 's|/$||' -e "s|^|${comp_word}|")
+	#                    COMPREPLY=($(compgen -W "${word_list[*]}" -- "${comp_word}"))
+	#                fi
+	#            else
+	#                local word_list="$(_cdbookmark_list_bookmark_id)"
+	#                COMPREPLY=($(compgen -W "${word_list[*]}" -- "${comp_word}"))
+	#            fi
+	#        fi
+	#    }
+	#    complete -F _cdbookmarks_bash_completions_aliases g s p d
+	#fi
+
+	# fzf-marks: https://github.com/urbainvaes/fzf-marks
+	# Done here and not in commons, as it must be after $(bindkeys -v)
+	if [ -d $HOME/.local/repos/fzf-marks ]; then
+		sourceifexists $HOME/.local/repos/fzf-marks/fzf-marks.plugin.$SHELL_NAME
+		# --exact --select-1: jump to exact match directly if only match.
+		# --nth=1 --delimiter=' : ': only search the bookmark names, not values.
+		FZF_MARKS_COMMAND="$FZF_MARKS_COMMAND --exact --select-1 --nth=1 --delimiter=' : '"
+
+		# Be consistent with default fzf behaviour. ctrl-d should close selection window, not delete things.
+		FZF_MARKS_DELETE=ctrl-r
 	fi
 # }
 

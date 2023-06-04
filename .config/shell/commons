@@ -433,17 +433,6 @@
 		fi
 	fi
 
-	# fzf-marks: https://github.com/urbainvaes/fzf-marks
-	if [ -d $HOME/.local/repos/fzf-marks ]; then
-		sourceifexists $HOME/.local/repos/fzf-marks/fzf-marks.plugin.$SHELL_NAME
-		# --exact --select-1: jump to exact match directly if only match.
-		# --nth=1 --delimiter=' : ': only search the bookmark names, not values.
-		FZF_MARKS_COMMAND="$FZF_MARKS_COMMAND --exact --select-1 --nth=1 --delimiter=' : '"
-
-		# Be consistent with default fzf behaviour. ctrl-d should close selection window, not delete things.
-		FZF_MARKS_DELETE=ctrl-r
-	fi
-
 	# direnv: https://direnv.net/
 	if program_is_in_path direnv; then
 		eval "$(direnv hook $SHELL_NAME)"
