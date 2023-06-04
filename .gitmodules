@@ -1,4 +1,4 @@
-# Prefer to use https URLs instead of ssh, so that the computer where i clone my dotfiles does not need to have SSH keys set up to my Github account.
+# Prefer to use https URLs instead of ssh, so that the computer where I clone my dotfiles does not need to have SSH keys set up to my Github account.
 [submodule ".local/repos/sandboxd"]
 	path = .local/repos/sandboxd
 	url = https://github.com/benvan/sandboxd.git
