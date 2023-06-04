@@ -26,7 +26,7 @@ My personal dotfiles, installed and managed with [dotbot](https://github.com/ani
 
 ## Installation
 ### Bootstrap
-Bootstrap using [bin/dotfiles_bootstrap.sh](bin/dotfiles_bootstrap.sh):
+Bootstrap using [`bin/dotfiles_bootstrap.sh`](bin/dotfiles_bootstrap.sh):
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/erikw/dotfiles/main/bin/dotfiles_bootstrap.sh)"
 ```
