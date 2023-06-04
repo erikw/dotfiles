@@ -5,9 +5,6 @@
 [submodule ".local/repos/dircolors-solarized"]
 	path = .local/repos/dircolors-solarized
 	url = https://github.com/seebi/dircolors-solarized.git
-[submodule ".local/repos/tmux-colors-solarized"]
-	path = .local/repos/tmux-colors-solarized
-	url = https://github.com/seebi/tmux-colors-solarized.git
 [submodule ".local/repos/fzf-marks"]
 	path = .local/repos/fzf-marks
 	url = https://github.com/urbainvaes/fzf-marks.git
