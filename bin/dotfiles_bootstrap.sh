@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Boot strap my dotfiles by setting up Git with SSH keys and then cloning and install my dotfiles repo.
+# Bootstrap my dotfiles by setting up Git with SSH keys and then cloning and install my dotfiles repo.
 # Usage: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/erikw/dotfiles/main/bin/dotfiles_bootstrap.sh)"
 # NOTE avoid having exec perm set on this file to not accidentially execute it on a system already set-up.
 
