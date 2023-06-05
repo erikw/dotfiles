@@ -1,7 +1,6 @@
 #!/bin/env bash
 # Shebang set to make shellcheck happy.
 # Common shelll settings (used by at least my .bashrc and .zshrc)
-# Find out which are good sandboxing candidates with profileing like in: https://kev.inburke.com/kevin/profiling-zsh-startup-time/
 # Modeline {
 #	vi: foldmarker={,} filetype=sh foldmethod=marker foldlevel=0 tabstop=8 shiftwidth=8
 # }
@@ -160,9 +159,7 @@
 	#test -d ${XDG_STATE_HOME:-$HOME/.local/state}/irssi || mkdir -p ${XDG_STATE_HOME:-$HOME/.local/state}/irssi
 
 	# Enable sandboxing a.k.a. lazy loading of shell initialization for some programs.
-	# Not possible with dfm to install to .local/share as 2 levels of recurse in dfminstall does not work.
-	# See https://github.com/justone/dfm/issues/39
-	sourceifexists "$HOME/.local/repos/sandboxd/sandboxd"
+	#sourceifexists "$HOME/.local/repos/sandboxd/sandboxd"
 
 	# Needed for gnupg's gpg(1) to work, thus for git commit signing.
 	program_is_in_path gnupg && export GPG_TTY=$(tty)
@@ -291,14 +288,6 @@
 	if shell_is_macos; then
 		PATH="$HOME/Library/Python/3.9/bin:$PATH"
 	fi
-
-	# Virtualenvwrapper, installed with pip. NOTE Is sandboxed
-	#shell_is_macos && virtenv_path=/usr/local/bin/virtualenvwrapper.sh || virtenv_path=/usr/bin/virtualenvwrapper_lazy.sh
-	#if [ -e $virtenv_path ]; then
-	#	source $virtenv_path
-	#	export WORKON_HOME=$HOME/.virtualenvs
-	#	export PROJECT_HOME=$HOME/dev
-	#fi
 # }
 
 	# iTerm2 shell integration. Reference: https://www.iterm2.com/documentation-shell-integration.html

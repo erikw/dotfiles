@@ -15,17 +15,17 @@ _sandbox_hook_all(){
 }
 
 # GVM: Go Version Manager
-sandbox_init_gvm() {
-	sourceifexists $HOME/.gvm/scripts/gvm
-}
-sandbox_hook gvm gvm
+#sandbox_init_gvm() {
+#    sourceifexists $HOME/.gvm/scripts/gvm
+#}
+#sandbox_hook gvm gvm
 
 # SDK manager
-sandbox_init_sdk() {
-	export SDKMAN_DIR=$HOME/.sdkman
-	sourceifexists $SDKMAN_DIR/bin/sdkman-init.sh
-}
-sandbox_hook sdk gradle
+#sandbox_init_sdk() {
+#    export SDKMAN_DIR=$HOME/.sdkman
+#    sourceifexists $SDKMAN_DIR/bin/sdkman-init.sh
+#}
+#sandbox_hook sdk gradle
 
 # Virtualenvwrapper
 #sandbox_init_virtualenvwrapper() {
