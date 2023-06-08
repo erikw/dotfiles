@@ -8,8 +8,10 @@ type "$prog" &>/dev/null
 if [ "$?" -ne 0 ]; then
 	echo "\"${prog}\" not found in \$PATH." >&2
 	exit 1
-else
-	vim $(which "$prog") $args
-	exit 0
 fi
 
+if type nvim > /dev/null 2>&1; then
+	nvim $(which "$prog") $args
+else
+	vim $(which "$prog") $args
+fi

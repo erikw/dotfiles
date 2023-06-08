@@ -52,6 +52,14 @@ endif
 " Setup {
 let g:ale_completion_enabled = 1	" Must be set before ALE is loaded.
 
+
+" vim-plug bootstrap. Ref: https://github.com/junegunn/vim-plug/wiki/tips#automatic-installation
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.config/vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
 " vim-plug data folder
 call plug#begin('~/.local/share/vim/plugged')
 " }
@@ -821,6 +829,7 @@ let g:startify_bookmarks = [
 	\ ]
 
 let g:startify_fortune_use_unicode = 1	" Draw fortune with Unicode instead of ASCII.
+let g:startify_files_number = 5
 
 
 " Reference: https://vi.stackexchange.com/a/9942
