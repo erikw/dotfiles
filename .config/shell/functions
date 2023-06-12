@@ -222,6 +222,14 @@ bundlecd() {
 	test $? -eq 0 && cd "$path"
 }
 
+# cd(1) to installation of go module from bundle.
+# Usage: gomodcd github.com/aws/aws-sdk-go
+gomodcd() {
+	local mod="$*"
+	local path=$(go list -m -f '{{.Dir}}' "$mod")
+	test $? -eq 0 && cd "$path"
+}
+
 # Swap two file's names. Reference: https://stackoverflow.com/a/1119738/265508
 swap() {
     local TMPFILE=tmp.$$
