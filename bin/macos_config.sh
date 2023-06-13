@@ -352,6 +352,31 @@ fi
 
 # }
 
+# Archive Util.app {
+# * Uncheck "Reveal expanded items in Finder"
+# }
+
+# App Store {
+# * Uncheck "In-App Ratings & Reviews"
+# }
+
+# Calendar.app {
+# * Sidebar: uncheck "Siri Suggestions" calendar
+## General:
+# * Default calendar: my default Google calendar
+## Accounts
+# * Disable iCloud account
+### Google
+# * Refresh Calendars: every 5 minutes
+## Alerts (for Google)
+# * Events: None
+# * All Day Events: None
+# * Birthdays: None
+## Advanced
+# * Check "Show events in year view"
+# * Check "Show week numbers"
+# }
+
 # Finder {
 
 ## View
@@ -459,23 +484,6 @@ chflags hidden ~/Public
 # * Turn off everything
 # }
 
-# Calendar.app {
-# * Sidebar: uncheck "Siri Suggestions" calendar
-## General:
-# * Default calendar: my default Google calendar
-## Accounts
-# * Disable iCloud account
-### Google
-# * Refresh Calendars: every 5 minutes
-## Alerts (for Google)
-# * Events: None
-# * All Day Events: None
-# * Birthdays: None
-## Advanced
-# * Check "Show events in year view"
-# * Check "Show week numbers"
-# }
-
 # Music.app {
 ## Files
 # * Add music folder.
@@ -489,18 +497,33 @@ chflags hidden ~/Public
 # * Uncheck "Copy items to the photos library"
 # }
 
-# App Store {
-# * Uncheck "In-App Ratings & Reviews"
-# }
-
 # Terminal.app {
 #Profiles
 ## Shell
 # * When the shell exists: close if the shell exited cleanly
 # }
 
-# Archive Util.app {
-# * Uncheck "Reveal expanded items in Finder"
+# Safari.app {
+# * Prevent spell auto-correct: Edit > Spelling & Grammar > uncheck "Correct Spelling Automatically."
+
+
+# See current settings with:  $ defaults read com.apple.Safari
+# Prevent closing window when only pinned tabs left. Ref: https://apple.stackexchange.com/a/260916
+defaults write com.apple.Safari NSUserKeyEquivalents -dict-add 'Close Tab' '<string>@w</string></dict>'
+defaults write com.apple.universalaccess com.apple.custommenu.apps -array-add '<string>com.apple.Safari</string>'
+# Show the full URL in the address bar
+defaults write com.apple.Safari ShowFullURLInSmartSearchField -bool true
+# Safari opens with last session
+defaults write com.apple.Safari AlwaysRestoreSessionAtLaunch -bool true
+# Enable the Develop menu and the Web Inspector in Safari
+defaults write com.apple.Safari IncludeDevelopMenu -bool true
+# Update extensions automatically
+defaults write com.apple.Safari InstallExtensionUpdatesAutomatically -bool true
+# Show favorites bar in Safari by default:
+defaults write com.apple.Safari ShowFavoritesBar -bool true
+
+
+killall Safari
 # }
 
 # Misc {
