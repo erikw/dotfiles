@@ -327,6 +327,7 @@ return require("packer").startup(function(use)
             require("other-nvim").setup({
                 -- Show menu each time for multiple other files.
                 rememberBuffers = false,
+                showMissingFiles = false,
                 keybindings = {
                     x = "open_file_sp()", -- Align with other plugin common binding for horizontral split. Default here is 's'.
                 },
