@@ -135,8 +135,9 @@
 		export DESKTYPE=dwm
 	fi
 
-	# Locale
-	export LANG=EN_US
+	# Locale.
+	# Needs to include encoding as well for iTerm: https://gitlab.com/gnachman/iterm2/-/issues/10879#note_1433417922
+	export LANG=en_US.UTF-8
 
 	# Let others know what underlying terminal emulator is used. This is needed since $TERM does not always represent the real terminal e.g. in tmux when you want colors.
 	shell_is_linux && program_is_in_path urxvt && export TERMEMU=urxvt
