@@ -1,8 +1,12 @@
+# NOTE end-of-line #-comments does not work here.
+
 # Development
-#markdown-toc	# GitHub renders ToC automatically now.
+# GitHub renders ToC automatically now.
+#markdown-toc
 instant-markdown-d
 netlify-cli
-npm-check-updates  # Upgrade all packages in package.json with $(ncu -u). Ref: https://stackoverflow.com/a/22849716/265508
+# Upgrade all packages in package.json with $(ncu -u). Ref: https://stackoverflow.com/a/22849716/265508
+npm-check-updates
 
 # RoR requirements
 yarn
