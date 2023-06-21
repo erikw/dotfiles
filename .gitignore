@@ -1,13 +1,3 @@
-!.config/.kde/Autostart/
-!.config/.kde/env/
-!.config/.kde/share/apps/konsole/
-!.config/.kde/share/config/kglobalshortcutsrd
-!.config/.kde/share/config/khotkeysrc
-!.config/.kde/share/config/kxkbrc
-!.config/.kde/share/config/mpdknotifierrc
-!.config/.kde/share/config/yakuakerc
-!.config/.kde/share/kde4/services/spotify.protocol
-!.config/gtk-2.0/gtkrc-2.0.mine
 !.config/ipython/profile_default/ipython_config.py
 *.pyc
 *.sw?
@@ -37,7 +27,6 @@
 .config/irssi/dcc/
 .config/irssi/nicklistfifo
 .config/iterm2/
-.config/kde/
 .config/nvim/plugin/packer_compiled.lua
 .config/pudb/internal-cmdline-history.txt
 .config/pudb/saved-breakpoints-*
@@ -51,7 +40,6 @@
 .config/vim/after/ftplugin/markdown/instant-markdown.vim
 .config/vim/autoload/plug.vim
 .config/vim/fuf-data/
-.config/vim/yankring_v2.txt
 .config/wireshark/
 .config/yarn/config
 .config/zsh/.zsh_funcs/_netlify
