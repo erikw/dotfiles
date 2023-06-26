@@ -131,6 +131,11 @@
 	export TMUX_POWERLINE_SEG_TIME_FORMAT="%I:%M %p"
 # }
 
+# vcs_branch.sh {
+	# Max length of the branch name.
+	export TMUX_POWERLINE_SEG_VCS_BRANCH_MAX_LEN="24"
+# }
+
 # weather.sh {
 	# The data provider to use. Currently only "yahoo" is supported.
 	export TMUX_POWERLINE_SEG_WEATHER_DATA_PROVIDER="yrno"

@@ -140,6 +140,9 @@ fi
 # Create snipets for some common items in ~/doc/tech/word_expansions.txt
 
 
+# Dictionary.app
+# * Install the SWE-EN dictionary from https://github.com/hashier/MacFolket
+
 # Scroll Reverser
 ## Scrolling
 # * Check: Enable Scroll Reverser
