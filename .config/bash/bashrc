@@ -12,27 +12,20 @@ if [ -f /etc/profile ] && [ -r /etc/profile ]; then
 fi
 
 
-if [ -f ${XDG_CONFIG_HOME:-$HOME/.config}/shell/commons ]; then
+if [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/commons" ]; then
 	export SHELL_NAME=bash
 	export completion_func=complete
-	source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/commons
+	source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/commons"
 fi
-
-# Set Vi command line editing mode. Not needed because it's set in ~/.inputrc.
-#set -o vi
 
 # Completion {
 	# Complete @hostnames in a file with /ets/hosts format.
 	HOSTFILE=/etc/hosts
 
-	# Enable bash tab completion. Not needed with package 'bash-completion' installed.
-	#complete -cf sudo
-	#complete -cf man
-
 	# Use bash-completion, if available.
 	if [[ $PS1 ]]; then
 		if shell_is_macos; then
-			sourceifexists $HOMEBREW_PREFIX/etc/bash_completion
+			sourceifexists "$HOMEBREW_PREFIX/etc/bash_completion"
 		elif shell_is_bsd; then
 			sourceifexists /usr/local/etc/bash_completion
 		else
@@ -43,7 +36,7 @@ fi
 
 # History {
 	# Where to store the history.
-	test -d ${XDG_STATE_HOME:-$HOME/.local/state}/bash || mkdir -p ${XDG_STATE_HOME:-$HOME/.local/state}/bash
+	test -d "${XDG_STATE_HOME:-$HOME/.local/state}/bash" || mkdir -p "${XDG_STATE_HOME:-$HOME/.local/state}/bash"
 	export HISTFILE=${XDG_STATE_HOME:-$HOME/.local/state}/bash/history
 	# Number lines to store in active bash session.
 	export HISTSIZE=100000
@@ -63,36 +56,13 @@ fi
 
 # UI {
 	# Source PS1 configuration.
-	sourceifexists ${XDG_CONFIG_HOME:-$HOME/.config}/bash/ps1
-
-	# Powerline
-	#if [ -n "$POWERLINE_ROOT" ] && [ -d $POWERLINE_ROOT ]; then
-		#POWERLINE_BASH_CONTINUATION=1
-		#POWERLINE_BASH_SELECT=1
-		#source $POWERLINE_ROOT/bindings/bash/powerline.sh
-	#fi
+	sourceifexists "${XDG_CONFIG_HOME:-$HOME/.config}/bash/ps1"
 
 	# Check the window size after each command and, if necessary, update the values of LINES and COLUMNS.
 	shopt -s checkwinsize
 # }
 
 # Programs {
-	# Sorce bashmarks.
-	# See saved marks in ~/.sdirs
-	sourceifexists $HOME/.local/bin/bashmarks.sh
-
-	# Jump shell bookmarks.
-	# NOTE moved to ~/.sandboxrc
-	#if type jump-bin >/dev/null 2>&1; then
-		#source $(jump-bin --bash-integration)/shell_driver
-	#fi
-
-	# Gitignore boiler plate.
-	#if [ -d $HOME/src/github.com/simonwhitaker/gibo ]; then
-		#PATH="$HOME/src/github.com/simonwhitaker/gibo:$PATH"
-		#source $HOME/src/github.com/simonwhitaker/gibo/gibo-completion.bash
-	#fi
-
 	#if [ -d $HOME/.local/repos/cd-bookmark ]; then
 	#    # sourceifexists not working here...
 	#    #source $HOME/src/github.com/erikw/cd-bookmark/cd-bookmark

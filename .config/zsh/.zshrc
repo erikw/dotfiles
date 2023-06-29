@@ -23,7 +23,6 @@ fi
 
 # Environment {{
 	typeset -U path		# Don't add entry to path if it's already present.
-	#path=(~/tmp $path)
 
 	# Function paths.
 	# - .zsh_funcs/ - custom functions e.g. completion functions installed here.
@@ -41,26 +40,25 @@ fi
 # }}
 
 # Completion {{
-	zstyle ':completion:*' menu select
-	# Completion functions to try in given order. Reference: https://zsh.sourceforge.io/Doc/Release/Completion-System.html
+	zstyle ':completion:*' menu select	# Visualize and selecting with arrow keys in completion.
+	# Completion functions to try in given order. Ref: https://zsh.sourceforge.io/Doc/Release/Completion-System.html
 	zstyle ':completion:*' completer _expand _expand_alias _extensions _complete _ignored _correct _approximate
-
 	# Workaround for https://github.com/mollifier/cd-bookmark/issues/9
-	zstyle ':completion:*:*:cd-bookmark:*' menu no
-	# Setting specific completer for cd-bookmark did not work:
-	#zstyle ':completion:*:*:cd-bookmark:*' completer _expand _expand_alias _extensions _complete _ignored
+	#zstyle ':completion:*:*:cd-bookmark:*' menu no
 
+	# Completion functions settings.
 	# _correct max errors for match (but not for numbers)
 	zstyle ':completion:*:correct:::' max-errors 2 not-numeric
 	# _approximate max errors for match
 	zstyle ':completion:*:approximate:::' max-errors 3 numeric
-	# Visualize and selecting with arrow keys in completion.
 	# Remove slash from completed directory.
 	zstyle ':completion:*' squeeze-slashes true
 	# Cache completions.
 	zstyle ':completion:*' use-cache onzstyle ':completion:*' use-cache on
-	# Honor LS_COLORs in completion.
-	zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+	# Use cache from XDG location
+	zstyle ':completion:*' cache-path ${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompcache
+	# Honor LS_COLORs in completion. Ref: https://github.com/ohmyzsh/ohmyzsh/issues/6060#issuecomment-1016734641
+	zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 	# Ignore case in tab complete. http://www.rlazo.org/2010/11/18/zsh-case-insensitive-completion/
 	zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 	# Completing process IDs with menu selection:
@@ -71,15 +69,14 @@ fi
 	# Refresh tab completion from PATH automatically, so hash(1) does not need to be called after installing a new program.
 	zstyle ':completion:*' rehash true
 
-	# Turn off URL completions for the open command, like "file: ftp:// gopher:// http:// https://"
-	# Reference: https://github.com/mpv-player/mpv/issues/2892
+	# Turn off URL completions for the open(1) command, like "file: ftp:// gopher:// http:// https://"
+	# Ref: https://github.com/mpv-player/mpv/issues/2892#issuecomment-190910887
+	# Ref: https://unix.stackexchange.com/a/567805/19909
 	zstyle ':completion:*:*:open:*' tag-order '!urls'
+	#zstyle ':completion:*:open:argument*' tag-order - '! urls'
 
-	# Use cache from XDG location
-	zstyle ':completion:*' cache-path ${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompcache
-
-	# Use colors in tabcompletion
-	shell_is_macos && zstyle ':completion:*:default' list-colors ''
+	# Use colors in tabcompletion. NOTE seems to work without this.
+	#shell_is_macos && zstyle ':completion:*:default' list-colors ''
 
 	# Increase maximum from default 100 suggestions to complete before asking to show more.
 	export LISTMAX=500
@@ -88,10 +85,7 @@ fi
 	# NOPE setting this means that aliases are not expanded before completion. I don't want this as then
 	# $ g <tab>
 	# does not work (g alias for 'cd-bookmark -c')
-	#setopt completealiases
-
-	# List files when cd-completing.
-	#compdef _path_files cd
+	setopt completealiases
 
 	compinit_regen() {
 		rm -f ${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump-$ZSH_VERSION
@@ -139,19 +133,12 @@ fi
 	autoload -U colors && colors
 
 	# Prompt settings.
-	#if [ -n "$POWERLINE_ROOT" ] && [ -d $POWERLINE_ROOT ]; then
-		#source $POWERLINE_ROOT/bindings/zsh/powerline.zsh
-	#else
-		#autoload -Uz promptinit
-		#promptinit
-		#prompt suse	# Prompt theme.
-	#fi
 	autoload -Uz promptinit
 	promptinit
 
 	# Prompt theme. Explore with $(prompt -l)
 	#prompt suse
-	#prompt erikw
+	#prompt erikw # See ~/.config/zsh/.zprompts/prompt_erikw_setup
 
 	# Set prompt with git branch.
 	# Modified version of https://stackoverflow.com/a/12935606/265508
@@ -168,26 +155,26 @@ fi
 	PROMPT="$PROMPT %F{$user_color}%n%{$reset_color%}@%F{cyan}%m%{$reset_color%}"	# Current user and hostname
 	unset user_color
 	if [ -n "$SSH_CLIENT" ] && ! ([ -n "$TMUX" ] || [[ "$TERM" == "screen-"* ]] ); then
-		# Highlight when loggied in via SSH. But not in screen/tmux, that does not make sense.
+		# Highlight when logged in via SSH. But not in screen/tmux, that does not make sense.
 		PROMPT="$PROMPT %F{blue}[SSH]%{$reset_color%}"
 	fi
-	PROMPT="$PROMPT %F{3}%5~%{$reset_color%}"		# CWD, truncated to 5 components (directory depth).
-	PROMPT="$PROMPT \${vcs_info_msg_0_}"			# Current VCS branch, as configured above. $ is escaped so this part is not evaluated yet (breaks then).
-	PROMPT="$PROMPT%1(j:[%j]:)"				# Number of background jobs (if >=1).
+	PROMPT="$PROMPT %F{3}%5~%{$reset_color%}"			# CWD, truncated to 5 components (directory depth).
+	PROMPT="$PROMPT \${vcs_info_msg_0_}"				# Current VCS branch, as configured above. $ is escaped so this part is not evaluated yet (breaks then).
+	PROMPT="$PROMPT%1(j:[%j]:)"							# Number of background jobs (if >=1).
 	PROMPT="$PROMPT%(?::%F{red}{%?}%{$reset_color%})"	# Last exit code if !=0
-	PROMPT="$PROMPT> "					# EOL
+	PROMPT="$PROMPT> "									# EOL
 
 
 	# Fish like syntax highlighting on command line.
 	zsh_syntax_path=
-	if shell_is_linux; then
-		zsh_syntax_path=/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-	elif shell_is_macos; then
+	if shell_is_macos; then
 		zsh_syntax_path=$HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+	elif shell_is_linux; then
+		zsh_syntax_path=/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 	elif shell_is_bsd; then
 		zsh_syntax_path=/usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 	fi
-	if [ -n "$zsh_syntax_path" ] && [ -f $zsh_syntax_path ]; then
+	if [ -n "$zsh_syntax_path" ] && [ -f "$zsh_syntax_path" ]; then
 		source $zsh_syntax_path
 	fi
 	unset zsh_syntax_path
@@ -195,34 +182,24 @@ fi
 
 # Options {{
 	# Manual & categories: http://zsh.sourceforge.net/Doc/Release/Options.html
+	setopt nobeep			# No beeps thanks!
 
-	# Changing Directories {{
-		setopt autopushd				# Add prev PWD to directory stack.
-		setopt pushdignoredups			# No duplicates in dirs stack.
-		setopt pushdignoredups			# Do not record immediate duplicates.
-		setopt pushdtohome				# pushd with no args pushes $HOME.
-		setopt interactivecomments		# Enable bash-like comments by prefixing a command with '#' to make it a comment.
-		#setopt chaselinks				# Go to full destination of symlinks.
-	# }}
+	# Changing Directories
+	setopt autopushd				# Add prev PWD to directory stack.
+	setopt pushdignoredups			# No duplicates in dirs stack.
+	setopt pushdtohome				# pushd with no args pushes $HOME.
+	setopt interactivecomments		# Enable bash-like comments by prefixing a command with '#' to make it a comment.
 
-	# Input/Output {{
-		unsetopt correct correctall		# Do not encourage sloppy typing.
-		#setopt nohashdirs				# No need for rehash to find new binaries.
-		#setopt printexitvalue			# Print abnormal exit status.
-	# }}
+	# Input/Output
+	unsetopt correct correctall		# Do not encourage sloppy typing.
+	#setopt nohashdirs				# No need for rehash to find new binaries.
+	#setopt printexitvalue			# Print abnormal exit status.
 
-	# Job Control {{
-		setopt longlistjobs		# Display PID when suspending processes.
-	# }}
+	# Job Control
+	setopt longlistjobs		# Display PID when suspending processes.
 
-	# Shell Emulation # {{
-		#setopt ksharrays		# Array are 0-indexed. NOTE breaks zsh functions, plugins, etc...
-		setopt shnullcmd		# Truncate like in bash e.g. $(>file).
-	# }}
-
-	# ZLE {{
-		setopt nobeep			# No beeps thanks!
-	# }}
+	# Shell Emulation
+	setopt shnullcmd		# Truncate like in bash e.g. $(>file).
 # }}
 
 # Bindings {{
@@ -253,7 +230,7 @@ fi
 		bindkey "^[3;5~" delete-char
 	fi
 
-	# Add text object extension -- eg ci" da(:
+	# Add text object extension in normal mode -- eg: ci" or da(
 	autoload -U select-quoted
 	zle -N select-quoted
 	for m in visual viopp; do
@@ -264,7 +241,7 @@ fi
 # }}
 
 # ZLE {{
-	# Let / search in vi mode. Defined in ~/.zsh_funcs/vi-search-fix
+	# Let / search in vi mode. Defined in ~/.config/zsh/.zsh_funcs/vi-search-fix
 	# Reference: http://superuser.com/questions/476532/how-can-i-make-zshs-vi-mode-behave-more-like-bashs-vi-mode
 	autoload vi-search-fix
 	zle -N vi-search-fix
@@ -276,42 +253,14 @@ fi
 	bindkey -M vicmd v edit-command-line
 # }}
 
-# zsh extras {{
-	## Enable help command for zsh functions.
-	#autoload -U run-help
-	#autoload run-help-git run-help-svn run-help-svk
-	##unalias run-help
-	#alias help=run-help
-# }}
 
 # Programs {{
-	# Shell bookmarks with jump. https://github.com/flavio/jump
-
-	# Jump shell bookmarks.
-	# NOTE moved to ~/.sandboxrc
-	#if type jump-bin >/dev/null 2>&1; then
-		#source $(jump-bin --zsh-integration)
-
-		# Add completion to 'g' alias.
-		#compctl -K _jump -S '' g
-	#fi
-
-	# Gitignore boiler plate.
-	#if [ -d $HOME/src/github.com/simonwhitaker/gibo ]; then
-		#PATH="$HOME/src/github.com/simonwhitaker/gibo:$PATH"
-		##source $HOME/src/github.com/simonwhitaker/gibo/gibo-completion.zsh
-	#fi
-
-	# Bookmark shell paths. No dependencies like jump who needs ruby.
-	# Aliases in ~/.config/shell/aliases
+	# cd-bookmark. Aliases in ~/.config/shell/aliases
 	#if [ -d ~/.local/repos/cd-bookmark ]; then
 	#    #fpath=(~/src/github.com/erikw/cd-bookmark/(N-/) $fpath)
 	#    fpath=(~/.local/repos/cd-bookmark(N-/) $fpath)
 	#    autoload -Uz cd-bookmark
 	#fi
-
-	# Not working. Program only activated when interactivly sourced from shell for some reason.
-	#eval $(mcfly init zsh)
 
 	# fzf-marks: https://github.com/urbainvaes/fzf-marks
 	# Done here and not in commons, as it must be after $(bindkeys -v)

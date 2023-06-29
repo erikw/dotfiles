@@ -83,7 +83,7 @@ ps1_parse_hg_branch() {
 
 
 # Import colors.
-. ${XDG_CONFIG_HOME:-$HOME/.config}/bash/colors
+source "${XDG_CONFIG_HOME:-$HOME/.config}/bash/colors"
 
 # Reset default values.
 PS1=''
@@ -93,12 +93,6 @@ PS1="${PS1}$([ -n "$SSH_CLIENT" ] && echo "${C_INVERSE}[SSH]${C_RESET} ")"
 
 # Time.
 PS1="${PS1}\A "
-
-# Set CWD in tmux, if it's running, so that it later can be used in bindings.
-#PS1=$PS1'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) $PWD)'
-# Prompt command is issued before any other primary prompt commands.
-#PROMPT_COMMAND='$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD")'
-# NOTE tmux >= v1.9a does not need PWD from PS1.
 
 #PS1='${debian_chroot:+($debian_chroot)}'
 
@@ -111,6 +105,8 @@ PS1="${PS1}:\$(ps1_pwd_trimmed)"
 PS1="${PS1}${C_FG_MAGENTA}\$(ps1_parse_git_branch)${C_RESET}"
 PS1="${PS1}${C_FG_YELLOW}\$(ps1_parse_svn_branch)${C_RESET}"
 PS1="${PS1}${C_FG_BLUE}\$(ps1_parse_hg_branch)${C_RESET}"
+
+
 # End marker.
 PS1="${PS1}> "
 
