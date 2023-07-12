@@ -377,7 +377,7 @@
 	sourceifexists $HOME/.travis/travis.sh
 
 	# broot - https://dystroy.org/broot/install-br/
-	sourceifexists $HOME/.config/broot/launcher/bash/br
+	sourceifexists "$HOME/.config/broot/launcher/bash/br"
 
 	# fzf https://github.com/junegunn/fzf#using-homebrew
 	if program_is_in_path fzf; then
