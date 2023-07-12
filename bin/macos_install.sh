@@ -153,9 +153,10 @@ fi
 # * Check: Start at login
 # * Uncheck: Show in menu bar
 
-# Sensiblesidebuttons
+# Sensiblesidebuttons || Sanesidebuttons.
 # * Launch it one time to set right permissions needed.
 # * From menu bar icon: hide icon
+# * System Settings > General > Login items > add it manually
 
 
 # Mail.app
