@@ -630,3 +630,6 @@ TODOs
 tpm
 tmux's
 installable
+bin
+ActiveRecords
+REPL
