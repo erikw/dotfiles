@@ -8,7 +8,7 @@
 # Notes {
 # Find out key and values for settings by:
 # 1. $ defaults read > before
-# 2. Change a setting e.g. in System Preferences
+# 2. Change a setting e.g. in System Settings
 # 3. $ defaults read > after
 # 4. $ vimdiff before after
 # Reference: https://pawelgrzybek.com/change-macos-user-preferences-via-command-line/
@@ -21,9 +21,9 @@ set -o pipefail
 set -o xtrace
 
 # From: https://github.com/mathiasbynens/dotfiles/blob/main/.macos
-# Close any open System Preferences panes, to prevent them from overriding
+# Close any open System Settings panes, to prevent them from overriding
 # settings we’re about to change
-osascript -e 'tell application "System Preferences" to quit'
+osascript -e 'tell application "System Settings" to quit'
 # Ask for the administrator password upfront
 #sudo -v
 # Keep-alive: update existing `sudo` time stamp until this script has finished.
@@ -64,7 +64,7 @@ fi
 # }
 
 # TODO adapt this to System Settings in macOS Ventura
-# System Preferences {
+# System Settings {
 # Apple ID {
 ## Media & Purchases
 # * Free Downloads: Never Require
@@ -213,7 +213,7 @@ sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setglobalstate on
 # Keyboard {
 ## Keyboard
 # * Key Repeat: fastest
-#  Could make it even faster than allowed in System Preferences by setting to 0 or 1, but that's too fast. Reference: https://stackoverflow.com/a/4490124
+#  Could make it even faster than allowed in System Settings by setting to 0 or 1, but that's too fast. Reference: https://stackoverflow.com/a/4490124
 defaults write NSGlobalDomain KeyRepeat -int 2
 # * Delay Until Repeat: short (2nd most right value)
 defaults write -g InitialKeyRepeat -int 25
@@ -272,7 +272,7 @@ defaults write -g InitialKeyRepeat -int 25
 # Mouse {
 # * Uncheck "Scroll Direction: Natural. NOPE use scroll-reverser app instead, to have natural scroll with trackpad and normal scroll with external mouse.
 #defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
-# For setting a new speed, easiest is to set the value in System Preferences, then read desired value $(defaults read -g com.apple.mouse...)
+# For setting a new speed, easiest is to set the value in System Settings, then read desired value $(defaults read -g com.apple.mouse...)
 # * Tracking Speed:
 #defaults write -g com.apple.mouse.scaling 0.875  # 1st vertical mouse, 1/2
 defaults write -g com.apple.mouse.scaling 0.6875  # 2nd vertical mouse, 1/2 -1 notch
@@ -504,7 +504,24 @@ chflags hidden ~/Public
 # }
 
 # Safari.app {
+# Preferences
+## General
+# * Remove history items: manually
+# * File download location
+## Privacy
+# * Uncheck "Allow privacy-preserving measurement of ad effectiveness"
+## Advanced
+# * Check "Smart search field: show full website address"
+# * Default encoding: UTF-8
+# * Check "Show developer menu in menu bar"
+
+# Other settings
 # * Prevent spell auto-correct: Edit > Spelling & Grammar > uncheck "Correct Spelling Automatically."
+# * Prevent closing window on last tab. Ref: https://talk.macpowerusers.com/t/stop-safari-from-closing-window-when-closing-last-tab/21160
+# * System Settings > Keyboard > Keyboard Shortcuts > App Shortcuts > + Application: Safari.app, Menu Title: Close Tab, Shortcut: cmd+w
+# Or programatically. Ref: https://apple.stackexchange.com/a/260916
+defaults write com.apple.Safari NSUserKeyEquivalents -dict-add 'Close Tab' '<string>@w</string></dict>'
+defaults write com.apple.universalaccess com.apple.custommenu.apps -array-add '<string>com.apple.Safari</string>'
 
 
 # See current settings with:  $ defaults read com.apple.Safari
@@ -521,7 +538,8 @@ defaults write com.apple.Safari IncludeDevelopMenu -bool true
 defaults write com.apple.Safari InstallExtensionUpdatesAutomatically -bool true
 # Show favorites bar in Safari by default:
 defaults write com.apple.Safari ShowFavoritesBar -bool true
-
+# Home page
+defaults write com.apple.Safari HomePage -bool true
 
 killall Safari
 # }

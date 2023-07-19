@@ -169,7 +169,6 @@ cask 'clipy' # If needed, could replace with https://github.com/p0deje/Maccy eve
 cask 'dash'
 cask 'dictcc-en-de-dictionary-plugin' # From https://www.dict.cc/?s=about%3Awordlist&l=e
 cask 'eurkey' # For ErgoDox
-cask 'firefox'
 cask 'gimp'
 cask 'google-chrome'
 # cask 'iterm2'
@@ -184,7 +183,6 @@ cask 'vlc'
 # }
 
 # Cask: optional {
-# cask 'adium'
 # cask 'android-studio'
 # cask 'atom'
 # cask 'audacity'
@@ -203,6 +201,7 @@ cask 'vlc'
 # cask 'electric-sheep'
 # cask 'epic-games'
 # cask 'eqmac'
+# cask 'firefox'
 # cask 'flip4mac'
 # cask 'freshback'
 # cask 'gitify'
@@ -266,9 +265,15 @@ cask 'vlc'
 # $ find /Applications -path '*Contents/_MASReceipt/receipt' -maxdepth 4 -print |\sed 's#.app/Contents/_MASReceipt/receipt#.app#g; s#/Applications/##'
 #
 # $ mas search <app>
-mas  'Brother iPrint&Scan', id: 1_193_539_993 # Image Capture.app does not work for Brother DCP-7070DW
-mas  'Shazam', id: 897_118_787
-mas  'Todoist', id: 585_829_637
+mas 'Brother iPrint&Scan', id: 1_193_539_993 # Image Capture.app does not work for Brother DCP-7070DW
+mas 'Shazam', id: 897_118_787
+mas 'Todoist', id: 585_829_637
+
+# Safari extensions:
+mas 'AdGuard for Safari', id: 1_440_147_259
+mas 'Dark Reader for Safari', id: 1_438_243_180
+mas 'Keyword Search', id: 1_558_453_954
+# mas 'Polyglot', id: 1_471_801_525 # Currently broken: https://github.com/uetchy/Polyglot/issues/141
 # }
 
 # Mas: optional {

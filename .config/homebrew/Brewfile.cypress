@@ -42,8 +42,6 @@
 # Cask: optional {
 =begin
     cask 'ableton-live-suite' # If using latest version, which I'm not.
-    cask 'bitwarden'
-    cask 'ferdium'
     cask 'focusrite-control' # Needs the driver tap
     cask 'isyncr'
     cask 'kid3'  # MP3 metadata editor
@@ -58,10 +56,11 @@
 # }
 
 # Mas: default {
+    mas 'Amazon Prime Video', id: 545519333
+    mas 'Bitwarden', id: 1352778147
     mas 'Kindle', id: 405399194
     mas 'Pixelmator Pro', id: 1289583905
     mas 'WhatsApp Desktop', id: 1147396723
-    mas 'Amazon Prime Video', id: 545519333
 # }
 
 # Mas: optional {
