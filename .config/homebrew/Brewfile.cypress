@@ -37,6 +37,7 @@
     cask 'mutify'
     cask 'send-to-kindle'
     cask 'skype'
+    cask 'zoom'
 # }
 
 # Cask: optional {

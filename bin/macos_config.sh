@@ -507,7 +507,8 @@ chflags hidden ~/Public
 # Preferences
 ## General
 # * Remove history items: manually
-# * File download location
+# * File download location: ~/dl/
+# * Uncheck "Open safe files after downloading"
 ## Privacy
 # * Uncheck "Allow privacy-preserving measurement of ad effectiveness"
 ## Advanced
@@ -517,11 +518,13 @@ chflags hidden ~/Public
 
 # Other settings
 # * Prevent spell auto-correct: Edit > Spelling & Grammar > uncheck "Correct Spelling Automatically."
+
+# NOPE actually let's skip this, can't close last tab to start screen / home page.
 # * Prevent closing window on last tab. Ref: https://talk.macpowerusers.com/t/stop-safari-from-closing-window-when-closing-last-tab/21160
 # * System Settings > Keyboard > Keyboard Shortcuts > App Shortcuts > + Application: Safari.app, Menu Title: Close Tab, Shortcut: cmd+w
 # Or programatically. Ref: https://apple.stackexchange.com/a/260916
-defaults write com.apple.Safari NSUserKeyEquivalents -dict-add 'Close Tab' '<string>@w</string></dict>'
-defaults write com.apple.universalaccess com.apple.custommenu.apps -array-add '<string>com.apple.Safari</string>'
+#defaults write com.apple.Safari NSUserKeyEquivalents -dict-add 'Close Tab' '<string>@w</string></dict>'
+#defaults write com.apple.universalaccess com.apple.custommenu.apps -array-add '<string>com.apple.Safari</string>'
 
 
 # See current settings with:  $ defaults read com.apple.Safari
