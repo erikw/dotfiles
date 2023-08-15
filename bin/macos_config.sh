@@ -373,6 +373,7 @@ fi
 # * All Day Events: None
 # * Birthdays: None
 ## Advanced
+# * Check "Turn on time zone support"
 # * Check "Show events in year view"
 # * Check "Show week numbers"
 # }
@@ -487,7 +488,8 @@ chflags hidden ~/Public
 # Music.app {
 ## Files
 # * Add music folder.
-# * Uncheck "Keep music Media folder organized"
+# * Check "Keep music Media folder organized"
+# * Check "Copy files to Music Media folder when adding to library"
 ## Advanced
 # * Check "Automatically update artwork"
 # }
@@ -506,6 +508,8 @@ chflags hidden ~/Public
 # Safari.app {
 # Preferences
 ## General
+# * Homepage: favorites://
+#   * Set to Start Page. Ref: https://forums.macrumors.com/threads/make-safaris-startpage-your-homepage.2289398/
 # * Remove history items: manually
 # * File download location: ~/dl/
 # * Uncheck "Open safe files after downloading"
@@ -515,6 +519,8 @@ chflags hidden ~/Public
 # * Check "Smart search field: show full website address"
 # * Default encoding: UTF-8
 # * Check "Show developer menu in menu bar"
+
+# Customized Toolbar:
 
 # Other settings
 # * Prevent spell auto-correct: Edit > Spelling & Grammar > uncheck "Correct Spelling Automatically."

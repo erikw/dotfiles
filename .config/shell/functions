@@ -248,6 +248,7 @@ sleep_random() {
 
 # Sleep specified time and then shut down
 # Usage: sleep_shutdown 3h
+# Usage: sleep_shutdown 2d
 sleep_shutdown() {
 	time="$1"
 	if program_is_in_path gsleep; then

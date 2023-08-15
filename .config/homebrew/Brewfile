@@ -194,6 +194,7 @@ cask 'vlc'
 # cask 'cheatsheet'
 # cask 'clamxav'
 # cask 'colloquy'
+# cask 'cron'
 # cask 'cyberduck'
 # cask 'docker'
 # cask 'dozer'  # Hide menubar icons. Alternative to bartender

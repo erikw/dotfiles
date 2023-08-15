@@ -22,12 +22,12 @@
     cask 'android-file-transfer'
     cask 'android-platform-tools'
     cask 'authy'
-    cask 'cron'
     cask 'cryptomator'
     cask 'dropbox'
     cask 'google-cloud-sdk'  # for gcloud cli used for tardbot.
     cask 'gramps'
     cask 'handbrake'
+    cask 'jabra-direct'
     cask 'jettison'
     cask 'mactex'
     cask 'microsoft-excel'
@@ -59,6 +59,7 @@
 # Mas: default {
     mas 'Amazon Prime Video', id: 545519333
     mas 'Bitwarden', id: 1352778147
+    mas 'Exporter', id: 1099120373
     mas 'Kindle', id: 405399194
     mas 'Pixelmator Pro', id: 1289583905
     mas 'WhatsApp Desktop', id: 1147396723
