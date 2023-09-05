@@ -198,6 +198,7 @@ cask 'vlc'
 # cask 'cyberduck'
 # cask 'docker'
 # cask 'dozer'  # Hide menubar icons. Alternative to bartender
+# cask 'dropbox'
 # cask 'eclipse-ide'
 # cask 'electric-sheep'
 # cask 'epic-games'

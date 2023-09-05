@@ -23,16 +23,12 @@
     cask 'android-platform-tools'
     cask 'authy'
     cask 'cryptomator'
-    cask 'dropbox'
     cask 'google-cloud-sdk'  # for gcloud cli used for tardbot.
     cask 'gramps'
     cask 'handbrake'
     cask 'jabra-direct'
     cask 'jettison'
     cask 'mactex'
-    cask 'microsoft-excel'
-    cask 'microsoft-powerpoint'
-    cask 'microsoft-word'
     cask 'mullvadvpn'
     cask 'mutify'
     cask 'send-to-kindle'
@@ -60,7 +56,10 @@
     mas 'Amazon Prime Video', id: 545519333
     mas 'Bitwarden', id: 1352778147
     mas 'Exporter', id: 1099120373
+    mas 'Keynote', id: 409183694
     mas 'Kindle', id: 405399194
+    mas 'Numbers', id: 409203825
+    mas 'Pages', id: 409201541
     mas 'Pixelmator Pro', id: 1289583905
     mas 'WhatsApp Desktop', id: 1147396723
 # }

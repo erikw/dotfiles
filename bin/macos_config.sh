@@ -66,6 +66,8 @@ fi
 # TODO adapt this to System Settings in macOS Ventura
 # System Settings {
 # Apple ID {
+## iCloud
+# * Uncheck "Optimize Mac Storage", so that Time Machine can back up all data.
 ## Media & Purchases
 # * Free Downloads: Never Require
 # }
@@ -114,6 +116,8 @@ defaults write com.apple.dock wvous-br-modifier -int 0
 defaults write com.apple.dock show-recents -bool false
 # * Prevent accidential change of dock size or position by locking
 defaults write com.apple.Dock position-immutable -bool true
+# * NOPE Check "Ask to keep changes when closing documents" to prevent autosaving in Pages, Numbers & Keynote.
+#   * Don't check this, keep consistency with iOS app and reply on Previous Revision feature instead.
 # * Control Centre:
 # - Wi-Fi: uncheck
 # - Bluetooth: uncheck
@@ -131,10 +135,10 @@ defaults write com.apple.Dock position-immutable -bool true
 # * Menu Bar Only
 # - Clock: nop
 # - Spotlight: uncheck
-# - Siri: uncheck
+# - Siri: check
 # - Time machine: Show in Menu Bar
 # Dock misc {
-# * Add ~/ (Stack, List)  and ~/dl/ (Stack, Automatic) to dock.
+# * Add ~/ (Stack, List)  and ~/Downloads (Stack, Automatic) to dock.
 # * For dual monitors: For all applications in dock: Right click > Option > assign to correct monitor and desktop.
 
 # Dim hidden apps (CMD+H) in the dock.
@@ -361,7 +365,7 @@ fi
 # }
 
 # Calendar.app {
-# * Sidebar: uncheck "Siri Suggestions" calendar
+# * Sidebar: check "Siri Suggestions" calendar
 ## General:
 # * Default calendar: my default Google calendar
 ## Accounts
@@ -402,7 +406,7 @@ defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
 # *** New Finder window shows: ~/
 #defaults write com.apple.finder NewWindowTargetPath -string "file:///$HOME/"  # Does not work!
 ### Tags
-# * Hide all
+# * Show all
 ### Sidebar
 # *** Hide: Airdrop, Documents, Downloads, Movies, Music, Pictures, Recent Tags
 # View > Customize Control Strip > Add "New Folder" shortcut
@@ -421,8 +425,8 @@ defaults write com.apple.finder _FXSortFoldersFirst -bool true
 # - ~/
 # - ~/.dropbox-data/Dropbox/
 # - ~/Desktop/
-# - ~/doc/
-# - ~/dl/
+# - ~/Documents
+# - ~/Downloads
 # - ~/media/
 # - ~/media/images/screenshots/
 # - ~/media/music/production/
@@ -435,14 +439,13 @@ defaults write com.apple.finder _FXSortFoldersFirst -bool true
 # - /Volumes/ext0/daw/ableton/projects
 # - /Volumes/ext0/daw/plugins/
 # - /Volumes/ext0/music/samples/
-# * OPTIONAL: Copy icon from ~/Downloads to ~/dl in cmd+i dialog.
 
 
 # Show hidden files in Finder.
 #defaults write com.apple.finder AppleShowAllFiles YES
 
 # Save to disk (not to iCloud) by default
-defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
+#defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
 
 # Enable snap-to-grid for icons on the desktop and in other icon views
 /usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
@@ -451,12 +454,12 @@ defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
 
 # Hide default un-hidable folders in home directory from Finder.
 # Reset with $ chflags nohidden <dir>
-chflags hidden ~/Documents
-chflags hidden ~/Downloads
-chflags hidden ~/Movies
+#chflags hidden ~/Documents
+#chflags hidden ~/Downloads
+#chflags hidden ~/Movies
 #chflags hidden ~/Music
-chflags hidden ~/Pictures
-chflags hidden ~/Public
+#chflags hidden ~/Pictures
+#chflags hidden ~/Public
 # }
 
 # Menu Bar {
@@ -471,8 +474,6 @@ chflags hidden ~/Public
 # * In the top toolbar: move archive|trash|span button cluster all the way to the left for easier access to most commonly used button.
 # * In the New Mail window toolbar, click Aa to activate formatting options.
 ## Settings
-### General
-# * Downloads folder: ~/dl
 ### Accounts
 # * Disable iCloud
 ### Viewing
@@ -496,7 +497,10 @@ chflags hidden ~/Public
 
 # Photos.app {
 ## General
-# * Uncheck "Copy items to the photos library"
+# * CHECK "Copy items to the photos library"
+# * Check Sharing: "Include location information"
+## iCloud
+# * Select "Download Originals to this Mac"
 # }
 
 # Terminal.app {
@@ -511,7 +515,6 @@ chflags hidden ~/Public
 # * Homepage: favorites://
 #   * Set to Start Page. Ref: https://forums.macrumors.com/threads/make-safaris-startpage-your-homepage.2289398/
 # * Remove history items: manually
-# * File download location: ~/dl/
 # * Uncheck "Open safe files after downloading"
 ## Privacy
 # * Uncheck "Allow privacy-preserving measurement of ad effectiveness"

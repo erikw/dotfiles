@@ -18,6 +18,7 @@
       create: true
     ~/.zshenv: .zshenv
     ~/bin: bin
+    ~/Library/Mobile\ Documents/com~apple~CloudDocs: icloud
 
 - create:
     - ~/dl
@@ -69,6 +70,13 @@
       stdin: true
     - command: ~/bin/macos_install.sh
       description: Running macos_config.sh
+    - command: ln -s ~/Downloads ~/dl
+    - command: ln -s ~/Library/Mobile\ Documents/com~apple~CloudDocs/ ~/icloud
+      description: Symlink icloud to ~/
+    - command: ln -s icloud/bak ~/bak
+    - command: ln -s icloud/Documents ~/doc
+    - command: ln -s icloud/media ~/media
+    - command: ln -s icloud/work ~/work
 
 # TODO conditionally execute:  ~/bin/windows_install.ps1
 #      and migrate to use https://github.com/JamJar00/dotbot-scoop
