@@ -18,7 +18,7 @@
       create: true
     ~/.zshenv: .zshenv
     ~/bin: bin
-    ~/Library/Mobile\ Documents/com~apple~CloudDocs: icloud
+    #~/Library/Mobile Documents/com~apple~CloudDocs: icloud # TODO not working, file bug report.
 
 - create:
     - ~/dl

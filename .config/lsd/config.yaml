@@ -6,7 +6,7 @@ classic: false
 color:
   when: auto
   #theme: default  # TODO find solarized theme
-  theme: erikw
+  theme: custom # Uses colors.yaml
 
 date: "+%Y-%m-%d %H:%M"
 

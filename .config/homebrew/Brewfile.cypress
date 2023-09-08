@@ -19,8 +19,6 @@
 # }
 
 # Cask: default {
-    cask 'android-file-transfer'
-    cask 'android-platform-tools'
     cask 'authy'
     cask 'cryptomator'
     cask 'google-cloud-sdk'  # for gcloud cli used for tardbot.
@@ -39,6 +37,8 @@
 # Cask: optional {
 =begin
     cask 'ableton-live-suite' # If using latest version, which I'm not.
+    cask 'android-file-transfer'
+    cask 'android-platform-tools'
     cask 'focusrite-control' # Needs the driver tap
     cask 'isyncr'
     cask 'kid3'  # MP3 metadata editor
@@ -56,6 +56,7 @@
     mas 'Amazon Prime Video', id: 545519333
     mas 'Bitwarden', id: 1352778147
     mas 'Exporter', id: 1099120373
+    mas 'InstaRemind', id: 1492317385
     mas 'Keynote', id: 409183694
     mas 'Kindle', id: 405399194
     mas 'Numbers', id: 409203825

@@ -56,7 +56,7 @@ fi
 
 # fzf fuzzy finder. Installed via brew. Specify all options on cli for a non-interative setup.
 if ! [ -e $HOME/.config/fzf/fzf.zsh ]; then
-	$(brew --prefix)/opt/fzf/install --xdg  --key-bindings --no-update-rc --no-completion
+	$(brew --prefix)/opt/fzf/install --xdg  --key-bindings --completion --no-update-rc
 fi
 
 ## Crontab {
@@ -249,6 +249,10 @@ fi
 # Crontabs
 # If using Spotify, add an entry to local user's crontab:
 # @monthly			if_fail_do_notification spotify-backup.sh
+
+
+# InstaRemind
+# Hotkey: ctrl+cmd+r (like Todoist's ctrl+cmd+t)
 
 # }
 
