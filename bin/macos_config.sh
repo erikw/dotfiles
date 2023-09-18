@@ -354,6 +354,10 @@ fi
 #  - Click Options and enable current user
 # }
 
+# Passwords {
+## Password Optons
+# * Disable "AutoFill passwords" to stop getting strong password suggestions in Safari, conflicting with password manager. Ref:https://discussions.apple.com/thread/252704886
+# }
 # }
 
 # Archive Util.app {
@@ -474,6 +478,8 @@ defaults write com.apple.finder _FXSortFoldersFirst -bool true
 # * In the top toolbar: move archive|trash|span button cluster all the way to the left for easier access to most commonly used button.
 # * In the New Mail window toolbar, click Aa to activate formatting options.
 ## Settings
+### General
+# * Uncheck "Follow Up Suggestions"
 ### Accounts
 # * Disable iCloud
 ### Viewing

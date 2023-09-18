@@ -252,7 +252,7 @@ fi
 
 
 # InstaRemind
-# Hotkey: ctrl+cmd+r (like Todoist's ctrl+cmd+t)
+# Hotkey: ctrl+cmd+r (like Todoist's ctrl+cmd+a)
 
 # }
 
