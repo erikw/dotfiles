@@ -493,6 +493,8 @@ defaults write com.apple.finder _FXSortFoldersFirst -bool true
 # }
 
 # Music.app {
+## Playback
+# Enable "Sound Enhancer" when using desktop speaker.
 ## Files
 # * Add music folder.
 # * Check "Keep music Media folder organized"

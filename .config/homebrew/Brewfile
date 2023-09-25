@@ -176,7 +176,6 @@ cask 'iterm2-beta' # Until 3.5 is released (that has dark/light automatic modes)
 cask 'keepingyouawake'
 cask 'scroll-reverser'
 cask 'sanesidebuttons' # Fork of sensiblesidebuttons. Need to manually add it to System Preferences > Users & Groups > Login items
-cask 'spotify'
 cask 'the-unarchiver'
 cask 'vimr'
 cask 'vlc'
@@ -245,6 +244,7 @@ cask 'vlc'
 # cask 'skype'
 # cask 'slack'
 # cask 'sound-control'
+# cask 'spotify'
 # cask 'spotify-notifications'
 # cask 'steam'
 # cask 'stretchly'
@@ -279,16 +279,16 @@ mas 'Keyword Search', id: 1_558_453_954
 # }
 
 # Mas: optional {
+# mas 'Bitwarden', id: 1352778147
 # mas 'GamePad Companion', id: 428799479
 # mas 'Irvue', id: 1039633667
 # mas 'Microsoft To Do', id: 1274495053
 # mas 'Neural Mix Pro', id: 1527105121
+# mas 'PhotoResize', id: 492236133
+# mas 'Playlisty for Apple Music', id: 1459275972
 # mas 'SwordSoft Screenink Free', id: 953841977
 # mas 'WeatherBug', id: 1059074180
-# mas 'WhatsApp Desktop', id: 1147396723
 # mas 'Xcode', id: 497799835
-# mas 'Bitwarden', id: 1352778147
-# mas 'PhotoResize', id: 492236133
 # }
 
 # Development: Java {
