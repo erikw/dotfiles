@@ -18,7 +18,6 @@
       create: true
     ~/.zshenv: .zshenv
     ~/bin: bin
-    ~/Library/Mobile Documents/com~apple~CloudDocs: icloud # TODO not working, file bug report.
 
 - create:
     - ~/dl
@@ -33,38 +32,30 @@
         Symlinking iCloud to ~/icloud,
       ]
 
-# TODO guard on macOS with ifmacos or if, when any of them works. https://github.com/ssbanerje/dotbot-ifplatform/pull/4#issuecomment-1532112176
+# TODO use ifmacos when bug fixed. https://github.com/ssbanerje/dotbot-ifplatform/pull/4#issuecomment-1532112176
 #- ifmacos:
 #    - brewfile:
 #      - .config/homebrew/Brewfile
-- brewfile:
-    - .config/homebrew/Brewfile
+- if:
+    cond: test $(uname) = Darwin
+    met:
+      - brewfile:
+          - .config/homebrew/Brewfile
 
-# TODO Disabled as of bug: https://github.com/wonderbeyond/dotbot-if/issues/1
-# Hanlded in macos_install.sh for now.
-#- if:
-#    cond: 'test -e ~/.config/homebrew/Brewfile.$(hostname)'
-#    met:
-#    - shell:
-#      - [git submodule update --init --recursive, Installing submodules]
+- if:
+    cond: "test -e ~/.config/homebrew/Brewfile.$(hostname)"
+    met:
+      - shell:
+          - [git submodule update --init --recursive, Installing submodules]
 
-# TODO disabled as of bug executing command twice: https://github.com/ssbanerje/dotbot-ifplatform/pull/4#issuecomment-1532112176
-#- ifmacos:
-#  - shell:
-#    -
-#      command: ~/bin/macos_config.sh
-#      description: Running macos_config.sh
-#      stdin: true
-
-# TODO not working due to https://github.com/wonderbeyond/dotbot-if/issues/1
-#- if:
-#    cond: test $(uname) = Darwin
-#    met:
-#      - shell:
-#        -
-#          command: ~/bin/macos_config.sh
-#          description: Running macos_config.sh
-#          stdin: true
+# TODO use ifmacos when bug fixed. https://github.com/ssbanerje/dotbot-ifplatform/pull/4#issuecomment-1532112176
+- if:
+    cond: test $(uname) = Darwin
+    met:
+      - shell:
+          - command: ~/bin/macos_config.sh
+            description: Running macos_config.sh
+            stdin: true
 
 # Just always run this for now, until some plugin like ifmacos/if works.
 - shell:
