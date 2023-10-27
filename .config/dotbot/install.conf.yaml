@@ -27,6 +27,7 @@
     - ~/.local/share/tig # Make tig use $XDG_DATA_HOME. Reference: https://wiki.archlinux.org/title/XDG_Base_Directory#Partial
 
 - shell:
+    - [git submodule update --init --recursive, Installing submodules]
     - [
         ln -s ~/Library/Mobile\ Documents/com~apple~CloudDocs ~/icloud,
         Symlinking iCloud to ~/icloud,
@@ -45,8 +46,8 @@
 - if:
     cond: "test -e ~/.config/homebrew/Brewfile.$(hostname)"
     met:
-      - shell:
-          - [git submodule update --init --recursive, Installing submodules]
+      - brewfile:
+          - "~/.config/homebrew/Brewfile.$(hostname)"
 
 # TODO use ifmacos when bug fixed. https://github.com/ssbanerje/dotbot-ifplatform/pull/4#issuecomment-1532112176
 - if:
