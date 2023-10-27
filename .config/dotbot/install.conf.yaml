@@ -29,7 +29,7 @@
 - shell:
     - [git submodule update --init --recursive, Installing submodules]
     - [
-        ln -s ~/Library/Mobile\ Documents/com~apple~CloudDocs ~/icloud,
+        ln -sf ~/Library/Mobile\ Documents/com~apple~CloudDocs ~/icloud,
         Symlinking iCloud to ~/icloud,
       ]
 
