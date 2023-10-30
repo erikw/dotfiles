@@ -58,6 +58,7 @@
 # Mas: default {
     mas 'Amazon Prime Video', id: 545519333
     mas 'Bitwarden', id: 1352778147
+    mas 'CEWE Fotowelt', 1321448290
     mas 'Exporter', id: 1099120373
     mas 'InstaRemind', id: 1492317385
     mas 'Keynote', id: 409183694
