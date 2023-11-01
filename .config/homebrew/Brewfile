@@ -176,7 +176,6 @@ cask 'iterm2-beta' # Until 3.5 is released (that has dark/light automatic modes)
 cask 'keepingyouawake'
 cask 'scroll-reverser'
 cask 'sanesidebuttons' # Fork of sensiblesidebuttons. Need to manually add it to System Preferences > Users & Groups > Login items
-cask 'the-unarchiver'
 cask 'vimr'
 cask 'vlc'
 # }
@@ -270,6 +269,7 @@ cask 'vlc'
 mas 'Brother iPrint&Scan', id: 1_193_539_993 # Image Capture.app does not work for Brother DCP-7070DW
 mas 'Shazam', id: 897_118_787
 mas 'Todoist', id: 585_829_637
+mas 'The Unarchiver', 425_424_353
 
 # Safari extensions:
 mas 'AdGuard for Safari', id: 1_440_147_259
