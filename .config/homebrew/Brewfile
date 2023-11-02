@@ -162,7 +162,6 @@ brew 'zsh-syntax-highlighting'
 # }
 
 # Cask: default {
-cask 'amethyst'
 cask 'appcleaner'
 cask 'chrysalis' # Configurator for Atreus keyboard.
 cask 'clipy' # If needed, could replace with https://github.com/p0deje/Maccy even though pinned items not exactly like snippets
@@ -181,6 +180,7 @@ cask 'vlc'
 # }
 
 # Cask: optional {
+# cask 'amethyst'
 # cask 'android-studio'
 # cask 'atom'
 # cask 'audacity'

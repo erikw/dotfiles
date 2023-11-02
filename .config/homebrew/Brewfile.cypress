@@ -24,7 +24,6 @@
     cask 'google-cloud-sdk'  # for gcloud cli used for tardbot.
     cask 'gramps'
     cask 'handbrake'
-    cask 'jabra-direct'
     cask 'jettison'
     cask 'lastfm'
     cask 'mactex'
@@ -44,6 +43,7 @@
     cask 'focusrite-control' # Needs the driver tap
     cask 'freeyourmusic'
     cask 'isyncr'
+    cask 'jabra-direct'
     cask 'kid3'  # MP3 metadata editor
     cask 'microsoft-office'  # License managed at https://account.microsoft.com/services/
     cask 'mixed-in-key'    # If using latest version, which I'm not.

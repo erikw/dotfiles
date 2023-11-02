@@ -76,12 +76,18 @@ fi
 # * Appearance: Auto
 # }
 
-# Desktop & Screensaver {
-## Desktop
+# Desktop & Dock {
+# * Stage manager: enable
+#   * Enable Desktop items
+# }
+
+# Wallpaper {
 # * Add all folders in ~/media/images/wallpapers/dynamic_mac/.
 #   * See https://www.dynamicwallpaper.club/docs on how to use custom dynamic images.
 #   * See https://apple.stackexchange.com/questions/71070/how-to-change-desktop-wallpaper-for-all-virtual-desktops/415790#415790 on how to set wallpaper for all desktops.
-## Screensaver
+# }
+
+# Screensaer {
 # * Check "Show with clock"
 ###  Hot Corners:
 # Reference: https://blog.jiayu.co/2018/12/quickly-configuring-hot-corners-on-macos/
