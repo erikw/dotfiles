@@ -117,14 +117,9 @@ defaults write com.apple.dock wvous-br-corner -int 10
 defaults write com.apple.dock wvous-br-modifier -int 0
 # }
 
-# Dock & Menu Bar {
-# * Uncheck "Show recent applications in Dock"
-defaults write com.apple.dock show-recents -bool false
-# * Prevent accidential change of dock size or position by locking
-defaults write com.apple.Dock position-immutable -bool true
-# * NOPE Check "Ask to keep changes when closing documents" to prevent autosaving in Pages, Numbers & Keynote.
-#   * Don't check this, keep consistency with iOS app and reply on Previous Revision feature instead.
-# * Control Centre:
+
+
+# Control Center {
 # - Wi-Fi: uncheck
 # - Bluetooth: uncheck
 # - AirDrop: uncheck
@@ -143,7 +138,16 @@ defaults write com.apple.Dock position-immutable -bool true
 # - Spotlight: uncheck
 # - Siri: check
 # - Time machine: Show in Menu Bar
-# Dock misc {
+# }
+
+
+
+# Desktop & Dock {
+# * Uncheck "Show recent applications in Dock"
+#defaults write com.apple.dock show-recents -bool false
+# * Prevent accidential change of dock size or position by locking
+#defaults write com.apple.Dock position-immutable -bool true
+
 # * Add ~/ (Stack, List)  and ~/Downloads (Stack, Automatic) to dock.
 # * For dual monitors: For all applications in dock: Right click > Option > assign to correct monitor and desktop.
 
@@ -155,7 +159,6 @@ if ! defaults read com.apple.dock | grep -q spacer-tile; then
 	defaults write com.apple.dock persistent-apps -array-add '{tile-data={}; tile-type="spacer-tile";}'
 	defaults write com.apple.dock persistent-apps -array-add '{tile-data={}; tile-type="spacer-tile";}'
 fi
-# }
 # }
 
 # Mission Control {
@@ -393,7 +396,6 @@ fi
 # }
 
 # Finder {
-
 ## View
 # ** Show Path Bar
 defaults write com.apple.finder ShowPathbar -bool true
@@ -409,7 +411,6 @@ chflags nohidden ~/Library
 ## Preferences
 ### General
 # *** Show on desktop: connected servers, disks
-#defaults write com.apple.finder ShowHardDrivesOnDesktop -bool true
 defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
 defaults write com.apple.finder ShowMountedServersOnDesktop -bool true
 defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
