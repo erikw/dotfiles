@@ -221,7 +221,10 @@ Invoke-Expression "choco install vim --params /NoDesktopShortcuts"
 # Also drag C:\Users\erikw to the Explorer shortcut left column.
 
 # Windows Explorer
-# * View > Options > Change folder & view options > view
+# * View > Options > 
+## General
+# * Open File Explorer to: This PC (instead of Quick Access)
+## View
 # - check: Display full path in the title bar
 # - check: Show hidden files, folders, and drives
 # - uncheck: Hide extentions for known file types
