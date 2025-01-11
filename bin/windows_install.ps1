@@ -79,6 +79,7 @@ choco feature enable -n=allowGlobalConfirmation
 
 $choco_apps =
 "7zip " +
+"auto-dark-mode" +
 "autohotkey " +
 "bleachbit " +
 "choco-cleaner" +
