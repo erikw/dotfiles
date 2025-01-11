@@ -234,8 +234,9 @@ Invoke-Expression "choco install vim --params /NoDesktopShortcuts"
 
 # AutoHotkey
 # * Press Win+R and type "shell:Startup"
-# * Make a shortcut from within this folder to ~/src/github.com/erikw/dotfiles/.config/autohotkey/AutoHotkey.ahk
-
+# * Make a shortcut from within this folder to v1 or v2 version of AHK:
+# ~/src/github.com/erikw/dotfiles/.config/autohotkey/AutoHotkey_v1.ahk
+# ~/src/github.com/erikw/dotfiles/.config/autohotkey/AutoHotkey_v2.ahk
 
 # Ditto
 # * Right click on taskbar icon > Options
