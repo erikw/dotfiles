@@ -244,7 +244,7 @@ Invoke-Expression "choco install vim --params /NoDesktopShortcuts"
 # Ditto
 # * Right click on taskbar icon > Options
 # * General > Paste entries expires after: 1 day
-# * Keyboard Shortcuts > Activate Ditto: Ctrl + Shift + v
+# * Keyboard Shortcuts > Activate Ditto: Ctrl + Alt + v
 
 
 # Vimperator:
