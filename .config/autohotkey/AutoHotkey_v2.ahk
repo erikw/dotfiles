@@ -45,3 +45,18 @@ Pause::Capslock
 ; Produce a backspace character with ^h.
 ;^h::Backspace
 ^h::Send("{Backspace}")
+
+; Media control shortcuts.
+;^F6::Media_Prev
+;^F7::Media_Play_Pause
+;^F8::Media_Next
+
+; Volume control.
+;^F10::Volume_Down
+;^F11::Volume_Up
+;^F12::Volume_Mute
+
+; MACOS-CONFIG
+; Swap Alt and Windows key on Mac keyboards.
+;LAlt::LWin
+;LWin::LAlt
