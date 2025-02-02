@@ -135,7 +135,7 @@ Invoke-Expression "choco install vim --params /NoDesktopShortcuts"
 
 # Manually install {
 
-
+# * Windows Link phone app to mirror notifications to windows. 
 # * Drivers. For Thinkpad, download  http://pcsupport.lenovo.com/de/en/products/Laptops-and-netbooks/ThinkPad-T-Series-laptops/ThinkPad-T430/downloads)
 # * Lenovo ThinkVantage System Update utility,
 # * Lenovo Power Manager Driver
