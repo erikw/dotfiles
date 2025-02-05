@@ -57,3 +57,18 @@ git commit -m "SQUASHED passwords"
 	grep -nr LINUX-CONFIG . 2>/dev/null | grep -v README.md
 	grep -nr FREEBSD-CONFIG . 2>/dev/null | grep -v README.md
 	```
+
+## GitHub SSH Config File
+To ensure success, use a manual entry like this (modify output from [bin/ssh-keygen.sh]:
+<details>
+<summary>~/.ssh/config</summary>
+
+```config
+Host github.com
+	User git
+	Port 22
+	PreferredAuthentications publickey
+	IdentityFile ~/.ssh/identityfiles/REDACT
+```
+
+</details>
