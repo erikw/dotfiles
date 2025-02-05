@@ -63,7 +63,7 @@ To ensure success, use a manual entry like this (modify output from [bin/ssh-key
 <details>
 <summary>~/.ssh/config</summary>
 
-```config
+```sshconfig
 Host github.com
 	User git
 	Port 22
