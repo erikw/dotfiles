@@ -79,25 +79,19 @@ choco feature enable -n=allowGlobalConfirmation
 
 $choco_apps =
 "7zip " +
-"auto-dark-mode" +
+"auto-dark-mode " +
 "autohotkey " +
 "bleachbit " +
 "choco-cleaner" +
 "cygwin " +
-"deluge " +
-"discord " +
 "ditto " +
-"firefox " +
 "git " +
 "googlechrome " +
 "javaruntime " +
-"lastpass " +
 "libreoffice " +
 "littleregistrycleaner" +
 "openhardwaremonitor " +
 "putty " +
-"signal " +
-"spotify " +
 "sumatrapdf " +
 "vlc " +
 "whatsapp " +
@@ -107,10 +101,16 @@ $choco_apps =
 $choco_apps_additional =
 "battle.net" +
 "dropbox " +
+"deluge " +
+"discord " +
 "epicgameslauncher" +
 "f.lux " +
+"firefox " +
 "flashplayerplugin " +
+"lastpass " +
 "origin " +
+"signal " +
+"spotify " +
 "skype " +
 "steam " +
 "velocity " +
