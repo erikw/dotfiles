@@ -2,6 +2,8 @@
 # Interactivly create SSH keypairs with my preferences.
 # # NOTE don't use alias for github.com since lot's of applications will break like git submodule and vundle. Just use 'Host "*github.com"'.
 
+SCRIPTPATH="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
+
 is_macos() {
   [[ "$OSTYPE" == "darwin"* ]]
 }
@@ -72,7 +74,7 @@ eval "$cmd_keygen"
 
 test "$only_key" = "y" && exit
 
-ssh-config-create.sh
+$SCRIPTPATH/ssh-config-create.sh
 
 cat << EOF >> $HOME/.ssh/config
 
