@@ -87,6 +87,7 @@ $choco_apps =
 "ditto " +
 "git " +
 "googlechrome " +
+"icloud " +
 "javaruntime " +
 "libreoffice " +
 "littleregistrycleaner" +
