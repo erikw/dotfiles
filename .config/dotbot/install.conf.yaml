@@ -1,6 +1,7 @@
 - defaults:
     link:
       relink: true
+      force: true # For GitHub Codespaces
     create:
       mode: 0700
     shell:
@@ -10,12 +11,8 @@
 - clean: ["~"]
 
 - link:
-    ~/.bashrc:
-      path: .bashrc
-      force: true # For GitHub Codespaces
-    ~/.config:
-      path: .config
-      force: true # For GitHub Codespaces
+    ~/.bashrc: .bashrc
+    ~/.config: .config
     ~/.hushlogin: .hushlogin
     ~/.local/repos:
       path: .local/repos
