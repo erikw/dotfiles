@@ -1,7 +1,7 @@
 - defaults:
     link:
       relink: true
-      force: true # For GitHub Codespaces
+      # force: true # For GitHub Codespaces
     create:
       mode: 0700
     shell:
@@ -9,6 +9,13 @@
       stdout: true
 
 - clean: ["~"]
+
+# Remove existing files in GitHub CodeSpaces. Using force relink is not enough as I dont' have .zshrc in my repo, but the one from Codespaces prevents zsh to look for my XDG zsh config.
+- if:
+    cond: test "$CODESPACES" = true
+    met:
+    - shell:
+      - rm -r .bashrc .config/ .zshrc
 
 - link:
     ~/.bashrc: .bashrc
