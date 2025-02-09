@@ -16,6 +16,7 @@
     met:
     - shell:
       - cd $HOME; rm -f .bashrc .config .zprofile .zshrc
+      - ln -s .config/zsh/.zshrc $HOME/
 
 - link:
     ~/.bashrc: .bashrc
