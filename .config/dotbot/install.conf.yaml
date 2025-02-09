@@ -19,6 +19,10 @@
       # ~/.zshenv is not read when terminal.integrated.shellIntegration.enabled. Thus symlink .zshrc ourselves instead. Ref: https://stackoverflow.com/a/75848433
       - cp .zshenv $HOME/.zshrc
       - cat .config/zsh/.zshrc >> $HOME/.zshrc
+    unmet:
+    - shell:
+    - shell:
+      - echo "NOT IN CODESPACES APPARENTLY"
 
 - link:
     ~/.bashrc: .bashrc
