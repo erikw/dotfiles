@@ -15,7 +15,7 @@
     cond: test "$CODESPACES" = true
     met:
     - shell:
-      - cd $HOME; rm -rf .bashrc .config/ .zshrc
+      - rm -rf $HOME/.bashrc $HOME/.config/ $HOME/.zshrc
 
 - link:
     ~/.bashrc: .bashrc
