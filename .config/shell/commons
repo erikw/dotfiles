@@ -300,6 +300,8 @@
 		SSH_ENV="$HOME/.ssh/env"
 
 		function start_agent {
+			local dir="$(dirname "${SSH_ENV}")"
+			test -d "$dir" || mkdir -p "$dir"
 			#echo -n "Initialising new SSH agent... "
 			/usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
 			#echo succeeded

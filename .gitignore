@@ -40,6 +40,7 @@
 .config/vim/after/ftplugin/markdown/instant-markdown.vim
 .config/vim/autoload/plug.vim
 .config/vim/fuf-data/
+.config/vscode-dev-containers/
 .config/wireshark/
 .config/yarn/config
 .config/zsh/.zsh_funcs/_netlify
