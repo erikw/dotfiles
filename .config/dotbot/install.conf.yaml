@@ -21,7 +21,6 @@
       - cat .config/zsh/.zshrc >> $HOME/.zshrc
     unmet:
     - shell:
-    - shell:
       - echo "NOT IN CODESPACES APPARENTLY"
 
 - link:
