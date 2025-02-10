@@ -123,6 +123,7 @@ $choco_apps_additional =
 "translucenttb "
 "velocity " +
 "virtualclonedrive " +
+"vscode " +
 "winscp " +
 "zeal " +
 ""
