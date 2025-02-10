@@ -16,6 +16,7 @@
     - cd $HOME; rm -rf .bashrc .config .zprofile .zshrc
     # ~/.zshenv is not read when terminal.integrated.shellIntegration.enabled. Thus symlink .zshrc ourselves instead. Ref: https://stackoverflow.com/a/75848433
     - test "$CODESPACES" = true && cat .zshenv .config/zsh/.zshrc >> $HOME/.zshrc
+    - test "$CODESPACES" = true && sudo apt-get update && sudo apt-get install -y fzf
 
 - link:
     ~/.bashrc: .bashrc
