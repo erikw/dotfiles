@@ -10,6 +10,8 @@
 [![SLOC](https://sloc.xyz/github/erikw/dotfiles)](#)
 [![Number of programming languages used](https://img.shields.io/github/languages/count/erikw/dotfiles)](#)
 [![Top programming languages used](https://img.shields.io/github/languages/top/erikw/dotfiles)](#)
+[![Number of files in repo](https://img.shields.io/github/directory-file-count/erikw/dotfiles)](#)
+[![Repo file size](https://img.shields.io/github/repo-size/erikw/dotfiles)
 
 My personal dotfiles, installed and managed with [dotbot](https://github.com/anishathalye/dotbot).
 
