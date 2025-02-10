@@ -13,10 +13,11 @@
 # Remove existing files in GitHub CodeSpaces. Using force relink is not enough as I dont' have .zshrc in my repo, but the one from Codespaces prevents zsh to look for my XDG zsh config.
 # Dotbot is broken when run for the first time when setting up codespaces, no external plugins are loaded so can't use dotbotif here even to guard the following commands...
 - shell:
-    - cd $HOME; rm -rf .bashrc .config .zprofile .zshrc
     # ~/.zshenv is not read when terminal.integrated.shellIntegration.enabled. Thus symlink .zshrc ourselves instead. Ref: https://stackoverflow.com/a/75848433
     - test "$CODESPACES" = true && cat .zshenv .config/zsh/.zshrc >> $HOME/.zshrc
     - test "$CODESPACES" = true && sudo apt-get update && sudo apt-get install -y fzf fd-find
+    # This needs to be just before linking my own ~/.config, Codespaces will create its own periodically.......
+    - cd $HOME; rm -rf .bashrc .config .zprofile .zshrc
 
 - link:
     ~/.bashrc: .bashrc
