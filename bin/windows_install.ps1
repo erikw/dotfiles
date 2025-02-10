@@ -92,8 +92,10 @@ $choco_apps =
 "libreoffice " +
 "littleregistrycleaner" +
 "microsoft-windows-terminal " +
+"notepadplusplus " +
 "openhardwaremonitor " +
 "nanazip " +
+"neovim " +
 "putty " +
 "powertoys " +
 "sumatrapdf " +
