@@ -1,7 +1,7 @@
 <p align="center">
 <img alt="log" width="80%" src="img/logo.png" />
 </p>
-<p align="center"><i>the files that makes me feel at <tt>~/</tt>!</i></p>
+<p align="center"><i>the files that makes me feel at <tt>~/</tt></i></p>
 
 # Dotfiles
 [![GitHub Stars](https://img.shields.io/github/stars/erikw/dotfiles?style=social)](#)
