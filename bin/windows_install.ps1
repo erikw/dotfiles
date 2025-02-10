@@ -78,21 +78,23 @@ choco feature enable -n=allowGlobalConfirmation
 # but it's nice to keep this self-contaied so it can be downloaded an executed direclty
 
 $choco_apps =
-"7zip " +
 "auto-dark-mode " +
 "autohotkey " +
 "bleachbit " +
 "choco-cleaner" +
 "cygwin " +
 "ditto " +
+"flameshot " +
 "git " +
 "googlechrome " +
 "icloud " +
-"javaruntime " +
 "libreoffice " +
 "littleregistrycleaner" +
+"microsoft-windows-terminal " +
 "openhardwaremonitor " +
+"nanazip " +
 "putty " +
+"powertoys " +
 "sumatrapdf " +
 "vlc " +
 "whatsapp " +
@@ -100,23 +102,29 @@ $choco_apps =
 ""
 
 $choco_apps_additional =
+"7zip " +
 "battle.net" +
 "dropbox " +
 "deluge " +
 "discord " +
-"epicgameslauncher" +
+"eartrumpet " +
+"epicgameslauncher " +
 "f.lux " +
 "firefox " +
 "flashplayerplugin " +
+"javaruntime " +
 "lastpass " +
 "origin " +
+"quicklook " +
 "signal " +
 "spotify " +
 "skype " +
 "steam " +
+"translucenttb "
 "velocity " +
 "virtualclonedrive " +
 "winscp " +
+"zeal " +
 ""
 
 
