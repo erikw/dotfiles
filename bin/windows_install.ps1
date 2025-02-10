@@ -84,6 +84,7 @@ $choco_apps =
 "choco-cleaner" +
 "cygwin " +
 "ditto " +
+"eartrumpet " +
 "flameshot " +
 "git " +
 "googlechrome " +
@@ -107,7 +108,6 @@ $choco_apps_additional =
 "dropbox " +
 "deluge " +
 "discord " +
-"eartrumpet " +
 "epicgameslauncher " +
 "f.lux " +
 "firefox " +
