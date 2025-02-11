@@ -226,7 +226,6 @@
 	#export GOPATH="$XDG_DATA_HOME/go"
 	export GOPATH="$HOME/src/go"
 
-	# Don't check for $GOPATH/bin because we want to add this to path even if no go modules have been installed yet (thus bin/ has not been created). E.g. in GitHub codespaces, go installed programs would not be available in the first shell used to set up
 	if [ -d "$GOPATH/bin" ]; then
 		PATH="$GOPATH/bin:$PATH"
 	fi
