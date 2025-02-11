@@ -383,7 +383,14 @@
 
 	# fzf https://github.com/junegunn/fzf#using-homebrew
 	if program_is_in_path fzf; then
-		sourceifexists ${XDG_CONFIG_HOME:-$HOME/.config}/fzf/fzf.${SHELL_NAME}
+		# Cache shell init to file to speed up shell initialization.
+		fzf_init_file="${XDG_CACHE_HOME:-$HOME/.cache}/fzf.${SHELL_NAME}"
+		if  [ ! -f "$fzf_init_file" ]; then
+			fzf --${SHELL_NAME} > "$fzf_init_file"
+		fi
+		source "$fzf_init_file"
+		unset fzf_init_file
+
 		# Default cli options. See fzf(1)
 		export FZF_COMPLETION_OPTS='--multi'
 
