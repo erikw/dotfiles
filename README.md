@@ -12,6 +12,8 @@
 [![Top programming languages used](https://img.shields.io/github/languages/top/erikw/dotfiles)](#)
 [![Number of files in repo](https://img.shields.io/github/directory-file-count/erikw/dotfiles)](#)
 [![Repo file size](https://img.shields.io/github/repo-size/erikw/dotfiles)](#)
+[![XDG Compliancy](https://img.shields.io/badge/%E2%9C%94%20Compliancy-XDG%20Base%20Directory%20Standard-green)](#)
+
 
 My personal dotfiles, installed and managed with [dotbot](https://github.com/anishathalye/dotbot).
 
