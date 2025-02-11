@@ -93,6 +93,7 @@
 # TODO Linux: set up one of the apt-get plugins https://github.com/anishathalye/dotbot/wiki/Plugins possibly with the sudo plugin.
 # and base it of ~/doc/tech/irvine/arch_packages.txt
 
+# Guard against CodeSpaces as it will slow down set process for a new container significantly, and the languages will already be installed in the universal devcontainer anyways.
 - if:
     cond: test "$CODESPACES" != true
     met:
@@ -118,18 +119,16 @@
         #    - latest
         #  global: latest
 
-- if:
-    cond: test "$CODESPACES" != true
-    met:
-    - crontab:
-        - cron: "@monthly"
-          command: if_fail_do_notification crontab_backup.sh
-        - cron: 0 13 * * *
-          command: if_fail_do_notification dotfiles_backup_local.sh
+- crontab:
+    - cron: "@monthly"
+      command: if_fail_do_notification crontab_backup.sh
+    - cron: 0 13 * * *
+      command: if_fail_do_notification dotfiles_backup_local.sh
 
 - firefox:
     user.js: .config/firefox/user.js
 
+# Oly for desktop machines, not CodeSpaces.
 - if:
     cond: test "$CODESPACES" != true
     met:
