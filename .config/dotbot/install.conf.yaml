@@ -11,15 +11,17 @@
 - clean: ["~"]
 
 # Remove existing files in GitHub CodeSpaces. Using force relink is not enough as I dont' have .zshrc in my repo, but the one from Codespaces prevents zsh to look for my XDG zsh config.
-# Dotbot is broken when run for the first time when setting up codespaces, no external plugins are loaded so can't use dotbotif here even to guard the following commands...
-- shell:
-    # - test "$CODESPACES" = true && sudo apt-get update && sudo apt-get install -y fzf fd-find
-    # Nope apt-get version is too old, use go instead. Apt-get verison (0.44) is given but $(fzf --zsh) was added in 0.48. Ref: https://github.com/junegunn/fzf/issues/2599#issuecomment-2120141816
-    - test "$CODESPACES" = true && sudo apt-get update && sudo apt-get install -y fd-find && go install github.com/junegunn/fzf@latest
-    # ~/.zshenv is not read when terminal.integrated.shellIntegration.enabled. Thus symlink .zshrc ourselves instead. Ref: https://stackoverflow.com/a/75848433
-    # This needs to be just before linking my own ~/.config, Codespaces will create its own periodically.......
-    - cd $HOME; rm -rf .bashrc .config .zprofile .zshrc
-    - test "$CODESPACES" = true && cat .zshenv .config/zsh/.zshrc >> $HOME/.zshrc
+- if:
+    cond: test "$CODESPACES" = true
+    met:
+      - shell:
+          # - sudo apt-get update && sudo apt-get install -y fzf fd-find
+          # Nope apt-get version is too old, use go instead. Apt-get verison (0.44) is given but $(fzf --zsh) was added in 0.48. Ref: https://github.com/junegunn/fzf/issues/2599#issuecomment-2120141816
+          - sudo apt-get update && sudo apt-get install -y fd-find && go install github.com/junegunn/fzf@latest
+          # ~/.zshenv is not read when terminal.integrated.shellIntegration.enabled. Thus symlink .zshrc ourselves instead. Ref: https://stackoverflow.com/a/75848433
+          # This needs to be just before linking my own ~/.config, Codespaces will create its own periodically.......
+          - cd $HOME; rm -rf .bashrc .config .zprofile .zshrc
+          - cat .zshenv .config/zsh/.zshrc >> $HOME/.zshrc
 
 - link:
     ~/.bashrc: .bashrc
