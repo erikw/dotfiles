@@ -392,6 +392,8 @@
 			#export FZF_DEFAULT_COMMAND="rg --hidden --files --glob '!{.git,node_modules}/'"
 			#export FZF_DEFAULT_COMMAND='fd --type file --hidden --follow --exclude node_modules'
 			export FZF_DEFAULT_COMMAND='fd --type file --hidden --follow'
+		elif program_is_in_path fdfind; then # apt-get name
+			export FZF_DEFAULT_COMMAND='fdfind --type file --hidden --follow'
 		else
 			export FZF_DEFAULT_COMMAND='find . -type d \( -path './.git' -o -path './node_modules'  \) -prune -o -print'
 		fi
