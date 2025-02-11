@@ -261,8 +261,8 @@ fi
 	if type ack-grep >/dev/null 2>&1; then
 		alias ack='ack-grep'
 	fi
-	if type fd-find >/dev/null 2>&1; then
-		alias fd='fd-find'
+	if type fdfind >/dev/null 2>&1; then
+		alias fd='fdfind'
 	fi
 
 	if shell_is_macos; then
