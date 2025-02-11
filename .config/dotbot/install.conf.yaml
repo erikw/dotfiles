@@ -21,7 +21,7 @@
           # ~/.zshenv is not read when terminal.integrated.shellIntegration.enabled. Thus symlink .zshrc ourselves instead. Ref: https://stackoverflow.com/a/75848433
           # This needs to be just before linking my own ~/.config, Codespaces will create its own periodically.......
           - cd $HOME; rm -rf .bashrc .config .zprofile .zshrc
-          - cat .zshenv .config/zsh/.zshrc >> $HOME/.zshrc
+          # - cat .zshenv .config/zsh/.zshrc >> $HOME/.zshrc
 
 - link:
     ~/.bashrc: .bashrc
