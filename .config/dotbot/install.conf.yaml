@@ -1,6 +1,7 @@
 - defaults:
     link:
       relink: true
+      force: true # For GitHub Codespaces to overwrite autocreated by them: .bashrc, .config
     create:
       mode: 0700
     shell:
@@ -30,9 +31,7 @@
 
 - link:
     ~/.bashrc: .bashrc
-    ~/.config:
-      path: .config
-      force: true # For GitHub Codespaces to overwrite autocreated .config by them.
+    ~/.config: .config
     ~/.hushlogin: .hushlogin
     ~/.local/repos:
       path: .local/repos
