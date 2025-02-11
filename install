@@ -4,15 +4,19 @@
 set -e
 
 CONFIG=".config/dotbot/install.conf.yaml"
-DOTBOT_DIR=".local/repos/dotbot"
-DOTBOT_PLUGIN_DIR=".local/repos/dotbot-plugins"
+REPOS_DIR=".local/repos"
+DOTBOT_DIR="${REPOS_DIR}/dotbot"
+DOTBOT_PLUGIN_DIR="${REPOS_DIR}/dotbot-plugins"
 
 DOTBOT_BIN="bin/dotbot"
 BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 cd "${BASEDIR}"
 git -C "${DOTBOT_DIR}" submodule sync --quiet --recursive
-git submodule update --init --recursive "${DOTBOT_DIR}"
-git submodule update --init --recursive "${DOTBOT_PLUGIN_DIR}"
+# git submodule update --init --recursive "${DOTBOT_DIR}"
+# git submodule update --init --recursive "${DOTBOT_PLUGIN_DIR}"
+# Actually, initialize all submodules in my dotfiles as they are needed by not dotbot but shell confs etc. This is especially needed to be automated here for GitHub codespaces.
+git submodule update --init --recursive "${REPOS_DIR}"
+
 
 "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${CONFIG}" --plugin-dir "${DOTBOT_PLUGIN_DIR}/*" "${@}"
