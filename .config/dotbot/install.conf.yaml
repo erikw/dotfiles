@@ -1,7 +1,6 @@
 - defaults:
     link:
       relink: true
-      # force: true # For GitHub Codespaces
     create:
       mode: 0700
     shell:
@@ -16,16 +15,24 @@
     met:
       - shell:
           # - sudo apt-get update && sudo apt-get install -y fzf fd-find
-          # Nope apt-get version is too old, use go instead. Apt-get verison (0.44) is given but $(fzf --zsh) was added in 0.48. Ref: https://github.com/junegunn/fzf/issues/2599#issuecomment-2120141816
-          - sudo apt-get update && sudo apt-get install -y fd-find && go install github.com/junegunn/fzf@latest
+          # NOPE apt-get version is too old, use go instead. Apt-get verison (0.44) is given but $(fzf --zsh) was added in 0.48. Ref: https://github.com/junegunn/fzf/issues/2599#issuecomment-2120141816
+          # TODO switch to use apt-get when the included version supports $(fzf --zsh).
+          - sudo apt-get update && sudo apt-get install -y fd-find
+          - go install github.com/junegunn/fzf@latest
           # ~/.zshenv is not read when terminal.integrated.shellIntegration.enabled. Thus symlink .zshrc ourselves instead. Ref: https://stackoverflow.com/a/75848433
           # This needs to be just before linking my own ~/.config, Codespaces will create its own periodically.......
-          - cd $HOME; rm -rf .bashrc .config .zprofile .zshrc
+          # NOPE just add $ZDOTDIR to vscode settings.json instead.
           # - cat .zshenv .config/zsh/.zshrc >> $HOME/.zshrc
+          # NOPE not needing to remove .zshrc etc anymore since ZDOTDIR is set now. These files donesn't seem to be there anymore anways.:O
+          # - cd $HOME; rm -rf .bashrc .config .zprofile .zshrc
+          # Delete ~/.config so we can link in our own. Needs to be done close our linking as the dir is regularily recreated.
+          # - rm -rf $HOME/.config
 
 - link:
     ~/.bashrc: .bashrc
-    ~/.config: .config
+    ~/.config:
+      path: .config
+      force: true # For GitHub Codespaces to overwrite autocreated .config by them.
     ~/.hushlogin: .hushlogin
     ~/.local/repos:
       path: .local/repos
