@@ -256,8 +256,13 @@ fi
 	#alias x-proxy='ssh x -L 8080:x.com:123 -N'				# Start SSH tunnel web proxy to some server.
 	#alias chromium-xproxy='chromium --proxy-server="http://localhost:8080"'	# Starts Chromium that uses X proxy tunnel.
 
+
+	# Debian rename's some commands.
 	if type ack-grep >/dev/null 2>&1; then
-		alias ack='ack-grep'	# Debain renames ack.
+		alias ack='ack-grep'
+	fi
+	if type fd-find >/dev/null 2>&1; then
+		alias fd='fd-find'
 	fi
 
 	if shell_is_macos; then
