@@ -3,7 +3,7 @@
 </p>
 <p align="center"><i>the files that makes me feel at <tt>~/</tt></i></p>
 
-# Dotfiles
+# 🏠 Dotfiles
 [![GitHub Stars](https://img.shields.io/github/stars/erikw/dotfiles?style=social)](#)
 [![GitHub Forks](https://img.shields.io/github/forks/erikw/dotfiles?style=social)](#)
 <br>
