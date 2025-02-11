@@ -68,20 +68,20 @@
 - if:
     cond: test $(uname) = Darwin
     met:
-    - shell:
-        - command: ~/bin/macos_config.sh
-          description: Running macos_config.sh
-          stdin: true
-        - command: ~/bin/macos_install.sh
-          description: Running macos_config.sh
-        - command: ln -s ~/Downloads ~/dl
-        - command: ln -s ~/Documents ~/doc
-        - command: ln -s ~/Library/Mobile\ Documents/com~apple~CloudDocs/ ~/icloud
-          description: Symlink icloud to ~/
-        # Don't double-symlink via ~/icloud, because Stacks in Dock.app won't follow double-symlinks.
-        - command: ln -s ~/Library/Mobile\ Documents/com~apple~CloudDocs/bak ~/bak
-        - command: ln -s ~/Library/Mobile\ Documents/com~apple~CloudDocs/media ~/media
-        - command: ln -s ~/Library/Mobile\ Documents/com~apple~CloudDocs/work ~/work
+      - shell:
+          - command: ~/bin/macos_config.sh
+            description: Running macos_config.sh
+            stdin: true
+          - command: ~/bin/macos_install.sh
+            description: Running macos_config.sh
+          - command: ln -s ~/Downloads ~/dl
+          - command: ln -s ~/Documents ~/doc
+          - command: ln -s ~/Library/Mobile\ Documents/com~apple~CloudDocs/ ~/icloud
+            description: Symlink icloud to ~/
+          # Don't double-symlink via ~/icloud, because Stacks in Dock.app won't follow double-symlinks.
+          - command: ln -s ~/Library/Mobile\ Documents/com~apple~CloudDocs/bak ~/bak
+          - command: ln -s ~/Library/Mobile\ Documents/com~apple~CloudDocs/media ~/media
+          - command: ln -s ~/Library/Mobile\ Documents/com~apple~CloudDocs/work ~/work
 
 # TODO conditionally execute:  ~/bin/windows_install.ps1
 #      and migrate to use https://github.com/JamJar00/dotbot-scoop
@@ -97,33 +97,36 @@
 - if:
     cond: test "$CODESPACES" != true
     met:
-    - asdf:
-        - plugin: ruby
-          versions:
-            - latest
-          global: latest
-        - plugin: python
-          versions:
-            - latest
-          global: latest
-        - plugin: golang
-          versions:
-            - latest
-          global: latest
-        - plugin: nodejs
-          versions:
-            - latest
-          global: latest
-        #- plugin: java
-        #  versions:
-        #    - latest
-        #  global: latest
+      - asdf:
+          - plugin: ruby
+            versions:
+              - latest
+            global: latest
+          - plugin: python
+            versions:
+              - latest
+            global: latest
+          - plugin: golang
+            versions:
+              - latest
+            global: latest
+          - plugin: nodejs
+            versions:
+              - latest
+            global: latest
+          #- plugin: java
+          #  versions:
+          #    - latest
+          #  global: latest
 
-- crontab:
-    - cron: "@monthly"
-      command: if_fail_do_notification crontab_backup.sh
-    - cron: 0 13 * * *
-      command: if_fail_do_notification dotfiles_backup_local.sh
+- if:
+    cond: test "$CODESPACES" != true
+    met:
+      - crontab:
+          - cron: "@monthly"
+            command: if_fail_do_notification crontab_backup.sh
+          - cron: 0 13 * * *
+            command: if_fail_do_notification dotfiles_backup_local.sh
 
 - firefox:
     user.js: .config/firefox/user.js
@@ -132,10 +135,10 @@
 - if:
     cond: test "$CODESPACES" != true
     met:
-    - ghq:
-        - repo: erikw/templates
-          flags: [-p]
-        - repo: erikw/erikw
-          flags: [-p]
-        - repo: erikw/erikw.me-jekyll
-          flags: [-p]
+      - ghq:
+          - repo: erikw/templates
+            flags: [-p]
+          - repo: erikw/erikw
+            flags: [-p]
+          - repo: erikw/erikw.me-jekyll
+            flags: [-p]
