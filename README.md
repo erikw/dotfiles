@@ -7,7 +7,7 @@
 [![GitHub Stars](https://img.shields.io/github/stars/erikw/dotfiles?style=social)](#)
 [![GitHub Forks](https://img.shields.io/github/forks/erikw/dotfiles?style=social)](#)
 <br>
-[![SLOC](https://sloc.xyz/github/erikw/dotfiles)](#)
+[![SLOC](https://sloc.xyz/github/erikw/dotfiles?badge-bg-color=32CD32)](#)
 [![Number of programming languages used](https://img.shields.io/github/languages/count/erikw/dotfiles)](#)
 [![Top programming languages used](https://img.shields.io/github/languages/top/erikw/dotfiles)](#)
 [![Number of files in repo](https://img.shields.io/github/directory-file-count/erikw/dotfiles)](#)
