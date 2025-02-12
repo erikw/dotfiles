@@ -102,6 +102,7 @@ $choco_apps =
 "vlc " +
 "whatsapp " +
 "windirstat " +
+"winxcorners " +
 ""
 
 $choco_apps_additional =
