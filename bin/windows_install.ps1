@@ -261,7 +261,8 @@ Invoke-Expression "choco install vim --params /NoDesktopShortcuts"
 # * Keyboard Shortcuts > Activate Ditto: Ctrl + Alt + v
 
 # Flameshot
-# Actually the built-in screenshot tool is enough (win10: Snip & Sketch, win11: Snipping tool)
+# Actually the built-in screenshot tool is enough (win10: Snip & Sketch, win11: Snipping tool). 
+## Use Win+PrtSc to automatically save screenshot to Screenshots folder, Win+Shift+S for rectangular area selection.
 
 
 # Linux, OSX and sane OSes store and interpret the hwclock as UTC time, while Windoze insists on it being in the local timezone...
