@@ -79,7 +79,6 @@ choco feature enable -n=allowGlobalConfirmation
 
 $choco_apps =
 "auto-dark-mode " +
-"autohotkey " +
 "bleachbit " +
 "choco-cleaner" +
 "cygwin " +
@@ -105,6 +104,7 @@ $choco_apps =
 
 $choco_apps_additional =
 "7zip " +
+"autohotkey " +
 "battle.net" +
 "dropbox " +
 "deluge " +
@@ -216,7 +216,6 @@ Invoke-Expression "choco install vim --params /NoDesktopShortcuts"
 
 
 
-
 # Taskbar (right click on)
 # * Cortana > uncheck "Show Cortana icon"
 # * Search > check "Hidden"
@@ -249,6 +248,7 @@ Invoke-Expression "choco install vim --params /NoDesktopShortcuts"
 # * Create folders in My Documents: tmp, doc, bin, pub
 
 # AutoHotkey
+# NOTE replaced by PowerToys
 # * Press Win+R and type "shell:Startup"
 # * Make a shortcut from within this folder to v1 or v2 version of AHK:
 # ~/src/github.com/erikw/dotfiles/.config/autohotkey/AutoHotkey_v1.ahk
@@ -286,6 +286,24 @@ $Shortcut = $WScriptShell.CreateShortcut($ShortcutFile)
 $Shortcut.TargetPath = $TargetFile
 $Shortcut.Save()
 
+# Powertoys
+# Enable the following sections: 
+## PowerToys Run
+## Advanced Paste
+## Color Picker
+## Keyboard Manager
+## Find My Mouse
+## Always On Top
+## Image Resizer
+## Peek
+## PowerRename
+## Screen Ruler
+## Text Extractor
+## Shortcut Guide
+## Workspaces
+# Replace AutoHotkey by:
+# * Remap a key > Caps Lock -> Esc
+# * Remap a shortcut > Ctrl+H -> Backspace
 
 # PuTTY
 ## To set up login with ssh keys
