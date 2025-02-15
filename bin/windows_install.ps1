@@ -84,7 +84,6 @@ $choco_apps =
 "choco-cleaner" +
 "cygwin " +
 "eartrumpet " +
-"flameshot " +
 "git " +
 "googlechrome " +
 "icloud " +
@@ -114,6 +113,7 @@ $choco_apps_additional =
 "epicgameslauncher " +
 "f.lux " +
 "firefox " +
+"flameshot " +
 "flashplayerplugin " +
 "javaruntime " +
 "lastpass " +
@@ -260,9 +260,8 @@ Invoke-Expression "choco install vim --params /NoDesktopShortcuts"
 # * General > Paste entries expires after: 1 day
 # * Keyboard Shortcuts > Activate Ditto: Ctrl + Alt + v
 
-
-# Vimperator:
-#cp ~/src/github.com/erikw/dotfiles/.vimperatorrc ~/
+# Flameshot
+# Actually the built-in screenshot tool is enough (win10: Snip & Sketch, win11: Snipping tool)
 
 
 # Linux, OSX and sane OSes store and interpret the hwclock as UTC time, while Windoze insists on it being in the local timezone...
