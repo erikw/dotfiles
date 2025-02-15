@@ -83,7 +83,6 @@ $choco_apps =
 "bleachbit " +
 "choco-cleaner" +
 "cygwin " +
-"ditto " +
 "eartrumpet " +
 "flameshot " +
 "git " +
@@ -111,6 +110,7 @@ $choco_apps_additional =
 "dropbox " +
 "deluge " +
 "discord " +
+"ditto " +
 "epicgameslauncher " +
 "f.lux " +
 "firefox " +
@@ -255,6 +255,7 @@ Invoke-Expression "choco install vim --params /NoDesktopShortcuts"
 # ~/src/github.com/erikw/dotfiles/.config/autohotkey/AutoHotkey_v2.ahk
 
 # Ditto
+# NOTE windows has built+in clipboard history now on win+v. Ref: https://www.howtogeek.com/671222/how-to-enable-and-use-clipboard-history-on-windows-10/
 # * Right click on taskbar icon > Options
 # * General > Paste entries expires after: 1 day
 # * Keyboard Shortcuts > Activate Ditto: Ctrl + Alt + v
@@ -335,7 +336,10 @@ $Shortcut.Save()
 # ==Battery
 # * Check "Turn battery save on automatically if my batter falls below" 20%, and "lower screen brightness".
 
-# === About
+# ==Clipboard
+# * Enable "Clipboard history"
+
+# ==About
 # * Rename PC
 # * Click "System Info", in the new window in the left menu click "System Protection". Configure 10% of C:// drive for restore points and create a first restore point.
 
