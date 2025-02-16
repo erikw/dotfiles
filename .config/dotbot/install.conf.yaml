@@ -15,7 +15,7 @@
     cond: test "$CODESPACES" = true
     met:
       - shell:
-          # - sudo apt-get update && sudo apt-get install -y fzf fd-find
+          # - sudo apt-get update && sudo apt-get install -y fzf fd-find ripgrep ack-grep
           # NOPE apt-get version is too old, use go instead. Apt-get verison (0.44) is given but $(fzf --zsh) was added in 0.48. Ref: https://github.com/junegunn/fzf/issues/2599#issuecomment-2120141816
           # TODO switch to use apt-get when the included version supports $(fzf --zsh).
           - sudo apt-get update && sudo apt-get install -y fd-find
