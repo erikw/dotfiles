@@ -144,7 +144,7 @@ fi
 	# Modified version of https://stackoverflow.com/a/12935606/265508
 	setopt prompt_subst
 	autoload -Uz vcs_info
-	zstyle ':vcs_info:*' formats '%F{5}[%F{2}%b%F{5}] %F{2}%c%F{3}%u%f'
+	zstyle ':vcs_info:*' formats '%F{5}[%F{2}%b%F{5}]%F{2}%c%F{3}%u%f'
 	zstyle ':vcs_info:*' enable git cvs svn
 	precmd () { vcs_info }
 	# See formatting options in manpage zshmisc(1) under the section SIMPLE PROMPT ESCAPES.
@@ -152,13 +152,21 @@ fi
 	# NOTE virtualenvwrapper prepends the active venv name in the generated bin/activate script.
 	PROMPT="%D{%H:%M:%S}"								# Date with seconds
 	[ $(id -u) -eq 0 ] && user_color=red || user_color=blue
-	PROMPT="$PROMPT %F{$user_color}%n%{$reset_color%}@%F{cyan}%m%{$reset_color%}"	# Current user and hostname
+	if [ "$CODESPACES" != true ]; then
+		PROMPT="$PROMPT %F{$user_color}%n%{$reset_color%}@%F{cyan}%m%{$reset_color%}"	# Current user and hostname.
+	fi
 	unset user_color
 	if [ -n "$SSH_CLIENT" ] && ! ([ -n "$TMUX" ] || [[ "$TERM" == "screen-"* ]] ); then
 		# Highlight when logged in via SSH. But not in screen/tmux, that does not make sense.
 		PROMPT="$PROMPT %F{blue}[SSH]%{$reset_color%}"
 	fi
-	PROMPT="$PROMPT %F{3}%5~%{$reset_color%}"			# CWD, truncated to 5 components (directory depth).
+	if [ "$CODESPACES" = true ]; then
+		trunc_len=2
+	else
+		trunc_len=5
+	fi
+	PROMPT="$PROMPT %F{3}%${trunc_len}~%{$reset_color%}"			# CWD, truncated to $trunc_len components (directory depth).
+	unset trunc_len
 	PROMPT="$PROMPT \${vcs_info_msg_0_}"				# Current VCS branch, as configured above. $ is escaped so this part is not evaluated yet (breaks then).
 	PROMPT="$PROMPT%1(j:[%j]:)"							# Number of background jobs (if >=1).
 	PROMPT="$PROMPT%(?::%F{red}{%?}%{$reset_color%})"	# Last exit code if !=0
