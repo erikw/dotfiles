@@ -165,12 +165,12 @@ fi
 	else
 		trunc_len=5
 	fi
-	PROMPT="$PROMPT %F{3}%${trunc_len}~%{$reset_color%}"			# CWD, truncated to $trunc_len components (directory depth).
+	PROMPT="$PROMPT %F{3}%${trunc_len}~%{$reset_color%}"	# CWD, truncated to $trunc_len components (directory depth).
 	unset trunc_len
-	PROMPT="$PROMPT \${vcs_info_msg_0_}"				# Current VCS branch, as configured above. $ is escaped so this part is not evaluated yet (breaks then).
-	PROMPT="$PROMPT%1(j:[%j]:)"							# Number of background jobs (if >=1).
-	PROMPT="$PROMPT%(?::%F{red}{%?}%{$reset_color%})"	# Last exit code if !=0
-	PROMPT="$PROMPT> "									# EOL
+	PROMPT="$PROMPT \${vcs_info_msg_0_}"					# Current VCS branch, as configured above. $ is escaped so this part is not evaluated yet (breaks then).
+	PROMPT="$PROMPT %1(j:[%j]:)"							# Number of background jobs (if >=1).
+	PROMPT="$PROMPT %(?::%F{red}{%?}%{$reset_color%})"		# Last exit code if !=0
+	PROMPT="$PROMPT> "										# EOL
 
 
 	# Fish like syntax highlighting on command line.
