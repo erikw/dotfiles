@@ -18,7 +18,7 @@
 My personal dotfiles, installed and managed with [dotbot](https://github.com/anishathalye/dotbot).
 
 ## Highlights
-* [`.config/`](.config/) - I've spent quite some effort to make my dotfiles adhere to the [XDG](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html) Base Directory Standard as much as possible, using and contributing to the [Arch wiki page](https://wiki.archlinux.org/title/XDG_Base_Directory). As far from all programs that I use support this natively, quite some custom configuration neeeded to be done. Grep for `XDG` in [shell/commons](.config/shell/commons).
+* [`.config/`](.config/) - I've spent quite some effort to make my dotfiles adhere to the [XDG](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html) Base Directory Standard as much as possible, using and contributing to the [Arch wiki page](https://wiki.archlinux.org/title/XDG_Base_Directory). As far from all programs that I use support this natively, quite some custom configuration needed to be done. Grep for `XDG` in [shell/commons](.config/shell/commons).
    * [`dotbot/install.conf.yaml`](.config/dotbot/install.conf.yaml) - how these dotfiles are installed.
    * [`nvim/`](.config/nvim) - check out my Neovim configurations; they are pretty cool!
 * [`bin/`](bin/) - many handy and time saving scripts.
@@ -26,7 +26,7 @@ My personal dotfiles, installed and managed with [dotbot](https://github.com/ani
   * [`macos_touchid_sudo_enable.sh`](bin/macos_touchid_sudo_enable.sh) - enable sudo with TouchID.
   * [`pdf_compress.sh`](bin/pdf_compress.sh) - compress file size of PDFs!
   * [`permute_aliases.sh`](bin/permute_aliases.sh) - generate shell aliases on all permutations of a command; for fast typers!
-  * [`ssh-keygen.sh`](bin/ssh-keygen.sh) - interactivly create SSH keys using a nicely structured [`.ssh/config`](bin/ssh-config-create.sh) file.
+  * [`ssh-keygen.sh`](bin/ssh-keygen.sh) - interactively create SSH keys using a nicely structured [`.ssh/config`](bin/ssh-config-create.sh) file.
 
 ## Installation
 ### Bootstrap
@@ -50,7 +50,7 @@ git commit -m "SQUASHED passwords"
 ```
 
 ### Host-specific configuration
-* Passwords and other secretes are censored. To find these and substitue them for the real thing, do:
+* Passwords and other secretes are censored. To find these and substitute them for the real thing, do:
 	```bash
 	grep -nr GIT-CENSORED . | grep -v README.md | grep -v "/.git/"
 	```
