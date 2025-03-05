@@ -36,7 +36,6 @@
 	export SOLARGRAPH_CACHE=$XDG_CACHE_HOME/solargraph
 	export TRAVIS_CONFIG_PATH=$XDG_CONFIG_HOME/travis
 	export RIPGREP_CONFIG_PATH=$XDG_CONFIG_HOME/ripgrep/config
-	export FZF_MARKS_FILE=$XDG_CONFIG_HOME/fzf-marks/marks
 	export GNUPGHOME="$XDG_DATA_HOME"/gnupg
 	export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
 	export ANDROID_HOME="$XDG_DATA_HOME"/android
@@ -52,6 +51,15 @@
 	export ASDF_NPM_DEFAULT_PACKAGES_FILE=${XDG_CONFIG_HOME}/npm/asdf-default-npm-packages.txt
 	export ASDF_GEM_DEFAULT_PACKAGES_FILE=${XDG_CONFIG_HOME}/gem/asdf-default-gems.txt
 	export ASDF_GOLANG_DEFAULT_PACKAGES_FILE=${XDG_CONFIG_HOME}/golang/asdf-default-golang-pkgs.txt
+
+
+	# fzf-marks
+	if [ "$CODESPACES" = true ]; then
+		# Pre-coded bookarmsk for Codespaces env.
+		export FZF_MARKS_FILE=$XDG_CONFIG_HOME/fzf-marks/marks-codespaces
+	else
+		export FZF_MARKS_FILE=$XDG_CONFIG_HOME/fzf-marks/marks
+	fi
 
 	# Octave
 	export OCTAVE_SITE_INITFILE=$XDG_CONFIG_HOME/octave/octaverc
