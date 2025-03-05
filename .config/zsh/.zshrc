@@ -14,6 +14,10 @@
 #    setopt xtrace prompt_subst
 #fi
 
+
+# Must happen before setting up fzf. Ref: https://github.com/junegunn/fzf/issues/1596#issuecomment-2128091715
+bindkey -v	# vi command editing mode. NOTE: zsh is not using readline('s .inputrc').
+
 # Common shell settings.
 if [ -f ${XDG_CONFIG_HOME:-$HOME/.config}/shell/commons ]; then
 	export SHELL_NAME=zsh
@@ -212,7 +216,6 @@ fi
 
 # Bindings {{
 	# View binding namespaces with $(bindkey -l). Then view bindkings for a ns with $(bindkey -m <ns>)
-	bindkey -v								# vi command editing mode.
 	export KEYTIMEOUT=1						# Set ESC to normal mode timout to 10 ms. Default is 40ms.
 	bindkey '^[[Z' reverse-menu-complete	# Reverse select on shift tab in completion menu.
 	bindkey "\ep" insert-last-word			# Insert !$ with Alt-p.
