@@ -18,6 +18,7 @@
 .config/gh/hosts.yml
 .config/git/config-local
 .config/github-copilot/
+.config/go/telemetry/
 .config/grip/cache-*
 .config/gtk-2.0/
 .config/htop/
