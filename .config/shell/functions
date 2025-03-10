@@ -218,8 +218,8 @@ moshmux () {
 # cd(1) to installation of gem from bundle.
 bundlecd() {
 	local gem="$*"
-	local path=$(bundle info --path "$gem")
-	test $? -eq 0 && cd "$path"
+	local gem_path=$(bundle info --path "$gem")
+	test $? -eq 0 && cd "$gem_path"
 }
 
 # cd(1) to installation of go module from bundle.
