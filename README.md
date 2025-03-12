@@ -17,6 +17,9 @@
 
 My personal dotfiles, installed and managed with [dotbot](https://github.com/anishathalye/dotbot).
 
+> [!NOTE]
+> This is as [XDG](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html) Base Directory Standard compliant as possible!
+
 ## Highlights
 * [`.config/`](.config/) - I've spent quite some effort to make my dotfiles adhere to the [XDG](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html) Base Directory Standard as much as possible, using and contributing to the [Arch wiki page](https://wiki.archlinux.org/title/XDG_Base_Directory). As far from all programs that I use support this natively, quite some custom configuration needed to be done. Grep for `XDG` in [shell/commons](.config/shell/commons).
    * [`dotbot/install.conf.yaml`](.config/dotbot/install.conf.yaml) - how these dotfiles are installed.
