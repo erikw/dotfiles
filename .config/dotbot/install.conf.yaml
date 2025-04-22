@@ -17,7 +17,7 @@
       - shell:
           - sudo apt-get update && sudo apt-get install -y fd-find ripgrep ack-grep cloc direnv rename tig asciinema
           # NOPE fzf: apt-get version is too old, use go instead. Apt-get verison (0.44) is given but $(fzf --zsh) was added in 0.48. Ref: https://github.com/junegunn/fzf/issues/2599#issuecomment-2120141816
-          # TODO switch to use apt-get when the included version supports $(fzf --zsh).
+          # TODO switch to use apt-get when the included version supports $(fzf --zsh). fzf requires go >=1.20 but some devcontainer images like python image has no preinstalled go, and the apt one is 1.19. Thus this command would fail.
           - go install github.com/junegunn/fzf@latest
           # ~/.zshenv is not read when terminal.integrated.shellIntegration.enabled. Thus symlink .zshrc ourselves instead. Ref: https://stackoverflow.com/a/75848433
           # This needs to be just before linking my own ~/.config, Codespaces will create its own periodically.......
