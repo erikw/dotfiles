@@ -301,7 +301,7 @@ fi
 # }
 
 # Copy & Paste {
-	# Linux version of OSX pbcopy and pbpaste.
+	# Linux version of macOS pbcopy and pbpaste.
 	# Ref: https://medium.com/@codenameyau/how-to-copy-and-paste-in-terminal-c88098b5840d
 	if shell_is_linux; then
 		alias pbcopy='xsel — clipboard — input'

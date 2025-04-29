@@ -265,7 +265,7 @@ Invoke-Expression "choco install vim --params /NoDesktopShortcuts"
 ## Use Win+PrtSc to automatically save screenshot to Screenshots folder, Win+Shift+S for rectangular area selection.
 
 
-# Linux, OSX and sane OSes store and interpret the hwclock as UTC time, while Windoze insists on it being in the local timezone...
+# Linux, macOS and sane OSes store and interpret the hwclock as UTC time, while Windoze insists on it being in the local timezone...
 # Fix this by setting a new regedit flag (run in privilegied powershell):
 # Ref: http://lifehacker.com/5742148/fix-windows-clock-issues-when-dual-booting-with-os-x
 # Ref: http://stackoverflow.com/questions/26719206/powershell-create-registry-path-one-liner

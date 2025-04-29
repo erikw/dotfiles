@@ -28,7 +28,7 @@
 #     link: https://gist.github.com/bobthecow/757788
 #
 
-# OSX only
+# macOS only
 [ `uname -s` != "Darwin" ] && echo 'OS X Only' && exit
 
 function iterm () {
