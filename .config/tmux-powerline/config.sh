@@ -144,13 +144,12 @@
 	# How often to updat the weahter in seconds.
 	export TMUX_POWERLINE_SEG_WEATHER_UPDATE_PERIOD="600"
 
-	# You location. Find a code that works for you:
-	# 1. Go to Yahoo weather http://weather.yahoo.com/
-	# 2. Find the weather for you location
-	# 3. Copy the last numbers in that URL. e.g. "http://weather.yahoo.com/united-states/california/newport-beach-12796587/" has the number "12796587"
-	#export TMUX_POWERLINE_SEG_WEATHER_LOCATION="12796587"
+ 	# Location
+ 	export TMUX_POWERLINE_SEG_WEATHER_LOCATION_UPDATE_PERIOD_DEFAULT="86400" # 24 hours
+	export TMUX_POWERLINE_SEG_WEATHER_LAT_DEFAULT="auto"
+	export TMUX_POWERLINE_SEG_WEATHER_LON_DEFAULT="auto"
 
 	# yrno
-	export TMUX_POWERLINE_SEG_WEATHER_LAT="52.51728951583041"
-	export TMUX_POWERLINE_SEG_WEATHER_LON="13.406983127694986"
+	# export TMUX_POWERLINE_SEG_WEATHER_LAT="52.51728951583041"
+	# export TMUX_POWERLINE_SEG_WEATHER_LON="13.406983127694986"
 # }
