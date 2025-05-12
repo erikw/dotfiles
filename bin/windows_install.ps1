@@ -88,7 +88,6 @@ $choco_apps =
 "libreoffice " +
 "microsoft-windows-terminal " +
 "notepadplusplus " +
-"openhardwaremonitor " +
 "nanazip " +
 "neovim " +
 "putty " +
@@ -118,6 +117,7 @@ $choco_apps =
 # "flameshot " + # Replaced by Windows 11 built-in Snipping tool
 # "javaruntime " +
 # "littleregistrycleaner" + # Should not have any benefits on modern Windows.
+# "openhardwaremonitor " + # Replaced by Windows Task Manager's Performance tab.
 # "origin " +
 # "quicklook " + # Replaced by Powertoys
 # "signal " +
