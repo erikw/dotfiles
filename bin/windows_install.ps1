@@ -33,6 +33,7 @@ $scoop_prgs =
 "ctags " +
 "curl " +
 "dig " +
+"fd " +
 "file " +
 "gdb " +
 "git " +
@@ -42,6 +43,7 @@ $scoop_prgs =
 "octave " +
 "openssh " +
 "patch " +
+"ripgrep " +
 "sed " +
 "ssh-copy-id " +
 "tar " +
@@ -79,13 +81,11 @@ choco feature enable -n=allowGlobalConfirmation
 
 $choco_apps =
 "auto-dark-mode " +
-"bleachbit " +
 "choco-cleaner" +
 "git " +
 "googlechrome " +
 "icloud " +
 "libreoffice " +
-"littleregistrycleaner" +
 "microsoft-windows-terminal " +
 "notepadplusplus " +
 "openhardwaremonitor " +
@@ -105,6 +105,7 @@ $choco_apps =
 # "7zip " + # Replaced by nanazip
 # "autohotkey " + # Replaced by PowerToys
 # "battle.net" +
+# "bleachbit " + # # Replaced by Windows 11 built-in system settings cleanup too.
 # "cygwin " + # Replaced by WSL
 # "dropbox " +
 # "deluge " +
@@ -116,7 +117,7 @@ $choco_apps =
 # "firefox " +
 # "flameshot " + # Replaced by Windows 11 built-in Snipping tool
 # "javaruntime " +
-# "lastpass " +
+# "littleregistrycleaner" + # Should not have any benefits on modern Windows.
 # "origin " +
 # "quicklook " + # Replaced by Powertoys
 # "signal " +
