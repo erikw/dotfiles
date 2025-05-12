@@ -98,7 +98,6 @@ $choco_apps =
 "vlc " +
 "whatsapp " +
 "windirstat " +
-"winxcorners " +
 ""
 
 $choco_apps_additional =
@@ -128,6 +127,7 @@ $choco_apps_additional =
 "virtualclonedrive " +
 "vscode " +
 "winscp " +
+"winxcorners " +
 "zeal " +
 ""
 
