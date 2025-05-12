@@ -81,7 +81,6 @@ $choco_apps =
 "auto-dark-mode " +
 "bleachbit " +
 "choco-cleaner" +
-"cygwin " +
 "git " +
 "googlechrome " +
 "icloud " +
@@ -96,40 +95,39 @@ $choco_apps =
 "powertoys " +
 "sumatrapdf " +
 "vlc " +
+"vscode " +
 "whatsapp " +
 "windirstat " +
-""
-
-$choco_apps_additional =
-"7zip " +
-"autohotkey " +
-"battle.net" +
-"dropbox " +
-"deluge " +
-"discord " +
-"ditto " +
-"eartrumpet " +
-"epicgameslauncher " +
-"f.lux " +
-"firefox " +
-"flameshot " +
-"flashplayerplugin " +
-"javaruntime " +
-"lastpass " +
-"origin " +
-"quicklook " +
-"signal " +
-"spotify " +
-"skype " +
-"steam " +
-"translucenttb "
-"velocity " +
-"virtualclonedrive " +
-"vscode " +
-"winscp " +
-"winxcorners " +
 "zeal " +
 ""
+
+# $choco_apps_additional =
+# "7zip " + # Replaced by nanazip
+# "autohotkey " + # Replaced by PowerToys
+# "battle.net" +
+# "cygwin " + # Replaced by WSL
+# "dropbox " +
+# "deluge " +
+# "discord " +
+# "ditto " + # Replaced by Windows 11 built-in
+# "eartrumpet " + # Replaced by Windows 11 built-in
+# "epicgameslauncher " +
+# "f.lux " + # Replaced by Windows 11 built-in
+# "firefox " +
+# "flameshot " + # Replaced by Windows 11 built-in Snipping tool
+# "javaruntime " +
+# "lastpass " +
+# "origin " +
+# "quicklook " + # Replaced by Powertoys
+# "signal " +
+# "spotify " +
+# "skype " +
+# "steam " +
+# "velocity " +
+# "virtualclonedrive " +
+# "winscp " +
+# "winxcorners " + # Replaced by Windows 11 built-in virtual desktop taskbar icon
+# ""
 
 
 
