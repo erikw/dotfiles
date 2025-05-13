@@ -122,7 +122,6 @@ $choco_apps =
 # "quicklook " + # Replaced by Powertoys
 # "signal " +
 # "spotify " +
-# "skype " +
 # "steam " +
 # "velocity " +
 # "virtualclonedrive " +
