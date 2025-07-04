@@ -500,6 +500,14 @@ defaults write com.apple.finder _FXSortFoldersFirst -bool true
 # }
 
 # Music.app {
+## Import process:
+# * Keep originals in ~/media/music
+# * On new system.
+#    * Music.app > File > Import > "artistis" folder
+#    * Drag and drop each subdir of "collections" as a new playlist
+# * Adding more files: either drag-n-drop new files to the library, or **copy** (original is moved to library) to "~/Music/Music/Media/Automatically Add to Music"
+#
+#
 ## Playback
 # Enable "Sound Enhancer" when using desktop speaker.
 ## Files
