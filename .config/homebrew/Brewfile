@@ -12,8 +12,6 @@ tap 'beeftornado/rmtree' # rmtree: remove brew package's dependencies with $(bre
 tap 'cormacrelf/tap'  # For dark-notify
 tap 'erikw/tap'       # For xdg-urlview
 tap 'homebrew/autoupdate' # https://github.com/Homebrew/homebrew-autoupdate
-tap 'wader/tap' # For fq
-tap 'universal-ctags/universal-ctags' # For universal-ctags
 # }
 
 # Formula: default {
@@ -80,7 +78,7 @@ brew 'pam-reattach' # To use Touch ID for sudo within tmux. See https://github.c
 brew 'pdfgrep'
 brew 'pdftk-java' # For ~/bin/pdf_extract_range.sh
 brew 'peco'
-brew 'pidof'
+#brew 'pidof' # Deprecated
 brew 'pipx'	# To manage globally installed cli tools from pip.
 brew 'python'
 brew 'readline'
@@ -101,7 +99,7 @@ brew 'unar'
 brew 'universal-ctags'
 brew 'unzip'
 brew 'w3m'
-brew 'wader/tap/fq'
+brew 'fq'
 brew 'watch'
 brew 'wget'
 brew 'xdg-ninja'
@@ -326,7 +324,7 @@ brew 'zlib'
 # brew 'ruby-build'
 
 # ruby-build dependencies: https://github.com/rbenv/ruby-build/wiki#suggested-build-environment
-brew 'openssl@1.1'
+#brew 'openssl@1.1' # Now deprecated in Homebrew.
 brew 'openssl@3' # Ruby >= 3.1 uses this instead of openssl1.1
 brew 'readline'
 brew 'gmp'
@@ -340,7 +338,7 @@ brew 'libyaml' # Seems to be a runtime dependency for ruby from rbenv: https://s
 # cryfs {
 # Reference: https://www.cryfs.org/#download https://github.com/cryfs/cryfs
 # cask 'osxfuse'
-# brew 'cryfs/tap/cryfs'
+# brew 'cryfs'
 # }
 
 # Fonts {

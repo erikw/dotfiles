@@ -14,6 +14,7 @@
 # Formula: optional {
 =begin
     brew 'restic'
+    brew 'heroku' # For Heroku cli tool. https://devcenter.heroku.com/articles/heroku-cli
     brew 'restic-automatic-backup-scheduler'
 =end
 # }
@@ -71,7 +72,4 @@
 # }
 
 # Misc {
-    # For Heroku cli tool. https://devcenter.heroku.com/articles/heroku-cli
-    tap 'heroku/brew'
-    brew 'heroku'
 # }
