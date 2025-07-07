@@ -28,3 +28,6 @@
 	path = .local/repos/dotbot-plugins/ghq
 	url = https://github.com/klane/dotbot-ghq.git
 	ignore = dirty # Until merged my fix: https://github.com/klane/dotbot-ghq/pull/3
+[submodule ".local/repos/dotbot-plugins/brewfile"]
+	path = .local/repos/dotbot-plugins/brewfile
+	url = https://github.com/sobolevn/dotbot-brewfile.git

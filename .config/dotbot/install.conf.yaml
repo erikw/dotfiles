@@ -1,3 +1,11 @@
+- plugins:
+    - .local/repos/dotbot-plugins/asdf
+    - .local/repos/dotbot-plugins/brewfile
+    - .local/repos/dotbot-plugins/crontab
+    - .local/repos/dotbot-plugins/firefox
+    - .local/repos/dotbot-plugins/ghq
+    - .local/repos/dotbot-plugins/if
+
 - defaults:
     link:
       relink: true
@@ -27,7 +35,6 @@
           # Delete ~/.config so we can link in our own. Needs to be done close our linking as the dir is regularily recreated.
           # - rm -rf $HOME/.config
 
-
 - link:
     ~/.bashrc: .bashrc
     ~/.config: .config
@@ -48,19 +55,18 @@
 # TODO use ifmacos when bug fixed. https://github.com/ssbanerje/dotbot-ifplatform/pull/4#issuecomment-1532112176
 #- ifmacos:
 #    - brewfile:
-#      - .config/homebrew/Brewfile
+#        file: .config/homebrew/Brewfile
 - if:
     cond: test $(uname) = Darwin
     met:
       - brewfile:
-          - .config/homebrew/Brewfile
+          file: .config/homebrew/Brewfile
 
 - if:
     cond: "test -e ~/.config/homebrew/Brewfile.$(hostname)"
     met:
       - brewfile:
-          - "~/.config/homebrew/Brewfile.$(hostname)"
-
+          file: "~/.config/homebrew/Brewfile.$(hostname)"
 
 # TODO use ifmacos when bug fixed. https://github.com/ssbanerje/dotbot-ifplatform/pull/4#issuecomment-1532112176
 - if:
