@@ -14,7 +14,6 @@ tap 'erikw/tap'       # For xdg-urlview
 tap 'homebrew/autoupdate' # https://github.com/Homebrew/homebrew-autoupdate
 tap 'wader/tap' # For fq
 tap 'universal-ctags/universal-ctags' # For universal-ctags
-tap 'homebrew/cask-versions' # for iterm2-beta
 # }
 
 # Formula: default {
@@ -166,12 +165,11 @@ cask 'appcleaner'
 cask 'chrysalis' # Configurator for Atreus keyboard.
 cask 'clipy' # If needed, could replace with https://github.com/p0deje/Maccy even though pinned items not exactly like snippets
 cask 'dash'
-cask 'dictcc-en-de-dictionary-plugin' # From https://www.dict.cc/?s=about%3Awordlist&l=e
 cask 'eurkey' # For ErgoDox
 cask 'gimp'
 cask 'google-chrome'
 # cask 'iterm2'
-cask 'iterm2-beta' # Until 3.5 is released (that has dark/light automatic modes).
+cask 'iterm2nbeta' # Until 3.5 is released (that has dark/light automatic modes).
 cask 'keepingyouawake'
 cask 'scroll-reverser'
 cask 'sanesidebuttons' # Fork of sensiblesidebuttons. Need to manually add it to System Preferences > Users & Groups > Login items
@@ -346,8 +344,6 @@ brew 'libyaml' # Seems to be a runtime dependency for ruby from rbenv: https://s
 # }
 
 # Fonts {
-tap 'homebrew/cask-fonts'
-
 # Programming fonts {
 cask 'font-terminus'
 cask 'font-inconsolata'

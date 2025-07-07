@@ -19,7 +19,6 @@
 # }
 
 # Cask: default {
-    cask 'authy'
     cask 'cryptomator'
     cask 'google-cloud-sdk'  # for gcloud cli used for tardbot.
     cask 'gramps'
@@ -30,7 +29,6 @@
     cask 'mullvadvpn'
     cask 'mutify'
     cask 'send-to-kindle'
-    cask 'skype'
     cask 'whatsapp'
     cask 'zoom'
 # }
