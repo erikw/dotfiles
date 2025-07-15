@@ -101,9 +101,7 @@ fi
 #   - Two-Sided Printing: Long-Edge Binding
 
 
-# Anti malware: Avira: https://www.avira.com/en/free-antivirus-mac
-# the cask brew does not work with system extension
-#brew install avira-antivirus
+# NOPE Anti malware: Avira: https://www.avira.com/en/free-antivirus-mac
 
 
 # Amethyst
@@ -319,6 +317,10 @@ fi
 #asdf plugin-add golang
 #asdf install golang latest
 #asdf global golang latest
+
+# Go binaries
+# For erikw/tmux-powerline
+go install github.com/maykonlsf/semver-cli/cmd/semver@latest
 # }
 
 # Java {

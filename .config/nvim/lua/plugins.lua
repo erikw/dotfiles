@@ -658,6 +658,8 @@ return require("packer").startup(function(use)
                 startify.file_button(vim.fn.stdpath("config") .. "/lua/plugins.lua", "p"),
                 startify.file_button(vim.g.xdg_config_home .. "/shell/commons", "c"),
                 startify.file_button(vim.g.xdg_config_home .. "/shell/aliases", "a"),
+                startify.file_button(vim.g.xdg_config_home .. "/homebrew/Brewfile", "b"),
+                startify.file_button(vim.g.xdg_config_home .. "/homebrew/Brewfile.cypress", "bc"),
             }
             require("alpha").setup(startify.config)
         end,

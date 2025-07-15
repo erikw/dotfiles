@@ -20,6 +20,7 @@
 # }
 
 # Cask: default {
+    cask 'amazon-music'
     cask 'cryptomator'
     cask 'google-cloud-sdk'  # for gcloud cli used for tardbot.
     cask 'gramps'
@@ -59,16 +60,20 @@
     mas 'Bitwarden', id: 1352778147
     mas 'CEWE Fotowelt', 1321448290
     mas 'Exporter', id: 1099120373
-    mas 'InstaRemind', id: 1492317385
     mas 'Keynote', id: 409183694
+    mas 'Kindle Classic', id: 405399194
     mas 'Kindle', id: 405399194
+    mas 'MoneyStats Pro', id: 1501042913
     mas 'Numbers', id: 409203825
     mas 'Pages', id: 409201541
+    mas 'Paprika Recipe Manager 3', id: 1303222628
+    mas 'Photomator', id: 1444636541
     mas 'Pixelmator Pro', id: 1289583905
 # }
 
 # Mas: optional {
     #mas 'djay', id: 450527929
+    #mas 'CEWE Fotowelt', id: 1321448290
 # }
 
 # Misc {
