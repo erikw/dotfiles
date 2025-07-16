@@ -44,6 +44,7 @@
       create: true
     ~/.zshenv: .zshenv
     ~/bin: bin
+    "~/Library/Application Support/Code": .config/Code/User
 
 - create:
     - ~/dl

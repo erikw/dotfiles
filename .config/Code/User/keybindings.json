@@ -1,0 +1,131 @@
+/*
+Erik Westrup's VSCode user keybindings overrides.
+
+MACOS VERSION: Note that due to settingsSync.keybindingsPerPlatform the Windows config is not show. It can be found at lastSynckeybindings.json and decoded with this Python program:
+import json
+f = open("lastSynckeybindings.json", "r", encoding="utf-8")
+data = json.load(f)
+content = json.loads(data["syncData"]["content"])
+windows_conf = content["windows"]
+print(windows_conf)
+
+
+JSON5 (close enouch got JSONC) validator: https://jsonformatter.org/json5-validator
+*/
+[
+    // Make sequences available for normal usage in terminal. Ref: https://stackoverflow.com/a/62133137
+    {
+        "key": "ctrl+e",
+        "command": "ctrl+e",
+        "when": "terminalFocus"
+    },
+    {
+        "key": "ctrl+p",
+        "command": "ctrl+p",
+        "when": "terminalFocus"
+    },
+    {
+        "key": "ctrl+j",
+        "command": "ctrl+j",
+        "when": "terminalFocus"
+    },
+    {
+        "key": "ctrl+k",
+        "command": "ctrl+k",
+        "when": "terminalFocus"
+    },
+    {
+        "key": "ctrl+g",
+        "command": "ctrl+g",
+        "when": "terminalFocus"
+    },
+
+    // Free up ctrl+f from terminal seach to use for vim page scroll.
+    {
+        "key": "ctrl+alt+f",
+        "command": "workbench.action.terminal.focusFind",
+        "when": "terminalFindFocused && terminalHasBeenCreated || terminalFindFocused && terminalProcessSupported || terminalFocusInAny && terminalHasBeenCreated || terminalFocusInAny && terminalProcessSupported"
+    },
+    {
+        "key": "ctrl+f",
+        "command": "-workbench.action.terminal.focusFind",
+        "when": "terminalFindFocused && terminalHasBeenCreated || terminalFindFocused && terminalProcessSupported || terminalFocusInAny && terminalHasBeenCreated || terminalFocusInAny && terminalProcessSupported"
+    },
+
+    //{
+    //    "key": "ctrl+/",
+    //    "command": "-editor.action.commentLine",
+    // },
+    // 
+    // {
+    //     "key": "alt+/",
+    //     "command": "editor.action.commentLine",
+    // },
+    // {
+    //     "key": "ctrl+y",
+    //     "command": "vim.remap",
+    //     "when": "inputFocus && vim.mode == 'Normal'",
+    //     "args": {
+    //         "after": [":nohl"]
+    //     }
+    // },
+
+
+    // Maximize toggle:
+    // one keyboard shortcut to toggle editor or terminal full screen depending on where focus is. Ref: https://stackoverflow.com/a/58895512/265508
+    {
+        // "key": "alt+m",
+        "key": "f12",
+        "command": "workbench.action.toggleMaximizedPanel",
+        "when": "terminalFocus"
+      },
+    //   {
+    //     "key": "alt+m",
+    //     "command": "workbench.action.closePanel",
+    //     "when": "editorFocus && panelIsOpen"
+    //   },
+    //   {
+    //     "key": "alt+m",
+    //     "command": "workbench.action.togglePanel",
+    //     "when": "editorFocus && !panelIsOpen"
+    //   },
+    {
+        // "key": "alt+m",
+        "key": "f12",
+        "command": "extension.multiCommand.execute",
+        "args": {
+            "sequence": [
+                "workbench.action.togglePanel",
+                "workbench.action.focusActiveEditorGroup",
+                // will toggle other editor groups width but other editor group width goes to a built-in minimum, not 0
+                "workbench.action.toggleEditorWidths"
+            ]
+        },
+        "when": "editorTextFocus && !panelIsOpen"
+      },
+
+    // Toggle between terminal and editor focus.
+    // By default terminal is minimized when toggling back to editor. Ref: https://superuser.com/a/1352666/42070
+    {
+        "key": "ctrl+`",
+        "command": "workbench.action.terminal.focus",
+    },
+    // {
+    //     "key": "ctrl+`",
+    //     "command": "workbench.action.focusActiveEditorGroup",
+    //     "when": "terminalFocus"
+    // },
+    {
+        "key": "ctrl+`",
+        "command": "extension.multiCommand.execute",
+        "when": "terminalFocus",
+        "args": {
+            // The original simple binding above does not work when the terminal is maximized, as the focus is still left in the terminal.
+            // Hack solution: switch focus 2 times which means effectivly unmaximize terminal then switch back to editor.
+            "sequence": [
+                "workbench.action.focusActiveEditorGroup",
+                "workbench.action.focusActiveEditorGroup",
+            ]
+        },
+    },
+]

@@ -1,0 +1,268 @@
+/*
+Erik Westrup's VSCode user settings.
+
+NOTE this is parsed as a jsonc file, thus comments can be added. Ref: https://code.visualstudio.com/docs/languages/json#_json-with-comments
+Furthermore it seems like VSCode allows trailing commas in these files. Ref: https://github.com/microsoft/vscode/issues/102061#issuecomment-657416690
+
+JSON5 (close enouch got JSONC) validator: https://jsonformatter.org/json5-validator
+*/
+{
+    // ******************************** General ********************************
+    "telemetry.feedback.enabled": false,
+    "window.autoDetectColorScheme": true,
+    "diffEditor.maxComputationTime": 10000, // Default: 5000. No limit: 0.
+
+    "workbench.colorTheme": "SynthWave '84",
+    "workbench.preferredDarkColorTheme": "SynthWave '84",
+    "workbench.preferredLightColorTheme": "SynthWave '84",
+    "workbench.preferredHighContrastColorTheme": "Solarized Dark",
+    "workbench.preferredHighContrastLightColorTheme": "SynthWave '84",
+    "workbench.startupEditor": "none",
+
+    "files.autoSave": "afterDelay",
+    "extensions.ignoreRecommendations": true,
+    "editor.minimap.enabled": false,
+
+
+
+    // ******************************** Terminal ********************************
+    "terminal.integrated.stickyScroll.enabled": true,
+    "terminal.integrated.suggest.enabled": false, // Breaks zsh tab completion.
+    "terminal.integrated.shellIntegration.history": 1000,
+    "terminal.integrated.persistentSessionReviveProcess": "onExitAndWindowClose",
+    // "terminal.integrated.env.linux": { }, // Global env for all linux profiles.
+
+    // Profiles
+    "terminal.integrated.defaultProfile.linux": "zsh",
+    "terminal.integrated.defaultProfile.osx": "zsh",
+    "terminal.integrated.defaultProfile.windows": "Ubuntu (WSL)",
+    "terminal.integrated.profiles.linux": {
+        "zsh": {
+            "env": {
+                // Codespaces: Even chsh(1) in dotfiles does not change $SHELL from bash to zsh. Set manually for scripts to be able to use it.
+                "SHELL": "/usr/bin/zsh",
+            }
+        }
+    },
+    "terminal.integrated.profiles.windows": {
+        "Ubuntu (WSL)": {
+            "path": "C:\\Windows\\System32\\wsl.exe",
+            "args": [ "-d", "Ubuntu" ]
+        }
+    },
+
+
+    // ******************************** Git ********************************
+    "git.blame.editorDecoration.enabled": false,
+    "git.blame.statusBarItem.enabled": false,
+    "git.confirmSync": false,
+
+
+    // ******************************** Language-specific Settings ********************************
+    "[python]": {
+        // Enable buffer-based autocompletion in Python.
+        "editor.wordBasedSuggestions": "matchingDocuments",
+        // But let's not automatically show the completion dialog, I want to ctrl+space to activate.
+        "editor.quickSuggestions": {
+            "other": "off"
+        },
+        // Auto format. Seem like ctrl+s or :w is needed to trigger even when Auto Save mode is on.
+        "editor.formatOnSave": false,
+        // Autorun isort on save.
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": "explicit"
+        },
+    },
+    "python.analysis.inlayHints.callArgumentNames": "off",
+    "python.analysis.inlayHints.functionReturnTypes": true,
+
+
+
+    // ******************************** Extensions ********************************
+    "github.codespaces.defaultExtensions": [
+        // Disabled: fun
+        // "hoovercj.vscode-power-mode",
+        // "tonybaloney.vscode-pets",
+        // "richie5um2.snake-trail",
+
+        // Themes
+        "RobbOwen.synthwave-vscode",
+
+        // Tools:
+        // "yy0931.vscode-sqlite3-editor",
+        "EditorConfig.EditorConfig",
+        "tomoki1207.pdf",
+        "GitHub.codespaces",
+        "GitHub.copilot-chat",
+        "GitHub.vscode-pull-request-github",
+        "Gruntfuggly.todo-tree",
+        "Wupb.arrange-selection",
+        "aaron-bond.better-comments",
+        "adpyke.codesnap",
+        "bierner.docs-view",
+        "christian-kohler.path-intellisense",
+        "danielgjackson.auto-dark-mode-windows",
+        "devdocs-adapter.devdocs-adapter",
+        "eamodio.gitlens",
+        "github.vscode-github-actions",
+        "janisdd.vscode-edit-csv",
+        "mechatroner.rainbow-csv",
+        "ms-vscode-remote.remote-containers",
+        "ms-vsliveshare.vsliveshare",
+        "qcz.text-power-tools",
+        "ryuta46.multi-command",
+        "shardulm94.trailing-spaces",
+        "streetsidesoftware.code-spell-checker",
+        "valentjn.vscode-ltex",
+        "vscodevim.vim",
+        "yandeu.five-server",
+    ],
+
+
+
+    // ** Extension: cSpell **
+    // Ignore markdown files, and let LTex handle those.
+    "cSpell.ignorePaths": [
+        "**/*.md",
+        "**/*.markdown"
+      ],
+    "cSpell.userWords": [
+        "anapanasati",
+        "anityatā",
+        "bhante",
+        "CICD",
+        "decluttering",
+        "devcontainers",
+        "direnv",
+        "dotenv",
+        "erikw",
+        "Estimatable",
+        "eternalism",
+        "exiftool",
+        "Flickr",
+        "FUNCS",
+        "graphviz",
+        "hangry",
+        "isort",
+        "latexmk",
+        "linalg",
+        "mathjax",
+        "multigraph",
+        "nestedtext",
+        "noninteractive",
+        "nvim",
+        "opinionatedness",
+        "popleft",
+        "powerline",
+        "prio",
+        "productionized",
+        "publickey",
+        "pytest",
+        "Recontextualization",
+        "restic",
+        "Rubocop",
+        "rubygems",
+        "śamatha",
+        "Sangharakshita",
+        "shellcheck",
+        "SLOC",
+        "sneakernet",
+        "subshell",
+        "Tardsquad",
+        "Theravāda",
+        "tlmgr",
+        "topsort",
+        "uncomplete",
+        "uncompletes",
+        "uncov",
+        "unexpectantly",
+        "upekkhā",
+        "vipassanā",
+        "Westrup",
+        "whereis"
+    ],
+
+    // ** Extension: GitLens **
+    "gitlens.currentLine.enabled": false,
+    "gitlens.currentLine.pullRequests.enabled": false,
+
+
+    // ** Extension: LTeX (grammar checker) **
+    "ltex.enabled": ["markdown", "latex"], // Let cSpell handle all other files.
+    "ltex.additionalRules.motherTongue": "sv",
+    "ltex.completionEnabled": true,
+
+    // ** Extension: Netlify **
+    "netlify.api_token": "nfp_BGZ4DTLyWDDJ7iLdrDU4LMvFWHt61n1z9a0b",
+    "netlify.site_id": "",
+
+    // ** Extension: Path Intellisense **
+    "path-intellisense.showHiddenFiles": true,
+    "typescript.suggest.paths": false,
+    "javascript.suggest.paths": false,
+
+    // ** Extension: Todo Tree **
+    "todo-tree.general.tags": [
+        "BUG",
+        "HACK",
+        "FIXME",
+        "TODO",
+        "XXX",
+        "[ ]",
+        "[x]",
+        "NOTE",
+        "NOPE"
+    ],
+    "todo-tree.highlights.customHighlight": { // Icons at https://primer.style/foundations/icons
+        "NOTE": {
+            "icon": "note"
+        },
+        "NOPE": {
+            "icon": "no-entry-fill"
+        }
+    },
+
+
+    // ** Extension: Vim **
+    // settings.json is used for configuring VS Code Vim extension-specific
+    // settings, while keybindings.json is used for overriding default VS Code
+    // keyboard shortcuts.
+    "vim.handleKeys": {
+        "<C-p>": false // To open Quick Opener dialog.
+    },
+    "vim.normalModeKeyBindingsNonRecursive": [
+        // Search open editor tabs.
+        {
+            "before": ["<leader>", "t"],
+            "commands": ["workbench.action.showEditorsInActiveGroup"]
+        },
+        {
+            // "before": ["<S-/>"], // Close enough to my Vim mapping <C-/>. Unfortunately still proceses a '?' reverse search.
+            "before": ["<C-n>"],
+            "commands": [":nohlsearch"]
+        },
+        // [<space> and ]<space> not currently possible. Ref: https://github.com/VSCodeVim/Vim/issues/1396
+        // {
+            // "before": ["]", "<space>"],
+            // "commands": ["editor.action.insertLineAfter", "workbench.action.navigatePreviousInEditLocations"]
+            // "commands": ["editor.action.insertLineAfter", "workbench.action.navigateBack"]
+            // "after": ["o<Esc>", "g;", "g;"]
+            // "after": ["o", "<Esc>", "k"]
+        // },
+    ],
+    "vim.commandLineModeKeyBindings": [
+        // Trim whitespaces and save.
+        {
+            "before": ["W", "s", "<CR>"],
+            "commands": ["editor.action.trimTrailingWhitespace", "workbench.action.files.save"]
+        },
+    ],
+    "vim.easymotion": true,
+    "vim.hlsearch": true,
+    "vim.history": 100,
+    "vim.matchpairs": "(:),{:},[:],<:>",
+    "workbench.view.showQuietly": {
+        "workbench.panel.output": true
+    },
+    "******************************** ⚠ Unsorted Below ********************************": null,
+}
