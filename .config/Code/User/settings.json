@@ -1,6 +1,8 @@
 /*
 Erik Westrup's VSCode user settings.
 
+WARNING: never put any passwords and token in this file, as it's in my public dotfiles repo.
+
 NOTE this is parsed as a jsonc file, thus comments can be added. Ref: https://code.visualstudio.com/docs/languages/json#_json-with-comments
 Furthermore it seems like VSCode allows trailing commas in these files. Ref: https://github.com/microsoft/vscode/issues/102061#issuecomment-657416690
 
@@ -193,7 +195,7 @@ JSON5 (close enouch got JSONC) validator: https://jsonformatter.org/json5-valida
     "ltex.completionEnabled": true,
 
     // ** Extension: Netlify **
-    "netlify.api_token": "nfp_BGZ4DTLyWDDJ7iLdrDU4LMvFWHt61n1z9a0b",
+    "netlify.api_token": "", // NOPE this is a public file!!
     "netlify.site_id": "",
 
     // ** Extension: Path Intellisense **
