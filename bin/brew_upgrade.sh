@@ -36,7 +36,7 @@ _print() {
 
 _exec "Updating brew" brew update
 
-outdated=$(brew outdated -v | grep -v "\[pinned at .*\]" || :)
+outdated=$(brew outdated --verbose | grep -v "\[pinned at .*\]" || :)
 if [ -n "$outdated" ]; then
 	_print "These packages are outdated: "
 	echo "$outdated"
@@ -48,9 +48,8 @@ if [ -n "$outdated" ]; then
 		([ -z "$upgrade" ] || [ "$upgrade" = y ] || [ "$upgrade" = Y ] || [ "$upgrade" = n ]) && break
 	done
 	if [ "$upgrade" != n ]; then
-		# --cask and --ignore-pinned are mutual exclusive.
-		_exec "Upgrading brew formulas" brew upgrade --formula --ignore-pinned
-		_exec "Upgrading brew casks" brew upgrade --cask
+		_exec "Upgrading brew formulas" brew upgrade --formulae
+		_exec "Upgrading brew casks" brew upgrade --casks
 		_exec "Removing unused leaf formulas" brew autoremove
 		_exec "Cleaning up caches" brew cleanup
 		_exec "The brew doctor says" brew doctor || :		# Sneak around $(set -e) as the doctor command return error code.
