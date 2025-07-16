@@ -8,252 +8,251 @@
 # It's not necessary to tap before installing 'tap/formula', but it gives a warning if not done.
 # Taps {
 # tap 'homebrew/cask-drivers'      # For jabra-direct
-	tap 'beeftornado/rmtree' # rmtree: remove brew package's dependencies with $(brew rmtree <package>).
-	tap 'cormacrelf/tap'  # For dark-notify
-	tap 'erikw/tap'       # For xdg-urlview
-	tap 'homebrew/autoupdate' # https://github.com/Homebrew/homebrew-autoupdate
+tap 'beeftornado/rmtree' # rmtree: remove brew package's dependencies with $(brew rmtree <package>).
+tap 'cormacrelf/tap'  # For dark-notify
+tap 'erikw/tap'       # For xdg-urlview
+tap 'homebrew/autoupdate' # https://github.com/Homebrew/homebrew-autoupdate
 # }
 
 # Formula: default {
-	#brew 'pidof' # Deprecated
-	brew 'ack'
-	brew 'as-tree'	# A tree view of the contents of a directory. $(fd ... | as-tree)
-	brew 'asdf'
-	brew 'aspell'
-	brew 'bash'
-	brew 'bash-completion'
-	brew 'bashdb'
-	brew 'bat'
-	brew 'broot'
-	brew 'cheat'
-	brew 'cloc'
-	brew 'cmatrix'
-	brew 'colordiff'
-	brew 'coreutils'	# Note that some gnu pakcages comes with g-prefix in the bin names. The default names are set up in $PATH in $XDG_CONFIG_HOME/shell/commons.
-	brew 'cormacrelf/tap/dark-notify' # To detect chagnes in OS light/dark appearens. Used by https://github.com/cormacrelf/dark-notify/
-	brew 'cowsay'
-	brew 'curl'
-	brew 'detox'
-	brew 'dfc'
-	brew 'dict'
-	brew 'diff-pdf'
-	brew 'difftastic'
-	brew 'direnv'
-	brew 'dos2unix'
-	brew 'erikw/tap/xdg-urlview'
-	brew 'fd'	# A powerful alternative to find.
-	brew 'findutils'
-	brew 'fq'
-	brew 'fzf'
-	brew 'gawk'
-	brew 'gh'
-	brew 'ghq'
-	brew 'git'
-	brew 'git-lfs'
-	brew 'gnu-getopt'
-	brew 'gnu-indent'
-	brew 'gnu-sed'
-	brew 'gnu-tar'
-	brew 'gnupg'
-	brew 'gnutls'
-	brew 'graphviz'
-	brew 'grep'
-	brew 'grip'
-	brew 'gron'
-	brew 'htop'
-	brew 'httpie'
-	brew 'iftop'
-	brew 'imagemagick'
-	brew 'jq'
-	brew 'less'
-	brew 'lolcat'
-	brew 'lsd'
-	brew 'luacheck' # Linter used with ALE.
-	brew 'mosh'
-	brew 'multitime'
-	brew 'ncdu'
-	brew 'neovim'
-	brew 'netcat'
-	brew 'nmap'
-	brew 'npm'
-	brew 'octave'
-	brew 'pam-reattach' # To use Touch ID for sudo within tmux. See https://github.com/fabianishere/pam_reattach
-	brew 'pdfgrep'
-	brew 'pdftk-java' # For ~/bin/pdf_extract_range.sh
-	brew 'peco'
-	brew 'pipx'	# To manage globally installed cli tools from pip.
-	brew 'python'
-	brew 'readline'
-	brew 'rename' # a.k.a. rename.pl
-	brew 'ripgrep'	# Faster than grep, ack, ag.
-	brew 'rsync'
-	brew 'sd'
-	brew 'shellcheck'
-	brew 'source-highlight'
-	brew 'stylua' # Fixer used with ALE.
-	brew 'switchaudio-osx'
-	brew 'telnet'
-	brew 'texlab' # Language server for LaTeX
-	brew 'tig'
-	brew 'tmux'
-	brew 'tree'
-	brew 'unar'
-	brew 'universal-ctags'
-	brew 'unzip'
-	brew 'w3m'
-	brew 'watch'
-	brew 'wget'
-	brew 'xdg-ninja'
-	brew 'xz'
-	brew 'zip'
-	brew 'zsh'
-	brew 'zsh-completions'
-	brew 'zsh-syntax-highlighting'
+# brew 'pidof' # Deprecated
+brew 'ack'
+brew 'as-tree'	# A tree view of the contents of a directory. $(fd ... | as-tree)
+brew 'asdf'
+brew 'aspell'
+brew 'bash'
+brew 'bash-completion'
+brew 'bashdb'
+brew 'bat'
+brew 'broot'
+brew 'cheat'
+brew 'cloc'
+brew 'cmatrix'
+brew 'colordiff'
+brew 'coreutils'	# Note that some gnu pakcages comes with g-prefix in the bin names. The default names are set up in $PATH in $XDG_CONFIG_HOME/shell/commons.
+brew 'cormacrelf/tap/dark-notify' # To detect chagnes in OS light/dark appearens. Used by https://github.com/cormacrelf/dark-notify/
+brew 'cowsay'
+brew 'curl'
+brew 'detox'
+brew 'dfc'
+brew 'dict'
+brew 'diff-pdf'
+brew 'difftastic'
+brew 'direnv'
+brew 'dos2unix'
+brew 'erikw/tap/xdg-urlview'
+brew 'fd'	# A powerful alternative to find.
+brew 'findutils'
+brew 'fq'
+brew 'fzf'
+brew 'gawk'
+brew 'gh'
+brew 'ghq'
+brew 'git'
+brew 'git-lfs'
+brew 'gnu-getopt'
+brew 'gnu-indent'
+brew 'gnu-sed'
+brew 'gnu-tar'
+brew 'gnupg'
+brew 'gnutls'
+brew 'graphviz'
+brew 'grep'
+brew 'grip'
+brew 'gron'
+brew 'htop'
+brew 'httpie'
+brew 'iftop'
+brew 'imagemagick'
+brew 'jq'
+brew 'less'
+brew 'lolcat'
+brew 'lsd'
+brew 'luacheck' # Linter used with ALE.
+brew 'mosh'
+brew 'multitime'
+brew 'ncdu'
+brew 'neovim'
+brew 'netcat'
+brew 'nmap'
+brew 'npm'
+brew 'octave'
+brew 'pam-reattach' # To use Touch ID for sudo within tmux. See https://github.com/fabianishere/pam_reattach
+brew 'pdfgrep'
+brew 'pdftk-java' # For ~/bin/pdf_extract_range.sh
+brew 'peco'
+brew 'pipx'	# To manage globally installed cli tools from pip.
+brew 'python'
+brew 'readline'
+brew 'rename' # a.k.a. rename.pl
+brew 'ripgrep'	# Faster than grep, ack, ag.
+brew 'rsync'
+brew 'sd'
+brew 'shellcheck'
+brew 'source-highlight'
+brew 'stylua' # Fixer used with ALE.
+brew 'switchaudio-osx'
+brew 'telnet'
+brew 'texlab' # Language server for LaTeX
+brew 'tig'
+brew 'tmux'
+brew 'tree'
+brew 'unar'
+brew 'universal-ctags'
+brew 'unzip'
+brew 'w3m'
+brew 'watch'
+brew 'wget'
+brew 'xdg-ninja'
+brew 'xz'
+brew 'zip'
+brew 'zsh'
+brew 'zsh-completions'
+brew 'zsh-syntax-highlighting'
 # }
 
 # Formula: optional {
-	# brew 'antiword'
-	# brew 'asciinema'
-	# brew 'fswatch'	# For macos_appearance_monitor.sh
-	# brew 'ipcalc'
-	# brew 'bashdb'
-	# brew 'ccls'
-	# brew 'cgdb'
-	# brew 'checkbashisms'
-	# brew 'cmake'
-	# brew 'colormake'
-	# brew 'colorsvn'
-	# brew 'cpanminus'
-	# brew 'cscope'
-	# brew 'daemonize'
-	# brew 'elinks'
-	# brew 'emacs'
-	# brew 'entr'
-	# brew 'ffmpeg2theora'
-	# brew 'go'
-	# brew 'gopls' # Official LSP server for Go
-	# brew 'irssi'
-	# brew 'jsonlint'
-	# brew 'knock'
-	# brew 'llvm'
-	# brew 'multitail'
-	# brew 'mutt'
-	# brew 'ncftp'
-	# brew 'nethogs'
-	# brew 'node'
-	# brew 'notmuch'
-	# brew 'offlineimap'
-	# brew 'openvpn'
-	# brew 'pandoc' # UC: Generate PDF from Markdown
-	# brew 'pastebinit'
-	# brew 'postgresql'
-	# brew 'pv'
-	# brew 'sl'
-	# brew 'swiftlint'
-	# brew 'task'
-	# brew 'tasksh'
-	# brew 'urlview' # For tmux link opening
-	# brew 'valgrind'
-	# brew 'wakeonlan'
-	# brew 'wego'
-	# brew 'zenity'
+# brew 'antiword'
+# brew 'asciinema'
+# brew 'fswatch'	# For macos_appearance_monitor.sh
+# brew 'ipcalc'
+# brew 'bashdb'
+# brew 'ccls'
+# brew 'cgdb'
+# brew 'checkbashisms'
+# brew 'cmake'
+# brew 'colormake'
+# brew 'colorsvn'
+# brew 'cpanminus'
+# brew 'cscope'
+# brew 'daemonize'
+# brew 'elinks'
+# brew 'emacs'
+# brew 'entr'
+# brew 'ffmpeg2theora'
+# brew 'go'
+# brew 'gopls' # Official LSP server for Go
+# brew 'irssi'
+# brew 'jsonlint'
+# brew 'knock'
+# brew 'llvm'
+# brew 'multitail'
+# brew 'mutt'
+# brew 'ncftp'
+# brew 'nethogs'
+# brew 'node'
+# brew 'notmuch'
+# brew 'offlineimap'
+# brew 'openvpn'
+# brew 'pandoc' # UC: Generate PDF from Markdown
+# brew 'pastebinit'
+# brew 'postgresql'
+# brew 'pv'
+# brew 'sl'
+# brew 'swiftlint'
+# brew 'task'
+# brew 'tasksh'
+# brew 'urlview' # For tmux link opening
+# brew 'valgrind'
+# brew 'wakeonlan'
+# brew 'wego'
+# brew 'zenity'
 # }
 
 # Cask: default {
-	# cask 'iterm2'
-	cask 'appcleaner'
-	cask 'chrysalis' # Configurator for Atreus keyboard.
-	cask 'clipy' # If needed, could replace with https://github.com/p0deje/Maccy even though pinned items not exactly like snippets
-	cask 'dash'
-	cask 'eurkey' # For ErgoDox
-	cask 'gimp'
-	cask 'google-chrome'
-	cask 'iterm2nbeta' # Until 3.5 is released (that has dark/light automatic modes).
-	cask 'keepingyouawake'
-	cask 'keka'
-	cask 'sanesidebuttons' # Fork of sensiblesidebuttons. Need to manually add it to System Preferences > Users & Groups > Login items
-	cask 'scroll-reverser'
-	cask 'vimr'
-	cask 'visual-studio-code'
-	cask 'vlc'
+cask 'appcleaner'
+cask 'chrysalis' # Configurator for Atreus keyboard.
+cask 'clipy' # If needed, could replace with https://github.com/p0deje/Maccy even though pinned items not exactly like snippets
+cask 'dash'
+cask 'eurkey' # For ErgoDox
+cask 'gimp'
+cask 'google-chrome'
+cask 'iterm2'
+cask 'keepingyouawake'
+cask 'keka'
+cask 'sanesidebuttons' # Fork of sensiblesidebuttons. Need to manually add it to System Preferences > Users & Groups > Login items
+cask 'scroll-reverser'
+cask 'vimr'
+cask 'visual-studio-code'
+cask 'vlc'
 # }
 
 # Cask: optional {
-	# cask 'amethyst'
-	# cask 'android-studio'
-	# cask 'atom'
-	# cask 'audacity'
-	# cask 'audio-hijack'
-	# cask 'awareness'
-	# cask 'background-music'
-	# cask 'bankid'
-	# cask 'burn'
-	# cask 'cheatsheet'
-	# cask 'clamxav'
-	# cask 'colloquy'
-	# cask 'cron'
-	# cask 'cyberduck'
-	# cask 'devutils' # A bit $$$
-	# cask 'docker'
-	# cask 'dozer'  # Hide menubar icons. Alternative to bartender
-	# cask 'dropbox'
-	# cask 'eclipse-ide'
-	# cask 'electric-sheep'
-	# cask 'epic-games'
-	# cask 'eqmac'
-	# cask 'firefox'
-	# cask 'flip4mac'
-	# cask 'freshback'
-	# cask 'gitify'
-	# cask 'google-drive'
-	# cask 'gpg-suite'
-	# cask 'handbrake'
-	# cask 'inkscape'
-	# cask 'insomnia'
-	# cask 'insync'
-	# cask 'intellij-idea-ce'
-	# cask 'itsycal'
-	# cask 'jabra-direct'
-	# cask 'karabiner-elements'
-	# cask 'keepassxc'
-	# cask 'keybase'
-	# cask 'libreoffice'
-	# cask 'livereload'
-	# cask 'mactex'
-	# cask 'macvim'    # Prefer macvim cask to formula. Both provide MacVim.app but only the cask installs it to /Applications. Spotlight used to find both locations, but no only at /Applications. https://github.com/macvim-dev/macvim/issues/450#issuecomment-570202139
-	# cask 'max'
-	# cask 'microsoft-excel'
-	# cask 'microsoft-outlook'
-	# cask 'microsoft-powerpoint'
-	# cask 'microsoft-word'
-	# cask 'mp3tag'
-	# cask 'muzzle'  # Automatic DoNotDisturbe while screen sharing over video conferencing.
-	# cask 'name-mangler'
-	# cask 'origin'
-	# cask 'pdftotext'
-	# cask 'perian'
-	# cask 'postman'
-	# cask 'prey'
-	# cask 'pycharm-ce'
-	# cask 'qr-journal'
-	# cask 'rectangle'
-	# cask 'rekordbox'
-	# cask 'semulov'
-	# cask 'send-to-kindle'
-	# cask 'skype'
-	# cask 'slack'
-	# cask 'sound-control'
-	# cask 'spotify'
-	# cask 'spotify-notifications'
-	# cask 'steam'
-	# cask 'stretchly'
-	# cask 'switch'     # Audio format converter
-	# cask 'thunderbird'
-	# cask 'tor-browser'
-	# cask 'veracrypt'
-	# cask 'virtualbox'
-	# cask 'wireshark'
-	# cask 'zoom'
+# cask 'amethyst'
+# cask 'android-studio'
+# cask 'atom'
+# cask 'audacity'
+# cask 'audio-hijack'
+# cask 'awareness'
+# cask 'background-music'
+# cask 'bankid'
+# cask 'burn'
+# cask 'cheatsheet'
+# cask 'clamxav'
+# cask 'colloquy'
+# cask 'cron'
+# cask 'cyberduck'
+# cask 'devutils' # A bit $$$
+# cask 'docker'
+# cask 'dozer'  # Hide menubar icons. Alternative to bartender
+# cask 'dropbox'
+# cask 'eclipse-ide'
+# cask 'electric-sheep'
+# cask 'epic-games'
+# cask 'eqmac'
+# cask 'firefox'
+# cask 'flip4mac'
+# cask 'freshback'
+# cask 'gitify'
+# cask 'google-drive'
+# cask 'gpg-suite'
+# cask 'handbrake'
+# cask 'inkscape'
+# cask 'insomnia'
+# cask 'insync'
+# cask 'intellij-idea-ce'
+# cask 'itsycal'
+# cask 'jabra-direct'
+# cask 'karabiner-elements'
+# cask 'keepassxc'
+# cask 'keybase'
+# cask 'libreoffice'
+# cask 'livereload'
+# cask 'mactex'
+# cask 'macvim'    # Prefer macvim cask to formula. Both provide MacVim.app but only the cask installs it to /Applications. Spotlight used to find both locations, but no only at /Applications. https://github.com/macvim-dev/macvim/issues/450#issuecomment-570202139
+# cask 'max'
+# cask 'microsoft-excel'
+# cask 'microsoft-outlook'
+# cask 'microsoft-powerpoint'
+# cask 'microsoft-word'
+# cask 'mp3tag'
+# cask 'muzzle'  # Automatic DoNotDisturbe while screen sharing over video conferencing.
+# cask 'name-mangler'
+# cask 'origin'
+# cask 'pdftotext'
+# cask 'perian'
+# cask 'postman'
+# cask 'prey'
+# cask 'pycharm-ce'
+# cask 'qr-journal'
+# cask 'rectangle'
+# cask 'rekordbox'
+# cask 'semulov'
+# cask 'send-to-kindle'
+# cask 'skype'
+# cask 'slack'
+# cask 'sound-control'
+# cask 'spotify'
+# cask 'spotify-notifications'
+# cask 'steam'
+# cask 'stretchly'
+# cask 'switch'     # Audio format converter
+# cask 'thunderbird'
+# cask 'tor-browser'
+# cask 'veracrypt'
+# cask 'virtualbox'
+# cask 'wireshark'
+# cask 'zoom'
 # }
 
 # Mas: default {
@@ -266,117 +265,116 @@
 # $ find /Applications -path '*Contents/_MASReceipt/receipt' -maxdepth 4 -print |\sed 's#.app/Contents/_MASReceipt/receipt#.app#g; s#/Applications/##'
 #
 # $ mas search <app>
-	mas 'Brother iPrint&Scan', id: 1_193_539_993 # Image Capture.app does not work for Brother DCP-7070DW
-	mas 'InstaRemind', id: 1492317385
-	mas 'Overlap', id: 1516950324
-	mas 'Shazam', id: 897_118_787
-	mas 'Todoist', id: 585_829_637
-	mas 'WorkingHours', id: 1495643653
-	mas 'feedly', id: 865500966
+mas 'Brother iPrint&Scan', id: 1_193_539_993 # Image Capture.app does not work for Brother DCP-7070DW
+mas 'InstaRemind', id: 1_492_317_385
+mas 'Overlap', id: 1_516_950_324
+mas 'Shazam', id: 897_118_787
+mas 'Todoist', id: 585_829_637
+mas 'WorkingHours', id: 1_495_643_653
+mas 'feedly', id: 865_500_966
 
 # Safari extensions:
-	# mas 'Polyglot', id: 1_471_801_525 # Currently broken: https://github.com/uetchy/Polyglot/issues/141
-	mas 'AdGuard for Safari', id: 1_440_147_259
-	mas 'Consent-O-Matic', id: 1606897889
-	mas 'Dark Reader for Safari', id: 1_438_243_180
-	mas 'Keyword Search', id: 1_558_453_954
+# mas 'Polyglot', id: 1_471_801_525 # Currently broken: https://github.com/uetchy/Polyglot/issues/141
+mas 'AdGuard for Safari', id: 1_440_147_259
+mas 'Consent-O-Matic', id: 1_606_897_889
+mas 'Dark Reader for Safari', id: 1_438_243_180
+mas 'Keyword Search', id: 1_558_453_954
 # }
 
 # Mas: optional {
-	# mas 'Bitwarden', id: 1352778147
-	# mas 'GamePad Companion', id: 428799479
-	# mas 'Irvue', id: 1039633667
-	# mas 'Microsoft To Do', id: 1274495053
-	# mas 'Neural Mix Pro', id: 1527105121
-	# mas 'PhotoResize', id: 492236133
-	# mas 'Playlisty for Apple Music', id: 1459275972
-	# mas 'SwordSoft Screenink Free', id: 953841977
-	# mas 'WeatherBug', id: 1059074180
-	# mas 'Xcode', id: 497799835
+# mas 'Bitwarden', id: 1352778147
+# mas 'GamePad Companion', id: 428799479
+# mas 'Irvue', id: 1039633667
+# mas 'Microsoft To Do', id: 1274495053
+# mas 'Neural Mix Pro', id: 1527105121
+# mas 'PhotoResize', id: 492236133
+# mas 'Playlisty for Apple Music', id: 1459275972
+# mas 'SwordSoft Screenink Free', id: 953841977
+# mas 'WeatherBug', id: 1059074180
+# mas 'Xcode', id: 497799835
 # }
 
 # Development: Java {
-	# brew 'java'
-	# brew 'maven'
-	# brew 'gradle'
-	# brew 'ant'
-	#
-	# tap 'adoptopenjdk/openjdk'
-	# brew 'adoptopenjdk11'
+# brew 'java'
+# brew 'maven'
+# brew 'gradle'
+# brew 'ant'
+#
+# tap 'adoptopenjdk/openjdk'
+# brew 'adoptopenjdk11'
 
-
-	# asdf reqs - Java
-	brew 'bash'
-	brew 'curl'
-	brew 'unzip'
-	brew 'jq'
+# asdf reqs - Java
+brew 'bash'
+brew 'curl'
+brew 'unzip'
+brew 'jq'
 # }
 
 # Development: Python {
-	# brew 'ipython'
-	# brew 'pyright' # Language Server for python https://langserver.org/
-	# brew 'python@2'
-	brew 'pyright' # LSP server.
-	brew 'python-tk'	# Needed for pyenv when using some pip packages.
+# brew 'ipython'
+# brew 'pyright' # Language Server for python https://langserver.org/
+# brew 'python@2'
+brew 'pyright' # LSP server.
+brew 'python-tk'	# Needed for pyenv when using some pip packages.
 
-	# asdf reqs - Python
-	brew 'openssl'
-	brew 'readline'
-	brew 'sqlite3'
-	brew 'xz'
-	brew 'zlib'
+# asdf reqs - Python
+brew 'openssl'
+brew 'readline'
+brew 'sqlite3'
+brew 'xz'
+brew 'zlib'
 # }
 
 # Developmenht: Ruby {
-	# brew 'rbenv'        # includes 'ruby-build' as dependency
-	# brew 'ruby-build'
+# brew 'rbenv'        # includes 'ruby-build' as dependency
+# brew 'ruby-build'
 
-	# ruby-build dependencies: https://github.com/rbenv/ruby-build/wiki#suggested-build-environment
-	#brew 'openssl@1.1' # Now deprecated in Homebrew.
-	brew 'openssl@3' # Ruby >= 3.1 uses this instead of openssl1.1
-	brew 'readline'
-	brew 'gmp'
-	brew 'rust'
-	brew 'libyaml' # Seems to be a runtime dependency for ruby from rbenv: https://stackoverflow.com/a/10958585/265508
+# ruby-build dependencies: https://github.com/rbenv/ruby-build/wiki#suggested-build-environment
+# brew 'openssl@1.1' # Now deprecated in Homebrew.
+brew 'openssl@3' # Ruby >= 3.1 uses this instead of openssl1.1
+brew 'readline'
+brew 'gmp'
+brew 'rust'
+brew 'libyaml' # Seems to be a runtime dependency for ruby from rbenv: https://stackoverflow.com/a/10958585/265508
 
-	# brew 'sqlite3'	# For rails
+# brew 'sqlite3'	# For rails
 # }
 
 # Misc {
-	# cryfs {
-	# Reference: https://www.cryfs.org/#download https://github.com/cryfs/cryfs
-	# cask 'osxfuse'
-	# brew 'cryfs'
+# cryfs {
+# Reference: https://www.cryfs.org/#download https://github.com/cryfs/cryfs
+# cask 'osxfuse'
+# brew 'cryfs'
 # }
 
 # Fonts {
 # Programming fonts {
-	brew 'svn' # Dependency for font'source-code-pro
-	cask 'font-dm-mono'
-	cask 'font-hack'
-	cask 'font-inconsolata'
-	cask 'font-source-code-pro'
-	cask 'font-terminus'
+brew 'svn' # Dependency for font'source-code-pro
+cask 'font-dm-mono'
+cask 'font-hack'
+cask 'font-inconsolata'
+cask 'font-source-code-pro'
+cask 'font-terminus'
 
 # When using lsd(1).
-	# https://www.nerdfonts.com/font-downloads
-	cask 'font-hack-nerd-font'
-	cask 'font-inconsolata-nerd-font'
-	cask 'font-jetbrains-mono-nerd-font'
-	cask 'font-roboto-mono-nerd-font'
+# https://www.nerdfonts.com/font-downloads
+cask 'font-hack-nerd-font'
+cask 'font-inconsolata-nerd-font'
+cask 'font-jetbrains-mono-nerd-font'
+cask 'font-roboto-mono-nerd-font'
 # }
 
-	tap 'colindean/fonts-nonfree'
-	cask 'font-microsoft-office'
+tap 'colindean/fonts-nonfree'
+cask 'font-microsoft-office'
 # }
 
 # SSHFS {
-	# Reference: https://www.digitalocean.com/community/tutorials/how-to-use-sshfs-to-mount-remote-file-systems-over-ssh
-	# brew 'osxfuse'
-	# brew 'sshfs'
-	# Now you can mount like this:
-	# $ sudo mkdir -p /mnt/sshfs
-	# $ sudo sshfs -o allow_other,defer_permissions user@host:/ /mnt/sshfs
+# Reference: https://www.digitalocean.com/community/tutorials/how-to-use-sshfs-to-mount-remote-file-systems-over-ssh
+# brew 'osxfuse'
+# brew 'sshfs'
+# Now you can mount like this:
+# $ sudo mkdir -p /mnt/sshfs
+# $ sudo sshfs -o allow_other,defer_permissions user@host:/ /mnt/sshfs
 # }
 
 # }
