@@ -3,7 +3,6 @@
 *.sw?
 *~
 .DS_STORE
-.config/Code/User/
 .config/MusicBrainz/
 .config/android/
 .config/broot/launcher/
