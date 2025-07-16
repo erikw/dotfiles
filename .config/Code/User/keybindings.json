@@ -2,12 +2,12 @@
 Erik Westrup's VSCode user keybindings overrides.
 
 macOS version: Note that due to settingsSync.keybindingsPerPlatform the Windows config is not show. It can be found at lastSynckeybindings.json and decoded with this Python program:
-import json
-f = open("lastSynckeybindings.json", "r", encoding="utf-8")
-data = json.load(f)
-content = json.loads(data["syncData"]["content"])
-windows_conf = content["windows"]
-print(windows_conf)
+> import json
+> f = open("lastSynckeybindings.json", "r", encoding="utf-8")
+> data = json.load(f)
+> content = json.loads(data["syncData"]["content"])
+> windows_conf = content["windows"]
+> print(windows_conf)
 
 
 JSON5 (close enouch got JSONC) validator: https://jsonformatter.org/json5-validator
