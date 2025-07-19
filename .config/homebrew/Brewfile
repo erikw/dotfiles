@@ -164,6 +164,7 @@ cask 'appcleaner'
 cask 'chrysalis' # Configurator for Atreus keyboard.
 cask 'clipy' # If needed, could replace with https://github.com/p0deje/Maccy even though pinned items not exactly like snippets
 cask 'dash'
+cask 'grammarly-desktop'
 cask 'eurkey' # For ErgoDox
 cask 'gimp'
 cask 'google-chrome'
@@ -272,6 +273,7 @@ mas 'Shazam', id: 897_118_787
 mas 'Todoist', id: 585_829_637
 mas 'WorkingHours', id: 1_495_643_653
 mas 'feedly', id: 865_500_966
+mas 'Grammarly for Safari', id: 1_462_114_288
 
 # Safari extensions:
 # mas 'Polyglot', id: 1_471_801_525 # Currently broken: https://github.com/uetchy/Polyglot/issues/141
