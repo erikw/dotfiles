@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Send macOS notification if commans fails. Similar to ./if_fail_do_notification
+# Send macOS notification if commans fails.
 # Requirements: terminal-notifier
 # Limitation: can't be run in root cron job, as it's not connected to a GUI session: https://apple.stackexchange.com/a/257550/197493
 

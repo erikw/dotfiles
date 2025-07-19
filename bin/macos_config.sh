@@ -622,8 +622,8 @@ PATH=~/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/local/sbin:/
 # minute hour mday month wday	command
 
 
-#30	 19	 *	 *	 *	if_fail_do_notification restic_backup.sh
-#@monthly			   if_fail_do_notification restic_check.sh
+#30	 19	 *	 *	 *	if_fail_notify restic_backup.sh
+#@monthly			   if_fail_notify restic_check.sh
 EOF
 set -o errexit
 tab_old=$(crontab -l)

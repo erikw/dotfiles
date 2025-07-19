@@ -3,7 +3,7 @@
 # Requirements: jq(1)
 # Add a crontab entry like:
 # # Run every Sunday evening
-# 0     20     *     *     0      if_fail_do_notification spotify-backup.sh
+# 0     20     *     *     0      if_fail_notify spotify-backup.sh
 
 
 spot_username=erikwestrup
