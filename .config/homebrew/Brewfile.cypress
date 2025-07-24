@@ -26,9 +26,9 @@
     cask 'gramps'
     cask 'handbrake'
     cask 'jettison'
+    cask 'kid3'  # MP3 metadata editor
     cask 'lastfm'
     cask 'mactex'
-    cask 'mullvadvpn'
     cask 'mutify'
     cask 'send-to-kindle'
     cask 'whatsapp'
@@ -40,15 +40,9 @@
     cask 'ableton-live-suite' # If using latest version, which I'm not.
     cask 'android-file-transfer'
     cask 'android-platform-tools'
-    cask 'focusrite-control' # Needs the driver tap
-    cask 'freeyourmusic'
-    cask 'isyncr'
-    cask 'jabra-direct'
-    cask 'kid3'  # MP3 metadata editor
     cask 'microsoft-office'  # License managed at https://account.microsoft.com/services/
     cask 'mixed-in-key'    # If using latest version, which I'm not.
     cask 'musicbrainz-picard'
-    cask 'mutify'
     cask 'rekordbox'
     cask 'signal'
     cask 'transmission'
@@ -57,12 +51,10 @@
 
 # Mas: default {
     mas 'Amazon Prime Video', id: 545519333
-    mas 'Bitwarden', id: 1352778147
     mas 'CEWE Fotowelt', 1321448290
     mas 'Exporter', id: 1099120373
     mas 'Keynote', id: 409183694
     mas 'Kindle Classic', id: 405399194
-    mas 'Kindle', id: 405399194
     mas 'MoneyStats Pro', id: 1501042913
     mas 'Numbers', id: 409203825
     mas 'Pages', id: 409201541
@@ -73,7 +65,6 @@
 
 # Mas: optional {
     #mas 'djay', id: 450527929
-    #mas 'CEWE Fotowelt', id: 1321448290
 # }
 
 # Misc {
