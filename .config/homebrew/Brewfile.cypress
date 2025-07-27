@@ -31,7 +31,6 @@
     cask 'mactex'
     cask 'mutify'
     cask 'send-to-kindle'
-    cask 'whatsapp'
     cask 'zoom'
 # }
 
@@ -50,6 +49,7 @@
 # }
 
 # Mas: default {
+# Prefer Mas over cask, as security fixes gets pushed out faster on the App Store.
     mas 'Amazon Prime Video', id: 545519333
     mas 'CEWE Fotowelt', 1321448290
     mas 'Exporter', id: 1099120373
@@ -61,6 +61,7 @@
     mas 'Paprika Recipe Manager 3', id: 1303222628
     mas 'Photomator', id: 1444636541
     mas 'Pixelmator Pro', id: 1289583905
+    mas 'WhatsApp', id: 310633997
 # }
 
 # Mas: optional {
