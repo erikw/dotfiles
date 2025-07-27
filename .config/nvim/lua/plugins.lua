@@ -440,6 +440,10 @@ return require("packer").startup(function(use)
             -- Let stylua find $XDG_CONFIG_HOME/stylua/stylua.toml
             vim.g.ale_lua_stylua_options = "--search-parent-directories"
 
+            vim.g.ale_pattern_options = {
+                ["Brewfile*"] = { ale_fixers = {} }, -- Disable all (ruby) fixers as I want my Brewfile indented in a particular way for folding and text operation on indentation (sorting).
+            }
+
             -- Completion {
             vim.g.ale_completion_autoimport = 1
             -- Trigger on ^x^o
