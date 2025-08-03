@@ -157,7 +157,6 @@
 				cask 'appcleaner'
 				cask 'chrysalis' # Configurator for Atreus keyboard.
 				cask 'clipy' # If needed, could replace with https://github.com/p0deje/Maccy even though pinned items not exactly like snippets
-				cask 'dash'
 				cask 'grammarly-desktop'
 				cask 'eurkey' # For ErgoDox
 				cask 'gimp'
@@ -184,6 +183,7 @@
 				# cask 'colloquy'
 				# cask 'cron'
 				# cask 'cyberduck'
+				# cask 'dash' # Nope, this is now a subscription model.
 				# cask 'devutils' # A bit $$$
 				# cask 'docker'
 				# cask 'dozer'  # Hide menubar icons. Alternative to bartender

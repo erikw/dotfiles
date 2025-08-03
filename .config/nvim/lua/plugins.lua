@@ -187,18 +187,6 @@ return require("packer").startup(function(use)
     --    end,
     --})
 
-    -- Search dash.app from nvim. Currently broken: https://github.com/mrjones2014/dash.nvim/issues/137
-    --use({
-    --    "mrjones2014/dash.nvim",
-    --    run = "make install",
-    --    requires = { "ibhagwan/fzf-lua" },
-    --    config = function()
-    --        require("dash").setup()
-    --        vim.keymap.set("n", "<Leader>d", ":DashWord<CR>", { silent = true, desc = "Dash: lookup word." })
-    --        vim.keymap.set("n", "<Leader>D", ":Dash<CR>", { silent = true, desc = "Dash" })
-    --    end,
-    --})
-
     -- Indent vertical markers.
     --use({
     --    "lukas-reineke/indent-blankline.nvim",

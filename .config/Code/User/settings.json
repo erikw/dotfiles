@@ -195,7 +195,6 @@ JSON5 (close enouch got JSONC) validator: https://jsonformatter.org/json5-valida
     "ltex.completionEnabled": true,
 
     // ** Extension: Netlify **
-    "netlify.api_token": "", // GIT-CENSORED
     "netlify.site_id": "",
 
     // ** Extension: Path Intellisense **
