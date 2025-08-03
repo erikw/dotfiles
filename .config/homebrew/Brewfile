@@ -155,12 +155,13 @@
 
 # Cask: default {
 				cask 'appcleaner'
+				cask 'boop'
 				cask 'chrysalis' # Configurator for Atreus keyboard.
 				cask 'clipy' # If needed, could replace with https://github.com/p0deje/Maccy even though pinned items not exactly like snippets
-				cask 'grammarly-desktop'
 				cask 'eurkey' # For ErgoDox
 				cask 'gimp'
 				cask 'google-chrome'
+				cask 'grammarly-desktop'
 				cask 'iterm2'
 				cask 'keepingyouawake'
 				cask 'keka'
