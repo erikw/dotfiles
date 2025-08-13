@@ -166,7 +166,7 @@
 				cask 'keepingyouawake'
 				cask 'keka'
 				cask 'rectangle'
-				cask 'sanesidebuttons' # Fork of sensiblesidebuttons. Need to manually add it to System Preferences > Users & Groups > Login items
+				cask 'sanesidebuttons' # Need to manually add it to System Preferences > Users & Groups > Login items. More powerful alt: mac-mouse-fix
 				cask 'scroll-reverser'
 				cask 'vimr'
 				cask 'visual-studio-code'

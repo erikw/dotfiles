@@ -344,7 +344,7 @@ go install github.com/maykonlsf/semver-cli/cmd/semver@latest
 
 # Install latest ruby
 #asdf install ruby latest
-#asdf global ruby latest
+#asdf set ruby latest
 
 
 # Rails
@@ -371,7 +371,7 @@ go install github.com/maykonlsf/semver-cli/cmd/semver@latest
 # Build requirements from https://github.com/danhper/asdf-python
 #brew install openssl readline sqlite3 xz zlib
 #asdf install python latest
-#asdf global python latest
+#asdf set python latest
 
 #curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/install-poetry.py | python -
 #poetry completions zsh > $XDG_CONFIG_HOME/zsh/funcs/_poetry
@@ -385,7 +385,7 @@ go install github.com/maykonlsf/semver-cli/cmd/semver@latest
 # Build requirements from https://github.com/asdf-vm/asdf-nodejs/
 #brew install gpg gawk
 #asdf install nodejs latest
-#asdf global nodejs latest
+#asdf set nodejs latest
 # }
 # }
 

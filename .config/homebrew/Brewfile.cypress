@@ -59,13 +59,14 @@
     mas 'Numbers', id: 409203825
     mas 'Pages', id: 409201541
     mas 'Paprika Recipe Manager 3', id: 1303222628
+    mas 'PhotoSweeper', id: 463362050
     mas 'Photomator', id: 1444636541
     mas 'Pixelmator Pro', id: 1289583905
     mas 'WhatsApp', id: 310633997
 # }
 
-# Mas: optional {
-    #mas 'djay', id: 450527929
+# Nas: optional {
+    #nas 'djay', id: 450527929
 # }
 
 # Misc {
