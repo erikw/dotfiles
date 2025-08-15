@@ -494,7 +494,7 @@ return require("packer").startup(function(use)
     -- }}
 
     -- Development: C/C++ {{
-    use("ludovicchabant/vim-gutentags") -- Autogenerate new tags file.
+    --use("ludovicchabant/vim-gutentags") -- Autogenerate new tags file.
     -- }}
 
     -- Development: Go {{
