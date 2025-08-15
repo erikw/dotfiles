@@ -249,13 +249,14 @@
 				#
 				# $ mas search <app>
 				mas 'Brother iPrint&Scan', id: 1_193_539_993 # Image Capture.app does not work for Brother DCP-7070DW
+				mas 'Grammarly for Safari', id: 1_462_114_288
 				mas 'InstaRemind', id: 1_492_317_385
 				mas 'Overlap', id: 1_516_950_324
 				mas 'Shazam', id: 897_118_787
+				mas 'Telegram', id: 747648890
 				mas 'Todoist', id: 585_829_637
 				mas 'WorkingHours', id: 1_495_643_653
 				mas 'feedly', id: 865_500_966
-				mas 'Grammarly for Safari', id: 1_462_114_288
 
 # Safari extensions:
 				# mas 'Polyglot', id: 1_471_801_525 # Currently broken: https://github.com/uetchy/Polyglot/issues/141
