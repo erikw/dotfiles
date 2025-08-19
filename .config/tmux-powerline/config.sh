@@ -130,6 +130,13 @@
 	# date(1) format for the time. Americans might want to have "%I:%M %p".
 	export TMUX_POWERLINE_SEG_TIME_FORMAT="%I:%M %p"
 # }
+#
+# tmux_continuum_status.sh {
+	# Path to the tmux-continuum git repo.
+	export TMUX_POWERLINE_SEG_TMUX_CONTINUUM_PATH="/Users/erikw/.config/tmux/plugins/tmux-continuum"
+	# Message to perfix the status indication with.
+	export TMUX_POWERLINE_SEG_TMUX_CONTINUUM_PREFIX="C:"
+# }
 
 # vcs_branch.sh {
 	# Max length of the branch name.

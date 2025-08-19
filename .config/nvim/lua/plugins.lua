@@ -5,6 +5,7 @@
 -- }}
 
 -- packer.nvim Bootstrap {{
+-- TODO replace packer with new built-in vim.pack? Or lazy.nvim, seems more popular and faster.
 -- Bootstrapping of packer.nvim. Ref: https://github.com/wbthomason/packer.nvim#bootstrapping
 local ensure_packer = function()
     local fn = vim.fn
@@ -200,7 +201,7 @@ return require("packer").startup(function(use)
     --})
 
     use("andymass/vim-matchup") -- Extend % matching.
-    use("editorconfig/editorconfig-vim") -- Standard .editorconfig file in shared projects.
+    --use("editorconfig/editorconfig-vim") -- Standard .editorconfig file in shared projects. No longer needed, is built-in since Nvim 0.9
     use("rhysd/conflict-marker.vim") -- Navigate and edit VCS conflicts. Navigate: [x, ]x. Resolve: ct, co, cb.
     use("ruanyl/vim-gh-line") -- Copy link to file on GitHub.
     use("wellle/targets.vim") -- Extra text objects to operate on e.g. function arguments.
@@ -382,6 +383,10 @@ return require("packer").startup(function(use)
     --
 
     -- LSP linting engine.
+    -- TODO replace with:
+    -- * Native LSP (vim.lsp.*) → diagnostics, hover, definitions, completion, formatting
+    -- * nvim-cmp → richer completion UI & sources (optional, but very common)
+    -- * nvim-lint or null-ls.nvim → to integrate non-LSP linters/formatters into the diagnostics/code-action pipeline
     use({
         "dense-analysis/ale",
         setup = function()
@@ -558,6 +563,7 @@ return require("packer").startup(function(use)
     -- }}
 
     -- Snippets {{
+    -- TODO replace with built-in vim.snippet?
     -- Snippets engine compatible with the SnipMate format.
     use({
         "dcampos/nvim-snippy",
