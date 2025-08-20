@@ -34,15 +34,16 @@ url="$1"
 opts=(
 	--extract-audio
 	--audio-format mp3
-	--audio-quality 0	# 0 is best
-	--add-metadata \
-	--embed-metadata \
-	--embed-thumbnail \
-	--embed-chapters \
-	--convert-thumbnails jpg # jpg works better than webp in many players
+	--audio-quality 0			# 0 is best
+	--no-playlist				# Prevent following &list= part of URL
+	--add-metadata
+	--embed-metadata
+	--embed-thumbnail
+	--embed-chapters
+	--convert-thumbnails jpg	# jpg works better than webp in many players. This option can fail with "Requested format is not available. Use --list-formats..."
 	 # Replace empty artist field with channel name. \
 	--parse-metadata "uploader:%(artist)s" --replace-in-metadata "artist" "^$" "%(uploader)s"
-	-o "${DEST_DIR}/%(artist)s - %(title)s.%(ext)s" \
+	-o "${DEST_DIR}/%(artist)s - %(title)s.%(ext)s"
 	"$url"
 )
 
