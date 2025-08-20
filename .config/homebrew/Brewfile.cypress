@@ -9,6 +9,8 @@
 # }
 
 # Formula: default {
+	brew 'ffmpeg' # Dependency for yt-dlp
+	brew 'yt-dlp'
 # }
 #
 # Formula: optional {
