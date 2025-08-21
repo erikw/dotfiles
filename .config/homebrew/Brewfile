@@ -250,6 +250,7 @@
 				#
 				# $ mas search <app>
 				mas 'Brother iPrint&Scan', id: 1_193_539_993 # Image Capture.app does not work for Brother DCP-7070DW
+				mas 'DaftCloud', id: 1320450034
 				mas 'Grammarly for Safari', id: 1_462_114_288
 				mas 'InstaRemind', id: 1_492_317_385
 				mas 'Overlap', id: 1_516_950_324
