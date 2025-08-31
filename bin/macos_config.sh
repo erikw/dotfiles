@@ -500,22 +500,23 @@ defaults write com.apple.finder _FXSortFoldersFirst -bool true
 # }
 
 # Music.app {
-## Import process:
-# * Keep originals in ~/media/music
-# * On new system.
-#    * Music.app > File > Import > "artistis" folder
-#    * Drag and drop each subdir of "collections" one-by-one (multi drop creates just one big playlist) as a new playlist
-# * Adding more files: either drag-n-drop new files to the library, or **copy** (original is moved to library) to "~/Music/Music/Media/Automatically Add to Music"
-#
-#
 ## Playback
 # Enable "Sound Enhancer" when using desktop speaker.
 ## Files
-# * Add music folder.
-# * Check "Keep music Media folder organized"
-# * Check "Copy files to Music Media folder when adding to library"
+# * Uncheck "Keep music Media folder organized"
+# * Uncheck "Copy files to Music Media folder when adding to library"
 ## Advanced
 # * Check "Automatically update artwork"
+#
+#
+## Import process:
+# * Keep originals in ~/media/music and don't let Music.app oganize the folder or import them to ~/Music/.
+# * On new system.
+#    * Music.app > File > Add to Library > "artists" folder
+#    * Drag and drop each subdir of "collections" one-by-one (multi drop creates just one big playlist) as a new playlist. Put playlists in a folder "Local Files" to distinguish these playlsits from iPhone made playlists with purchased iTunes music.
+# * Adding more files: first add to ~/media/music then
+# * From "artists"; drag-and-drop to Library
+# * From "collections"; drag-and-drop to corresponding playlist in the sidebar.
 # }
 
 # Photos.app {
