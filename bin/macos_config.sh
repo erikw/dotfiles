@@ -510,7 +510,7 @@ defaults write com.apple.finder _FXSortFoldersFirst -bool true
 #
 #
 ## Import process:
-# * Keep originals in ~/media/music and don't let Music.app oganize the folder or import them to ~/Music/.
+# * Keep originals in ~/media/music (so that they are safe in iCloud Drive) and don't let Music.app oganize the folder or import them to ~/Music/.
 # * On new system.
 #    * Music.app > File > Add to Library > "artists" folder
 #    * Drag and drop each subdir of "collections" one-by-one (multi drop creates just one big playlist) as a new playlist. Put playlists in a folder "Local Files" to distinguish these playlsits from iPhone made playlists with purchased iTunes music.

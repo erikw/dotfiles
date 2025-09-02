@@ -11,13 +11,17 @@ SCRIPT_NAME=${0##*/}
 DEST_DIR="$HOME/dl"
 
 IFS= read -rd '' USAGE <<EOF || :
-Wraper for yt-dlp
-Usage: $ ${SCRIPT_NAME} -h | url
+Wraper for yt-dlp. Defaults to download MP3.
+Usage: $ ${SCRIPT_NAME} -h | [-v] url
+
+-v\tDownload video instead of MP3.
 EOF
 
 
-while getopts ":h?" opt; do
+arg_video=false
+while getopts ":vh?" opt; do
 	case "$opt" in
+		v) arg_video=true;;
 		:) echo "Option -$OPTARG requires an argument." >&2; exit 1;;
 		h|?|*) echo -e "$USAGE"; exit 0;;
 	esac
@@ -31,25 +35,49 @@ fi
 url="$1"
 
 
-opts=(
-	--extract-audio
-	--audio-format mp3
-	--audio-quality 0			# 0 is best
-	--no-playlist				# Prevent following &list= part of URL
+if $arg_video; then
+	opts=(
+		# Opt1: download best quality & convert to iOS friendly format.
+		#--format "bestvideo[ext=mp4]+bestaudio[ext=m4a]/mp4"
+		## By default YouTube’s “best” video is usually in WebM/VP9 (video) + Opus (audio). iOS (Files app, Photos, QuickTime on iPhone) does not support VP9/WebM -> always re-encode to mp4 with ffmpeg.
+		#--recode-video mp4
+		## -c:v libx264 -> re-encode video to H.264
+		## -c:a aac -b:a 192k ->  re-encode audio to AAC (192 kbps)
+		#--postprocessor-args "ffmpeg:-c:v libx264 -c:a aac -b:a 192k"
+
+
+		# Opt2: download the fallback H.264 (avc1) video + AAC (m4a) audio stream up to 720p. Much faster, but could be lower quality.
+		# bestvideo[ext=mp4][vcodec^=avc1] -> only select H.264 (avc1) MP4 video
+		# +bestaudio[ext=m4a] -> only select AAC audio in M4A container
+		# /best[ext=mp4] -> fallback to the best single MP4 if separate tracks aren’t available
+		--format "bestvideo[ext=mp4][vcodec^=avc1]+bestaudio[ext=m4a]/best[ext=mp4]"
+	)
+else
+	opts=(
+		--extract-audio
+		--audio-format mp3
+		--audio-quality 0			# 0 is best
+		--convert-thumbnails jpg	# jpg works better than webp in many players. This option can fail with "Requested format is not available. Use --list-formats..."
+	)
+fi
+
+
+opts+=(
+	--progress
+	--no-playlist		# Prevent following &list= part of URL
 	--add-metadata
 	--embed-metadata
 	--embed-thumbnail
 	--embed-chapters
-	--convert-thumbnails jpg	# jpg works better than webp in many players. This option can fail with "Requested format is not available. Use --list-formats..."
-	 # Replace empty artist field with channel name. \
+	# Replace empty artist field with channel name.
 	--parse-metadata "uploader:%(artist)s" --replace-in-metadata "artist" "^$" "%(uploader)s"
+	--print after_move:filepath
 	-o "${DEST_DIR}/%(artist)s - %(title)s.%(ext)s"
 	"$url"
 )
 
-if yt-dlp "${opts[@]}"; then
-	echo "MP3 saved to ${DEST_DIR}"
-else
-	echo "Error creating MP3" >&2
+
+if ! yt-dlp "${opts[@]}"; then
+	echo "Error creating file." >&2
 	exit 2
 fi

@@ -298,6 +298,10 @@ fi
 	alias history-off='unset HISTFILE'				# Disable command history for the current shell.
 	alias whatismyip='curl ifconfig.me && echo'		# Get external IP-address
 	#alias whatismyip='curl ifconfig.co'			# Get external IP-address
+
+	# Wrapper for yt-dlp.sh (audio & video version) to avoid needing to quote URL argument.
+	alias yta='echo "Paste URL:" && read url && yt-dlp.sh "$url"'
+	alias ytv='echo "Paste URL:" && read url && yt-dlp.sh -v "$url"'
 # }
 
 # Copy & Paste {
