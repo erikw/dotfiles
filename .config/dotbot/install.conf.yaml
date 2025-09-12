@@ -5,6 +5,7 @@
     - .local/repos/dotbot-plugins/firefox
     - .local/repos/dotbot-plugins/ghq
     - .local/repos/dotbot-plugins/if
+    - .local/repos/dotbot-plugins/ifplatform
 
 - defaults:
     link:
@@ -56,15 +57,9 @@
     - ~/tmp
     - ~/.local/share/tig # Make tig use $XDG_DATA_HOME. Reference: https://wiki.archlinux.org/title/XDG_Base_Directory#Partial
 
-# TODO use ifmacos when bug fixed. https://github.com/ssbanerje/dotbot-ifplatform/pull/4#issuecomment-1532112176
-#- ifmacos:
-#    - brewfile:
-#        file: .config/homebrew/Brewfile
-- if:
-    cond: test $(uname) = Darwin
-    met:
-      - brewfile:
-          file: .config/homebrew/Brewfile
+- ifmacos:
+    - brewfile:
+        file: .config/homebrew/Brewfile
 
 - if:
     cond: "test -e ~/.config/homebrew/Brewfile.$(hostname)"
@@ -72,24 +67,21 @@
       - brewfile:
           file: "~/.config/homebrew/Brewfile.$(hostname)"
 
-# TODO use ifmacos when bug fixed. https://github.com/ssbanerje/dotbot-ifplatform/pull/4#issuecomment-1532112176
-- if:
-    cond: test $(uname) = Darwin
-    met:
-      - shell:
-          - command: ~/bin/macos_config.sh
-            description: Running macos_config.sh
-            stdin: true
-          - command: ~/bin/macos_install.sh
-            description: Running macos_config.sh
-          - command: ln -s ~/Downloads ~/dl
-          - command: ln -s ~/Documents ~/doc
-          - command: ln -s ~/Library/Mobile\ Documents/com~apple~CloudDocs/ ~/icloud
-            description: Symlink icloud to ~/
-          # Don't double-symlink via ~/icloud, because Stacks in Dock.app won't follow double-symlinks.
-          - command: ln -s ~/Library/Mobile\ Documents/com~apple~CloudDocs/bak ~/bak
-          - command: ln -s ~/Library/Mobile\ Documents/com~apple~CloudDocs/media ~/media
-          - command: ln -s ~/Library/Mobile\ Documents/com~apple~CloudDocs/work ~/work
+- ifmacos:
+    - shell:
+        - command: ~/bin/macos_config.sh
+          description: Running macos_config.sh
+          stdin: true
+        - command: ~/bin/macos_install.sh
+          description: Running macos_config.sh
+        - command: ln -s ~/Downloads ~/dl
+        - command: ln -s ~/Documents ~/doc
+        - command: ln -s ~/Library/Mobile\ Documents/com~apple~CloudDocs/ ~/icloud
+          description: Symlink icloud to ~/
+        # Don't double-symlink via ~/icloud, because Stacks in Dock.app won't follow double-symlinks.
+        - command: ln -s ~/Library/Mobile\ Documents/com~apple~CloudDocs/bak ~/bak
+        - command: ln -s ~/Library/Mobile\ Documents/com~apple~CloudDocs/media ~/media
+        - command: ln -s ~/Library/Mobile\ Documents/com~apple~CloudDocs/work ~/work
 
 # TODO conditionally execute:  ~/bin/windows_install.ps1
 #      and migrate to use https://github.com/JamJar00/dotbot-scoop
