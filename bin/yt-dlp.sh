@@ -71,6 +71,8 @@ opts+=(
 	--embed-chapters
 	# Replace empty artist field with channel name.
 	--parse-metadata "uploader:%(artist)s" --replace-in-metadata "artist" "^$" "%(uploader)s"
+	# Set album field to the playlist (if downloading from a playlist URL)
+	--metadata-from-title "album:%(playlist)s"
 	--print after_move:filepath
 	-o "${DEST_DIR}/%(artist)s - %(title)s.%(ext)s"
 	"$url"

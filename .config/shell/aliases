@@ -300,8 +300,8 @@ fi
 	#alias whatismyip='curl ifconfig.co'			# Get external IP-address
 
 	# Wrapper for yt-dlp.sh (audio & video version) to avoid needing to quote URL argument.
-	alias yta='echo "Paste URL:" && read url && yt-dlp.sh "$url"'
-	alias ytv='echo "Paste URL:" && read url && yt-dlp.sh -v "$url"'
+	alias yta='echo -n "Paste URL: " && read url && yt-dlp.sh "$url"'
+	alias ytv='echo -n "Paste URL: " && read url && yt-dlp.sh -v "$url"'
 # }
 
 # Copy & Paste {

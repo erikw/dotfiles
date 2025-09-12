@@ -316,7 +316,7 @@ fi
 # asdf version manager - golang
 #asdf plugin-add golang
 #asdf install golang latest
-#asdf global golang latest
+#asdf set -u golang latest
 
 # Go binaries
 # For erikw/tmux-powerline
@@ -344,7 +344,7 @@ go install github.com/maykonlsf/semver-cli/cmd/semver@latest
 
 # Install latest ruby
 #asdf install ruby latest
-#asdf set ruby latest
+#asdf set -u ruby latest
 
 
 # Rails
@@ -354,7 +354,7 @@ go install github.com/maykonlsf/semver-cli/cmd/semver@latest
 ## Dependencies
 # sqlite - macOS version is old
 #brew install sqlite3
-# npm - get a node manager to manage versions. NVM is slow and cumbersome => n. NOPE is the way to goASDF! See node section
+# npm - get a node manager to manage versions. NVM is slow and cumbersome => n. NOPE is the way to go ASDF! See node section
 # yarn - better than npm
 #npm install -g yarn
 # NOTE unset CC=clang if creating a new rails app, as dependency byebug fails with clang.
@@ -371,7 +371,7 @@ go install github.com/maykonlsf/semver-cli/cmd/semver@latest
 # Build requirements from https://github.com/danhper/asdf-python
 #brew install openssl readline sqlite3 xz zlib
 #asdf install python latest
-#asdf set python latest
+#asdf set -u python latest
 
 #curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/install-poetry.py | python -
 #poetry completions zsh > $XDG_CONFIG_HOME/zsh/funcs/_poetry
@@ -385,7 +385,7 @@ go install github.com/maykonlsf/semver-cli/cmd/semver@latest
 # Build requirements from https://github.com/asdf-vm/asdf-nodejs/
 #brew install gpg gawk
 #asdf install nodejs latest
-#asdf set nodejs latest
+#asdf set -u nodejs latest
 # }
 # }
 
