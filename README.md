@@ -21,7 +21,7 @@ My personal dotfiles, installed and managed with [dotbot](https://github.com/ani
 > This is as [XDG](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html) Base Directory Standard compliant as possible!
 
 ## Highlights
-* [`.config/`](.config/) - I've spent quite some effort to make my dotfiles adhere to the [XDG](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html) Base Directory Standard as much as possible, using and contributing to the [Arch wiki page](https://wiki.archlinux.org/title/XDG_Base_Directory). As far from all programs that I use support this natively, quite some custom configuration needed to be done. Grep for `XDG` in [shell/commons](.config/shell/commons).
+* [`.config/`](.config/) - I've spent quite some effort to make my dotfiles adhere to the [XDG](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html) Base Directory Standard as much as possible, using and contributing to the [Arch wiki page](https://wiki.archlinux.org/title/XDG_Base_Directory). As far as all programs that I use, support this natively, quite some custom configuration needs to be done. Grep for `XDG` in [shell/commons](.config/shell/commons).
    * [`dotbot/install.conf.yaml`](.config/dotbot/install.conf.yaml) - how these dotfiles are installed.
    * [`nvim/`](.config/nvim) - check out my Neovim configurations; they are pretty cool!
 * [`bin/`](bin/) - many handy and time saving scripts.
@@ -37,7 +37,7 @@ Bootstrap using [`bin/dotfiles_bootstrap.sh`](bin/dotfiles_bootstrap.sh):
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/erikw/dotfiles/main/bin/dotfiles_bootstrap.sh)"
 ```
-This will interactively set up a GitHub SSH key, clone this repo and run [`./install`](https://github.com/erikw/dotfiles/blob/main/install).
+This will interactively set up a GitHub SSH key, clone this repo, and run [`./install`](https://github.com/erikw/dotfiles/blob/main/install).
 
 
 ### Local branch
@@ -53,11 +53,11 @@ git commit -m "SQUASHED passwords"
 ```
 
 ### Host-specific configuration
-* Passwords and other secretes are censored. To find these and substitute them for the real thing, do:
+* Passwords and other secrets are censored. To find these and substitute them for the real thing, do:
 	```bash
 	grep -nr GIT-CENSORED . | grep -v README.md | grep -v "/.git/"
 	```
-* Set `DESKTYPE` in `$XDG_CONFIG_HOME/shell/commons`, unless system is macos.
+* Set `DESKTYPE` in `$XDG_CONFIG_HOME/shell/commons`, unless the system is macOS.
 * Default desktop is assumed to be macOS. Go through host-specific manual settings by searching for the corresponding tag.
 	```bash
 	grep -nr MACOS-CONFIG . 2>/dev/null | grep -v README.md
