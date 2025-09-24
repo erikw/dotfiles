@@ -62,6 +62,7 @@
 				brew 'grep'
 				brew 'grip'
 				brew 'gron'
+				brew 'hg' # Just to make nvim ':checkhealth diffview' happy. https://github.com/sindrets/diffview.nvim/issues/319
 				brew 'htop'
 				brew 'httpie'
 				brew 'iftop'
@@ -99,6 +100,7 @@
 				brew 'tig'
 				brew 'tmux'
 				brew 'tree'
+				brew 'tree-sitter-cli' # To make nvim :checkhealth happy.
 				brew 'unar'
 				brew 'universal-ctags'
 				brew 'unzip'

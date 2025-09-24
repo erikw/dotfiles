@@ -279,7 +279,9 @@ return require("packer").startup(function(use)
         "sindrets/diffview.nvim",
         requires = "nvim-lua/plenary.nvim",
         config = function()
-            require("diffview").setup()
+            require("diffview").setup({
+                --hg_cmd = nil, # Not working to disable to get rid of :checkhealth warning, https://github.com/sindrets/diffview.nvim/issues/319
+            })
             vim.api.nvim_create_user_command("Gdiff", ":DiffviewFileHistory %", { force = true, desc = "View diff file history of current buffer." })
         end,
     })

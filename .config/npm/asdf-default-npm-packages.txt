@@ -7,6 +7,8 @@ instant-markdown-d
 netlify-cli
 # Upgrade all packages in package.json with $(ncu -u). Ref: https://stackoverflow.com/a/22849716/265508
 npm-check-updates
+vercel
+
 
 # RoR requirements
 yarn

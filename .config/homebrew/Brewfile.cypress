@@ -29,7 +29,6 @@
     cask 'handbrake'
     cask 'jettison'
     cask 'kid3'  # MP3 metadata editor
-    cask 'lastfm'
     cask 'mactex'
     cask 'mutify'
     cask 'send-to-kindle'
@@ -57,10 +56,11 @@
     mas 'Exporter', id: 1099120373
     mas 'Keynote', id: 409183694
     mas 'Kindle Classic', id: 405399194
+    mas 'Mela', id: 1568924476
     mas 'MoneyStats Pro', id: 1501042913
+    mas 'NepTunes', id: 1006739057
     mas 'Numbers', id: 409203825
     mas 'Pages', id: 409201541
-    mas 'Paprika Recipe Manager 3', id: 1303222628
     mas 'PhotoSweeper', id: 463362050
     mas 'Photomator', id: 1444636541
     mas 'Pixelmator Pro', id: 1289583905
@@ -69,7 +69,8 @@
 # }
 
 # Nas: optional {
-    #nas 'djay', id: 450527929
+    #mas 'Paprika Recipe Manager 3', id: 1303222628
+    #mas 'djay', id: 450527929
 # }
 
 # Misc {

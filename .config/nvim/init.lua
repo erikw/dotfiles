@@ -9,6 +9,10 @@
 -- * https://neovim.io/doc/user/lua-guide.html
 -- }}
 
+-- Health Check {{
+-- run :checkhealth
+-- }}
+
 -- Profiling {{
 -- $ nvim --startuptime /tmp/nvim.log
 -- $ nvim --startuptime /dev/stdout +qall
@@ -28,6 +32,7 @@ vim.g.loaded_python_provider = 0
 vim.g.loaded_ruby_provider = 0
 vim.g.loaded_provider_provider = 0
 vim.g.loaded_node_provider = 0
+vim.g.loaded_perl_provider = 0
 -- }}
 
 -- Environment {{
