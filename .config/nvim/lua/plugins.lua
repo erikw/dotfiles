@@ -396,6 +396,12 @@ return require("packer").startup(function(use)
         end,
         config = function()
             -- Reference https://github.com/dense-analysis/ale/blob/master/doc/ale.txt
+
+            -- ALE's LSP client clashes with built-in one and gives error on startup: Cannot serialise boolean: table key must be a number or string
+            -- Ref: https://github.com/dense-analysis/ale/issues/4956
+            --vim.g.ale_disable_lsp = 1
+            vim.g.ale_use_neovim_lsp_api = 0
+
             -- gopls seems to work properly only when the source is in $GOPATH in a module?
             -- Disabled linters:
             -- ['sql'] = {'sqls'},
@@ -416,7 +422,8 @@ return require("packer").startup(function(use)
             -- gopls seems to work properly only when the source is in $GOPATH in a module?
             -- Disabled fixers:
             -- - *: 'trim_whitespace' & 'remove_trailing_lines' (overlaps with the functionally already provided by vim-better-whitespace)
-            -- - python: autoimport (messes up ifx in taiga_stats.commands import  fix. Could be resolved by https://github.com/myint/autoflake/issues/59)
+            -- - python: autoimport - (messes up ifx in taiga_stats.commands import  fix. Could be resolved by https://github.com/myint/autoflake/issues/59)
+            -- - python: autoflake - too disruptive e.g. removing `from pprint import pprint` on write if it's unused.
             -- - markdown: prettier (converts * to - in lists)
             vim.g.ale_fixers = {
                 ["css"] = { "prettier" },
@@ -424,7 +431,7 @@ return require("packer").startup(function(use)
                 ["json"] = { "prettier" },
                 ["go"] = { "gopls", "goimports" },
                 ["lua"] = { "stylua" },
-                ["python"] = { "autoflake", "black", "isort" },
+                ["python"] = { "black", "isort" },
                 ["ruby"] = { "rubocop" },
                 ["scss"] = { "prettier" },
                 ["typescript"] = { "prettier" },

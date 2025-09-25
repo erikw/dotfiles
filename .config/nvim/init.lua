@@ -91,6 +91,9 @@ vim.opt.shortmess = "filmnrxtToOA" -- Abbreviate messages. 'A' disables the atte
 -- Mappings {{
 vim.keymap.set("n", "<Leader>v", ':luafile $MYVIMRC<CR> <BAR> :echomsg "Sourced " . $MYVIMRC<CR>', { silent = true, desc = "Source init.lua." })
 vim.keymap.set("n", "<Leader>V", ":tabe $MYVIMRC<CR>", { silent = true, desc = "Edit init.lua." })
+vim.keymap.set("n", "<Leader>VP", function()
+    vim.cmd("tabe " .. vim.fn.stdpath("config") .. "/lua/plugins.lua")
+end, { silent = true, desc = "Edit plugins.lua." })
 vim.keymap.set("n", "<C-\\>", ':tab split<CR>:exec("tag ".expand("<cword>"))<CR>', { silent = true, desc = "Open tags definition in a new tab." })
 vim.keymap.set("n", "g^t", ":tabfirst<CR>", { silent = true, desc = "Go to the first tab." })
 vim.keymap.set("n", "g$t", ":tablast<CR>", { silent = true, desc = "Go to the last tab." })
