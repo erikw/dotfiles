@@ -1,5 +1,6 @@
 -- Erik Westrup's Neovim configuration.
--- Plugins: ~/.config/nvim/lua/plugins.lua
+-- Plugins:
+-- - ~/.config/nvim/lua/plugins/general.lua
 -- Modeline {
 -- vi: foldmarker={,} foldmethod=marker foldlevel=0
 -- }
@@ -33,10 +34,6 @@ vim.g.loaded_ruby_provider = 0
 vim.g.loaded_provider_provider = 0
 vim.g.loaded_node_provider = 0
 vim.g.loaded_perl_provider = 0
--- }}
-
--- Plugins: lazy.nvim Bootstrap {{
-require("config.lazy") -- ~/.config/nvim/lua/config/lazy.lua
 -- }}
 
 -- Environment {{
@@ -95,9 +92,9 @@ vim.opt.shortmess = "filmnrxtToOA" -- Abbreviate messages. 'A' disables the atte
 -- Mappings {{
 vim.keymap.set("n", "<Leader>v", ':luafile $MYVIMRC<CR> <BAR> :echomsg "Sourced " . $MYVIMRC<CR>', { silent = true, desc = "Source init.lua." })
 vim.keymap.set("n", "<Leader>V", ":tabe $MYVIMRC<CR>", { silent = true, desc = "Edit init.lua." })
-vim.keymap.set("n", "<Leader>VP", function()
-    vim.cmd("tabe " .. vim.fn.stdpath("config") .. "/lua/plugins.lua")
-end, { silent = true, desc = "Edit plugins.lua." })
+vim.keymap.set("n", "<Leader>VG", function()
+    vim.cmd("tabe " .. vim.fn.stdpath("config") .. "/lua/plugins/general.lua")
+end, { silent = true, desc = "Edit plugins/general.lua." })
 vim.keymap.set("n", "<C-\\>", ':tab split<CR>:exec("tag ".expand("<cword>"))<CR>', { silent = true, desc = "Open tags definition in a new tab." })
 vim.keymap.set("n", "g^t", ":tabfirst<CR>", { silent = true, desc = "Go to the first tab." })
 vim.keymap.set("n", "g$t", ":tablast<CR>", { silent = true, desc = "Go to the last tab." })
@@ -214,6 +211,7 @@ vim.opt.thesaurus = vim.fn.stdpath("config") .. "/thesaurus/" .. vim.fn.matchstr
 
 -- UI {{
 -- Ignore if don't exist. This is the case when $(vim -c PlugInstall) the first time. Ref: https://stackoverflow.com/a/5703164/265508
+-- TODO should load plugins before having this line, or set colorscheme in plugin config itself only?
 vim.cmd("silent! colorscheme solarized")
 vim.opt.background = "light" -- Be light (most likely right) be default as dark-notify toggles ugly otherwise.
 
@@ -247,4 +245,10 @@ vim.opt.splitright = true -- Open vertical split to the right.
 
 -- Characters to use for :list.
 vim.opt.listchars = { eol = "$", space = "·", tab = ">-", trail = "¬", extends = ">", precedes = "<", nbsp = "." }
+-- }}
+
+
+
+-- Plugins: lazy.nvim Bootstrap {{
+require("config.lazy") -- ~/.config/nvim/lua/config/lazy.lua
 -- }}

@@ -1,13 +1,20 @@
+-- Spec doc: https://lazy.folke.io/spec
+
 return {
 
 	--{ "dhruvasagar/vim-table-mode"},-- Create ASCII tables
 	--{ "fidian/hexmode"},		-- Open binary files as a HEX dump with :Hexmode
 	--{ "godlygeek/tabular"},		-- Create tables. Disabled: not used and have some startup time.
 	--{ "voldikss/vim-translator"},	-- Async language translator.
-  { "danro/rename.vim" },		-- Provides the :Rename command
 
 
-  {"danro/rename.vim"}, -- Provides the :Rename command
+    -- Show matching keybindings e.g. when tapping Leader.
+    --{
+    --    "folke/which-key.nvim",
+    --    opts = {}
+    --},
+
+  {"danro/rename.vim"},		-- Provides the :Rename command
   {"michaeljsmith/vim-indent-object"}, -- Operate on intendtation as text objects.
   {"tpope/vim-capslock"}, -- Software CAPSLOCK with <C-g>c in insert mode.
   {"tpope/vim-characterize"}, -- 'ga' on steroid.
@@ -42,7 +49,7 @@ return {
         "instant-markdown/vim-instant-markdown",
         ft = "markdown",
         build = "yarn install",
-        config = function()
+        init = function()
             vim.g.instant_markdown_autostart = 1
 
             -- Blocklist certain paths for previewing files (recursively).
@@ -55,5 +62,100 @@ return {
                 command = "let g:instant_markdown_autostart=0",
             })
         end,
-    }
+    },
+
+
+
+    -- File explorer tree
+    {
+        "nvim-tree/nvim-tree.lua",
+        requires = { "nvim-tree/nvim-web-devicons" },
+	keys = {
+		{"<F2>", ":NvimTreeToggle<CR>", { silent = true, desc = "Toggle file explorer tree." }}
+	},
+        opts = {
+                open_on_tab = true,
+                filters = { custom = { "^.git$" } },
+                view = {
+                    width = "15%",
+                    side = "left",
+                },
+            },
+	--init = function()
+            -- When open_on_tab=true, syncs toggle globally acoss tabs.
+	    --vim.keymap.set("n", "<F2>", ":NvimTreeToggle<CR>", { silent = true, desc = "Toggle file explorer tree." })
+	--end,
+    },
+
+
+
+    -- Work on surrond delimiters or its content. Like tpope/vim-surround but with TreeSitter.
+    {
+        "kylechui/nvim-surround",
+        tag = "*", -- Use for stability; omit to use `main` branch for the latest features
+	pin = true,  -- Lazy won’t report it as needing an update
+        opts = {}
+    },
+
+
+
+
+    -- Navigate history in a sidebar. Replaces old 'mbbill/undotree'
+    {
+        "mbbill/undotree",
+        keys = {"<F4>" },
+        init = function()
+            vim.g.undotree_WindowLayout = 2 -- Set style to have diff window below.
+            vim.g.undotree_SetFocusWhenToggle = 1 -- Put cursor in undo window on open.
+        end,
+        config = function()
+            vim.keymap.set("n", "<F4>", ":UndotreeToggle<CR>", { silent = true, desc = "Toggle Undotree side pane." })
+        end,
+    },
+
+
+
+    -- Highlight and remove trailing whitespaces.
+    {
+        "ntpeters/vim-better-whitespace",
+	event = { "BufReadPre", "BufNewFile" }, -- lazy-load on file open
+        init = function()
+            vim.g.strip_whitelines_at_eof = 1 -- Also strip empty lines at end of file on save.
+            vim.g.show_spaces_that_precede_tabs = 1 -- Highlight spaces that happens before tab.
+            vim.g.strip_whitespace_on_save = 1 -- Activate by default.
+            vim.g.strip_whitespace_confirm = 0 -- Don't ask for permission.
+
+            -- Filetypes to ignore even when strip_whitespace_on_save=1
+            --vim.g.better_whitespace_filetypes_blacklist = ['<filetype1>', '<filetype2>', '<etc>']
+
+            vim.api.nvim_create_user_command("Ws", ":execute 'StripWhitespace' | update", { force = true, desc = ":w with StripWhitespace." })
+            vim.api.nvim_create_user_command("Wqs", ":execute 'StripWhitespace' | wq", { force = true, desc = ":wq with StripWhitespace." })
+            vim.api.nvim_create_user_command("Wqas", ":execute 'bufdo StripWhitespace' | wqa", { force = true, desc = ":wqa with StripWhitespace." })
+        end,
+    },
+
+    -- Easy motion jumps in buffer.
+    {
+	'smoka7/hop.nvim',
+	version = "*",
+	pin = true,  -- Lazy won’t report it as needing an update
+	keys = { "<leader>h" },
+	opts = { },
+	init = function()
+		-- Vim Command to Lua function mapping: https://github.com/phaazon/hop.nvim/wiki/Advanced-Hop#lua-equivalents-of-hop-commands
+		vim.keymap.set("n", "<leader>h", function()
+			require("hop").hint_words()
+			end, { desc = "Hop to words in buffer" })
+	end,
+    },
+
+    -- Comment source code.
+    {
+        "preservim/nerdcommenter",
+        init = function()
+            -- Align line-wise comment delimiters flush left instead of following code indentation
+            vim.g.NERDDefaultAlign = "left"
+        end,
+    },
+
 }
