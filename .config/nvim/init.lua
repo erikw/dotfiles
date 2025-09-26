@@ -35,6 +35,10 @@ vim.g.loaded_node_provider = 0
 vim.g.loaded_perl_provider = 0
 -- }}
 
+-- Plugins: lazy.nvim Bootstrap {{
+require("config.lazy") -- ~/.config/nvim/lua/config/lazy.lua
+-- }}
+
 -- Environment {{
 --
 vim.g.xdg_config_home = os.getenv("XDG_CONFIG_HOME") or "$HOME/.config"
@@ -243,8 +247,4 @@ vim.opt.splitright = true -- Open vertical split to the right.
 
 -- Characters to use for :list.
 vim.opt.listchars = { eol = "$", space = "·", tab = ">-", trail = "¬", extends = ">", precedes = "<", nbsp = "." }
--- }}
-
--- Plugins {{
-require("plugins")
 -- }}

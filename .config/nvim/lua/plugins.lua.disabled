@@ -5,7 +5,6 @@
 -- }}
 
 -- packer.nvim Bootstrap {{
--- TODO replace packer with new built-in vim.pack? Or lazy.nvim, seems more popular and faster.
 -- Bootstrapping of packer.nvim. Ref: https://github.com/wbthomason/packer.nvim#bootstrapping
 local ensure_packer = function()
     local fn = vim.fn
@@ -22,10 +21,6 @@ local packer_bootstrap = ensure_packer()
 
 return require("packer").startup(function(use)
     -- General {{
-    --use('dhruvasagar/vim-table-mode')      -- Create ASCII tables
-    --use('fidian/hexmode')            -- Open binary files as a HEX dump with :Hexmode
-    --use('godlygeek/tabular')          -- Create tables. Disabled: not used and have some startup time.
-    --use('voldikss/vim-translator')      -- Async language translator.
 
     -- Show matching keybindings e.g. when tapping Leader.
     --use({
@@ -35,52 +30,8 @@ return require("packer").startup(function(use)
     --    end,
     --})
 
-    use("danro/rename.vim") -- Provides the :Rename command
-    use("michaeljsmith/vim-indent-object") -- Operate on intendtation as text objects.
-    use("tpope/vim-capslock") -- Software CAPSLOCK with <C-g>c in insert mode.
-    use("tpope/vim-characterize") -- 'ga' on steroid.
-    use("tpope/vim-repeat") -- Extend '.' repetition for plugins like vim-surround, vim-speeddating, vim-unimpaired.
-    use("tpope/vim-speeddating") -- Increment dates with C-a.
-    use("tpope/vim-unimpaired") -- Bracket mappings like [<space>
-    use("wbthomason/packer.nvim")
 
-    -- Open URLs in buffer.
-    use({
-        "axieax/urlview.nvim",
-        config = function()
-            require("urlview").setup()
-            vim.keymap.set("n", "\\u", "<Cmd>UrlView<CR>", { desc = "view buffer URLs" })
-        end,
-    })
 
-    -- Register viewer and selector.
-    use({
-        "gennaro-tedesco/nvim-peekup",
-        config = function()
-            -- Paste selection to register ", so that it can be pasted directly with 'p'.
-            -- Ref: https://github.com/gennaro-tedesco/nvim-peekup/issues/27
-            require("nvim-peekup.config").on_keystroke["paste_reg"] = '"'
-        end,
-    })
-
-    use({
-        "instant-markdown/vim-instant-markdown",
-        ft = "markdown",
-        run = "yarn install",
-        config = function()
-            vim.g.instant_markdown_autostart = 1
-
-            -- Blocklist certain paths for previewing files (recursively).
-            -- See https://github.com/instant-markdown/vim-instant-markdown/issues/198
-            -- [1-9]*.md - PR body by gh(1) have file names with this pattern.
-            local augroup_imark = vim.api.nvim_create_augroup("InstantMarkdownGroup", { clear = true })
-            vim.api.nvim_create_autocmd({ "BufReadPre", "BufNewFile", "BufEnter", "BufFilePre" }, {
-                pattern = "*/src/github.com/erikw/hackerrank-solutions/*.md,*/src/github.com/erikw/leetcode-solutions/*.md,[1-9]*.md",
-                group = augroup_imark,
-                command = "let g:instant_markdown_autostart=0",
-            })
-        end,
-    })
 
     -- File explorer tree
     use({
@@ -708,19 +659,5 @@ return require("packer").startup(function(use)
     -- }}
 
     -- packer.nvim Automations {{
-    -- Auto set up conf after cloning packer.nvim. Must be after the use():es.
-    -- Ref: https://github.com/wbthomason/packer.nvim#bootstrapping
-    if packer_bootstrap then
-        require("packer").sync()
-    end
-
-    -- Auto-compile Packer for lazy-loading each time this file is changed.
-    -- Ref: https://github.com/wbthomason/packer.nvim#quickstart
-    local augroup_packer = vim.api.nvim_create_augroup("packer_user_config", { clear = true })
-    vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-        pattern = "plugins.lua",
-        group = augroup_packer,
-        command = "source <afile> | PackerCompile",
-    })
     -- }}
 end)
