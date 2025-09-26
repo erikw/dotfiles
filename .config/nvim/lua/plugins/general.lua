@@ -69,7 +69,7 @@ return {
     -- File explorer tree
     {
         "nvim-tree/nvim-tree.lua",
-        requires = { "nvim-tree/nvim-web-devicons" },
+        dependencies = { "nvim-tree/nvim-web-devicons" },
 	keys = {
 		{"<F2>", ":NvimTreeToggle<CR>", { silent = true, desc = "Toggle file explorer tree." }}
 	},
