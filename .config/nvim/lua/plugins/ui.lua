@@ -78,6 +78,8 @@ return {
 
                 startify.file_button(vim.fn.stdpath("config") .. "/init.lua", "v"),
                 startify.file_button(vim.fn.stdpath("config") .. "/lua/plugins/general.lua", "vg"),
+                startify.file_button(vim.fn.stdpath("config") .. "/lua/plugins/development.lua", "vd"),
+                startify.file_button(vim.fn.stdpath("config") .. "/lua/plugins/syntax.lua", "vs"),
                 startify.file_button(vim.fn.stdpath("config") .. "/lua/plugins/ui.lua", "vu"),
                 startify.file_button(vim.g.xdg_config_home .. "/shell/commons", "c"),
                 startify.file_button(vim.g.xdg_config_home .. "/shell/aliases", "a"),

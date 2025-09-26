@@ -158,4 +158,32 @@ return {
         end,
     },
 
+    -- Keyboard shortcuts: https://github.com/junegunn/fzf/blob/master/README-VIM.md#fzf
+    -- Commands: https://github.com/junegunn/fzf.vim#commands
+    -- To ignore a certain path in a git project I can't change from both rg(1) and fd(1) used by FZF,
+    -- the eaiest way is to create ignore files and exclude the in local git clone.
+    -- Ref: https://stackoverflow.com/a/1753078/265508
+    -- $ cd git_proj/
+    -- $ echo "path/to/exclude" > .ignore
+    -- $ echo ".ignore" >> .git/info/exclude
+   {
+    "junegunn/fzf.vim",
+    dependencies = {
+        {
+            "junegunn/fzf",
+            build = ":call fzf#install()", -- same as packer's `run`
+        },
+    },
+    keys = {
+        { "<Leader>f", ":FZF<space>", desc = "FZF: search for files in given path." },
+        { "<C-p>", ":Files<CR>", desc = "FZF: search for files starting at current directory." },
+        { "<Leader>c", ":Commands<CR>", desc = "FZF: search commands." },
+        { "<Leader>T", ":Tags<CR>", desc = "FZF: search in tags file" },
+        { "<Leader>b", ":Buffers<CR>", desc = "FZF: search open buffers." },
+        { "<Leader>t", ":Windows<CR>", desc = "FZF: search open tabs." },
+        { "<Leader>H", ":History<CR>", desc = "FZF: search history of opened files" },
+        { "<Leader>m", ":Maps<CR>", desc = "FZF: search mappings." },
+        { "<Leader>g", ":Rg<CR>", desc = "FZF: search with rg (live grep)." },
+    },
+   }
 }

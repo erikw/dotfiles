@@ -1,6 +1,8 @@
 -- Erik Westrup's Neovim configuration.
 -- Plugins:
 -- - ~/.config/nvim/lua/plugins/general.lua
+-- - ~/.config/nvim/lua/plugins/development.lua
+-- - ~/.config/nvim/lua/plugins/syntax.lua
 -- - ~/.config/nvim/lua/plugins/ui.lua
 -- Modeline {
 -- vi: foldmarker={,} foldmethod=marker foldlevel=0
@@ -96,6 +98,12 @@ vim.keymap.set("n", "<Leader>V", ":tabe $MYVIMRC<CR>", { silent = true, desc = "
 vim.keymap.set("n", "<Leader>VG", function()
     vim.cmd("tabe " .. vim.fn.stdpath("config") .. "/lua/plugins/general.lua")
 end, { silent = true, desc = "Edit plugins/general.lua." })
+vim.keymap.set("n", "<Leader>VD", function()
+    vim.cmd("tabe " .. vim.fn.stdpath("config") .. "/lua/plugins/development.lua")
+end, { silent = true, desc = "Edit plugins/development.lua." })
+vim.keymap.set("n", "<Leader>VS", function()
+    vim.cmd("tabe " .. vim.fn.stdpath("config") .. "/lua/plugins/syntax.lua")
+end, { silent = true, desc = "Edit plugins/syntax.lua." })
 vim.keymap.set("n", "<Leader>VU", function()
     vim.cmd("tabe " .. vim.fn.stdpath("config") .. "/lua/plugins/ui.lua")
 end, { silent = true, desc = "Edit plugins/ui.lua." })
