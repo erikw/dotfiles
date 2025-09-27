@@ -255,8 +255,6 @@ vim.opt.splitright = true -- Open vertical split to the right.
 vim.opt.listchars = { eol = "$", space = "·", tab = ">-", trail = "¬", extends = ">", precedes = "<", nbsp = "." }
 -- }}
 
-
-
 -- Plugins: lazy.nvim Bootstrap {{
 require("config.lazy") -- ~/.config/nvim/lua/config/lazy.lua
 -- }}

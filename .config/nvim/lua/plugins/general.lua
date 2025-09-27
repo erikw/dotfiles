@@ -5,11 +5,10 @@
 
 return {
 
-	--{ "dhruvasagar/vim-table-mode"},-- Create ASCII tables
-	--{ "fidian/hexmode"},		-- Open binary files as a HEX dump with :Hexmode
-	--{ "godlygeek/tabular"},		-- Create tables. Disabled: not used and have some startup time.
-	--{ "voldikss/vim-translator"},	-- Async language translator.
-
+    --{ "dhruvasagar/vim-table-mode"},-- Create ASCII tables
+    --{ "fidian/hexmode"},		-- Open binary files as a HEX dump with :Hexmode
+    --{ "godlygeek/tabular"},		-- Create tables. Disabled: not used and have some startup time.
+    --{ "voldikss/vim-translator"},	-- Async language translator.
 
     -- Show matching keybindings e.g. when tapping Leader.
     --{
@@ -17,14 +16,13 @@ return {
     --    opts = {}
     --},
 
-  {"danro/rename.vim"},		-- Provides the :Rename command
-  {"michaeljsmith/vim-indent-object"}, -- Operate on intendtation as text objects.
-  {"tpope/vim-capslock"}, -- Software CAPSLOCK with <C-g>c in insert mode.
-  {"tpope/vim-characterize"}, -- 'ga' on steroid.
-  {"tpope/vim-repeat"}, -- Extend '.' repetition for plugins like vim-surround, vim-speeddating, vim-unimpaired.
-  {"tpope/vim-speeddating"}, -- Increment dates with C-a.
-  {"tpope/vim-unimpaired"}, -- Bracket mappings like [<space>
-
+    { "danro/rename.vim" }, -- Provides the :Rename command
+    { "michaeljsmith/vim-indent-object" }, -- Operate on intendtation as text objects.
+    { "tpope/vim-capslock" }, -- Software CAPSLOCK with <C-g>c in insert mode.
+    { "tpope/vim-characterize" }, -- 'ga' on steroid.
+    { "tpope/vim-repeat" }, -- Extend '.' repetition for plugins like vim-surround, vim-speeddating, vim-unimpaired.
+    { "tpope/vim-speeddating" }, -- Increment dates with C-a.
+    { "tpope/vim-unimpaired" }, -- Bracket mappings like [<space>
 
     -- Open URLs in buffer.
     {
@@ -38,14 +36,13 @@ return {
     -- Register viewer and selector.
     {
         "gennaro-tedesco/nvim-peekup",
-        opts = { },
+        opts = {},
         config = function()
             -- Paste selection to register ", so that it can be pasted directly with 'p'.
             -- Ref: https://github.com/gennaro-tedesco/nvim-peekup/issues/27
-	    require("nvim-peekup.config").on_keystroke["paste_reg"] = '"'
+            require("nvim-peekup.config").on_keystroke["paste_reg"] = '"'
         end,
     },
-
 
     {
         "instant-markdown/vim-instant-markdown",
@@ -66,46 +63,39 @@ return {
         end,
     },
 
-
-
     -- File explorer tree
     {
         "nvim-tree/nvim-tree.lua",
         dependencies = { "nvim-tree/nvim-web-devicons" },
-	keys = {
-		{"<F2>", ":NvimTreeToggle<CR>", { silent = true, desc = "Toggle file explorer tree." }}
-	},
+        keys = {
+            { "<F2>", ":NvimTreeToggle<CR>", { silent = true, desc = "Toggle file explorer tree." } },
+        },
         opts = {
-                open_on_tab = true,
-                filters = { custom = { "^.git$" } },
-                view = {
-                    width = "15%",
-                    side = "left",
-                },
+            open_on_tab = true,
+            filters = { custom = { "^.git$" } },
+            view = {
+                width = "15%",
+                side = "left",
             },
-	--init = function()
-            -- When open_on_tab=true, syncs toggle globally acoss tabs.
-	    --vim.keymap.set("n", "<F2>", ":NvimTreeToggle<CR>", { silent = true, desc = "Toggle file explorer tree." })
-	--end,
+        },
+        --init = function()
+        -- When open_on_tab=true, syncs toggle globally acoss tabs.
+        --vim.keymap.set("n", "<F2>", ":NvimTreeToggle<CR>", { silent = true, desc = "Toggle file explorer tree." })
+        --end,
     },
-
-
 
     -- Work on surrond delimiters or its content. Like tpope/vim-surround but with TreeSitter.
     {
         "kylechui/nvim-surround",
         tag = "*", -- Use for stability; omit to use `main` branch for the latest features
-	pin = true,  -- Lazy won’t report it as needing an update
-        opts = {}
+        pin = true, -- Lazy won’t report it as needing an update
+        opts = {},
     },
-
-
-
 
     -- Navigate history in a sidebar. Replaces old 'mbbill/undotree'
     {
         "mbbill/undotree",
-        keys = {"<F4>" },
+        keys = { "<F4>" },
         init = function()
             vim.g.undotree_WindowLayout = 2 -- Set style to have diff window below.
             vim.g.undotree_SetFocusWhenToggle = 1 -- Put cursor in undo window on open.
@@ -115,12 +105,10 @@ return {
         end,
     },
 
-
-
     -- Highlight and remove trailing whitespaces.
     {
         "ntpeters/vim-better-whitespace",
-	event = { "BufReadPre", "BufNewFile" }, -- lazy-load on file open
+        event = { "BufReadPre", "BufNewFile" }, -- lazy-load on file open
         init = function()
             vim.g.strip_whitelines_at_eof = 1 -- Also strip empty lines at end of file on save.
             vim.g.show_spaces_that_precede_tabs = 1 -- Highlight spaces that happens before tab.
@@ -138,17 +126,17 @@ return {
 
     -- Easy motion jumps in buffer.
     {
-	'smoka7/hop.nvim',
-	version = "*",
-	pin = true,  -- Lazy won’t report it as needing an update
-	keys = { "<leader>h" },
-	opts = { },
-	init = function()
-		-- Vim Command to Lua function mapping: https://github.com/phaazon/hop.nvim/wiki/Advanced-Hop#lua-equivalents-of-hop-commands
-		vim.keymap.set("n", "<leader>h", function()
-			require("hop").hint_words()
-			end, { desc = "Hop to words in buffer" })
-	end,
+        "smoka7/hop.nvim",
+        version = "*",
+        pin = true, -- Lazy won’t report it as needing an update
+        keys = { "<leader>h" },
+        opts = {},
+        init = function()
+            -- Vim Command to Lua function mapping: https://github.com/phaazon/hop.nvim/wiki/Advanced-Hop#lua-equivalents-of-hop-commands
+            vim.keymap.set("n", "<leader>h", function()
+                require("hop").hint_words()
+            end, { desc = "Hop to words in buffer" })
+        end,
     },
 
     -- Comment source code.
@@ -169,25 +157,25 @@ return {
     -- $ echo "path/to/exclude" > .ignore
     -- $ echo ".ignore" >> .git/info/exclude
     -- TODO replace with lua implementation? https://github.com/ibhagwan/fzf-lua
-   {
-    "junegunn/fzf.vim",
-    dependencies = {
-        {
-            "junegunn/fzf",
-            build = ":call fzf#install()",
-            pin = true,  -- Lazy won’t report it as needing an update
+    {
+        "junegunn/fzf.vim",
+        dependencies = {
+            {
+                "junegunn/fzf",
+                build = ":call fzf#install()",
+                pin = true, -- Lazy won’t report it as needing an update
+            },
+        },
+        keys = {
+            { "<Leader>f", ":FZF<space>", desc = "FZF: search for files in given path." },
+            { "<C-p>", ":Files<CR>", desc = "FZF: search for files starting at current directory." },
+            { "<Leader>c", ":Commands<CR>", desc = "FZF: search commands." },
+            { "<Leader>T", ":Tags<CR>", desc = "FZF: search in tags file" },
+            { "<Leader>b", ":Buffers<CR>", desc = "FZF: search open buffers." },
+            { "<Leader>t", ":Windows<CR>", desc = "FZF: search open tabs." },
+            { "<Leader>H", ":History<CR>", desc = "FZF: search history of opened files" },
+            { "<Leader>m", ":Maps<CR>", desc = "FZF: search mappings." },
+            { "<Leader>g", ":Rg<CR>", desc = "FZF: search with rg (live grep)." },
         },
     },
-    keys = {
-        { "<Leader>f", ":FZF<space>", desc = "FZF: search for files in given path." },
-        { "<C-p>", ":Files<CR>", desc = "FZF: search for files starting at current directory." },
-        { "<Leader>c", ":Commands<CR>", desc = "FZF: search commands." },
-        { "<Leader>T", ":Tags<CR>", desc = "FZF: search in tags file" },
-        { "<Leader>b", ":Buffers<CR>", desc = "FZF: search open buffers." },
-        { "<Leader>t", ":Windows<CR>", desc = "FZF: search open tabs." },
-        { "<Leader>H", ":History<CR>", desc = "FZF: search history of opened files" },
-        { "<Leader>m", ":Maps<CR>", desc = "FZF: search mappings." },
-        { "<Leader>g", ":Rg<CR>", desc = "FZF: search with rg (live grep)." },
-    },
-   }
 }

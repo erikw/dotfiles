@@ -19,7 +19,6 @@ return {
     --     },
     --},
 
-
     -- AI powered code completion.
     --{
     --    "github/copilot.vim",
@@ -46,10 +45,10 @@ return {
     --    end,
     --   },
 
-    {"andymass/vim-matchup"}, -- Extend % matching.
-    {"rhysd/conflict-marker.vim"}, -- Navigate and edit VCS conflicts. Navigate: [x, ]x. Resolve: ct, co, cb.
-    {"ruanyl/vim-gh-line"}, -- Copy link to file on GitHub.
-    {"wellle/targets.vim"}, -- Extra text objects to operate on e.g. function arguments.
+    { "andymass/vim-matchup" }, -- Extend % matching.
+    { "rhysd/conflict-marker.vim" }, -- Navigate and edit VCS conflicts. Navigate: [x, ]x. Resolve: ct, co, cb.
+    { "ruanyl/vim-gh-line" }, -- Copy link to file on GitHub.
+    { "wellle/targets.vim" }, -- Extra text objects to operate on e.g. function arguments.
 
     -- TODO replace with built-in vim.snippet?
     -- Snippets engine compatible with the SnipMate format.
@@ -66,7 +65,6 @@ return {
         },
     },
 
-
     -- Git wrapper and shorthands.
     {
         "tpope/vim-fugitive",
@@ -74,8 +72,6 @@ return {
             vim.keymap.set("n", "gb", ":Git blame<CR>", { silent = true, desc = "Git blame" })
         end,
     },
-
-
 
     -- Shift function arguments left and right.
     {
@@ -85,7 +81,6 @@ return {
             vim.keymap.set("n", ">a", ":SidewaysRight<CR>", { silent = true, desc = "Move function argument to the right." })
         end,
     },
-
 
     -- Git modified status in sign column
     {
@@ -116,7 +111,7 @@ return {
         dependencies = { "nvim-treesitter/nvim-treesitter" },
         -- Due to a bug when dark-notify is enabled, do the hlargs init is done in the  dark-notify callback.
         -- Ref: https://github.com/m-demare/hlargs.nvim/issues/37#issuecomment-1237395420
-	--opts = {}
+        --opts = {}
     },
 
     -- Toggle values like true/false with <Leader>i.
@@ -137,8 +132,8 @@ return {
         "sindrets/diffview.nvim",
         dependencies = "nvim-lua/plenary.nvim",
         opts = {
-                --hg_cmd = nil, # Not working to disable to get rid of :checkhealth warning, https://github.com/sindrets/diffview.nvim/issues/319
-            },
+            --hg_cmd = nil, # Not working to disable to get rid of :checkhealth warning, https://github.com/sindrets/diffview.nvim/issues/319
+        },
         config = function()
             vim.api.nvim_create_user_command("Gdiff", ":DiffviewFileHistory %", { force = true, desc = "View diff file history of current buffer." })
         end,
@@ -147,49 +142,49 @@ return {
     -- NVim interface for tree-sitter (language parser).
     {
         "nvim-treesitter/nvim-treesitter",
-	branch = 'main',
-	pin = true,  -- Lazy won’t report it as needing an update
-	lazy = false,
-	build = ":TSUpdate",
+        branch = "main",
+        pin = true, -- Lazy won’t report it as needing an update
+        lazy = false,
+        build = ":TSUpdate",
         opts = {
-                -- A list of parser names, or "all". Install manually with :TSINstall <parser>
-                -- comment - for parsing e.g. TODO markers in comments.
-                ensure_installed = { "comment", "lua", "vim", "ruby", "python", "javascript", "markdown" },
+            -- A list of parser names, or "all". Install manually with :TSINstall <parser>
+            -- comment - for parsing e.g. TODO markers in comments.
+            ensure_installed = { "comment", "lua", "vim", "ruby", "python", "javascript", "markdown" },
 
-                -- Install parsers synchronously (only applied to `ensure_installed`)
-                sync_install = false,
+            -- Install parsers synchronously (only applied to `ensure_installed`)
+            sync_install = false,
 
-                -- Automatically install missing parsers when entering buffer
-                auto_install = true,
-                highlight = {
-                    enable = true,
-                },
-                indent = {
-                    enable = true,
-                },
+            -- Automatically install missing parsers when entering buffer
+            auto_install = true,
+            highlight = {
+                enable = true,
             },
+            indent = {
+                enable = true,
+            },
+        },
     },
 
     -- Open related file like test.
     {
         "rgroli/other.nvim",
         opts = {
-                -- Show menu each time for multiple other files.
-                rememberBuffers = false,
-                showMissingFiles = false,
-                keybindings = {
-                    x = "open_file_sp()", -- Align with other plugin common binding for horizontral split. Default here is 's'.
-                },
-                mappings = {
-                    -- builtin mappings
-                    "rails",
-                    "golang",
-                    -- custom mappings
-                },
-                style = {
-                    width = 0.7,
-                },
+            -- Show menu each time for multiple other files.
+            rememberBuffers = false,
+            showMissingFiles = false,
+            keybindings = {
+                x = "open_file_sp()", -- Align with other plugin common binding for horizontral split. Default here is 's'.
             },
+            mappings = {
+                -- builtin mappings
+                "rails",
+                "golang",
+                -- custom mappings
+            },
+            style = {
+                width = 0.7,
+            },
+        },
         config = function()
             vim.api.nvim_set_keymap("n", "<leader>ll", "<cmd>:Other<CR>", { noremap = true, silent = true, desc = "Other: open" })
             vim.api.nvim_set_keymap("n", "<leader>lx", "<cmd>:OtherSplit<CR>", { noremap = true, silent = true, desc = "Other: open in split" })
@@ -214,7 +209,6 @@ return {
             -- * https://github.com/wting/gitsessions.vim
             -- * https://github.com/rmagatti/auto-session
 
-
             -- Save current session.
             vim.keymap.set("n", "<C-M-s>", ':execute ":SaveSession" <bar> echo "Session saved"<CR>', { silent = true, desc = "Save current tickets.vim session." })
             vim.keymap.set("n", "<C-M-o>", ':execute ":OpenSession" <bar> echo "Session loaded"<CR>', { silent = true, desc = "Open saved tickets.vim session." })
@@ -224,12 +218,12 @@ return {
     -- Autoclose brackets etc.
     {
         "windwp/nvim-autopairs",
-	event = "InsertEnter",
-	opts = {
-                check_ts = true, --  Use treesitter to check for a pair
-                map_c_h = true, -- Map the <C-h> key to delete a pair
-                map_c_w = true, -- map <c-w> to delete a pair if possible
-	},
+        event = "InsertEnter",
+        opts = {
+            check_ts = true, --  Use treesitter to check for a pair
+            map_c_h = true, -- Map the <C-h> key to delete a pair
+            map_c_w = true, -- map <c-w> to delete a pair if possible
+        },
         --config = function()
         --    local npairs = require("nvim-autopairs")
         --    -- Ref: https://github.com/windwp/nvim-autopairs/wiki/Endwise
@@ -243,7 +237,6 @@ return {
 
     -- Development: LSP/Completion {{
     --{'neovim/nvim-lspconfig'}      -- Plug-n-play configurations for LSP server. Disabled in favour of simpler to use ALE.
-
 
     -- LSP linting engine.
     -- TODO replace with:
@@ -345,9 +338,9 @@ return {
     {
         "ray-x/lsp_signature.nvim",
         opts = {
-                toggle_key = "<M-x>", -- toggle signature on and off in insert mode
-                select_signature_key = "<M-n>", -- cycle to next signature
-            },
+            toggle_key = "<M-x>", -- toggle signature on and off in insert mode
+            select_signature_key = "<M-n>", -- cycle to next signature
+        },
     },
 
     -- LSP symbols and tags viewer, like TagBar but with LSP support.
@@ -375,8 +368,8 @@ return {
     -- }}
 
     -- Development: Go {{
-    --{'fatih/vim-go', ft = { 'go' }},   -- Compilation commands etc.
-    --{ "sebdah/vim-delve", ft = { "go" }}, -- Debugger.
+    --{'fatih/vim-go', ft = { 'go' } },   -- Compilation commands etc.
+    --{ "sebdah/vim-delve", ft = { "go" } }, -- Debugger.
     -- }}
 
     -- Development: Java {{
@@ -384,7 +377,7 @@ return {
     -- }}
 
     -- Development: LaTeX {{
-    --{'donRaphaco/neotex', ft = { 'tex' }},  -- Live preview PDF output from latex.
+    --{'donRaphaco/neotex', ft = { 'tex' } },  -- Live preview PDF output from latex.
     -- }}
 
     -- Development: Python {{

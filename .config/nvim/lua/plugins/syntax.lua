@@ -6,13 +6,13 @@
 return {
     -- Syntax for Brewfiles
     {
-    "bfontaine/Brewfile.vim",
-    ft =  "brewfile",
+        "bfontaine/Brewfile.vim",
+        ft = "brewfile",
     },
 
     -- Syntax for NestedText .nt files.
     {
-    "kalekundert/vim-nestedtext",
-    ft = "nestedtext"
+        "kalekundert/vim-nestedtext",
+        ft = "nestedtext",
     },
 }
