@@ -475,7 +475,7 @@ set termguicolors	" Enable 24-bit RGB. Required by NeoSolarized.
 set mouse=a		" Enable mouse in all modes.
 set title		" Show title in console title bar.
 set number		" Show line numbers.
-set relativenumber	" Show relative line numbers.
+"set relativenumber	" Show relative line numbers.
 set showmatch		" Shortly jump to a matching bracket when match.
 set cursorline		" Highlight the current line.
 set wildignorecase	" Case insensitive filename completion.

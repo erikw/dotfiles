@@ -1,5 +1,9 @@
 -- Erik Westrup's Neovim configuration.
--- Plugins: ~/.config/nvim/lua/plugins.lua
+-- Plugins:
+-- - ~/.config/nvim/lua/plugins/general.lua
+-- - ~/.config/nvim/lua/plugins/development.lua
+-- - ~/.config/nvim/lua/plugins/syntax.lua
+-- - ~/.config/nvim/lua/plugins/ui.lua
 -- Modeline {
 -- vi: foldmarker={,} foldmethod=marker foldlevel=0
 -- }
@@ -91,9 +95,19 @@ vim.opt.shortmess = "filmnrxtToOA" -- Abbreviate messages. 'A' disables the atte
 -- Mappings {{
 vim.keymap.set("n", "<Leader>v", ':luafile $MYVIMRC<CR> <BAR> :echomsg "Sourced " . $MYVIMRC<CR>', { silent = true, desc = "Source init.lua." })
 vim.keymap.set("n", "<Leader>V", ":tabe $MYVIMRC<CR>", { silent = true, desc = "Edit init.lua." })
-vim.keymap.set("n", "<Leader>VP", function()
-    vim.cmd("tabe " .. vim.fn.stdpath("config") .. "/lua/plugins.lua")
-end, { silent = true, desc = "Edit plugins.lua." })
+vim.keymap.set("n", "<Leader>VG", function()
+    vim.cmd("tabe " .. vim.fn.stdpath("config") .. "/lua/plugins/general.lua")
+end, { silent = true, desc = "Edit plugins/general.lua." })
+vim.keymap.set("n", "<Leader>VD", function()
+    vim.cmd("tabe " .. vim.fn.stdpath("config") .. "/lua/plugins/development.lua")
+end, { silent = true, desc = "Edit plugins/development.lua." })
+vim.keymap.set("n", "<Leader>VS", function()
+    vim.cmd("tabe " .. vim.fn.stdpath("config") .. "/lua/plugins/syntax.lua")
+end, { silent = true, desc = "Edit plugins/syntax.lua." })
+vim.keymap.set("n", "<Leader>VU", function()
+    vim.cmd("tabe " .. vim.fn.stdpath("config") .. "/lua/plugins/ui.lua")
+end, { silent = true, desc = "Edit plugins/ui.lua." })
+
 vim.keymap.set("n", "<C-\\>", ':tab split<CR>:exec("tag ".expand("<cword>"))<CR>', { silent = true, desc = "Open tags definition in a new tab." })
 vim.keymap.set("n", "g^t", ":tabfirst<CR>", { silent = true, desc = "Go to the first tab." })
 vim.keymap.set("n", "g$t", ":tablast<CR>", { silent = true, desc = "Go to the last tab." })
@@ -209,10 +223,6 @@ vim.opt.thesaurus = vim.fn.stdpath("config") .. "/thesaurus/" .. vim.fn.matchstr
 -- }}
 
 -- UI {{
--- Ignore if don't exist. This is the case when $(vim -c PlugInstall) the first time. Ref: https://stackoverflow.com/a/5703164/265508
-vim.cmd("silent! colorscheme solarized")
-vim.opt.background = "light" -- Be light (most likely right) be default as dark-notify toggles ugly otherwise.
-
 -- Adjust colors to this background. NOTE replaced by dark-notify.
 --local solarized_status = vim.g.xdg_state_home .. "/solarizedtoggle/status"
 --if vim.fn.filereadable(solarized_status) == 1 then
@@ -245,6 +255,6 @@ vim.opt.splitright = true -- Open vertical split to the right.
 vim.opt.listchars = { eol = "$", space = "·", tab = ">-", trail = "¬", extends = ">", precedes = "<", nbsp = "." }
 -- }}
 
--- Plugins {{
-require("plugins")
+-- Plugins: lazy.nvim Bootstrap {{
+require("config.lazy") -- ~/.config/nvim/lua/config/lazy.lua
 -- }}

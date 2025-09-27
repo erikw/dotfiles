@@ -72,6 +72,7 @@
 				brew 'lolcat'
 				brew 'lsd'
 				brew 'luacheck' # Linter used with ALE.
+				brew 'luarocks' # For Neovim plugins
 				brew 'mosh'
 				brew 'multitime'
 				brew 'ncdu'
