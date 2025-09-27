@@ -1,6 +1,10 @@
 -- Spec doc: https://lazy.folke.io/spec
-return {
+-- Modeline {{
+-- vi: foldmarker={{,}} foldmethod=marker foldlevel=0
+-- }}
 
+return {
+    -- Themes {{
     --{'folke/tokyonight.nvim'),
     --{'mhartington/oceanic-next'),
     --{'morhetz/gruvbox'),
@@ -17,6 +21,7 @@ return {
 
 	 end,
    },
+    -- }}
 
 
 
@@ -29,15 +34,15 @@ return {
     {
         "cormacrelf/dark-notify",
 	event = "VimEnter", -- start after UI is ready
-        config = function()
-            require("dark_notify").run({
-                --onchange = function()
-                    -- Init hlargs.nvim.
-                    -- Ref: https://github.com/m-demare/hlargs.nvim/issues/37#issuecomment-1237395420
-                    -- Ref: https://github.com/cormacrelf/dark-notify/issues/8
-                    --require("hlargs").setup()
-                --end,
-            })
+        --opts = {
+	--        onchange = function()
+	--             -- Init hlargs.nvim.
+	--             -- Ref: https://github.com/m-demare/hlargs.nvim/issues/37#issuecomment-1237395420
+	--             -- Ref: https://github.com/cormacrelf/dark-notify/issues/8
+	--            require("hlargs").setup({})
+	--        end,
+        --},
+	config = function()
             vim.keymap.set("n", "<F5>", ":lua require('dark_notify').toggle()<CR>", { silent = true, desc = "Toggle dark/light mode." })
         end,
     },

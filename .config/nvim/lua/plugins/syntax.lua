@@ -1,4 +1,8 @@
 -- Spec doc: https://lazy.folke.io/spec
+-- Modeline {{
+-- vi: foldmarker={{,}} foldmethod=marker foldlevel=0
+-- }}
+
 return {
     -- Syntax for Brewfiles
     {

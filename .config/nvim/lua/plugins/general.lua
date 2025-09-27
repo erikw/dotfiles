@@ -1,4 +1,7 @@
 -- Spec doc: https://lazy.folke.io/spec
+-- Modeline {{
+-- vi: foldmarker={{,}} foldmethod=marker foldlevel=0
+-- }}
 
 return {
 
@@ -21,7 +24,6 @@ return {
   {"tpope/vim-repeat"}, -- Extend '.' repetition for plugins like vim-surround, vim-speeddating, vim-unimpaired.
   {"tpope/vim-speeddating"}, -- Increment dates with C-a.
   {"tpope/vim-unimpaired"}, -- Bracket mappings like [<space>
-  {"wbthomason/packer.nvim"},
 
 
     -- Open URLs in buffer.
@@ -166,12 +168,14 @@ return {
     -- $ cd git_proj/
     -- $ echo "path/to/exclude" > .ignore
     -- $ echo ".ignore" >> .git/info/exclude
+    -- TODO replace with lua implementation? https://github.com/ibhagwan/fzf-lua
    {
     "junegunn/fzf.vim",
     dependencies = {
         {
             "junegunn/fzf",
-            build = ":call fzf#install()", -- same as packer's `run`
+            build = ":call fzf#install()",
+            pin = true,  -- Lazy won’t report it as needing an update
         },
     },
     keys = {
