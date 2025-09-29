@@ -88,7 +88,6 @@ return {
     {
         "kylechui/nvim-surround",
         tag = "*", -- Use for stability; omit to use `main` branch for the latest features
-        pin = true, -- Lazy won’t report it as needing an update
         opts = {},
     },
 
@@ -163,7 +162,6 @@ return {
             {
                 "junegunn/fzf",
                 build = ":call fzf#install()",
-                pin = true, -- Lazy won’t report it as needing an update
             },
         },
         keys = {

@@ -143,7 +143,6 @@ return {
     {
         "nvim-treesitter/nvim-treesitter",
         branch = "main",
-        pin = true, -- Lazy won’t report it as needing an update
         lazy = false,
         build = ":TSUpdate",
         opts = {
