@@ -48,8 +48,11 @@ if [ -n "$outdated" ]; then
 		([ -z "$upgrade" ] || [ "$upgrade" = y ] || [ "$upgrade" = Y ] || [ "$upgrade" = n ]) && break
 	done
 	if [ "$upgrade" != n ]; then
-		_exec "Upgrading brew formulas" brew upgrade --formulae
-		_exec "Upgrading brew casks" brew upgrade --casks
+		#_exec "Upgrading brew formulas" brew upgrade --formulae
+		#_exec "Upgrading brew casks" brew upgrade --casks
+
+		formulas="$(echo "$outdated" | awk '{print $1}' | paste -sd ' ' - )"
+		_exec "Upgrading outdated" brew upgrade "$formulas"
 		_exec "Removing unused leaf formulas" brew autoremove
 		_exec "Cleaning up caches" brew cleanup
 		_exec "The brew doctor says" brew doctor || :		# Sneak around $(set -e) as the doctor command return error code.
