@@ -45,6 +45,49 @@ return {
     --    end,
     --   },
 
+    --{
+    --    "zbirenbaum/copilot.lua",
+    --    dependencies = { "copilotlsp-nvim/copilot-lsp" },
+    --    cmd = "Copilot",
+    --    event = "InsertEnter",
+    --    opts = {
+    --        suggestion = {
+    --            enabled = true,
+    --            keymap = {
+    --                accept = "<M-l>",
+    --                accept_word = false,
+    --                accept_line = false,
+    --                next = "<M-]>",
+    --                prev = "<M-[>",
+    --                dismiss = "<C-]>",
+    --            },
+    --        },
+    --        nes = {
+    --            enabled = false,
+    --        },
+    --        filetypes = {
+    --            --["*"] = false, -- disable for all other filetypes and ignore default `filetypes`
+    --            txt = false,
+    --            markdown = false,
+    --            python = true,
+    --            ruby = true,
+    --            sh = true,
+    --        },
+    --    },
+    --},
+
+    ---- GitHub Copilot Chat
+    --{
+    --    "CopilotC-Nvim/CopilotChat.nvim",
+    --    dependencies = {
+    --        { "nvim-lua/plenary.nvim", branch = "master" },
+    --    },
+    --    build = "make tiktoken",
+    --    opts = {
+    --        -- See Configuration section for options
+    --    },
+    --},
+
     { "andymass/vim-matchup" }, -- Extend % matching.
     { "rhysd/conflict-marker.vim" }, -- Navigate and edit VCS conflicts. Navigate: [x, ]x. Resolve: ct, co, cb.
     { "ruanyl/vim-gh-line" }, -- Copy link to file on GitHub.
