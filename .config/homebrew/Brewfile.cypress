@@ -31,7 +31,9 @@
     cask 'kid3'  # MP3 metadata editor
     cask 'mactex'
     cask 'mutify'
+    cask 'netnewswire'
     cask 'send-to-kindle'
+    cask 'signal'
     cask 'zoom'
 # }
 
@@ -44,7 +46,6 @@
     cask 'mixed-in-key'    # If using latest version, which I'm not.
     cask 'musicbrainz-picard'
     cask 'rekordbox'
-    cask 'signal'
     cask 'transmission'
 =end
 # }

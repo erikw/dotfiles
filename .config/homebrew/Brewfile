@@ -262,7 +262,6 @@
 				mas 'Telegram', id: 747648890
 				mas 'Todoist', id: 585_829_637
 				mas 'WorkingHours', id: 1_495_643_653
-				mas 'feedly', id: 865_500_966
 
 # Safari extensions:
 				# mas 'Polyglot', id: 1_471_801_525 # Currently broken: https://github.com/uetchy/Polyglot/issues/141
@@ -283,6 +282,7 @@
 				# mas 'SwordSoft Screenink Free', id: 953841977
 				# mas 'WeatherBug', id: 1059074180
 				# mas 'Xcode', id: 497799835
+				# mas 'feedly', id: 865_500_966
 # }
 
 # Development: Java {

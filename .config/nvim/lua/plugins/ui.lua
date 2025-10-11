@@ -39,6 +39,7 @@ return {
         --        end,
         --},
         config = function()
+            -- TODO seems broken
             vim.keymap.set("n", "<F5>", ":lua require('dark_notify').toggle()<CR>", { silent = true, desc = "Toggle dark/light mode." })
         end,
     },
