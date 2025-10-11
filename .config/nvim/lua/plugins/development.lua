@@ -299,6 +299,7 @@ return {
             --vim.g.ale_disable_lsp = 1
             vim.g.ale_use_neovim_lsp_api = 0
 
+            -- ruby: having rubocop before solargraph could be good to get syntax error shown more quickly.
             -- gopls seems to work properly only when the source is in $GOPATH in a module?
             -- Disabled linters:
             -- ['sql'] = {'sqls'},
@@ -308,7 +309,7 @@ return {
                 ["lua"] = { "luacheck" },
                 ["json"] = { "jsonls" },
                 ["python"] = { "pyright", "flake8" },
-                ["ruby"] = { "solargraph", "rubocop" },
+                ["ruby"] = { "rubocop", "solargraph" },
                 ["sh"] = { "language_server" },
                 ["tex"] = { "texlab" },
                 ["vim"] = { "vimls" },
