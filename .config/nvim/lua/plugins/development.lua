@@ -308,7 +308,7 @@ return {
                 ["lua"] = { "luacheck" },
                 ["json"] = { "jsonls" },
                 ["python"] = { "pyright", "flake8" },
-                ["ruby"] = { "solargraph", "ruby", "rubocop" },
+                ["ruby"] = { "solargraph", "rubocop" },
                 ["sh"] = { "language_server" },
                 ["tex"] = { "texlab" },
                 ["vim"] = { "vimls" },
