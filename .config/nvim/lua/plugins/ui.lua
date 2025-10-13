@@ -17,7 +17,14 @@ return {
         config = function()
             -- load the colorscheme here
             vim.cmd([[colorscheme solarized]])
-            vim.opt.background = "light" -- Be light (most likely right) be default as dark-notify toggles ugly otherwise.
+
+            -- Sometimes dark-notify is not picking up the right mode on nvim start. This is a low-tech backup to try starting in the right mode most of the times.
+            --local hour = tonumber(vim.fn.strftime("%H"))
+            --if hour >= 7 and hour < 18 then
+            --    vim.o.background = "light"
+            --else
+            --    vim.o.background = "dark"
+            --end
         end,
     },
     -- }}
@@ -30,17 +37,23 @@ return {
     {
         "cormacrelf/dark-notify",
         event = "VimEnter", -- start after UI is ready
+        keys = {
+            {
+                "<F5>",
+                function()
+                    require("dark_notify").toggle()
+                end,
+                desc = "Toggle dark/light mode",
+            },
+        },
         --opts = {
-        --        onchange = function()
-        --             -- Init hlargs.nvim.
-        --             -- Ref: https://github.com/m-demare/hlargs.nvim/issues/37#issuecomment-1237395420
-        --             -- Ref: https://github.com/cormacrelf/dark-notify/issues/8
-        --            require("hlargs").setup({})
-        --        end,
+        --schemes = {
+        --    dark = "solarized",
+        --    light = "solarized",
         --},
-        config = function()
-            -- TODO seems broken
-            vim.keymap.set("n", "<F5>", ":lua require('dark_notify').toggle()<CR>", { silent = true, desc = "Toggle dark/light mode." })
+        --},
+        config = function(_, opts)
+            require("dark_notify").run(opts)
         end,
     },
 
