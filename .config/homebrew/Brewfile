@@ -52,6 +52,7 @@
 				brew 'gh'
 				brew 'ghq'
 				brew 'git'
+				brew 'git-delta'
 				brew 'git-lfs'
 				brew 'gnu-getopt'
 				brew 'gnu-indent'
