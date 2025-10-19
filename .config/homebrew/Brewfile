@@ -43,6 +43,7 @@
 				brew 'direnv'
 				brew 'dos2unix'
 				brew 'erikw/tap/xdg-urlview'
+				brew 'eza'
 				brew 'fd'	# A powerful alternative to find.
 				brew 'findutils'
 				brew 'fq'

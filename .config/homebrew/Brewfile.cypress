@@ -22,7 +22,6 @@
 # }
 
 # Cask: default {
-#
     cask 'amazon-music'
     cask 'cryptomator'
     cask 'daisydisk'

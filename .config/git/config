@@ -12,6 +12,11 @@
 	ui = auto
 	page = true
 [core]
+    pager = delta # git-delta
+
+[interactive]
+    diffFilter = delta --color-only # git-delta
+
 [help]
 	;browser = firefox -new-tab
 	browser = lynx
@@ -111,8 +116,11 @@
 	;default = upstream
 	default = current	; Avoid "fatal: The current branch advanced-login has no upstream branch" and $(git push -u ...)
 	autoSetupRemote = true  ; Automatically $(git push -u) i.e. track remote branch from first push. Ref: https://stackoverflow.com/a/6089415/265508
+
 [merge]
 	log = true
+    conflictStyle = zdiff3 # git-delta
+
 [init]
 	defaultBranch = main	; Until this is default.
 [pager]
@@ -130,8 +138,17 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+
 [gerrit]
 	createChangeId = true
+
+[delta]
+	hyperlinks = true
+	navigate = true  # use n and N to move between diff sections
+	side-by-side = false
+	line-numbers = true
+	; View themes with: $ delta --show-syntax-themes --dark
+	syntax-theme = "Solarized (dark)"
 
 ; https://github.com/motemen/ghq
 [ghq]
