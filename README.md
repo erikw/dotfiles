@@ -66,7 +66,7 @@ git commit -m "SQUASHED passwords"
 	```
 
 ## GitHub SSH Config File
-To ensure success, use a manual entry like this (modify output from [bin/ssh-keygen.sh]:
+To ensure success, use a manual entry like this (modify output from [bin/ssh-keygen.sh](bin/ssh-keygen.sh):
 <details>
 <summary>~/.ssh/config</summary>
 
