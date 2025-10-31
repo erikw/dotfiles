@@ -53,6 +53,11 @@ if ! [ -e $HOME/.config/fzf/fzf.zsh ]; then
 	$(brew --prefix)/opt/fzf/install --xdg  --key-bindings --completion --no-update-rc
 fi
 
+
+# Qlty CLI tool. Ref: https://docs.qlty.sh/cli/quickstart
+curl https://qlty.sh | sh
+
+
 ## Crontab {
 # NOTE migrated to dotbot plugin
 # Install ~/bin/dotfiles_backup_local.sh cron entry.

@@ -264,7 +264,6 @@ fi
 	bindkey -M vicmd v edit-command-line
 # }}
 
-
 # Programs {{
 	# cd-bookmark. Aliases in ~/.config/shell/aliases
 	#if [ -d ~/.local/repos/cd-bookmark ]; then
@@ -284,6 +283,14 @@ fi
 		# Be consistent with default fzf behaviour. ctrl-d should close selection window, not delete things.
 		FZF_MARKS_DELETE=ctrl-r
 	fi
+
+
+
+	# qlty. From $(curl https://qlty.sh | sh)
+	[ -s "/usr/local/share/zsh/site-functions/_qlty" ] && source "/usr/local/share/zsh/site-functions/_qlty"
+	export QLTY_INSTALL="$HOME/.qlty"
+	export PATH="$QLTY_INSTALL/bin:$PATH"
+
 # }}
 
 #sourceifexists ${XDG_CONFIG_HOME:-$HOME/.config}/X11/startx.sh
