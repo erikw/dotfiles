@@ -24,9 +24,11 @@
 				brew 'bash-completion'
 				brew 'bash-language-server'
 				brew 'bashdb'
-				brew 'bat'
-				brew 'broot'
+				brew 'bat' # A modern cat(1).
+				brew 'bottom' # A modern top(1). bin: btm
+				brew 'broot' # A modern tree(1).
 				brew 'cheat'
+				brew 'choose-rust' # A modern cut(1).
 				brew 'cloc'
 				brew 'cmatrix'
 				brew 'codespell'
@@ -42,9 +44,11 @@
 				brew 'difftastic'
 				brew 'direnv'
 				brew 'dos2unix'
+				brew 'duf' # A modern df(1).
+				brew 'dust' # A modern du(1).
 				brew 'erikw/tap/xdg-urlview'
 				brew 'eza'
-				brew 'fd'	# A powerful alternative to find.
+				brew 'fd'	# A modern find(1).
 				brew 'findutils'
 				brew 'fq'
 				brew 'fzf'
@@ -60,24 +64,26 @@
 				brew 'gnu-tar'
 				brew 'gnupg'
 				brew 'gnutls'
+				brew 'gping' # A graphical ping(1).
 				brew 'graphviz'
 				brew 'grep'
 				brew 'grip'
 				brew 'gron'
 				brew 'hg' # Just to make nvim ':checkhealth diffview' happy. https://github.com/sindrets/diffview.nvim/issues/319
-				brew 'htop'
-				brew 'httpie'
+				brew 'htop' # A modern top(1).
+				brew 'httpie' # A modern curl(1).
+				brew 'hyerfine' # A powerful time(1).
 				brew 'iftop'
 				brew 'imagemagick'
 				brew 'jq'
 				brew 'less'
 				brew 'lolcat'
-				brew 'lsd'
+				brew 'lsd' # A modern ls(1).
 				brew 'luacheck' # Linter used with ALE.
 				brew 'luarocks' # For Neovim plugins
 				brew 'mosh'
 				brew 'multitime'
-				brew 'ncdu'
+				brew 'ncdu' # An interactive du(1).
 				brew 'neovim'
 				brew 'netcat'
 				brew 'nmap'
@@ -88,12 +94,13 @@
 				brew 'pdftk-java' # For ~/bin/pdf_extract_range.sh
 				brew 'peco'
 				brew 'pipx'	# To manage globally installed cli tools from pip.
+				brew 'procs' # A modern ps(1).
 				brew 'python'
 				brew 'readline'
 				brew 'rename' # a.k.a. rename.pl
-				brew 'ripgrep'	# Faster than grep, ack, ag.
+				brew 'ripgrep'	# A modern grep(1).
 				brew 'rsync'
-				brew 'sd'
+				brew 'sd' # A modern sed(1).
 				brew 'shellcheck'
 				brew 'source-highlight'
 				brew 'stylua' # Fixer used with ALE.
