@@ -54,12 +54,12 @@
 # Mas: default {
 # Prefer Mas over cask, as security fixes gets pushed out faster on the App Store.
     mas 'Amazon Prime Video', id: 545519333
+    mas 'Budget Flow', id: 1640091876
     mas 'CEWE Fotowelt', 1321448290
     mas 'Exporter', id: 1099120373
     mas 'Keynote', id: 409183694
     mas 'Kindle Classic', id: 405399194
     mas 'Mela', id: 1568924476
-    mas 'MoneyStats Pro', id: 1501042913
     mas 'NepTunes', id: 1006739057
     mas 'Numbers', id: 409203825
     mas 'Pages', id: 409201541
@@ -70,7 +70,8 @@
     mas 'WhatsApp', id: 310633997
 # }
 
-# Nas: optional {
+# Mas: optional {
+    #mas 'MoneyStats Pro', id: 1501042913
     #mas 'Paprika Recipe Manager 3', id: 1303222628
     #mas 'djay', id: 450527929
 # }
