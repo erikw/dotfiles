@@ -3,6 +3,7 @@
 #	vi: foldmarker={{,}} filetype=zsh foldmethod=marker foldlevel=0 tabstop=4 shiftwidth=4
 # }}
 
+# Profiling {{
 # After running this, inspect result of current shell with:
 # $ ~/bin/parse_zsh_startup.py ~/tmp/startuplog.$$
 # Source: https://kev.inburke.com/kevin/profiling-zsh-startup-time/
@@ -13,21 +14,131 @@
 #    exec 3>&2 2>$HOME/tmp/startlog.$$
 #    setopt xtrace prompt_subst
 #fi
+# }}
+
+# Oh My ZSH {{
+export ZSH="$HOME/.local/repos/ohmyzsh"
+
+# Ref: https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+#ZSH_THEME="robbyrussell"
+#ZSH_THEME="agnoster" # Requiers a patched powerline font.
+ZSH_THEME="apple"
+
+# Ref: https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins
+plugins=(
+	# dash
+	# mosh
+	# sudo # not working
+	asdf
+	colored-man-pages
+	direnv
+	git
+	safe-paste
+	ssh-agent
+	web-search
+)
 
 
-# Must happen before setting up fzf. Ref: https://github.com/junegunn/fzf/issues/1596#issuecomment-2128091715
-bindkey -v	# vi command editing mode. NOTE: zsh is not using readline('s .inputrc').
 
-# Common shell settings.
-if [ -f ${XDG_CONFIG_HOME:-$HOME/.config}/shell/commons ]; then
-	export SHELL_NAME=zsh
-	export completion_func=compctl
-	source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/commons
-fi
+# Let OMZ write zcompdump to XDG cache dir.
+test -d ${XDG_CACHE_HOME:-$HOME/.cache}/zsh || mkdir -p ${XDG_CACHE_HOME:-$HOME/.cache}/zsh
+ZSH_COMPDUMP="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump-$ZSH_VERSION"
 
-# Environment {{
-	typeset -U path		# Don't add entry to path if it's already present.
+source $ZSH/oh-my-zsh.sh
+# }}
 
+# XDG Env Bootstrap {{
+	# Set XDG envvars to default values, so that scripts can refer to them (like in ~/.config/nvim/syntax/)
+	# Reference: https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
+	# Don't use these direclty, but substitute for default value if empty:
+	# - ${XDG_CONFIG_HOME:-$HOME/.config}
+	# - ${XDG_DATA_HOME:-$HOME/.local/share}
+	# - ${XDG_STATE_HOME:-$HOME/.local/state}
+	# - ${XDG_CACHE_HOME:-$HOME/.cache}
+	export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
+	export XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
+	export XDG_STATE_HOME="${XDG_STATE_HOME:-$HOME/.local/state}"
+	export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
+	export XDG_RUNTIME_DIR="${XDG_RUNTIME_DIR:-$HOME/.local/run}"  # Need to be set for yarn(1).
+
+	# Make programs respect XDG.
+	export INPUTRC=$XDG_CONFIG_HOME/readline/inputrc
+	export KDEHOME=$XDG_CONFIG_HOME/kde
+	export MPLAYER_HOME=$XDG_CONFIG_HOME/mplayer
+	export SCREENRC=$XDG_CONFIG_HOME/screen/screenrc
+	export CGDB_DIR=$XDG_CONFIG_HOME/cgdb
+	export GRADLE_USER_HOME=$XDG_DATA_HOME/gradle
+	export GRIPHOME=$XDG_CONFIG_HOME/grip
+	export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
+	export SQLITE_HISTORY=$XDG_DATA_HOME/sqlite_history
+	export XINITRC=$XDG_CONFIG_HOME/X11/xinitrc
+	export ACKRC=$XDG_CONFIG_HOME/ack/ackrc	# Project local .ackrc is still possible.
+	export WGETRC=$XDG_CONFIG_HOME/wget/wgetrc
+	export GDBHISTFILE=$XDG_DATA_HOME/gdb/history
+	export SOLARGRAPH_CACHE=$XDG_CACHE_HOME/solargraph
+	export TRAVIS_CONFIG_PATH=$XDG_CONFIG_HOME/travis
+	export RIPGREP_CONFIG_PATH=$XDG_CONFIG_HOME/ripgrep/config
+	export GNUPGHOME="$XDG_DATA_HOME"/gnupg
+	export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
+	export ANDROID_HOME="$XDG_DATA_HOME"/android
+	export NODE_REPL_HISTORY="$XDG_DATA_HOME"/node_repl_history
+
+	# asdf; Not yet fully compliant: https://github.com/asdf-vm/asdf/issues/687
+	export ASDF_CONFIG_FILE=${XDG_CONFIG_HOME}/asdf/asdfrc
+	export ASDF_DATA_DIR=${XDG_DATA_HOME}/asdf
+	# Hack for avoiding having $HOME/.tools-version: https://github.com/asdf-vm/asdf/issues/1248#issuecomment-1155978678
+	export ASDF_DEFAULT_TOOL_VERSIONS_FILENAME=.local/share/asdf/tool-versions
+	# asdf plugins:
+	export ASDF_PYTHON_DEFAULT_PACKAGES_FILE=${XDG_CONFIG_HOME}/pip/asdf-default-python-packages.txt
+	export ASDF_NPM_DEFAULT_PACKAGES_FILE=${XDG_CONFIG_HOME}/npm/asdf-default-npm-packages.txt
+	export ASDF_GEM_DEFAULT_PACKAGES_FILE=${XDG_CONFIG_HOME}/gem/asdf-default-gems.txt
+	export ASDF_GOLANG_DEFAULT_PACKAGES_FILE=${XDG_CONFIG_HOME}/golang/asdf-default-golang-pkgs.txt
+
+
+	# fzf-marks
+	if [ "$CODESPACES" = true ]; then
+		# Pre-coded bookarmsk for Codespaces env.
+		export FZF_MARKS_FILE=$XDG_CONFIG_HOME/fzf-marks/marks-codespaces
+	else
+		export FZF_MARKS_FILE=$XDG_CONFIG_HOME/fzf-marks/marks
+	fi
+
+	# Octave
+	export OCTAVE_SITE_INITFILE=$XDG_CONFIG_HOME/octave/octaverc
+	export OCTAVE_HISTFILE=$XDG_CACHE_HOME/octave-hsts
+
+	# XCompose
+	export XCOMPOSECACHE=$XDG_CACHE_HOME/X11/XCompose
+	export XCOMPOSEFILE=$XDG_CONFIG_HOME/X11/XCompose
+
+	# Gems
+	#export GEM_SPEC_CACHE=$XDG_CACHE_HOME/gem # TODO maybe also not needed, try disable to prevent ruby build issues.
+	# NOTE GEM_HOME cause issues (openssl lib can't be compiled) when using rbevn to install new ruby versions. https://github.com/asdf-vm/asdf-ruby/issues/206#issuecomment-860106503
+	# It might not be necessary to do this when using asdf, as gems are installed to asdf version dirs.
+	#export GEM_HOME=$XDG_DATA_HOME/gem
+	#export PATH="$GEM_HOME/bin:$PATH"
+
+	# Bundle
+	export BUNDLE_USER_CONFIG=$XDG_CONFIG_HOME/bundle/config
+	export BUNDLE_USER_CACHE=$XDG_CACHE_HOME/bundle
+	export BUNDLE_USER_PLUGIN=$XDG_DATA_HOME/bundle
+
+	# NPM
+	export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
+	export PATH="$XDG_DATA_HOME/npm/bin:$PATH"
+
+	# Mailcap. Seems like can use envvar at least for NeoMutt. Ref: https://manpages.debian.org/testing/neomutt/neomutt.1.en.html
+	export MAILCAPS="$XDG_DATA_HOME:$MAILCAPS"
+
+	# AWS cli
+	#export AWS_SHARED_CREDENTIALS_FILE="$XDG_CONFIG_HOME"/aws/credentials
+	#export AWS_CONFIG_FILE="$XDG_CONFIG_HOME"/aws/config
+
+	# Load utility functions
+	source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/functions"
+# }}
+
+# Paths {{
 	# Function paths.
 	# - .zsh_funcs/ - custom functions e.g. completion functions installed here.
 	# - .zprompts/ - custom prompt themes
@@ -37,10 +148,100 @@ fi
 	if [ -d $HOMEBREW_PREFIX/share/zsh-completions ]; then
 		fpath+=$HOMEBREW_PREFIX/share/zsh-completions
 	fi
-	# Global functions which could also be completion functions.
-	if [ -d $HOMEBREW_PREFIX/share/zsh/site-functions ]; then
-		fpath+=$HOMEBREW_PREFIX/share/zsh/site-functions
+
+	# Binary paths
+	typeset -U path		# Don't add entry to path if it's already present.
+	export PATH			# Make the path available in subshells. Export is only needed once.
+
+	# Include system binaries
+	path=(/usr/local/bin /usr/local/sbin /sbin /usr/sbin $path)
+
+	# Include binaries in home directory
+	path=($HOME/bin $path)
+
+	# Poetry or similar installs
+	[[ -d $HOME/.local/bin ]] && path=($HOME/.local/bin $path)
+
+	# Homebrew installation path prefix - do this once, instead of slowing down shell everywhere.
+	brew_bin=
+	if [ -e /opt/homebrew/bin/brew ]; then  # Apple Silicon macs
+		brew_bin=/opt/homebrew/bin/brew
+	elif [ -e /usr/local/bin/brew ]; then  # Intel Macs
+		brew_bin=/usr/local/bin/brew
+	elif [ -e /home/linuxbrew/.linuxbrew/bin/brew ]; then  # Linux
+		brew_bin=/home/linuxbrew/.linuxbrew/bin/brew
 	fi
+	if [ -n "$brew_bin" ]; then
+		eval "$(${brew_bin} shellenv)"
+	fi
+	unset brew_bin
+# }}
+
+# Environment {{
+	# Use THE text editor
+	if [ "$CODESPACES" = true ]; then
+		export EDITOR="code --wait" VISUAL="code --wait" CSHEDIT="code --wait"
+	elif program_is_in_path nvim; then
+		export EDITOR=nvim VISUAL=nvim CSHEDIT=nvim
+	elif program_is_in_path vim; then
+		export EDITOR=vim VISUAL=vim CSHEDIT=vim
+	fi
+
+	# and the only pager.
+	export PAGER=less
+
+	# Current DE in use.
+	if shell_is_macos; then
+		export DESKTYPE=macos
+	else
+		# LINUX-CONFIG
+		# FREEBSD-CONFIG
+		export DESKTYPE=dwm
+	fi
+
+	# Locale.
+	# Needs to include encoding as well for iTerm: https://gitlab.com/gnachman/iterm2/-/issues/10879#note_1433417922
+	export LANG=en_US.UTF-8
+
+	# Let others know what underlying terminal emulator is used. This is needed since $TERM does not always represent the real terminal e.g. in tmux when you want colors.
+	shell_is_linux && program_is_in_path urxvt && export TERMEMU=urxvt
+
+	# Brew bundler
+	if program_is_in_path brew; then
+		# Not using the Brewfile.lock.json feature.
+		export HOMEBREW_BUNDLE_NO_LOCK=1
+	fi
+
+	# A better compiler for C langs.
+	# Unfortunately still quite some problems e.g. with compiling native extension of $(gem install byebuy)
+	#if program_is_in_path clang; then
+		#export CC=clang
+		#export CXX=clang++
+	#fi
+
+	# Personal log folder used by some program configurations.
+	test -d ${XDG_STATE_HOME:-$HOME/.local/state}/tmux || mkdir -p ${XDG_STATE_HOME:-$HOME/.local/state}/tmux
+	#test -d ${XDG_STATE_HOME:-$HOME/.local/state}/irssi || mkdir -p ${XDG_STATE_HOME:-$HOME/.local/state}/irssi
+
+	# Enable sandboxing a.k.a. lazy loading of shell initialization for some programs.
+	#sourceifexists "$HOME/.local/repos/sandboxd/sandboxd"
+
+	# Needed for gnupg's gpg(1) to work, thus for git commit signing.
+	program_is_in_path gnupg && export GPG_TTY=$(tty)
+
+	# Nice to have when fetching scanned documents
+	export SCANNED=$HOME/media/images/scanned/
+	# Ditto screenshots
+	export SCREENSHOTS=$HOME/media/images/screenshots/
+
+	# Disable macos shell restore feature (/etc/bashrc_Apple_Terminal) that creates e.g. ~/.zsh_session
+	shell_is_macos && export SHELL_SESSIONS_DISABLE=1
+
+	# Speed up dfm by telling it where the source is
+	test -d "$HOME/src/github.com/erikw/dotfiles" && export DFM_REPO="$HOME/src/github.com/erikw/dotfiles"
+
+	# Source aliases (must be done after setting $DESKTYPE)
+	sourceifexists "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliases"
 # }}
 
 # Completion {{
@@ -91,12 +292,13 @@ fi
 	# does not work (g alias for 'cd-bookmark -c')
 	setopt completealiases
 
-	compinit_regen() {
-		rm -f ${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump-$ZSH_VERSION
-		compinit -d ${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump-$ZSH_VERSION -i
-	}
+	#compinit_regen() {
+	#    rm -f ${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump-$ZSH_VERSION
+	#    compinit -d ${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump-$ZSH_VERSION -i
+	#}
 
-	autoload -Uz compinit
+	# Let OMZ handle this.
+	#autoload -Uz compinit
 	# -C: [shell startup time optimization] ignore checking for new comp files. The dump file will be
 	#       created if there isn’t one already. NOTE Thus, for new files e.g. added to fpath, manually
 	#       run once the compinit_regen function above.
@@ -104,8 +306,8 @@ fi
 	# -d: Use a specific path to the dumpfile.
 	# Reference: http://zsh.sourceforge.net/Doc/Release/Completion-System.html#Initialization
 	#compinit -C
-	test -d ${XDG_CACHE_HOME:-$HOME/.cache}/zsh || mkdir -p ${XDG_CACHE_HOME:-$HOME/.cache}/zsh
-	compinit -d ${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump-$ZSH_VERSION -C
+	#test -d ${XDG_CACHE_HOME:-$HOME/.cache}/zsh || mkdir -p ${XDG_CACHE_HOME:-$HOME/.cache}/zsh
+	#compinit -d ${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump-$ZSH_VERSION -C
 # }}
 
 # History {{
@@ -133,63 +335,63 @@ fi
 	}
 # }}
 
-# UI {{
-	autoload -U colors && colors
+# UI (OMZ migrated) {{
+	#autoload -U colors && colors
 
-	# Prompt settings.
-	autoload -Uz promptinit
-	promptinit
+	## Prompt settings.
+	#autoload -Uz promptinit
+	#promptinit
 
-	# Prompt theme. Explore with $(prompt -l)
-	#prompt suse
-	#prompt erikw # See ~/.config/zsh/.zprompts/prompt_erikw_setup
+	## Prompt theme. Explore with $(prompt -l)
+	##prompt suse
+	##prompt erikw # See ~/.config/zsh/.zprompts/prompt_erikw_setup
 
-	# Set prompt with git branch.
-	# Modified version of https://stackoverflow.com/a/12935606/265508
-	setopt prompt_subst
-	autoload -Uz vcs_info
-	zstyle ':vcs_info:*' formats '%F{5}[%F{2}%b%F{5}]%F{2}%c%F{3}%u%f'
-	zstyle ':vcs_info:*' enable git cvs svn
-	precmd () { vcs_info }
-	# See formatting options in manpage zshmisc(1) under the section SIMPLE PROMPT ESCAPES.
-	# Mimics the look of my $XDG_CONFIG_HOME/bash/ps1
-	# NOTE virtualenvwrapper prepends the active venv name in the generated bin/activate script.
-	PROMPT="%D{%H:%M:%S}"								# Date with seconds
-	[ $(id -u) -eq 0 ] && user_color=red || user_color=blue
-	if [ "$CODESPACES" != true ]; then
-		PROMPT="$PROMPT %F{$user_color}%n%{$reset_color%}@%F{cyan}%m%{$reset_color%}"	# Current user and hostname.
-	fi
-	unset user_color
-	if [ -n "$SSH_CLIENT" ] && ! ([ -n "$TMUX" ] || [[ "$TERM" == "screen-"* ]] ); then
-		# Highlight when logged in via SSH. But not in screen/tmux, that does not make sense.
-		PROMPT="$PROMPT %F{blue}[SSH]%{$reset_color%}"
-	fi
-	if [ "$CODESPACES" = true ]; then
-		trunc_len=2
-	else
-		trunc_len=5
-	fi
-	PROMPT="$PROMPT %F{3}%${trunc_len}~%{$reset_color%}"	# CWD, truncated to $trunc_len components (directory depth).
-	unset trunc_len
-	PROMPT="$PROMPT \${vcs_info_msg_0_}"					# Current VCS branch, as configured above. $ is escaped so this part is not evaluated yet (breaks then).
-	PROMPT="$PROMPT%1(j:[%j]:)"								# Number of background jobs (if >=1).
-	PROMPT="$PROMPT%(?::%F{red}{%?}%{$reset_color%})"		# Last exit code if !=0
-	PROMPT="$PROMPT> "										# EOL
+	## Set prompt with git branch.
+	## Modified version of https://stackoverflow.com/a/12935606/265508
+	#setopt prompt_subst
+	#autoload -Uz vcs_info
+	#zstyle ':vcs_info:*' formats '%F{5}[%F{2}%b%F{5}]%F{2}%c%F{3}%u%f'
+	#zstyle ':vcs_info:*' enable git cvs svn
+	#precmd () { vcs_info }
+	## See formatting options in manpage zshmisc(1) under the section SIMPLE PROMPT ESCAPES.
+	## Mimics the look of my $XDG_CONFIG_HOME/bash/ps1
+	## NOTE virtualenvwrapper prepends the active venv name in the generated bin/activate script.
+	#PROMPT="%D{%H:%M:%S}"								# Date with seconds
+	#[ $(id -u) -eq 0 ] && user_color=red || user_color=blue
+	#if [ "$CODESPACES" != true ]; then
+	#    PROMPT="$PROMPT %F{$user_color}%n%{$reset_color%}@%F{cyan}%m%{$reset_color%}"	# Current user and hostname.
+	#fi
+	#unset user_color
+	#if [ -n "$SSH_CLIENT" ] && ! ([ -n "$TMUX" ] || [[ "$TERM" == "screen-"* ]] ); then
+	#    # Highlight when logged in via SSH. But not in screen/tmux, that does not make sense.
+	#    PROMPT="$PROMPT %F{blue}[SSH]%{$reset_color%}"
+	#fi
+	#if [ "$CODESPACES" = true ]; then
+	#    trunc_len=2
+	#else
+	#    trunc_len=5
+	#fi
+	#PROMPT="$PROMPT %F{3}%${trunc_len}~%{$reset_color%}"	# CWD, truncated to $trunc_len components (directory depth).
+	#unset trunc_len
+	#PROMPT="$PROMPT \${vcs_info_msg_0_}"					# Current VCS branch, as configured above. $ is escaped so this part is not evaluated yet (breaks then).
+	#PROMPT="$PROMPT%1(j:[%j]:)"								# Number of background jobs (if >=1).
+	#PROMPT="$PROMPT%(?::%F{red}{%?}%{$reset_color%})"		# Last exit code if !=0
+	#PROMPT="$PROMPT> "										# EOL
 
 
-	# Fish like syntax highlighting on command line.
-	zsh_syntax_path=
-	if shell_is_macos; then
-		zsh_syntax_path=$HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-	elif shell_is_linux; then
-		zsh_syntax_path=/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-	elif shell_is_bsd; then
-		zsh_syntax_path=/usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-	fi
-	if [ -n "$zsh_syntax_path" ] && [ -f "$zsh_syntax_path" ]; then
-		source $zsh_syntax_path
-	fi
-	unset zsh_syntax_path
+	## Fish like syntax highlighting on command line.
+	#zsh_syntax_path=
+	#if shell_is_macos; then
+	#    zsh_syntax_path=$HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+	#elif shell_is_linux; then
+	#    zsh_syntax_path=/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+	#elif shell_is_bsd; then
+	#    zsh_syntax_path=/usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+	#fi
+	#if [ -n "$zsh_syntax_path" ] && [ -f "$zsh_syntax_path" ]; then
+	#    source $zsh_syntax_path
+	#fi
+	#unset zsh_syntax_path
 # }}
 
 # Options {{
@@ -215,6 +417,9 @@ fi
 # }}
 
 # Bindings {{
+	# Must happen before setting up fzf. Ref: https://github.com/junegunn/fzf/issues/1596#issuecomment-2128091715
+	bindkey -v	# vi command editing mode. NOTE: zsh is not using readline('s .inputrc').
+
 	# View binding namespaces with $(bindkey -l). Then view bindkings for a ns with $(bindkey -m <ns>)
 	export KEYTIMEOUT=1						# Set ESC to normal mode timout to 10 ms. Default is 40ms.
 	bindkey '^[[Z' reverse-menu-complete	# Reverse select on shift tab in completion menu.
@@ -265,6 +470,226 @@ fi
 # }}
 
 # Programs {{
+	#  Go {{
+		#export GOPATH="$XDG_DATA_HOME/go"
+		export GOPATH="$HOME/src/go"
+
+		if [ -d "$GOPATH/bin" ]; then
+			PATH="$GOPATH/bin:$PATH"
+		fi
+		#if [ -d "$HOME/src/github.com/golang/go" ]; then
+		#        export GOROOT="$HOME/src/golang/go"
+		#        PATH="$GOROOT/bin:$GOROOT/pkg/tool/linux_amd64:$PATH"
+		#fi
+	# }}
+
+	# Java {{
+		#if [ -e /usr/libexec/java_home ] ; then
+			#export JAVA_HOME=$(/usr/libexec/java_home 2>/dev/null)
+			#test $? -eq 0 || unset JAVA_HOME
+		#fi
+
+		# Add ANSI color output to ant.
+		#if program_is_in_path ant; then
+			#export ANT_ARGS='-logger org.apache.tools.ant.listener.AnsiColorLogger'
+		#fi
+
+		# Set $JAVA_HOME from asdf. Reference: https://github.com/halcyon/asdf-java
+		sourceifexists "${XDG_DATA_HOME:-$HOME/.local/share}/asdf/plugins/java/set-java-home.zsh"
+
+	# }}
+
+	# less {{
+		# Syntax highlighting for less with src-highlight.
+		# Normal highlight.
+		#if type src-hilite-lesspipe.sh  >/dev/null 2>&1; then
+			#export LESSOPEN="| src-hilite-lesspipe.sh %s"
+		#fi
+
+		if program_is_in_path source-highlight; then
+			export LESSOPEN="| $(which src-hilite-lesspipe.sh) %s"
+			# Solarized version, as the normal version does not work (hidden text) when solarized terminal background is used.
+			# https://github.com/jrunning/source-highlight-solarized
+			#export LESSOPEN="| source-highlight --failsafe -f esc-solarized --style-file=esc-solarized.style -i %s -o STDOUT"
+		fi
+
+		# --RAW-CONTROL-CHARS"	- Display colors.
+		# --ignore-case"	- Case insensitive search. However using capital letter(s) will enable case sensitive search.
+		# --status-column"	- Status column with number of lines etc.
+		#  --LINE-NUMBERS"	- Show line numbers.
+		export LESS="--RAW-CONTROL-CHARS --ignore-case --status-column"
+	# }}
+
+	# Ruby {{
+		# ruby-build: recommended build env.
+		# Reference: https://github.com/rbenv/ruby-build/wiki#suggested-build-environment
+		#export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+		if program_is_in_path ruby-build || program_is_in_path asdf ; then
+			# For Ruby versions 2.x-3.0
+			#export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$HOMEBREW_PREFIX/opt/openssl@1.1"
+			# For Ruby versions >=3.1
+			export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$HOMEBREW_PREFIX/opt/openssl@3"
+		fi
+	# }}
+
+	# Python {{
+		# Python pip binary installation directory (pip3 install --user)
+		if shell_is_macos; then
+			PATH="$HOME/Library/Python/3.9/bin:$PATH"
+		fi
+	# }}
+
+	# iTerm2 shell integration. Reference: https://www.iterm2.com/documentation-shell-integration.html
+	#sourceifexists $HOME/.iterm2_shell_integration.zsh
+
+	# Start SSH agent, unless this is an SSH session already
+	# Ref: https://stackoverflow.com/a/18915067
+	# NOTE moved to OMZ plugin
+	#if [ -z "$SSH_CLIENT" ]; then
+	#    SSH_ENV="$HOME/.ssh/env"
+
+	#    function start_agent {
+	#        local dir="$(dirname "${SSH_ENV}")"
+	#        test -d "$dir" || mkdir -p "$dir"
+	#        #echo -n "Initialising new SSH agent... "
+	#        /usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
+	#        #echo succeeded
+	#        chmod 600 "${SSH_ENV}"
+	#        . "${SSH_ENV}" > /dev/null
+	#        /usr/bin/ssh-add;
+	#    }
+
+	#    # Source SSH settings, if applicable
+	#    if [ -f "${SSH_ENV}" ]; then
+	#        . "${SSH_ENV}" > /dev/null
+	#        #ps ${SSH_AGENT_PID} doesn't work under cywgin
+	#        ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
+	#        start_agent;
+	#        }
+	#    else
+	#        start_agent;
+	#    fi
+	#fi
+
+	# Add tab completion to daemonize.
+	if program_is_in_path daemonize; then
+		compctl -cf daemonize
+	fi
+
+	# Tab complete for viw.
+	if program_is_in_path viw; then
+		 compctl -cf viw
+	fi
+
+	# Android SDK
+	#if [ -d "$HOME/src/android-sdk-linux/" ]; then
+		#PATH="$HOME/src/android-sdk-linux/tools/:$HOME/src/android-sdk-linux/platform-tools/:$PATH"
+	#fi
+
+	# Vim XDG. Ref: https://wiki.archlinux.org/title/XDG_Base_Directory
+	export GVIMINIT='let $MYGVIMRC = !has("nvim") ? "$XDG_CONFIG_HOME/vim/gvimrc" : "$XDG_CONFIG_HOME/nvim/init.gvim" | so $MYGVIMRC'
+	export VIMINIT='let $MYVIMRC = !has("nvim") ? "$XDG_CONFIG_HOME/vim/vimrc" : "$XDG_CONFIG_HOME/nvim/init.lua" | so $MYVIMRC'
+
+	# Perl
+	# cpan(1): avoid interactive configuration on first launch.
+	export PERL_MM_USE_DEFAULT=1
+	# Custom locallib installation path for modules
+	# Ref: https://stackoverflow.com/a/41541273/265508
+	export PERL_BASE="$XDG_DATA_HOME/perl5"
+	export PERL_MM_OPT="INSTALL_BASE=$PERL_BASE"
+	export PERL_MB_OPT="--install_base $PERL_BASE"
+	export PERL5LIB="$PERL_BASE/lib/perl5"
+	export PATH="$PERL_BASE/bin:$PATH"
+	export MANPATH="$PERL_BASE/man:$MANPATH"
+
+	# Load custom keymap
+	# NOTE allow me or %wheeler to issue loadkeys with no password.
+	#if shell_is_linux && [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/loadkeys/keymap" ]; then
+		#sudo loadkeys -q ${XDG_CONFIG_HOME:-$HOME/.config}/loadkeys/keymap &>/dev/null
+	#fi
+
+	# Must be at the end of shell init file. but here should do...
+	if program_is_in_path sdk; then
+		export SDKMAN_DIR="$HOME/.sdkman"
+		[[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]] && source "$SDKMAN_DIR/bin/sdkman-init.sh"
+	fi
+
+	# Add MacTex binaries (macos) to PATH.
+	# Reference: http://rkrug.github.io/LMS-test/downloads/UpdatingForElCapitan.pdf
+	test -e /Library/TeX/texbin && PATH="/Library/TeX/texbin:$PATH"
+
+	# ghq
+	# https://github.com/motemen/ghq
+	# Set envvar to my github clones directory, use same base path as
+	# $(git config --global ghq.root)
+	export GITHUB=$HOME/src/github.com/erikw
+
+	# Travis cli client. https://github.com/travis-ci/travis.rb
+	sourceifexists $HOME/.travis/travis.sh
+
+	# broot - https://dystroy.org/broot/install-br/
+	sourceifexists "$HOME/.config/broot/launcher/bash/br"
+
+	# fzf https://github.com/junegunn/fzf#using-homebrew
+	if program_is_in_path fzf; then
+		# Cache shell init to file to speed up shell initialization.
+		fzf_init_file="${XDG_CACHE_HOME:-$HOME/.cache}/fzf.zsh"
+		if  [ ! -f "$fzf_init_file" ]; then
+			fzf --zsh > "$fzf_init_file"
+		fi
+		source "$fzf_init_file"
+		unset fzf_init_file
+
+		# Default cli options. See fzf(1)
+		export FZF_COMPLETION_OPTS='--multi'
+
+		# Find dot files as well. Reference: https://github.com/junegunn/fzf/issues/634
+		if program_is_in_path fd; then
+			#export FZF_DEFAULT_COMMAND="rg --hidden --files --glob '!{.git,node_modules}/'"
+			#export FZF_DEFAULT_COMMAND='fd --type file --hidden --follow --exclude node_modules'
+			export FZF_DEFAULT_COMMAND='fd --type file --hidden --follow'
+		elif program_is_in_path fdfind; then # apt-get name
+			export FZF_DEFAULT_COMMAND='fdfind --type file --hidden --follow'
+		else
+			export FZF_DEFAULT_COMMAND='find . -type d \( -path './.git' -o -path './node_modules'  \) -prune -o -print'
+		fi
+		export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+		# To exclude path:
+		#export FZF_DEFAULT_COMMAND="$FZF_DEFAULT_COMMAND --exclude 'vcr_cassettes/'"
+		export FZF_DEFAULT_COMMAND="$FZF_DEFAULT_COMMAND --exclude '.git/'"
+	fi
+
+	# Homebrew sqlite to shadow old version shipped with macOS.
+	if [ -d "$HOMEBREW_PREFIX/opt/sqlite/bin" ]; then
+		PATH="$HOMEBREW_PREFIX/opt/sqlite/bin:$PATH"
+	fi
+
+	# Homebrew curl
+	if [ -d "$HOMEBREW_PREFIX/opt/curl/bin" ]; then
+		PATH="$HOMEBREW_PREFIX/opt/curl/bin:$PATH"
+	fi
+
+	# asdf
+	#if program_is_in_path asdf; then
+	#    if [ -n "$HOMEBREW_PREFIX" ]; then
+	#        source "$HOMEBREW_PREFIX/opt/asdf/libexec/asdf.sh"
+	#        # Hide asdf from brew, otherwise brew-doctor will complain on python-config files in PATH.
+	#        # Reference: https://github.com/pyenv/pyenv#homebrew-in-macos
+	#        # NOTE seems not needed anymore?
+	#        #shell_is_macos && alias brew="env PATH=${PATH//$ASDF_DATA_DIR\/shims:/} brew"
+	#    elif shell_is_linux; then
+	#        source /opt/asdf-vm/asdf.sh
+	#    fi
+	#fi
+
+	# direnv: https://direnv.net/
+	# NOTE migrated to OMZ
+	#if program_is_in_path direnv; then
+	#    eval "$(direnv hook zsh)"
+	#fi
+# }
+
 	# cd-bookmark. Aliases in ~/.config/shell/aliases
 	#if [ -d ~/.local/repos/cd-bookmark ]; then
 	#    #fpath=(~/src/github.com/erikw/cd-bookmark/(N-/) $fpath)
@@ -275,7 +700,7 @@ fi
 	# fzf-marks: https://github.com/urbainvaes/fzf-marks
 	# Done here and not in commons, as it must be after $(bindkeys -v)
 	if [ -d $HOME/.local/repos/fzf-marks ]; then
-		sourceifexists $HOME/.local/repos/fzf-marks/fzf-marks.plugin.$SHELL_NAME
+		sourceifexists $HOME/.local/repos/fzf-marks/fzf-marks.plugin.zsh
 		# --exact --select-1: jump to exact match directly if only match.
 		# --nth=1 --delimiter=' : ': only search the bookmark names, not values.
 		FZF_MARKS_COMMAND="$FZF_MARKS_COMMAND --exact --select-1 --nth=1 --delimiter=' : '"
@@ -284,8 +709,6 @@ fi
 		FZF_MARKS_DELETE=ctrl-r
 	fi
 
-
-
 	# qlty. From $(curl https://qlty.sh | sh)
 	[ -s "/usr/local/share/zsh/site-functions/_qlty" ] && source "/usr/local/share/zsh/site-functions/_qlty"
 	export QLTY_INSTALL="$HOME/.qlty"
@@ -293,11 +716,10 @@ fi
 
 # }}
 
-#sourceifexists ${XDG_CONFIG_HOME:-$HOME/.config}/X11/startx.sh
-
-
-# Must be at the end!
-#if [ "$PROFILE_STARTUP" = true ]; then
-   ##unsetopt xtrace
-   ##exec 2>&3 3>&-
-#fi
+# Profiling - end{{
+	# Must be at the end!
+	#if [ "$PROFILE_STARTUP" = true ]; then
+	##unsetopt xtrace
+	##exec 2>&3 3>&-
+	#fi
+# }}

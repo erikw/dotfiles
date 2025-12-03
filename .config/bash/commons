@@ -1,6 +1,6 @@
 #!/bin/env bash
 # Shebang set to make shellcheck happy.
-# Common shelll settings (used by at least my .bashrc and .zshrc)
+# Common shelll settings (used by at least my .bashrc and .zshrc). NOPE to much effort to maintain, now it's just for bash..
 # Modeline {
 #	vi: foldmarker={,} filetype=sh foldmethod=marker foldlevel=0 tabstop=8 shiftwidth=8
 # }
