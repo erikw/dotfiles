@@ -45,10 +45,14 @@
       create: true
     ~/.zshenv: .zshenv
     ~/bin: bin
-    "~/Library/Application Support/Code/User/keybindings.json": .config/Code/User/keybindings.json
-    "~/Library/Application Support/Code/User/settings.json": .config/Code/User/settings.json
-    "~/Library/Application Support/Code/User/snippets": .config/Code/User/snippets
-    "~/Library/Application Support/Code/User/tasks.json": .config/Code/User/tasks.json
+
+
+- ifmacos:
+  - link:
+      "~/Library/Application Support/Code/User/keybindings.json": .config/Code/User/keybindings.json
+      "~/Library/Application Support/Code/User/settings.json": .config/Code/User/settings.json
+      "~/Library/Application Support/Code/User/snippets": .config/Code/User/snippets
+      "~/Library/Application Support/Code/User/tasks.json": .config/Code/User/tasks.json
 
 - create:
     - ~/dl
