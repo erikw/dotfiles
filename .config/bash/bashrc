@@ -12,10 +12,10 @@ if [ -f /etc/profile ] && [ -r /etc/profile ]; then
 fi
 
 
-if [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/commons" ]; then
+if [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/bash/commons" ]; then
 	export SHELL_NAME=bash
 	export completion_func=complete
-	source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/commons"
+	source "${XDG_CONFIG_HOME:-$HOME/.config}/bash/commons"
 fi
 
 # Completion {
