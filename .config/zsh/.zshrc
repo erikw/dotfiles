@@ -400,6 +400,32 @@ source $ZSH/oh-my-zsh.sh
 	#unset zsh_syntax_path
 # }}
 
+# UI {{
+	# Colorize ls(1) on BSD/Mac systems.
+	shell_is_bsd && export CLICOLOR=1
+
+	 # Use colorful terminal.
+	 case "$TERM" in
+		xterm*)		export TERM=xterm-256color ;;
+		screen*)	export TERM=screen-256color ;;
+		rxvt*)		export TERM=rxvt-unicode-256color ;;
+	 esac
+
+
+	# Solarized ls colors.
+	dircolorsdb=$HOME/.local/repos/dircolors-solarized/dircolors.256dark
+	if ! [ -f "$dircolorsdb" ]; then
+		dircolorsdb=${XDG_CONFIG_HOME:-$HOME/.config}/shell/dircolors
+	fi
+	if program_is_in_path dircolors; then
+		eval "$(dircolors -b $dircolorsdb)"
+	elif shell_is_macos && program_is_in_path gdircolors; then
+		eval "$(gdircolors -b $dircolorsdb)"
+	fi
+	unset dircolorsdb
+
+# }}
+
 # Options {{
 	# Manual & categories: http://zsh.sourceforge.net/Doc/Release/Options.html
 	setopt nobeep			# No beeps thanks!
