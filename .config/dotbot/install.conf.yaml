@@ -47,6 +47,7 @@
     ~/bin: bin
 
 
+# Manage VS Code configs in dotfiles.
 - ifmacos:
   - link:
       "~/Library/Application Support/Code/User/keybindings.json": .config/Code/User/keybindings.json
