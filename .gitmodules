@@ -31,9 +31,6 @@
 [submodule ".local/repos/dotbot-plugins/brewfile"]
 	path = .local/repos/dotbot-plugins/brewfile
 	url = https://github.com/sobolevn/dotbot-brewfile.git
-[submodule ".local/repos/dotbot-plugins/ifplatform"]
-	path = .local/repos/dotbot-plugins/ifplatform
-	url = https://github.com/erikw/dotbot-ifplatform.git
 [submodule ".local/repos/ohmyzsh"]
 	path = .local/repos/ohmyzsh
 	url = https://github.com/ohmyzsh/ohmyzsh.git
