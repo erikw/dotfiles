@@ -19,10 +19,17 @@
 # Oh My ZSH {{
 export ZSH="$HOME/.local/repos/ohmyzsh"
 
+# Ref: https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 #ZSH_THEME="robbyrussell"
-ZSH_THEME="agnoster" # Requiers a patched powerline font.
+#ZSH_THEME="agnoster" # Requiers a patched powerline font.
+ZSH_THEME="apple"
+
+# Ref: https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins
 plugins=(
+	# sudo # not working
+	asdf
 	git
+	web-search
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -273,12 +280,13 @@ source $ZSH/oh-my-zsh.sh
 	# does not work (g alias for 'cd-bookmark -c')
 	setopt completealiases
 
-	compinit_regen() {
-		rm -f ${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump-$ZSH_VERSION
-		compinit -d ${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump-$ZSH_VERSION -i
-	}
+	#compinit_regen() {
+	#    rm -f ${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump-$ZSH_VERSION
+	#    compinit -d ${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump-$ZSH_VERSION -i
+	#}
 
-	autoload -Uz compinit
+	# Let OMZ handle this.
+	#autoload -Uz compinit
 	# -C: [shell startup time optimization] ignore checking for new comp files. The dump file will be
 	#       created if there isn’t one already. NOTE Thus, for new files e.g. added to fpath, manually
 	#       run once the compinit_regen function above.
@@ -286,8 +294,8 @@ source $ZSH/oh-my-zsh.sh
 	# -d: Use a specific path to the dumpfile.
 	# Reference: http://zsh.sourceforge.net/Doc/Release/Completion-System.html#Initialization
 	#compinit -C
-	test -d ${XDG_CACHE_HOME:-$HOME/.cache}/zsh || mkdir -p ${XDG_CACHE_HOME:-$HOME/.cache}/zsh
-	compinit -d ${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump-$ZSH_VERSION -C
+	#test -d ${XDG_CACHE_HOME:-$HOME/.cache}/zsh || mkdir -p ${XDG_CACHE_HOME:-$HOME/.cache}/zsh
+	#compinit -d ${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump-$ZSH_VERSION -C
 # }}
 
 # History {{
@@ -650,17 +658,17 @@ source $ZSH/oh-my-zsh.sh
 	fi
 
 	# asdf
-	if program_is_in_path asdf; then
-		if [ -n "$HOMEBREW_PREFIX" ]; then
-			source "$HOMEBREW_PREFIX/opt/asdf/libexec/asdf.sh"
-			# Hide asdf from brew, otherwise brew-doctor will complain on python-config files in PATH.
-			# Reference: https://github.com/pyenv/pyenv#homebrew-in-macos
-			# NOTE seems not needed anymore?
-			#shell_is_macos && alias brew="env PATH=${PATH//$ASDF_DATA_DIR\/shims:/} brew"
-		elif shell_is_linux; then
-			source /opt/asdf-vm/asdf.sh
-		fi
-	fi
+	#if program_is_in_path asdf; then
+	#    if [ -n "$HOMEBREW_PREFIX" ]; then
+	#        source "$HOMEBREW_PREFIX/opt/asdf/libexec/asdf.sh"
+	#        # Hide asdf from brew, otherwise brew-doctor will complain on python-config files in PATH.
+	#        # Reference: https://github.com/pyenv/pyenv#homebrew-in-macos
+	#        # NOTE seems not needed anymore?
+	#        #shell_is_macos && alias brew="env PATH=${PATH//$ASDF_DATA_DIR\/shims:/} brew"
+	#    elif shell_is_linux; then
+	#        source /opt/asdf-vm/asdf.sh
+	#    fi
+	#fi
 
 	# direnv: https://direnv.net/
 	if program_is_in_path direnv; then
