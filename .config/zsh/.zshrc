@@ -26,9 +26,15 @@ ZSH_THEME="apple"
 
 # Ref: https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins
 plugins=(
+	# dash
+	# mosh
 	# sudo # not working
 	asdf
+	colored-man-pages
+	direnv
 	git
+	safe-paste
+	ssh-agent
 	web-search
 )
 
@@ -532,31 +538,32 @@ source $ZSH/oh-my-zsh.sh
 
 	# Start SSH agent, unless this is an SSH session already
 	# Ref: https://stackoverflow.com/a/18915067
-	if [ -z "$SSH_CLIENT" ]; then
-		SSH_ENV="$HOME/.ssh/env"
+	# NOTE moved to OMZ plugin
+	#if [ -z "$SSH_CLIENT" ]; then
+	#    SSH_ENV="$HOME/.ssh/env"
 
-		function start_agent {
-			local dir="$(dirname "${SSH_ENV}")"
-			test -d "$dir" || mkdir -p "$dir"
-			#echo -n "Initialising new SSH agent... "
-			/usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
-			#echo succeeded
-			chmod 600 "${SSH_ENV}"
-			. "${SSH_ENV}" > /dev/null
-			/usr/bin/ssh-add;
-		}
+	#    function start_agent {
+	#        local dir="$(dirname "${SSH_ENV}")"
+	#        test -d "$dir" || mkdir -p "$dir"
+	#        #echo -n "Initialising new SSH agent... "
+	#        /usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
+	#        #echo succeeded
+	#        chmod 600 "${SSH_ENV}"
+	#        . "${SSH_ENV}" > /dev/null
+	#        /usr/bin/ssh-add;
+	#    }
 
-		# Source SSH settings, if applicable
-		if [ -f "${SSH_ENV}" ]; then
-			. "${SSH_ENV}" > /dev/null
-			#ps ${SSH_AGENT_PID} doesn't work under cywgin
-			ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
-			start_agent;
-		    }
-		else
-			start_agent;
-		fi
-	fi
+	#    # Source SSH settings, if applicable
+	#    if [ -f "${SSH_ENV}" ]; then
+	#        . "${SSH_ENV}" > /dev/null
+	#        #ps ${SSH_AGENT_PID} doesn't work under cywgin
+	#        ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
+	#        start_agent;
+	#        }
+	#    else
+	#        start_agent;
+	#    fi
+	#fi
 
 	# Add tab completion to daemonize.
 	if program_is_in_path daemonize; then
@@ -671,9 +678,10 @@ source $ZSH/oh-my-zsh.sh
 	#fi
 
 	# direnv: https://direnv.net/
-	if program_is_in_path direnv; then
-		eval "$(direnv hook zsh)"
-	fi
+	# NOTE migrated to OMZ
+	#if program_is_in_path direnv; then
+	#    eval "$(direnv hook zsh)"
+	#fi
 # }
 
 	# cd-bookmark. Aliases in ~/.config/shell/aliases
