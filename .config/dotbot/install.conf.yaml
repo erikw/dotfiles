@@ -2,7 +2,6 @@
     - .local/repos/dotbot-plugins/asdf
     - .local/repos/dotbot-plugins/brewfile
     - .local/repos/dotbot-plugins/crontab
-    - .local/repos/dotbot-plugins/firefox
     - .local/repos/dotbot-plugins/ghq
     - .local/repos/dotbot-plugins/if
     - .local/repos/dotbot-plugins/ifplatform
@@ -132,9 +131,6 @@
             command: if_fail_do_notification crontab_backup.sh
           - cron: 0 13 * * *
             command: if_fail_do_notification dotfiles_backup_local.sh
-
-- firefox:
-    user.js: .config/firefox/user.js
 
 # Oly for desktop machines, not CodeSpaces.
 - if:
