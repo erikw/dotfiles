@@ -120,9 +120,6 @@ source $ZSH/oh-my-zsh.sh
 # }}
 
 # Paths {{
-	typeset -U path		# Don't add entry to path if it's already present.
-	export PATH			# Make the path available in subshells. Export is only needed once.
-
 	# Function paths.
 	# - .zsh_funcs/ - custom functions e.g. completion functions installed here.
 	# - .zprompts/ - custom prompt themes
@@ -132,10 +129,10 @@ source $ZSH/oh-my-zsh.sh
 	if [ -d $HOMEBREW_PREFIX/share/zsh-completions ]; then
 		fpath+=$HOMEBREW_PREFIX/share/zsh-completions
 	fi
-	# Global functions which could also be completion functions.
-	if [ -d $HOMEBREW_PREFIX/share/zsh/site-functions ]; then
-		fpath+=$HOMEBREW_PREFIX/share/zsh/site-functions
-	fi
+
+	# Binary paths
+	typeset -U path		# Don't add entry to path if it's already present.
+	export PATH			# Make the path available in subshells. Export is only needed once.
 
 	# Include system binaries
 	path=(/usr/local/bin /usr/local/sbin /sbin /usr/sbin $path)
@@ -697,10 +694,10 @@ source $ZSH/oh-my-zsh.sh
 
 # }}
 
-#sourceifexists ${XDG_CONFIG_HOME:-$HOME/.config}/X11/startx.sh
-
-# Must be at the end!
-#if [ "$PROFILE_STARTUP" = true ]; then
-   ##unsetopt xtrace
-   ##exec 2>&3 3>&-
-#fi
+# Profiling - end{{
+	# Must be at the end!
+	#if [ "$PROFILE_STARTUP" = true ]; then
+	##unsetopt xtrace
+	##exec 2>&3 3>&-
+	#fi
+# }}
