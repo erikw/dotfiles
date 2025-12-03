@@ -38,6 +38,12 @@ plugins=(
 	web-search
 )
 
+
+
+# Let OMZ write zcompdump to XDG cache dir.
+test -d ${XDG_CACHE_HOME:-$HOME/.cache}/zsh || mkdir -p ${XDG_CACHE_HOME:-$HOME/.cache}/zsh
+ZSH_COMPDUMP="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump-$ZSH_VERSION"
+
 source $ZSH/oh-my-zsh.sh
 # }}
 
