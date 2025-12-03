@@ -39,6 +39,8 @@ plugins=(
 )
 
 
+# ssh-agent plugin requires ~/.ssh to exist, which seems to be the case on Codespaces.
+test -d $HOME/.ssh || mkdir $HOME/.ssh
 
 # Let OMZ write zcompdump to XDG cache dir.
 test -d ${XDG_CACHE_HOME:-$HOME/.cache}/zsh || mkdir -p ${XDG_CACHE_HOME:-$HOME/.cache}/zsh
