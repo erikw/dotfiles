@@ -22,7 +22,11 @@ export ZSH="$HOME/.local/repos/ohmyzsh"
 # Ref: https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 #ZSH_THEME="robbyrussell"
 #ZSH_THEME="agnoster" # Requiers a patched powerline font.
-ZSH_THEME="apple"
+if [ "$CODESPACES" = true ]; then
+	ZSH_THEME="robbyrussell"
+else
+	ZSH_THEME="apple"
+fi
 
 # Ref: https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins
 plugins=(
