@@ -36,7 +36,6 @@ plugins=(
 	asdf
 	colored-man-pages
 	direnv
-	git
 	safe-paste
 	ssh-agent
 	web-search
