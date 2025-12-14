@@ -11,11 +11,10 @@
 	branch = auto
 	ui = auto
 	page = true
-[core]
-    pager = delta # git-delta
-
-[interactive]
-    diffFilter = delta --color-only # git-delta
+;[core]
+;    pager = delta # git-delta. NOPE, then we need to install this in Codespaces too.
+;[interactive]
+;    diffFilter = delta --color-only # git-delta. NOPE, then we need to install this in Codespaces too.
 
 [help]
 	;browser = firefox -new-tab
@@ -119,7 +118,6 @@
 
 [merge]
 	log = true
-    conflictStyle = zdiff3 # git-delta
 
 [init]
 	defaultBranch = main	; Until this is default.
@@ -142,13 +140,13 @@
 [gerrit]
 	createChangeId = true
 
-[delta]
-	hyperlinks = true
-	navigate = true  # use n and N to move between diff sections
-	side-by-side = false
-	line-numbers = true
-	; View themes with: $ delta --show-syntax-themes --dark
-	syntax-theme = "Solarized (dark)"
+;[delta]
+;        hyperlinks = true
+;        navigate = true  # use n and N to move between diff sections
+;        side-by-side = false
+;        line-numbers = true
+;        ; View themes with: $ delta --show-syntax-themes --dark
+;        syntax-theme = "Solarized (dark)"
 
 ; https://github.com/motemen/ghq
 [ghq]

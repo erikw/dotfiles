@@ -266,4 +266,9 @@ JSON5 (close enouch got JSONC) validator: https://jsonformatter.org/json5-valida
         "workbench.panel.output": true
     },
     "******************************** ⚠ Unsorted Below ********************************": null,
+    "chat.tools.terminal.autoApprove": {
+        "git remote": true,
+        "npm run build": true,
+        "npm run dev": true
+    },
 }
