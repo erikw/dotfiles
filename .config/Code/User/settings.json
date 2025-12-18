@@ -269,6 +269,21 @@ JSON5 (close enouch got JSONC) validator: https://jsonformatter.org/json5-valida
     "chat.tools.terminal.autoApprove": {
         "git remote": true,
         "npm run build": true,
-        "npm run dev": true
+        "npm run dev": true,
+        "/^node scripts/generate-og-images\\.js$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "npm install": true,
+        "npm run preview": true,
+        "npm run generate:search": true,
+        "npx": true,
+        "pkill": true,
+        "/^node scripts/generate-search-index\\.js$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "npm run generate:og": true,
+        "time": true
     },
 }

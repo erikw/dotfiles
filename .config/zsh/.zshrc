@@ -19,6 +19,8 @@
 # Oh My ZSH {{
 export ZSH="$HOME/.local/repos/ohmyzsh"
 
+DISABLE_AUTO_UPDATE="true"
+
 # Ref: https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 #ZSH_THEME="robbyrussell"
 #ZSH_THEME="agnoster" # Requiers a patched powerline font.
