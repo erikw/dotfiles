@@ -26,6 +26,7 @@
     cask 'cryptomator'
     cask 'daisydisk'
     cask 'google-cloud-sdk'  # for gcloud cli used for tardbot.
+    cask 'google-drive' # For BTB Podcast management.
     cask 'gramps'
     cask 'handbrake'
     cask 'jettison'
@@ -35,6 +36,7 @@
     cask 'netnewswire'
     cask 'send-to-kindle'
     cask 'signal'
+    cask 'spotify'
     cask 'zoom'
 # }
 
