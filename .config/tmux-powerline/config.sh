@@ -9,7 +9,7 @@
 	# Create error log in tmux runtime temp dir.
 	export TMUX_POWERLINE_ERROR_LOGS_ENABLED="true"
 	# Only log specific scopes. Space separated list of scopes. Supported scopes: weather.sh lib/text_roll.sh lib/powerline.sh lib/colors.sh config/helpers.sh
-	export TMUX_POWERLINE_ERROR_LOGS_SCOPES=""
+	export TMUX_POWERLINE_ERROR_LOGS_SCOPES="weather.sh"
 	# Use patched font symbols.
 	export TMUX_POWERLINE_PATCHED_FONT_IN_USE="true"
 
