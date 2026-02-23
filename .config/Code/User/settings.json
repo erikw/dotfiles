@@ -145,6 +145,7 @@ JSON5 (close enouch got JSONC) validator: https://jsonformatter.org/json5-valida
         "Flickr",
         "FUNCS",
         "graphviz",
+        "gtag",
         "hangry",
         "isort",
         "latexmk",
@@ -287,4 +288,5 @@ JSON5 (close enouch got JSONC) validator: https://jsonformatter.org/json5-valida
         "npm run generate:og": true,
         "time": true
     },
+    "chat.viewSessions.orientation": "stacked",
 }

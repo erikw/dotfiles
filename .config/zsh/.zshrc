@@ -667,7 +667,7 @@ source $ZSH/oh-my-zsh.sh
 	if program_is_in_path fzf; then
 		# Cache shell init to file to speed up shell initialization.
 		fzf_init_file="${XDG_CACHE_HOME:-$HOME/.cache}/fzf.zsh"
-		if  [ ! -f "$fzf_init_file" ]; then
+		if  [ ! -s "$fzf_init_file" ]; then
 			fzf --zsh > "$fzf_init_file"
 		fi
 		source "$fzf_init_file"
