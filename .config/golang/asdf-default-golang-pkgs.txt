@@ -8,5 +8,5 @@ github.com/go-delve/delve/cmd/dlv@latest
 // REPL
 github.com/x-motemen/gore/cmd/gore@latest
 
-// semver
-github.com/maykonlsf/semver-cli/cmd/semver@latest
+// semver. Now in Homebrew.
+//github.com/maykonlsf/semver-cli/cmd/semver@latest

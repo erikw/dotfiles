@@ -10,6 +10,7 @@
 
 # Formula: default {
 	brew 'ffmpeg' # Dependency for yt-dlp
+	brew 'semver' # For tmux-powerline
 	brew 'yt-dlp'
 # }
 #

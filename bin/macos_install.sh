@@ -325,7 +325,6 @@ curl https://qlty.sh | sh
 
 # Go binaries
 # For erikw/tmux-powerline
-go install github.com/maykonlsf/semver-cli/cmd/semver@latest
 # }
 
 # Java {
