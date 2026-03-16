@@ -87,7 +87,6 @@ return {
     -- Work on surrond delimiters or its content. Like tpope/vim-surround but with TreeSitter.
     {
         "kylechui/nvim-surround",
-        tag = "*", -- Use for stability; omit to use `main` branch for the latest features
         opts = {},
     },
 
