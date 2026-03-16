@@ -495,19 +495,15 @@ source $ZSH/oh-my-zsh.sh
 
 # Programs {{
 	#  Golang {{
+		# Not set, overriden by asdf.
 		#export GOPATH="$XDG_DATA_HOME/go"
-		export GOPATH="$HOME/src/go"
-
-		if [ -d "$GOPATH/bin" ]; then
-			PATH="$GOPATH/bin:$PATH"
-		fi
-		#if [ -d "$HOME/src/github.com/golang/go" ]; then
-		#        export GOROOT="$HOME/src/golang/go"
-		#        PATH="$GOROOT/bin:$GOROOT/pkg/tool/linux_amd64:$PATH"
+		#if [ -d "$GOPATH/bin" ]; then
+		#    PATH="$GOPATH/bin:$PATH"
 		#fi
 
 		# asdf-golang
-		# According to README we must do this. Ref: https://github.com/asdf-community/asdf-golang
+		# Add asdf shims to PATH Ref: https://github.com/asdf-community/asdf-golang
+		# NOTE this overrides set $GOPATH, $GOROOT & $GOBIN.
 		sourceifexists ${ASDF_DATA_DIR:-$HOME/.asdf}/plugins/golang/set-env.zsh
 	# }}
 
