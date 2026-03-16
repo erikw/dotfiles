@@ -89,6 +89,7 @@ source $ZSH/oh-my-zsh.sh
 	export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
 	export ANDROID_HOME="$XDG_DATA_HOME"/android
 	export NODE_REPL_HISTORY="$XDG_DATA_HOME"/node_repl_history
+	export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
 
 	# asdf; Not yet fully compliant: https://github.com/asdf-vm/asdf/issues/687
 	export ASDF_CONFIG_FILE=${XDG_CONFIG_HOME}/asdf/asdfrc
@@ -118,21 +119,11 @@ source $ZSH/oh-my-zsh.sh
 	export XCOMPOSECACHE=$XDG_CACHE_HOME/X11/XCompose
 	export XCOMPOSEFILE=$XDG_CONFIG_HOME/X11/XCompose
 
-	# Gems
-	#export GEM_SPEC_CACHE=$XDG_CACHE_HOME/gem # TODO maybe also not needed, try disable to prevent ruby build issues.
-	# NOTE GEM_HOME cause issues (openssl lib can't be compiled) when using rbevn to install new ruby versions. https://github.com/asdf-vm/asdf-ruby/issues/206#issuecomment-860106503
-	# It might not be necessary to do this when using asdf, as gems are installed to asdf version dirs.
-	#export GEM_HOME=$XDG_DATA_HOME/gem
-	#export PATH="$GEM_HOME/bin:$PATH"
-
 	# Bundle
 	export BUNDLE_USER_CONFIG=$XDG_CONFIG_HOME/bundle/config
 	export BUNDLE_USER_CACHE=$XDG_CACHE_HOME/bundle
 	export BUNDLE_USER_PLUGIN=$XDG_DATA_HOME/bundle
 
-	# NPM
-	export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
-	export PATH="$XDG_DATA_HOME/npm/bin:$PATH"
 
 	# Mailcap. Seems like can use envvar at least for NeoMutt. Ref: https://manpages.debian.org/testing/neomutt/neomutt.1.en.html
 	export MAILCAPS="$XDG_DATA_HOME:$MAILCAPS"
@@ -503,7 +494,7 @@ source $ZSH/oh-my-zsh.sh
 # }}
 
 # Programs {{
-	#  Go {{
+	#  Golang {{
 		#export GOPATH="$XDG_DATA_HOME/go"
 		export GOPATH="$HOME/src/go"
 
@@ -514,6 +505,10 @@ source $ZSH/oh-my-zsh.sh
 		#        export GOROOT="$HOME/src/golang/go"
 		#        PATH="$GOROOT/bin:$GOROOT/pkg/tool/linux_amd64:$PATH"
 		#fi
+
+		# asdf-golang
+		# According to README we must do this. Ref: https://github.com/asdf-community/asdf-golang
+		sourceifexists ${ASDF_DATA_DIR:-$HOME/.asdf}/plugins/golang/set-env.zsh
 	# }}
 
 	# Java {{
@@ -530,6 +525,10 @@ source $ZSH/oh-my-zsh.sh
 		# Set $JAVA_HOME from asdf. Reference: https://github.com/halcyon/asdf-java
 		sourceifexists "${XDG_DATA_HOME:-$HOME/.local/share}/asdf/plugins/java/set-java-home.zsh"
 
+	# }}
+
+	# Node {{
+		export PATH="$XDG_DATA_HOME/npm/bin:$PATH"
 	# }}
 
 	# less {{
@@ -704,6 +703,7 @@ source $ZSH/oh-my-zsh.sh
 	fi
 
 	# asdf
+	export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 	#if program_is_in_path asdf; then
 	#    if [ -n "$HOMEBREW_PREFIX" ]; then
 	#        source "$HOMEBREW_PREFIX/opt/asdf/libexec/asdf.sh"
@@ -715,6 +715,7 @@ source $ZSH/oh-my-zsh.sh
 	#        source /opt/asdf-vm/asdf.sh
 	#    fi
 	#fi
+
 
 	# direnv: https://direnv.net/
 	# NOTE migrated to OMZ
