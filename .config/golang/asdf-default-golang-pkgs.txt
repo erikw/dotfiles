@@ -1,9 +1,22 @@
 // LSP
 golang.org/x/tools/gopls@latest
+// Format code and fixes imports
 golang.org/x/tools/cmd/goimports@latest
+// Linter for stylistic issues
+golang.org/x/lint/golint@latest
+
+// More advanced static analysis than golint
+//honnef.co/go/tools/cmd/staticcheck@latest
+
+// Stricter formatting than gofmt
+//mvdan.cc/gofumpt@latest
 
 // Debugger
 github.com/go-delve/delve/cmd/dlv@latest
+
+
+// Prettier test output
+gotest.tools/gotestsum@latest
 
 // REPL
 github.com/x-motemen/gore/cmd/gore@latest
