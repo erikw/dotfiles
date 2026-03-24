@@ -502,9 +502,12 @@ source $ZSH/oh-my-zsh.sh
 		#fi
 
 		# asdf-golang
-		# Add asdf shims to PATH Ref: https://github.com/asdf-community/asdf-golang
+		# Add asdf shims to env and PATH Ref: https://github.com/asdf-community/asdf-golang
 		# NOTE this overrides set $GOPATH, $GOROOT & $GOBIN.
 		sourceifexists ${ASDF_DATA_DIR:-$HOME/.asdf}/plugins/golang/set-env.zsh
+		if [ -n "$GOBIN" ]; then
+			PATH="$GOBIN:$PATH"
+		fi
 	# }}
 
 	# Java {{
