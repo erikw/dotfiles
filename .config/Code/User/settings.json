@@ -90,6 +90,20 @@ JSON5 (close enouch got JSONC) validator: https://jsonformatter.org/json5-valida
         // Themes
         "RobbOwen.synthwave-vscode",
 
+        // UI
+        "danielgjackson.auto-dark-mode-windows",
+        "mechatroner.rainbow-csv",
+
+        // Development
+        // Development: Python
+        "ms-python.isort",
+        "ms-python.black-formatter",
+        "cstrap.python-snippets",
+
+        // Development: Golang
+        "golang.Go",
+        "premparihar.gotestexplorer",
+
         // Tools:
         // "yy0931.vscode-sqlite3-editor",
         "EditorConfig.EditorConfig",
@@ -100,14 +114,13 @@ JSON5 (close enouch got JSONC) validator: https://jsonformatter.org/json5-valida
         "Wupb.arrange-selection",
         "aaron-bond.better-comments",
         "adpyke.codesnap",
+        "anweber.vscode-httpyac",
         "bierner.docs-view",
         "christian-kohler.path-intellisense",
-        "danielgjackson.auto-dark-mode-windows",
         "devdocs-adapter.devdocs-adapter",
         "eamodio.gitlens",
         "github.vscode-github-actions",
         "janisdd.vscode-edit-csv",
-        "mechatroner.rainbow-csv",
         "ms-vscode-remote.remote-containers",
         "ms-vsliveshare.vsliveshare",
         "openai.chatgpt",
@@ -118,7 +131,7 @@ JSON5 (close enouch got JSONC) validator: https://jsonformatter.org/json5-valida
         "tomoki1207.pdf",
         "valentjn.vscode-ltex",
         "vscodevim.vim",
-        "yandeu.five-server",
+        "yandeu.five-server"
     ],
 
 

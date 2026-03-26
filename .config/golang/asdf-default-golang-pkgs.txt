@@ -1,25 +1,34 @@
+// # Linter, Analysis
 // LSP
 golang.org/x/tools/gopls@latest
 // Format code and fixes imports
 golang.org/x/tools/cmd/goimports@latest
 // Linter for stylistic issues
 golang.org/x/lint/golint@latest
-
 // More advanced static analysis than golint
 //honnef.co/go/tools/cmd/staticcheck@latest
-
+// Reports unreachable functions in Go programs.
+golang.org/x/tools/cmd/deadcode@latest
 // Stricter formatting than gofmt
 //mvdan.cc/gofumpt@latest
 
-// Debugger
+// # Documentation
+// Local documentation server
+golang.org/x/tools/cmd/godoc@latest
+
+
+// # Debugger
 github.com/go-delve/delve/cmd/dlv@latest
 
 
+// #Testing
+// Generate test boiler plates
+github.com/cweill/gotests/gotests@latest
 // Prettier test output
 gotest.tools/gotestsum@latest
 
+// # Tools
 // REPL
 github.com/x-motemen/gore/cmd/gore@latest
-
 // semver. Now in Homebrew.
 //github.com/maykonlsf/semver-cli/cmd/semver@latest

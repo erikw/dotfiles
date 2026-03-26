@@ -21,3 +21,6 @@ vscode-langservers-extracted
 # Linters & fixers
 eslint
 prettier
+
+# REST test scripting with .http/.rest files
+httpyac
