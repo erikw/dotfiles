@@ -104,11 +104,15 @@ JSON5 (close enouch got JSONC) validator: https://jsonformatter.org/json5-valida
         "golang.Go",
         "premparihar.gotestexplorer",
 
-        // Tools:
+        // Tools
+        // Tools: AI
+        "GitHub.copilot-chat",
+        "openai.chatgpt",
+        "anthropic.claude-code",
+        // Tools: Misc
         // "yy0931.vscode-sqlite3-editor",
         "EditorConfig.EditorConfig",
         "GitHub.codespaces",
-        "GitHub.copilot-chat",
         "GitHub.vscode-pull-request-github",
         "Gruntfuggly.todo-tree",
         "Wupb.arrange-selection",
@@ -123,7 +127,6 @@ JSON5 (close enouch got JSONC) validator: https://jsonformatter.org/json5-valida
         "janisdd.vscode-edit-csv",
         "ms-vscode-remote.remote-containers",
         "ms-vsliveshare.vsliveshare",
-        "openai.chatgpt",
         "qcz.text-power-tools",
         "ryuta46.multi-command",
         "shardulm94.trailing-spaces",
@@ -302,4 +305,6 @@ JSON5 (close enouch got JSONC) validator: https://jsonformatter.org/json5-valida
         "time": true
     },
     "chat.viewSessions.orientation": "stacked",
+    "claudeCode.preferredLocation": "panel",
+    "claudeCode.selectedModel": "default",
 }

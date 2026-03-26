@@ -90,6 +90,7 @@ source $ZSH/oh-my-zsh.sh
 	export ANDROID_HOME="$XDG_DATA_HOME"/android
 	export NODE_REPL_HISTORY="$XDG_DATA_HOME"/node_repl_history
 	export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
+	export CLAUDE_CONFIG_DIR="$XDG_CONFIG_HOME/claude"
 
 	# asdf; Not yet fully compliant: https://github.com/asdf-vm/asdf/issues/687
 	export ASDF_CONFIG_FILE=${XDG_CONFIG_HOME}/asdf/asdfrc

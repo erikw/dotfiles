@@ -10,6 +10,7 @@
 .config/cd-bookmark/bookmarks
 .config/cgdb/logs/
 .config/cheat/
+.config/claude/
 .config/configstore/
 .config/dlv/.dbg_history
 .config/fzf-marks/marks

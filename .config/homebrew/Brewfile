@@ -33,6 +33,7 @@
 				brew 'cmatrix'
 				brew 'codespell'
 				brew 'colordiff'
+				brew 'copilot-cli'
 				brew 'coreutils'	# Note that some gnu pakcages comes with g-prefix in the bin names. The default names are set up in $PATH in $XDG_CONFIG_HOME/shell/commons.
 				brew 'cormacrelf/tap/dark-notify' # To detect chagnes in OS light/dark appearens. Used by https://github.com/cormacrelf/dark-notify/
 				brew 'cowsay'
