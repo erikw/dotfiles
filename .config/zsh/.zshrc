@@ -17,7 +17,8 @@
 # }}
 
 # Oh My ZSH {{
-export ZSH="$HOME/.local/repos/ohmyzsh"
+export ZSH="$HOME/.local/repos/ohmyzsh/ohmyzsh"
+export ZSH_CUSTOM="$HOME/.local/repos/ohmyzsh/custom" # Custom plugins, themes
 
 DISABLE_AUTO_UPDATE="true"
 
