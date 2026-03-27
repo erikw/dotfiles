@@ -142,3 +142,6 @@
             flags: [-p]
           - repo: erikw/erikw.me-jekyll
             flags: [-p]
+#- shell:
+#    - description: Build zsh smart-suggestion plugin. Requires Go
+#      command: "bash .local/repos/ohmyzsh/custom/plugins/smart-suggestion/build.sh"

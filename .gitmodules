@@ -34,3 +34,9 @@
 [submodule ".local/repos/ohmyzsh/ohmyzsh"]
 	path = .local/repos/ohmyzsh/ohmyzsh
 	url = https://github.com/ohmyzsh/ohmyzsh.git
+[submodule ".local/repos/ohmyzsh/custom/plugins/zsh-autosuggestions"]
+	path = .local/repos/ohmyzsh/custom/plugins/zsh-autosuggestions
+	url = https://github.com/zsh-users/zsh-autosuggestions
+[submodule ".local/repos/ohmyzsh/custom/plugins/smart-suggestion"]
+	path = .local/repos/ohmyzsh/custom/plugins/smart-suggestion
+	url = https://github.com/yetone/smart-suggestion
