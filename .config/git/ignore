@@ -43,3 +43,6 @@ cscope.in.out
 # Golang development
 # Produced by delve
 debug.test
+
+# Claude project data
+.claude/

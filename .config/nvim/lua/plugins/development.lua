@@ -19,32 +19,37 @@ return {
     --     },
     --},
 
-    -- AI powered code completion.
+    -- GitHub Copilot (official)
     --{
     --    "github/copilot.vim",
+    --    event = "BufReadPost",
     --    init = function()
     --        -- Disable/enable per filetype
     --        vim.g.copilot_filetypes = {
-    --            ["*"] = false, -- Setting to false disable for all types; can't be overriden.
-    --            ["txt"] = false,
-    --            ["markdown"] = false,
-    --            ["sh"] = true,
-    --            ["py"] = true,
-    --            ["rb"] = true,
+    --            go = true,
+    --            markdown = false,
+    --            python = true,
+    --            ruby = true,
+    --            sh = true,
+    --            text = false,
     --        }
-
     --        -- Remap from <tab> as this is used by snipmate.
     --        -- Ref: https://github.com/github/feedback/discussions/6919#discussioncomment-1553837
     --        vim.g.copilot_no_tab_map = 1
-    --        vim.keymap.set(
-    --            "i",
-    --            "<C-Space>",
-    --            'copilot#Accept("")',
-    --            { silent = true, expr = true, desc = "Accept copilot suggestion." }
-    --        )
     --    end,
-    --   },
 
+    --    config = function()
+    --        -- Remap from <tab> as this is used by snipmate.
+    --        vim.keymap.set("i", "<C-Space>", 'copilot#Accept("\\<CR>")', {
+    --            silent = true,
+    --            expr = true,
+    --            replace_keycodes = false,
+    --            desc = "Accept copilot suggestion.",
+    --        })
+    --    end,
+    --},
+
+    -- GitHub Copilot lua implementation (inofficial)
     --{
     --    "zbirenbaum/copilot.lua",
     --    dependencies = { "copilotlsp-nvim/copilot-lsp" },
@@ -67,11 +72,12 @@ return {
     --        },
     --        filetypes = {
     --            --["*"] = false, -- disable for all other filetypes and ignore default `filetypes`
-    --            txt = false,
+    --            go = true,
     --            markdown = false,
     --            python = true,
     --            ruby = true,
     --            sh = true,
+    --            text = false,
     --        },
     --    },
     --},
@@ -85,6 +91,32 @@ return {
     --    build = "make tiktoken",
     --    opts = {
     --        -- See Configuration section for options
+    --    },
+    --},
+
+    -- Inofficial claude code extension
+    --{
+    --    "coder/claudecode.nvim",
+    --    dependencies = { "folke/snacks.nvim" },
+    --    config = true,
+    --    keys = {
+    --        { "<leader>a", nil, desc = "AI/Claude Code" },
+    --        { "<leader>ac", "<cmd>ClaudeCode<cr>", desc = "Toggle Claude" },
+    --        { "<leader>af", "<cmd>ClaudeCodeFocus<cr>", desc = "Focus Claude" },
+    --        { "<leader>ar", "<cmd>ClaudeCode --resume<cr>", desc = "Resume Claude" },
+    --        { "<leader>aC", "<cmd>ClaudeCode --continue<cr>", desc = "Continue Claude" },
+    --        { "<leader>am", "<cmd>ClaudeCodeSelectModel<cr>", desc = "Select Claude model" },
+    --        { "<leader>ab", "<cmd>ClaudeCodeAdd %<cr>", desc = "Add current buffer" },
+    --        { "<leader>as", "<cmd>ClaudeCodeSend<cr>", mode = "v", desc = "Send to Claude" },
+    --        {
+    --            "<leader>as",
+    --            "<cmd>ClaudeCodeTreeAdd<cr>",
+    --            desc = "Add file",
+    --            ft = { "NvimTree", "neo-tree", "oil", "minifiles", "netrw" },
+    --        },
+    --        -- Diff management
+    --        { "<leader>aa", "<cmd>ClaudeCodeDiffAccept<cr>", desc = "Accept diff" },
+    --        { "<leader>ad", "<cmd>ClaudeCodeDiffDeny<cr>", desc = "Deny diff" },
     --    },
     --},
 

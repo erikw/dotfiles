@@ -1,4 +1,5 @@
 -- Erik Westrup's Neovim configuration.
+
 -- Plugins:
 -- - ~/.config/nvim/lua/plugins/general.lua
 -- - ~/.config/nvim/lua/plugins/development.lua
