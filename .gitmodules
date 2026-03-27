@@ -5,31 +5,31 @@
 [submodule ".local/repos/fzf-marks"]
 	path = .local/repos/fzf-marks
 	url = https://github.com/urbainvaes/fzf-marks.git
-[submodule ".local/repos/dotbot"]
-	path = .local/repos/dotbot
+[submodule ".local/repos/dotbot/dotbot"]
+	path = .local/repos/dotbot/dotbot
 	url = https://github.com/anishathalye/dotbot
 	ignore = dirty
-[submodule ".local/repos/dotbot-plugins/brew"]
-	path = .local/repos/dotbot-plugins/brew
+[submodule ".local/repos/dotbot/plugins/brew"]
+	path = .local/repos/dotbot/plugins/brew
 	url = https://github.com/d12frosted/dotbot-brew.git
-[submodule ".local/repos/dotbot-plugins/if"]
-	path = .local/repos/dotbot-plugins/if
+[submodule ".local/repos/dotbot/plugins/if"]
+	path = .local/repos/dotbot/plugins/if
 	url = https://github.com/wonderbeyond/dotbot-if.git
-[submodule ".local/repos/dotbot-plugins/asdf"]
-	path = .local/repos/dotbot-plugins/asdf
+[submodule ".local/repos/dotbot/plugins/asdf"]
+	path = .local/repos/dotbot/plugins/asdf
 	url = https://github.com/sobolevn/dotbot-asdf.git
-[submodule ".local/repos/dotbot-plugins/crontab"]
-	path = .local/repos/dotbot-plugins/crontab
+[submodule ".local/repos/dotbot/plugins/crontab"]
+	path = .local/repos/dotbot/plugins/crontab
 	url = https://github.com/fundor333/crontab-dotbot.git
-[submodule ".local/repos/dotbot-plugins/ghq"]
-	path = .local/repos/dotbot-plugins/ghq
+[submodule ".local/repos/dotbot/plugins/ghq"]
+	path = .local/repos/dotbot/plugins/ghq
 	url = https://github.com/klane/dotbot-ghq.git
 	ignore = dirty # Until merged my fix: https://github.com/klane/dotbot-ghq/pull/3
-[submodule ".local/repos/dotbot-plugins/brewfile"]
-	path = .local/repos/dotbot-plugins/brewfile
+[submodule ".local/repos/dotbot/plugins/brewfile"]
+	path = .local/repos/dotbot/plugins/brewfile
 	url = https://github.com/sobolevn/dotbot-brewfile.git
-[submodule ".local/repos/dotbot-plugins/ifplatform"]
-	path = .local/repos/dotbot-plugins/ifplatform
+[submodule ".local/repos/dotbot/plugins/ifplatform"]
+	path = .local/repos/dotbot/plugins/ifplatform
 	url = https://github.com/erikw/dotbot-ifplatform.git
 [submodule ".local/repos/ohmyzsh/ohmyzsh"]
 	path = .local/repos/ohmyzsh/ohmyzsh

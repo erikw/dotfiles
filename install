@@ -6,7 +6,7 @@ set -e
 
 CONFIG=".config/dotbot/install.conf.yaml"
 REPOS_DIR=".local/repos"
-DOTBOT_DIR="${REPOS_DIR}/dotbot"
+DOTBOT_DIR="${REPOS_DIR}/dotbot/dotbot"
 
 DOTBOT_BIN="bin/dotbot"
 BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"

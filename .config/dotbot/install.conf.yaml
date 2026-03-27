@@ -1,10 +1,10 @@
 - plugins:
-    - .local/repos/dotbot-plugins/asdf
-    - .local/repos/dotbot-plugins/brewfile
-    - .local/repos/dotbot-plugins/crontab
-    - .local/repos/dotbot-plugins/ghq
-    - .local/repos/dotbot-plugins/if
-    - .local/repos/dotbot-plugins/ifplatform
+    - .local/repos/dotbot/plugins/asdf
+    - .local/repos/dotbot/plugins/brewfile
+    - .local/repos/dotbot/plugins/crontab
+    - .local/repos/dotbot/plugins/ghq
+    - .local/repos/dotbot/plugins/if
+    - .local/repos/dotbot/plugins/ifplatform
 
 - defaults:
     link:
