@@ -24,7 +24,6 @@
 
 # Cask: default {
     cask 'amazon-music'
-    cask 'claude-code'
     cask 'cryptomator'
     cask 'daisydisk'
     cask 'google-cloud-sdk'  # for gcloud cli used for tardbot.

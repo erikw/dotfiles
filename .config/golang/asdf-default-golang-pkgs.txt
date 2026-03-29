@@ -21,11 +21,15 @@ golang.org/x/tools/cmd/godoc@latest
 github.com/go-delve/delve/cmd/dlv@latest
 
 
-// #Testing
+// # Testing
 // Generate test boiler plates
 github.com/cweill/gotests/gotests@latest
 // Prettier test output
 gotest.tools/gotestsum@latest
+
+// # Security
+golang.org/x/vuln/cmd/govulncheck@latest
+
 
 // # Tools
 // REPL

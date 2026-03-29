@@ -109,6 +109,7 @@ JSON5 (close enouch got JSONC) validator: https://jsonformatter.org/json5-valida
         "GitHub.copilot-chat",
         "openai.chatgpt",
         "anthropic.claude-code",
+        "sst-dev.opencode",
         // Tools: Misc
         // "yy0931.vscode-sqlite3-editor",
         "EditorConfig.EditorConfig",
