@@ -1,0 +1,70 @@
+# Ghostty Configuration
+# Modeline {
+#	vi: foldmarker={,} foldmethod=marker foldlevel=0 filetype=ini:
+# }
+
+# Documentation {
+# Ref: https://ghostty.org/docs/config
+# Ref: https://ghostty.org/docs/config/reference
+# Reload conf: cmd+shift+,
+# }
+
+# Behaviour {
+# Start tmux on first window. Subsequent terminals use 'command'.
+# Start with $SHELL instead of tmux directly so that tmux starts with env vars set.
+# Start with double shell so we can drop out of tmux.
+#initial-command = $SHELL -c "$SHELL -c tmux"
+#initial-command = $SHELL -c tmux
+#initial-command = $SHELL -i -c "tmux; exec $SHELL"
+# Exec $SHELL after to drop to something. `|| true` catches the case where tmux exists with non-zero code.
+initial-command = $SHELL -i -c "tmux || true; exec $SHELL"
+
+# Disable audible bell
+bell-features = no-audio
+
+# Unlimted scrollback is not yet implemented.
+scrollback-limit = 200000
+
+# Automatically copy on selection
+copy-on-select = clipboard
+
+# Expose Ghostty to Shortcuts.app
+macos-shortcuts = ask
+
+auto-update = download
+notify-on-command-finish = unfocused
+clipboard-read = allow
+clipboard-write = allow
+clipboard-paste-protection = true
+
+confirm-close-surface = false
+quit-after-last-window-closed = true
+# }
+
+# UI {
+# List themes with: $ ghostty +list-themes
+theme = dark:iTerm2 Solarized Dark,light:iTerm2 Solarized Light
+
+# Font style
+font-family = "Hack Nerd Font"
+font-style = "Regular"
+font-size = 15
+
+# Start window in maximized state
+maximize = true
+
+# Background
+background-opacity = 0.90
+background-blur = false
+
+mouse-hide-while-typing
+link-previews = true
+# }
+
+# Keybindings {
+# Make left Opt key behave like Alt(Meta) so my tmux keybindings works.
+macos-option-as-alt = left
+
+# Global shortcut to toggle quick terminal dropdown.
+keybind = global:cmd+`=toggle_quick_terminal
+# }

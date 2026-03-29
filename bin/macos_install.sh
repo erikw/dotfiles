@@ -163,9 +163,15 @@ curl https://qlty.sh | sh
 # ./install.sh
 # Then go to Mail.app > Preferences > General > Manage Plug-ins... > enable GMailinator
 
+
+# Ghostty
+# * System Settings > Privacy & Security >
+# ** Full Disk Access: enable, to avoid may different permission request popups later
+# ** Accesibility Features: enable, for global shortcuts to work
+
 # iTerm2
 # * Load settings from Preferencs > General > Preferences tab > Load from custom folder or URL. Reference: https://stackoverflow.com/a/23356086/265508
-# * Give iterm full disk access, to avoid may different permission request popups later
+# * System Settings > Privacy & Security > Full Disk Access: enable, to avoid may different permission request popups later
 #    * System Preferences > Security & Privacy > Privacy > Full Disk Access > Add Iterm.app
 ## General
 ### Closing
@@ -179,6 +185,7 @@ curl https://qlty.sh | sh
 #   * For Light Mode and Dark Mode, select Color Preset.. with Solarized Light/Dark respectively.
 ### Text
 # * Set font to either
+# ** Hack Nerd Font, Regular, 15pt
 # ** DM Mono, Regular, 14pt
 # ** Source Code Pro, Regular, 14pt
 # ** Terminus, Medium, 16pt
