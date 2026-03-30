@@ -1,0 +1,6 @@
+#!/usr/bin/env zsh
+# cd(1) to installation of gem from bundle.
+
+local gem="$*"
+local gem_path=$(bundle info --path "$gem")
+test $? -eq 0 && cd "$gem_path"

@@ -1,0 +1,6 @@
+#!/usr/bin/env zsh
+# cd in to newly created directory.
+
+# BSD date don't have the -I switch like GNU date.
+local today=$(date +%Y-%m-%d)
+mkdircd "$today"

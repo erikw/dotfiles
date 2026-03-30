@@ -1,0 +1,8 @@
+#!/usr/bin/env zsh
+# Get path to the best vi(m) to use.
+
+if program_is_in_path nvim; then
+	which nvim
+else
+	which vim
+fi

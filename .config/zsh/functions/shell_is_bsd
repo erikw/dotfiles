@@ -1,0 +1,3 @@
+#!/usr/bin/env zsh
+
+[ "$SHELL_PLATFORM" = bsd ] || [ "$SHELL_PLATFORM" = freebsd ] || [ "$SHELL_PLATFORM" = macos ]

@@ -1,0 +1,5 @@
+#!/usr/bin/env zsh
+# ps-grep
+# List matching processes. Wrap in function instead of alias to avoid bug when searching for name that is also binary found in PATH
+
+ps aux | grep "$*"

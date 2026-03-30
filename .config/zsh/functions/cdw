@@ -1,0 +1,12 @@
+#!/usr/bin/env zsh
+# cd-which
+# cd to the directory containing the program found in PATH.
+
+local prog="$1"
+if type "$prog" >/dev/null 2>&1; then
+	dir=$(dirname $(which "$prog"))
+	echo "$dir"
+	cd "$dir"
+else
+	echo "\"${prog}\" not found in \$PATH." >&2
+fi

@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# Source file if it exists. Useful for shell startup scripts used across many systems.
+test -r "$1" && source "$1" || true

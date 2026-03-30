@@ -1,0 +1,7 @@
+#!/usr/bin/env zsh
+# Wrapper around the classic 'rg with grep'.
+
+local search
+for search; do true; done
+vi="$(vi_path)"
+"$vi" -p $(rg -l $@) -c 1 +/$search

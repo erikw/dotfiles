@@ -1,0 +1,20 @@
+#!/usr/bin/env zsh
+# vi-which: wrapper for the classic "vi $(which script)".
+
+local prog="$1"
+shift
+local args=("$@")
+
+if ! (( $+commands[$prog] )); then
+    print -u2 "\"${prog}\" not found in \$PATH."
+    return 1
+fi
+
+local editor
+if (( $+commands[nvim] )); then
+    editor=nvim
+else
+    editor=vim
+fi
+
+$editor ${commands[$prog]} "${args[@]}"

@@ -1,0 +1,5 @@
+#!/usr/bin/env zsh
+# Wrapper around the classic 'fd with grep'.
+
+vi="$(vi_path)"
+"$vi" -p $(fd $@)

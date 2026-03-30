@@ -1,9 +1,25 @@
-# ZSH envionment variables (always read by zsh)
+# ZSH environment variables (always read by zsh)
+# File source order: https://wiki.archlinux.org/title/Zsh#Startup/Shutdown_files
+# Modeline {{
+#	vi: foldmarker={{,}} filetype=zsh foldmethod=marker foldlevel=0 tabstop=4 shiftwidth=4:
+# }}
 
 # Make zsh respect XDG
 # Reference: https://wiki.archlinux.org/title/XDG_Base_Directory#
 # Reference: https://stackoverflow.com/a/46962370/265508
-export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:=$HOME/.config}
+
+# Set XDG envvars to default values, so that scripts can refer to them (like in ~/.config/nvim/syntax/)
+# Reference: https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
+# Don't use these direclty, but substitute for default value if empty:
+# - ${XDG_CONFIG_HOME:-$HOME/.config}
+# - ${XDG_DATA_HOME:-$HOME/.local/share}
+# - ${XDG_STATE_HOME:-$HOME/.local/state}
+# - ${XDG_CACHE_HOME:-$HOME/.cache}
+export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
+export XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
+export XDG_STATE_HOME="${XDG_STATE_HOME:-$HOME/.local/state}"
+export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
+export XDG_RUNTIME_DIR="${XDG_RUNTIME_DIR:-$HOME/.local/run}"  # Need to be set for yarn(1).
 
 if [ "$CODESPACES" = true ]; then
   # At least in the Codespaces situation, ZDOTDIR is set to $HOME and this we don't want.
@@ -12,4 +28,5 @@ else
   export ZDOTDIR=${ZDOTDIR:=${XDG_CONFIG_HOME}/zsh}
 fi
 
-#source $ZDOTDIR/.zshenv
+# Minimal PATH so scripts work.
+export PATH="/usr/bin:/bin:/usr/sbin:/sbin:$HOME/bin"

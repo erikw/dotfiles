@@ -1,0 +1,7 @@
+#!/usr/bin/env zsh
+# Connect ssh and start tmux e.g.
+# $ sshmux <host>
+# Reference: https://stackoverflow.com/a/27614878/265508
+
+local args="$@"
+ssh -t $args "tmux attach || tmux new-session"

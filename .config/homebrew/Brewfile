@@ -105,7 +105,6 @@
 				brew 'rsync'
 				brew 'sd' # A modern sed(1).
 				brew 'shellcheck'
-				brew 'source-highlight'
 				brew 'stylua' # Fixer used with ALE.
 				brew 'switchaudio-osx'
 				brew 'telnet'

@@ -1,0 +1,8 @@
+#!/usr/bin/env zsh
+# Test if the shell is interactive.
+
+#tty -s >/dev/null 2>/dev/null
+case $- in
+	*i*) return 0;;
+	*) return 1;;
+esac

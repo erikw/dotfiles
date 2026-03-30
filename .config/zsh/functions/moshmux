@@ -1,0 +1,5 @@
+#!/usr/bin/env zsh
+# Connect mosh and start tmux.
+
+local args="$@"
+mosh $args -- sh -c "tmux attach || tmux new-session"

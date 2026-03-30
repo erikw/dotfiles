@@ -1,0 +1,7 @@
+#!/usr/bin/env zsh
+# cd(1) to installation of go module from bundle.
+# Usage: gomodcd github.com/aws/aws-sdk-go
+
+local mod="$*"
+local path=$(go list -m -f '{{.Dir}}' "$mod")
+test $? -eq 0 && cd "$path"

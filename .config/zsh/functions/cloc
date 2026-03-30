@@ -1,0 +1,12 @@
+#!/usr/bin/env zsh
+# Allow local .clocignore
+# Though not supporting to look for .clocignore in a possible path argument.
+# Ref: https://stackoverflow.com/a/26679008/265508
+
+local args="$@"
+
+if  [ -e .clocignore ]; then
+	command cloc --exclude-dir=$(tr '\n' ',' < .clocignore) $args
+else
+	command cloc $args
+fi

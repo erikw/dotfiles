@@ -1,0 +1,11 @@
+#!/usr/bin/env zsh
+# Sleep specified time and then shut down
+# Usage: sleep_shutdown 3h
+# Usage: sleep_shutdown 2d
+
+time="$1"
+if program_is_in_path gsleep; then
+	gsleep $time && shutdown -h now
+else
+	sleep $time && shutdown -h now
+fi

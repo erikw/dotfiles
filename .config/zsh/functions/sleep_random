@@ -1,0 +1,7 @@
+#!/usr/bin/env zsh
+# Sleep random time within an interval.
+# Reference: https://serverfault.com/questions/347582/adding-a-random-delay-for-a-linux-command
+
+max_sleep_sec="$1"
+#perl -e "sleep int(rand(${max_sleep_sec}))"
+sleep $((RANDOM % $max_sleep_sec))

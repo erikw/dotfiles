@@ -1,0 +1,15 @@
+#!/usr/bin/env zsh
+# Usage: $ epoch2iso8601 1685708111
+
+local epoch="$1"
+local len=$(echo -n "$epoch" | wc -m)
+# Assume that a longer string means we have ms or ns - simply strip down to seconds.
+if [ "$len" -gt 10 ]; then
+	epoch=$(echo $epoch | cut -c 1-10)
+fi
+
+if shell_is_linux; then
+	date -d "@$epoch" +%Y-%m-%dT%H:%M:%S%z
+elif shell_is_bsd; then
+	date -r "$epoch" "+%FT%TZ"
+fi

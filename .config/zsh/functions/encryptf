@@ -1,0 +1,16 @@
+#!/usr/bin/env zsh
+# Encrypt file with a symmetric cipher.
+
+local file="$1"
+local filecrypt="$1.gpg"
+[ -z "$file" ] && echo "No filename given!" >&2 && return
+if ! [ -e "$file" ]; then
+	echo "File '$file' does not exist!" >&2
+	return
+fi
+gpg --symmetric --output "$filecrypt"  "$file" >/dev/null
+[ "$?" -ne 0 ] && echo "Encryption failed!" >&2 && return
+rm "$file"
+printf "Encrypted %s to %s\n" "$file" "$filecrypt"
+# Clear gpg-agent password cache
+echo RELOADAGENT | gpg-connect-agent >/dev/null

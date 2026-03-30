@@ -1,0 +1,9 @@
+#!/usr/bin/env zsh
+# Usage: $ iso86012epoch 1970-01-01T01:00:00Z
+
+local iso="$1"
+if shell_is_linux; then
+	date "$iso" +%s
+elif shell_is_bsd; then
+	date -j -f "%FT%TZ" "$iso" +%s
+fi

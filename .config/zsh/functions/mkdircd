@@ -1,0 +1,6 @@
+#!/usr/bin/env zsh
+# cd in to newly created directory.
+
+local dir="$1"
+mkdir -p "$dir"
+cd "$dir"

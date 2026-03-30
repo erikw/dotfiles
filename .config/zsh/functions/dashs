@@ -1,0 +1,7 @@
+#!/usr/bin/env zsh
+# Search Dash.app.
+# Note, can't use name 'dash' as this is the dash shell.
+# Usage: dashs "term"
+
+local term="$*"
+open "dash://${term}"

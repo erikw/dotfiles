@@ -1,0 +1,5 @@
+#!/usr/bin/env zsh
+# Check if we have a program in PATH
+
+local program="$1"
+type "$program" >/dev/null 2>&1

@@ -1,0 +1,14 @@
+#!/usr/bin/env zsh
+# Decrypt file with a symmetric cipher.
+
+local filecrypt="$1"
+local file=${filecrypt%.gpg}
+[ -z "$filecrypt" ] && echo "No filename given!" >&2 && return
+if ! [ -e "$filecrypt" ]; then
+	echo "File '$filecrypt' does not exist!" >&2
+	return
+fi
+gpg --decrypt --output "$file"  "$filecrypt" 2>/dev/null
+[ "$?" -ne 0 ] && echo "Decryption failed!" >&2 && return
+rm "$filecrypt"
+printf "Decrypted %s to %s\n" "$filecrypt" "$file"
