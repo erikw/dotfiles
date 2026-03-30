@@ -171,6 +171,7 @@ return {
             { "<Leader>b", ":Buffers<CR>", desc = "FZF: search open buffers." },
             { "<Leader>t", ":Windows<CR>", desc = "FZF: search open tabs." },
             { "<Leader>H", ":History<CR>", desc = "FZF: search history of opened files" },
+            { "<Leader>:", ":History:<CR>", desc = "FZF: search history of commands" },
             { "<Leader>m", ":Maps<CR>", desc = "FZF: search mappings." },
             { "<Leader>g", ":Rg<CR>", desc = "FZF: search with rg (live grep)." },
         },

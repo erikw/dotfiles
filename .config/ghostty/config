@@ -1,6 +1,6 @@
 # Ghostty Configuration
 # Modeline {
-#	vi: foldmarker={,} foldmethod=marker foldlevel=0 filetype=ini:
+#	vi: foldmarker={,} foldmethod=marker foldlevel=0 filetype=config:
 # }
 
 # Documentation {
@@ -9,20 +9,31 @@
 # Reload conf: cmd+shift+,
 # }
 
-# Behaviour {
-# Start tmux on first window. Subsequent terminals use 'command'.
-# Start with $SHELL instead of tmux directly so that tmux starts with env vars set.
-# Start with double shell so we can drop out of tmux.
-#initial-command = $SHELL -c "$SHELL -c tmux"
-#initial-command = $SHELL -c tmux
-#initial-command = $SHELL -i -c "tmux; exec $SHELL"
-# Exec $SHELL after to drop to something. `|| true` catches the case where tmux exists with non-zero code.
-initial-command = $SHELL -i -c "tmux || true; exec $SHELL"
+# General {
+# This does not work reliably, as the Quick Terminal might consume this before the main window.
+#initial-command = $SHELL -i -c "tmux || true; exec $SHELL"
+
+# Start tmux if needed, otherwise $SHELL.
+# Starting $SHELL after also serves as a drop-back from tmux, in case of issues running it.
+# Start with $SHELL instead of the script directly so that it starts with env vars set.
+#command = $SHELL -i -c "$HOME/bin/ghostty-tmux.sh || true; exec $SHELL"
+
+
+# $SHELL -c: to start sub-commands with right env vars set + so we can add the drop-back shell.
+# tmux new-session:
+#    - tmux-continuum will restore session if the tmux server is started.
+#    - Attach to "general" if exists, otherwise create and attach
+# exec $SHELL: Drop-back from tmux, in case of issues running it.
+# NOPE This approach breaks tmux-continuum restore because tmux is started inside a shell command chain (-c "tmux; exec $SHELL") instead of as the primary process, so the tmux server start is not detected cleanly and sessions are not restored.
+#command = $SHELL -c "tmux new-session -As general || true; exec $SHELL"
+
+# $SHELL -c: to start sub-commands with right env vars set for tmux.cong
+command = $SHELL -c 'tmux new-session -As general'
 
 # Disable audible bell
 bell-features = no-audio
 
-# Unlimted scrollback is not yet implemented.
+# Unlimited scrollback is not yet implemented.
 scrollback-limit = 200000
 
 # Automatically copy on selection
