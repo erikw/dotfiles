@@ -42,7 +42,7 @@ export ASDF_GOLANG_DEFAULT_PACKAGES_FILE=${XDG_CONFIG_HOME}/golang/asdf-default-
 
 # fzf-marks
 if [ "$CODESPACES" = true ]; then
-	# Pre-coded bookarmsk for Codespaces env.
+	# Pre-coded bookmarks for Codespaces env.
 	export FZF_MARKS_FILE=$XDG_CONFIG_HOME/fzf-marks/marks-codespaces
 else
 	export FZF_MARKS_FILE=$XDG_CONFIG_HOME/fzf-marks/marks

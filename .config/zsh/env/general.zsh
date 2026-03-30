@@ -16,3 +16,12 @@ case "$OSTYPE" in
     *bsd*)     SHELL_PLATFORM=bsd     ;;
     *msys*)    SHELL_PLATFORM=windows ;;
 esac
+
+# Nice to have when fetching scanned documents
+export SCANNED=$HOME/media/images/scanned/
+# Ditto screenshots
+export SCREENSHOTS=$HOME/media/images/screenshots/
+
+# Set envvar to my github clones directory, use same base path as $(git config --global ghq.root)
+# Nice to have to be able to: $ cd $GITHUB/proj
+export GITHUB=$HOME/src/github.com/erikw

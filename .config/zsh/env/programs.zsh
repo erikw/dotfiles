@@ -30,12 +30,15 @@ fi
 	#export ANT_ARGS='-logger org.apache.tools.ant.listener.AnsiColorLogger'
 #fi
 
+# asdf
 # Set $JAVA_HOME from asdf. Reference: https://github.com/halcyon/asdf-java
-sourceifexists "${ASDF_DATA_DIR:-$HOME/.asdf}/asdf/plugins/java/set-java-home.zsh"
+#sourceifexists "${ASDF_DATA_DIR:-$HOME/.asdf}/asdf/plugins/java/set-java-home.zsh"
 # }}
 
 # Node {{
-export PATH="$XDG_DATA_HOME/npm/bin:$PATH"
+if [ -d "$XDG_DATA_HOME/npm/bin" ]; then
+	export PATH="$XDG_DATA_HOME/npm/bin:$PATH"
+fi
 # }}
 
 # Ruby {{
@@ -52,9 +55,9 @@ fi
 
 # Python {{
 # Python pip binary installation directory (pip3 install --user)
-if shell_is_macos; then
-	PATH="$HOME/Library/Python/3.9/bin:$PATH"
-fi
+#if shell_is_macos; then
+#    PATH="$HOME/Library/Python/3.9/bin:$PATH"
+#fi
 # }}
 
 # Perl {{
@@ -91,9 +94,6 @@ else
 	export DESKTYPE=dwm
 fi
 
-# Let others know what underlying terminal emulator is used. This is needed since $TERM does not always represent the real terminal e.g. in tmux when you want colors.
-shell_is_linux && program_is_in_path urxvt && export TERMEMU=urxvt
-
 # Brew bundler
 if program_is_in_path brew; then
 	# Not using the Brewfile.lock.json feature.
@@ -111,19 +111,12 @@ fi
 test -d ${XDG_STATE_HOME:-$HOME/.local/state}/tmux || mkdir -p ${XDG_STATE_HOME:-$HOME/.local/state}/tmux
 #test -d ${XDG_STATE_HOME:-$HOME/.local/state}/irssi || mkdir -p ${XDG_STATE_HOME:-$HOME/.local/state}/irssi
 
-# Enable sandboxing a.k.a. lazy loading of shell initialization for some programs.
-#sourceifexists "$HOME/.local/repos/sandboxd/sandboxd"
-
 # Needed for gnupg's gpg(1) to work, thus for git commit signing.
 # Only run if a TTY exist (interactice). Still do it here rather than ~/.zsrc as we want to do this once only.
 if program_is_in_path gpg && tty -s; then
   export GPG_TTY=$(tty)
 fi
 
-# Nice to have when fetching scanned documents
-export SCANNED=$HOME/media/images/scanned/
-# Ditto screenshots
-export SCREENSHOTS=$HOME/media/images/screenshots/
 
 # Disable macos shell restore feature (/etc/bashrc_Apple_Terminal) that creates e.g. ~/.zsh_session
 shell_is_macos && export SHELL_SESSIONS_DISABLE=1

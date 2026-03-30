@@ -7,8 +7,6 @@
 typeset -U path		# Don't add entry to path if it's already present.
 export PATH			# Make the path available in subshells. Export is only needed once.
 
-
-
 path=(
   /usr/local/bin
   /usr/local/sbin
@@ -47,13 +45,6 @@ test -d $HOME/.local/bin && path=($HOME/.local/bin $path)
 # Reference: http://rkrug.github.io/LMS-test/downloads/UpdatingForElCapitan.pdf
 test -e /Library/TeX/texbin && path=(/Library/TeX/texbin $path)
 
-# ghq
-# https://github.com/motemen/ghq
-# Set envvar to my github clones directory, use same base path as
-# $(git config --global ghq.root)
-export GITHUB=$HOME/src/github.com/erikw
-
-
 # asdf shims
 # ! Should be last prepended to path.
 if [ -d "${ASDF_DATA_DIR:-$HOME/.asdf}/shims" ]; then
@@ -72,5 +63,4 @@ fi
 fpath=($ZDOTDIR/functions $fpath)
 # Load only functions needed at statup shell level.
 autoload -Uz program_is_in_path sourceifexists $ZDOTDIR/functions/shell_is_*(:t)
-
 # }}
