@@ -3,7 +3,7 @@
 #	vi: foldmarker={{,}} filetype=zsh foldmethod=marker foldlevel=0 tabstop=4 shiftwidth=4:
 # }}
 
-# Profiling {{
+# Profiling - start {{
 # After running this, inspect result of current shell with:
 # $ ~/bin/parse_zsh_startup.py ~/tmp/startuplog.$$
 # Source: https://kev.inburke.com/kevin/profiling-zsh-startup-time/
@@ -34,8 +34,6 @@ source "$ZDOTDIR/rc/aliases.zsh"
 
 
 # Profiling - end {{
-# Must be at the end!
-
 #if [ "$PROFILE_STARTUP" = true ]; then
 #    unsetopt xtrace
 #    exec 2>&3 3>&-
