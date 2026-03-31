@@ -1,0 +1,7 @@
+{
+    "debugger": {
+        "prefix": ["debug", "d"],
+        "body": ["debugger;"],
+        "description": "JS debugger statement. Run with: node inspect some_script.js"
+    }
+}

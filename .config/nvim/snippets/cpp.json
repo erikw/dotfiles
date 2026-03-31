@@ -1,0 +1,30 @@
+{
+    "#include": {
+        "prefix": "inc",
+        "body": ["#include <${1:iostream}>${2}"]
+    },
+    "cerr": {
+        "prefix": "cerr",
+        "body": ["cerr << ${1} << endl;"]
+    },
+    "std::cerr": {
+        "prefix": "scerr",
+        "body": ["std::cerr << ${1} << std::endl;"]
+    },
+    "clog": {
+        "prefix": "clog",
+        "body": ["clog << ${1} << endl;"]
+    },
+    "std::clog": {
+        "prefix": "sclog",
+        "body": ["std::clog << ${1} << std::endl;"]
+    },
+    "block comment": {
+        "prefix": "/*",
+        "body": ["/*", " * ${1}", " */"]
+    },
+    "javadoc comment": {
+        "prefix": "/**",
+        "body": ["/**", " * ${1}", " */"]
+    }
+}

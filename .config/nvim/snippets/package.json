@@ -1,0 +1,17 @@
+{
+    "name": "erikw-snippets",
+    "contributes": {
+        "snippets": [
+            { "language": "_",           "path": "./_global.json" },
+            { "language": "c",           "path": "./c.json" },
+            { "language": "cpp",         "path": "./cpp.json" },
+            { "language": "go",          "path": "./go.json" },
+            { "language": "groovy",      "path": "./groovy.json" },
+            { "language": "java",        "path": "./java.json" },
+            { "language": "javascript",  "path": "./javascript.json" },
+            { "language": "jproperties", "path": "./jproperties.json" },
+            { "language": "python",      "path": "./python.json" },
+            { "language": "ruby",        "path": "./ruby.json" }
+        ]
+    }
+}

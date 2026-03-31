@@ -141,32 +141,34 @@ return {
     --},
 
     -- Snippets engine. Replaces nvim-snippy.
-    -- Custom snippets in ~/.config/nvim/snippets/ (SnipMate format) are loaded
-    -- automatically alongside honza/vim-snippets via lazy_load()'s rtp scan.
+    -- Custom snippets live in ~/.config/nvim/snippets/ (VSCode JSON format).
+    -- friendly-snippets is loaded from rtp; custom snippets via explicit path.
     {
         "L3MON4D3/LuaSnip",
         version = "v2.*",
         build = "make install_jsregexp", -- optional: enables regex-based triggers
-        dependencies = { "honza/vim-snippets" },
+        dependencies = { "rafamadriz/friendly-snippets" },
         event = "InsertEnter",
         config = function()
             local luasnip = require("luasnip")
 
-            -- Load SnipMate snippets from all runtimepath/snippets/ directories.
-            -- Picks up ~/.config/nvim/snippets/ (custom) and honza/vim-snippets.
-            -- filetype_extend must be called before lazy_load: it tells LuaSnip that
-            -- when resolving the built-in "all" pseudo-filetype (active in every buffer),
-            -- also include the "_" filetype — which is how SnipMate marks global snippets.
-            -- Without this, lazy_load never triggers for "_" because no buffer ever has
-            -- filetype="_", so _.snippets would silently never load.
+            -- filetype_extend must be called before lazy_load.
+            -- Maps the "_" pseudo-filetype into the "all" scope so _global.json
+            -- snippets are available in every buffer.
             luasnip.filetype_extend("all", { "_" })
-            require("luasnip.loaders.from_snipmate").lazy_load()
+
+            -- Load friendly-snippets from rtp (has its own package.json).
+            require("luasnip.loaders.from_vscode").lazy_load()
+            -- Load custom snippets from ~/.config/nvim/snippets/ (VSCode JSON format).
+            require("luasnip.loaders.from_vscode").lazy_load({
+                paths = { vim.fn.stdpath("config") .. "/snippets" },
+            })
 
             -- <Tab>: expand trigger → jump forward → fall through to normal Tab.
             vim.keymap.set({ "i", "s" }, "<Tab>", function()
                 if luasnip.expandable() then
                     luasnip.expand()
-                elseif luasnip.jumpable(1) then
+                elseif luasnip.locally_jumpable(1) then
                     luasnip.jump(1)
                 else
                     vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Tab>", true, false, true), "n", false)
@@ -175,7 +177,7 @@ return {
 
             -- <S-Tab>: jump backward through tabstops.
             vim.keymap.set({ "i", "s" }, "<S-Tab>", function()
-                if luasnip.jumpable(-1) then
+                if luasnip.locally_jumpable(-1) then
                     luasnip.jump(-1)
                 end
             end, { silent = true, desc = "LuaSnip: jump backward" })

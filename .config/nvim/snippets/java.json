@@ -1,0 +1,49 @@
+{
+    "class": {
+        "prefix": "class",
+        "body": [
+            "public class ${1:ClassName} {",
+            "",
+            "\tpublic $1() {",
+            "\t\t${2}",
+            "",
+            "\t}",
+            "",
+            "}"
+        ],
+        "description": "Java class. Note: previously auto-derived class name from filename — now a manual placeholder."
+    },
+    "main class": {
+        "prefix": "mainc",
+        "body": [
+            "public class ${1:ClassName} {",
+            "",
+            "\tpublic static void main(String args[]) {",
+            "\t\t${2:new $1().run();}",
+            "\t}",
+            "",
+            "\tpublic $1() {",
+            "",
+            "\t}",
+            "",
+            "\tpublic void run() {",
+            "\t\t${3}",
+            "\t}",
+            "",
+            "}"
+        ]
+    },
+    "System.out.println": { "prefix": "sysout",  "body": ["System.out.println(${1});"] },
+    "System.out.printf":  { "prefix": "sysoutf", "body": ["System.out.printf(${1});"] },
+    "System.err.println": { "prefix": "syserr",  "body": ["System.err.println(${1});"] },
+    "System.err.printf":  { "prefix": "syserrf", "body": ["System.err.printf(${1});"] },
+    "Android log TAG": {
+        "prefix": "ltag",
+        "body": ["private final String TAG = this.getClass().getName();"]
+    },
+    "Log.v": { "prefix": "logv", "body": ["Log.v(TAG, ${1});"] },
+    "Log.d": { "prefix": "logd", "body": ["Log.d(TAG, ${1});"] },
+    "Log.e": { "prefix": "loge", "body": ["Log.e(TAG, ${1});"] },
+    "Log.i": { "prefix": "logi", "body": ["Log.i(TAG, ${1});"] },
+    "Log.w": { "prefix": "logw", "body": ["Log.w(TAG, ${1});"] }
+}

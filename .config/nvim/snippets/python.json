@@ -1,0 +1,28 @@
+{
+    "__main__ template": {
+        "prefix": "main",
+        "body": [
+            "#!/usr/bin/env python3",
+            "",
+            "import sys",
+            "",
+            "def main():",
+            "\t${0:code}",
+            "\treturn 0",
+            "",
+            "if __name__ == '__main__':",
+            "\tsys.exit(main())"
+        ]
+    },
+    "__init__": {
+        "prefix": "init",
+        "body": [
+            "def __init__(self, *args, **kwargs):",
+            "\t${1:super().__init__(*args, **kwargs)}"
+        ]
+    },
+    "pprint": {
+        "prefix": "pp",
+        "body": ["__import__('pprint').pprint(${1})"]
+    }
+}

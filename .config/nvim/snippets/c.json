@@ -1,0 +1,43 @@
+{
+    "main function": {
+        "prefix": "mainf",
+        "body": [
+            "#include <stdlib.h>",
+            "",
+            "int main(int argc, const char *argv[])",
+            "{",
+            "\t${1}",
+            "\treturn EXIT_SUCCESS;",
+            "}"
+        ],
+        "description": "C main() function"
+    },
+    "for loop": {
+        "prefix": "for",
+        "body": [
+            "for (${2:i} = 0; $2 < ${1:count}; ${3:+}$3$2) {",
+            "\t${4:/* code */}",
+            "}"
+        ]
+    },
+    "custom for loop": {
+        "prefix": "forr",
+        "body": [
+            "for (${1:i} = ${2:0}; ${3:$1 < 10}; ${4:+}$4$1) {",
+            "\t${5:/* code */}",
+            "}"
+        ]
+    },
+    "include guard": {
+        "prefix": "once2",
+        "body": [
+            "#ifndef ${1:HEADER_H}",
+            "#define $1",
+            "",
+            "${2}",
+            "",
+            "#endif"
+        ],
+        "description": "Include guard. Note: previously auto-derived name from filename via Vimscript eval — now a manual placeholder."
+    }
+}

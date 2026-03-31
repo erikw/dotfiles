@@ -1,0 +1,12 @@
+{
+    "Gradle composite build": {
+        "prefix": "composite",
+        "body": [
+            "def compositeFile = file('composite.gradle')",
+            "if (compositeFile.exists()) {",
+            "\tapply from: compositeFile",
+            "}"
+        ],
+        "description": "Gradle composite build block for settings.gradle (vim sometimes detects this as jproperties)"
+    }
+}

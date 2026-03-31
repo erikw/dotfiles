@@ -1,0 +1,12 @@
+{
+    "Erik Westrup (short)": {
+        "prefix": ["ew", "erikw"],
+        "body": ["Erik Westrup"],
+        "description": "Erik Westrup full name"
+    },
+    "Erik Westrup email": {
+        "prefix": "ewmail",
+        "body": ["GIT-CENSORED"],
+        "description": "Erik Westrup email"
+    }
+}

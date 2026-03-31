@@ -1,0 +1,10 @@
+{
+    "byebug debugger": {
+        "prefix": ["debug", "d"],
+        "body": ["require 'byebug'; byebug # rubocop:disable Style/Semicolon"]
+    },
+    "ruby/debug debugger": {
+        "prefix": "dbg",
+        "body": ["require 'debug'; debugger # rubocop:disable Style/Semicolon"]
+    }
+}

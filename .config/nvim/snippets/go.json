@@ -1,0 +1,25 @@
+{
+    "main function": {
+        "prefix": "mainf",
+        "body": [
+            "package main",
+            "",
+            "import (",
+            "\t\"fmt\"",
+            ")",
+            "",
+            "func main() {",
+            "\t${1:// code}",
+            "}"
+        ]
+    },
+    "log.Printf": {
+        "prefix": "log",
+        "body": ["log.Printf(\"%${1:s}\\n\", ${2:var})${3}"]
+    },
+    "runtime.Breakpoint": {
+        "prefix": ["d", "dbg", "debug"],
+        "body": ["runtime.Breakpoint()"],
+        "description": "Debugger breakpoint. Run ALEImport/goimports after to add 'runtime' import."
+    }
+}
