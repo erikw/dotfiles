@@ -1,1 +1,1 @@
-Make symlinks in the filetype subdirectories to the *.lua files in this directory to activate.
+Per-filetype settings. Space-indented languages use `require("config.coding_styles").spaces(n)` and tab-indented languages use `require("config.coding_styles").tabs(n)` from `lua/config/coding_styles.lua`.
