@@ -57,7 +57,7 @@ fi
 #fi
 
 # Add ANSI color output to ant.
-#if program_is_in_path ant; then
+#if has_command ant; then
 	#export ANT_ARGS='-logger org.apache.tools.ant.listener.AnsiColorLogger'
 #fi
 
@@ -76,7 +76,7 @@ fi
 # ruby-build: recommended build env.
 # Reference: https://github.com/rbenv/ruby-build/wiki#suggested-build-environment
 #export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
-if program_is_in_path ruby-build || program_is_in_path asdf ; then
+if has_command ruby-build || has_command asdf ; then
 	# For Ruby versions 2.x-3.0
 	#export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$HOMEBREW_PREFIX/opt/openssl@1.1"
 	# For Ruby versions >=3.1
@@ -107,9 +107,9 @@ export MANPATH="$PERL_BASE/man:$MANPATH"
 # Use THE text editor
 if [ "$CODESPACES" = true ]; then
 	export EDITOR="code --wait" VISUAL="code --wait" CSHEDIT="code --wait"
-elif program_is_in_path nvim; then
+elif has_command nvim; then
 	export EDITOR=nvim VISUAL=nvim CSHEDIT=nvim
-elif program_is_in_path vim; then
+elif has_command vim; then
 	export EDITOR=vim VISUAL=vim CSHEDIT=vim
 fi
 
@@ -126,14 +126,14 @@ else
 fi
 
 # Brew bundler
-if program_is_in_path brew; then
+if has_command brew; then
 	# Not using the Brewfile.lock.json feature.
 	export HOMEBREW_BUNDLE_NO_LOCK=1
 fi
 
 # A better compiler for C langs.
 # Unfortunately still quite some problems e.g. with compiling native extension of $(gem install byebuy)
-#if program_is_in_path clang; then
+#if has_command clang; then
 	#export CC=clang
 	#export CXX=clang++
 #fi
@@ -144,9 +144,9 @@ test -d ${XDG_STATE_HOME:-$HOME/.local/state}/tmux || mkdir -p ${XDG_STATE_HOME:
 
 # Needed for gnupg's gpg(1) to work, thus for git commit signing.
 # Only run if a TTY exist (interactice). Still do it here rather than ~/.zsrc as we want to do this once only.
-if program_is_in_path gpg && tty -s; then
-  export GPG_TTY=$(tty)
-fi
+#if has_command gpg && tty -s; then
+#  export GPG_TTY=$(tty)
+#fi
 
 
 # Disable macos shell restore feature (/etc/bashrc_Apple_Terminal) that creates e.g. ~/.zsh_session
@@ -167,7 +167,7 @@ test -d "$HOME/src/github.com/erikw/dotfiles" && export DFM_REPO="$HOME/src/gith
 export LESS="--RAW-CONTROL-CHARS --ignore-case --status-column"
 
 # Must be at the end of shell init file. but here should do...
-if program_is_in_path sdk; then
+if has_command sdk; then
 	export SDKMAN_DIR="$HOME/.sdkman"
 	[[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]] && source "$SDKMAN_DIR/bin/sdkman-init.sh"
 fi

@@ -36,7 +36,7 @@ sourceifexists $HOME/.travis/travis.sh
 sourceifexists "$HOME/.config/broot/launcher/bash/br"
 
 # fzf https://github.com/junegunn/fzf#using-homebrew
-if program_is_in_path fzf; then
+if has_command fzf; then
 	# Cache shell init to file to speed up shell initialization.
 	fzf_init_file="${XDG_CACHE_HOME:-$HOME/.cache}/fzf.zsh"
 	if  [ ! -s "$fzf_init_file" ]; then
@@ -49,11 +49,11 @@ if program_is_in_path fzf; then
 	export FZF_COMPLETION_OPTS='--multi'
 
 	# Find dot files as well. Reference: https://github.com/junegunn/fzf/issues/634
-	if program_is_in_path fd; then
+	if has_command fd; then
 		#export FZF_DEFAULT_COMMAND="rg --hidden --files --glob '!{.git,node_modules}/'"
 		#export FZF_DEFAULT_COMMAND='fd --type file --hidden --follow --exclude node_modules'
 		export FZF_DEFAULT_COMMAND='fd --type file --hidden --follow'
-	elif program_is_in_path fdfind; then # apt-get name
+	elif has_command fdfind; then # apt-get name
 		export FZF_DEFAULT_COMMAND='fdfind --type file --hidden --follow'
 	else
 		export FZF_DEFAULT_COMMAND='find . -type d \( -path './.git' -o -path './node_modules'  \) -prune -o -print'
@@ -67,7 +67,7 @@ fi
 
 # direnv: https://direnv.net/
 # NOTE migrated to OMZ
-#if program_is_in_path direnv; then
+#if has_command direnv; then
 #    eval "$(direnv hook zsh)"
 #fi
 

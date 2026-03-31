@@ -1,0 +1,9 @@
+#!/usr/bin/env zsh
+
+local mark="$1"
+
+if ! grep -q "^$mark : " $FZF_MARKS_FILE; then
+	echo "$mark is not in the bookmarks" >&2
+	return 2
+fi
+grep "^$mark :" $FZF_MARKS_FILE | awk '{print $3}'

@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+local d=$(date +%Y-%m-%d)
+mkdir -p "$d" && echo "Created $d"

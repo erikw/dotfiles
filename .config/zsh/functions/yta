@@ -1,0 +1,5 @@
+#!/usr/bin/env zsh
+# Wrapper for yt-dlp.sh to avoid needing to quote URL argument.
+
+read "url?Paste URL: "
+yt-dlp.sh "$url"

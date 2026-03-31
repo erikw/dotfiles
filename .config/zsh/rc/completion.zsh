@@ -87,7 +87,7 @@ setopt completealiases
 
 
 # Add tab completion to daemonize.
-if program_is_in_path daemonize; then
+if has_command daemonize; then
 	compctl -cf daemonize
 fi
 

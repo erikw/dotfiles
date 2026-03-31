@@ -84,5 +84,5 @@ fi
 # Custom functions (lazy loaded).
 fpath=($ZDOTDIR/functions $fpath)
 # Load only functions needed at statup shell level.
-autoload -Uz program_is_in_path sourceifexists $ZDOTDIR/functions/shell_is_*(:t)
+autoload -Uz has_command sourceifexists $ZDOTDIR/functions/shell_is_*(:t)
 # }}

@@ -4,7 +4,7 @@
 # Usage: sleep_shutdown 2d
 
 time="$1"
-if program_is_in_path gsleep; then
+if has_command gsleep; then
 	gsleep $time && shutdown -h now
 else
 	sleep $time && shutdown -h now

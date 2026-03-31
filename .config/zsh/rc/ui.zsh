@@ -95,9 +95,9 @@ dircolorsdb=$HOME/.local/repos/dircolors-solarized/dircolors.256dark
 if ! [ -f "$dircolorsdb" ]; then
 	dircolorsdb=$ZDOTDIR/dircolors
 fi
-if program_is_in_path dircolors; then
+if has_command dircolors; then
 	eval "$(dircolors -b $dircolorsdb)"
-elif shell_is_macos && program_is_in_path gdircolors; then
+elif shell_is_macos && has_command gdircolors; then
 	eval "$(gdircolors -b $dircolorsdb)"
 fi
 unset dircolorsdb

@@ -1,0 +1,9 @@
+#!/usr/bin/env zsh
+# Check if we have a cmd in PATH.
+
+local cmd="$1"
+
+#type "$cmd" >/dev/null 2>&1
+
+# ZSH way should be faster in theory. In practice; not sure.
+(( $+commands[$cmd] ))

@@ -31,7 +31,7 @@
 	bindkey ' ' magic-space					# Expand !-commands on space.
 
 	# fzf provies a better ^R search.
-	if ! program_is_in_path fzf; then
+	if ! has_command fzf; then
 		bindkey "^R" history-beginning-search-backward	# Complete from history with prefix
 		bindkey "^E" history-beginning-search-forward	# Complete from history with prefix
 	fi

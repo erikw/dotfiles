@@ -34,6 +34,27 @@
 #     → NO  → likely belongs in .zshrc
 # }}
 
+# Profiling - start {{
+# Ref: https://kev.inburke.com/kevin/profiling-zsh-startup-time/
+# END in .zshrc
+# After running this, inspect result of current shell with:
+#
+# Get startup time in (us):
+# $ tail -1 ~/tmp/startuplog.$$ | cut -d' ''
+#
+# Find slow steps:
+# $ ~/bin/parse_zsh_startup.py ~/tmp/startuplog.$$
+
+
+#PROFILE_STARTUP=true
+#if [ "$PROFILE_STARTUP" = true ]; then
+#    # http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html
+#    PS4=$'%D{%M%S%.} %N:%i> '
+#    exec 3>&2 2>$HOME/tmp/startuplog.$$
+#    setopt xtrace prompt_subst
+#fi
+# }}
+
 # Load environment no "for file in $ZDOTDIR/env/*.zsh; do" because we want xdg.sh to be loaded first as others reference it.
 source "$ZDOTDIR/env/xdg.zsh"
 source "$ZDOTDIR/env/paths.zsh"
