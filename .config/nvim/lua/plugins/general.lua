@@ -157,26 +157,111 @@ return {
     -- $ cd git_proj/
     -- $ echo "path/to/exclude" > .ignore
     -- $ echo ".ignore" >> .git/info/exclude
-    -- TODO replace with lua implementation? https://github.com/ibhagwan/fzf-lua
+    --
+    -- Replaced fzf.vim:
+    --{
+    --    "junegunn/fzf.vim",
+    --    dependencies = {
+    --        {
+    --            "junegunn/fzf",
+    --            build = ":call fzf#install()",
+    --        },
+    --    },
+    --    keys = {
+    --        { "<Leader>f", ":FZF<space>",    desc = "FZF: search for files in given path." },
+    --        { "<C-p>",     ":Files<CR>",     desc = "FZF: search for files starting at current directory." },
+    --        { "<Leader>c", ":Commands<CR>",  desc = "FZF: search commands." },
+    --        { "<Leader>T", ":Tags<CR>",      desc = "FZF: search in tags file" },
+    --        { "<Leader>b", ":Buffers<CR>",   desc = "FZF: search open buffers." },
+    --        { "<Leader>t", ":Windows<CR>",   desc = "FZF: search open tabs." },
+    --        { "<Leader>H", ":History<CR>",   desc = "FZF: search history of opened files" },
+    --        { "<Leader>:", ":History:<CR>",  desc = "FZF: search history of commands" },
+    --        { "<Leader>m", ":Maps<CR>",      desc = "FZF: search mappings." },
+    --        { "<Leader>g", ":Rg<CR>",        desc = "FZF: search with rg (live grep)." },
+    --    },
+    --},
+
+    -- Improved fzf
     {
-        "junegunn/fzf.vim",
+        "ibhagwan/fzf-lua",
         dependencies = {
             {
                 "junegunn/fzf",
                 build = ":call fzf#install()",
             },
         },
+        opts = {},
         keys = {
-            { "<Leader>f", ":FZF<space>", desc = "FZF: search for files in given path." },
-            { "<C-p>", ":Files<CR>", desc = "FZF: search for files starting at current directory." },
-            { "<Leader>c", ":Commands<CR>", desc = "FZF: search commands." },
-            { "<Leader>T", ":Tags<CR>", desc = "FZF: search in tags file" },
-            { "<Leader>b", ":Buffers<CR>", desc = "FZF: search open buffers." },
-            { "<Leader>t", ":Windows<CR>", desc = "FZF: search open tabs." },
-            { "<Leader>H", ":History<CR>", desc = "FZF: search history of opened files" },
-            { "<Leader>:", ":History:<CR>", desc = "FZF: search history of commands" },
-            { "<Leader>m", ":Maps<CR>", desc = "FZF: search mappings." },
-            { "<Leader>g", ":Rg<CR>", desc = "FZF: search with rg (live grep)." },
+            {
+                "<Leader>f",
+                function()
+                    require("fzf-lua").files({ cwd = vim.fn.input("Dir: ", vim.fn.getcwd(), "dir") })
+                end,
+                desc = "fzf-lua: files in given path",
+            },
+            {
+                "<C-p>",
+                function()
+                    require("fzf-lua").files()
+                end,
+                desc = "fzf-lua: files in cwd",
+            },
+            {
+                "<Leader>c",
+                function()
+                    require("fzf-lua").commands()
+                end,
+                desc = "fzf-lua: commands",
+            },
+            {
+                "<Leader>T",
+                function()
+                    require("fzf-lua").tags()
+                end,
+                desc = "fzf-lua: tags",
+            },
+            {
+                "<Leader>b",
+                function()
+                    require("fzf-lua").buffers()
+                end,
+                desc = "fzf-lua: buffers",
+            },
+            {
+                "<Leader>t",
+                function()
+                    require("fzf-lua").tabs()
+                end,
+                desc = "fzf-lua: tabs/windows",
+            },
+            {
+                "<Leader>H",
+                function()
+                    require("fzf-lua").oldfiles()
+                end,
+                desc = "fzf-lua: file history",
+            },
+            {
+                "<Leader>:",
+                function()
+                    require("fzf-lua").command_history()
+                end,
+                desc = "fzf-lua: command history",
+            },
+            {
+                "<Leader>m",
+                function()
+                    require("fzf-lua").keymaps()
+                end,
+                desc = "fzf-lua: keymaps",
+            },
+            {
+                "<Leader>g",
+                function()
+                    require("fzf-lua").live_grep()
+                end,
+                desc = "fzf-lua: live grep (rg)",
+            },
         },
     },
 }

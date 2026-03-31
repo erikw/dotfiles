@@ -129,7 +129,7 @@ return {
                     },
                 },
             },
-            extensions = { "fugitive", "fzf", "nvim-tree", "quickfix" },
+            extensions = { "fugitive", "nvim-tree", "quickfix" },
         },
     },
 }
