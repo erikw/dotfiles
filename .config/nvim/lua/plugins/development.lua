@@ -125,20 +125,61 @@ return {
     { "ruanyl/vim-gh-line", event = "BufReadPre" }, -- Copy link to file on GitHub.
     { "wellle/targets.vim", event = "BufReadPre" }, -- Extra text objects to operate on e.g. function arguments.
 
-    -- TODO replace with built-in vim.snippet?
-    -- Snippets engine compatible with the SnipMate format.
+    -- Replaced by L3MON4D3/LuaSnip
+    --{
+    --    "dcampos/nvim-snippy",
+    --    event = "InsertEnter",
+    --    dependencies = { "honza/vim-snippets" },
+    --    opts = {
+    --        mappings = {
+    --            is = {
+    --                ["<Tab>"] = "expand_or_advance",
+    --                ["<S-Tab>"] = "previous",
+    --            },
+    --        },
+    --    },
+    --},
+
+    -- Snippets engine. Replaces nvim-snippy.
+    -- Custom snippets in ~/.config/nvim/snippets/ (SnipMate format) are loaded
+    -- automatically alongside honza/vim-snippets via lazy_load()'s rtp scan.
     {
-        "dcampos/nvim-snippy",
+        "L3MON4D3/LuaSnip",
+        version = "v2.*",
+        build = "make install_jsregexp", -- optional: enables regex-based triggers
+        dependencies = { "honza/vim-snippets" },
         event = "InsertEnter",
-        dependencies = { "honza/vim-snippets" }, -- snippet library
-        opts = {
-            mappings = {
-                is = {
-                    ["<Tab>"] = "expand_or_advance",
-                    ["<S-Tab>"] = "previous",
-                },
-            },
-        },
+        config = function()
+            local luasnip = require("luasnip")
+
+            -- Load SnipMate snippets from all runtimepath/snippets/ directories.
+            -- Picks up ~/.config/nvim/snippets/ (custom) and honza/vim-snippets.
+            -- filetype_extend must be called before lazy_load: it tells LuaSnip that
+            -- when resolving the built-in "all" pseudo-filetype (active in every buffer),
+            -- also include the "_" filetype — which is how SnipMate marks global snippets.
+            -- Without this, lazy_load never triggers for "_" because no buffer ever has
+            -- filetype="_", so _.snippets would silently never load.
+            luasnip.filetype_extend("all", { "_" })
+            require("luasnip.loaders.from_snipmate").lazy_load()
+
+            -- <Tab>: expand trigger → jump forward → fall through to normal Tab.
+            vim.keymap.set({ "i", "s" }, "<Tab>", function()
+                if luasnip.expandable() then
+                    luasnip.expand()
+                elseif luasnip.jumpable(1) then
+                    luasnip.jump(1)
+                else
+                    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Tab>", true, false, true), "n", false)
+                end
+            end, { silent = true, desc = "LuaSnip: expand, jump forward, or Tab" })
+
+            -- <S-Tab>: jump backward through tabstops.
+            vim.keymap.set({ "i", "s" }, "<S-Tab>", function()
+                if luasnip.jumpable(-1) then
+                    luasnip.jump(-1)
+                end
+            end, { silent = true, desc = "LuaSnip: jump backward" })
+        end,
     },
 
     -- Git wrapper and shorthands.

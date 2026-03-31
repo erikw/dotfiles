@@ -1,6 +1,7 @@
 {
   "Brewfile.vim": { "branch": "master", "commit": "022eea619c2280d34f92c5daba19191f43be0c78" },
   "Comment.nvim": { "branch": "master", "commit": "e30b7f2008e52442154b66f7c519bfd2f1e32acb" },
+  "LuaSnip": { "branch": "master", "commit": "5a1e39223db9a0498024a77b8441169d260c8c25" },
   "ale": { "branch": "master", "commit": "7940a46d5a15cf424ab7c3341742cb8467091b75" },
   "alpha-nvim": { "branch": "main", "commit": "a9d8fb72213c8b461e791409e7feabb74eb6ce73" },
   "conflict-marker.vim": { "branch": "master", "commit": "62742b2ffe7a433988759c67b5c5a22eff74a14b" },
@@ -16,7 +17,6 @@
   "nvim-autopairs": { "branch": "master", "commit": "59bce2eef357189c3305e25bc6dd2d138c1683f5" },
   "nvim-coverage": { "branch": "main", "commit": "a939e425e363319d952a6c35fb3f38b34041ded2" },
   "nvim-peekup": { "branch": "master", "commit": "82251c54cd60f8504dfd9acd853eae57fe832447" },
-  "nvim-snippy": { "branch": "master", "commit": "7e500286eb880032391107f6d0ee28211ba3eb3c" },
   "nvim-solarized-lua": { "branch": "master", "commit": "d69a263c97cbc765ca442d682b3283aefd61d4ac" },
   "nvim-surround": { "branch": "main", "commit": "61319d4bd1c5e336e197defa15bd104c51f0fb29" },
   "nvim-tabline": { "branch": "main", "commit": "287cd88157f98da76cb32ac7df7ec5c546414ec0" },

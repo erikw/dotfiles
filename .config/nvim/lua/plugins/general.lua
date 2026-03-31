@@ -234,7 +234,7 @@ return {
     -- $ echo "path/to/exclude" > .ignore
     -- $ echo ".ignore" >> .git/info/exclude
     --
-    -- Replaced fzf.vim:
+    -- Replaced by fzf-lua
     --{
     --    "junegunn/fzf.vim",
     --    dependencies = {
@@ -258,6 +258,13 @@ return {
     --},
 
     -- Improved fzf
+    -- Replaced fzf.vim:
+    -- To ignore a certain path in a git project I can't change from both rg(1) and fd(1) used by FZF,
+    -- the eaiest way is to create ignore files and exclude the in local git clone.
+    -- Ref: https://stackoverflow.com/a/1753078/265508
+    -- $ cd git_proj/
+    -- $ echo "path/to/exclude" > .ignore
+    -- $ echo ".ignore" >> .git/info/exclude
     {
         "ibhagwan/fzf-lua",
         dependencies = {
