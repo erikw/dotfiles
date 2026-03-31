@@ -139,13 +139,71 @@ return {
         end,
     },
 
+    -- Replaced by Comment.nvim:
+    --{
+    --    "preservim/nerdcommenter",
+    --    event = "BufReadPre",
+    --    init = function()
+    --        -- Align line-wise comment delimiters flush left instead of following code indentation
+    --        vim.g.NERDDefaultAlign = "left"
+    --    end,
+    --},
+
     -- Comment source code.
+    -- Default keybindings: gcc/gbc (normal toggle line/block), gc/gb (visual), gco/gcO/gcA (insert positions).
+    -- Ref: https://github.com/numtostr/comment.nvim?tab=readme-ov-file#-usage
     {
-        "preservim/nerdcommenter",
+        "numToStr/Comment.nvim",
         event = "BufReadPre",
-        init = function()
-            -- Align line-wise comment delimiters flush left instead of following code indentation
-            vim.g.NERDDefaultAlign = "left"
+        config = function()
+            require("Comment").setup()
+
+            local api = require("Comment.api")
+            local map = vim.keymap.set
+
+            -- Pre-compute ESC for visual-mode mappings (exits visual so the API can read the selection).
+            local esc = vim.api.nvim_replace_termcodes("<ESC>", true, false, true)
+            local function feed_esc() vim.api.nvim_feedkeys(esc, "nx", false) end
+
+            -- Per-line independent invert: each line toggled based on its own comment state.
+            local function invert_selection()
+                feed_esc()  -- commit '< '> marks
+                local start_line = vim.fn.line("'<")
+                local end_line   = vim.fn.line("'>")
+                local saved_cursor = vim.api.nvim_win_get_cursor(0)
+                for lnum = start_line, end_line do
+                    vim.api.nvim_win_set_cursor(0, { lnum, 0 })
+                    api.toggle.linewise.current()
+                end
+                vim.api.nvim_win_set_cursor(0, saved_cursor)
+            end
+
+            -- nerdcommenter-compatible bindings for muscle-memory during transition.
+            -- Normal mode
+            map("n", "<Leader>cc",       function() api.comment.linewise.current() end,   { desc = "Comment: force comment line" })
+            map("n", "<Leader>cu",       function() api.uncomment.linewise.current() end, { desc = "Comment: force uncomment line" })
+            map("n", "<Leader>c<Space>", function() api.toggle.linewise.current() end,    { desc = "Comment: toggle line" })
+            map("n", "<Leader>ci",       function() api.toggle.linewise.current() end,    { desc = "Comment: toggle line (invert)" })
+            map("n", "<Leader>cs",       function() api.toggle.blockwise.current() end,   { desc = "Comment: toggle block comment" })
+            map("n", "<Leader>cy",       function()
+                vim.cmd("normal! yy")           -- yank current line
+                api.comment.linewise.current()  -- then force-comment it
+            end, { desc = "Comment: yank then comment line" })
+            map("n", "<Leader>cA",       function() api.insert.eol() end,                 { desc = "Comment: append at EOL" })
+
+            -- Visual mode
+            map("x", "<Leader>cc",       function() feed_esc(); api.comment.linewise(vim.fn.visualmode()) end,   { desc = "Comment: force comment selection" })
+            map("x", "<Leader>cu",       function() feed_esc(); api.uncomment.linewise(vim.fn.visualmode()) end, { desc = "Comment: force uncomment selection" })
+            map("x", "<Leader>c<Space>", function() feed_esc(); api.toggle.linewise(vim.fn.visualmode()) end,    { desc = "Comment: toggle selection" })
+            map("x", "<Leader>ci",       invert_selection, { desc = "Comment: invert per line independently" })
+            map("x", "gci",              invert_selection, { desc = "Comment: invert per line independently" })
+            map("x", "<Leader>cs",       function() feed_esc(); api.toggle.blockwise(vim.fn.visualmode()) end,   { desc = "Comment: toggle block comment selection" })
+            map("x", "<Leader>cy",       function()
+                local vmode = vim.fn.visualmode()  -- capture mode before leaving visual
+                feed_esc()                         -- exit visual, commits '< and '> marks
+                vim.cmd("normal! gvy")             -- re-select via marks and yank
+                api.comment.linewise(vmode)        -- force-comment the '< '> range
+            end, { desc = "Comment: yank then comment selection" })
         end,
     },
 
