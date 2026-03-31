@@ -29,11 +29,23 @@
 #   .zshrc
 # }}
 
-# Travis cli client. https://github.com/travis-ci/travis.rb
-sourceifexists $HOME/.travis/travis.sh
-
 # broot - https://dystroy.org/broot/install-br/
-sourceifexists "$HOME/.config/broot/launcher/bash/br"
+# Define br() directly instead of sourcing the launcher script on every shell.
+if (( $+commands[broot] )); then
+	br() {
+		local cmd cmd_file code
+		cmd_file=$(mktemp)
+		if broot --outcmd "$cmd_file" "$@"; then
+			cmd=$(<"$cmd_file")
+			command rm -f "$cmd_file"
+			eval "$cmd"
+		else
+			code=$?
+			command rm -f "$cmd_file"
+			return "$code"
+		fi
+	}
+fi
 
 # fzf https://github.com/junegunn/fzf#using-homebrew
 if has_command fzf; then
@@ -91,6 +103,8 @@ if [ -d $HOME/.local/repos/fzf-marks ]; then
 fi
 
 # qlty. From $(curl https://qlty.sh | sh)
-[ -s "/usr/local/share/zsh/site-functions/_qlty" ] && source "/usr/local/share/zsh/site-functions/_qlty"
-export QLTY_INSTALL="$HOME/.qlty"
-export PATH="$QLTY_INSTALL/bin:$PATH"
+if [ -d "$HOME/.qlty" ]; then
+	export QLTY_INSTALL="$HOME/.qlty"
+	export PATH="$QLTY_INSTALL/bin:$PATH"
+	[ -s "/usr/local/share/zsh/site-functions/_qlty" ] && source "/usr/local/share/zsh/site-functions/_qlty"
+fi

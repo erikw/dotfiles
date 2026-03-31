@@ -65,9 +65,8 @@ plugins=(
 #export SMART_SUGGESTION_AI_PROVIDER=anthropic
 #export SMART_SUGGESTION_KEY="^b"
 
-
 # ssh-agent plugin requires ~/.ssh to exist, which seems to be the case on Codespaces.
-test -d $HOME/.ssh || mkdir $HOME/.ssh
+#test -d $HOME/.ssh || mkdir $HOME/.ssh
 
 # Skip compaudit security checks (personal machine).
 ZSH_DISABLE_COMPFIX=true
