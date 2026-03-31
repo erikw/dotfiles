@@ -180,15 +180,6 @@ return {
         end,
     },
 
-    -- Highlight usage of method arguments.
-    {
-        "m-demare/hlargs.nvim",
-        dependencies = { "nvim-treesitter/nvim-treesitter" },
-        -- Due to a bug when dark-notify is enabled, do the hlargs init is done in the  dark-notify callback.
-        -- Ref: https://github.com/m-demare/hlargs.nvim/issues/37#issuecomment-1237395420
-        --opts = {}
-    },
-
     -- Toggle values like true/false with <Leader>i.
     {
         "nguyenvukhang/nvim-toggler",
@@ -206,10 +197,9 @@ return {
     {
         "sindrets/diffview.nvim",
         dependencies = "nvim-lua/plenary.nvim",
-        opts = {
-            --hg_cmd = nil, # Not working to disable to get rid of :checkhealth warning, https://github.com/sindrets/diffview.nvim/issues/319
-        },
-        config = function()
+        opts = {},
+        config = function(_, opts)
+            require("diffview").setup(opts)
             vim.api.nvim_create_user_command("Gdiff", ":DiffviewFileHistory %", { force = true, desc = "View diff file history of current buffer." })
         end,
     },
@@ -220,23 +210,24 @@ return {
         branch = "main",
         lazy = false,
         build = ":TSUpdate",
-        opts = {
-            -- A list of parser names, or "all". Install manually with :TSINstall <parser>
-            -- comment - for parsing e.g. TODO markers in comments.
-            ensure_installed = { "comment", "lua", "vim", "ruby", "python", "javascript", "markdown" },
-
-            -- Install parsers synchronously (only applied to `ensure_installed`)
-            sync_install = false,
-
-            -- Automatically install missing parsers when entering buffer
-            auto_install = true,
-            highlight = {
-                enable = true,
-            },
-            indent = {
-                enable = true,
-            },
-        },
+        config = function()
+            require("nvim-treesitter").setup({
+                -- A list of parser names, or "all". Install manually with :TSInstall <parser>
+                -- comment - for parsing e.g. TODO markers in comments.
+                ensure_installed = { "comment", "lua", "vim", "ruby", "python", "javascript", "markdown" },
+                -- Install parsers synchronously (only applied to `ensure_installed`)
+                sync_install = false,
+                -- Automatically install missing parsers when entering buffer
+                auto_install = true,
+            })
+            -- The `main` branch no longer configures highlight/indent via setup().
+            -- Enable treesitter-based highlighting for each buffer when a parser is available.
+            vim.api.nvim_create_autocmd("FileType", {
+                callback = function(ev)
+                    pcall(vim.treesitter.start, ev.buf)
+                end,
+            })
+        end,
     },
 
     -- Open related file like test.
@@ -247,7 +238,7 @@ return {
             rememberBuffers = false,
             showMissingFiles = false,
             keybindings = {
-                x = "open_file_sp()", -- Align with other plugin common binding for horizontral split. Default here is 's'.
+                x = "open_file_sp()", -- Align with other plugin common binding for horizontal split. Default here is 's'.
             },
             mappings = {
                 -- builtin mappings
@@ -259,7 +250,8 @@ return {
                 width = 0.7,
             },
         },
-        config = function()
+        config = function(_, opts)
+            require("other-nvim").setup(opts)
             vim.api.nvim_set_keymap("n", "<leader>ll", "<cmd>:Other<CR>", { noremap = true, silent = true, desc = "Other: open" })
             vim.api.nvim_set_keymap("n", "<leader>lx", "<cmd>:OtherSplit<CR>", { noremap = true, silent = true, desc = "Other: open in split" })
             vim.api.nvim_set_keymap("n", "<leader>lv", "<cmd>:OtherVSplit<CR>", { noremap = true, silent = true, desc = "Other: open in vsplit" })

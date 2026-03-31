@@ -71,7 +71,6 @@ return {
             { "<F2>", ":NvimTreeToggle<CR>", { silent = true, desc = "Toggle file explorer tree." } },
         },
         opts = {
-            open_on_tab = true,
             filters = { custom = { "^.git$" } },
             view = {
                 width = "15%",

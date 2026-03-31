@@ -32,10 +32,9 @@
 -- Ref: https://www.reddit.com/r/neovim/comments/ksf0i4/slow_startup_time_when_opening_python_files_with/
 vim.g.loaded_python3_provider = 0
 
--- Let's disable smore more that are not used to reduce startup time.
+-- Let's disable some more that are not used to reduce startup time.
 vim.g.loaded_python_provider = 0
 vim.g.loaded_ruby_provider = 0
-vim.g.loaded_provider_provider = 0
 vim.g.loaded_node_provider = 0
 vim.g.loaded_perl_provider = 0
 -- }}
