@@ -77,6 +77,11 @@ if has_command fzf; then
 	export FZF_DEFAULT_COMMAND="$FZF_DEFAULT_COMMAND --exclude '.git/'"
 fi
 
+
+# bat
+# Get better man pages in color
+export MANPAGER="bat -plman"
+
 # direnv: https://direnv.net/
 # NOTE migrated to OMZ
 #if has_command direnv; then

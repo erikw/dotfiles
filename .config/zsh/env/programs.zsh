@@ -167,10 +167,10 @@ test -d "$HOME/src/github.com/erikw/dotfiles" && export DFM_REPO="$HOME/src/gith
 export LESS="--RAW-CONTROL-CHARS --ignore-case --status-column"
 
 # Must be at the end of shell init file. but here should do...
-if has_command sdk; then
-	export SDKMAN_DIR="$HOME/.sdkman"
-	[[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]] && source "$SDKMAN_DIR/bin/sdkman-init.sh"
-fi
+# if has_command sdk; then
+#	export SDKMAN_DIR="$HOME/.sdkman"
+#	[[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]] && source "$SDKMAN_DIR/bin/sdkman-init.sh"
+# fi
 
 # Android SDK
 #if [ -d "$HOME/src/android-sdk-linux/" ]; then

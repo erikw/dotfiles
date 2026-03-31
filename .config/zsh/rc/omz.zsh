@@ -46,9 +46,9 @@ plugins=(
 	# dash
 	# mosh
 	# sudo # not working
+	# colored-man-pages
 	#ssh-agent # TODO if actually needing this, replace with modern keychain https://github.com/danielrobbins/keychain https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/keychain/README.md
 	asdf
-	colored-man-pages
 	direnv
 	safe-paste
 	web-search
