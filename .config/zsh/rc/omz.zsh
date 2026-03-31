@@ -25,7 +25,7 @@
 # }}
 
 export ZSH="$HOME/.local/repos/ohmyzsh/ohmyzsh"
-#export ZSH_CUSTOM="$HOME/.local/repos/ohmyzsh/custom" # Custom plugins, themes
+export ZSH_CUSTOM="$HOME/.local/repos/ohmyzsh/custom" # Custom plugins, themes
 
 DISABLE_AUTO_UPDATE="true"
 
@@ -36,7 +36,8 @@ if [ "$CODESPACES" = true ]; then
 	ZSH_THEME="robbyrussell"
 else
 	#ZSH_THEME="apple" # NOPE, not indicating if last command was non-0.
-	ZSH_THEME="agnoster"
+	#ZSH_THEME="agnoster"
+	ZSH_THEME="powerlevel10k/powerlevel10k"
 fi
 
 # Ref: https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins
@@ -81,3 +82,6 @@ ZSH_COMPDUMP="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump-$ZSH_VERSION"
 
 
 source $ZSH/oh-my-zsh.sh
+
+# To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
+[[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
