@@ -16,17 +16,18 @@ return {
     --    opts = {}
     --},
 
-    { "danro/rename.vim" }, -- Provides the :Rename command
-    { "michaeljsmith/vim-indent-object" }, -- Operate on intendtation as text objects.
-    { "tpope/vim-capslock" }, -- Software CAPSLOCK with <C-g>c in insert mode.
-    { "tpope/vim-characterize" }, -- 'ga' on steroid.
-    { "tpope/vim-repeat" }, -- Extend '.' repetition for plugins like vim-surround, vim-speeddating, vim-unimpaired.
-    { "tpope/vim-speeddating" }, -- Increment dates with C-a.
-    { "tpope/vim-unimpaired" }, -- Bracket mappings like [<space>
+    { "danro/rename.vim", cmd = "Rename" }, -- Provides the :Rename command
+    { "michaeljsmith/vim-indent-object", event = "BufReadPre" }, -- Operate on intendtation as text objects.
+    { "tpope/vim-capslock", event = "InsertEnter" }, -- Software CAPSLOCK with <C-g>c in insert mode.
+    { "tpope/vim-characterize", keys = { "ga" } }, -- 'ga' on steroid.
+    { "tpope/vim-repeat", event = "BufReadPre" }, -- Extend '.' repetition for plugins like vim-surround, vim-speeddating, vim-unimpaired.
+    { "tpope/vim-speeddating", event = "BufReadPre" }, -- Increment dates with C-a.
+    { "tpope/vim-unimpaired", event = "BufReadPre" }, -- Bracket mappings like [<space>
 
     -- Open URLs in buffer.
     {
         "axieax/urlview.nvim",
+        cmd = "UrlView",
         opts = {},
         init = function()
             vim.keymap.set("n", "\\u", "<Cmd>UrlView<CR>", { desc = "view buffer URLs" })
@@ -36,6 +37,7 @@ return {
     -- Register viewer and selector.
     {
         "gennaro-tedesco/nvim-peekup",
+        event = "BufReadPre",
         opts = {},
         config = function()
             -- Paste selection to register ", so that it can be pasted directly with 'p'.
@@ -86,6 +88,7 @@ return {
     -- Work on surrond delimiters or its content. Like tpope/vim-surround but with TreeSitter.
     {
         "kylechui/nvim-surround",
+        event = "BufReadPre",
         opts = {},
     },
 
@@ -139,6 +142,7 @@ return {
     -- Comment source code.
     {
         "preservim/nerdcommenter",
+        event = "BufReadPre",
         init = function()
             -- Align line-wise comment delimiters flush left instead of following code indentation
             vim.g.NERDDefaultAlign = "left"

@@ -60,6 +60,7 @@ return {
     -- Visualize marks in the sign column.
     {
         "chentoast/marks.nvim",
+        event = "BufReadPre",
         opts = {},
     },
 
@@ -73,6 +74,7 @@ return {
     -- Smoth scrolling.
     {
         "karb94/neoscroll.nvim",
+        event = "BufReadPre",
         opts = {},
     },
 

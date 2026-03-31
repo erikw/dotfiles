@@ -120,15 +120,16 @@ return {
     --    },
     --},
 
-    { "andymass/vim-matchup" }, -- Extend % matching.
-    { "rhysd/conflict-marker.vim" }, -- Navigate and edit VCS conflicts. Navigate: [x, ]x. Resolve: ct, co, cb.
-    { "ruanyl/vim-gh-line" }, -- Copy link to file on GitHub.
-    { "wellle/targets.vim" }, -- Extra text objects to operate on e.g. function arguments.
+    { "andymass/vim-matchup", event = "BufReadPre" }, -- Extend % matching.
+    { "rhysd/conflict-marker.vim", event = "BufReadPre" }, -- Navigate and edit VCS conflicts. Navigate: [x, ]x. Resolve: ct, co, cb.
+    { "ruanyl/vim-gh-line", event = "BufReadPre" }, -- Copy link to file on GitHub.
+    { "wellle/targets.vim", event = "BufReadPre" }, -- Extra text objects to operate on e.g. function arguments.
 
     -- TODO replace with built-in vim.snippet?
     -- Snippets engine compatible with the SnipMate format.
     {
         "dcampos/nvim-snippy",
+        event = "InsertEnter",
         dependencies = { "honza/vim-snippets" }, -- snippet library
         opts = {
             mappings = {
@@ -143,6 +144,7 @@ return {
     -- Git wrapper and shorthands.
     {
         "tpope/vim-fugitive",
+        cmd = { "Git" },
         init = function()
             vim.keymap.set("n", "gb", ":Git blame<CR>", { silent = true, desc = "Git blame" })
         end,
@@ -151,6 +153,7 @@ return {
     -- Shift function arguments left and right.
     {
         "AndrewRadev/sideways.vim",
+        cmd = { "SidewaysLeft", "SidewaysRight" },
         init = function()
             vim.keymap.set("n", "<a", ":SidewaysLeft<CR>", { silent = true, desc = "Move function argument to the left." })
             vim.keymap.set("n", ">a", ":SidewaysRight<CR>", { silent = true, desc = "Move function argument to the right." })
@@ -160,8 +163,9 @@ return {
     -- Git modified status in sign column
     {
         "airblade/vim-gitgutter",
+        event = "BufReadPre",
         config = function()
-            vim.opt.updatetime = 100 -- Speedier update of file status.
+            vim.opt.updatetime = 250 -- Speedier update of gitgutter signs and CursorHold-based features.
         end,
     },
 
@@ -183,12 +187,14 @@ return {
     -- Toggle values like true/false with <Leader>i.
     {
         "nguyenvukhang/nvim-toggler",
+        keys = { "<leader>i" },
         opts = {},
     },
 
     -- Show code coverage in sign column.
     {
         "andythigpen/nvim-coverage",
+        cmd = { "Coverage", "CoverageLoad", "CoverageShow", "CoverageHide", "CoverageToggle", "CoverageClear" },
         dependencies = "nvim-lua/plenary.nvim",
         opts = {},
     },
@@ -196,11 +202,16 @@ return {
     -- Better than fugitive ':Git difftool'. Browser file history with ':DiffviewFileHistory %'
     {
         "sindrets/diffview.nvim",
+        cmd = { "DiffviewOpen", "DiffviewFileHistory", "DiffviewClose", "DiffviewToggleFiles" },
         dependencies = "nvim-lua/plenary.nvim",
+        -- :Gdiff is created in init (always runs at startup) so it exists before the plugin loads.
+        -- Calling :Gdiff runs DiffviewFileHistory which hits the cmd stub above and loads the plugin.
+        init = function()
+            vim.api.nvim_create_user_command("Gdiff", "DiffviewFileHistory %", { force = true, desc = "View diff file history of current buffer." })
+        end,
         opts = {},
         config = function(_, opts)
             require("diffview").setup(opts)
-            vim.api.nvim_create_user_command("Gdiff", ":DiffviewFileHistory %", { force = true, desc = "View diff file history of current buffer." })
         end,
     },
 
@@ -265,19 +276,13 @@ return {
     -- Manage vim Sessions per git branch.
     {
         "superDross/ticket.vim",
+        cmd = { "SaveSession", "OpenSession" },
+        keys = {
+            { "<C-M-s>", ':execute ":SaveSession" <bar> echo "Session saved"<CR>', silent = true, desc = "Save current tickets.vim session." },
+            { "<C-M-o>", ':execute ":OpenSession" <bar> echo "Session loaded"<CR>', silent = true, desc = "Open saved tickets.vim session." },
+        },
         init = function()
             vim.g.auto_ticket = 0 -- Automatically load tickets when starting vim without file arguments.
-        end,
-        config = function()
-            -- Alternatives that also support per-branch saving to some extent:
-            -- * https://piet.me/branch-based-sessions-in-vim/
-            -- * https://github.com/dhruvasagar/vim-prosession
-            -- * https://github.com/wting/gitsessions.vim
-            -- * https://github.com/rmagatti/auto-session
-
-            -- Save current session.
-            vim.keymap.set("n", "<C-M-s>", ':execute ":SaveSession" <bar> echo "Session saved"<CR>', { silent = true, desc = "Save current tickets.vim session." })
-            vim.keymap.set("n", "<C-M-o>", ':execute ":OpenSession" <bar> echo "Session loaded"<CR>', { silent = true, desc = "Open saved tickets.vim session." })
         end,
     },
 
@@ -404,6 +409,7 @@ return {
     -- Method signature window, as ALE does not support it. Ref: https://www.reddit.com/r/vim/comments/jhqzsv/signature_help_via_ale/
     {
         "ray-x/lsp_signature.nvim",
+        event = "BufReadPre", -- LspAttach won't fire since ALE uses its own LSP client (ale_use_neovim_lsp_api = 0)
         opts = {
             toggle_key = "<M-x>", -- toggle signature on and off in insert mode
             select_signature_key = "<M-n>", -- cycle to next signature
@@ -413,12 +419,13 @@ return {
     -- LSP symbols and tags viewer, like TagBar but with LSP support.
     {
         "liuchengxu/vista.vim",
+        cmd = "Vista",
+        keys = {
+            { "<F3>", ":Vista!! <CR>", silent = true, desc = "Toggle Vista tag sidewindow." },
+        },
         init = function()
             vim.g.vista_default_executive = "ale" -- Default executive.
             vim.g.vista_sidebar_width = 50 -- Window width.
-        end,
-        config = function()
-            vim.keymap.set("n", "<F3>", ":Vista!! <CR>", { silent = true, desc = "Toggle Vista tag sidewindow." })
         end,
     },
 
