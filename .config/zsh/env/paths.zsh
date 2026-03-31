@@ -25,20 +25,14 @@
 #   .zprofile
 # }}
 
-# Binary paths {{
 typeset -U path		# Don't add entry to path if it's already present.
+typeset -U fpath	# Don't add entry to fpath if it's already present. Set here already as $(brew shellenv) will modify it.
+
+# Binary paths {{
 export PATH			# Make the path available in subshells. Export is only needed once.
 
-path=(
-  /usr/local/bin
-  /usr/local/sbin
-  /usr/sbin
-  /sbin
-  $HOME/bin
-  $path
-)
-
-# Homebrew
+# Homebrew (must run BEFORE path array setup — brew shellenv on Homebrew 5.x
+# produces no output if it detects its prefix paths are already in PATH).
 brew_bin=
 if [ -e /opt/homebrew/bin/brew ]; then  # Apple Silicon macs
 	brew_bin=/opt/homebrew/bin/brew
@@ -48,9 +42,25 @@ elif [ -e /home/linuxbrew/.linuxbrew/bin/brew ]; then  # Linux
 	brew_bin=/home/linuxbrew/.linuxbrew/bin/brew
 fi
 if [ -n "$brew_bin" ]; then
-	eval "$(${brew_bin} shellenv)"
+	# Cache brew shellenv output to avoid subprocess on every login shell.
+	brew_cache="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/brew_shellenv.zsh"
+	if [ ! -s "$brew_cache" ] || [ "$brew_bin" -nt "$brew_cache" ]; then
+		test -d "${XDG_CACHE_HOME:-$HOME/.cache}/zsh" || mkdir -p "${XDG_CACHE_HOME:-$HOME/.cache}/zsh"
+		echo "$(${brew_bin} shellenv)" > "$brew_cache"
+	fi
+	source "$brew_cache"
+	unset brew_cache
 fi
 unset brew_bin
+
+path=(
+  /usr/local/bin
+  /usr/local/sbin
+  /usr/sbin
+  /sbin
+  $HOME/bin
+  $path
+)
 
 # Homebrew overrides
 if [ -d "$HOMEBREW_PREFIX/opt/sqlite/bin" ]; then

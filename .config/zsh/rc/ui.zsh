@@ -95,9 +95,14 @@ dircolorsdb=$HOME/.local/repos/dircolors-solarized/dircolors.256dark
 if ! [ -f "$dircolorsdb" ]; then
 	dircolorsdb=$ZDOTDIR/dircolors
 fi
-if has_command dircolors; then
-	eval "$(dircolors -b $dircolorsdb)"
-elif shell_is_macos && has_command gdircolors; then
-	eval "$(gdircolors -b $dircolorsdb)"
+# Cache dircolors output to avoid subprocess on every interactive shell.
+dircolors_cache="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/dircolors.zsh"
+if [ ! -s "$dircolors_cache" ] || [ "$dircolorsdb" -nt "$dircolors_cache" ]; then
+	if has_command dircolors; then
+		dircolors -b "$dircolorsdb" > "$dircolors_cache"
+	elif shell_is_macos && has_command gdircolors; then
+		gdircolors -b "$dircolorsdb" > "$dircolors_cache"
+	fi
 fi
-unset dircolorsdb
+[ -s "$dircolors_cache" ] && source "$dircolors_cache"
+unset dircolors_cache dircolorsdb

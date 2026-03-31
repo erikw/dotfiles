@@ -34,7 +34,7 @@ zstyle ':completion:*:approximate:::' max-errors 3 numeric
 # Remove slash from completed directory.
 zstyle ':completion:*' squeeze-slashes true
 # Cache completions.
-zstyle ':completion:*' use-cache onzstyle ':completion:*' use-cache on
+zstyle ':completion:*' use-cache on
 # Use cache from XDG location
 zstyle ':completion:*' cache-path ${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompcache
 # Honor LS_COLORs in completion. Ref: https://github.com/ohmyzsh/ohmyzsh/issues/6060#issuecomment-1016734641

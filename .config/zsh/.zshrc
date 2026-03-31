@@ -43,7 +43,7 @@
 #zmodload zsh/zprof
 # }}
 
-# Custom functions (lazy loaded).
+# Custom functions (lazy loaded). Also set in env/paths.zsh; typeset -U fpath deduplicates.
 fpath=($ZDOTDIR/functions $fpath)
 autoload -Uz $ZDOTDIR/functions/*(:t)
 
