@@ -3,6 +3,37 @@
 #	vi: foldmarker={{,}} filetype=zsh foldmethod=marker foldlevel=0 tabstop=4 shiftwidth=4:
 # }}
 
+# Documentation {{
+# PURPOSE
+#   Defines environment for language runtimes and CLI tools.
+#
+# RESPONSIBILITIES
+#   ✔ Language environments:
+#     - asdf (Go, Java, Node, etc.)
+#     - SDKMAN
+#     - Ruby, Python, Perl configs
+#
+#   ✔ Global tool behavior:
+#     - LESS
+#     - EDITOR
+#     - GPG_TTY
+#
+#   ✔ PATH extensions required by tools
+#
+# IMPORTANT
+#   Everything here should be:
+#     - needed by scripts
+#     - relevant outside interactive shells
+#
+# RULE OF THUMB
+#   "Would a script need this environment?"
+#     → YES → belongs here
+#     → NO  → belongs in rc/
+#
+# LOADED FROM
+#   .zprofile
+# }}
+
 #  Golang {{
 # Not set, overriden by asdf.
 #export GOPATH="$XDG_DATA_HOME/go"

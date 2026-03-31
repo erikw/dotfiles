@@ -3,6 +3,23 @@
 #	vi: foldmarker={{,}} filetype=zsh foldmethod=marker foldlevel=0 tabstop=4 shiftwidth=4:
 # }}
 
+# Documentation {{
+# PURPOSE
+#   Defines keybindings and ZLE (Zsh Line Editor) behavior.
+#
+# RESPONSIBILITIES
+#   ✔ bindkey mappings
+#   ✔ vi-mode configuration
+#   ✔ custom ZLE widgets
+#
+# RULE OF THUMB
+#   "Does this change keyboard behavior?"
+#     → YES → belongs here
+#
+# LOADED FROM
+#   .zshrc
+# }}
+
 # Bindings {{
 	# Must happen before setting up fzf. Ref: https://github.com/junegunn/fzf/issues/1596#issuecomment-2128091715
 	bindkey -v	# vi command editing mode. NOTE: zsh is not using readline('s .inputrc').

@@ -3,6 +3,23 @@
 #	vi: foldmarker={{,}} filetype=zsh foldmethod=marker foldlevel=0 tabstop=4 shiftwidth=4:
 # }}
 
+# Documentation {{
+# PURPOSE
+#   Configures terminal UI and visual behavior.
+#
+# RESPONSIBILITIES
+#   ✔ TERM settings
+#   ✔ colors (dircolors, LS_COLORS)
+#   ✔ terminal capabilities
+#
+# RULE OF THUMB
+#   "Does this affect how the terminal looks?"
+#     → YES → belongs here
+#
+# LOADED FROM
+#   .zshrc
+# }}
+
 # OMZ migrated {{
 #autoload -U colors && colors
 

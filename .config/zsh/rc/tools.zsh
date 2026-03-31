@@ -3,6 +3,32 @@
 #	vi: foldmarker={{,}} filetype=zsh foldmethod=marker foldlevel=0 tabstop=4 shiftwidth=4:
 # }}
 
+# Documentation {{
+# PURPOSE
+#   Configures interactive CLI tools and enhancements.
+#
+# RESPONSIBILITIES
+#   ✔ Tool integrations:
+#     - fzf
+#     - broot
+#     - fzf-marks
+#
+#   ✔ Interactive-only environment variables
+#     (e.g. FZF_DEFAULT_COMMAND)
+#
+# IMPORTANT
+#   These tools:
+#     - enhance interactive usage
+#     - are NOT required for scripts
+#
+# RULE OF THUMB
+#   "Is this only useful when I am actively using the shell?"
+#     → YES → belongs here
+#
+# LOADED FROM
+#   .zshrc
+# }}
+
 # Travis cli client. https://github.com/travis-ci/travis.rb
 sourceifexists $HOME/.travis/travis.sh
 

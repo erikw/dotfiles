@@ -3,6 +3,23 @@
 #	vi: foldmarker={{,}} filetype=zsh foldmethod=marker foldlevel=0 tabstop=4 shiftwidth=4:
 # }}
 
+# Documentation {{
+# PURPOSE
+#   Configures shell history behavior.
+#
+# RESPONSIBILITIES
+#   ✔ HISTFILE location (XDG-compliant)
+#   ✔ history size limits
+#   ✔ history options (deduplication, timestamps, etc.)
+#
+# RULE OF THUMB
+#   "Does this affect command history storage or behavior?"
+#     → YES → belongs here
+#
+# LOADED FROM
+#   .zshrc
+# }}
+
 test -d ${XDG_STATE_HOME:-$HOME/.local/state}/zsh || mkdir -p ${XDG_STATE_HOME:-$HOME/.local/state}/zsh
 export HISTFILE=${XDG_STATE_HOME:-$HOME/.local/state}/zsh/history
 export HISTSIZE=1000000				# How many lines in the current session to remember.

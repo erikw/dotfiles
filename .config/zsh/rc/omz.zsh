@@ -3,6 +3,27 @@
 #	vi: foldmarker={{,}} filetype=zsh foldmethod=marker foldlevel=0 tabstop=4 shiftwidth=4:
 # }}
 
+# Documentation {{
+# PURPOSE
+#   Initializes Oh My Zsh and its plugins/themes.
+#
+# RESPONSIBILITIES
+#   ✔ Define plugins list
+#   ✔ Set theme
+#   ✔ Load Oh My Zsh framework
+#
+# NOTES
+#   - This is the main entry point for OMZ behavior
+#   - Plugins may introduce additional completions, aliases, etc.
+#
+# RULE OF THUMB
+#   "Is this related to OMZ framework?"
+#     → YES → belongs here
+#
+# LOADED FROM
+#   .zshrc (interactive only)
+# }}
+
 export ZSH="$HOME/.local/repos/ohmyzsh/ohmyzsh"
 export ZSH_CUSTOM="$HOME/.local/repos/ohmyzsh/custom" # Custom plugins, themes
 

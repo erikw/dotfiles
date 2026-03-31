@@ -5,6 +5,27 @@
 #	vi: foldmarker={{,}} filetype=zsh foldmethod=marker foldlevel=0 tabstop=4 shiftwidth=4:
 # }}
 
+# Documentation {{
+# PURPOSE
+#   Centralizes XDG Base Directory configuration.
+#
+# RESPONSIBILITIES
+#   ✔ Define XDG-related environment variables for programs
+#   ✔ Redirect tool configs away from $HOME into XDG paths
+#
+# EXAMPLES
+#   - INPUTRC
+#   - GNUPGHOME
+#   - DOCKER_CONFIG
+#
+# RULE OF THUMB
+#   "Does this tell a program WHERE to store its files?"
+#     → YES → belongs here
+#
+# LOADED FROM
+#   .zprofile (login shell, environment setup phase)
+# }}
+
 export INPUTRC=$XDG_CONFIG_HOME/readline/inputrc
 export KDEHOME=$XDG_CONFIG_HOME/kde
 export MPLAYER_HOME=$XDG_CONFIG_HOME/mplayer

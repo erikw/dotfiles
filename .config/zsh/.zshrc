@@ -3,6 +3,38 @@
 #	vi: foldmarker={{,}} filetype=zsh foldmethod=marker foldlevel=0 tabstop=4 shiftwidth=4:
 # }}
 
+# Documentation {{
+# PURPOSE
+#   Sourced for INTERACTIVE shells.
+#   This defines the *user experience* of the shell.
+#
+# RESPONSIBILITIES
+#   ✔ Load interactive configuration (rc/*.zsh)
+#     - prompt / Oh My Zsh
+#     - aliases
+#     - completion
+#     - keybindings
+#     - UI behavior
+#     - interactive tools (fzf, etc.)
+#
+#   ✘ DO NOT put here:
+#     - heavy environment setup (asdf, sdkman, etc.)
+#     - large PATH modifications
+#
+# WHY
+#   This file runs EVERY time you open a terminal or subshell.
+#   Keeping it lightweight = fast shell startup.
+#
+# STARTUP CONTEXT
+#   Runs after:
+#     .zshenv → .zprofile → .zshrc
+#
+# RULE OF THUMB
+#   "Does this affect how I interact with the shell?"
+#     → YES → belongs here
+#     → NO  → belongs in env/
+# }}
+
 # Profiling - start {{
 # After running this, inspect result of current shell with:
 # $ ~/bin/parse_zsh_startup.py ~/tmp/startuplog.$$

@@ -3,6 +3,23 @@
 #	vi: foldmarker={{,}} filetype=zsh foldmethod=marker foldlevel=0 tabstop=4 shiftwidth=4:
 # }}
 
+# Documentation {{
+# PURPOSE
+#   Configures Zsh completion system.
+#
+# RESPONSIBILITIES
+#   ✔ zstyle completion settings
+#   ✔ completion behavior and caching
+#   ✔ completion-related tweaks
+#
+# RULE OF THUMB
+#   "Does this affect tab-completion behavior?"
+#     → YES → belongs here
+#
+# LOADED FROM
+#   .zshrc
+# }}
+
 zstyle ':completion:*' menu select	# Visualize and selecting with arrow keys in completion.
 # Completion functions to try in given order. Ref: https://zsh.sourceforge.io/Doc/Release/Completion-System.html
 zstyle ':completion:*' completer _expand _expand_alias _extensions _complete _ignored _correct _approximate

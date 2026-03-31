@@ -3,6 +3,24 @@
 #	vi: foldmarker={{,}} filetype=zsh foldmethod=marker foldlevel=0 tabstop=4 shiftwidth=4:
 # }}
 
+# Documentation {{
+# PURPOSE
+#   Configures Zsh shell options (setopt / unsetopt).
+#
+# RESPONSIBILITIES
+#   ✔ Shell behavior:
+#     - directory navigation
+#     - job control
+#     - input/output behavior
+#
+# RULE OF THUMB
+#   "Is this a `setopt` or core shell behavior?"
+#     → YES → belongs here
+#
+# LOADED FROM
+#   .zshrc
+# }}
+
 # Manual & categories: http://zsh.sourceforge.net/Doc/Release/Options.html
 setopt nobeep			# No beeps thanks!
 

@@ -3,6 +3,28 @@
 #	vi: foldmarker={{,}} filetype=zsh foldmethod=marker foldlevel=0 tabstop=4 shiftwidth=4:
 # }}
 
+# Documentation {{
+# PURPOSE
+#   Defines and constructs the system PATH.
+#
+# RESPONSIBILITIES
+#   ✔ Add system and user binary directories
+#   ✔ Initialize Homebrew environment
+#   ✔ Ensure PATH ordering and deduplication
+#
+# IMPORTANT
+#   PATH must be constructed carefully:
+#     - order matters
+#     - avoid duplicates (typeset -U path)
+#
+# RULE OF THUMB
+#   "Does this change where executables are found?"
+#     → YES → belongs here
+#
+# LOADED FROM
+#   .zprofile
+# }}
+
 # Binary paths {{
 typeset -U path		# Don't add entry to path if it's already present.
 export PATH			# Make the path available in subshells. Export is only needed once.
