@@ -35,6 +35,13 @@
 #     → NO  → belongs in env/
 # }}
 
+# Profiling - start {{
+# Run:
+# $ time zsh -i -c exit
+
+#echo "********************************* START profiling .zshrc "
+#zmodload zsh/zprof
+# }}
 
 # Custom functions (lazy loaded).
 fpath=($ZDOTDIR/functions $fpath)
@@ -53,9 +60,6 @@ source "$ZDOTDIR/rc/aliases.zsh"
 
 
 # Profiling - end {{
-# START in .zprofile
-#if [ "$PROFILE_STARTUP" = true ]; then
-#    unsetopt xtrace
-#    exec 2>&3 3>&-
-#fi
+#zprof
+#echo "********************************* END profiling .zshrc "
 # }}
