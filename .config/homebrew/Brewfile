@@ -8,11 +8,12 @@
 # It's not necessary to tap before installing 'tap/formula', but it gives a warning if not done.
 # Taps {
 				# tap 'homebrew/cask-drivers'      # For jabra-direct
+				tap 'anomalyco/tap' # For https://opencode.ai
 				tap 'beeftornado/rmtree' # rmtree: remove brew package's dependencies with $(brew rmtree <package>).
 				tap 'cormacrelf/tap'  # For dark-notify
 				tap 'erikw/tap'       # For xdg-urlview
+				tap 'hashier/tap' # For macfolket
 				tap 'homebrew/autoupdate' # https://github.com/Homebrew/homebrew-autoupdate
-				tap 'anomalyco/tap' # For https://opencode.ai
 # }
 
 # Formula: default {
@@ -178,12 +179,13 @@
 				cask 'claude-code'
 				cask 'clipy' # If needed, could replace with https://github.com/p0deje/Maccy even though pinned items not exactly like snippets
 				cask 'eurkey' # For ErgoDox
+				cask 'ghostyy'
 				cask 'gimp'
 				cask 'google-chrome'
 				cask 'grammarly-desktop'
-				cask 'ghostyy'
 				cask 'keepingyouawake'
 				cask 'keka'
+				cask 'macfolket'
 				cask 'rectangle'
 				cask 'sanesidebuttons' # Need to manually add it to System Preferences > Users & Groups > Login items. More powerful alt: mac-mouse-fix
 				cask 'scroll-reverser'
