@@ -1,0 +1,22 @@
+#!/usr/bin/env zsh
+# Sleep specified time and then sleep computer.
+# Usage: sleep_standby 3h
+# Usage: sleep_standby 2d
+
+time="$1"
+if [[ -z "$time" ]]; then
+    echo "Missing argument time e.g. 3h"
+    return 1
+fi
+
+cmd_sleep=sleep
+if has_command gsleep; then
+	cmd_sleep=gsleep
+fi
+
+cmd_standby="systemctl suspend"
+if shell_is_macos; then
+	cmd_standby="pmset sleepnow"
+fi
+
+"$cmd_sleep" $time && eval "$cmd_standby"

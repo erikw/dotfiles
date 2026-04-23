@@ -4,8 +4,14 @@
 # Usage: sleep_shutdown 2d
 
 time="$1"
-if has_command gsleep; then
-	gsleep $time && shutdown -h now
-else
-	sleep $time && shutdown -h now
+if [[ -z "$time" ]]; then
+    echo "Missing argument time e.g. 3h"
+    return 1
+
 fi
+cmd_sleep=sleep
+if has_command gsleep;
+	cmd_sleep=gsleep
+fi
+
+"$cmd_sleep" $time && shutdown -h now
