@@ -79,7 +79,8 @@ esac
 
 
 # Solarized ls colors.
-dircolorsdb=$HOME/.local/repos/dircolors-solarized/dircolors.256dark
+# Repo cloned by zinit (see zinit.zsh); fall back to bundled dircolors if not yet available.
+dircolorsdb="${ZINIT[PLUGINS_DIR]}/seebi---dircolors-solarized/dircolors.256dark"
 if ! [ -f "$dircolorsdb" ]; then
 	dircolorsdb=$ZDOTDIR/dircolors
 fi

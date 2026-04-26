@@ -70,6 +70,11 @@ zinit light AlDanial/cloc
 zinit ice as"program" pick"rename"
 zinit light subogero/rename
 
+# dircolors-solarized — solarized color theme for ls/dircolors.
+# Data files only; cloned for the dircolors.256dark file used in rc/ui.zsh.
+zinit ice as"null"
+zinit light seebi/dircolors-solarized
+
 # tig — text-mode git UI. Requires compilation from source; not suitable for
 # zinit binary install. Install via system package manager (brew/apt).
 
