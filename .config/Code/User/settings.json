@@ -29,7 +29,7 @@ JSON5 (close enouch got JSONC) validator: https://jsonformatter.org/json5-valida
     // ******************************** UI ********************************
     // User Nerd Font for fancy symbols (used in zsh's starship).
     "editor.fontFamily": "JetBrainsMono Nerd Font, FiraCode Nerd Font, monospace",
-    "terminal.integrated.fontFamily": "JetBrainsMono Nerd Font"
+    "terminal.integrated.fontFamily": "JetBrainsMono Nerd Font",
 
     // ******************************** Terminal ********************************
     "terminal.integrated.stickyScroll.enabled": true,
