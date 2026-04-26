@@ -140,6 +140,10 @@ zinit light zsh-users/zsh-autosuggestions
 zinit ice wait'0' lucid
 zinit light Aloxaf/fzf-tab
 
+# Auto-pair brackets, quotes, etc. — inserts closing ), ], }, ", ' automatically.
+zinit ice wait'0' lucid
+zinit light hlissner/zsh-autopair
+
 # Syntax highlighting — must be last (wraps ZLE self-insert widget).
 # wait'0b' = second Turbo wave, after wait'0' plugins have settled.
 # zinit light zsh-users/zsh-syntax-highlighting
