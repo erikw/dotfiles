@@ -159,7 +159,7 @@ fi
 	#alias make='colormake'
 #fi
 
-# Compile with dem colors. TODO detect when $(gcc -v) >= 4.9?
+# Compile with dem colors.
 if has_command gcc; then
 	alias gcc="gcc -fdiagnostics-color=auto"
 fi

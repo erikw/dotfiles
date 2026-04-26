@@ -59,7 +59,6 @@ source "$ZDOTDIR/rc/tools.zsh"
 source "$ZDOTDIR/rc/aliases.zsh"
 
 # Must be last: installs precmd hook that renders the prompt.
-# TODO put in rc/starship.sh or not necessary?
 eval "$(starship init zsh)"
 
 

@@ -30,7 +30,7 @@
 	bindkey "\ep" insert-last-word			# Insert !$ with Alt-p.
 	bindkey ' ' magic-space					# Expand !-commands on space.
 
-	# fzf provies a better ^R search.
+	# fzf provides a better ^R search.
 	if ! has_command fzf; then
 		bindkey "^R" history-beginning-search-backward	# Complete from history with prefix
 		bindkey "^E" history-beginning-search-forward	# Complete from history with prefix
