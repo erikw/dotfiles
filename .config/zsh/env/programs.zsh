@@ -76,7 +76,7 @@ fi
 # ruby-build: recommended build env.
 # Reference: https://github.com/rbenv/ruby-build/wiki#suggested-build-environment
 #export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
-if (has_command ruby-build || has_command asdf) && [[ -n "$HOMEBREW_PREFIX" ]]; then
+if ((  $+commands[ruby-build] || $+commands[asdf] )) && [[ -n "$HOMEBREW_PREFIX" ]]; then
 	# For Ruby versions 2.x-3.0
 	#export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$HOMEBREW_PREFIX/opt/openssl@1.1"
 	# For Ruby versions >=3.1
@@ -109,9 +109,9 @@ export MANPATH="$PERL_BASE/man:$MANPATH"
 # Use THE text editor
 if [ "$CODESPACES" = true ]; then
 	export EDITOR="code --wait" VISUAL="code --wait" CSHEDIT="code --wait"
-elif has_command nvim; then
+elif (( $+commands[nvim] )); then
 	export EDITOR=nvim VISUAL=nvim CSHEDIT=nvim
-elif has_command vim; then
+elif (( $+commands[vim] )); then
 	export EDITOR=vim VISUAL=vim CSHEDIT=vim
 fi
 
@@ -128,7 +128,7 @@ else
 fi
 
 # Brew bundler
-if has_command brew; then
+if (( $+commands[brew] )); then
 	# Not using the Brewfile.lock.json feature.
 	export HOMEBREW_BUNDLE_NO_LOCK=1
 fi

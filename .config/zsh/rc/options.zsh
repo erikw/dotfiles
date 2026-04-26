@@ -23,6 +23,7 @@
 # }}
 
 # Manual & categories: http://zsh.sourceforge.net/Doc/Release/Options.html
+setopt extendedglob		# Required for (N) glob qualifiers, (#q...) syntax, ^ negation, etc. Used int rc/completion.zsh
 setopt nobeep			# No beeps thanks!
 
 # Changing Directories

@@ -97,12 +97,17 @@ fi
 # After loading, background-compile the dump to a .zwc so future loads are faster.
 autoload -Uz compinit
 local _zcompdump="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump-$ZSH_VERSION"
-# (N) — null-glob (no error if no match); .mh+24 — regular file modified >24 h ago.
-if [[ -n $_zcompdump(#qN.mh+24) ]]; then
-	compinit -d "$_zcompdump" -i       # dump stale or missing: full rescan
+# Fast path (-C, skips compaudit) only when dump exists AND is <24 h old.
+# Use an array assignment for the glob — (N.mh+24) qualifiers are reliably
+# expanded there, not inside [[ ]] where results depend on EXTENDED_GLOB timing.
+# (N) — null-glob; .mh+24 — regular file modified >24 h ago.
+local -a _zcompdump_stale=($_zcompdump(#qN.mh+24))
+if [[ -f "$_zcompdump" && ${#_zcompdump_stale} -eq 0 ]]; then
+	compinit -C -d "$_zcompdump" -i    # dump fresh: skip rescan + security check
 else
-	compinit -C -d "$_zcompdump" -i    # dump fresh: skip rescan
+	compinit -d "$_zcompdump" -i       # dump missing or stale: full rescan
 fi
+unset _zcompdump_stale
 # Compile to bytecode in the background so the next shell start is faster.
 # &! detaches the job so it doesn't affect exit status or produce output.
 [[ "$_zcompdump.zwc" -nt "$_zcompdump" ]] || zcompile "$_zcompdump" &!
