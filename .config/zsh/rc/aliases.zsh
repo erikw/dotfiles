@@ -119,7 +119,7 @@ esac
 # }}
 
 # Color support {{
-if has_command lsd; then
+if (( $+commands[lsd] )); then
 	alias ls=lsd
 else
 	LS_OPTIONS=()
@@ -129,7 +129,7 @@ else
 	# List with colors when output is terminal.
 	LS_OPTIONS+=(--color=auto)
 
-	if shell_is_macos && has_command gls; then
+	if shell_is_macos && (( $+commands[gls] )); then
 		# Still need to set alias with options, https://superuser.com/a/670563/42070.
 		# Note that for coreutil ls to have color output, dircolors must be evalued.
 		alias ls="gls ${LS_OPTIONS[*]}"
@@ -145,12 +145,12 @@ alias grep="grep --color=auto"
 # Force color e.g. to use when piping to less.
 alias grepc='grep --color=always'
 
-if has_command colordiff ; then
+if (( $+commands[colordiff] )); then
 	alias cdiff='colordiff'
 fi
 
 # Use colored du if exists.
-if has_command cdu ; then
+if (( $+commands[cdu] )); then
 	alias du='cdu -idh'
 fi
 
@@ -160,7 +160,7 @@ fi
 #fi
 
 # Compile with dem colors.
-if has_command gcc; then
+if (( $+commands[gcc] )); then
 	alias gcc="gcc -fdiagnostics-color=auto"
 fi
 
@@ -169,7 +169,7 @@ fi
 # Coreutils {{
 # Hand-picked tools that we use use instead of the basic BSD versions in macOS
 # AVOID gfind, ggrep as they can break source compilation builds.
-if shell_is_macos && has_command grm; then
+if shell_is_macos && (( $+commands[grm] )); then
 	alias rm='grm'	# The BSD version can't append arguments after filenames.
 fi
 #
@@ -220,7 +220,7 @@ fi
 # }}
 
 # Libreoffice {{
-if has_command libreoffice; then
+if (( $+commands[libreoffice] )); then
 	for app in base calc draw impress math writer; do
 		alias l$app="libreoffice --$app"
 	done
@@ -228,7 +228,7 @@ fi
 # }}
 
 # Vim {{
-if has_command nvim; then
+if (( $+commands[nvim] )); then
 	alias vi='nvim'
 	alias view='nvim -R'
 	alias nview='nvim -R'
@@ -236,7 +236,7 @@ if has_command nvim; then
 	alias nvimplain="vim -u NONE -i NONE"
 	alias nvim_clean='rm -rf ${XDG_DATA_HOME:-$HOME/.local/share}/nvim/{.netrwhist,shada,swap,undo,view}/ ${XDG_CACHE_HOME:-$HOME/.cache}/nvim/'		# It's a new-start!
 	alias vis='nvim -c OpenSession'  # Load ticket.vim session on start.
-elif has_command vim; then
+elif (( $+commands[vim] )); then
 	alias vi='vim'						# Be IMproved.
 	alias view='vim -R'					# Not all distributions of Vim provide the readonly bin.
 	alias viplain="vim -u NONE -i NONE"				# Start wiht without reading ~/.vimrc and using ~/.viminfo.

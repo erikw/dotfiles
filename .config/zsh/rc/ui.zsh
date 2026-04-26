@@ -87,9 +87,9 @@ fi
 # Cache dircolors output to avoid subprocess on every interactive shell.
 dircolors_cache="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/dircolors.zsh"
 if [ ! -s "$dircolors_cache" ] || [ "$dircolorsdb" -nt "$dircolors_cache" ]; then
-	if has_command dircolors; then
+	if (( $+commands[dircolors] )); then
 		dircolors -b "$dircolorsdb" > "$dircolors_cache"
-	elif shell_is_macos && has_command gdircolors; then
+	elif shell_is_macos && (( $+commands[gdircolors] )); then
 		gdircolors -b "$dircolorsdb" > "$dircolors_cache"
 	fi
 fi

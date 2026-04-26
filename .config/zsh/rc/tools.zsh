@@ -35,7 +35,7 @@
 # GPG_TTY — needed for gpg(1) to work in interactive shells (e.g. git commit signing).
 # $TTY is a zsh builtin (no subprocess needed, unlike $(tty)).
 # Set here rather than env/programs.zsh: only meaningful for interactive shells with a TTY.
-# has_command gpg && export GPG_TTY=$TTY
+# (( $+commands[gpg] )) && export GPG_TTY=$TTY
 
 # starship — cross-shell prompt.
 # Cache the init hook to avoid eval "$(starship init zsh)" subprocess on every shell start.
@@ -69,7 +69,7 @@ if (( $+commands[broot] )); then
 fi
 
 # fzf — binary installed via zinit (see zinit.zsh). https://github.com/junegunn/fzf
-if has_command fzf; then
+if (( $+commands[fzf] )); then
 	# Cache shell init to file to speed up shell initialization.
 	# Regenerate when fzf binary is newer than cache (e.g. after zinit update).
 	fzf_init_file="${XDG_CACHE_HOME:-$HOME/.cache}/fzf.zsh"
@@ -83,11 +83,11 @@ if has_command fzf; then
 	export FZF_COMPLETION_OPTS='--multi'
 
 	# Find dot files as well. Reference: https://github.com/junegunn/fzf/issues/634
-	if has_command fd; then
+	if (( $+commands[fd] )); then
 		#export FZF_DEFAULT_COMMAND="rg --hidden --files --glob '!{.git,node_modules}/'"
 		#export FZF_DEFAULT_COMMAND='fd --type file --hidden --follow --exclude node_modules'
 		export FZF_DEFAULT_COMMAND='fd --type file --hidden --follow'
-	elif has_command fdfind; then # apt-get name
+	elif (( $+commands[fdfind] )); then # apt-get name
 		export FZF_DEFAULT_COMMAND='fdfind --type file --hidden --follow'
 	else
 		export FZF_DEFAULT_COMMAND='find . -type d \( -path './.git' -o -path './node_modules'  \) -prune -o -print'
@@ -102,7 +102,7 @@ fi
 
 # bat — binary installed via zinit (see zinit.zsh).
 # Get better man pages in color.
-if has_command bat; then
+if (( $+commands[bat] )); then
 	export MANPAGER="bat -plman"
 fi
 
@@ -110,7 +110,7 @@ fi
 # Wires _direnv_hook into precmd_functions and chpwd_functions so .envrc files are loaded/unloaded automatically on directory change.
 # Hook output is stable between runs, so cache it like fzf/brew to avoid a subprocess on every shell.
 # Regenerate when direnv binary is newer than cache (e.g. after zinit update).
-if has_command direnv; then
+if (( $+commands[direnv] )); then
 	_direnv_cache="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/direnv_hook.zsh"
 	if [[ ! -s "$_direnv_cache" ]] || [[ "${commands[direnv]}" -nt "$_direnv_cache" ]]; then
 		direnv hook zsh >| "$_direnv_cache"

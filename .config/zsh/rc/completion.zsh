@@ -70,13 +70,13 @@ setopt completealiases
 # To force-regenerate the dump file: rm ${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump-$ZSH_VERSION
 
 # Add tab completion to daemonize.
-if has_command daemonize; then
+if (( $+commands[daemonize] )); then
 	compctl -cf daemonize
 fi
 
 # Generate asdf completions and add to fpath
 # The generated file is cached; delete it to regenerate after an asdf upgrade.
-if has_command asdf; then
+if (( $+commands[asdf] )); then
 	_asdf_comp="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/completions/_asdf"
 	if [[ ! -f "$_asdf_comp" ]]; then
 		mkdir -p "${_asdf_comp:h}"

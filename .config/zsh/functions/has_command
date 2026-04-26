@@ -1,5 +1,6 @@
 #!/usr/bin/env zsh
 # Check if we have a cmd in PATH.
+# Prefer inlinin like `if (( $+commands[CMD] )); then` to save shell startup time. These calls adds up!
 
 local cmd="$1"
 
