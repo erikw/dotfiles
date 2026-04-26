@@ -57,12 +57,8 @@ quit-after-last-window-closed = true
 theme = dark:iTerm2 Solarized Dark,light:iTerm2 Solarized Light
 
 # Font style
-#font-family = "Hack Nerd Font"
-#font-size = 15
-
- # For powerlevel10 OMZ theme.
-font-family = "MesloLGS NF"
-font-size = 14
+font-family = "Hack Nerd Font"
+font-size = 15
 
 # Start window in maximized state
 maximize = true

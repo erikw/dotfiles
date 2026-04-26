@@ -1,5 +1,4 @@
 # RC: Zinit Plugin Manager
-# Replaces rc/omz.zsh (kept for reference, no longer sourced).
 # Modeline {{
 #	vi: foldmarker={{,}} filetype=zsh foldmethod=marker foldlevel=0 tabstop=4 shiftwidth=4:
 # }}
@@ -7,12 +6,11 @@
 # Documentation {{
 # PURPOSE
 #   Bootstraps Zinit and loads all shell plugins.
-#   Direct replacement for rc/omz.zsh.
 #
 # RESPONSIBILITIES
 #   ✔ Source zinit from submodule at $HOME/.local/repos/zinit
 #   ✔ Declare all plugins (eagerly loaded, no Turbo for simplicity)
-#   ✔ Load env.local (secrets) — was in rc/omz.zsh
+#   ✔ Load env.local (secrets)
 #
 # NOTES
 #   - rc/bindings.zsh binds history-substring-search-{up,down} widgets

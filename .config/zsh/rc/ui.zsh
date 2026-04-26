@@ -20,7 +20,8 @@
 #   .zshrc
 # }}
 
-# OMZ/starship migrated {{
+# Custom prompt {{
+# NOTE using starship instead.
 #autoload -U colors && colors
 
 ## Prompt settings.
@@ -64,19 +65,6 @@
 #PROMPT="$PROMPT> "										# EOL
 
 
-## Fish like syntax highlighting on command line.
-#zsh_syntax_path=
-#if shell_is_macos; then
-#    zsh_syntax_path=$HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-#elif shell_is_linux; then
-#    zsh_syntax_path=/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-#elif shell_is_bsd; then
-#    zsh_syntax_path=/usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-#fi
-#if [ -n "$zsh_syntax_path" ] && [ -f "$zsh_syntax_path" ]; then
-#    source $zsh_syntax_path
-#fi
-#unset zsh_syntax_path
 # }}
 
 # Colorize ls(1) on BSD/Mac systems.

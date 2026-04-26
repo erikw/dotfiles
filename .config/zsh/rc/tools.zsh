@@ -12,7 +12,7 @@
 #     - fzf
 #     - broot
 #     - fzf-marks
-#     - direnv (replaces OMZ direnv plugin)
+#     - direnv
 #
 #   ✔ Interactive-only environment variables
 #     (e.g. FZF_DEFAULT_COMMAND)
@@ -84,8 +84,7 @@ fi
 export MANPAGER="bat -plman"
 
 # direnv: https://direnv.net/
-# Wires _direnv_hook into precmd_functions and chpwd_functions so .envrc files
-# are loaded/unloaded automatically on directory change. Was handled by OMZ direnv plugin.
+# Wires _direnv_hook into precmd_functions and chpwd_functions so .envrc files are loaded/unloaded automatically on directory change.
 # Hook output is stable between runs, so cache it like fzf/brew to avoid a subprocess on every shell.
 if has_command direnv; then
 	_direnv_cache="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/direnv_hook.zsh"

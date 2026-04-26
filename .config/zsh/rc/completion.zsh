@@ -42,8 +42,7 @@ zstyle ':completion:*' cache-path ${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompcache
 # Honor LS_COLORs in completion. Ref: https://github.com/ohmyzsh/ohmyzsh/issues/6060#issuecomment-1016734641
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 # Ignore case in tab complete. http://www.rlazo.org/2010/11/18/zsh-case-insensitive-completion/
-#zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
-# Disabled as causes issue with OMZ; doesn't cycle though completons in a menu. Case seems ignored anyways
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 # Completing process IDs with menu selection:
 zstyle ':completion:*:*:kill:*' menu yes select
 zstyle ':completion:*:kill:*' force-list always
