@@ -79,7 +79,7 @@ fi
 
 # Generate asdf completions and add to fpath
 # The generated file is cached; delete it to regenerate after an asdf upgrade.
-if (( $+commands[asdf] )); then
+if has_command asdf; then
 	_asdf_comp="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/completions/_asdf"
 	if [[ ! -f "$_asdf_comp" ]]; then
 		mkdir -p "${_asdf_comp:h}"
