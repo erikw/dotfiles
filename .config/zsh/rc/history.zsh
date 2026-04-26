@@ -1,4 +1,4 @@
-# RC: Completion
+# RC: History
 # Modeline {{
 #	vi: foldmarker={{,}} filetype=zsh foldmethod=marker foldlevel=0 tabstop=4 shiftwidth=4:
 # }}

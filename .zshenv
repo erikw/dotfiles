@@ -65,5 +65,16 @@ else
   export ZDOTDIR=${ZDOTDIR:=${XDG_CONFIG_HOME}/zsh}
 fi
 
+# Platform detection — must be in .zshenv so it is available in ALL shell invocations
+# (login, interactive, scripts, cron, ssh). Used by $ZDOTDIR/functions/shell_is_*
+export SHELL_PLATFORM=unknown
+case "$OSTYPE" in
+    *linux*)   SHELL_PLATFORM=linux   ;;
+    *darwin*)  SHELL_PLATFORM=macos   ;;
+    *freebsd*) SHELL_PLATFORM=freebsd ;;
+    *bsd*)     SHELL_PLATFORM=bsd     ;;
+    *msys*)    SHELL_PLATFORM=windows ;;
+esac
+
 # Minimal PATH so scripts work.
 export PATH="/usr/bin:/bin:/usr/sbin:/sbin:$HOME/bin"

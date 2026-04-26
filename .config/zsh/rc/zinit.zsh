@@ -14,7 +14,6 @@
 #   ✔ Load env.local (secrets)
 #
 # NOTES
-#   - rc/bindings.zsh binds history-substring-search-{up,down} widgets
 #   - compinit is called in rc/completion.zsh (after this file)
 #   - Binary tools are fetched from GitHub Releases — no package manager needed.
 #     Works on macOS, Linux, and devcontainers alike.

@@ -64,9 +64,6 @@ zstyle ':completion:*:*:open:*' tag-order '!urls'
 export LISTMAX=500
 
 # Complete options for aliases too.
-# NOPE setting this means that aliases are not expanded before completion. I don't want this as then
-# $ g <tab>
-# does not work (g alias for 'cd-bookmark -c')
 setopt completealiases
 
 # To force-regenerate the dump file: rm ${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump-$ZSH_VERSION

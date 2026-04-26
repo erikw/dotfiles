@@ -16,7 +16,7 @@
 #     - direnv
 #
 #   ✔ Interactive-only environment variables
-#     (e.g. FZF_DEFAULT_COMMAND)
+#     (e.g. FZF_DEFAULT_COMMAND, GPG_TTY)
 #
 # IMPORTANT
 #   These tools:
@@ -30,6 +30,11 @@
 # LOADED FROM
 #   .zshrc
 # }}
+
+# GPG_TTY — needed for gpg(1) to work in interactive shells (e.g. git commit signing).
+# $TTY is a zsh builtin (no subprocess needed, unlike $(tty)).
+# Set here rather than env/programs.zsh: only meaningful for interactive shells with a TTY.
+# has_command gpg && export GPG_TTY=$TTY
 
 # broot - https://dystroy.org/broot/install-br/
 # Define br() directly instead of sourcing the launcher script on every shell.
@@ -52,8 +57,9 @@ fi
 # fzf — binary installed via zinit (see zinit.zsh). https://github.com/junegunn/fzf
 if has_command fzf; then
 	# Cache shell init to file to speed up shell initialization.
+	# Regenerate when fzf binary is newer than cache (e.g. after zinit update).
 	fzf_init_file="${XDG_CACHE_HOME:-$HOME/.cache}/fzf.zsh"
-	if  [ ! -s "$fzf_init_file" ]; then
+	if [[ ! -s "$fzf_init_file" ]] || [[ "${commands[fzf]}" -nt "$fzf_init_file" ]]; then
 		fzf --zsh > "$fzf_init_file"
 	fi
 	source "$fzf_init_file"
@@ -89,9 +95,10 @@ fi
 # direnv — binary installed via zinit (see zinit.zsh). https://direnv.net/
 # Wires _direnv_hook into precmd_functions and chpwd_functions so .envrc files are loaded/unloaded automatically on directory change.
 # Hook output is stable between runs, so cache it like fzf/brew to avoid a subprocess on every shell.
+# Regenerate when direnv binary is newer than cache (e.g. after zinit update).
 if has_command direnv; then
 	_direnv_cache="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/direnv_hook.zsh"
-	if [[ ! -s "$_direnv_cache" ]]; then
+	if [[ ! -s "$_direnv_cache" ]] || [[ "${commands[direnv]}" -nt "$_direnv_cache" ]]; then
 		direnv hook zsh >| "$_direnv_cache"
 	fi
 	source "$_direnv_cache"

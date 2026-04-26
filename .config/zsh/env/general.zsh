@@ -41,11 +41,13 @@
 #
 # STARTUP CONTEXT
 #   Loaded during:
-#     → .zshenv (always)
+#     → .zprofile (login shells)
 #
 #   So it affects:
-#     - interactive shells
-#     - non-interactive shells (scripts, cron, ssh commands)
+#     - login shells
+#     - interactive shells spawned from login shells (inherit env)
+#
+#   NOTE: SHELL_PLATFORM is set in .zshenv so it is available everywhere.
 #
 # RULE OF THUMB
 #   "Is this a stable, global value that other config depends on?"
@@ -59,15 +61,7 @@
 # Needs to include encoding as well for iTerm: https://gitlab.com/gnachman/iterm2/-/issues/10879#note_1433417922
 export LANG=en_US.UTF-8
 
-# Used by $ZDOTDIR/functions/shell_is_*
-export SHELL_PLATFORM=unknown
-case "$OSTYPE" in
-    *linux*)   SHELL_PLATFORM=linux   ;;
-    *darwin*)  SHELL_PLATFORM=macos   ;;
-    *freebsd*) SHELL_PLATFORM=freebsd ;;
-    *bsd*)     SHELL_PLATFORM=bsd     ;;
-    *msys*)    SHELL_PLATFORM=windows ;;
-esac
+# SHELL_PLATFORM is set in .zshenv (available in all shells). See there.
 
 # Nice to have when fetching scanned documents
 export SCANNED=$HOME/media/images/scanned/
