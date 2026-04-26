@@ -2,9 +2,6 @@
 [submodule ".local/repos/dircolors-solarized"]
 	path = .local/repos/dircolors-solarized
 	url = https://github.com/seebi/dircolors-solarized.git
-[submodule ".local/repos/fzf-marks"]
-	path = .local/repos/fzf-marks
-	url = https://github.com/urbainvaes/fzf-marks.git
 [submodule ".local/repos/dotbot/dotbot"]
 	path = .local/repos/dotbot/dotbot
 	url = https://github.com/anishathalye/dotbot

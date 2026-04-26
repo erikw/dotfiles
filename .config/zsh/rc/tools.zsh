@@ -8,8 +8,9 @@
 #   Configures interactive CLI tools and enhancements.
 #
 # RESPONSIBILITIES
-#   ✔ Tool integrations:
+#   ✔ Tool integrations (binaries installed via zinit, configured here):
 #     - fzf
+#     - bat
 #     - broot
 #     - fzf-marks
 #     - direnv
@@ -48,7 +49,7 @@ if (( $+commands[broot] )); then
 	}
 fi
 
-# fzf https://github.com/junegunn/fzf#using-homebrew
+# fzf — binary installed via zinit (see zinit.zsh). https://github.com/junegunn/fzf
 if has_command fzf; then
 	# Cache shell init to file to speed up shell initialization.
 	fzf_init_file="${XDG_CACHE_HOME:-$HOME/.cache}/fzf.zsh"
@@ -79,11 +80,13 @@ if has_command fzf; then
 fi
 
 
-# bat
-# Get better man pages in color
-export MANPAGER="bat -plman"
+# bat — binary installed via zinit (see zinit.zsh).
+# Get better man pages in color.
+if has_command bat; then
+	export MANPAGER="bat -plman"
+fi
 
-# direnv: https://direnv.net/
+# direnv — binary installed via zinit (see zinit.zsh). https://direnv.net/
 # Wires _direnv_hook into precmd_functions and chpwd_functions so .envrc files are loaded/unloaded automatically on directory change.
 # Hook output is stable between runs, so cache it like fzf/brew to avoid a subprocess on every shell.
 if has_command direnv; then
@@ -103,16 +106,21 @@ fi
 #fi
 
 # fzf-marks: https://github.com/urbainvaes/fzf-marks
-# Done here and not in commons, as it must be after $(bindkeys -v)
-if [ -d $HOME/.local/repos/fzf-marks ]; then
-	sourceifexists $HOME/.local/repos/fzf-marks/fzf-marks.plugin.zsh
+# Sourced here (not in zinit.zsh) because it must load after bindkey -v in rc/bindings.zsh.
+# The plugin is cloned and updated by zinit; we source it manually from zinit's plugin directory.
+_fzf_marks_plugin="${ZINIT[PLUGINS_DIR]}/urbainvaes---fzf-marks/fzf-marks.plugin.zsh"
+if [[ -f "$_fzf_marks_plugin" ]]; then
+	# Set before sourcing so the plugin picks them up.
+	# Explicit full command (not appending to $FZF_MARKS_COMMAND) avoids
+	# the variable being empty and producing "--exact" as the base command.
 	# --exact --select-1: jump to exact match directly if only match.
 	# --nth=1 --delimiter=' : ': only search the bookmark names, not values.
-	FZF_MARKS_COMMAND="$FZF_MARKS_COMMAND --exact --select-1 --nth=1 --delimiter=' : '"
-
+	FZF_MARKS_COMMAND="fzf --exact --select-1 --nth=1 --delimiter=' : '"
 	# Be consistent with default fzf behaviour. ctrl-d should close selection window, not delete things.
 	FZF_MARKS_DELETE=ctrl-r
+	source "$_fzf_marks_plugin"
 fi
+unset _fzf_marks_plugin
 
 # qlty. From $(curl https://qlty.sh | sh)
 if [ -d "$HOME/.qlty" ]; then

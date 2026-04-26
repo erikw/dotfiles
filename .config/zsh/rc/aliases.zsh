@@ -209,7 +209,7 @@ done
 
 # fzf-marks {{
 # Bashmark style aliases
-if [ -d $HOME/.local/repos/fzf-marks ]; then
+if (( $+functions[fzm] )); then
 	alias g='fzm'
 	alias s='mark'
 	alias e="vi $FZF_MARKS_FILE"
