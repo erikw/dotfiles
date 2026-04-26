@@ -31,18 +31,6 @@
 [submodule ".local/repos/dotbot/plugins/ifplatform"]
 	path = .local/repos/dotbot/plugins/ifplatform
 	url = https://github.com/erikw/dotbot-ifplatform.git
-[submodule ".local/repos/ohmyzsh/ohmyzsh"]
-	path = .local/repos/ohmyzsh/ohmyzsh
-	url = https://github.com/ohmyzsh/ohmyzsh.git
-[submodule ".local/repos/ohmyzsh/custom/plugins/zsh-autosuggestions"]
-	path = .local/repos/ohmyzsh/custom/plugins/zsh-autosuggestions
-	url = https://github.com/zsh-users/zsh-autosuggestions
-[submodule ".local/repos/ohmyzsh/custom/plugins/smart-suggestion"]
-	path = .local/repos/ohmyzsh/custom/plugins/smart-suggestion
-	url = https://github.com/yetone/smart-suggestion
-[submodule ".local/repos/ohmyzsh/custom/themes/powerlevel10k"]
-	path = .local/repos/ohmyzsh/custom/themes/powerlevel10k
-	url = https://github.com/romkatv/powerlevel10k.git
 [submodule ".local/repos/zinit"]
 	path = .local/repos/zinit
 	url = https://github.com/zdharma-continuum/zinit.git
