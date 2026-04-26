@@ -45,11 +45,6 @@ source "$ZINIT_HOME/zinit.zsh"
 zinit ice blockf
 zinit light zsh-users/zsh-completions
 
-# Prefix-aware history search. 
-# rc/bindings.zsh binds the registered widgets to arrow keys and k/j in vicmd.
-# TODO is this really used by bindings.zsh?
-zinit light zsh-users/zsh-history-substring-search
-
 # Suggests previous commands inline (like fish shell).
 # Accept suggestion the right arrow.
 # Ref: https://github.com/zsh-users/zsh-autosuggestions
