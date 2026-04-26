@@ -54,6 +54,7 @@ format = "[$symbol]($style) "
 style = "bold white"
 
 [os.symbols]
+# Default symbols at https://starship.rs/config/#options-70
 Macos = ""
 Linux = ""
 Windows = ""
