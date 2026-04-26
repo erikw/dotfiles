@@ -101,6 +101,8 @@ export PERL_MM_OPT="INSTALL_BASE=$PERL_BASE"
 export PERL_MB_OPT="--install_base $PERL_BASE"
 export PERL5LIB="$PERL_BASE/lib/perl5"
 export PATH="$PERL_BASE/bin:$PATH"
+# Trailing colon means "append system default paths" (POSIX convention for MANPATH).
+# If $MANPATH is unset, this becomes "$PERL_BASE/man:" which is intentional.
 export MANPATH="$PERL_BASE/man:$MANPATH"
 # }}
 

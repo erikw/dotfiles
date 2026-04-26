@@ -20,11 +20,12 @@
 #   .zshrc
 # }}
 
-export HISTFILE=${XDG_STATE_HOME:-$HOME/.local/state}/zsh/history
-export HISTSIZE=1000000				# How many lines in the current session to remember.
-export SAVEHIST=1000000				# How many lines to save to disk. Must be <=HISTSIZE.
+# No export: these are zsh-internal variables; child processes set their own.
+HISTFILE=${XDG_STATE_HOME:-$HOME/.local/state}/zsh/history
+HISTSIZE=1000000				# How many lines in the current session to remember.
+SAVEHIST=1000000				# How many lines to save to disk. Must be <=HISTSIZE.
 # Patterns to exclue. Separate with |. *-matching.
-export HISTORY_IGNORE="poweroff|reboot|halt|shutdown|xlogout"
+HISTORY_IGNORE="poweroff|reboot|halt|shutdown|xlogout"
 
 setopt appendhistory		# Append to history write on exit, don't overwrite.
 setopt histignoredups		# Don't save immediate duplicates lines in history.

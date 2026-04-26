@@ -61,7 +61,8 @@ zstyle ':completion:*:*:open:*' tag-order '!urls'
 #shell_is_macos && zstyle ':completion:*:default' list-colors ''
 
 # Increase maximum from default 100 suggestions to complete before asking to show more.
-export LISTMAX=500
+# No export: zsh-internal variable, not needed by child processes.
+LISTMAX=500
 
 # Complete options for aliases too.
 setopt completealiases

@@ -1,6 +1,8 @@
 #!/bin/env bash
 # Shebang set to make shellcheck happy.
 # Erik Westrup's shell aliases.
+# NOTE: sourced by bash only (via .config/bash/commons).
+#       Zsh has its own equivalent in .config/zsh/rc/aliases.zsh.
 # Modeline {
 #	 vi: foldmarker={,} foldmethod=marker foldlevel=0 ft=sh
 # }

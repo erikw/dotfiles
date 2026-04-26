@@ -1,6 +1,8 @@
 #!/bin/env bash
 # Shebang set to make shellcheck happy.
 # Utility shell functions.
+# NOTE: sourced by bash only (via .config/bash/commons).
+#       Zsh has its own equivalent in .config/zsh/functions/.
 # vi: foldmarker={,} filetype=sh foldmethod=marker foldlevel=0: tabstop=4 shiftwidth=4:
 
 # source functions.d/ {
