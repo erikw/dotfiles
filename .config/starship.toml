@@ -1,18 +1,22 @@
 # Starship prompt configuration
 # Ref: https://starship.rs/config/
-#
 # NOTE configured symbols comes from Nerd Font one of which must be used in the terminal.
-# Left prompt:  os  directory  git_branch git_status
-#               ❯  (prompt character, changes in vi normal mode)
-#
-# Right prompt: status  cmd_duration  jobs  direnv  python  node  ruby  golang
+# Modeline {{
+#	vi: foldmarker={{,}} filetype=toml foldmethod=marker foldlevel=0 tabstop=4 shiftwidth=4:
+# }}
 
 # Get editor completions based on the config schema
 "$schema" = 'https://starship.rs/config-schema.json'
 
-# Two-line prompt (newline between context and the actual input line).
+# Options {{
+# Insert newline between last command output and new prompt.
 add_newline = true
 
+# Timeout for commands run by starship. Default: 500
+command_timeout = 600
+
+# Modules in the prompt line(s):
+# Right-side modules shown inline via $fill trick (aligns status/duration/jobs to the right).
 format = """
 $os\
 $directory\
@@ -22,22 +26,20 @@ $fill\
 $status\
 $cmd_duration\
 $jobs\
-$line_break\
-$character"""
-
-# Right-side modules shown inline via $fill trick (aligns status/duration/jobs to the right).
-# Note: Starship does not have a native right prompt; the fill module pushes later modules right.
-right_format = """
 $direnv\
 $python\
 $nodejs\
 $ruby\
 $golang\
 $java\
-$rust"""
+$rust\
+$line_break\
+$character"""
 
-# ── Left prompt modules ──────────────────────────────────────────────────────
 
+# }}
+
+# {{ Left prompt modules
 [os]
 disabled = false
 format = "[$symbol]($style) "
@@ -78,9 +80,9 @@ deleted = "✘${count}"
 [fill]
 # Fill until right prompt.
 symbol = " "
+# }}
 
-# ── Right / inline modules ───────────────────────────────────────────────────
-
+# {{ Right prompt modules
 [status]
 # Show non-zero exit codes
 disabled = false
@@ -102,9 +104,18 @@ style = "bold blue"
 number_threshold = 1
 symbol_threshold = 1
 
-# ── Language / runtime modules ───────────────────────────────────────────────
-# Each only shows when a relevant project file is detected in the current directory.
+[direnv]
+# Show when a .envrc is loaded/blocked
+disabled = false
+format = "[$symbol$allowed]($style) "
+symbol = " "
+style = "bold orange"
+allowed_msg = ""
+denied_msg = "blocked"
+not_allowed_msg = ""
 
+# {{ Language / runtime modules
+# Each only shows when a relevant project file is detected in the current directory.
 [python]
 format = "[${symbol}${pyenv_prefix}(${version} )(\\($virtualenv\\) )]($style)"
 symbol = " "
@@ -136,22 +147,11 @@ format = "[$symbol($version )]($style)"
 symbol = " "
 style = "bold orange"
 disabled = true   # Enable if you regularly work in Rust projects.
+# }}
+# }}
 
-[direnv]
-# Show when a .envrc is loaded/blocked
-disabled = false
-format = "[$symbol$allowed]($style) "
-symbol = " "
-style = "bold orange"
-allowed_msg = ""
-denied_msg = "blocked"
-not_allowed_msg = ""
-
-# Note: Starship has no [asdf] module. Language modules (python, nodejs, ruby,
-# golang, etc.) detect the active version automatically regardless of whether
-# asdf, nvm, rbenv, or another version manager is in use.
-
-# ── Prompt character ─────────────────────────────────────────────────────────
+# Command line {{
+# ── Language / runtime modules ───────────────────────────────────────────────
 [character]
 # ❯ in insert mode (green=ok, red=error), ❮ in vi normal mode.
 #success_symbol = "[❯](bold green)"
@@ -164,3 +164,4 @@ vimcmd_symbol = "[❮](bold green)"
 vimcmd_replace_one_symbol = "[▶](bold purple)"
 vimcmd_replace_symbol = "[▶](bold purple)"
 vimcmd_visual_symbol = "[V](bold yellow)"
+# }}
