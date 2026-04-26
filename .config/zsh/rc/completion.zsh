@@ -11,6 +11,8 @@
 #   ✔ zstyle completion settings
 #   ✔ completion behavior and caching
 #   ✔ completion-related tweaks
+#   ✔ asdf completion generation
+#   ✔ compinit
 #
 # RULE OF THUMB
 #   "Does this affect tab-completion behavior?"
@@ -19,6 +21,10 @@
 # LOADED FROM
 #   .zshrc
 # }}
+
+# Ensure completion cache directory exists
+# TODO move to .zprofile
+test -d ${XDG_CACHE_HOME:-$HOME/.cache}/zsh || mkdir -p ${XDG_CACHE_HOME:-$HOME/.cache}/zsh
 
 zstyle ':completion:*' menu select	# Visualize and selecting with arrow keys in completion.
 # Completion functions to try in given order. Ref: https://zsh.sourceforge.io/Doc/Release/Completion-System.html
@@ -68,28 +74,32 @@ export LISTMAX=500
 # does not work (g alias for 'cd-bookmark -c')
 setopt completealiases
 
-#compinit_regen() {
-#    rm -f ${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump-$ZSH_VERSION
-#    compinit -d ${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump-$ZSH_VERSION -i
-#}
-
-# Let OMZ handle this.
-#autoload -Uz compinit
-# -C: [shell startup time optimization] ignore checking for new comp files. The dump file will be
-#       created if there isn’t one already. NOTE Thus, for new files e.g. added to fpath, manually
-#       run once the compinit_regen function above.
-# -i: ignore insecure folder/file check, thus include e.g. /usr/local/share/zsh/site-functions
-# -d: Use a specific path to the dumpfile.
-# Reference: http://zsh.sourceforge.net/Doc/Release/Completion-System.html#Initialization
-#compinit -C
-#test -d ${XDG_CACHE_HOME:-$HOME/.cache}/zsh || mkdir -p ${XDG_CACHE_HOME:-$HOME/.cache}/zsh
-#compinit -d ${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump-$ZSH_VERSION -C
-
+# To force-regenerate the dump file: rm ${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump-$ZSH_VERSION
 
 # Add tab completion to daemonize.
 if has_command daemonize; then
 	compctl -cf daemonize
 fi
+
+# Generate asdf completions and add to fpath
+# The generated file is cached; delete it to regenerate after an asdf upgrade.
+if (( $+commands[asdf] )); then
+	_asdf_comp="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/completions/_asdf"
+	if [[ ! -f "$_asdf_comp" ]]; then
+		mkdir -p "${_asdf_comp:h}"
+		asdf completion zsh >| "$_asdf_comp"
+	fi
+	fpath=("${_asdf_comp:h}" $fpath)
+	unset _asdf_comp
+fi
+
+# Initialize the completion system.
+# -d: XDG-compliant dump file location.
+# -i: skip insecure directory check
+# zinit cdreplay: replays compdef calls queued by plugins loaded before compinit.
+autoload -Uz compinit
+compinit -d "${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump-$ZSH_VERSION" -i
+zinit cdreplay -q
 
 # Completion for functions {{
 # For functions in $ZDOTDIR/functions/

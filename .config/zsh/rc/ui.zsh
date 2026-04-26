@@ -20,7 +20,7 @@
 #   .zshrc
 # }}
 
-# OMZ migrated {{
+# OMZ/starship migrated {{
 #autoload -U colors && colors
 
 ## Prompt settings.
