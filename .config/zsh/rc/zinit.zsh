@@ -14,14 +14,6 @@
 #   ✔ Declare all plugins (eagerly loaded, no Turbo for simplicity)
 #   ✔ Load env.local (secrets) — was in rc/omz.zsh
 #
-# PLUGIN LOAD ORDER
-#   1. zsh-completions    — adds fpath entries, must be before compinit
-#   2. zsh-autosuggestions
-#   3. zsh-history-substring-search — widgets registered here, bound in rc/bindings.zsh
-#   4. safe-paste snippet — bracketed-paste-magic
-#   5. web-search snippet — google/github/duckduckgo aliases
-#   6. fast-syntax-highlighting — wraps ZLE, must be last plugin
-#
 # NOTES
 #   - rc/bindings.zsh binds history-substring-search-{up,down} widgets
 #   - compinit is called in rc/completion.zsh (after this file)
@@ -53,8 +45,9 @@ source "$ZINIT_HOME/zinit.zsh"
 zinit ice blockf
 zinit light zsh-users/zsh-completions
 
-# Fish-like inline history suggestions (grey text, → to accept).
-# zinit light zsh-users/zsh-autosuggestions
+# Prefix-aware history search — replaces OMZ lib/key-bindings.zsh up-line-or-beginning-search.
+# rc/bindings.zsh binds the registered widgets to arrow keys and k/j in vicmd.
+zinit light zsh-users/zsh-history-substring-search
 
 # Safe paste: loads bracketed-paste-magic so pasted text is not immediately executed.
 # Using the OMZ snippet directly (downloads from GitHub, cached by zinit).
@@ -67,7 +60,22 @@ zinit snippet OMZ::plugins/safe-paste/safe-paste.plugin.zsh
 # TODO comment this out, not needed.
 zinit snippet OMZ::plugins/web-search/web-search.plugin.zsh
 
+# Suggests previous commands inline (like fish shell)
+# TODO try out
+# zinit light zsh-users/zsh-autosuggestions
+
+# TODO should add this here?
+# zinit light junegunn/fzf
+
+# Replace built-in tab completion with fzf-based selector.
+# TODO try out
+# zinit light Aloxaf/fzf-tab
+
+# TODO do here?
+# zinit light direnv/direnv
+
 # Syntax highlighting — must be the last plugin loaded (wraps ZLE self-insert widget).
+# zinit light zsh-users/zsh-syntax-highlighting
 # TODO manually try this out.
 zinit light zdharma-continuum/fast-syntax-highlighting
 # }}

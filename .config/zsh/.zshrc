@@ -1,10 +1,3 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.config/zsh/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 # Erik Westrup's .zshrc
 # Modeline {{
 #	vi: foldmarker={{,}} filetype=zsh foldmethod=marker foldlevel=0 tabstop=4 shiftwidth=4:
@@ -17,7 +10,7 @@ fi
 #
 # RESPONSIBILITIES
 #   ✔ Load interactive configuration (rc/*.zsh)
-#     - prompt / Oh My Zsh
+#     - prompt (Starship) / zinit plugins
 #     - aliases
 #     - completion
 #     - keybindings
@@ -54,7 +47,7 @@ fi
 fpath=($ZDOTDIR/functions $fpath)
 autoload -Uz $ZDOTDIR/functions/*(:t)
 
-source "$ZDOTDIR/rc/omz.zsh"
+source "$ZDOTDIR/rc/zinit.zsh"
 source "$ZDOTDIR/rc/options.zsh"
 source "$ZDOTDIR/rc/history.zsh"
 source "$ZDOTDIR/rc/completion.zsh"
@@ -64,6 +57,10 @@ source "$ZDOTDIR/rc/bindings.zsh"
 
 source "$ZDOTDIR/rc/tools.zsh"
 source "$ZDOTDIR/rc/aliases.zsh"
+
+# Must be last: installs precmd hook that renders the prompt.
+# TODO put in rc/starship.sh or not necessary?
+eval "$(starship init zsh)"
 
 
 # Profiling - end {{
