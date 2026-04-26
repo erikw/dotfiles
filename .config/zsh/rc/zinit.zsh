@@ -45,37 +45,26 @@ source "$ZINIT_HOME/zinit.zsh"
 zinit ice blockf
 zinit light zsh-users/zsh-completions
 
-# Prefix-aware history search — replaces OMZ lib/key-bindings.zsh up-line-or-beginning-search.
+# Prefix-aware history search. 
 # rc/bindings.zsh binds the registered widgets to arrow keys and k/j in vicmd.
+# TODO is this really used by bindings.zsh?
 zinit light zsh-users/zsh-history-substring-search
 
-# Safe paste: loads bracketed-paste-magic so pasted text is not immediately executed.
-# Using the OMZ snippet directly (downloads from GitHub, cached by zinit).
-# Ref: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/safe-paste
-zinit snippet OMZ::plugins/safe-paste/safe-paste.plugin.zsh
-
-# Web search: adds google, github, stackoverflow, duckduckgo, youtube, etc. functions.
-# Usage: $ google some query   or   $ duckduckgo privacy search
-# Remove this block if you do not use it.
-# TODO comment this out, not needed.
-zinit snippet OMZ::plugins/web-search/web-search.plugin.zsh
-
-# Suggests previous commands inline (like fish shell)
-# TODO try out
-# zinit light zsh-users/zsh-autosuggestions
+# Suggests previous commands inline (like fish shell).
+# Accept suggestion the right arrow.
+# Ref: https://github.com/zsh-users/zsh-autosuggestions
+zinit light zsh-users/zsh-autosuggestions
 
 # TODO should add this here?
 # zinit light junegunn/fzf
 
 # Replace built-in tab completion with fzf-based selector.
-# TODO try out
-# zinit light Aloxaf/fzf-tab
+zinit light Aloxaf/fzf-tab
 
 # TODO do here?
 # zinit light direnv/direnv
 
 # Syntax highlighting — must be the last plugin loaded (wraps ZLE self-insert widget).
 # zinit light zsh-users/zsh-syntax-highlighting
-# TODO manually try this out.
 zinit light zdharma-continuum/fast-syntax-highlighting
 # }}
