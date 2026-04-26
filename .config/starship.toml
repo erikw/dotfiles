@@ -1,0 +1,164 @@
+# Starship prompt configuration
+# Ref: https://starship.rs/config/
+#
+# Left prompt:  os  directory  git_branch git_status
+#               ❯  (prompt character, changes in vi normal mode)
+#
+# Right prompt: status  cmd_duration  jobs  direnv  asdf  python  node  ruby  golang
+
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Two-line prompt (newline between context and the actual input line).
+add_newline = true
+
+format = """
+$os\
+$directory\
+$git_branch\
+$git_status\
+$fill\
+$status\
+$cmd_duration\
+$jobs\
+$line_break\
+$character"""
+
+# Right-side modules shown inline via $fill trick (aligns status/duration/jobs to the right).
+# Note: Starship does not have a native right prompt; the fill module pushes later modules right.
+right_format = """
+$direnv\
+$python\
+$nodejs\
+$ruby\
+$golang\
+$java\
+$rust\
+$asdf"""
+
+# ── Left prompt modules ──────────────────────────────────────────────────────
+
+[os]
+disabled = false
+format = "[$symbol]($style) "
+style = "bold white"
+
+[os.symbols]
+Macos = ""
+Linux = ""
+Windows = ""
+
+[directory]
+# Keep 1 dir component per truncated level.
+truncation_length = 5
+truncate_to_repo = false      # Show full path even inside git repos.
+truncation_symbol = "…/"
+style = "bold cyan"
+
+[git_branch]
+format = "[$symbol$branch(:$remote_branch)]($style) "
+symbol = " "
+style = "bold purple"
+
+[git_status]
+format = '([\[$all_status$ahead_behind\]]($style) )'
+style = "bold yellow"
+conflicted = "="
+ahead = "⇡${count}"
+behind = "⇣${count}"
+diverged = "⇕⇡${ahead_count}⇣${behind_count}"
+untracked = "?${count}"
+stashed = "$${count}"
+modified = "!${count}"
+staged = "+${count}"
+renamed = "»${count}"
+deleted = "✘${count}"
+
+[fill]
+symbol = " "
+
+# ── Right / inline modules ───────────────────────────────────────────────────
+
+[status]
+# Show non-zero exit codes (p10k: status segment).
+disabled = false
+format = "[$symbol$status]($style) "
+symbol = "✘"
+style = "bold red"
+
+[cmd_duration]
+# Only show for commands that took longer than 3s
+min_time = 3_000
+format = "[ $duration]($style) "
+style = "bold yellow"
+
+[jobs]
+# Show background job count when ≥1 (p10k: background_jobs segment).
+symbol = "⚙"
+format = "[$symbol$number]($style) "
+style = "bold blue"
+number_threshold = 1
+symbol_threshold = 1
+
+# ── Language / runtime modules ───────────────────────────────────────────────
+# These mirror p10k's right-prompt language env segments.
+# Each only shows when a relevant project file is detected in the current directory.
+
+[python]
+format = "[${symbol}${pyenv_prefix}(${version} )(\\($virtualenv\\) )]($style)"
+symbol = " "
+style = "bold yellow"
+
+[nodejs]
+format = "[$symbol($version )]($style)"
+symbol = " "
+style = "bold green"
+
+[ruby]
+format = "[$symbol($version )]($style)"
+symbol = " "
+style = "bold red"
+
+[golang]
+format = "[$symbol($version )]($style)"
+symbol = " "
+style = "bold cyan"
+
+[java]
+format = "[$symbol($version )]($style)"
+symbol = " "
+style = "bold red"
+disabled = true   # Enable if you regularly work in Java projects.
+
+[rust]
+format = "[$symbol($version )]($style)"
+symbol = " "
+style = "bold orange"
+disabled = true   # Enable if you regularly work in Rust projects.
+
+[direnv]
+# Show when a .envrc is loaded/blocked (p10k: direnv segment).
+disabled = false
+format = "[$symbol$allowed]($style) "
+symbol = "direnv "
+style = "bold orange"
+allowed_msg = ""
+denied_msg = "blocked"
+not_allowed_msg = ""
+
+[asdf]
+# Show active asdf version overrides in the current directory.
+disabled = false
+format = "[$symbol$version]($style) "
+symbol = " "
+style = "bold blue"
+
+# ── Prompt character ─────────────────────────────────────────────────────────
+[character]
+# ❯ in insert mode (green=ok, red=error), ❮ in vi normal mode.
+success_symbol = "[❯](bold green)"
+error_symbol = "[❯](bold red)"
+vimcmd_symbol = "[❮](bold green)"
+vimcmd_replace_one_symbol = "[▶](bold purple)"
+vimcmd_replace_symbol = "[▶](bold purple)"
+vimcmd_visual_symbol = "[V](bold yellow)"
