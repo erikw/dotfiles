@@ -106,10 +106,11 @@ JSON5 (close enouch got JSONC) validator: https://jsonformatter.org/json5-valida
 
         // Tools
         // Tools: AI
+        //"openai.chatgpt",
         "GitHub.copilot-chat",
-        "openai.chatgpt",
         "anthropic.claude-code",
         "sst-dev.opencode",
+
         // Tools: Misc
         // "yy0931.vscode-sqlite3-editor",
         "EditorConfig.EditorConfig",
@@ -306,6 +307,6 @@ JSON5 (close enouch got JSONC) validator: https://jsonformatter.org/json5-valida
         "time": true
     },
     "chat.viewSessions.orientation": "stacked",
+    "chat.mcp.gallery.enabled": true,
     "claudeCode.preferredLocation": "panel",
-    "claudeCode.selectedModel": "default",
 }
