@@ -82,8 +82,10 @@ if (( ! $+commands[rg] )); then
 fi
 
 # direnv — per-directory env vars. Hook configured in rc/tools.zsh.
+# direnv ships a plain binary (not an archive), so extract"!" suppresses the
+# "didn't recognize archive type" error zinit would otherwise emit.
 if (( ! $+commands[direnv] )); then
-	zinit ice from"gh-r" as"program" mv"direnv* -> direnv" pick"direnv"
+	zinit ice from"gh-r" as"program" extract"!" mv"direnv* -> direnv" pick"direnv"
 	zinit light direnv/direnv
 fi
 

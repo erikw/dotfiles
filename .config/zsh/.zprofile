@@ -48,6 +48,9 @@ source "$ZDOTDIR/env/paths.zsh"
 source "$ZDOTDIR/env/general.zsh"
 source "$ZDOTDIR/env/programs.zsh"
 
+# Mark as sourced so .zshrc can skip re-sourcing on login shells.
+export _ZPROFILE_SOURCED=1
+
 # Profiling - end {{
 #zprof
 #echo "********************************* END profiling .zprofile "

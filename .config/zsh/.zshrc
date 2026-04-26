@@ -43,6 +43,10 @@
 #zmodload zsh/zprof
 # }}
 
+# On non-login shells (e.g. GitHub Codespaces), .zprofile is never sourced.
+# Guard-source it here so PATH and env/* setup is always available.
+[[ -z "$_ZPROFILE_SOURCED" ]] && source "$ZDOTDIR/.zprofile"
+
 # Custom functions (lazy loaded). Also set in env/paths.zsh; typeset -U fpath deduplicates.
 fpath=($ZDOTDIR/functions $fpath)
 autoload -Uz $ZDOTDIR/functions/*(:t)
