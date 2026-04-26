@@ -76,7 +76,7 @@ fi
 # ruby-build: recommended build env.
 # Reference: https://github.com/rbenv/ruby-build/wiki#suggested-build-environment
 #export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
-if has_command ruby-build || has_command asdf ; then
+if (has_command ruby-build || has_command asdf) && [[ -n "$HOMEBREW_PREFIX" ]]; then
 	# For Ruby versions 2.x-3.0
 	#export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$HOMEBREW_PREFIX/opt/openssl@1.1"
 	# For Ruby versions >=3.1

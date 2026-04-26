@@ -29,6 +29,10 @@
 
 # Zinit bootstrap {{
 ZINIT_HOME="$HOME/.local/repos/zinit"
+if [[ ! -f "$ZINIT_HOME/zinit.zsh" ]]; then
+	echo "zinit not found at $ZINIT_HOME — run the install script" >&2
+	return 1
+fi
 source "$ZINIT_HOME/zinit.zsh"
 # Autoload zinit's completion/annotation functions.
 # autoload -Uz _zinit
