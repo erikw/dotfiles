@@ -87,10 +87,25 @@ fi
 
 # Initialize the completion system.
 # -d: XDG-compliant dump file location.
-# -i: skip insecure directory check
+# -i: skip insecure directory check (safe for single-user setups)
+# -C: skip the security check AND skip regenerating the dump — use when dump is fresh.
 # zinit cdreplay: replays compdef calls queued by plugins loaded before compinit.
+#
+# Performance: only do a full fpath scan when the dump is older than 24 h.
+# Within that window, use -C to skip both the security check and fpath rescan.
+# After loading, background-compile the dump to a .zwc so future loads are faster.
 autoload -Uz compinit
-compinit -d "${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump-$ZSH_VERSION" -i
+local _zcompdump="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump-$ZSH_VERSION"
+# (N) — null-glob (no error if no match); .mh+24 — regular file modified >24 h ago.
+if [[ -n $_zcompdump(#qN.mh+24) ]]; then
+	compinit -d "$_zcompdump" -i       # dump stale or missing: full rescan
+else
+	compinit -C -d "$_zcompdump" -i    # dump fresh: skip rescan
+fi
+# Compile to bytecode in the background so the next shell start is faster.
+# &! detaches the job so it doesn't affect exit status or produce output.
+[[ "$_zcompdump.zwc" -nt "$_zcompdump" ]] || zcompile "$_zcompdump" &!
+unset _zcompdump
 zinit cdreplay -q
 
 # Completion for functions {{

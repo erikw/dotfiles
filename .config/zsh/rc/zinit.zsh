@@ -10,7 +10,9 @@
 # RESPONSIBILITIES
 #   ✔ Source zinit from submodule at $HOME/.local/repos/zinit
 #   ✔ Install binary tools from GitHub Releases (fzf, fd, bat, ripgrep, direnv)
-#   ✔ Declare all shell plugins (eagerly loaded, no Turbo for simplicity)
+#   ✔ Declare all shell plugins:
+#       - binary/program plugins:  loaded eagerly (just register a PATH entry)
+#       - ZLE/interactive plugins: loaded via Turbo mode (deferred to after first prompt — see comments in Plugins section)
 #   ✔ Load env.local (secrets)
 #
 # NOTES
@@ -40,7 +42,8 @@ source "$ZINIT_HOME/zinit.zsh"
 
 # Plugins {{
 
-# Binary tools — installed directly from GitHub Releases.
+# Binary tools {{
+# Installed directly from GitHub Releases.
 # No package manager needed: works on macOS, Linux, and devcontainers alike.
 # Run `zinit update` to update.
 
@@ -94,27 +97,31 @@ zinit light seebi/dircolors-solarized
 # Must load after bindkey -v (rc/bindings.zsh), so it is sourced in rc/tools.zsh.
 zinit ice pick"/dev/null"
 zinit light urbainvaes/fzf-marks
+# }}
 
-# Shell plugins
+# Shell plugins {{
+# ZLE/interactive plugins use Turbo mode (wait'0') — deferred to after the first
+# prompt is drawn so the shell feels instant. lucid suppresses the load banner.
+# Binary tools and starship are eager (no wait) as they must be ready before the prompt.
 
-# Extra completions for many programs, must be before compinit.
-# blockf = prevents zinit from immediately modifying $fpath when this plugin loads
-# Why this matters:
-# - zsh completions are discovered via $fpath during compinit
-# - without control, plugins may alter $fpath at unpredictable times
-# - blockf makes fpath handling more deterministic and avoids timing/order issues
-zinit ice blockf
+# Extra completions — eager: must populate fpath before compinit (rc/completion.zsh).
+# blockf: lets zinit control fpath injection timing.
+zinit ice blockf lucid
 zinit light zsh-users/zsh-completions
 
-# Suggests previous commands inline (like fish shell).
-# Accept suggestion the right arrow.
+# Inline suggestions (like fish). atload'!' activates the widget immediately on load.
 # Ref: https://github.com/zsh-users/zsh-autosuggestions
+zinit ice wait'0' lucid atload'!_zsh_autosuggest_start'
 zinit light zsh-users/zsh-autosuggestions
 
-# Replace built-in tab completion with fzf-based selector.
+# fzf-based tab completion UI. Loads after compinit by virtue of wait'0'.
+zinit ice wait'0' lucid
 zinit light Aloxaf/fzf-tab
 
-# Syntax highlighting — must be the last plugin loaded (wraps ZLE self-insert widget).
+# Syntax highlighting — must be last (wraps ZLE self-insert widget).
+# wait'0b' = second Turbo wave, after wait'0' plugins have settled.
 # zinit light zsh-users/zsh-syntax-highlighting
+zinit ice wait'0b' lucid
 zinit light zdharma-continuum/fast-syntax-highlighting
+# }}
 # }}
