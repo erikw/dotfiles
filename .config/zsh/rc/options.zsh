@@ -12,6 +12,7 @@
 #     - directory navigation
 #     - job control
 #     - input/output behavior
+#     - word characters (affects Ctrl-W, vi text objects)
 #
 # RULE OF THUMB
 #   "Is this a `setopt` or core shell behavior?"
@@ -40,3 +41,8 @@ setopt longlistjobs		# Display PID when suspending processes.
 
 # Shell Emulation
 setopt shnullcmd		# Truncate like in bash e.g. $(>file).
+
+# Word characters — affects Ctrl-W deletion and vi text objects (ci", da(, etc.).
+# Empty string means Ctrl-W stops at any non-alphanumeric char (path separators, hyphens, dots).
+# Without it Ctrl-W would eat entire paths as one word.
+WORDCHARS=''
