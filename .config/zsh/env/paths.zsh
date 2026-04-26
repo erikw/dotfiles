@@ -11,6 +11,7 @@
 #   ✔ Add system and user binary directories
 #   ✔ Initialize Homebrew environment
 #   ✔ Ensure PATH ordering and deduplication
+#   ✔ Ensure needed directories exist
 #
 # IMPORTANT
 #   PATH must be constructed carefully:
@@ -95,4 +96,16 @@ fi
 fpath=($ZDOTDIR/functions $fpath)
 # Load only functions needed at statup shell level.
 autoload -Uz has_command sourceifexists $ZDOTDIR/functions/shell_is_*(:t)
+# }}
+
+# Create directories {{
+# Ensure completion cache directory exists. Used by "zstyle ':completion:*' cache-path" in rc/completion.zsh
+test -d ${XDG_CACHE_HOME:-$HOME/.cache}/zsh || mkdir -p ${XDG_CACHE_HOME:-$HOME/.cache}/zsh
+
+# Ensure XDG path for zsh history exist. Used by $HISTFILE will in rc/history.zsh
+test -d ${XDG_STATE_HOME:-$HOME/.local/state}/zsh || mkdir -p ${XDG_STATE_HOME:-$HOME/.local/state}/zsh
+
+# Personal log folder used by some program configurations.
+test -d ${XDG_STATE_HOME:-$HOME/.local/state}/tmux || mkdir -p ${XDG_STATE_HOME:-$HOME/.local/state}/tmux
+#test -d ${XDG_STATE_HOME:-$HOME/.local/state}/irssi || mkdir -p ${XDG_STATE_HOME:-$HOME/.local/state}/irssi
 # }}

@@ -35,7 +35,7 @@
 # }}
 
 #  Golang {{
-# Not set, overriden by asdf.
+# Not set, overridden by asdf.
 #export GOPATH="$XDG_DATA_HOME/go"
 #if [ -d "$GOPATH/bin" ]; then
 #    PATH="$GOPATH/bin:$PATH"
@@ -137,10 +137,6 @@ fi
 	#export CC=clang
 	#export CXX=clang++
 #fi
-
-# Personal log folder used by some program configurations.
-test -d ${XDG_STATE_HOME:-$HOME/.local/state}/tmux || mkdir -p ${XDG_STATE_HOME:-$HOME/.local/state}/tmux
-#test -d ${XDG_STATE_HOME:-$HOME/.local/state}/irssi || mkdir -p ${XDG_STATE_HOME:-$HOME/.local/state}/irssi
 
 # Needed for gnupg's gpg(1) to work, thus for git commit signing.
 # Only run if a TTY exist (interactice). Still do it here rather than ~/.zsrc as we want to do this once only.

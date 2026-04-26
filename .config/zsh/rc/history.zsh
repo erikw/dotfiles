@@ -20,7 +20,6 @@
 #   .zshrc
 # }}
 
-test -d ${XDG_STATE_HOME:-$HOME/.local/state}/zsh || mkdir -p ${XDG_STATE_HOME:-$HOME/.local/state}/zsh
 export HISTFILE=${XDG_STATE_HOME:-$HOME/.local/state}/zsh/history
 export HISTSIZE=1000000				# How many lines in the current session to remember.
 export SAVEHIST=1000000				# How many lines to save to disk. Must be <=HISTSIZE.

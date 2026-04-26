@@ -22,10 +22,6 @@
 #   .zshrc
 # }}
 
-# Ensure completion cache directory exists
-# TODO move to .zprofile
-test -d ${XDG_CACHE_HOME:-$HOME/.cache}/zsh || mkdir -p ${XDG_CACHE_HOME:-$HOME/.cache}/zsh
-
 zstyle ':completion:*' menu select	# Visualize and selecting with arrow keys in completion.
 # Completion functions to try in given order. Ref: https://zsh.sourceforge.io/Doc/Release/Completion-System.html
 zstyle ':completion:*' completer _expand _expand_alias _extensions _complete _ignored _correct _approximate
