@@ -4,7 +4,7 @@
 # Left prompt:  os  directory  git_branch git_status
 #               ❯  (prompt character, changes in vi normal mode)
 #
-# Right prompt: status  cmd_duration  jobs  direnv  asdf  python  node  ruby  golang
+# Right prompt: status  cmd_duration  jobs  direnv  python  node  ruby  golang
 
 # Get editor completions based on the config schema
 "$schema" = 'https://starship.rs/config-schema.json'
@@ -33,8 +33,7 @@ $nodejs\
 $ruby\
 $golang\
 $java\
-$rust\
-$asdf"""
+$rust"""
 
 # ── Left prompt modules ──────────────────────────────────────────────────────
 
@@ -44,9 +43,9 @@ format = "[$symbol]($style) "
 style = "bold white"
 
 [os.symbols]
-Macos = ""
-Linux = ""
-Windows = ""
+Macos = ""
+Linux = ""
+Windows = ""
 
 [directory]
 # Keep 1 dir component per truncated level.
@@ -57,7 +56,7 @@ style = "bold cyan"
 
 [git_branch]
 format = "[$symbol$branch(:$remote_branch)]($style) "
-symbol = " "
+symbol = " "
 style = "bold purple"
 
 [git_status]
@@ -68,7 +67,7 @@ ahead = "⇡${count}"
 behind = "⇣${count}"
 diverged = "⇕⇡${ahead_count}⇣${behind_count}"
 untracked = "?${count}"
-stashed = "$${count}"
+stashed = "\\$${count}"
 modified = "!${count}"
 staged = "+${count}"
 renamed = "»${count}"
@@ -83,18 +82,18 @@ symbol = " "
 # Show non-zero exit codes (p10k: status segment).
 disabled = false
 format = "[$symbol$status]($style) "
-symbol = "✘"
+symbol = ""
 style = "bold red"
 
 [cmd_duration]
 # Only show for commands that took longer than 3s
 min_time = 3_000
-format = "[ $duration]($style) "
+format = "[ $duration]($style) "
 style = "bold yellow"
 
 [jobs]
 # Show background job count when ≥1 (p10k: background_jobs segment).
-symbol = "⚙"
+symbol = ""
 format = "[$symbol$number]($style) "
 style = "bold blue"
 number_threshold = 1
@@ -106,33 +105,33 @@ symbol_threshold = 1
 
 [python]
 format = "[${symbol}${pyenv_prefix}(${version} )(\\($virtualenv\\) )]($style)"
-symbol = " "
+symbol = " "
 style = "bold yellow"
 
 [nodejs]
 format = "[$symbol($version )]($style)"
-symbol = " "
+symbol = " "
 style = "bold green"
 
 [ruby]
 format = "[$symbol($version )]($style)"
-symbol = " "
+symbol = " "
 style = "bold red"
 
 [golang]
 format = "[$symbol($version )]($style)"
-symbol = " "
+symbol = " "
 style = "bold cyan"
 
 [java]
 format = "[$symbol($version )]($style)"
-symbol = " "
+symbol = " "
 style = "bold red"
 disabled = true   # Enable if you regularly work in Java projects.
 
 [rust]
 format = "[$symbol($version )]($style)"
-symbol = " "
+symbol = " "
 style = "bold orange"
 disabled = true   # Enable if you regularly work in Rust projects.
 
@@ -140,24 +139,25 @@ disabled = true   # Enable if you regularly work in Rust projects.
 # Show when a .envrc is loaded/blocked (p10k: direnv segment).
 disabled = false
 format = "[$symbol$allowed]($style) "
-symbol = "direnv "
+symbol = " "
 style = "bold orange"
 allowed_msg = ""
 denied_msg = "blocked"
 not_allowed_msg = ""
 
-[asdf]
-# Show active asdf version overrides in the current directory.
-disabled = false
-format = "[$symbol$version]($style) "
-symbol = " "
-style = "bold blue"
+# Note: Starship has no [asdf] module. Language modules (python, nodejs, ruby,
+# golang, etc.) detect the active version automatically regardless of whether
+# asdf, nvm, rbenv, or another version manager is in use.
 
 # ── Prompt character ─────────────────────────────────────────────────────────
 [character]
 # ❯ in insert mode (green=ok, red=error), ❮ in vi normal mode.
-success_symbol = "[❯](bold green)"
-error_symbol = "[❯](bold red)"
+#success_symbol = "[❯](bold green)"
+#error_symbol = "[❯](bold red)"
+
+# $ in insert mode (green=ok, red=error), ❮ in vi normal mode.
+success_symbol = "[\\$](bold green)"
+error_symbol = "[\\$](bold red)"
 vimcmd_symbol = "[❮](bold green)"
 vimcmd_replace_one_symbol = "[▶](bold purple)"
 vimcmd_replace_symbol = "[▶](bold purple)"
