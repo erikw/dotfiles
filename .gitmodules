@@ -43,3 +43,6 @@
 [submodule ".local/repos/ohmyzsh/custom/themes/powerlevel10k"]
 	path = .local/repos/ohmyzsh/custom/themes/powerlevel10k
 	url = https://github.com/romkatv/powerlevel10k.git
+[submodule ".local/repos/zinit"]
+	path = .local/repos/zinit
+	url = https://github.com/zdharma-continuum/zinit.git
