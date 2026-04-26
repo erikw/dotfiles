@@ -58,10 +58,6 @@ source "$ZDOTDIR/rc/bindings.zsh"
 source "$ZDOTDIR/rc/tools.zsh"
 source "$ZDOTDIR/rc/aliases.zsh"
 
-# Must be last: installs precmd hook that renders the prompt.
-eval "$(starship init zsh)"
-
-
 # Profiling - end {{
 #zprof
 #echo "********************************* END profiling .zshrc "

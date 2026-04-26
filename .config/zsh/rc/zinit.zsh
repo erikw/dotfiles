@@ -61,6 +61,14 @@ zinit light BurntSushi/ripgrep
 zinit ice from"gh-r" as"program" mv"direnv* -> direnv" pick"direnv"
 zinit light direnv/direnv
 
+# starship — cross-shell prompt.
+# atclone/atpull generates the zsh hook once (avoids eval subprocess on every shell start).
+# src sources the cached hook at load time, replacing `eval "$(starship init zsh)"` in .zshrc.
+zinit ice from"gh-r" as"program" pick"starship" \
+    atclone'./starship init zsh > zhook.zsh' \
+    atpull'%atclone' src'zhook.zsh'
+zinit light starship/starship
+
 # cloc — count lines of code. Perl script, no compilation needed.
 zinit ice as"program" pick"cloc"
 zinit light AlDanial/cloc
