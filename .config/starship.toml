@@ -18,10 +18,12 @@ command_timeout = 600
 # Modules in the prompt line(s):
 # Right-side modules shown inline via $fill trick (aligns status/duration/jobs to the right).
 format = """
+$hostname\
 $os\
 $directory\
 $git_branch\
 $git_status\
+$git_state\
 $fill\
 $status\
 $cmd_duration\
@@ -33,6 +35,7 @@ $ruby\
 $golang\
 $java\
 $rust\
+$time\
 $line_break\
 $character"""
 
@@ -40,6 +43,11 @@ $character"""
 # }}
 
 # {{ Left prompt modules
+[hostname]
+ssh_only = true
+format = "[@$hostname]($style) "
+style = "bold dimmed white"
+
 [os]
 disabled = false
 format = "[$symbol]($style) "
@@ -53,7 +61,7 @@ Windows = ""
 [directory]
 # Keep 1 dir component per truncated level.
 truncation_length = 5
-truncate_to_repo = false      # Show full path even inside git repos.
+# truncate_to_repo = false      # Show full path even inside git repos.
 truncation_symbol = "…/"
 style = "bold cyan"
 
@@ -66,6 +74,7 @@ style = "bold purple"
 # Ref: https://starship.rs/config/#git-status
 format = '([\[$all_status$ahead_behind\]]($style) )'
 style = "bold yellow"
+# Keep it simple, leave out-commented.
 #conflicted = "="
 #ahead = "⇡${count}"
 #behind = "⇣${count}"
@@ -76,6 +85,10 @@ style = "bold yellow"
 #staged = "+${count}"
 #renamed = "»${count}"
 #deleted = "✘${count}"
+
+[git_state]
+format = '\([$state( $progress_current/$progress_total)]($style)\) '
+style = "bold red"
 
 [fill]
 # Fill until right prompt.
@@ -137,17 +150,23 @@ symbol = " "
 style = "bold cyan"
 
 [java]
+disabled = true
 format = "[$symbol($version )]($style)"
 symbol = " "
 style = "bold red"
-disabled = true   # Enable if you regularly work in Java projects.
 
 [rust]
+disabled = true
 format = "[$symbol($version )]($style)"
 symbol = " "
 style = "bold orange"
-disabled = true   # Enable if you regularly work in Rust projects.
 # }}
+
+[time]
+disabled = false
+format = "[ $time]($style) "
+time_format = "%H:%M"
+style = "bold dimmed white"
 # }}
 
 # Command line {{
