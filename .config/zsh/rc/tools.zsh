@@ -8,7 +8,8 @@
 #   Configures interactive CLI tools and enhancements.
 #
 # RESPONSIBILITIES
-#   ✔ Tool integrations (binaries installed via zinit, configured here):
+#   ✔ Tool integrations (configured here; installed via zinit or system package manager):
+#     - starship (prompt init hook — managed here regardless of install method)
 #     - fzf
 #     - bat
 #     - broot
@@ -35,6 +36,19 @@
 # $TTY is a zsh builtin (no subprocess needed, unlike $(tty)).
 # Set here rather than env/programs.zsh: only meaningful for interactive shells with a TTY.
 # has_command gpg && export GPG_TTY=$TTY
+
+# starship — cross-shell prompt.
+# Cache the init hook to avoid eval "$(starship init zsh)" subprocess on every shell start.
+# Works whether starship was installed via Homebrew, zinit, or anything else.
+# Regenerated automatically when the starship binary is newer than the cache.
+if (( $+commands[starship] )); then
+	_starship_cache="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/starship_init.zsh"
+	if [[ ! -s "$_starship_cache" ]] || [[ "${commands[starship]}" -nt "$_starship_cache" ]]; then
+		starship init zsh >| "$_starship_cache"
+	fi
+	source "$_starship_cache"
+	unset _starship_cache
+fi
 
 # broot - https://dystroy.org/broot/install-br/
 # Define br() directly instead of sourcing the launcher script on every shell.

@@ -9,9 +9,9 @@
 #
 # RESPONSIBILITIES
 #   ✔ Source zinit from submodule at $HOME/.local/repos/zinit
-#   ✔ Install binary tools from GitHub Releases (fzf, fd, bat, ripgrep, direnv)
+#   ✔ Install binary tools from GitHub Releases as fallback (skipped if already on PATH)
 #   ✔ Declare all shell plugins:
-#       - binary/program plugins:  loaded eagerly (just register a PATH entry)
+#       - binary/program plugins:  loaded eagerly only when not already installed
 #       - ZLE/interactive plugins: loaded via Turbo mode (deferred to after first prompt — see comments in Plugins section)
 #   ✔ Load env.local (secrets)
 #
@@ -43,46 +43,61 @@ source "$ZINIT_HOME/zinit.zsh"
 # Plugins {{
 
 # Binary tools {{
-# Installed directly from GitHub Releases.
-# No package manager needed: works on macOS, Linux, and devcontainers alike.
-# Run `zinit update` to update.
+# Installed directly from GitHub Releases as a fallback.
+# If the tool is already on PATH (e.g. via Homebrew on macOS or apt on Linux),
+# zinit is skipped entirely — saving ~4ms of plugin-loading overhead per tool.
+# On a fresh devcontainer where tools are absent, zinit installs them automatically.
+# Run `zinit update` to update the zinit-managed copies.
+#
 
-# fzf — fuzzy finder. Shell integration (key bindings, completion) configured in rc/tools.zsh.
-zinit ice from"gh-r" as"program" pick"fzf"
-zinit light junegunn/fzf
+# fzf — fuzzy finder. Shell integration configured in rc/tools.zsh.
+if (( ! $+commands[fzf] )); then
+	zinit ice from"gh-r" as"program" pick"fzf"
+	zinit light junegunn/fzf
+fi
+
+# starship — cross-shell prompt. Init hook is sourced in rc/tools.zsh.
+# NOTE: starship's init hook is cached in rc/tools.zsh and works regardless of how starship was installed (zinit or Homebrew). Only the binary install is gated here.
+if (( ! $+commands[starship] )); then
+	zinit ice from"gh-r" as"program" pick"starship"
+	zinit light starship/starship
+fi
 
 # fd — fast alternative to find.
-zinit ice from"gh-r" as"program" pick"**/fd"
-zinit light sharkdp/fd
+if (( ! $+commands[fd] )); then
+	zinit ice from"gh-r" as"program" pick"**/fd"
+	zinit light sharkdp/fd
+fi
 
 # bat — cat with syntax highlighting. Used as MANPAGER in rc/tools.zsh.
-zinit ice from"gh-r" as"program" pick"**/bat"
-zinit light sharkdp/bat
+if (( ! $+commands[bat] )); then
+	zinit ice from"gh-r" as"program" pick"**/bat"
+	zinit light sharkdp/bat
+fi
 
 # ripgrep — fast grep alternative.
-zinit ice from"gh-r" as"program" pick"**/rg"
-zinit light BurntSushi/ripgrep
+if (( ! $+commands[rg] )); then
+	zinit ice from"gh-r" as"program" pick"**/rg"
+	zinit light BurntSushi/ripgrep
+fi
 
 # direnv — per-directory env vars. Hook configured in rc/tools.zsh.
-zinit ice from"gh-r" as"program" mv"direnv* -> direnv" pick"direnv"
-zinit light direnv/direnv
-
-# starship — cross-shell prompt.
-# atclone/atpull generates the zsh hook once (avoids eval subprocess on every shell start).
-# src sources the cached hook at load time, replacing `eval "$(starship init zsh)"` in .zshrc.
-zinit ice from"gh-r" as"program" pick"starship" \
-    atclone'./starship init zsh > zhook.zsh' \
-    atpull'%atclone' src'zhook.zsh'
-zinit light starship/starship
+if (( ! $+commands[direnv] )); then
+	zinit ice from"gh-r" as"program" mv"direnv* -> direnv" pick"direnv"
+	zinit light direnv/direnv
+fi
 
 # cloc — count lines of code. Perl script, no compilation needed.
-zinit ice as"program" pick"cloc"
-zinit light AlDanial/cloc
+if (( ! $+commands[cloc] )); then
+	zinit ice as"program" pick"cloc"
+	zinit light AlDanial/cloc
+fi
 
 # rename — Perl-based file renaming (compatible with Ubuntu's rename).
-# Perl script, no compilation needed.
-zinit ice as"program" pick"rename"
-zinit light subogero/rename
+if (( ! $+commands[rename] )); then
+	zinit ice as"program" pick"rename"
+	zinit light subogero/rename
+fi
 
 # dircolors-solarized — solarized color theme for ls/dircolors.
 # Data files only; cloned for the dircolors.256dark file used in rc/ui.zsh.
@@ -102,7 +117,6 @@ zinit light urbainvaes/fzf-marks
 # Shell plugins {{
 # ZLE/interactive plugins use Turbo mode (wait'0') — deferred to after the first
 # prompt is drawn so the shell feels instant. lucid suppresses the load banner.
-# Binary tools and starship are eager (no wait) as they must be ready before the prompt.
 
 # Extra completions — eager: must populate fpath before compinit (rc/completion.zsh).
 # blockf: lets zinit control fpath injection timing.

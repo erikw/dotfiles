@@ -40,7 +40,7 @@
 # $ time zsh -i -c exit
 
 #echo "********************************* START profiling .zshrc "
-#zmodload zsh/zprof
+zmodload zsh/zprof
 # }}
 
 # Custom functions (lazy loaded). Also set in env/paths.zsh; typeset -U fpath deduplicates.
@@ -59,6 +59,6 @@ source "$ZDOTDIR/rc/tools.zsh"
 source "$ZDOTDIR/rc/aliases.zsh"
 
 # Profiling - end {{
-#zprof
+zprof
 #echo "********************************* END profiling .zshrc "
 # }}
