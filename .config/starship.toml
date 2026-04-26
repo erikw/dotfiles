@@ -66,16 +66,16 @@ style = "bold purple"
 # Ref: https://starship.rs/config/#git-status
 format = '([\[$all_status$ahead_behind\]]($style) )'
 style = "bold yellow"
-conflicted = "="
-ahead = "⇡${count}"
-behind = "⇣${count}"
-diverged = "⇕⇡${ahead_count}⇣${behind_count}"
-untracked = "?${count}"
-stashed = "\uf187${count}"
-modified = "!${count}"
-staged = "+${count}"
-renamed = "»${count}"
-deleted = "✘${count}"
+#conflicted = "="
+#ahead = "⇡${count}"
+#behind = "⇣${count}"
+#diverged = "⇕⇡${ahead_count}⇣${behind_count}"
+#untracked = "?${count}"
+#stashed = "\uf187${count}"
+#modified = "!${count}"
+#staged = "+${count}"
+#renamed = "»${count}"
+#deleted = "✘${count}"
 
 [fill]
 # Fill until right prompt.
