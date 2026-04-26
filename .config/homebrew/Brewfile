@@ -113,6 +113,7 @@
 				brew 'texlab' # Language server for LaTeX
 				brew 'tig'
 				brew 'tmux'
+				brew 'ncurses' # provides up-to-date terminfo including tmux-256color. macOS ships an outdated terminfo DB that lacks tmux-256color (unfixed across all macOS versions). Install it once to ~/.terminfo so tput works correctly inside tmux.
 				brew 'tree'
 				brew 'tree-sitter-cli' # To make nvim :checkhealth happy.
 				brew 'unar'

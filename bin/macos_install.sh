@@ -50,7 +50,16 @@ fi
 
 # fzf fuzzy finder. Installed via brew. Specify all options on cli for a non-interative setup.
 if ! [ -e $HOME/.config/fzf/fzf.zsh ]; then
-	$(brew --prefix)/opt/fzf/install --xdg  --key-bindings --completion --no-update-rc
+       $(brew --prefix)/opt/fzf/install --xdg  --key-bindings --completion --no-update-rc
+fi
+
+# tmux-256color terminfo entry.
+# macOS ships an outdated terminfo DB that lacks tmux-256color (unfixed across all macOS versions).
+# Compile the entry from Homebrew's ncurses into ~/.terminfo so tput works correctly inside tmux.
+# Otherwise warnings shows up when running $(zinit update) like "tput: unknown terminal "tmux-256color""
+if ! toe -a 2>/dev/null | grep -q '^tmux-256color'; then
+	# Use Homebrew's tic (not /usr/bin/tic) — macOS's bundled tic doesn't support reading from stdin via -.
+	"$(brew --prefix)/opt/ncurses/bin/infocmp" tmux-256color | "$(brew --prefix)/opt/ncurses/bin/tic" -xe tmux-256color -
 fi
 
 
