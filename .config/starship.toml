@@ -1,6 +1,7 @@
 # Starship prompt configuration
 # Ref: https://starship.rs/config/
 #
+# NOTE configured symbols comes from Nerd Font one of which must be used in the terminal.
 # Left prompt:  os  directory  git_branch git_status
 #               ❯  (prompt character, changes in vi normal mode)
 #
@@ -60,6 +61,7 @@ symbol = " "
 style = "bold purple"
 
 [git_status]
+# Ref: https://starship.rs/config/#git-status
 format = '([\[$all_status$ahead_behind\]]($style) )'
 style = "bold yellow"
 conflicted = "="
@@ -67,19 +69,20 @@ ahead = "⇡${count}"
 behind = "⇣${count}"
 diverged = "⇕⇡${ahead_count}⇣${behind_count}"
 untracked = "?${count}"
-stashed = "\\$${count}"
+stashed = "\uf187${count}"
 modified = "!${count}"
 staged = "+${count}"
 renamed = "»${count}"
 deleted = "✘${count}"
 
 [fill]
+# Fill until right prompt.
 symbol = " "
 
 # ── Right / inline modules ───────────────────────────────────────────────────
 
 [status]
-# Show non-zero exit codes (p10k: status segment).
+# Show non-zero exit codes
 disabled = false
 format = "[$symbol$status]($style) "
 symbol = ""
@@ -92,7 +95,7 @@ format = "[ $duration]($style) "
 style = "bold yellow"
 
 [jobs]
-# Show background job count when ≥1 (p10k: background_jobs segment).
+# Show background job count when ≥1
 symbol = ""
 format = "[$symbol$number]($style) "
 style = "bold blue"
@@ -100,7 +103,6 @@ number_threshold = 1
 symbol_threshold = 1
 
 # ── Language / runtime modules ───────────────────────────────────────────────
-# These mirror p10k's right-prompt language env segments.
 # Each only shows when a relevant project file is detected in the current directory.
 
 [python]
@@ -136,7 +138,7 @@ style = "bold orange"
 disabled = true   # Enable if you regularly work in Rust projects.
 
 [direnv]
-# Show when a .envrc is loaded/blocked (p10k: direnv segment).
+# Show when a .envrc is loaded/blocked
 disabled = false
 format = "[$symbol$allowed]($style) "
 symbol = " "
