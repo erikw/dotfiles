@@ -109,6 +109,12 @@ zinit light seebi/dircolors-solarized
 # tig — text-mode git UI. Requires compilation from source; not suitable for
 # zinit binary install. Install via system package manager (brew/apt).
 
+# lazygit — TUI git client. Ships pre-built binaries; works as zinit fallback.
+# if (( ! $+commands[lazygit] )); then
+# 	zinit ice from"gh-r" as"program" pick"lazygit"
+# 	zinit light jesseduffield/lazygit
+# fi
+
 # fzf-marks — bookmark directories with fzf.
 # Cloned here for zinit to manage updates, but NOT sourced yet.
 # Must load after bindkey -v (rc/bindings.zsh), so it is sourced in rc/tools.zsh.

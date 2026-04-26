@@ -80,6 +80,7 @@
 				brew 'iftop'
 				brew 'imagemagick'
 				brew 'jq'
+				brew 'lazygit' # Alternative to tig.
 				brew 'less'
 				brew 'lolcat'
 				brew 'lsd' # A modern ls(1).
@@ -88,6 +89,7 @@
 				brew 'mosh'
 				brew 'multitime'
 				brew 'ncdu' # An interactive du(1).
+				brew 'ncurses' # provides up-to-date terminfo including tmux-256color. macOS ships an outdated terminfo DB that lacks tmux-256color (unfixed across all macOS versions). Install it once to ~/.terminfo so tput works correctly inside tmux.
 				brew 'neovim'
 				brew 'netcat'
 				brew 'nmap'
@@ -113,7 +115,6 @@
 				brew 'texlab' # Language server for LaTeX
 				brew 'tig'
 				brew 'tmux'
-				brew 'ncurses' # provides up-to-date terminfo including tmux-256color. macOS ships an outdated terminfo DB that lacks tmux-256color (unfixed across all macOS versions). Install it once to ~/.terminfo so tput works correctly inside tmux.
 				brew 'tree'
 				brew 'tree-sitter-cli' # To make nvim :checkhealth happy.
 				brew 'unar'
