@@ -45,7 +45,7 @@
 
 # On non-login shells (e.g. GitHub Codespaces), .zprofile is never sourced.
 # Guard-source it here so PATH and env/* setup is always available.
-# Alternatively. Skip .zprofile for Codespaces, seems like it might just needto createdtion of ~/.cache/zsh.
+# Alternatively. Skip .zprofile for Codespaces, seems like it might just need creation of ~/.cache/zsh, or start Codespaces with login shell.
 [[ -z "$_ZPROFILE_SOURCED" ]] && source "$ZDOTDIR/.zprofile"
 
 # Custom functions (lazy loaded). Also set in env/paths.zsh; typeset -U fpath deduplicates.
