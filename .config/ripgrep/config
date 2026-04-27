@@ -6,9 +6,9 @@
 # Search hidden files and directories.
 --hidden
 
-# lowecase search term = case-insenstitive
-# mix case search term = case-sensitive
-# Override by using (-s|--case-sensitice)
+# Lowercase search term = case-insensitive.
+# Mixed-case search term = case-sensitive.
+# Override by using (-s|--case-sensitive).
 --smart-case
 
 
@@ -17,6 +17,7 @@
 # NOTE ignore golang tests: $ rg --glob='!*_test.go'
 
 # Ignore git directories.
+# NOTE: Usually redundant because .git is already ignored.
 --glob=!.git/
 
 # Ignore vendor npm packages in projects.
@@ -40,8 +41,8 @@
 # Like .config/cheat/cheatsheets/
 --glob=!cheatsheets/
 
-# Intellij project files (old=fileformat).
---glob=!.*.(ipr|iml)
+# IntelliJ project files (old file format).
+--glob=!*.{ipr,iml}
 --glob=!.idea/
 
 # Java development
