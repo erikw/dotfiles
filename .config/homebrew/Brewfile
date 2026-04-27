@@ -8,12 +8,12 @@
 # It's not necessary to tap before installing 'tap/formula', but it gives a warning if not done.
 # Taps {
 				# tap 'homebrew/cask-drivers'      # For jabra-direct
-				tap 'anomalyco/tap' # For https://opencode.ai
-				tap 'beeftornado/rmtree' # rmtree: remove brew package's dependencies with $(brew rmtree <package>).
-				tap 'cormacrelf/tap'  # For dark-notify
-				tap 'erikw/tap'       # For xdg-urlview
-				tap 'hashier/tap' # For macfolket
-				tap 'homebrew/autoupdate' # https://github.com/Homebrew/homebrew-autoupdate
+				tap 'anomalyco/tap'			# For https://opencode.ai, brew 'opencode'
+				tap 'beeftornado/rmtree' 	# rmtree: remove brew package's dependencies with $(brew rmtree <package>). brew 'rmtree'
+				tap 'cormacrelf/tap'  		# For dark-notify
+				tap 'erikw/tap'       		# For xdg-urlview
+				tap 'hashier/tap'     		# For macfolket, brew 'hashier'
+				tap 'homebrew/autoupdate' 	# https://github.com/Homebrew/homebrew-autoupdate
 # }
 
 # Formula: default {
@@ -76,7 +76,7 @@
 				brew 'hg' # Just to make nvim ':checkhealth diffview' happy. https://github.com/sindrets/diffview.nvim/issues/319
 				brew 'htop' # A modern top(1).
 				brew 'httpie' # A modern curl(1).
-				brew 'hyerfine' # A powerful time(1).
+				brew 'hyperfine' # A powerful time(1).
 				brew 'iftop'
 				brew 'imagemagick'
 				brew 'jq'
@@ -181,7 +181,7 @@
 				cask 'claude-code'
 				cask 'clipy' # If needed, could replace with https://github.com/p0deje/Maccy even though pinned items not exactly like snippets
 				cask 'eurkey' # For ErgoDox
-				cask 'ghostyy'
+				cask 'ghostty'
 				cask 'gimp'
 				cask 'google-chrome'
 				cask 'grammarly-desktop'
@@ -278,8 +278,6 @@
 				mas 'InstaRemind', id: 1_492_317_385
 				mas 'Overlap', id: 1_516_950_324
 				mas 'Shazam', id: 897_118_787
-				mas 'Telegram', id: 747648890
-				mas 'Todoist', id: 585_829_637
 				mas 'WorkingHours', id: 1_495_643_653
 
 # Safari extensions:
@@ -314,10 +312,10 @@
 				# brew 'adoptopenjdk11'
 
 # asdf reqs - Java
-				brew 'bash'
-				brew 'curl'
-				brew 'unzip'
-				brew 'jq'
+				#brew 'bash'
+				#brew 'curl'
+				#brew 'unzip'
+				#brew 'jq'
 # }
 
 # Development: Python {
