@@ -224,16 +224,14 @@ vim.opt.thesaurus = vim.fn.stdpath("config") .. "/thesaurus/" .. vim.fn.matchstr
 
 -- UI {{
 -- Seed the background before lazy.nvim loads the startup colorscheme.
--- This avoid flashing black when in light mode, as nvim default is dark mode.
+-- This avoids flashing dark on startup when macOS is using light mode.
 local function SetBackgroundFromSystem()
-    if vim.fn.executable("dark-notify") ~= 1 then
+    if vim.fn.has("macunix") ~= 1 or vim.fn.executable("defaults") ~= 1 then
         return
     end
 
-    local mode = vim.trim(vim.fn.system({ "dark-notify", "--exit" }))
-    if vim.v.shell_error == 0 and (mode == "light" or mode == "dark") then
-        vim.o.background = mode
-    end
+    local appearance = vim.trim(vim.fn.system({ "defaults", "read", "-g", "AppleInterfaceStyle" }))
+    vim.o.background = vim.v.shell_error == 0 and appearance == "Dark" and "dark" or "light"
 end
 SetBackgroundFromSystem()
 
