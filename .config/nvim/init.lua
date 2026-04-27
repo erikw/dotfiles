@@ -223,20 +223,19 @@ vim.opt.thesaurus = vim.fn.stdpath("config") .. "/thesaurus/" .. vim.fn.matchstr
 -- }}
 
 -- UI {{
--- Adjust colors to this background. NOTE replaced by dark-notify.
---local solarized_status = vim.g.xdg_state_home .. "/solarizedtoggle/status"
---if vim.fn.filereadable(solarized_status) == 1 then
---    vim.opt.background = vim.fn.readfile(solarized_status)[1]
---else
---    -- Lighter bg during night.
---    -- Source:  http://benjamintan.io/blog/2014/04/10/switch-solarized-light-slash-dark-depending-on-the-time-of-day/
---    local hour = tonumber(vim.fn.strftime("%H"))
---    if 7 <= hour and hour < 18 then
---        vim.opt.background = 'light'
---    else
---        vim.opt.background = 'dark'
---    end
---end
+-- Seed the background before lazy.nvim loads the startup colorscheme.
+-- This avoid flashing black when in light mode, as nvim default is dark mode.
+local function SetBackgroundFromSystem()
+    if vim.fn.executable("dark-notify") ~= 1 then
+        return
+    end
+
+    local mode = vim.trim(vim.fn.system({ "dark-notify", "--exit" }))
+    if vim.v.shell_error == 0 and (mode == "light" or mode == "dark") then
+        vim.o.background = mode
+    end
+end
+SetBackgroundFromSystem()
 
 vim.opt.termguicolors = true -- Enable 24-bit RGB. Required by NeoSolarized.
 vim.opt.mouse = "a" -- Enable mouse in all modes.

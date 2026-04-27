@@ -15,16 +15,8 @@ return {
         lazy = false, -- make sure we load this during startup if it is your main colorscheme
         priority = 1000, -- make sure to load this before all the other start plugins
         config = function()
-            -- load the colorscheme here
+            -- init.lua seeds vim.o.background before lazy.nvim starts to avoid a dark first paint.
             vim.cmd([[colorscheme solarized]])
-
-            -- Sometimes dark-notify is not picking up the right mode on nvim start. This is a low-tech backup to try starting in the right mode most of the times.
-            --local hour = tonumber(vim.fn.strftime("%H"))
-            --if hour >= 7 and hour < 18 then
-            --    vim.o.background = "light"
-            --else
-            --    vim.o.background = "dark"
-            --end
         end,
     },
     -- }}
@@ -33,7 +25,7 @@ return {
     --{'sitiom/nvim-numbertoggle'},    -- Automatic relative / static line number toggling. Disabled as of https://github.com/sitiom/nvim-numbertoggle/issues/15
     --{"RRethy/vim-illuminate"}, -- Highlight current word under cursor. Not compatible with dark-notify: https://github.com/cormacrelf/dark-notify/issues/8
 
-    -- Watch system light/dark mode changes. Requires dark-notify(1).
+    -- Watch system light/dark mode changes after startup. Requires dark-notify(1).
     {
         "cormacrelf/dark-notify",
         event = "VimEnter", -- start after UI is ready
