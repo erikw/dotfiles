@@ -9,7 +9,7 @@ Furthermore it seems like VSCode allows trailing commas in these files. Ref: htt
 JSON5 (close enouch got JSONC) validator: https://jsonformatter.org/json5-validator
 */
 {
-    // ******************************** General ********************************
+    // ******************************** Core ********************************
     "telemetry.feedback.enabled": false,
     "window.autoDetectColorScheme": true,
     "diffEditor.maxComputationTime": 10000, // Default: 5000. No limit: 0.
@@ -26,7 +26,7 @@ JSON5 (close enouch got JSONC) validator: https://jsonformatter.org/json5-valida
     "editor.minimap.enabled": false,
 
 
-    // ******************************** UI ********************************
+    // ******************************** Appearance ********************************
     // User Nerd Font for fancy symbols (used in zsh's starship).
     "editor.fontFamily": "JetBrainsMono Nerd Font, FiraCode Nerd Font, monospace",
     "terminal.integrated.fontFamily": "JetBrainsMono Nerd Font",
@@ -64,7 +64,7 @@ JSON5 (close enouch got JSONC) validator: https://jsonformatter.org/json5-valida
     "git.confirmSync": false,
 
 
-    // ******************************** Language-specific Settings ********************************
+    // ******************************** Language: Python ********************************
     "[python]": {
         // Enable buffer-based autocompletion in Python.
         "editor.wordBasedSuggestions": "matchingDocuments",
@@ -72,7 +72,7 @@ JSON5 (close enouch got JSONC) validator: https://jsonformatter.org/json5-valida
         "editor.quickSuggestions": {
             "other": "off"
         },
-        // Auto format. Seem like ctrl+s or :w is needed to trigger even when Auto Save mode is on.
+        // Auto format. Seems like ctrl+s or :w is needed to trigger even when Auto Save mode is on.
         "editor.formatOnSave": false,
         // Autorun isort on save.
         "editor.codeActionsOnSave": {
@@ -82,13 +82,14 @@ JSON5 (close enouch got JSONC) validator: https://jsonformatter.org/json5-valida
     "python.analysis.inlayHints.callArgumentNames": "off",
     "python.analysis.inlayHints.functionReturnTypes": true,
 
-    // ******************************** Copilot ********************************
+    // ******************************** AI / Chat ********************************
     "chat.tools.terminal.autoApprove": {
         "git remote": true,
         "time": true
     },
     "chat.viewSessions.orientation": "stacked",
     "chat.mcp.gallery.enabled": true,
+    "claudeCode.preferredLocation": "panel",
 
 
     // ******************************** Extensions ********************************
@@ -297,5 +298,4 @@ JSON5 (close enouch got JSONC) validator: https://jsonformatter.org/json5-valida
         "workbench.panel.output": true
     },
     // ******************************** ⚠ Unsorted Below ********************************
-    "claudeCode.preferredLocation": "panel",
 }

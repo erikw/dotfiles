@@ -3,7 +3,7 @@ Erik Westrup's VSCode user keybindings overrides.
 
 WARNING: never put any passwords and token in this file, as it's in my public dotfiles repo.
 
-macOS version: Note that due to settingsSync.keybindingsPerPlatform the Windows config is not show. It can be found at lastSynckeybindings.json and decoded with this Python program:
+macOS version: Note that due to settingsSync.keybindingsPerPlatform, the Windows config is not shown. It can be found at lastSynckeybindings.json and decoded with this Python program:
 > import json
 > f = open("lastSynckeybindings.json", "r", encoding="utf-8")
 > data = json.load(f)
@@ -15,7 +15,9 @@ macOS version: Note that due to settingsSync.keybindingsPerPlatform the Windows 
 JSON5 (close enouch got JSONC) validator: https://jsonformatter.org/json5-validator
 */
 [
-    // Make sequences available for normal usage in terminal. Ref: https://stackoverflow.com/a/62133137
+    // ******************************** Terminal passthrough ********************************
+    // Make Ctrl key sequences available for normal shell usage in terminal.
+    // Ref: https://stackoverflow.com/a/62133137
     {
         "key": "ctrl+e",
         "command": "ctrl+e",
@@ -42,7 +44,8 @@ JSON5 (close enouch got JSONC) validator: https://jsonformatter.org/json5-valida
         "when": "terminalFocus"
     },
 
-    // Free up ctrl+f from terminal search to use for vim page scroll.
+    // ******************************** Terminal search remap ********************************
+    // Free up ctrl+f from terminal search to use for Vim page scroll.
     {
         "key": "ctrl+alt+f",
         "command": "workbench.action.terminal.focusFind",
@@ -73,8 +76,9 @@ JSON5 (close enouch got JSONC) validator: https://jsonformatter.org/json5-valida
     // },
 
 
-    // Maximize toggle:
-    // one keyboard shortcut to toggle editor or terminal full screen depending on where focus is. Ref: https://stackoverflow.com/a/58895512/265508
+    // ******************************** Panel maximize toggle ********************************
+    // One shortcut toggles panel maximize state based on current focus.
+    // Ref: https://stackoverflow.com/a/58895512/265508
     {
         // "key": "alt+m",
         "key": "f12",
@@ -106,8 +110,10 @@ JSON5 (close enouch got JSONC) validator: https://jsonformatter.org/json5-valida
         "when": "editorTextFocus && !panelIsOpen"
       },
 
+    // ******************************** Focus toggle ********************************
     // Toggle between terminal and editor focus.
-    // By default terminal is minimized when toggling back to editor. Ref: https://superuser.com/a/1352666/42070
+    // By default terminal is minimized when toggling back to editor.
+    // Ref: https://superuser.com/a/1352666/42070
     {
         "key": "ctrl+`",
         "command": "workbench.action.terminal.focus",
