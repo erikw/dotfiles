@@ -20,19 +20,21 @@ JSON5 (close enouch got JSONC) validator: https://jsonformatter.org/json5-valida
     "workbench.preferredHighContrastColorTheme": "Solarized Dark",
     "workbench.preferredHighContrastLightColorTheme": "SynthWave '84",
     "workbench.startupEditor": "none",
-
+    "workbench.view.showQuietly": {
+        "workbench.panel.output": true
+    },
     "files.autoSave": "afterDelay",
     "extensions.ignoreRecommendations": true,
-    "editor.minimap.enabled": false,
 
 
     // ******************************** Appearance ********************************
     // User Nerd Font for fancy symbols (used in zsh's starship).
     "editor.fontFamily": "JetBrainsMono Nerd Font, FiraCode Nerd Font, monospace",
-    "terminal.integrated.fontFamily": "JetBrainsMono Nerd Font",
+    "editor.minimap.enabled": false,
 
     // ******************************** Terminal ********************************
     "terminal.integrated.stickyScroll.enabled": true,
+    "terminal.integrated.fontFamily": "JetBrainsMono Nerd Font",
     "terminal.integrated.suggest.enabled": false, // Breaks zsh tab completion.
     "terminal.integrated.shellIntegration.history": 1000,
     "terminal.integrated.persistentSessionReviveProcess": "onExitAndWindowClose",
@@ -294,8 +296,5 @@ JSON5 (close enouch got JSONC) validator: https://jsonformatter.org/json5-valida
     "vim.hlsearch": true,
     "vim.history": 100,
     "vim.matchpairs": "(:),{:},[:],<:>",
-    "workbench.view.showQuietly": {
-        "workbench.panel.output": true
-    },
     // ******************************** ⚠ Unsorted Below ********************************
 }
