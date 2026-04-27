@@ -5,8 +5,8 @@ classic: false
 
 color:
   when: auto
-  #theme: default  # TODO find solarized theme
   theme: custom # Uses colors.yaml
+
 
 date: "+%Y-%m-%d %H:%M"
 
@@ -15,33 +15,39 @@ icons:
   theme: fancy
   separator: " "
 
-# == Ignore Globs ==
-# A list of globs to ignore when listing.
+# Keep noisy entries hidden so large/project-root listings stay focused and faster to scan.
 # ignore-globs:
 #   - .git
+#   - .DS_Store
+#   - node_modules
 
-# Whether to add indicator characters to certain listed files.
-# Possible values: false, true
-indicators: false
 
-# Specifies the format of the size column.
-# Possible values: default, short, bytes
-size: default
+# Use compact size units to reduce column width and improve long-list readability.
+# size: short
+
+# Enable clickable paths in modern terminals to speed up navigation from listings.
+# hyperlink: auto
+
+# Show headers in long mode so column meaning stays obvious at a glance.
+#header: true
 
 sorting:
-  # Specify what to sort by.
-  # Possible values: extension, name, time, size, version
   column: name
-  # Whether to reverse the sorting.
-  # Possible values: false, true
   reverse: false
-  # Whether to group directories together and where.
-  # When "classic" is set, this is set to "none".
-  # Possible values: first, last, none
-  dir-grouping: none
+  # Keep directories above files to reduce scrolling and improve directory-first workflows.
+  dir-grouping: first
 
-# Whether to omit showing symlink targets
+# Keep symlink targets visible so linked destinations remain obvious.
 no-symlink: false
 
 # Whether to display the total size of directories.
 total-size: false
+
+# Keep long format stable so key metadata appears in a predictable left-to-right order.
+blocks:
+  - permission
+  - user
+  - group
+  - size
+  - date
+  - name
