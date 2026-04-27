@@ -82,6 +82,13 @@ JSON5 (close enouch got JSONC) validator: https://jsonformatter.org/json5-valida
     "python.analysis.inlayHints.callArgumentNames": "off",
     "python.analysis.inlayHints.functionReturnTypes": true,
 
+    // ******************************** Copilot ********************************
+    "chat.tools.terminal.autoApprove": {
+        "git remote": true,
+        "time": true
+    },
+    "chat.viewSessions.orientation": "stacked",
+    "chat.mcp.gallery.enabled": true,
 
 
     // ******************************** Extensions ********************************
@@ -219,7 +226,7 @@ JSON5 (close enouch got JSONC) validator: https://jsonformatter.org/json5-valida
     "ltex.completionEnabled": true,
 
     // ** Extension: Netlify **
-    // "netlify.site_id": "", NOPE set this in project local .vscode/setttinsg.json.
+    // "netlify.site_id": "", NOPE set this in project-local `.vscode/settings.json`.
 
     // ** Extension: Path Intellisense **
     "path-intellisense.showHiddenFiles": true,
@@ -289,28 +296,6 @@ JSON5 (close enouch got JSONC) validator: https://jsonformatter.org/json5-valida
     "workbench.view.showQuietly": {
         "workbench.panel.output": true
     },
-    "******************************** ⚠ Unsorted Below ********************************": null,
-    "chat.tools.terminal.autoApprove": {
-        "git remote": true,
-        "npm run build": true,
-        "npm run dev": true,
-        "/^node scripts/generate-og-images\\.js$/": {
-            "approve": true,
-            "matchCommandLine": true
-        },
-        "npm install": true,
-        "npm run preview": true,
-        "npm run generate:search": true,
-        "npx": true,
-        "pkill": true,
-        "/^node scripts/generate-search-index\\.js$/": {
-            "approve": true,
-            "matchCommandLine": true
-        },
-        "npm run generate:og": true,
-        "time": true
-    },
-    "chat.viewSessions.orientation": "stacked",
-    "chat.mcp.gallery.enabled": true,
+    // ******************************** ⚠ Unsorted Below ********************************
     "claudeCode.preferredLocation": "panel",
 }

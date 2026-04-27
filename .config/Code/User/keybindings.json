@@ -42,16 +42,16 @@ JSON5 (close enouch got JSONC) validator: https://jsonformatter.org/json5-valida
         "when": "terminalFocus"
     },
 
-    // Free up ctrl+f from terminal seach to use for vim page scroll.
+    // Free up ctrl+f from terminal search to use for vim page scroll.
     {
         "key": "ctrl+alt+f",
         "command": "workbench.action.terminal.focusFind",
-        "when": "terminalFindFocused && terminalHasBeenCreated || terminalFindFocused && terminalProcessSupported || terminalFocusInAny && terminalHasBeenCreated || terminalFocusInAny && terminalProcessSupported"
+        "when": "(terminalFindFocused || terminalFocusInAny) && (terminalHasBeenCreated || terminalProcessSupported)"
     },
     {
         "key": "ctrl+f",
         "command": "-workbench.action.terminal.focusFind",
-        "when": "terminalFindFocused && terminalHasBeenCreated || terminalFindFocused && terminalProcessSupported || terminalFocusInAny && terminalHasBeenCreated || terminalFocusInAny && terminalProcessSupported"
+        "when": "(terminalFindFocused || terminalFocusInAny) && (terminalHasBeenCreated || terminalProcessSupported)"
     },
 
     //{
@@ -123,7 +123,7 @@ JSON5 (close enouch got JSONC) validator: https://jsonformatter.org/json5-valida
         "when": "terminalFocus",
         "args": {
             // The original simple binding above does not work when the terminal is maximized, as the focus is still left in the terminal.
-            // Hack solution: switch focus 2 times which means effectivly unmaximize terminal then switch back to editor.
+            // Workaround: switch focus twice to reliably unmaximize terminal and return to editor.
             "sequence": [
                 "workbench.action.focusActiveEditorGroup",
                 "workbench.action.focusActiveEditorGroup",
