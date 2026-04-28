@@ -23,7 +23,7 @@
 #     - Improve defaults for common tools
 #
 #   ✔ Tool substitution and enhancement
-#     - Prefer modern tools if available (lsd, colordiff, cdu)
+#     - Prefer modern tools if available (eza, lsd, colordiff, cdu)
 #     - Normalize behavior across systems (BSD vs GNU)
 #
 #   ✔ Program-specific aliases
@@ -119,6 +119,11 @@ esac
 # }}
 
 # Color support {{
+# if (( $+commands[eza] )); then
+#	# Mirror the long-standing lsd/ls preferences: directory-first sorting,
+#	# auto colors/icons, and stable ISO-style timestamps.
+#	alias ls='eza --group-directories-first --icons=auto --color=auto --time-style=long-iso'
+# elif (( $+commands[lsd] )); then
 if (( $+commands[lsd] )); then
 	alias ls=lsd
 else
@@ -323,7 +328,6 @@ if type fdfind >/dev/null 2>&1; then
 	alias fd='fdfind'
 fi
 # }}
-
 
 # Permutation aliases {{
 # From $(bin/permute_aliases.sh cmd > $ZDOTDIR/rc/aliases_cmd.zsh)

@@ -1,0 +1,57 @@
+# eza theme tuned to match the existing lsd/ls preferences:
+# - Solarized-friendly colors
+# - readable metadata in long listings
+# - subdued punctuation and secondary details
+colourful: true
+
+filekinds:
+  directory: {foreground: "#268bd2"}
+  symlink: {foreground: "#2aa198"}
+  executable: {foreground: "#859900"}
+
+perms:
+  user_read: {foreground: "#859900"}
+  user_write: {foreground: "#b58900"}
+  user_execute_file: {foreground: "#dc322f"}
+  user_execute_other: {foreground: "#dc322f"}
+  group_read: {foreground: "#859900"}
+  group_write: {foreground: "#b58900"}
+  group_execute: {foreground: "#dc322f"}
+  other_read: {foreground: "#859900"}
+  other_write: {foreground: "#b58900"}
+  other_execute: {foreground: "#dc322f"}
+  attribute: {foreground: "#93a1a1"}
+
+size:
+  major: {foreground: "#93a1a1"}
+  minor: {foreground: "#93a1a1"}
+  number_byte: {foreground: "#93a1a1"}
+  number_kilo: {foreground: "#ffafff"}
+  number_mega: {foreground: "#ffafd7"}
+  number_giga: {foreground: "#d78700"}
+  number_huge: {foreground: "#cb4b16"}
+  unit_byte: {foreground: "#93a1a1"}
+  unit_kilo: {foreground: "#ffafff"}
+  unit_mega: {foreground: "#ffafd7"}
+  unit_giga: {foreground: "#d78700"}
+  unit_huge: {foreground: "#cb4b16"}
+
+users:
+  user_you: {foreground: "#8787ff"}
+  user_other: {foreground: "#8787ff"}
+  group_yours: {foreground: "#d7d7af"}
+  group_other: {foreground: "#d7d7af"}
+
+links:
+  normal: {foreground: "#2aa198"}
+  multi_link_file: {foreground: "#6c71c4"}
+
+date: {foreground: "#00af87"}
+inode: {foreground: "#93a1a1"}
+blocks: {foreground: "#93a1a1"}
+header: {foreground: "#586e75"}
+flags: {foreground: "#93a1a1"}
+punctuation: {foreground: "#93a1a1"}
+control_char: {foreground: "#93a1a1"}
+broken_symlink: {foreground: "#dc322f"}
+broken_path_overlay: {foreground: "#93a1a1"}
