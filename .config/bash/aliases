@@ -92,7 +92,7 @@
 		alias ls=lsd
 	elif shell_is_macos && program_is_in_path gls; then
 		# Still need to set alias with options, https://superuser.com/a/670563/42070.
-		# Note that for coreutil ls to have color output, dircolors must be evalued. See ~/.config/shell/commons
+		# Note that for coreutil ls to have color output, dircolors must be evalued. See ~/.config/bash/commons
 		alias ls="gls $LS_OPTIONS"
 	else
 		alias ls="ls $LS_OPTIONS"
@@ -275,9 +275,9 @@ fi
 # }
 
 # Permutation aliases {
-	# From $(bin/permute_aliases.sh cmd > ${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliases_cmd)
-	#sourceifexists ${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliases_make
-	#sourceifexists ${XDG_CONFIG_HOME:-$HOME/.config}/shell/git"
+	# From $(bin/permute_aliases.sh cmd > ${XDG_CONFIG_HOME:-$HOME/.config}/bash/aliases_cmd)
+	#sourceifexists ${XDG_CONFIG_HOME:-$HOME/.config}/bash/aliases_make
+	#sourceifexists ${XDG_CONFIG_HOME:-$HOME/.config}/bash/git"
 # }
 
 # Virtualenvwrapper {

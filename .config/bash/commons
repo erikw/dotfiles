@@ -93,7 +93,7 @@
 	#export AWS_CONFIG_FILE="$XDG_CONFIG_HOME"/aws/config
 
 	# Load utility functions
-	source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/functions"
+	source "${XDG_CONFIG_HOME:-$HOME/.config}/bash/functions"
 # }
 
 # Paths {
@@ -187,14 +187,14 @@
 	test -d "$HOME/src/github.com/erikw/dotfiles" && export DFM_REPO="$HOME/src/github.com/erikw/dotfiles"
 
 	# Source aliases (must be done after setting $DESKTYPE)
-	sourceifexists "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliases"
+	sourceifexists "${XDG_CONFIG_HOME:-$HOME/.config}/bash/aliases"
 # }
 
 # UI {
 	# Solarized ls colors.
 	dircolorsdb=$HOME/.local/repos/dircolors-solarized/dircolors.256dark
 	if ! [ -f "$dircolorsdb" ]; then
-		dircolorsdb=${XDG_CONFIG_HOME:-$HOME/.config}/shell/dircolors
+		dircolorsdb=${XDG_CONFIG_HOME:-$HOME/.config}/bash/dircolors
 	fi
 	if program_is_in_path dircolors; then
 		eval "$(dircolors -b $dircolorsdb)"
@@ -215,7 +215,7 @@
 
 
 	# Colored man pages. Reference: https://wiki.archlinux.org/index.php/Man_Page#Colored_man_pages
-	# But only if we don't use batman (alias set in ~/.config/shell/aliases).
+	# But only if we don't use batman (alias set in ~/.config/bash/aliases).
 	#if ! program_is_in_path batman; then
 		function man() {
 		env \

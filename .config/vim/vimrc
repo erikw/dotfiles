@@ -824,8 +824,6 @@ let g:snipMate.always_choose_first = 1		" Make it easy to override snippet from 
 " Bookmarks
 let g:startify_bookmarks = [
 	\ {'v': g:xdg_config_home . '/vim/vimrc' },
-	\ g:xdg_config_home . '/shell/commons',
-	\ g:xdg_config_home . '/shell/aliases'
 	\ ]
 
 let g:startify_fortune_use_unicode = 1	" Draw fortune with Unicode instead of ASCII.

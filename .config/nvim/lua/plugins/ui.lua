@@ -90,8 +90,8 @@ return {
                 startify.file_button(vim.fn.stdpath("config") .. "/lua/plugins/development.lua", "vd"),
                 startify.file_button(vim.fn.stdpath("config") .. "/lua/plugins/syntax.lua", "vs"),
                 startify.file_button(vim.fn.stdpath("config") .. "/lua/plugins/ui.lua", "vu"),
-                startify.file_button(vim.g.xdg_config_home .. "/shell/commons", "c"),
-                startify.file_button(vim.g.xdg_config_home .. "/shell/aliases", "a"),
+                startify.file_button(vim.g.xdg_config_home .. "/zsh/.zshrc", "zr"),
+                startify.file_button(vim.g.xdg_config_home .. "/zsh/.zprofile", "zp"),
                 startify.file_button(vim.g.xdg_config_home .. "/homebrew/Brewfile", "b"),
                 startify.file_button(vim.g.xdg_config_home .. "/homebrew/Brewfile.cypress", "bc"),
             }

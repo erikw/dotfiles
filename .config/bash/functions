@@ -7,8 +7,8 @@
 
 # source functions.d/ {
 # Dynamically source functions from the drop-in directory.
-if [ -d "${XDG_CONFIG_HOME:-$HOME/.config}/shell/functions.d" ]; then
-	for funcfile in "${XDG_CONFIG_HOME:-$HOME/.config}"/shell/functions.d/*.sh; do
+if [ -d "${XDG_CONFIG_HOME:-$HOME/.config}/bash/functions.d" ]; then
+	for funcfile in "${XDG_CONFIG_HOME:-$HOME/.config}"/bash/functions.d/*.sh; do
 		source $funcfile
 	done;
 fi
