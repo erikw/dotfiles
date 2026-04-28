@@ -100,12 +100,6 @@ if (( $+commands[fzf] )); then
 fi
 
 
-# bat — binary installed via zinit (see zinit.zsh).
-# Get better man pages in color.
-if (( $+commands[bat] )); then
-	export MANPAGER="bat -plman"
-fi
-
 # direnv — binary installed via zinit (see zinit.zsh). https://direnv.net/
 # Wires _direnv_hook into precmd_functions and chpwd_functions so .envrc files are loaded/unloaded automatically on directory change.
 # Hook output is stable between runs, so cache it like fzf/brew to avoid a subprocess on every shell.

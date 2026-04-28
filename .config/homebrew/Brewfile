@@ -28,6 +28,7 @@
 				brew 'bash-language-server'
 				brew 'bashdb'
 				brew 'bat' # A modern cat(1).
+				brew 'bat-extras' # Provids batman
 				brew 'bottom' # A modern top(1). bin: btm
 				brew 'broot' # A modern tree(1).
 				brew 'cheat'
