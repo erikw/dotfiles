@@ -50,6 +50,17 @@ if (( $+commands[starship] )); then
 	unset _starship_cache
 fi
 
+# bat / batman — interactive pager and man-page styling.
+export BAT_THEME="Solarized (light)" # Works for dark mode as well.
+if (( $+commands[batman] )); then
+	_batman_env_cache="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/batman_env.zsh"
+	if [[ ! -s "$_batman_env_cache" ]] || [[ "${commands[batman]}" -nt "$_batman_env_cache" ]]; then
+		batman --export-env >| "$_batman_env_cache"
+	fi
+	source "$_batman_env_cache"
+	unset _batman_env_cache
+fi
+
 # broot - https://dystroy.org/broot/install-br/
 # Define br() directly instead of sourcing the launcher script on every shell.
 if (( $+commands[broot] )); then

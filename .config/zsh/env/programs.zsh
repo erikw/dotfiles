@@ -118,23 +118,6 @@ fi
 # and the only pager.
 export PAGER=less
 
-# Bat
-export BAT_THEME="Solarized (light)" # Works for dark mode as well.
-
-# batman — better man pages via bat-extras.
-# Cache exported MAN* environment to avoid running batman on every shell start.
-# Loaded from .zprofile (and guard-sourced from .zshrc for non-login shells),
-# so this behaves like the rest of the global tool environment.
-# Ref: https://github.com/eth-p/bat-extras/blob/master/doc/batman.md
-if (( $+commands[batman] )); then
-	batman_env_cache="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/batman_env.zsh"
-	if [[ ! -s "$batman_env_cache" ]] || [[ "${commands[batman]}" -nt "$batman_env_cache" ]]; then
-		batman --export-env >| "$batman_env_cache"
-	fi
-	source "$batman_env_cache"
-	unset batman_env_cache
-fi
-
 # Current DE in use.
 if shell_is_macos; then
 	export DESKTYPE=macos
