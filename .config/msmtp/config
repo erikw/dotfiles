@@ -22,7 +22,7 @@ auth on
 tls on
 #tls_nocertcheck
 tls_trust_file /etc/ssl/certs/ca-certificates.crt
-#FREEBSD-CONFIG
+# #CONFIG-FREEBSD
 #tls_trust_file /usr/local/share/certs/ca-root-nss.crt
 
 # Set the default account

@@ -56,7 +56,7 @@ Pause::Capslock
 ;^F11::Volume_Up
 ;^F12::Volume_Mute
 
-; MACOS-CONFIG
+; #CONFIG-MACOS
 ; Swap Alt and Windows key on Mac keyboards.
 ;LAlt::LWin
 ;LWin::LAlt

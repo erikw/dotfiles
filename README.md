@@ -60,11 +60,11 @@ git commit -m "SQUASHED passwords"
 	grep -nr GIT-CENSORED . | grep -v README.md | grep -v "/.git/"
 	```
 * Set `DESKTYPE` in `$XDG_CONFIG_HOME/zsh/env/programs`, unless the system is macOS.
-* Default desktop is assumed to be macOS. Go through host-specific manual settings by searching for the corresponding tag.
+* Default desktop is assumed to be macOS. Some config files does not allow for OS-dependent config, or is inpractical to do. Thus, go through host-specific manual settings by searching for the corresponding tag.
 	```bash
-	grep -nr MACOS-CONFIG . 2>/dev/null | grep -v README.md
-	grep -nr LINUX-CONFIG . 2>/dev/null | grep -v README.md
-	grep -nr FREEBSD-CONFIG . 2>/dev/null | grep -v README.md
+	grep -nr '#CONFIG-MACOS' . 2>/dev/null | grep -v README.md
+	grep -nr '#CONFIG-LINUX' . 2>/dev/null | grep -v README.md
+	grep -nr '#CONFIG-FREEBSD' . 2>/dev/null | grep -v README.md
 	```
 
 ## GitHub SSH Config File

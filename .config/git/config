@@ -58,8 +58,8 @@
 	rb = rebase
 	re = restore
 	;sha1head = rev-parse HEAD
-	; sha1head = !"git rev-parse HEAD | tee /dev/tty | tr -d '\n' | xclip -i -selection clipboard" # LINUX-CONFIG
-	sha1head = !"git rev-parse HEAD | tee /dev/tty | tr -d '\n' | pbcopy" # MACOS-CONFIG
+	; sha1head = !"git rev-parse HEAD | tee /dev/tty | tr -d '\n' | xclip -i -selection clipboard" # #CONFIG-LINUX
+	sha1head = !"git rev-parse HEAD | tee /dev/tty | tr -d '\n' | pbcopy" # #CONFIG-MACOS
 	st = status
 	stashshow0 = stash show -p stash@{0}
 	sub = submodule

@@ -125,8 +125,8 @@ export PAGER=less
 if shell_is_macos; then
 	export DESKTYPE=macos
 else
-	# LINUX-CONFIG
-	# FREEBSD-CONFIG
+	# #CONFIG-LINUX
+	# #CONFIG-FREEBSD
 	export DESKTYPE=dwm
 fi
 
