@@ -55,14 +55,13 @@
 	pu = push
 	pushall = !git remote | xargs -L1 git push --all   # Ref: https://stackoverflow.com/a/18674313
 	pushw = !"git push && netlify watch"
-	pushfwl = push --force-with-lease # Ref: https://stackoverflow.com/a/43726130/265508
 	rb = rebase
 	re = restore
 	;sha1head = rev-parse HEAD
-	sha1head = !"git rev-parse HEAD | tee /dev/tty | tr -d '\n' | pbcopy"
+	; sha1head = !"git rev-parse HEAD | tee /dev/tty | tr -d '\n' | xclip -i -selection clipboard" # LINUX-CONFIG
+	sha1head = !"git rev-parse HEAD | tee /dev/tty | tr -d '\n' | pbcopy" # MACOS-CONFIG
 	st = status
 	stashshow0 = stash show -p stash@{0}
-	stat = status
 	sub = submodule
 	svn-status = diff --name-status remotes/git-svn
 	sw = switch
