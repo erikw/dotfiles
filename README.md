@@ -12,7 +12,7 @@
 [![Top programming languages used](https://img.shields.io/github/languages/top/erikw/dotfiles)](#)
 [![Number of files in repo](https://img.shields.io/github/directory-file-count/erikw/dotfiles)](#)
 [![Repo file size](https://img.shields.io/github/repo-size/erikw/dotfiles)](#)
-[![XDG Compliancy](https://img.shields.io/badge/%E2%9C%94%20Compliancy-XDG%20Base%20Directory%20Standard-limegreen)](#)
+[![XDG Compliance](https://img.shields.io/badge/%E2%9C%94%20Compliancy-XDG%20Base%20Directory%20Standard-limegreen)](#)
 
 
 My personal dotfiles, installed and managed with [dotbot](https://github.com/anishathalye/dotbot).
@@ -21,7 +21,7 @@ My personal dotfiles, installed and managed with [dotbot](https://github.com/ani
 > This is as [XDG](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html) Base Directory Standard compliant as possible!
 
 ## Highlights
-* [`.config/`](.config/) - I've spent quite some effort to make my dotfiles adhere to the [XDG](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html) Base Directory Standard as much as possible, using and contributing to the [Arch wiki page](https://wiki.archlinux.org/title/XDG_Base_Directory). As far as all programs that I use, support this natively, quite some custom configuration needs to be done. Grep for `XDG` in [.config/zsh](.config/zsh/).
+* [`.config/`](.config/) - I've spent quite some effort to make my dotfiles adhere to the [XDG](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html) Base Directory Standard as much as possible, using and contributing to the [Arch wiki page](https://wiki.archlinux.org/title/XDG_Base_Directory). As far from all programs that I use support this natively, quite some custom configuration needs to be done. Grep for `XDG` in [.config/zsh](.config/zsh/).
    * [`dotbot/install.conf.yaml`](.config/dotbot/install.conf.yaml) - how these dotfiles are installed.
    * [`nvim/`](.config/nvim) - check out my Neovim configurations; they are pretty cool!
 * [`bin/`](bin/) - many handy and time saving scripts.
