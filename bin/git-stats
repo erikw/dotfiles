@@ -132,11 +132,33 @@ files_and_churn() {
 largest_files() {
   section "📦 Largest Files"
 
-  git ls-files -z | xargs -0 ls -l 2>/dev/null | sort -k5 -nr | head -5 | awk '
-  {
-    size=$5; file=$9;
-    printf "  %-50s %10.2f MB\n", file, size/1024/1024
-  }'
+  local stat_flag
+  local stat_format
+  local file
+
+  if stat --version >/dev/null 2>&1; then
+    stat_flag='-c'
+    stat_format='%s'
+  else
+    stat_flag='-f'
+    stat_format='%z'
+  fi
+
+  git ls-files -z |
+    while IFS= read -r -d '' file; do
+      [[ -e "$file" ]] || continue
+      printf '%s\t%s\n' "$(stat "$stat_flag" "$stat_format" "./$file" 2>/dev/null)" "$file"
+    done |
+    sort -t $'\t' -k1,1nr |
+    awk -F '\t' '
+      NR <= 5 {
+        printf "  %-50s %10.2f MB\n", $2, $1 / 1024 / 1024
+      }
+      END {
+        if (NR == 0) {
+          print "  No tracked files"
+        }
+      }'
 }
 
 working_tree() {
