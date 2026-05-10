@@ -119,10 +119,24 @@ restore_backup_if_present() {
 }
 
 # ──────────────────────────────────────────────────────────────────────────────
-# Step functions  (populated in subsequent steps)
+# Step functions
 # ──────────────────────────────────────────────────────────────────────────────
 
-# TODO: implement step functions (steps 2–7 of the migration plan)
+# Step: submodules
+# Sync metadata and initialize/update all submodules under .local/repos.
+# Scoped to .local/repos so the dotbot subtree (if still present) is included
+# but unrelated top-level submodules are not silently pulled in.
+step_submodules() {
+  log_info "Syncing submodule configuration..."
+  git -C "$DOTFILES_DIR" submodule sync --quiet --recursive
+
+  log_info "Updating submodules under .local/repos:"
+  grep 'path = \.local/repos' "$DOTFILES_DIR/.gitmodules" | sed 's/.*= //' | while IFS= read -r p; do
+    log_info "  $p"
+  done
+
+  git -C "$DOTFILES_DIR" submodule update --init --recursive "$DOTFILES_DIR/.local/repos"
+}
 
 # ──────────────────────────────────────────────────────────────────────────────
 # Dispatcher
