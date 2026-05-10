@@ -1,0 +1,139 @@
+# Apt packages installed on Debian/Ubuntu workstations by install.sh step_debian.
+# Syntax:
+#   - one package per line
+#   - blank lines and lines starting with # are ignored
+#   - trailing comments (# ...) are stripped before passing to apt-get
+
+# core-shell-utils
+adduser				# user account management helper
+at				# job scheduler
+bat				# modern cat(1)
+bc				# command-line calculator
+curl				# data transfer utility
+dfc				# modern df(1)
+discus				# disk usage utility
+dos2unix			# DOS/Windows line ending converter
+fd-find				# modern find(1)
+fzf				# fuzzy finder
+htop				# interactive process viewer
+jq				# JSON processor
+lsof				# list open files
+multitail			# multi-file log viewer
+ncdu				# disk usage analyzer
+p7zip-full			# 7z archive tools
+pv				# pipe viewer
+rename				# file renaming utility (perl-based)
+ripgrep				# modern grep(1)
+screen				# terminal multiplexer
+tmux				# terminal multiplexer
+tree				# directory tree viewer
+unrar				# RAR archive extractor
+unzip				# ZIP archive extractor
+wget				# network downloader
+xxd				# hex dump utility
+xz-utils			# XZ compression tools
+zip				# ZIP archive utility
+zsh				# Z shell
+
+# development
+ack				# grep-like source code search tool
+bashdb				# bash debugger
+cgdb				# curses frontend for gdb
+checkbashisms			# detect non-POSIX shell usage
+clang				# LLVM C/C++ compiler
+cloc				# count lines of code
+cmake				# build system generator
+cscope				# source code browser
+direnv				# per-directory environment variables
+emacs				# text editor
+exuberant-ctags			# source code tag generator
+gdb				# GNU debugger
+ghq				# Git repo cloner
+git				# distributed version control
+graphviz			# graph visualization toolkit
+inotify-tools			# filesystem event monitoring tools
+ipython3			# enhanced Python REPL
+neovim				# modern Vim fork
+octave				# numerical computing environment
+pastebinit			# pastebin command-line client
+strace				# syscall tracer
+texlive-full			# TeX Live distribution
+tig				# ncurses Git log viewer
+valgrind			# memory debugger
+vim				# text editor
+
+# networking-remote-security
+arp				# ARP table utility
+dnsutils			# DNS query utilities
+finger				# user information lookup
+gnupg				# OpenPGP encryption tools
+httpie				# modern HTTP client
+iftop				# network bandwidth monitor
+ipcalc				# IP subnet calculator
+mosh				# mobile shell
+ncftp				# FTP client
+nethogs				# per-process network monitor
+nmap				# network scanner
+rkhunter			# rootkit scanner
+samba				# SMB/CIFS file sharing
+sshfs				# SSH filesystem
+tcpdump				# packet analyzer
+telnet				# telnet client
+traceroute			# network route tracing
+whois				# WHOIS lookup utility
+
+# text-documents-pdf
+antiword			# Microsoft Word to text converter
+enca				# text encoding detector
+html2text			# HTML to plain text converter
+odt2txt				# OpenDocument text extractor
+pdfgrep				# grep inside PDFs
+pdfmod				# PDF editor
+pdftk				# PDF toolkit
+poppler-utils			# pdftotext and PDF utilities
+unoconv				# LibreOffice document converter
+
+# spell-language
+aspell				# spell checker
+aspell-de			# German dictionary for aspell
+aspell-en			# English dictionary for aspell
+aspell-sv			# Swedish dictionary for aspell
+hunspell-de-de			# German Hunspell dictionary
+hunspell-en-us			# English Hunspell dictionary
+hunspell-sv-se			# Swedish Hunspell dictionary
+languagetool			# grammar and spell checker
+vim-spell-en			# Vim English spell files
+vim-spell-sv			# Vim Swedish spell files
+
+# terminal-web-browsing
+elinks				# text-mode web browser
+links				# text-mode web browser
+lynx				# text-mode web browser
+urlscan				# terminal URL selector
+urlview				# extract URLs from text
+
+# filesystems-disks-system
+cdu				# Cuses based disk usage.
+cfdisk				# curses partition editor
+fdisk				# disk partitioning utility
+iotop				# I/O usage monitor
+powertop			# power consumption monitor
+reptyr				# reattach running processes
+sane-utils			# scanner utilities
+sysstat				# system performance tools
+
+# media-graphics-fonts
+ffmpeg				# multimedia framework
+fonts-dejavu			# DejaVu fonts
+fonts-freefont-ttf		# GNU FreeFont collection
+fonts-terminus			# Terminus console font
+imagemagick			# image manipulation toolkit
+yt-dlp				# YouTube downloader
+
+# fun-misc
+cmatrix				# Matrix-style terminal animation
+cowsay				# talking cow message generator
+cowsay				# Say it like a cow.
+figlet				# ASCII art text generator
+sc				# terminal spreadsheet calculator
+sl				# steam locomotive joke program
