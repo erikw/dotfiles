@@ -45,6 +45,7 @@
 .config/vscode-dev-containers/
 .config/wireshark/
 .config/yarn/config
+.config/zsh/.zcompdump
 .config/zsh/.zsh_funcs/_netlify
 .config/zsh/.zsh_funcs/_poetry
 .config/zsh/env.local
