@@ -138,6 +138,41 @@ step_submodules() {
   git -C "$DOTFILES_DIR" submodule update --init --recursive "$DOTFILES_DIR/.local/repos"
 }
 
+# Step: dirs
+# Create required directories idempotently.
+# ~/.backup and ~/.local/share/tig are private (0700); the rest are normal (0755).
+step_dirs() {
+  local -a private_dirs=(
+    "$BACKUP_DIR"
+    "$HOME/.local/share/tig"  # XDG_DATA_HOME for tig; https://wiki.archlinux.org/title/XDG_Base_Directory#Partial
+  )
+  local -a normal_dirs=(
+    "$HOME/dl"
+    "$HOME/pub"
+    "$HOME/src"
+    "$HOME/tmp"
+  )
+
+  for d in "${private_dirs[@]}"; do
+    if [[ ! -d "$d" ]]; then
+      mkdir -p "$d"
+      chmod 0700 "$d"
+      log_info "Created (0700): $d"
+    else
+      log_info "Already exists: $d"
+    fi
+  done
+
+  for d in "${normal_dirs[@]}"; do
+    if [[ ! -d "$d" ]]; then
+      mkdir -p "$d"
+      log_info "Created: $d"
+    else
+      log_info "Already exists: $d"
+    fi
+  done
+}
+
 # ──────────────────────────────────────────────────────────────────────────────
 # Dispatcher
 # ──────────────────────────────────────────────────────────────────────────────
