@@ -512,7 +512,7 @@ EOF
   local i=1
   for entry in "${DEFAULT_STEPS[@]}"; do
     printf '  %-2d  %-14s  %s\n' "$i" "$(_step_name "$entry")" "$(_step_description "$entry")"
-    (( i++ )) || true
+    i=$(( i + 1 ))
   done
   cat <<EOF
 
@@ -551,7 +551,11 @@ main() {
   while [[ $# -gt 0 ]]; do
     case "$1" in
       -h|--help) show_help; exit 0 ;;
-      -s|--step) step="${2:-}"; shift 2 ;;
+      -s|--step)
+        [[ $# -ge 2 && -n "${2:-}" ]] || die "Option '$1' requires a step name. Run '$SCRIPT_NAME --help' for usage."
+        step="$2"
+        shift 2
+        ;;
       *) die "Unknown argument: '$1'. Run '$SCRIPT_NAME --help' for usage." ;;
     esac
   done
