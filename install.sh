@@ -119,6 +119,57 @@ restore_backup_if_present() {
 }
 
 # ──────────────────────────────────────────────────────────────────────────────
+# Crontab helpers
+# Shared state: _crontab_current must be set by the caller before invoking
+# these helpers, and may be read back afterwards.
+# ──────────────────────────────────────────────────────────────────────────────
+_crontab_current=""
+
+# Install the crontab header idempotently, keyed by MARKER ($1).
+# Reads and updates _crontab_current.
+_install_crontab_header() {
+  local marker="$1"
+  if printf '%s\n' "$_crontab_current" | grep -Fq "$marker"; then
+    log_info "Crontab header already present."
+    return 0
+  fi
+  log_info "Installing crontab header..."
+  local tab_header
+  # read returns non-zero at EOF of a heredoc — temporarily allow that.
+  set +o errexit
+  read -r -d '' tab_header <<EOF
+${marker}
+# Environment
+# ~/ works, but \$HOME does not in crontab.
+PATH=~/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/local/sbin:/sbin:/usr/sbin:/usr/bin:/bin
+# Reference: crontab(5)  Helper: https://crontab.guru/
+# Fields: minute hour mday month wday  command
+EOF
+  set -o errexit
+  if [[ -n "$_crontab_current" ]]; then
+    tab_header="$(printf '%s\n%s\n' "$_crontab_current" "$tab_header")"
+  fi
+  printf '%s\n' "$tab_header" | crontab -
+  # Refresh so subsequent _add_cron_entry calls see the updated crontab.
+  set +o errexit
+  _crontab_current="$(crontab -l 2>/dev/null)"
+  set -o errexit
+}
+
+# Add a single crontab entry idempotently, keyed by CMD ($2).
+# Reads and updates _crontab_current.
+_add_cron_entry() {
+  local schedule="$1" cmd="$2"
+  if printf '%s\n' "$_crontab_current" | grep -qF "$cmd"; then
+    log_info "Crontab entry already present: $cmd"
+  else
+    _crontab_current="$(printf '%s\n%s %s\n' "$_crontab_current" "$schedule" "$cmd")"
+    printf '%s\n' "$_crontab_current" | crontab -
+    log_info "Added crontab entry: $schedule $cmd"
+  fi
+}
+
+# ──────────────────────────────────────────────────────────────────────────────
 # Step functions
 # ──────────────────────────────────────────────────────────────────────────────
 
@@ -353,6 +404,71 @@ step_macos() {
   create_or_replace_symlink "$icloud/bak"   "$HOME/bak"
   create_or_replace_symlink "$icloud/media" "$HOME/media"
   create_or_replace_symlink "$icloud/work"  "$HOME/work"
+}
+
+# Step: asdf
+# Install asdf language plugins and their latest versions, then set each as
+# the global default.  Skipped in non-workstation environments (e.g. Codespaces)
+# where language runtimes are already provided by the dev container image.
+step_asdf() {
+  is_workstation || { log_info "Non-workstation environment — skipping asdf."; return 0; }
+  command -v asdf >/dev/null 2>&1 || die "asdf not found. Install it first (e.g. via Homebrew or the Brewfile)."
+
+  local -a plugins=(ruby python golang nodejs)
+
+  for plugin in "${plugins[@]}"; do
+    if asdf plugin list | grep -q "^${plugin}$"; then
+      log_info "asdf plugin already installed: $plugin"
+    else
+      log_info "Adding asdf plugin: $plugin"
+      asdf plugin add "$plugin"
+    fi
+
+    log_info "Installing latest $plugin..."
+    asdf install "$plugin" latest
+
+    log_info "Setting global $plugin to latest..."
+    asdf set -u "$plugin" latest
+  done
+}
+
+# Step: crontab
+# Install crontab entries for periodic backups.
+# Skipped in non-workstation environments.
+step_crontab() {
+  is_workstation || { log_info "Non-workstation environment — skipping crontab."; return 0; }
+
+  # Read current crontab safely: exit 1 means empty crontab (not an error).
+  set +o errexit
+  _crontab_current="$(crontab -l 2>/dev/null)"
+  local crontab_exit=$?
+  set -o errexit
+  if [[ $crontab_exit -ne 0 && $crontab_exit -ne 1 ]]; then
+    die "Could not read current crontab (exit $crontab_exit)."
+  fi
+
+  _install_crontab_header "#dotfiles-install"
+  _add_cron_entry "@monthly"   "if_fail_do_notification crontab_backup.sh"
+  _add_cron_entry "0 13 * * *" "if_fail_do_notification dotfiles_backup_local.sh"
+}
+
+# Step: ghq
+# Clone personal repos via ghq.  No-op for repos already present.
+# Skipped in non-workstation environments.
+step_ghq() {
+  is_workstation || { log_info "Non-workstation environment — skipping ghq."; return 0; }
+  command -v ghq >/dev/null 2>&1 || die "ghq not found. Install it first (e.g. via Homebrew or the Brewfile)."
+
+  local -a repos=(
+    erikw/templates
+    erikw/erikw
+    erikw/erikw.me-jekyll
+  )
+
+  for repo in "${repos[@]}"; do
+    log_info "Ensuring repo: $repo"
+    ghq get -p "$repo"
+  done
 }
 
 # ──────────────────────────────────────────────────────────────────────────────
