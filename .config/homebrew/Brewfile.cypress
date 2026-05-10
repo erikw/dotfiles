@@ -30,7 +30,6 @@
     cask 'google-drive' # For BTB Podcast management.
     cask 'gramps'
     cask 'handbrake'
-    cask 'jettison'
     cask 'kid3'  # MP3 metadata editor
     cask 'mactex'
     cask 'mutify'
@@ -46,6 +45,7 @@
     cask 'ableton-live-suite' # If using latest version, which I'm not.
     cask 'android-file-transfer'
     cask 'android-platform-tools'
+    cask 'jettison'
     cask 'microsoft-office'  # License managed at https://account.microsoft.com/services/
     cask 'mixed-in-key'    # If using latest version, which I'm not.
     cask 'musicbrainz-picard'

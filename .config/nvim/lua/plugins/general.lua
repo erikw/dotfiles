@@ -66,6 +66,7 @@ return {
     },
 
     -- File explorer tree
+    -- Keybindings: https://github.com/nvim-tree/nvim-tree.lua/blob/master/doc/nvim-tree-lua.txt
     {
         "nvim-tree/nvim-tree.lua",
         dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -214,55 +215,55 @@ return {
 
             -- nerdcommenter-compatible bindings for muscle-memory during transition.
             -- Normal mode
-            map("n", "<Leader>cc", function()
-                api.comment.linewise.current()
-            end, { desc = "Comment: force comment line" })
-            map("n", "<Leader>cu", function()
-                api.uncomment.linewise.current()
-            end, { desc = "Comment: force uncomment line" })
-            map("n", "<Leader>c<Space>", function()
-                api.toggle.linewise.current()
-            end, { desc = "Comment: toggle line" })
-            map("n", "<Leader>ci", function()
-                api.toggle.linewise.current()
-            end, { desc = "Comment: toggle line (invert)" })
-            map("n", "<Leader>cs", function()
-                api.toggle.blockwise.current()
-            end, { desc = "Comment: toggle block comment" })
-            map("n", "<Leader>cy", function()
-                vim.cmd("normal! yy") -- yank current line
-                api.comment.linewise.current() -- then force-comment it
-            end, { desc = "Comment: yank then comment line" })
-            map("n", "<Leader>cA", function()
-                api.insert.eol()
-            end, { desc = "Comment: append at EOL" })
-
-            -- Visual mode
-            map("x", "<Leader>cc", function()
-                feed_esc()
-                api.comment.linewise(vim.fn.visualmode())
-            end, { desc = "Comment: force comment selection" })
-            map("x", "<Leader>cu", function()
-                feed_esc()
-                api.uncomment.linewise(vim.fn.visualmode())
-            end, { desc = "Comment: force uncomment selection" })
-            map("x", "<Leader>c<Space>", function()
-                feed_esc()
-                api.toggle.linewise(vim.fn.visualmode())
-            end, { desc = "Comment: toggle selection" })
-            map("x", "<Leader>ci", invert_selection, { desc = "Comment: invert per line independently" })
-            map("x", "<Leader>cs", function()
-                feed_esc()
-                api.toggle.blockwise(vim.fn.visualmode())
-            end, { desc = "Comment: toggle block comment selection" })
-            map("x", "<Leader>cy", function()
-                local vmode = vim.fn.visualmode() -- capture mode before leaving visual
-                feed_esc() -- exit visual, commits '< and '> marks
-                vim.cmd("normal! gvy") -- re-select via marks and yank
-                preserve_yank(function()
-                    api.comment.linewise(vmode) -- force-comment the '< '> range
-                end)
-            end, { desc = "Comment: yank then comment selection" })
+            -- map("n", "<Leader>cc", function()
+            --     api.comment.linewise.current()
+            -- end, { desc = "Comment: force comment line" })
+            -- map("n", "<Leader>cu", function()
+            --     api.uncomment.linewise.current()
+            -- end, { desc = "Comment: force uncomment line" })
+            -- map("n", "<Leader>c<Space>", function()
+            --     api.toggle.linewise.current()
+            -- end, { desc = "Comment: toggle line" })
+            -- map("n", "<Leader>ci", function()
+            --     api.toggle.linewise.current()
+            -- end, { desc = "Comment: toggle line (invert)" })
+            -- map("n", "<Leader>cs", function()
+            --     api.toggle.blockwise.current()
+            -- end, { desc = "Comment: toggle block comment" })
+            -- map("n", "<Leader>cy", function()
+            --     vim.cmd("normal! yy") -- yank current line
+            --     api.comment.linewise.current() -- then force-comment it
+            -- end, { desc = "Comment: yank then comment line" })
+            -- map("n", "<Leader>cA", function()
+            --     api.insert.eol()
+            -- end, { desc = "Comment: append at EOL" })
+            --
+            -- -- Visual mode
+            -- map("x", "<Leader>cc", function()
+            --     feed_esc()
+            --     api.comment.linewise(vim.fn.visualmode())
+            -- end, { desc = "Comment: force comment selection" })
+            -- map("x", "<Leader>cu", function()
+            --     feed_esc()
+            --     api.uncomment.linewise(vim.fn.visualmode())
+            -- end, { desc = "Comment: force uncomment selection" })
+            -- map("x", "<Leader>c<Space>", function()
+            --     feed_esc()
+            --     api.toggle.linewise(vim.fn.visualmode())
+            -- end, { desc = "Comment: toggle selection" })
+            -- map("x", "<Leader>ci", invert_selection, { desc = "Comment: invert per line independently" })
+            -- map("x", "<Leader>cs", function()
+            --     feed_esc()
+            --     api.toggle.blockwise(vim.fn.visualmode())
+            -- end, { desc = "Comment: toggle block comment selection" })
+            -- map("x", "<Leader>cy", function()
+            --     local vmode = vim.fn.visualmode() -- capture mode before leaving visual
+            --     feed_esc() -- exit visual, commits '< and '> marks
+            --     vim.cmd("normal! gvy") -- re-select via marks and yank
+            --     preserve_yank(function()
+            --         api.comment.linewise(vmode) -- force-comment the '< '> range
+            --     end)
+            -- end, { desc = "Comment: yank then comment selection" })
         end,
     },
 
