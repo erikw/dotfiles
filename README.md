@@ -15,14 +15,13 @@
 [![XDG Compliance](https://img.shields.io/badge/%E2%9C%94%20Compliancy-XDG%20Base%20Directory%20Standard-limegreen)](#)
 
 
-My personal dotfiles, installed and managed with [dotbot](https://github.com/anishathalye/dotbot).
+My personal dotfiles. 
 
 > [!NOTE]
 > This is as [XDG](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html) Base Directory Standard compliant as possible!
 
 ## Highlights
 * [`.config/`](.config/) - I've spent quite some effort to make my dotfiles adhere to the [XDG](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html) Base Directory Standard as much as possible, using and contributing to the [Arch wiki page](https://wiki.archlinux.org/title/XDG_Base_Directory). As far from all programs that I use support this natively, quite some custom configuration needs to be done. Grep for `XDG` in [.config/zsh](.config/zsh/).
-   * [`dotbot/install.conf.yaml`](.config/dotbot/install.conf.yaml) - how these dotfiles are installed.
    * [`nvim/`](.config/nvim) - check out my Neovim configurations; they are pretty cool!
 * [`bin/`](bin/) - many handy and time saving scripts.
   * [`brew_upgrade.sh`](bin/brew_upgrade.sh) - interactively upgrade a Homebrew system.
