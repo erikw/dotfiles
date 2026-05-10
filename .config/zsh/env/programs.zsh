@@ -45,8 +45,10 @@
 # Add asdf shims to env and PATH Ref: https://github.com/asdf-community/asdf-golang
 # NOTE this overrides set $GOPATH, $GOROOT & $GOBIN.
 # NOTE after installing ($ go install) a new package, reshim to make it available on $PATH with $(asdf reshim goalang)
-sourceifexists ${ASDF_DATA_DIR:-$HOME/.asdf}/plugins/golang/set-env.zsh
-asdf_update_golang_env # Call directly to set up $GOBIN
+if [ -f "${ASDF_DATA_DIR:-$HOME/.asdf}/plugins/golang/set-env.zsh" ]; then
+	source "${ASDF_DATA_DIR:-$HOME/.asdf}/plugins/golang/set-env.zsh"
+	asdf_update_golang_env # Call directly to set up $GOBIN
+fi
 if [ -n "$GOBIN" ]; then
 	# Append to make sure that asdf shims path comes before.
 	PATH="$PATH:$GOBIN"
