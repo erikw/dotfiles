@@ -173,6 +173,57 @@ step_dirs() {
   done
 }
 
+# Step: link / unlink
+# Managed symlinks are defined in two arrays:
+#   SYMLINKS_CORE  — always applied
+#   SYMLINKS_MACOS — applied on macOS only
+# Each entry is "repo-relative-source:absolute-destination".
+
+SYMLINKS_CORE=(
+  ".bashrc:$HOME/.bashrc"
+  ".config:$HOME/.config"
+  ".hushlogin:$HOME/.hushlogin"
+  ".local/repos:$HOME/.local/repos"
+  ".zshenv:$HOME/.zshenv"
+  "bin:$HOME/bin"
+)
+
+SYMLINKS_MACOS=(
+  ".config/Code/User/keybindings.json:$HOME/Library/Application Support/Code/User/keybindings.json"
+  ".config/Code/User/settings.json:$HOME/Library/Application Support/Code/User/settings.json"
+  ".config/Code/User/snippets:$HOME/Library/Application Support/Code/User/snippets"
+  ".config/Code/User/tasks.json:$HOME/Library/Application Support/Code/User/tasks.json"
+)
+
+_apply_links() {
+  local action="$1"  # "link" or "unlink"
+  shift
+  local entries=("$@")
+  for entry in "${entries[@]}"; do
+    local src="${entry%%:*}"
+    local dest="${entry#*:}"
+    if [[ "$action" == "link" ]]; then
+      create_or_replace_symlink "$DOTFILES_DIR/$src" "$dest"
+    else
+      remove_symlink "$dest"
+    fi
+  done
+}
+
+step_link() {
+  _apply_links link "${SYMLINKS_CORE[@]}"
+  if is_macos; then
+    _apply_links link "${SYMLINKS_MACOS[@]}"
+  fi
+}
+
+step_unlink() {
+  _apply_links unlink "${SYMLINKS_CORE[@]}"
+  if is_macos; then
+    _apply_links unlink "${SYMLINKS_MACOS[@]}"
+  fi
+}
+
 # ──────────────────────────────────────────────────────────────────────────────
 # Dispatcher
 # ──────────────────────────────────────────────────────────────────────────────
