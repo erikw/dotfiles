@@ -224,6 +224,137 @@ step_unlink() {
   fi
 }
 
+# Step: codespaces
+# Install the minimal apt packages the dotfiles need when running inside GitHub
+# Codespaces.  Skipped everywhere else.
+step_codespaces() {
+  is_codespaces || { log_info "Not Codespaces — skipping."; return 0; }
+  if ! command -v apt-get >/dev/null 2>&1; then
+    log_warn "apt-get not available in this Codespaces image — skipping package install."
+    return 0
+  fi
+  log_info "Installing apt packages for Codespaces..."
+  sudo apt-get update -qq
+  sudo apt-get install -y tig
+}
+
+# Step: debian
+# Install packages via apt on Debian/Ubuntu workstations.
+# Package list is read from .config/apt/packages.txt — blank lines, lines
+# starting with #, and trailing comments are all ignored.
+# Skipped on non-Debian systems and inside Codespaces (handled by step_codespaces).
+step_debian() {
+  is_debian_like || { log_info "Not Debian-like — skipping."; return 0; }
+  is_codespaces  && { log_info "Codespaces — skipping debian step (see step_codespaces)."; return 0; }
+  local pkg_file="$DOTFILES_DIR/.config/apt/packages.txt"
+  [[ -f "$pkg_file" ]] || die "Package list not found: $pkg_file"
+  # Strip blank lines, comment-only lines, and trailing comments; collect into array.
+  local -a packages
+  while IFS= read -r line; do
+    line="${line%%#*}"   # strip trailing comment
+    line="${line// /}"   # trim spaces
+    [[ -n "$line" ]] && packages+=("$line")
+  done < "$pkg_file"
+  log_info "Installing ${#packages[@]} apt packages from $pkg_file..."
+  sudo apt-get update -qq
+  sudo apt-get install -y "${packages[@]}"
+}
+
+# Step: macos
+# Full macOS setup: Homebrew, Brewfile, system config, and iCloud symlinks.
+# Skipped on non-macOS systems.
+step_macos() {
+  is_macos || { log_info "Not macOS — skipping."; return 0; }
+
+  # ── 1. Homebrew ────────────────────────────────────────────────────────────
+  if ! [[ -e /opt/homebrew/bin/brew || -e /usr/local/bin/brew ]]; then
+    log_info "Installing Homebrew..."
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  fi
+
+  local brew_bin
+  if [[ -e /opt/homebrew/bin/brew ]]; then
+    brew_bin=/opt/homebrew/bin/brew          # Apple Silicon
+  elif [[ -e /usr/local/bin/brew ]]; then
+    brew_bin=/usr/local/bin/brew             # Intel
+  else
+    die "Homebrew not found after install attempt."
+  fi
+  eval "$("$brew_bin" shellenv)"
+  local brew_prefix
+  brew_prefix="$("$brew_bin" --prefix)"
+
+  # ── 2. Set Homebrew zsh as the login shell ─────────────────────────────────
+  # Reference: https://rick.cogley.info/post/use-homebrew-zsh-instead-of-the-osx-default/
+  local brew_zsh="$brew_prefix/bin/zsh"
+  local cur_sh
+  cur_sh="$(dscl . -read "/Users/$USER" UserShell | cut -d' ' -f2)"
+  if [[ "$cur_sh" != "$brew_zsh" ]]; then
+    log_info "Setting Homebrew zsh as the default shell..."
+    sudo dscl . -create "/Users/$USER" UserShell "$brew_zsh"
+  else
+    log_info "Default shell already set to Homebrew zsh."
+  fi
+
+  # ── 3. Homebrew autoupdate ─────────────────────────────────────────────────
+  # Reference: https://github.com/Homebrew/homebrew-autoupdate
+  local autoupdate_plist="$HOME/Library/LaunchAgents/com.github.domt4.homebrew-autoupdate.plist"
+  local autoupdate_label="com.github.domt4.homebrew-autoupdate"
+  mkdir -p "$HOME/Library/LaunchAgents"
+  if ! [[ -e "$autoupdate_plist" ]] || ! launchctl print "gui/$UID/$autoupdate_label" >/dev/null 2>&1; then
+    log_info "Configuring brew autoupdate (every 12 h, including casks)..."
+    brew tap homebrew/autoupdate
+    brew autoupdate start 43200 --upgrade --cleanup
+  fi
+  brew autoupdate status
+
+  # ── 4. tmux-256color terminfo ──────────────────────────────────────────────
+  # macOS ships an outdated terminfo DB that lacks tmux-256color.
+  # Use Homebrew's tic (not /usr/bin/tic) — macOS's bundled tic can't read stdin via -.
+  if ! toe -a 2>/dev/null | grep -q '^tmux-256color'; then
+    log_info "Compiling tmux-256color terminfo entry..."
+    "$brew_prefix/opt/ncurses/bin/infocmp" tmux-256color \
+      | "$brew_prefix/opt/ncurses/bin/tic" -xe tmux-256color -
+  else
+    log_info "tmux-256color terminfo already present."
+  fi
+
+  # ── 5. Qlty CLI ────────────────────────────────────────────────────────────
+  # Reference: https://docs.qlty.sh/cli/quickstart
+  if ! command -v qlty >/dev/null 2>&1; then
+    log_info "Installing qlty CLI..."
+    curl -fsSL https://qlty.sh | sh
+  else
+    log_info "qlty already installed."
+  fi
+
+  # ── 6. Brewfile ────────────────────────────────────────────────────────────
+  log_info "Running Brewfile..."
+  brew bundle --file="$DOTFILES_DIR/.config/homebrew/Brewfile"
+
+  local host_brewfile
+  host_brewfile="$HOME/.config/homebrew/Brewfile.$(hostname)"
+  if [[ -e "$host_brewfile" ]]; then
+    log_info "Running host-specific Brewfile: $host_brewfile"
+    brew bundle --file="$host_brewfile"
+  fi
+
+  # ── 7. macOS system configuration ─────────────────────────────────────────
+  log_info "Running macos_config.sh..."
+  "$DOTFILES_DIR/bin/macos_config.sh"
+
+  # ── 8. iCloud / macOS convenience symlinks ─────────────────────────────────
+  # These overlay the generic ~/dl and ~/doc dirs created by step_dirs.
+  log_info "Creating macOS convenience symlinks..."
+  local icloud="$HOME/Library/Mobile Documents/com~apple~CloudDocs"
+  create_or_replace_symlink ~/Downloads "$HOME/dl"
+  create_or_replace_symlink ~/Documents "$HOME/doc"
+  create_or_replace_symlink "$icloud"        "$HOME/icloud"
+  create_or_replace_symlink "$icloud/bak"   "$HOME/bak"
+  create_or_replace_symlink "$icloud/media" "$HOME/media"
+  create_or_replace_symlink "$icloud/work"  "$HOME/work"
+}
+
 # ──────────────────────────────────────────────────────────────────────────────
 # Dispatcher
 # ──────────────────────────────────────────────────────────────────────────────
@@ -234,8 +365,9 @@ DEFAULT_STEPS=(
   "submodules:Initialize git submodules under .local/repos"
   "dirs:Create required home directories (~/dl, ~/tmp, etc.)"
   "link:Symlink dotfiles into \$HOME, backing up conflicts"
-  "codespaces:Install apt packages needed in Codespaces (skip on workstation)"
-  "macos:Run Homebrew setup, Brewfile, and macOS config scripts (macOS only)"
+  "codespaces:Install apt packages needed in Codespaces (Codespaces only)"
+  "debian:Install apt packages on Debian/Ubuntu workstations (Debian only)"
+  "macos:Homebrew install/Brewfile/system config/iCloud symlinks (macOS only)"
   "asdf:Install asdf language plugins and set global versions (workstation only)"
   "crontab:Install crontab entries for backups (workstation only)"
   "ghq:Clone personal repos via ghq (workstation only)"

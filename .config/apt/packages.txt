@@ -1,0 +1,15 @@
+# Apt packages installed on Debian/Ubuntu workstations by install.sh step_debian.
+# Syntax:
+#   - one package per line
+#   - blank lines and lines starting with # are ignored
+#   - trailing comments (# ...) are stripped before passing to apt-get
+
+bat           # modern cat(1)
+cloc          # count lines of code
+direnv        # per-directory environment variables
+fd-find       # modern find(1)
+fzf           # fuzzy finder
+jq            # JSON processor
+rename        # file renaming utility (perl-based)
+ripgrep       # modern grep(1)
+tig           # ncurses Git log viewer
