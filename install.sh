@@ -120,15 +120,15 @@ restore_backup_if_present() {
 # }}
 
 # Crontab helpers {{
-# Shared state: _crontab_current must be set by the caller before invoking
+# Shared state: crontab_current must be set by the caller before invoking
 # these helpers, and may be read back afterwards.
-_crontab_current=""
+crontab_current=""
 
 # Install the crontab header idempotently, keyed by MARKER ($1).
-# Reads and updates _crontab_current.
-_install_crontab_header() {
+# Reads and updates crontab_current.
+install_crontab_header() {
   local marker="$1"
-  if printf '%s\n' "$_crontab_current" | grep -Fq "$marker"; then
+  if printf '%s\n' "$crontab_current" | grep -Fq "$marker"; then
     log_info "Crontab header already present."
     return 0
   fi
@@ -145,25 +145,25 @@ PATH=~/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/local/sbin:/
 # Fields: minute hour mday month wday  command
 EOF
   set -o errexit
-  if [[ -n "$_crontab_current" ]]; then
-    tab_header="$(printf '%s\n%s\n' "$_crontab_current" "$tab_header")"
+  if [[ -n "$crontab_current" ]]; then
+    tab_header="$(printf '%s\n%s\n' "$crontab_current" "$tab_header")"
   fi
   printf '%s\n' "$tab_header" | crontab -
-  # Refresh so subsequent _add_cron_entry calls see the updated crontab.
+  # Refresh so subsequent add_cron_entry calls see the updated crontab.
   set +o errexit
-  _crontab_current="$(crontab -l 2>/dev/null)"
+  crontab_current="$(crontab -l 2>/dev/null)"
   set -o errexit
 }
 
 # Add a single crontab entry idempotently, keyed by CMD ($2).
-# Reads and updates _crontab_current.
-_add_cron_entry() {
+# Reads and updates crontab_current.
+add_cron_entry() {
   local schedule="$1" cmd="$2"
-  if printf '%s\n' "$_crontab_current" | grep -qF "$cmd"; then
+  if printf '%s\n' "$crontab_current" | grep -qF "$cmd"; then
     log_info "Crontab entry already present: $cmd"
   else
-    _crontab_current="$(printf '%s\n%s %s\n' "$_crontab_current" "$schedule" "$cmd")"
-    printf '%s\n' "$_crontab_current" | crontab -
+    crontab_current="$(printf '%s\n%s %s\n' "$crontab_current" "$schedule" "$cmd")"
+    printf '%s\n' "$crontab_current" | crontab -
     log_info "Added crontab entry: $schedule $cmd"
   fi
 }
@@ -245,7 +245,7 @@ SYMLINKS_MACOS=(
   ".config/Code/User/tasks.json:$HOME/Library/Application Support/Code/User/tasks.json"
 )
 
-_apply_links() {
+apply_links() {
   local action="$1"  # "link" or "unlink"
   shift
   local entries=("$@")
@@ -261,16 +261,16 @@ _apply_links() {
 }
 
 step_link() {
-  _apply_links link "${SYMLINKS_CORE[@]}"
+  apply_links link "${SYMLINKS_CORE[@]}"
   if is_macos; then
-    _apply_links link "${SYMLINKS_MACOS[@]}"
+    apply_links link "${SYMLINKS_MACOS[@]}"
   fi
 }
 
 step_unlink() {
-  _apply_links unlink "${SYMLINKS_CORE[@]}"
+  apply_links unlink "${SYMLINKS_CORE[@]}"
   if is_macos; then
-    _apply_links unlink "${SYMLINKS_MACOS[@]}"
+    apply_links unlink "${SYMLINKS_MACOS[@]}"
   fi
 }
 
@@ -439,16 +439,16 @@ step_crontab() {
 
   # Read current crontab safely: exit 1 means empty crontab (not an error).
   set +o errexit
-  _crontab_current="$(crontab -l 2>/dev/null)"
+  crontab_current="$(crontab -l 2>/dev/null)"
   local crontab_exit=$?
   set -o errexit
   if [[ $crontab_exit -ne 0 && $crontab_exit -ne 1 ]]; then
     die "Could not read current crontab (exit $crontab_exit)."
   fi
 
-  _install_crontab_header "#dotfiles-install"
-  _add_cron_entry "@monthly"   "if_fail_do_notification crontab_backup.sh"
-  _add_cron_entry "0 13 * * *" "if_fail_do_notification dotfiles_backup_local.sh"
+  install_crontab_header "#dotfiles-install"
+  add_cron_entry "@monthly"   "if_fail_do_notification crontab_backup.sh"
+  add_cron_entry "0 13 * * *" "if_fail_do_notification dotfiles_backup_local.sh"
 }
 
 # Step: ghq
@@ -504,8 +504,8 @@ MANUAL_STEPS=(
   "unlink:Remove managed symlinks and restore backups"
 )
 
-_step_name()        { printf '%s' "${1%%:*}"; }
-_step_description() { printf '%s' "${1#*:}"; }
+step_name()        { printf '%s' "${1%%:*}"; }
+step_description() { printf '%s' "${1#*:}"; }
 
 show_help() {
   cat <<EOF
@@ -521,7 +521,7 @@ Default steps (run in order when no --step is given):
 EOF
   local i=1
   for entry in "${DEFAULT_STEPS[@]}"; do
-    printf '  %-2d  %-14s  %s\n' "$i" "$(_step_name "$entry")" "$(_step_description "$entry")"
+    printf '  %-2d  %-14s  %s\n' "$i" "$(step_name "$entry")" "$(step_description "$entry")"
     i=$(( i + 1 ))
   done
   cat <<EOF
@@ -529,7 +529,7 @@ EOF
 Manual-only steps (must be requested explicitly with --step):
 EOF
   for entry in "${MANUAL_STEPS[@]}"; do
-    printf '      %-14s  %s\n' "$(_step_name "$entry")" "$(_step_description "$entry")"
+    printf '      %-14s  %s\n' "$(step_name "$entry")" "$(step_description "$entry")"
   done
   cat <<EOF
 
@@ -549,7 +549,7 @@ run_step() {
   else
     local all_names=()
     for e in "${DEFAULT_STEPS[@]}" "${MANUAL_STEPS[@]}"; do
-      all_names+=( "$(_step_name "$e")" )
+      all_names+=( "$(step_name "$e")" )
     done
     die "Unknown step: '$name'. Available steps: ${all_names[*]}"
   fi
@@ -574,7 +574,7 @@ main() {
     run_step "$step"
   else
     for entry in "${DEFAULT_STEPS[@]}"; do
-      run_step "$(_step_name "$entry")"
+      run_step "$(step_name "$entry")"
     done
   fi
 }
