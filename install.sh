@@ -45,6 +45,7 @@ die()      { printf "${_CLR_ERR}[error]${_CLR_OFF} %s\n"   "$*" >&2; exit 1; }
 
 is_macos()       { [[ "$OSTYPE" == darwin* ]]; }
 is_linux()       { [[ "$OSTYPE" == linux* ]]; }
+is_windows()     { [[ "$OSTYPE" == cygwin* || "$OSTYPE" == msys* || "$OSTYPE" == win32 ]]; }
 is_debian_like() { [[ -f /etc/debian_version ]]; }
 is_codespaces()  { [[ "${CODESPACES:-}" == "true" ]]; }
 is_workstation() { ! is_codespaces; }
@@ -468,6 +469,17 @@ step_ghq() {
     ghq get -p "$repo"
   done
 }
+
+# Step: windows
+# Full Windows setup via bin/windows_install.ps1.
+# Skipped on non-Windows systems.
+step_windows() {
+  is_windows || { log_info "Not Windows — skipping."; return 0; }
+  local script="$DOTFILES_DIR/bin/windows_install.ps1"
+  [[ -f "$script" ]] || die "Windows install script not found: $script"
+  log_info "Running windows_install.ps1..."
+  powershell.exe -ExecutionPolicy Bypass -File "$script"
+}
 # }}
 
 # Dispatcher {{
@@ -481,6 +493,7 @@ DEFAULT_STEPS=(
   "codespaces:Install apt packages needed in Codespaces (Codespaces only)"
   "debian:Install apt packages on Debian/Ubuntu workstations (Debian only)"
   "macos:Homebrew install/Brewfile/system config/iCloud symlinks (macOS only)"
+  "windows:Full Windows setup via windows_install.ps1 (Windows only)"
   "asdf:Install asdf language plugins and set global versions (workstation only)"
   "crontab:Install crontab entries for backups (workstation only)"
   "ghq:Clone personal repos via ghq (workstation only)"
