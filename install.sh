@@ -48,7 +48,7 @@ is_linux()       { [[ "$OSTYPE" == linux* ]]; }
 is_windows()     { [[ "$OSTYPE" == cygwin* || "$OSTYPE" == msys* || "$OSTYPE" == win32 ]]; }
 is_debian_like() { [[ -f /etc/debian_version ]]; }
 is_codespaces()  { [[ "${CODESPACES:-}" == "true" ]]; }
-is_workstation() { ! is_codespaces; }
+is_workstation() { ! is_codespaces && [[ -z "${CI:-}" ]]; }
 # }}
 
 # Symlink helpers {{
@@ -120,9 +120,9 @@ restore_backup_if_present() {
 # }}
 
 # Crontab helpers {{
-# Shared state: crontab_current must be set by the caller before invoking
-# these helpers, and may be read back afterwards.
-crontab_current=""
+# Shared state: crontab_current must be initialized by step_crontab before calling
+# these helpers. With set -u active, using them without initialization will produce
+# an "unbound variable" error — intentional, as a misuse safety net.
 
 # Install the crontab header idempotently, keyed by MARKER ($1).
 # Reads and updates crontab_current.
@@ -198,11 +198,12 @@ step_dirs() {
     "$HOME/.local/share/gnupg" # GNUPGHOME must be 0700 or gpg refuses to use it
   )
   local -a normal_dirs=(
-    "$HOME/dl"
     "$HOME/pub"
     "$HOME/src"
     "$HOME/tmp"
   )
+  # ~/dl is managed as a symlink to ~/Downloads on macOS; don't create it as a real dir.
+  is_macos || normal_dirs+=("$HOME/dl")
 
   for d in "${private_dirs[@]}"; do
     if [[ ! -d "$d" ]]; then
@@ -305,8 +306,8 @@ step_debian() {
   # Strip blank lines, comment-only lines, and trailing comments; collect into array.
   local -a packages
   while IFS= read -r line; do
-    line="${line%%#*}"   # strip trailing comment
-    line="${line// /}"   # trim spaces
+    line="${line%%#*}"         # strip trailing comment
+    line="${line//[$'\t ']/}"  # remove all tabs and spaces
     [[ -n "$line" ]] && packages+=("$line")
   done < "$pkg_file"
   log_info "Installing ${#packages[@]} apt packages from $pkg_file..."
@@ -368,6 +369,10 @@ step_macos() {
   cur_sh="$(dscl . -read "/Users/$USER" UserShell | cut -d' ' -f2)"
   if [[ "$cur_sh" != "$brew_zsh" ]]; then
     log_info "Setting Homebrew zsh as the default shell..."
+    if ! grep -qxF "$brew_zsh" /etc/shells; then
+      log_info "Registering $brew_zsh in /etc/shells..."
+      echo "$brew_zsh" | sudo tee -a /etc/shells >/dev/null
+    fi
     sudo dscl . -create "/Users/$USER" UserShell "$brew_zsh"
   else
     log_info "Default shell already set to Homebrew zsh."
@@ -378,6 +383,8 @@ step_macos() {
   local autoupdate_plist="$HOME/Library/LaunchAgents/com.github.domt4.homebrew-autoupdate.plist"
   local autoupdate_label="com.github.domt4.homebrew-autoupdate"
   mkdir -p "$HOME/Library/LaunchAgents"
+  # (Re)start autoupdate when: plist is absent (first run), or plist exists but
+  # the launchd service is not loaded (e.g. after a system restart without auto-login).
   if ! [[ -e "$autoupdate_plist" ]] || ! launchctl print "gui/$UID/$autoupdate_label" >/dev/null 2>&1; then
     log_info "Configuring brew autoupdate (every 12 h, including casks)..."
     brew tap homebrew/autoupdate
@@ -589,6 +596,7 @@ run_step() {
 }
 
 main() {
+  trap 'die "Interrupted."' INT TERM
   local step=""
 
   while [[ $# -gt 0 ]]; do
