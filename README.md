@@ -30,6 +30,8 @@ My personal dotfiles, installed and managed with [dotbot](https://github.com/ani
   * [`pdf_compress.sh`](bin/pdf_compress.sh) - compress file size of PDFs!
   * [`permute_aliases.sh`](bin/permute_aliases.sh) - generate shell aliases on all permutations of a command; for fast typers!
   * [`ssh-keygen.sh`](bin/ssh-keygen.sh) - interactively create SSH keys using a nicely structured [`.ssh/config`](bin/ssh-config-create.sh) file.
+* [`docs/`](docs/) - supplementary documentation.
+  * [`macos_install_manual.md`](docs/macos_install_manual.md) - manual macOS setup steps for apps and tools that can't be automated.
 
 ## Installation
 ### Bootstrap

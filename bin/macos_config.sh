@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Configure macOS to my linking.
+# Configure macOS to my liking.
 # NOTE make sure this script is idempotent!
 # Modeline {
 #	vi: foldmarker={,} foldmethod=marker foldlevel=0
