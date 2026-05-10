@@ -1,27 +1,28 @@
 #!/usr/bin/env bash
+# Modeline {{
+#	vi: foldmarker={{,}} foldmethod=marker foldlevel=0
+# }}
 # Dotfiles installer.
 # Usage: ./install.sh [-h|--help] [-s|--step <step>]
 # NOTE make sure this script is idempotent!
 
-
+# Script setup {{
 set -o errexit
 set -o nounset
 set -o pipefail
 [[ "${TRACE-0}" =~ ^1|t|y|true|yes$ ]] && set -o xtrace
+# }}
 
-
-# ──────────────────────────────────────────────────────────────────────────────
-# Core constants
-# ──────────────────────────────────────────────────────────────────────────────
+# Constants {{
 SCRIPT_NAME=${0##*/}
 
 # shellcheck disable=SC2034  # used by step functions defined below
 DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 BACKUP_DIR="$HOME/.backup"
+# }}
 
-# ──────────────────────────────────────────────────────────────────────────────
-# Logging
-# ──────────────────────────────────────────────────────────────────────────────
+# Helpers {{
+# Logging {{
 
 # Emit color codes only when stdout is a terminal.
 if [[ -t 1 ]]; then
@@ -38,20 +39,18 @@ log_info() { printf "${_CLR_INFO}[info]${_CLR_OFF}  %s\n"  "$*"; }
 log_warn() { printf "${_CLR_WARN}[warn]${_CLR_OFF}  %s\n"  "$*" >&2; }
 log_step() { printf "${_CLR_STEP}[step]${_CLR_OFF}  %s\n"  "$*"; }
 die()      { printf "${_CLR_ERR}[error]${_CLR_OFF} %s\n"   "$*" >&2; exit 1; }
+# }}
 
-# ──────────────────────────────────────────────────────────────────────────────
-# OS / environment detection
-# ──────────────────────────────────────────────────────────────────────────────
+# OS / environment detection {{
 
 is_macos()       { [[ "$OSTYPE" == darwin* ]]; }
 is_linux()       { [[ "$OSTYPE" == linux* ]]; }
 is_debian_like() { [[ -f /etc/debian_version ]]; }
 is_codespaces()  { [[ "${CODESPACES:-}" == "true" ]]; }
 is_workstation() { ! is_codespaces; }
+# }}
 
-# ──────────────────────────────────────────────────────────────────────────────
-# Symlink helpers
-# ──────────────────────────────────────────────────────────────────────────────
+# Symlink helpers {{
 
 # Create the parent directory of DEST if it does not exist.
 ensure_parent_dir() {
@@ -117,12 +116,11 @@ restore_backup_if_present() {
     log_info "Restored: $backup_target  →  $dest"
   fi
 }
+# }}
 
-# ──────────────────────────────────────────────────────────────────────────────
-# Crontab helpers
+# Crontab helpers {{
 # Shared state: _crontab_current must be set by the caller before invoking
 # these helpers, and may be read back afterwards.
-# ──────────────────────────────────────────────────────────────────────────────
 _crontab_current=""
 
 # Install the crontab header idempotently, keyed by MARKER ($1).
@@ -168,10 +166,10 @@ _add_cron_entry() {
     log_info "Added crontab entry: $schedule $cmd"
   fi
 }
+# }}
+# }}
 
-# ──────────────────────────────────────────────────────────────────────────────
-# Step functions
-# ──────────────────────────────────────────────────────────────────────────────
+# Step functions {{
 
 # Step: submodules
 # Sync metadata and initialize/update all submodules under .local/repos.
@@ -470,10 +468,9 @@ step_ghq() {
     ghq get -p "$repo"
   done
 }
+# }}
 
-# ──────────────────────────────────────────────────────────────────────────────
-# Dispatcher
-# ──────────────────────────────────────────────────────────────────────────────
+# Dispatcher {{
 
 # Steps that run automatically, in dependency order.
 # Each entry is "name:description".
@@ -570,3 +567,4 @@ main() {
 }
 
 main "$@"
+# }}
