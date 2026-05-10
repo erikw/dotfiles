@@ -50,15 +50,7 @@ export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
 export CLAUDE_CONFIG_DIR="$XDG_CONFIG_HOME/claude"
 
 # asdf; Not yet fully compliant: https://github.com/asdf-vm/asdf/issues/687
-export ASDF_CONFIG_FILE=${XDG_CONFIG_HOME}/asdf/asdfrc
-export ASDF_DATA_DIR=${XDG_DATA_HOME}/asdf
-# Hack for avoiding having $HOME/.tools-version: https://github.com/asdf-vm/asdf/issues/1248#issuecomment-1155978678
-export ASDF_DEFAULT_TOOL_VERSIONS_FILENAME=.local/share/asdf/tool-versions
-# asdf plugins:
-export ASDF_PYTHON_DEFAULT_PACKAGES_FILE=${XDG_CONFIG_HOME}/pip/asdf-default-python-packages.txt
-export ASDF_NPM_DEFAULT_PACKAGES_FILE=${XDG_CONFIG_HOME}/npm/asdf-default-npm-packages.txt
-export ASDF_GEM_DEFAULT_PACKAGES_FILE=${XDG_CONFIG_HOME}/gem/asdf-default-gems.txt
-export ASDF_GOLANG_DEFAULT_PACKAGES_FILE=${XDG_CONFIG_HOME}/golang/asdf-default-golang-pkgs.txt
+source "${XDG_CONFIG_HOME}/zsh/env/asdf.sh"
 
 
 # fzf-marks

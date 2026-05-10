@@ -194,7 +194,8 @@ step_submodules() {
 step_dirs() {
   local -a private_dirs=(
     "$BACKUP_DIR"
-    "$HOME/.local/share/tig"  # XDG_DATA_HOME for tig; https://wiki.archlinux.org/title/XDG_Base_Directory#Partial
+    "$HOME/.local/share/tig"   # XDG_DATA_HOME for tig; https://wiki.archlinux.org/title/XDG_Base_Directory#Partial
+    "$HOME/.local/share/gnupg" # GNUPGHOME must be 0700 or gpg refuses to use it
   )
   local -a normal_dirs=(
     "$HOME/dl"
@@ -236,6 +237,9 @@ SYMLINKS_CORE=(
   ".local/repos:$HOME/.local/repos"
   ".zshenv:$HOME/.zshenv"
   "bin:$HOME/bin"
+  # gpg reads config from GNUPGHOME (~/.local/share/gnupg), not ~/.config/gnupg
+  ".config/gnupg/gpg.conf:$HOME/.local/share/gnupg/gpg.conf"
+  ".config/gnupg/gpg-agent.conf:$HOME/.local/share/gnupg/gpg-agent.conf"
 )
 
 SYMLINKS_MACOS=(
@@ -308,6 +312,29 @@ step_debian() {
   log_info "Installing ${#packages[@]} apt packages from $pkg_file..."
   sudo apt-get update -qq
   sudo apt-get install -y "${packages[@]}"
+}
+
+# Step: linux
+# Enable systemd user units shipped in .config/systemd/user/.
+# Skipped on non-Linux systems and inside Codespaces.
+step_linux() {
+  is_linux    || { log_info "Not Linux — skipping."; return 0; }
+  is_codespaces && { log_info "Codespaces — skipping linux step."; return 0; }
+
+  log_info "Reloading systemd user daemon..."
+  systemctl --user daemon-reload
+
+  local unit_dir="$DOTFILES_DIR/.config/systemd/user"
+  local unit
+  while IFS= read -r unit_path; do
+    unit="$(basename "$unit_path")"
+    if systemctl --user is-enabled "$unit" >/dev/null 2>&1; then
+      log_info "systemd unit already enabled: $unit"
+    else
+      log_info "Enabling systemd unit: $unit"
+      systemctl --user enable "$unit_path"
+    fi
+  done < <(find "$unit_dir" -maxdepth 1 -type f)
 }
 
 # Step: macos
@@ -413,6 +440,10 @@ step_asdf() {
   is_workstation || { log_info "Non-workstation environment — skipping asdf."; return 0; }
   command -v asdf >/dev/null 2>&1 || die "asdf not found. Install it first (e.g. via Homebrew or the Brewfile)."
 
+  # Source asdf XDG env vars from the shared config (same file xdg.zsh sources).
+  # shellcheck source=.config/zsh/env/asdf.sh
+  source "$DOTFILES_DIR/.config/zsh/env/asdf.sh"
+
   local -a plugins=(ruby python golang nodejs)
 
   for plugin in "${plugins[@]}"; do
@@ -449,6 +480,7 @@ step_crontab() {
   install_crontab_header "#dotfiles-install"
   add_cron_entry "@monthly"   "if_fail_do_notification crontab_backup.sh"
   add_cron_entry "0 13 * * *" "if_fail_do_notification dotfiles_backup_local.sh"
+  # add_cron_entry "@monthly"   "if_fail_notify spotify-backup.sh"
 }
 
 # Step: ghq
@@ -492,6 +524,7 @@ DEFAULT_STEPS=(
   "link:Symlink dotfiles into \$HOME, backing up conflicts"
   "codespaces:Install apt packages needed in Codespaces (Codespaces only)"
   "debian:Install apt packages on Debian/Ubuntu workstations (Debian only)"
+  "linux:Enable systemd user units (Linux workstation only)"
   "macos:Homebrew install/Brewfile/system config/iCloud symlinks (macOS only)"
   "windows:Full Windows setup via windows_install.ps1 (Windows only)"
   "asdf:Install asdf language plugins and set global versions (workstation only)"
