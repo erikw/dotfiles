@@ -73,4 +73,4 @@ git clone $DOTFILES_REPO $DOTFILES_ROOT
 
 step "Installing dotfiles"
 cd $DOTFILES_ROOT
-./install
+./install.sh
