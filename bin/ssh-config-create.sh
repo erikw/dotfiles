@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 # Create an ssh base config unless it already exist.
 # Extracted from ssh-keygen.sh, so that it can be used also by dotfiles_bootstrap.sh
 

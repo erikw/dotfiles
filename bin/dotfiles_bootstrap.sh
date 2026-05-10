@@ -11,12 +11,11 @@ set -o pipefail
 
 SSH_DIR="$HOME/.ssh"
 SSH_ID_DIR="$SSH_DIR/identityfiles"
-SSH_PRIV_KEY="$SSH_ID_DIR/github_id_rsa"
+SSH_PRIV_KEY="$SSH_ID_DIR/github_id_ed25519"
 SSH_PUB_KEY="${SSH_PRIV_KEY}.pub"
 DOTFILES_REPO=git@github.com:erikw/dotfiles.git
 REPOS_ROOT="$HOME/src/github.com/erikw"
 DOTFILES_ROOT="$REPOS_ROOT/dotfiles"
-SSH_CONFIG_SCRIPT_URL="https://github.com/erikw/dotfiles/blob/main/bin/ssh-config-create.sh"
 
 is_macos() {
   [[ "$OSTYPE" == "darwin"* ]]
@@ -37,33 +36,33 @@ chmod 700 $SSH_ID_DIR
 curl -O https://raw.githubusercontent.com/erikw/dotfiles/main/bin/ssh-config-create.sh
 chmod 744 ssh-config-create.sh
 ./ssh-config-create.sh
-ssh-keygen -t rsa -f $SSH_ID_DIR/github_id_rsa -C "${USER}@${HOSTNAME} for erikw@github"
+ssh-keygen -t ed25519 -f $SSH_ID_DIR/github_id_ed25519 -C "${USER}@${HOSTNAME} for erikw@github"
 
 cat << EOF >> $HOME/.ssh/config
 
 Host *github.com
 	Port 22
 	User git
-	IdentityFile ${SSH_ID_DIR}/github_id_rsa
+	IdentityFile ${SSH_ID_DIR}/github_id_ed25519
 EOF
 
 # Set up ssh-agent
 is_macos && apple_keychain=--apple-use-keychain || apple_keychain=
 cmd_agent="ssh-add ${apple_keychain} ${SSH_PRIV_KEY}"
-eval $(ssh-agent)
+eval "$(ssh-agent)"
 eval "$cmd_agent"
 
 if type xclip >/dev/null 2>&1; then
-	xclip $SSH_PUB_KEY
+	xclip < "$SSH_PUB_KEY"
 	echo "Copied public key to clipboard with xclip"
 elif type pbcopy >/dev/null 2>&1; then
-	pbcopy < $SSH_PUB_KEY
+	pbcopy < "$SSH_PUB_KEY"
 	echo "Copied public key to clipboard with pbcopy"
 fi
 
 echo "Paste contents of $SSH_PUB_KEY to https://github.com/settings/keys"
 echo "Press enter to continue"
-read
+read -r
 
 
 
@@ -72,5 +71,11 @@ mkdir -p $REPOS_ROOT
 git clone $DOTFILES_REPO $DOTFILES_ROOT
 
 step "Installing dotfiles"
-cd $DOTFILES_ROOT
-./install.sh
+echo -n "Run install.sh now? [Yn]: "
+read -r confirm
+if [[ -z "$confirm" || "$confirm" =~ ^[Yy]$ ]]; then
+	cd $DOTFILES_ROOT
+	./install.sh
+else
+	echo "Skipped. Run manually: cd $DOTFILES_ROOT && ./install.sh"
+fi
