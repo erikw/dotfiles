@@ -3,9 +3,6 @@
 	path = .local/repos/dotbot/dotbot
 	url = https://github.com/anishathalye/dotbot
 	ignore = dirty
-[submodule ".local/repos/dotbot/plugins/brew"]
-	path = .local/repos/dotbot/plugins/brew
-	url = https://github.com/d12frosted/dotbot-brew.git
 [submodule ".local/repos/dotbot/plugins/asdf"]
 	path = .local/repos/dotbot/plugins/asdf
 	url = https://github.com/sobolevn/dotbot-asdf.git
