@@ -285,7 +285,7 @@ step_codespaces() {
   fi
   log_info "Installing apt packages for Codespaces..."
   sudo apt-get update -qq
-  sudo apt-get install -y tig
+  sudo apt-get install -y tig # tmux
 }
 
 # Step: debian
