@@ -1,8 +1,4 @@
 # Prefer to use https URLs instead of ssh, so that the computer where I clone my dotfiles does not need to have SSH keys set up to my Github account.
-[submodule ".local/repos/dotbot/dotbot"]
-	path = .local/repos/dotbot/dotbot
-	url = https://github.com/anishathalye/dotbot
-	ignore = dirty
 [submodule ".local/repos/zinit"]
 	path = .local/repos/zinit
 	url = https://github.com/zdharma-continuum/zinit.git
