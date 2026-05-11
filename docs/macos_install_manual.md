@@ -108,6 +108,10 @@ To use it:
 
 
 ---
+## Shortcuts.app 
+### Sleep
+* Use Sleep Action
+* Keyboard shortcuts: ctrl+opt+cmd+s
 
 ## Automator Actions
 ### Screen Saver
