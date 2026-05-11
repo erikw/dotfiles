@@ -451,6 +451,46 @@ return {
     },
     -- }}
 
+    -- Completion: blink.cmp {{
+    -- Phase 3: replaces ALE omnifunc completion.
+    -- Decision A: keep nvim-autopairs; disable blink.cmp auto_brackets.
+    -- LuaSnip integrated via snippets.preset = 'luasnip'.
+    -- Signature help replaces lsp_signature.nvim.
+    -- On Neovim 0.11+ with vim.lsp.config, LSP capabilities step is not needed.
+    -- Ref: https://cmp.saghen.dev/installation
+    {
+        "saghen/blink.cmp",
+        version = "1.*", -- v2 is in development and may have breaking changes; switch to it when stable.
+        -- LuaSnip is already installed; declaring it here wires blink.cmp's
+        -- snippet expand/jump to LuaSnip's API (snippets.preset = 'luasnip').
+        dependencies = { { "L3MON4D3/LuaSnip", version = "v2.*" } },
+        opts = {
+            -- 'default' preset: C-y accept, C-n/C-p navigate, C-e hide menu,
+            -- C-k toggle signature help. No Tab binding — LuaSnip owns Tab/S-Tab.
+            keymap = { preset = "default" },
+            appearance = { nerd_font_variant = "mono" },
+            -- Use LuaSnip for expanding LSP-provided snippets and showing
+            -- LuaSnip snippets in the completion menu.
+            snippets = { preset = "luasnip" },
+            sources = {
+                default = { "lsp", "path", "snippets", "buffer" },
+            },
+            completion = {
+                accept = {
+                    -- Decision A: nvim-autopairs handles bracket insertion;
+                    -- disable blink.cmp auto_brackets to avoid duplicates.
+                    auto_brackets = { enabled = false },
+                },
+                documentation = { auto_show = true, auto_show_delay_ms = 500 },
+            },
+            -- Built-in signature help; replaces lsp_signature.nvim (Phase 3).
+            signature = { enabled = true },
+            fuzzy = { implementation = "prefer_rust_with_warning" },
+        },
+        opts_extend = { "sources.default" },
+    },
+    -- }}
+
     --[[
     -- LSP linting engine (ALE). Commented out in Phase 2.
     -- Uncomment to restore; remove entirely in Phase 7.
