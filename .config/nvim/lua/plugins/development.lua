@@ -445,6 +445,10 @@ return {
                 },
             })
 
+            -- Enable inlay hints globally; Neovim only activates them for servers
+            -- that advertise inlayHintProvider (gopls, basedpyright, lua_ls, etc.).
+            vim.lsp.inlay_hint.enable(true)
+
             vim.api.nvim_create_autocmd("LspAttach", {
                 group = vim.api.nvim_create_augroup("NativeLspAttach", { clear = true }),
                 callback = function(args)
@@ -579,7 +583,7 @@ return {
                 go       = { "golangcilint" },  -- golangci-lint wraps staticcheck, errcheck, unused, etc.
                 markdown = { "markdownlint" },  -- markdown style/structure linting
                 python   = { "ruff" },            -- ruff covers flake8 + isort rules
-                ruby     = { "rubocop" },          -- supplemental; monitor for duplicates with ruby-lsp LSP diagnostics
+               -- ruby     = { "rubocop" },          -- supplemental; monitor for duplicates with ruby-lsp LSP diagnostics
                 lua      = { "luacheck" },          -- supplemental; lua_ls covers most, luacheck adds extra strictness
                 sh       = { "shellcheck" },        -- bashls also uses shellcheck; monitor for duplicates
             }
