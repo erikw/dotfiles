@@ -6,6 +6,8 @@ ruby = "latest"
 
 
 [settings]
+# Compatibility usage of .python-verion, .ruby-version, .nvmrc etc.
+idiomatic_version_file_enable_tools = ["go", "node", "python", "ruby"]
 
 [settings.python]
 compile = false
