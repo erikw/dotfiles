@@ -471,6 +471,15 @@ return {
             })
         end,
     },
+
+    -- LSP progress spinner in the bottom-right corner.
+    -- Shows $/progress messages (server indexing, loading) so startup isn't silent.
+    {
+        "j-hui/fidget.nvim",
+        version = "*",
+        event = "LspAttach",
+        opts = {},
+    },
     -- }}
 
     -- Completion: blink.cmp {{
