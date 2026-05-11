@@ -352,9 +352,6 @@ return {
     -- Development: LSP/Completion {{
 
     -- LSP Core: mason + nvim-lspconfig {{
-    -- Phase 2: ALE commented out; native LSP keymaps active.
-    -- Formatters added in Phase 4; linters in Phase 5.
-    --
     -- Uses the modern nvim-lspconfig v2 API (Neovim 0.11+):
     --   vim.lsp.config()  — per-server settings
     --   vim.lsp.enable()  — activate servers  (done automatically by mason-lspconfig)
@@ -407,10 +404,10 @@ return {
                 "jsonls",       -- JSON
                 "basedpyright", -- Python (replaces pyright)
                 "ruby_lsp",     -- Ruby (replaces solargraph)
-                "bashls",       -- Shell (replaces ALE 'language_server')
+                "bashls",       -- Shell
                 "texlab",       -- LaTeX
                 "vimls",        -- Vimscript
-                "lua_ls",       -- Lua (new — ALE only had luacheck)
+                "lua_ls",       -- Lua
             },
             -- automatic_enable = true is the default: mason-lspconfig calls
             -- vim.lsp.enable() for every installed server automatically.
@@ -418,7 +415,6 @@ return {
     },
 
     -- nvim-lspconfig: provides the lsp/ server config files consumed by vim.lsp.config().
-    -- Phase 1: suppress formatting + hover/signature to avoid conflicts with ALE.
     {
         "neovim/nvim-lspconfig",
         dependencies = {
@@ -427,7 +423,6 @@ return {
         },
         event = { "BufReadPre", "BufNewFile" },
         config = function()
-            -- Phase 2: full diagnostic display now that ALE is commented out.
             vim.diagnostic.config({
                 signs = true,
                 virtual_text = true,
@@ -450,14 +445,12 @@ return {
                 },
             })
 
-            -- Phase 2 LspAttach: native LSP keymaps active. ALE is commented out.
-            -- Formatting disabled until conform.nvim is added in Phase 4.
             vim.api.nvim_create_autocmd("LspAttach", {
                 group = vim.api.nvim_create_augroup("NativeLspAttach", { clear = true }),
                 callback = function(args)
                     local client = vim.lsp.get_client_by_id(args.data.client_id)
                     if client then
-                        -- Disable LSP formatting — conform.nvim takes over in Phase 4.
+                        -- Disable LSP formatting — conform.nvim handles format-on-save.
                         client.server_capabilities.documentFormattingProvider = false
                         client.server_capabilities.documentRangeFormattingProvider = false
                     end
@@ -478,10 +471,9 @@ return {
     -- }}
 
     -- Completion: blink.cmp {{
-    -- Phase 3: replaces ALE omnifunc completion.
-    -- Decision A: keep nvim-autopairs; disable blink.cmp auto_brackets.
+    -- Keep nvim-autopairs; blink.cmp auto_brackets disabled.
     -- LuaSnip integrated via snippets.preset = 'luasnip'.
-    -- Signature help replaces lsp_signature.nvim.
+    -- Signature help built-in.
     -- On Neovim 0.11+ with vim.lsp.config, LSP capabilities step is not needed.
     -- Ref: https://cmp.saghen.dev/installation
     {
@@ -509,7 +501,7 @@ return {
                 },
                 documentation = { auto_show = true, auto_show_delay_ms = 500 },
             },
-            -- Built-in signature help; replaces lsp_signature.nvim (Phase 3).
+            -- Built-in signature help.
             signature = { enabled = true },
             fuzzy = { implementation = "prefer_rust_with_warning" },
         },
@@ -518,7 +510,6 @@ return {
     -- }}
 
     -- Formatting: conform.nvim {{
-    -- Phase 4: replaces ALE fixers / ale_fix_on_save.
     -- format_on_save is a function so we can skip Brewfiles and respect
     -- vim.g.disable_autoformat (set by DisableFixers command in init.lua).
     -- Ref: https://github.com/stevearc/conform.nvim
@@ -543,13 +534,13 @@ return {
                 sh         = { "shfmt" },
                 yaml       = { "prettier" },
             },
-            -- format_on_save as function: skip Brewfiles (mirrors ale_pattern_options)
+                -- format_on_save as function: skip Brewfiles
             -- and respect the global disable flag (used by DisableFixers).
             format_on_save = function(bufnr)
                 if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
                     return
                 end
-                -- Brewfile: never format (mirrors ALE's ale_pattern_options Brewfile case).
+                -- Brewfile: never format (no formatter appropriate for Brewfile syntax).
                 if vim.bo[bufnr].filetype == "brewfile" then
                     return
                 end
@@ -558,29 +549,11 @@ return {
         },
         config = function(_, opts)
             require("conform").setup(opts)
-
-            --- TODO is this needed?
-            -- rubocop --server cold-start takes ~8 s, which exceeds conform's
-            -- timeout. Pre-warm the server asynchronously when a Ruby file opens
-            -- so the server is ready by the time the user first writes the buffer.
-            vim.api.nvim_create_autocmd("FileType", {
-                group = vim.api.nvim_create_augroup("RubocopPrewarm", { clear = true }),
-                pattern = "ruby",
-                callback = function(ev)
-                    local file = ev.file
-                    if file == "" then return end
-                    vim.fn.jobstart(
-                        { "rubocop", "--server", "-f", "quiet", "--stderr", file },
-                        { detach = true }
-                    )
-                end,
-            })
         end,
     },
     -- }}
 
     -- Linting: nvim-lint {{
-    -- Phase 5: replaces remaining ALE pure linters (non-LSP).
     -- LSP diagnostics (errors, warnings) come from the language servers via nvim-lspconfig.
     -- nvim-lint adds supplemental linting for tools that are not language servers.
     -- Ref: https://github.com/mfussenegger/nvim-lint
@@ -593,13 +566,13 @@ return {
             lint.linters_by_ft = {
                 go       = { "golangcilint" },  -- golangci-lint wraps staticcheck, errcheck, unused, etc.
                 markdown = { "markdownlint" },  -- markdown style/structure linting
-                python   = { "ruff" },           -- replaces ALE flake8; ruff also covers isort rules
-                ruby     = { "rubocop" },         -- supplemental; monitor for duplicates with ruby-lsp LSP diagnostics
-                lua      = { "luacheck" },         -- supplemental; lua_ls covers most, luacheck adds extra strictness
-                sh       = { "shellcheck" },       -- bashls also uses shellcheck; monitor for duplicates
+                python   = { "ruff" },            -- ruff covers flake8 + isort rules
+                ruby     = { "rubocop" },          -- supplemental; monitor for duplicates with ruby-lsp LSP diagnostics
+                lua      = { "luacheck" },          -- supplemental; lua_ls covers most, luacheck adds extra strictness
+                sh       = { "shellcheck" },        -- bashls also uses shellcheck; monitor for duplicates
             }
 
-            -- luacheck: point at XDG config (same path as old ALE option).
+            -- luacheck: point at XDG config.
             -- luacheck reads --config from its own arg, not $XDG_CONFIG_HOME automatically.
             local luacheck = lint.linters.luacheck
             luacheck.args = vim.list_extend(
@@ -616,108 +589,6 @@ return {
         end,
     },
     -- }}
-
-    --[[
-    -- LSP linting engine (ALE). Commented out in Phase 2.
-    -- Uncomment to restore; remove entirely in Phase 7.
-    {
-        "dense-analysis/ale",
-        event = { "BufReadPre", "BufNewFile" },
-        init = function()
-            vim.g.ale_completion_enabled = 1 -- Must be set before ALE is loaded.
-        end,
-        config = function()
-            -- Reference https://github.com/dense-analysis/ale/blob/master/doc/ale.txt
-
-            -- ALE's LSP client clashes with built-in one and gives error on startup: Cannot serialise boolean: table key must be a number or string
-            -- Ref: https://github.com/dense-analysis/ale/issues/4956
-            --vim.g.ale_disable_lsp = 1
-            vim.g.ale_use_neovim_lsp_api = 0
-
-            -- ruby: having rubocop before solargraph could be good to get syntax error shown more quickly.
-            -- gopls seems to work properly only when the source is in $GOPATH in a module?
-            -- Disabled linters:
-            -- ['sql'] = {'sqls'},
-            -- Phase 5: pure linters removed — now handled by nvim-lint.
-            -- LSP-based entries already removed in Phase 2.
-            -- ale_linters is effectively empty; ALE is doing nothing useful.
-            vim.g.ale_linters = {}
-            -- XDG path seems to be used for Linux but not macOS, until fixed https://github.com/mpeterv/luacheck/issues/231
-            vim.g.ale_lua_luacheck_options = "--config $XDG_CONFIG_HOME/luacheck/.luacheckr"
-
-            -- gopls seems to work properly only when the source is in $GOPATH in a module?
-            -- Disabled fixers:
-            -- - *: 'trim_whitespace' & 'remove_trailing_lines' (overlaps with the functionally already provided by vim-better-whitespace)
-            -- - python: autoimport - (messes up ifx in taiga_stats.commands import  fix. Could be resolved by https://github.com/myint/autoflake/issues/59)
-            -- - python: autoflake - too disruptive e.g. removing `from pprint import pprint` on write if it's unused.
-            -- - markdown: prettier (converts * to - in lists)
-            vim.g.ale_fixers = {
-                ["css"] = { "prettier" },
-                ["javascript"] = { "prettier", "eslint" },
-                ["json"] = { "prettier" },
-                ["go"] = { "gopls", "goimports" },
-                ["lua"] = { "stylua" },
-                ["python"] = { "black", "isort" },
-                ["ruby"] = { "rubocop" },
-                ["scss"] = { "prettier" },
-                ["typescript"] = { "prettier" },
-                ["yaml"] = { "prettier" },
-            }
-
-            vim.g.ale_fix_on_save = 1
-            -- Let stylua find $XDG_CONFIG_HOME/stylua/stylua.toml
-            vim.g.ale_lua_stylua_options = "--search-parent-directories"
-
-            vim.g.ale_pattern_options = {
-                ["Brewfile*"] = { ale_fixers = {} }, -- Disable all (ruby) fixers as I want my Brewfile indented in a particular way for folding and text operation on indentation (sorting).
-            }
-
-            -- Completion {
-            vim.g.ale_completion_autoimport = 1
-            -- Trigger on ^x^o
-            vim.opt.omnifunc = "ale#completion#OmniFunc"
-            -- 'longest' seems to tirgger a variation of :h ale-completion-completeopt-bug
-            -- See https://github.com/dense-analysis/ale/issues/1700#issuecomment-991643960
-            vim.opt.completeopt = { "menu", "preview" }
-            -- }
-
-            -- Mappings {
-            -- See :help ale-commands
-            -- Make similar keybindings to https://github.com/neovim/nvim-lspconfig#keybindings-and-completion
-            vim.keymap.set("n", "gd", "<Plug>(ale_go_to_definition)", { silent = true, desc = "ALE: go to definition." })
-            vim.keymap.set("n", "gr", "<Plug>(ale_find_references)", { silent = true, desc = "ALE: find references." })
-            vim.keymap.set("n", "K", "<Plug>(ale_hover)", { silent = true, desc = "ALE: hover." })
-            vim.keymap.set("n", "<Space>rn", "<Plug>(ale_rename)", { silent = true, desc = "ALE: rename." })
-            vim.keymap.set("n", "<Leader>I", "<Plug>(ale_import)", { silent = true, desc = "ALE: import." })
-
-            -- Navigate between errors
-            vim.keymap.set("n", "<C-k>", "<Plug>(ale_previous_wrap)", { silent = true, desc = "ALE: navigate to previous error." })
-            vim.keymap.set("n", "<C-j>", "<Plug>(ale_next_wrap)", { silent = true, desc = "ALE: navigate to next error." })
-            -- }
-
-            -- Toggle command for fixers
-            -- Ref: https://github.com/dense-analysis/ale/issues/1353#issuecomment-424677810
-            vim.api.nvim_create_user_command(
-                "ALEToggleFixer",
-                "execute \"let g:ale_fix_on_save = get(g:, 'ale_fix_on_save', 0) ? 0 : 1\"",
-                { force = true, desc = "ALE: toggle ale_fix_on_save" }
-            )
-        end,
-    },
-    ]]
-
-    --[[
-    -- Method signature window (ALE-based). Commented out in Phase 2.
-    -- Replaced by blink.cmp built-in signature in Phase 3.
-    {
-        "ray-x/lsp_signature.nvim",
-        event = "BufReadPre", -- LspAttach won't fire since ALE uses its own LSP client (ale_use_neovim_lsp_api = 0)
-        opts = {
-            toggle_key = "<M-x>", -- toggle signature on and off in insert mode
-            select_signature_key = "<M-n>", -- cycle to next signature
-        },
-    },
-    ]]
 
     -- LSP symbols and tags viewer (replaces Vista.vim which is unmaintained for Neovim 0.11+).
     -- Uses treesitter or LSP as backend; integrates with lualine for symbol breadcrumbs.
