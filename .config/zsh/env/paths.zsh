@@ -80,9 +80,9 @@ test -e /Library/TeX/texbin && path=(/Library/TeX/texbin $path)
 
 # asdf shims
 # ! Should be last prepended to path.
-if [ -d "${ASDF_DATA_DIR:-$HOME/.asdf}/shims" ]; then
-	path=(${ASDF_DATA_DIR:-$HOME/.asdf}/shims $path)
-fi
+# if [ -d "${ASDF_DATA_DIR:-$HOME/.asdf}/shims" ]; then
+#	path=(${ASDF_DATA_DIR:-$HOME/.asdf}/shims $path)
+# fi
 # }}
 
 # Function paths {{

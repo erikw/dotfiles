@@ -24,21 +24,6 @@ Ref: https://support.pirateship.com/en/articles/2799085-mac-how-to-change-defaul
 - Select your printer > Dropdown: Set Default Options
   - Media Size: A4
   - Two-Sided Printing: Long-Edge Binding
-### Amethyst
-#### General
-- Uncheck "Display layout when changing spaces".
-
-#### Layouts
-- Set the following layouts to be used: tall, fullscreen, floating.
-
-#### Shortcuts
-Disable shortcuts as they conflict with EurKey input (like capital ÄÅ):
-
-- Focus screen 1 (opt+shift+w), as opt+w produces Ä.
-- Select Tall layout (opt+shift+a), as opt+shift+a produces Å.
-
-#### Floating
-- Add Pixelmator Pro, as the mouse hover tooltips are treated as own windows.
 
 ### Clipy
 #### General
@@ -57,13 +42,6 @@ Disable shortcuts as they conflict with EurKey input (like capital ÄÅ):
 
 #### Snippets
 Create snippets for some common items in `~/doc/tech/word_expansions.txt`.
-
-### Scroll Reverser
-#### Scrolling
-- Check: Enable Scroll Reverser
-- Scrolling devices:
-  - Uncheck: Reverse Trackpad
-  - Check: Reverse Mouse
 
 #### App
 - Check: Start at login
@@ -91,51 +69,6 @@ Then go to Mail.app > Preferences > General > Manage Plug-ins... > enable GMaili
   - Full Disk Access: enable, to avoid many different permission request popups later
   - Accessibility Features: enable, for global shortcuts to work
 
-### iTerm2
-- Load settings from Preferences > General > Preferences tab > Load from custom folder or URL. Reference: https://stackoverflow.com/a/23356086/265508
-- System Settings > Privacy & Security > Full Disk Access: enable, to avoid many different permission request popups later
-  - System Preferences > Security & Privacy > Privacy > Full Disk Access > Add iTerm.app
-
-#### General
-##### Closing
-- Make it easier to restart/poweroff by not confirming closing multiple windows — I always use tmux so it's not a problem.
-  - Uncheck: Confirm closing multiple sessions.
-  - Uncheck: Confirm "iTerm2 (#Q)"
-
-##### Selection
-- Check "Applications in terminal may access clipboard" so that you can e.g. copy from vim buffer to GUI clipboard.
-
-##### Colors
-- Check "use different colors for light and dark mode"
-  - For Light Mode and Dark Mode, select Color Preset... with Solarized Light/Dark respectively.
-
-##### Text
-Set font to one of:
-
-- Hack Nerd Font, Regular, 15pt
-- DM Mono, Regular, 14pt
-- Source Code Pro, Regular, 14pt
-- Terminus, Medium, 16pt
-- Any NerdFont when using `lsd(1)`, e.g.: Hack Nerd Font, Regular, 14pt
-
-##### Terminal
-- Notifications > Check "Silence Bell"
-- Check "Unlimited Scrollback"
-
-##### Keys
-###### General
-- Make Option key a Meta key, so e.g. tmux binding works on MBP internal keyboard.
-  - Set "Left option key acts as" to "Esc+". NOTE: need karabiner-elements to get left alt to work on external PC keyboard.
-
-###### Key Mappings
-Create shortcuts to toggle between Solarized dark & light:
-
-- Press the '+' button:
-  - Shortcut: Opt+Cmd+S
-  - Action: "Load Color Preset" > "Solarized Light"
-- Press the '+' button:
-  - Shortcut: Opt+Cmd+Shift+S
-  - Action: "Load Color Preset" > "Solarized Dark"
 
 ### Jettison
 #### Options
@@ -152,15 +85,6 @@ Enable for most archives. Might have to change in Finder for it to be the defaul
 #### Extraction
 - Uncheck "Reveal expanded items in Finder".
 
-### Dropbox
-- Remove `~/Dropbox` symlink and create:
-  ```sh
-  ln -s /Users/erikw/Library/CloudStorage/Dropbox ~/dropbox
-  ```
-- Create symlinks from `~/Library/CloudStorage/Dropbox/*` to `~/`. Don't create from `~/dropbox` because when there's >1 level of indirection, the macOS Dock won't follow the symlinks in the Stacks (list) folder feature.
-
-#### General
-- Dropbox badge: Never show (integrates into MS Office for example)
 
 ### Custom Fonts
 - Open Font Book.app > File > Add Fonts > `~/media/fonts/`
@@ -174,9 +98,6 @@ Enable for most archives. Might have to change in Finder for it to be the defaul
 #### Extension
 Select "Save to Pictures" instead of iCloud.
 
-### Todoist
-- Disable macOS spelling correction in search bar by right-clicking in the search bar > Spelling and Grammar > uncheck "Correct Spelling Automatically". Reference: https://osxdaily.com/2011/08/18/disable-spelling-auto-correct-safari-mac-os-x/
-- Disable badge count on Dock icon: System Preferences > Notifications > Todoist > uncheck "Badge app icon"
 
 ### dict.cc Dictionary Plugin
 From https://www.dict.cc/?s=about%3Awordlist&l=e
@@ -185,15 +106,6 @@ To use it:
 
 - Open Dictionary.app > Preferences > enable and move up the preference order of the "Deutsch-Englisch" dictionary.
 
-### Crontabs
-If using Spotify, add an entry to the local user's crontab:
-
-```
-@monthly    if_fail_notify spotify-backup.sh
-```
-
-### InstaRemind
-Hotkey: Ctrl+Cmd+R (like Todoist's Ctrl+Cmd+A)
 
 ---
 
@@ -266,52 +178,14 @@ Do this for all `~/bin/automator/SwitchAudioSource*.command`:
 brew install ccls
 ```
 
-### Go
-#### asdf Version Manager
-```sh
-asdf plugin-add golang
-asdf install golang latest
-asdf set -u golang latest
-```
-
-Go binaries: for [erikw/tmux-powerline](https://github.com/erikw/tmux-powerline).
 
 ### Java
-#### asdf Version Manager
-```sh
-asdf plugin-add java
-```
-
-Build requirements from https://github.com/halcyon/asdf-java:
-
-```sh
-brew install bash curl unzip jq
-```
-
 #### LSP Server
 No good one exists that is easily installable. See https://microsoft.github.io/language-server-protocol/implementors/servers/
 
 `eclipse.jdt.ls` is clumsy — no brew formula. Only hack that is not working: https://github.com/edganiukov/homebrew
 
 ### Ruby
-#### asdf Version Manager
-Build requirements for building all Ruby versions from https://github.com/asdf-vm/asdf-ruby:
-
-```sh
-asdf plugin-add ruby
-brew install openssl@1.1 openssl@3 readline libyaml gmp rust
-export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"  # Also set in shell commons for future builds
-```
-
-> **Note:** might have to unset `$GEM_HOME` before installing with rbenv: https://github.com/asdf-vm/asdf-ruby/issues/206#issuecomment-860106503
-
-Install latest Ruby:
-
-```sh
-asdf install ruby latest
-asdf set -u ruby latest
-```
-
 #### Rails
 References:
 - https://sergio-ildefonso.medium.com/install-ruby-and-rails-on-a-mac-7b8a1ccb5f4
@@ -338,35 +212,7 @@ State of the art:
 - Project dependencies: poetry
 - Global python tools: pipx
 
-#### asdf Version Manager
-Build requirements from https://github.com/danhper/asdf-python:
 
-```sh
-asdf plugin-add python
-brew install openssl readline sqlite3 xz zlib
-asdf install python latest
-asdf set -u python latest
-```
-
-Install Poetry:
-
-```sh
-curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/install-poetry.py | python -
-poetry completions zsh > $XDG_CONFIG_HOME/zsh/funcs/_poetry
-```
-
-Then reload compinit.
-
-### JavaScript
-#### asdf Version Manager
-Build requirements from https://github.com/asdf-vm/asdf-nodejs/:
-
-```sh
-asdf plugin add nodejs
-brew install gpg gawk
-asdf install nodejs latest
-asdf set -u nodejs latest
-```
 
 ---
 
@@ -456,4 +302,174 @@ $root/ableton/packs/
 $root/ableton/templates/
 $root/ableton/ableton_template_sets/
 $root/ableton/max/
+```
+
+
+
+
+
+
+
+---
+# Archived
+### Amethyst
+#### General
+- Uncheck "Display layout when changing spaces".
+
+#### Layouts
+- Set the following layouts to be used: tall, fullscreen, floating.
+
+#### Shortcuts
+Disable shortcuts as they conflict with EurKey input (like capital ÄÅ):
+
+- Focus screen 1 (opt+shift+w), as opt+w produces Ä.
+- Select Tall layout (opt+shift+a), as opt+shift+a produces Å.
+
+#### Floating
+- Add Pixelmator Pro, as the mouse hover tooltips are treated as own windows.
+
+
+### Scroll Reverser
+#### Scrolling
+- Check: Enable Scroll Reverser
+- Scrolling devices:
+  - Uncheck: Reverse Trackpad
+  - Check: Reverse Mouse
+
+### iTerm2
+- Load settings from Preferences > General > Preferences tab > Load from custom folder or URL. Reference: https://stackoverflow.com/a/23356086/265508
+- System Settings > Privacy & Security > Full Disk Access: enable, to avoid many different permission request popups later
+  - System Preferences > Security & Privacy > Privacy > Full Disk Access > Add iTerm.app
+
+#### General
+##### Closing
+- Make it easier to restart/poweroff by not confirming closing multiple windows — I always use tmux so it's not a problem.
+  - Uncheck: Confirm closing multiple sessions.
+  - Uncheck: Confirm "iTerm2 (#Q)"
+
+##### Selection
+- Check "Applications in terminal may access clipboard" so that you can e.g. copy from vim buffer to GUI clipboard.
+
+##### Colors
+- Check "use different colors for light and dark mode"
+  - For Light Mode and Dark Mode, select Color Preset... with Solarized Light/Dark respectively.
+
+##### Text
+Set font to one of:
+
+- Hack Nerd Font, Regular, 15pt
+- DM Mono, Regular, 14pt
+- Source Code Pro, Regular, 14pt
+- Terminus, Medium, 16pt
+- Any NerdFont when using `lsd(1)`, e.g.: Hack Nerd Font, Regular, 14pt
+
+##### Terminal
+- Notifications > Check "Silence Bell"
+- Check "Unlimited Scrollback"
+
+##### Keys
+###### General
+- Make Option key a Meta key, so e.g. tmux binding works on MBP internal keyboard.
+  - Set "Left option key acts as" to "Esc+". NOTE: need karabiner-elements to get left alt to work on external PC keyboard.
+
+###### Key Mappings
+Create shortcuts to toggle between Solarized dark & light:
+
+- Press the '+' button:
+  - Shortcut: Opt+Cmd+S
+  - Action: "Load Color Preset" > "Solarized Light"
+- Press the '+' button:
+  - Shortcut: Opt+Cmd+Shift+S
+  - Action: "Load Color Preset" > "Solarized Dark"
+
+### Dropbox
+- Remove `~/Dropbox` symlink and create:
+  ```sh
+  ln -s /Users/erikw/Library/CloudStorage/Dropbox ~/dropbox
+  ```
+- Create symlinks from `~/Library/CloudStorage/Dropbox/*` to `~/`. Don't create from `~/dropbox` because when there's >1 level of indirection, the macOS Dock won't follow the symlinks in the Stacks (list) folder feature.
+
+#### General
+- Dropbox badge: Never show (integrates into MS Office for example)
+
+### InstaRemind
+Hotkey: Ctrl+Cmd+R (like Todoist's Ctrl+Cmd+A)
+
+### Todoist
+- Disable macOS spelling correction in search bar by right-clicking in the search bar > Spelling and Grammar > uncheck "Correct Spelling Automatically". Reference: https://osxdaily.com/2011/08/18/disable-spelling-auto-correct-safari-mac-os-x/
+- Disable badge count on Dock icon: System Preferences > Notifications > Todoist > uncheck "Badge app icon"
+
+
+## Development
+### Ruby
+#### asdf Version Manager
+Build requirements for building all Ruby versions from https://github.com/asdf-vm/asdf-ruby:
+
+```sh
+asdf plugin-add ruby
+brew install openssl@1.1 openssl@3 readline libyaml gmp rust
+export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"  # Also set in shell commons for future builds
+```
+
+> **Note:** might have to unset `$GEM_HOME` before installing with rbenv: https://github.com/asdf-vm/asdf-ruby/issues/206#issuecomment-860106503
+
+Install latest Ruby:
+
+```sh
+asdf install ruby latest
+asdf set -u ruby latest
+```
+
+### Python
+#### asdf Version Manager
+Build requirements from https://github.com/danhper/asdf-python:
+
+```sh
+asdf plugin-add python
+brew install openssl readline sqlite3 xz zlib
+asdf install python latest
+asdf set -u python latest
+```
+
+Install Poetry:
+
+```sh
+curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/install-poetry.py | python -
+poetry completions zsh > $XDG_CONFIG_HOME/zsh/funcs/_poetry
+```
+
+Then reload compinit.
+
+### Go
+#### asdf Version Manager
+```sh
+asdf plugin-add golang
+asdf install golang latest
+asdf set -u golang latest
+```
+
+Go binaries: for [erikw/tmux-powerline](https://github.com/erikw/tmux-powerline).
+
+
+### JavaScript
+#### asdf Version Manager
+Build requirements from https://github.com/asdf-vm/asdf-nodejs/:
+
+```sh
+asdf plugin add nodejs
+brew install gpg gawk
+asdf install nodejs latest
+asdf set -u nodejs latest
+```
+
+### Java
+#### asdf Version Manager
+```sh
+asdf plugin-add java
+```
+
+Build requirements from https://github.com/halcyon/asdf-java:
+
+```sh
+brew install bash curl unzip jq
 ```

@@ -76,15 +76,15 @@ fi
 
 # Generate asdf completions and add to fpath
 # The generated file is cached; delete it to regenerate after an asdf upgrade.
-if (( $+commands[asdf] )); then
-	_asdf_comp="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/completions/_asdf"
-	if [[ ! -f "$_asdf_comp" ]]; then
-		mkdir -p "${_asdf_comp:h}"
-		asdf completion zsh >| "$_asdf_comp"
-	fi
-	fpath=("${_asdf_comp:h}" $fpath)
-	unset _asdf_comp
-fi
+# if (( $+commands[asdf] )); then
+# 	_asdf_comp="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/completions/_asdf"
+# 	if [[ ! -f "$_asdf_comp" ]]; then
+# 		mkdir -p "${_asdf_comp:h}"
+# 		asdf completion zsh >| "$_asdf_comp"
+# 	fi
+# 	fpath=("${_asdf_comp:h}" $fpath)
+# 	unset _asdf_comp
+# fi
 
 # Initialize the completion system.
 # -d: XDG-compliant dump file location.

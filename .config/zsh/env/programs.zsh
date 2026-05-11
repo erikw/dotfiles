@@ -9,7 +9,7 @@
 #
 # RESPONSIBILITIES
 #   ✔ Language environments:
-#     - asdf (Go, Java, Node, etc.)
+#     - mise (Go, Java, Node, etc.)
 #     - SDKMAN
 #     - Ruby, Python, Perl configs
 #
@@ -34,6 +34,21 @@
 #   .zprofile
 # }}
 
+# mise {{
+# Cache the activation script to avoid spawning mise on every login shell.
+# Regenerate when the mise binary changes or the cache points at a different binary.
+if (( $+commands[mise] )); then
+	_mise_bin="${commands[mise]}"
+	_mise_cache="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/mise_activate.zsh"
+	if [ ! -s "$_mise_cache" ] || [ "$_mise_bin" -nt "$_mise_cache" ] || ! grep -Fq "$_mise_bin" "$_mise_cache"; then
+		test -d "${XDG_CACHE_HOME:-$HOME/.cache}/zsh" || mkdir -p "${XDG_CACHE_HOME:-$HOME/.cache}/zsh"
+		"$_mise_bin" activate zsh >| "$_mise_cache"
+	fi
+	source "$_mise_cache"
+	unset _mise_bin _mise_cache
+fi
+# }}
+
 #  Golang {{
 # Not set, overridden by asdf.
 #export GOPATH="$XDG_DATA_HOME/go"
@@ -45,10 +60,11 @@
 # Add asdf shims to env and PATH Ref: https://github.com/asdf-community/asdf-golang
 # NOTE this overrides set $GOPATH, $GOROOT & $GOBIN.
 # NOTE after installing ($ go install) a new package, reshim to make it available on $PATH with $(asdf reshim goalang)
-if [ -f "${ASDF_DATA_DIR:-$HOME/.asdf}/plugins/golang/set-env.zsh" ]; then
-	source "${ASDF_DATA_DIR:-$HOME/.asdf}/plugins/golang/set-env.zsh"
-	asdf_update_golang_env # Call directly to set up $GOBIN
-fi
+# if [ -f "${ASDF_DATA_DIR:-$HOME/.asdf}/plugins/golang/set-env.zsh" ]; then
+# 	source "${ASDF_DATA_DIR:-$HOME/.asdf}/plugins/golang/set-env.zsh"
+# 	asdf_update_golang_env # Call directly to set up $GOBIN
+# fi
+# TODO does this work with mise?
 if [ -n "$GOBIN" ]; then
 	# Append to make sure that asdf shims path comes before.
 	PATH="$PATH:$GOBIN"
@@ -81,7 +97,7 @@ fi
 # ruby-build: recommended build env.
 # Reference: https://github.com/rbenv/ruby-build/wiki#suggested-build-environment
 #export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
-if ((  $+commands[ruby-build] || $+commands[asdf] )) && [[ -n "$HOMEBREW_PREFIX" ]]; then
+if ((  $+commands[ruby-build] || $+commands[asdf] || $+commands[mise] )) && [[ -n "$HOMEBREW_PREFIX" ]]; then
 	# For Ruby versions 2.x-3.0
 	#export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$HOMEBREW_PREFIX/opt/openssl@1.1"
 	# For Ruby versions >=3.1
