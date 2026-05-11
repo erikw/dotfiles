@@ -6,7 +6,7 @@
 return {
     -- General {{
 
-    --{'mfussenegger/nvim-dap'}      -- Debug Adapter Protocol client. Like LSP for debuggers. TODO try again when more mature. Currently LUA conf is not working (freezes nvim).
+    --{'mfussenegger/nvim-dap'}      -- Debug Adapter Protocol client. Like LSP for debuggers. Try again when more mature. Currently LUA conf is not working (freezes nvim).
     --{"editorconfig/editorconfig-vim"}, -- Standard .editorconfig file in shared projects. No longer needed, is built-in since Nvim 0.9
 
     -- Indent vertical markers.
@@ -455,10 +455,13 @@ return {
                         client.server_capabilities.documentRangeFormattingProvider = false
                     end
                     local buf = args.buf
-                    -- TODO should we need to set these keymaps ourselves, aren'
+                    -- Default mappings: https://neovim.io/doc/user/lsp/#lsp-defaults
+                    -- Neovim 0.10+ sets K (hover), grn (rename), gra (code_action), grr (references),
+                    -- gri (implementation), [d/]d (diagnostic nav) automatically.
+                    -- The mappings below use different keys matching prior muscle memory,
+                    -- so they are set explicitly. K is omitted — it's already a built-in default.
                     vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = buf, desc = "LSP: go to definition" })
                     vim.keymap.set("n", "gr", vim.lsp.buf.references, { buffer = buf, desc = "LSP: find references" })
-                    vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = buf, desc = "LSP: hover" })
                     vim.keymap.set("n", "<Space>rn", vim.lsp.buf.rename, { buffer = buf, desc = "LSP: rename" })
                     vim.keymap.set("n", "<Leader>I", vim.lsp.buf.code_action, { buffer = buf, desc = "LSP: code action (import)" })
                     vim.keymap.set("n", "<Space>ca", vim.lsp.buf.code_action, { buffer = buf, desc = "LSP: code action" })
