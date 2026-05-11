@@ -431,6 +431,11 @@ return {
                 capabilities = require('blink.cmp').get_lsp_capabilities(),
             })
 
+            -- bashls: also handle zsh buffers (shellcheck runs internally for both).
+            vim.lsp.config("bashls", {
+                filetypes = { "sh", "bash", "zsh" },
+            })
+
             -- lua_ls: override defaults; lazydev.nvim handles workspace.library.
             vim.lsp.config("lua_ls", {
                 settings = {
@@ -541,6 +546,7 @@ return {
                 ruby       = { "rubocop" },
                 scss       = { "prettier" },
                 sh         = { "shfmt" },
+                zsh        = { "shfmt" },
                 yaml       = { "prettier" },
             },
                 -- format_on_save as function: skip Brewfiles
