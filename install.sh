@@ -491,6 +491,10 @@ step_mise() {
 
   log_info "Installing mise-managed tool versions from config..."
   mise install
+
+  # Set up in ~/.config/mise/tasks/bootstrap/
+  log_info "Installing default global packages via mise bootstrap tasks..."
+  mise run bootstrap
 }
 
 # Step: crontab

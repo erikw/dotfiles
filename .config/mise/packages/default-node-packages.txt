@@ -1,0 +1,26 @@
+# NOTE end-of-line #-comments does not work here.
+
+# Development
+# GitHub renders ToC automatically now.
+#markdown-toc
+instant-markdown-d
+netlify-cli
+# Upgrade all packages in package.json with $(ncu -u). Ref: https://stackoverflow.com/a/22849716/265508
+npm-check-updates
+vercel
+
+
+# RoR requirements
+yarn
+
+# Language Servers (LSP)
+bash-language-server
+vim-language-server
+vscode-langservers-extracted
+
+# Linters & fixers
+eslint
+prettier
+
+# REST test scripting with .http/.rest files
+httpyac
