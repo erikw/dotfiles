@@ -61,8 +61,8 @@ fi
 # NOTE this overrides set $GOPATH, $GOROOT & $GOBIN.
 # NOTE after installing ($ go install) a new package, reshim to make it available on $PATH with $(asdf reshim goalang)
 # if [ -f "${ASDF_DATA_DIR:-$HOME/.asdf}/plugins/golang/set-env.zsh" ]; then
-# 	source "${ASDF_DATA_DIR:-$HOME/.asdf}/plugins/golang/set-env.zsh"
-# 	asdf_update_golang_env # Call directly to set up $GOBIN
+#	source "${ASDF_DATA_DIR:-$HOME/.asdf}/plugins/golang/set-env.zsh"
+#	asdf_update_golang_env # Call directly to set up $GOBIN
 # fi
 # TODO does this work with mise?
 if [ -n "$GOBIN" ]; then
