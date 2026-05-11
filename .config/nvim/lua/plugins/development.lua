@@ -374,11 +374,15 @@ return {
                 "ruff",      -- Python formatter (conform) + linter (nvim-lint)
                 "stylua",    -- Lua formatter (conform)
                 "prettier",  -- JS/TS/CSS/SCSS/JSON/YAML formatter (conform)
-                "goimports", -- Go formatter (conform)
+                "goimports",      -- Go formatter (conform)
+                "golangci-lint",  -- Go linter (nvim-lint)
+                "shfmt",          -- Bash/sh formatter (conform)
+                "shellcheck",     -- Bash/sh linter (nvim-lint); also used by bashls
+                "markdownlint",   -- Markdown linter (nvim-lint)
                 -- rubocop intentionally omitted: mason's isolated gem env lacks
                 -- project cops (rubocop-rails etc.) and conflicts with mise's
                 -- rubocop --server daemon. Use mise-managed rubocop instead.
-                "luacheck",  -- Lua linter (nvim-lint, Phase 5)
+                "luacheck",       -- Lua linter (nvim-lint)
             }
             registry.refresh(function()
                 for _, name in ipairs(tools) do
@@ -532,9 +536,11 @@ return {
                 json       = { "prettier" },
                 go         = { "goimports" }, -- gopls handles LSP-format separately
                 lua        = { "stylua" },
+                markdown   = { "prettier" },
                 python     = { "ruff_format" }, -- replaces black + isort
                 ruby       = { "rubocop" },
                 scss       = { "prettier" },
+                sh         = { "shfmt" },
                 yaml       = { "prettier" },
             },
             -- format_on_save as function: skip Brewfiles (mirrors ale_pattern_options)
@@ -572,6 +578,44 @@ return {
     },
     -- }}
 
+    -- Linting: nvim-lint {{
+    -- Phase 5: replaces remaining ALE pure linters (non-LSP).
+    -- LSP diagnostics (errors, warnings) come from the language servers via nvim-lspconfig.
+    -- nvim-lint adds supplemental linting for tools that are not language servers.
+    -- Ref: https://github.com/mfussenegger/nvim-lint
+    {
+        "mfussenegger/nvim-lint",
+        event = { "BufReadPost", "BufWritePost" },
+        config = function()
+            local lint = require("lint")
+
+            lint.linters_by_ft = {
+                go       = { "golangcilint" },  -- golangci-lint wraps staticcheck, errcheck, unused, etc.
+                markdown = { "markdownlint" },  -- markdown style/structure linting
+                python   = { "ruff" },           -- replaces ALE flake8; ruff also covers isort rules
+                ruby     = { "rubocop" },         -- supplemental; monitor for duplicates with ruby-lsp LSP diagnostics
+                lua      = { "luacheck" },         -- supplemental; lua_ls covers most, luacheck adds extra strictness
+                sh       = { "shellcheck" },       -- bashls also uses shellcheck; monitor for duplicates
+            }
+
+            -- luacheck: point at XDG config (same path as old ALE option).
+            -- luacheck reads --config from its own arg, not $XDG_CONFIG_HOME automatically.
+            local luacheck = lint.linters.luacheck
+            luacheck.args = vim.list_extend(
+                { "--config", (vim.env.XDG_CONFIG_HOME or (vim.env.HOME .. "/.config")) .. "/luacheck/.luacheckrc" },
+                luacheck.args or {}
+            )
+
+            vim.api.nvim_create_autocmd({ "BufWritePost", "BufReadPost", "InsertLeave" }, {
+                group = vim.api.nvim_create_augroup("NvimLint", { clear = true }),
+                callback = function()
+                    lint.try_lint()
+                end,
+            })
+        end,
+    },
+    -- }}
+
     --[[
     -- LSP linting engine (ALE). Commented out in Phase 2.
     -- Uncomment to restore; remove entirely in Phase 7.
@@ -593,17 +637,10 @@ return {
             -- gopls seems to work properly only when the source is in $GOPATH in a module?
             -- Disabled linters:
             -- ['sql'] = {'sqls'},
-            vim.g.ale_linters = {
-                ["go"] = { "gopls" },
-                ["javascript"] = { "eslint" },
-                ["lua"] = { "luacheck" },
-                ["json"] = { "jsonls" },
-                ["python"] = { "pyright", "flake8" },
-                ["ruby"] = { "rubocop", "solargraph" },
-                ["sh"] = { "language_server" },
-                ["tex"] = { "texlab" },
-                ["vim"] = { "vimls" },
-            }
+            -- Phase 5: pure linters removed — now handled by nvim-lint.
+            -- LSP-based entries already removed in Phase 2.
+            -- ale_linters is effectively empty; ALE is doing nothing useful.
+            vim.g.ale_linters = {}
             -- XDG path seems to be used for Linux but not macOS, until fixed https://github.com/mpeterv/luacheck/issues/231
             vim.g.ale_lua_luacheck_options = "--config $XDG_CONFIG_HOME/luacheck/.luacheckr"
 
