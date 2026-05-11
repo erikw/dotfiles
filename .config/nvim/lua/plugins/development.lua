@@ -350,13 +350,109 @@ return {
     -- }}
 
     -- Development: LSP/Completion {{
-    --{'neovim/nvim-lspconfig'}      -- Plug-n-play configurations for LSP server. Disabled in favour of simpler to use ALE.
 
-    -- LSP linting engine.
-    -- TODO replace with:
-    -- * Native LSP (vim.lsp.*) → diagnostics, hover, definitions, completion, formatting
-    -- * nvim-cmp → richer completion UI & sources (optional, but very common)
-    -- * nvim-lint or null-ls.nvim → to integrate non-LSP linters/formatters into the diagnostics/code-action pipeline
+    -- LSP Core: mason + nvim-lspconfig {{
+    -- Phase 1: infrastructure installed, ALE still fully active.
+    -- Keymaps are added in Phase 2; formatters in Phase 4; linters in Phase 5.
+
+    -- Mason: LSP/tool installer.
+    {
+        "williamboman/mason.nvim",
+        build = ":MasonUpdate",
+        opts = {
+            ui = { border = "rounded" },
+        },
+    },
+
+    -- mason-lspconfig: bridge between mason and nvim-lspconfig.
+    {
+        "williamboman/mason-lspconfig.nvim",
+        dependencies = { "williamboman/mason.nvim" },
+        opts = {
+            ensure_installed = {
+                "gopls",       -- Go
+                "eslint",      -- JavaScript / TypeScript
+                "jsonls",      -- JSON
+                "basedpyright",-- Python (replaces pyright)
+                "ruby_lsp",    -- Ruby (replaces solargraph)
+                "bashls",      -- Shell (replaces ALE 'language_server')
+                "texlab",      -- LaTeX
+                "vimls",       -- Vimscript
+                "lua_ls",      -- Lua (new — ALE only had luacheck)
+            },
+            automatic_installation = true,
+        },
+    },
+
+    -- nvim-lspconfig: server configuration.
+    -- Phase 1: minimal on_attach — no keymaps (ALE still owns gd/gr/K/etc.).
+    {
+        "neovim/nvim-lspconfig",
+        dependencies = {
+            "williamboman/mason.nvim",
+            "williamboman/mason-lspconfig.nvim",
+        },
+        event = { "BufReadPre", "BufNewFile" },
+        config = function()
+            local lspconfig = require("lspconfig")
+            local capabilities = vim.lsp.protocol.make_client_capabilities()
+
+            -- Phase 1 on_attach: no keymaps yet; disable LSP formatting so ALE
+            -- fixers remain authoritative. Both will be updated in later phases.
+            local function on_attach(client, _bufnr)
+                client.server_capabilities.documentFormattingProvider = false
+                client.server_capabilities.documentRangeFormattingProvider = false
+            end
+
+            -- Suppress duplicate hover/signature popup while ALE still handles them.
+            -- These no-ops will be removed in Phase 2.
+            vim.lsp.handlers["textDocument/hover"] = function() end
+            vim.lsp.handlers["textDocument/signatureHelp"] = function() end
+
+            -- Show signs only; suppress virtual text and underlines to avoid
+            -- doubling with ALE diagnostics. Will be turned up in Phase 2.
+            vim.diagnostic.config({
+                signs = true,
+                virtual_text = false,
+                underline = false,
+                update_in_insert = false,
+            })
+
+            -- Per-server configs.
+            local servers = {
+                gopls = {},
+                eslint = {},
+                jsonls = {},
+                basedpyright = {},
+                ruby_lsp = {},
+                bashls = {},
+                texlab = {},
+                vimls = {},
+                lua_ls = {
+                    settings = {
+                        Lua = {
+                            runtime = { version = "LuaJIT" },
+                            workspace = {
+                                checkThirdParty = false,
+                                library = vim.api.nvim_get_runtime_file("", true),
+                            },
+                            telemetry = { enable = false },
+                        },
+                    },
+                },
+            }
+
+            for server, config in pairs(servers) do
+                config.capabilities = capabilities
+                config.on_attach = on_attach
+                lspconfig[server].setup(config)
+            end
+        end,
+    },
+    -- }}
+
+    -- LSP linting engine (ALE). Phase 1: still fully active.
+    -- Will be progressively disabled in Phases 2-5 and removed in Phase 7.
     {
         "dense-analysis/ale",
         event = { "BufReadPre", "BufNewFile" },
