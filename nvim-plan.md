@@ -3,7 +3,8 @@
 > Config root: `~/.config/nvim/`  
 > Primary files touched: `lua/plugins/development.lua`, `init.lua`  
 > This plan is incremental. Each phase is independently testable and reversible.  
-> **Commit after every successful phase.**
+> **Do not Commit after every successful phases, let user do that himself..**
+> For all setups,chec kthe project's README/documetnation to make sure we set
 
 ---
 

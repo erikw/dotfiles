@@ -354,63 +354,60 @@ return {
     -- LSP Core: mason + nvim-lspconfig {{
     -- Phase 1: infrastructure installed, ALE still fully active.
     -- Keymaps are added in Phase 2; formatters in Phase 4; linters in Phase 5.
+    --
+    -- Uses the modern nvim-lspconfig v2 API (Neovim 0.11+):
+    --   vim.lsp.config()  — per-server settings
+    --   vim.lsp.enable()  — activate servers  (done automatically by mason-lspconfig)
+    --   LspAttach autocmd — replaces the old on_attach callback
 
     -- Mason: LSP/tool installer.
     {
-        "williamboman/mason.nvim",
+        "mason-org/mason.nvim",
         build = ":MasonUpdate",
         opts = {
             ui = { border = "rounded" },
         },
     },
 
-    -- mason-lspconfig: bridge between mason and nvim-lspconfig.
+    -- mason-lspconfig v2: installs servers and calls vim.lsp.enable() for them.
+    -- automatic_enable=true (default) means no manual vim.lsp.enable() calls needed.
     {
-        "williamboman/mason-lspconfig.nvim",
-        dependencies = { "williamboman/mason.nvim" },
+        "mason-org/mason-lspconfig.nvim",
+        dependencies = { "mason-org/mason.nvim", "neovim/nvim-lspconfig" },
         opts = {
             ensure_installed = {
-                "gopls",       -- Go
-                "eslint",      -- JavaScript / TypeScript
-                "jsonls",      -- JSON
-                "basedpyright",-- Python (replaces pyright)
-                "ruby_lsp",    -- Ruby (replaces solargraph)
-                "bashls",      -- Shell (replaces ALE 'language_server')
-                "texlab",      -- LaTeX
-                "vimls",       -- Vimscript
-                "lua_ls",      -- Lua (new — ALE only had luacheck)
+                "gopls",        -- Go
+                "eslint",       -- JavaScript / TypeScript
+                "jsonls",       -- JSON
+                "basedpyright", -- Python (replaces pyright)
+                "ruby_lsp",     -- Ruby (replaces solargraph)
+                "bashls",       -- Shell (replaces ALE 'language_server')
+                "texlab",       -- LaTeX
+                "vimls",        -- Vimscript
+                "lua_ls",       -- Lua (new — ALE only had luacheck)
             },
-            automatic_installation = true,
+            -- automatic_enable = true is the default: mason-lspconfig calls
+            -- vim.lsp.enable() for every installed server automatically.
         },
     },
 
-    -- nvim-lspconfig: server configuration.
-    -- Phase 1: minimal on_attach — no keymaps (ALE still owns gd/gr/K/etc.).
+    -- nvim-lspconfig: provides the lsp/ server config files consumed by vim.lsp.config().
+    -- Phase 1: suppress formatting + hover/signature to avoid conflicts with ALE.
     {
         "neovim/nvim-lspconfig",
         dependencies = {
-            "williamboman/mason.nvim",
-            "williamboman/mason-lspconfig.nvim",
+            "mason-org/mason.nvim",
+            "mason-org/mason-lspconfig.nvim",
         },
         event = { "BufReadPre", "BufNewFile" },
         config = function()
-            local lspconfig = require("lspconfig")
-            local capabilities = vim.lsp.protocol.make_client_capabilities()
-
-            -- Phase 1 on_attach: no keymaps yet; disable LSP formatting so ALE
-            -- fixers remain authoritative. Both will be updated in later phases.
-            local function on_attach(client, _bufnr)
-                client.server_capabilities.documentFormattingProvider = false
-                client.server_capabilities.documentRangeFormattingProvider = false
-            end
-
-            -- Suppress duplicate hover/signature popup while ALE still handles them.
-            -- These no-ops will be removed in Phase 2.
+            -- Phase 1: no-op hover/signature handlers while ALE still owns them.
+            -- Restored to defaults in Phase 2.
             vim.lsp.handlers["textDocument/hover"] = function() end
             vim.lsp.handlers["textDocument/signatureHelp"] = function() end
 
-            -- Show signs only; suppress virtual text and underlines to avoid
-            -- doubling with ALE diagnostics. Will be turned up in Phase 2.
+            -- Show signs only; suppress virtual text + underlines to avoid
+            -- doubling with ALE diagnostics. Turned up fully in Phase 2.
             vim.diagnostic.config({
                 signs = true,
                 virtual_text = false,
@@ -418,35 +415,34 @@ return {
                 update_in_insert = false,
             })
 
-            -- Per-server configs.
-            local servers = {
-                gopls = {},
-                eslint = {},
-                jsonls = {},
-                basedpyright = {},
-                ruby_lsp = {},
-                bashls = {},
-                texlab = {},
-                vimls = {},
-                lua_ls = {
-                    settings = {
-                        Lua = {
-                            runtime = { version = "LuaJIT" },
-                            workspace = {
-                                checkThirdParty = false,
-                                library = vim.api.nvim_get_runtime_file("", true),
-                            },
-                            telemetry = { enable = false },
+            -- lua_ls: override the nvim-lspconfig default to teach it about the
+            -- Neovim runtime (vim.* globals, plugins in rtp).
+            vim.lsp.config("lua_ls", {
+                settings = {
+                    Lua = {
+                        runtime = { version = "LuaJIT" },
+                        workspace = {
+                            checkThirdParty = false,
+                            library = vim.api.nvim_get_runtime_file("", true),
                         },
+                        telemetry = { enable = false },
                     },
                 },
-            }
+            })
 
-            for server, config in pairs(servers) do
-                config.capabilities = capabilities
-                config.on_attach = on_attach
-                lspconfig[server].setup(config)
-            end
+            -- Phase 1 LspAttach: disable LSP formatting so ALE fixers stay
+            -- authoritative. No keymaps yet — ALE still owns gd/gr/K/etc.
+            -- Both will be updated in Phase 2.
+            vim.api.nvim_create_autocmd("LspAttach", {
+                group = vim.api.nvim_create_augroup("NativeLspAttach", { clear = true }),
+                callback = function(args)
+                    local client = vim.lsp.get_client_by_id(args.data.client_id)
+                    if client then
+                        client.server_capabilities.documentFormattingProvider = false
+                        client.server_capabilities.documentRangeFormattingProvider = false
+                    end
+                end,
+            })
         end,
     },
     -- }}
