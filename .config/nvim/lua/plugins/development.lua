@@ -6,7 +6,7 @@
 return {
     -- General {{
 
-    --{'mfussenegger/nvim-dap'}      -- Debug Adapter Protocol client. Like LSP for debuggers. TODO try again when more mature. Currently LUA conf is not working (freezes nvim).
+    --{'mfussenegger/nvim-dap'}      -- Debug Adapter Protocol client. Like LSP for debuggers. Try again when more mature. Currently LUA conf is not working (freezes nvim).
     --{"editorconfig/editorconfig-vim"}, -- Standard .editorconfig file in shared projects. No longer needed, is built-in since Nvim 0.9
 
     -- Indent vertical markers.
@@ -148,7 +148,8 @@ return {
         version = "v2.*",
         build = "make install_jsregexp", -- optional: enables regex-based triggers
         dependencies = { "rafamadriz/friendly-snippets" },
-        event = "InsertEnter",
+        -- No event trigger: blink.cmp depends on LuaSnip and is non-lazy, so LuaSnip
+        -- loads at startup as a dependency. An InsertEnter event here is never the trigger.
         config = function()
             local luasnip = require("luasnip")
 
@@ -203,28 +204,11 @@ return {
         end,
     },
 
-    -- Git modified status in sign column
+    -- Git modified status in sign column. Replaces vim-gitgutter.
     {
-        "airblade/vim-gitgutter",
+        "lewis6991/gitsigns.nvim",
         event = "BufReadPre",
-        config = function()
-            vim.opt.updatetime = 250 -- Speedier update of gitgutter signs and CursorHold-based features.
-        end,
-    },
-
-    -- Markdown utilties like automatic list indention, TOC.
-    {
-        "preservim/vim-markdown",
-        ft = "markdown",
-        branch = "master", -- Otherwise loading on ft=markdown does not work. Ref: https://github.com/preservim/vim-markdown#installation
-        dependencies = { "godlygeek/tabular" },
-        config = function()
-            vim.g.vim_markdown_folding_disabled = 1 -- No fold by default
-            vim.g.vim_markdown_toc_autofit = 1 -- Make :Toc smaller
-            vim.g.vim_markdown_follow_anchor = 1 -- Let ge follow #anchors
-            vim.g.vim_markdown_new_list_item_indent = 2 -- Bullent space indents.
-            vim.keymap.set("n", "<Leader>3", ":Toc<CR>", { silent = true, desc = "Open markdown TOC in a quickfix window." })
-        end,
+        opts = {},
     },
 
     -- Toggle values like true/false with <Leader>i.
@@ -277,6 +261,7 @@ return {
             -- The `main` branch no longer configures highlight/indent via setup().
             -- Enable treesitter-based highlighting for each buffer when a parser is available.
             vim.api.nvim_create_autocmd("FileType", {
+                group = vim.api.nvim_create_augroup("TreesitterHighlight", { clear = true }),
                 callback = function(ev)
                     pcall(vim.treesitter.start, ev.buf)
                 end,
@@ -306,13 +291,13 @@ return {
         },
         config = function(_, opts)
             require("other-nvim").setup(opts)
-            vim.api.nvim_set_keymap("n", "<leader>ll", "<cmd>:Other<CR>", { noremap = true, silent = true, desc = "Other: open" })
-            vim.api.nvim_set_keymap("n", "<leader>lx", "<cmd>:OtherSplit<CR>", { noremap = true, silent = true, desc = "Other: open in split" })
-            vim.api.nvim_set_keymap("n", "<leader>lv", "<cmd>:OtherVSplit<CR>", { noremap = true, silent = true, desc = "Other: open in vsplit" })
-            --vim.api.nvim_set_keymap("n", "<leader>lc", "<cmd>:OtherClear<CR>", { noremap = true, silent = true, desc = "Other: clear saved other selections." })
+            vim.keymap.set("n", "<leader>ll", "<cmd>Other<CR>", { silent = true, desc = "Other: open" })
+            vim.keymap.set("n", "<leader>lx", "<cmd>OtherSplit<CR>", { silent = true, desc = "Other: open in split" })
+            vim.keymap.set("n", "<leader>lv", "<cmd>OtherVSplit<CR>", { silent = true, desc = "Other: open in vsplit" })
+            --vim.keymap.set("n", "<leader>lc", "<cmd>OtherClear<CR>", { silent = true, desc = "Other: clear saved other selections." })
 
             -- Context specific bindings
-            vim.api.nvim_set_keymap("n", "<leader>lt", "<cmd>:OtherVSplit test<CR>", { noremap = true, silent = true })
+            vim.keymap.set("n", "<leader>lt", "<cmd>OtherVSplit test<CR>", { silent = true, desc = "Other: open related test" })
         end,
     },
 
@@ -350,126 +335,323 @@ return {
     -- }}
 
     -- Development: LSP/Completion {{
-    --{'neovim/nvim-lspconfig'}      -- Plug-n-play configurations for LSP server. Disabled in favour of simpler to use ALE.
 
-    -- LSP linting engine.
-    -- TODO replace with:
-    -- * Native LSP (vim.lsp.*) → diagnostics, hover, definitions, completion, formatting
-    -- * nvim-cmp → richer completion UI & sources (optional, but very common)
-    -- * nvim-lint or null-ls.nvim → to integrate non-LSP linters/formatters into the diagnostics/code-action pipeline
+    -- Neovim Lua development: type stubs for vim.* APIs and luv.
+    -- Replaces the manual workspace.library approach in lua_ls configuration.
     {
-        "dense-analysis/ale",
-        event = { "BufReadPre", "BufNewFile" },
-        init = function()
-            vim.g.ale_completion_enabled = 1 -- Must be set before ALE is loaded.
-        end,
-        config = function()
-            -- Reference https://github.com/dense-analysis/ale/blob/master/doc/ale.txt
-
-            -- ALE's LSP client clashes with built-in one and gives error on startup: Cannot serialise boolean: table key must be a number or string
-            -- Ref: https://github.com/dense-analysis/ale/issues/4956
-            --vim.g.ale_disable_lsp = 1
-            vim.g.ale_use_neovim_lsp_api = 0
-
-            -- ruby: having rubocop before solargraph could be good to get syntax error shown more quickly.
-            -- gopls seems to work properly only when the source is in $GOPATH in a module?
-            -- Disabled linters:
-            -- ['sql'] = {'sqls'},
-            vim.g.ale_linters = {
-                ["go"] = { "gopls" },
-                ["javascript"] = { "eslint" },
-                ["lua"] = { "luacheck" },
-                ["json"] = { "jsonls" },
-                ["python"] = { "pyright", "flake8" },
-                ["ruby"] = { "rubocop", "solargraph" },
-                ["sh"] = { "language_server" },
-                ["tex"] = { "texlab" },
-                ["vim"] = { "vimls" },
-            }
-            -- XDG path seems to be used for Linux but not macOS, until fixed https://github.com/mpeterv/luacheck/issues/231
-            vim.g.ale_lua_luacheck_options = "--config $XDG_CONFIG_HOME/luacheck/.luacheckr"
-
-            -- gopls seems to work properly only when the source is in $GOPATH in a module?
-            -- Disabled fixers:
-            -- - *: 'trim_whitespace' & 'remove_trailing_lines' (overlaps with the functionally already provided by vim-better-whitespace)
-            -- - python: autoimport - (messes up ifx in taiga_stats.commands import  fix. Could be resolved by https://github.com/myint/autoflake/issues/59)
-            -- - python: autoflake - too disruptive e.g. removing `from pprint import pprint` on write if it's unused.
-            -- - markdown: prettier (converts * to - in lists)
-            vim.g.ale_fixers = {
-                ["css"] = { "prettier" },
-                ["javascript"] = { "prettier", "eslint" },
-                ["json"] = { "prettier" },
-                ["go"] = { "gopls", "goimports" },
-                ["lua"] = { "stylua" },
-                ["python"] = { "black", "isort" },
-                ["ruby"] = { "rubocop" },
-                ["scss"] = { "prettier" },
-                ["typescript"] = { "prettier" },
-                ["yaml"] = { "prettier" },
-            }
-
-            vim.g.ale_fix_on_save = 1
-            -- Let stylua find $XDG_CONFIG_HOME/stylua/stylua.toml
-            vim.g.ale_lua_stylua_options = "--search-parent-directories"
-
-            vim.g.ale_pattern_options = {
-                ["Brewfile*"] = { ale_fixers = {} }, -- Disable all (ruby) fixers as I want my Brewfile indented in a particular way for folding and text operation on indentation (sorting).
-            }
-
-            -- Completion {
-            vim.g.ale_completion_autoimport = 1
-            -- Trigger on ^x^o
-            vim.opt.omnifunc = "ale#completion#OmniFunc"
-            -- 'longest' seems to tirgger a variation of :h ale-completion-completeopt-bug
-            -- See https://github.com/dense-analysis/ale/issues/1700#issuecomment-991643960
-            vim.opt.completeopt = { "menu", "preview" }
-            -- }
-
-            -- Mappings {
-            -- See :help ale-commands
-            -- Make similar keybindings to https://github.com/neovim/nvim-lspconfig#keybindings-and-completion
-            vim.keymap.set("n", "gd", "<Plug>(ale_go_to_definition)", { silent = true, desc = "ALE: go to definition." })
-            vim.keymap.set("n", "gr", "<Plug>(ale_find_references)", { silent = true, desc = "ALE: find references." })
-            vim.keymap.set("n", "K", "<Plug>(ale_hover)", { silent = true, desc = "ALE: hover." })
-            vim.keymap.set("n", "<Space>rn", "<Plug>(ale_rename)", { silent = true, desc = "ALE: rename." })
-            vim.keymap.set("n", "<Leader>I", "<Plug>(ale_import)", { silent = true, desc = "ALE: import." })
-
-            -- Navigate between errors
-            vim.keymap.set("n", "<C-k>", "<Plug>(ale_previous_wrap)", { silent = true, desc = "ALE: navigate to previous error." })
-            vim.keymap.set("n", "<C-j>", "<Plug>(ale_next_wrap)", { silent = true, desc = "ALE: navigate to next error." })
-            -- }
-
-            -- Toggle command for fixers
-            -- Ref: https://github.com/dense-analysis/ale/issues/1353#issuecomment-424677810
-            vim.api.nvim_create_user_command(
-                "ALEToggleFixer",
-                "execute \"let g:ale_fix_on_save = get(g:, 'ale_fix_on_save', 0) ? 0 : 1\"",
-                { force = true, desc = "ALE: toggle ale_fix_on_save" }
-            )
-        end,
-    },
-
-    -- Method signature window, as ALE does not support it. Ref: https://www.reddit.com/r/vim/comments/jhqzsv/signature_help_via_ale/
-    {
-        "ray-x/lsp_signature.nvim",
-        event = "BufReadPre", -- LspAttach won't fire since ALE uses its own LSP client (ale_use_neovim_lsp_api = 0)
+        "folke/lazydev.nvim",
+        ft = "lua",
         opts = {
-            toggle_key = "<M-x>", -- toggle signature on and off in insert mode
-            select_signature_key = "<M-n>", -- cycle to next signature
+            library = {
+                { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+            },
         },
     },
 
-    -- LSP symbols and tags viewer, like TagBar but with LSP support.
+    -- LSP Core: mason + nvim-lspconfig {{
+    -- Uses the modern nvim-lspconfig v2 API (Neovim 0.11+):
+    --   vim.lsp.config()  — per-server settings
+    --   vim.lsp.enable()  — activate servers  (done automatically by mason-lspconfig)
+    --   LspAttach autocmd — replaces the old on_attach callback
+
+    -- Mason: LSP/tool installer.
     {
-        "liuchengxu/vista.vim",
-        cmd = "Vista",
-        keys = {
-            { "<F3>", ":Vista!! <CR>", silent = true, desc = "Toggle Vista tag sidewindow." },
+        "mason-org/mason.nvim",
+        build = ":MasonUpdate",
+        opts = { ui = { border = "rounded" } },
+    },
+
+    -- mason-tool-installer: idempotent auto-install for non-LSP tools (conform, nvim-lint).
+    -- Replaces the manual registry.refresh() scan that ran on every startup.
+    -- LSP servers are managed by mason-lspconfig below.
+    {
+        "WhoIsSethDaniel/mason-tool-installer.nvim",
+        dependencies = { "mason-org/mason.nvim" },
+        opts = {
+            ensure_installed = {
+                "ruff",          -- Python formatter (conform) + linter (nvim-lint)
+                "stylua",        -- Lua formatter (conform)
+                "prettier",      -- JS/TS/CSS/SCSS/JSON/YAML formatter (conform)
+                "goimports",     -- Go formatter (conform)
+                "golangci-lint", -- Go linter (nvim-lint)
+                "shfmt",         -- Bash/sh formatter (conform)
+                "shellcheck",    -- Bash/sh linter; used internally by bashls
+                "markdownlint",  -- Markdown linter (nvim-lint)
+                -- rubocop intentionally omitted: mason's isolated gem env lacks
+                -- project cops (rubocop-rails etc.) and conflicts with mise's
+                -- rubocop --server daemon. Use mise-managed rubocop instead.
+                "luacheck",      -- Lua linter (nvim-lint)
+            },
+            auto_update = false,
+            run_on_start = true,
         },
-        init = function()
-            vim.g.vista_default_executive = "ale" -- Default executive.
-            vim.g.vista_sidebar_width = 50 -- Window width.
+    },
+
+    -- mason-lspconfig v2: installs servers and calls vim.lsp.enable() for them.
+    -- automatic_enable=true (default) means no manual vim.lsp.enable() calls needed.
+    {
+        "mason-org/mason-lspconfig.nvim",
+        dependencies = { "mason-org/mason.nvim", "neovim/nvim-lspconfig" },
+        opts = {
+            ensure_installed = {
+                "gopls",        -- Go
+                "eslint",       -- JavaScript / TypeScript
+                "jsonls",       -- JSON
+                "basedpyright", -- Python (replaces pyright)
+                "ruby_lsp",     -- Ruby (replaces solargraph)
+                "bashls",       -- Shell
+                "texlab",       -- LaTeX
+                "vimls",        -- Vimscript
+                "lua_ls",       -- Lua
+            },
+            -- automatic_enable = true is the default: mason-lspconfig calls
+            -- vim.lsp.enable() for every installed server automatically.
+        },
+    },
+
+    -- nvim-lspconfig: provides the lsp/ server config files consumed by vim.lsp.config().
+    {
+        "neovim/nvim-lspconfig",
+        dependencies = {
+            "mason-org/mason.nvim",
+            "mason-org/mason-lspconfig.nvim",
+        },
+        event = { "BufReadPre", "BufNewFile" },
+        config = function()
+            vim.diagnostic.config({
+                signs = true,
+                virtual_text = true,
+                underline = true,
+                update_in_insert = false,
+            })
+
+            -- Wire blink.cmp's extended capabilities (snippetSupport, resolveSupport, etc.)
+            -- into every LSP server. Must run before any server starts.
+            vim.lsp.config('*', {
+                capabilities = require('blink.cmp').get_lsp_capabilities(),
+            })
+
+            -- lua_ls: override defaults; lazydev.nvim handles workspace.library.
+            vim.lsp.config("lua_ls", {
+                settings = {
+                    Lua = {
+                        runtime = { version = "LuaJIT" },
+                        workspace = { checkThirdParty = false },
+                        telemetry = { enable = false },
+                    },
+                },
+            })
+
+            -- Enable inlay hints globally; Neovim only activates them for servers
+            -- that advertise inlayHintProvider (gopls, basedpyright, lua_ls, etc.).
+            vim.lsp.inlay_hint.enable(true)
+
+            vim.api.nvim_create_autocmd("LspAttach", {
+                group = vim.api.nvim_create_augroup("NativeLspAttach", { clear = true }),
+                callback = function(args)
+                    local buf = args.buf
+                    -- Default mappings: https://neovim.io/doc/user/lsp/#lsp-defaults
+                    -- Neovim 0.10+ sets K (hover), grn (rename), gra (code_action), grr (references),
+                    -- gri (implementation), [d/]d (diagnostic nav) automatically.
+                    -- The mappings below use different keys matching prior muscle memory,
+                    -- so they are set explicitly. K is omitted — it's already a built-in default.
+                    vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = buf, desc = "LSP: go to definition" })
+                    vim.keymap.set("n", "gr", vim.lsp.buf.references, { buffer = buf, desc = "LSP: find references" })
+                    -- <Space>rn and <Space>ca intentionally use literal <Space>, not <Leader>,
+                    -- so they remain distinct if mapleader is ever changed.
+                    vim.keymap.set("n", "<Space>rn", vim.lsp.buf.rename, { buffer = buf, desc = "LSP: rename" })
+                    vim.keymap.set("n", "<Leader>I", vim.lsp.buf.code_action, { buffer = buf, desc = "LSP: code action (import)" })
+                    vim.keymap.set("n", "<Space>ca", vim.lsp.buf.code_action, { buffer = buf, desc = "LSP: code action" })
+                    vim.keymap.set("n", "<C-k>", function() vim.diagnostic.goto_prev({ wrap = true }) end, { buffer = buf, desc = "LSP: previous diagnostic" })
+                    vim.keymap.set("n", "<C-j>", function() vim.diagnostic.goto_next({ wrap = true }) end, { buffer = buf, desc = "LSP: next diagnostic" })
+                end,
+            })
         end,
+    },
+
+    -- LSP progress spinner in the bottom-right corner.
+    -- Shows $/progress messages (server indexing, loading) so startup isn't silent.
+    {
+        "j-hui/fidget.nvim",
+        version = "*",
+        event = "LspAttach",
+        opts = {},
+    },
+    -- }}
+
+    -- Completion: blink.cmp {{
+    -- Keep nvim-autopairs; blink.cmp auto_brackets disabled.
+    -- LuaSnip integrated via snippets.preset = 'luasnip'.
+    -- Signature help built-in.
+    -- Capabilities are wired in nvim-lspconfig via vim.lsp.config('*', ...).
+    -- Ref: https://cmp.saghen.dev/installation
+    {
+        "saghen/blink.cmp",
+        version = "1.*", -- v2 is in development and may have breaking changes; switch to it when stable.
+        -- LuaSnip is already installed; declaring it here wires blink.cmp's
+        -- snippet expand/jump to LuaSnip's API (snippets.preset = 'luasnip').
+        dependencies = { { "L3MON4D3/LuaSnip", version = "v2.*" } },
+        opts = {
+            -- 'default' preset: C-y accept, C-n/C-p navigate, C-e hide menu,
+            -- C-k toggle signature help. No Tab binding — LuaSnip owns Tab/S-Tab.
+            keymap = { preset = "default" },
+            appearance = { nerd_font_variant = "mono" },
+            -- Use LuaSnip for expanding LSP-provided snippets and showing
+            -- LuaSnip snippets in the completion menu.
+            snippets = { preset = "luasnip" },
+            sources = {
+                default = { "lsp", "path", "snippets", "buffer" },
+            },
+            completion = {
+                accept = {
+                    -- Decision A: nvim-autopairs handles bracket insertion;
+                    -- disable blink.cmp auto_brackets to avoid duplicates.
+                    auto_brackets = { enabled = false },
+                },
+                documentation = { auto_show = true, auto_show_delay_ms = 500 },
+            },
+            -- Built-in signature help.
+            signature = { enabled = true },
+            fuzzy = { implementation = "rust" },
+        },
+        opts_extend = { "sources.default" },
+    },
+    -- }}
+
+    -- Formatting: conform.nvim {{
+    -- format_on_save is a function so we can skip Brewfiles and respect
+    -- vim.g.disable_autoformat (set by DisableFixers command in init.lua).
+    -- Ref: https://github.com/stevearc/conform.nvim
+    {
+        "stevearc/conform.nvim",
+        event = { "BufWritePre" },
+        cmd = { "ConformInfo" },
+        ---@module "conform"
+        ---@type conform.setupOpts
+        opts = {
+            formatters_by_ft = {
+                css        = { "prettier" },
+                javascript = { "prettier" },
+                typescript = { "prettier" },
+                json       = { "prettier" },
+                go         = { "goimports" }, -- gopls handles LSP-format separately
+                lua        = { "stylua" },
+                markdown   = { "prettier" },
+                python     = { "ruff_format" }, -- replaces black + isort
+                ruby       = { "rubocop" },
+                scss       = { "prettier" },
+                sh         = { "shfmt" },
+                yaml       = { "prettier" },
+            },
+                -- format_on_save as function: skip Brewfiles
+            -- and respect the global disable flag (used by DisableFixers).
+            format_on_save = function(bufnr)
+                if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+                    return
+                end
+                -- Brewfile: never format (no formatter appropriate for Brewfile syntax).
+                if vim.bo[bufnr].filetype == "brewfile" then
+                    return
+                end
+                return { timeout_ms = 2000, lsp_format = "fallback" }
+            end,
+        },
+        config = function(_, opts)
+            require("conform").setup(opts)
+        end,
+    },
+    -- }}
+
+    -- Linting: nvim-lint {{
+    -- LSP diagnostics (errors, warnings) come from the language servers via nvim-lspconfig.
+    -- nvim-lint adds supplemental linting for tools that are not language servers.
+    -- Ref: https://github.com/mfussenegger/nvim-lint
+    {
+        "mfussenegger/nvim-lint",
+        event = { "BufReadPost", "BufWritePost" },
+        config = function()
+            local lint = require("lint")
+
+            lint.linters_by_ft = {
+                go       = { "golangcilint" },  -- golangci-lint wraps staticcheck, errcheck, unused, etc.
+                markdown = { "markdownlint" },  -- markdown style/structure linting
+                python   = { "ruff" },          -- ruff covers flake8 + isort rules
+               -- ruby     = { "rubocop" },     -- supplemental; monitor for duplicates with ruby-lsp LSP diagnostics
+                lua      = { "luacheck" },       -- supplemental; lua_ls covers most, luacheck adds extra strictness
+                -- sh: omitted — bashls already runs shellcheck internally; adding it here duplicates diagnostics
+            }
+
+            -- luacheck: point at XDG config.
+            -- luacheck reads --config from its own arg, not $XDG_CONFIG_HOME automatically.
+            local luacheck = lint.linters.luacheck
+            luacheck.args = vim.list_extend(
+                { "--config", (vim.env.XDG_CONFIG_HOME or (vim.env.HOME .. "/.config")) .. "/luacheck/.luacheckrc" },
+                luacheck.args or {}
+            )
+
+            vim.api.nvim_create_autocmd({ "BufWritePost", "BufReadPost" }, {
+                group = vim.api.nvim_create_augroup("NvimLint", { clear = true }),
+                callback = function()
+                    lint.try_lint()
+                end,
+            })
+        end,
+    },
+    -- }}
+
+    -- Diagnostics / quickfix panel (replaces plain :copen).
+    -- Ref: https://github.com/folke/trouble.nvim
+    {
+        "folke/trouble.nvim",
+        cmd = "Trouble",
+        opts = {},
+        keys = {
+            { "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>",                         desc = "Trouble: workspace diagnostics" },
+            { "<leader>xX", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",            desc = "Trouble: buffer diagnostics" },
+            { "<leader>cs", "<cmd>Trouble symbols toggle focus=false<cr>",                 desc = "Trouble: document symbols" },
+            { "<leader>cl", "<cmd>Trouble lsp toggle focus=false win.position=right<cr>", desc = "Trouble: LSP panel" },
+            { "<leader>xL", "<cmd>Trouble loclist toggle<cr>",                             desc = "Trouble: location list" },
+            { "<leader>xQ", "<cmd>Trouble qflist toggle<cr>",                             desc = "Trouble: quickfix list" },
+        },
+    },
+
+    -- LSP symbols and tags viewer (replaces Vista.vim which is unmaintained for Neovim 0.11+).
+    -- Uses treesitter or LSP as backend; integrates with lualine for symbol breadcrumbs.
+    {
+        "stevearc/aerial.nvim",
+        dependencies = { "nvim-tree/nvim-web-devicons", "nvim-treesitter/nvim-treesitter" },
+        cmd = { "AerialToggle", "AerialOpen", "AerialNavToggle" },
+        keys = {
+            { "<F3>", "<cmd>AerialToggle!<CR>", silent = true, desc = "Toggle Aerial symbol sidebar." },
+        },
+        opts = {
+            backends = { "treesitter", "lsp" },
+            layout = {
+                min_width = 50,
+                max_width = 50,
+                default_direction = "prefer_right",
+            },
+            show_guides = true,
+            -- Extend beyond the narrow default to show variables, constants, etc.
+            -- Full SymbolKind list: https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#symbolKind
+            filter_kind = {
+                "Class",
+                "Constant",
+                "Constructor",
+                "Enum",
+                "EnumMember",
+                "Field",
+                "Function",
+                "Interface",
+                "Method",
+                "Module",
+                "Namespace",
+                "Property",
+                "Struct",
+                "TypeParameter",
+                "Variable",
+            },
+        },
     },
 
     -- }}

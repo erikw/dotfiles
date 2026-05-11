@@ -88,7 +88,8 @@ JSON5 (close enouch got JSONC) validator: https://jsonformatter.org/json5-valida
     "chat.tools.terminal.autoApprove": {
         "git remote": true,
         "time": true,
-        "shellcheck": true
+        "shellcheck": true,
+        "nvim": true
     },
     "chat.viewSessions.orientation": "stacked",
     "chat.mcp.gallery.enabled": true,

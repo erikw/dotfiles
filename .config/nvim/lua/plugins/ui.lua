@@ -102,7 +102,7 @@ return {
     -- Statusline.
     {
         "nvim-lualine/lualine.nvim",
-        dependencies = { "kyazdani42/nvim-web-devicons" },
+        dependencies = { "nvim-tree/nvim-web-devicons" },
         event = "VeryLazy", -- load later for faster startup
         opts = {
             sections = {
@@ -111,6 +111,21 @@ return {
                         "filename",
                         path = 1, -- relative path
                     },
+                    -- aerial breadcrumb: shows current symbol context (e.g. MyClass > myMethod).
+                    -- aerial is lazy-loaded on command; this component safely no-ops until then.
+                    { "aerial" },
+                },
+                lualine_x = {
+                    -- nvim_diagnostic covers ALL diagnostic sources: LSP, nvim-lint, etc.
+                    -- (nvim-lint writes to vim.diagnostic, so nvim_lint is not a separate source.)
+                    {
+                        "diagnostics",
+                        sources = { "nvim_diagnostic" },
+                        symbols = { error = " ", warn = " ", info = " ", hint = " " },
+                    },
+                    "encoding",
+                    "fileformat",
+                    "filetype",
                 },
             },
             inactive_sections = {

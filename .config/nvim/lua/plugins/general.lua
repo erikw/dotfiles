@@ -60,7 +60,9 @@ return {
             vim.api.nvim_create_autocmd({ "BufReadPre", "BufNewFile", "BufEnter", "BufFilePre" }, {
                 pattern = "*/src/github.com/erikw/hackerrank-solutions/*.md,*/src/github.com/erikw/leetcode-solutions/*.md,[1-9]*.md",
                 group = augroup_imark,
-                command = "let g:instant_markdown_autostart=0",
+                callback = function()
+                    vim.g.instant_markdown_autostart = 0
+                end,
             })
         end,
     },
@@ -71,7 +73,7 @@ return {
         "nvim-tree/nvim-tree.lua",
         dependencies = { "nvim-tree/nvim-web-devicons" },
         keys = {
-            { "<F2>", ":NvimTreeToggle<CR>", { silent = true, desc = "Toggle file explorer tree." } },
+            { "<F2>", ":NvimTreeToggle<CR>", silent = true, desc = "Toggle file explorer tree." },
         },
         opts = {
             filters = { custom = { "^.git$" } },
@@ -315,7 +317,15 @@ return {
                 build = ":call fzf#install()",
             },
         },
-        opts = {},
+        config = function()
+            require("fzf-lua").setup({})
+            -- trouble.nvim integration: <C-f> in any fzf-lua picker opens results in Trouble.
+            local fzf_config = require("fzf-lua.config")
+            local ok, trouble_fzf = pcall(require, "trouble.sources.fzf")
+            if ok then
+                fzf_config.defaults.actions.files["ctrl-f"] = trouble_fzf.actions.open
+            end
+        end,
         keys = {
             {
                 "<Leader>f",

@@ -109,48 +109,17 @@ To use it:
 
 ---
 ## Shortcuts.app 
+Import files from ~/bin/shortcuts/
+
 ### Sleep
-* Use Sleep Action
-* Keyboard shortcuts: ctrl+opt+cmd+s
-
-## Automator Actions
-### Screen Saver
-1. Open Automator.
-2. Create a new service (now named Quick Action).
-3. Choose "Run AppleScript".
-4. In the top of the window, set "Service receives selected" to "no input" and "in any application".
-5. Paste the following AppleScript:
-
-```applescript
-on run {input, parameters}
-    do shell script "/System/Library/CoreServices/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine"
-    return input
-end run
-```
-
-6. Save with the name "start_screensaver".
-7. Open System Preferences > Keyboard > Shortcuts > Services > General and assign this quick action the shortcut Ctrl+Cmd+L.
-
-If "start_screensaver" did not show up, try logging in and out or restarting the computer.
+* Action: Sleep
+* Keyboard shortcut: ctrl+opt+cmd+s
 
 ### Appearance Toggle (Light/Dark Mode)
-- Create an Automator.app Quick Action named "appearance_toggle".
-- Use the built-in action "Change System Appearance" by dragging it in, and set "Change Appearance" to "Toggle Light/Dark". This seems faster when toggling than the custom script `~/bin/automator/appearance_toggle.command`.
-- Bind to Service shortcut Ctrl+Opt+Cmd+T (shortcut used when this feature was first introduced in the OS).
+* Action: Change appearance (set to toggle)
+* Keyboard shortcut: ctrl+opt+cmd+t
 
-### Microsoft To Do
-- Create an Automator Quick Action named "ms_todo_start" with AppleScript with action "Launch Application".
-- Bind to shortcut Ctrl+Cmd+Y.
-
-### Cycle Audio Output Devices
-Do this for all `~/bin/automator/SwitchAudioSource*.command`:
-
-- Create an Automator Quick Action named "SwitchAudioSource_cycle" with AppleScript using the contents of `~/bin/automator/SwitchAudioSource_cycle.command`.
-- Bind to shortcuts:
-  - Built-in: Cmd+Opt+F11
-  - USB Soundcard/headset: Cmd+Opt+F12
-  - Cycle: Cmd+Opt+F13
-
+## Automator Actions
 ### Control Center
 > TODO: replace this with a native System Preferences shortcut when supported.
 
@@ -165,8 +134,9 @@ Do this for all `~/bin/automator/SwitchAudioSource*.command`:
 - Bind to shortcut Cmd+F9.
 - For this to work: System Preferences > Security & Privacy > Privacy > Accessibility > allow System Preferences.app.
 
----
 
+
+---
 ## Development
 ### General
 #### Dash.app

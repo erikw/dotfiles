@@ -17,13 +17,18 @@ Usage: $ ${SCRIPT_NAME} -h | [-v] url
 -v\tDownload video instead of MP3.
 EOF
 
-
 arg_video=false
 while getopts ":vh?" opt; do
 	case "$opt" in
-		v) arg_video=true;;
-		:) echo "Option -$OPTARG requires an argument." >&2; exit 1;;
-		h|?|*) echo -e "$USAGE"; exit 0;;
+	v) arg_video=true ;;
+	:)
+		echo "Option -$OPTARG requires an argument." >&2
+		exit 1
+		;;
+	h | ? | *)
+		echo -e "$USAGE"
+		exit 0
+		;;
 	esac
 done
 shift $((OPTIND - 1))
@@ -33,7 +38,6 @@ if [ "$#" != 1 ]; then
 	exit 1
 fi
 url="$1"
-
 
 if $arg_video; then
 	opts=(
@@ -45,7 +49,6 @@ if $arg_video; then
 		## -c:a aac -b:a 192k ->  re-encode audio to AAC (192 kbps)
 		#--postprocessor-args "ffmpeg:-c:v libx264 -c:a aac -b:a 192k"
 
-
 		# Opt2: download the fallback H.264 (avc1) video + AAC (m4a) audio stream up to 720p. Much faster, but could be lower quality.
 		# bestvideo[ext=mp4][vcodec^=avc1] -> only select H.264 (avc1) MP4 video
 		# +bestaudio[ext=m4a] -> only select AAC audio in M4A container
@@ -56,15 +59,14 @@ else
 	opts=(
 		--extract-audio
 		--audio-format mp3
-		--audio-quality 0			# 0 is best
-		--convert-thumbnails jpg	# jpg works better than webp in many players. This option can fail with "Requested format is not available. Use --list-formats..."
+		--audio-quality 0        # 0 is best
+		--convert-thumbnails jpg # jpg works better than webp in many players. This option can fail with "Requested format is not available. Use --list-formats..."
 	)
 fi
 
-
 opts+=(
 	--progress
-	--no-playlist		# Prevent following &list= part of URL
+	--no-playlist # Prevent following &list= part of URL
 	--add-metadata
 	--embed-metadata
 	--embed-thumbnail
@@ -77,7 +79,6 @@ opts+=(
 	-o "${DEST_DIR}/%(artist)s - %(title)s.%(ext)s"
 	"$url"
 )
-
 
 if ! yt-dlp "${opts[@]}"; then
 	echo "Error creating file." >&2
