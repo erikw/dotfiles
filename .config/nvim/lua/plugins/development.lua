@@ -559,6 +559,7 @@ return {
         config = function(_, opts)
             require("conform").setup(opts)
 
+            --- TODO is this needed?
             -- rubocop --server cold-start takes ~8 s, which exceeds conform's
             -- timeout. Pre-warm the server asynchronously when a Ruby file opens
             -- so the server is ready by the time the user first writes the buffer.

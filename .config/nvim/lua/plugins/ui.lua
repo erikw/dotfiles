@@ -112,13 +112,15 @@ return {
                         path = 1, -- relative path
                     },
                     -- aerial breadcrumb: shows current symbol context (e.g. MyClass > myMethod).
+                    -- aerial is lazy-loaded on command; this component safely no-ops until then.
                     { "aerial" },
                 },
                 lualine_x = {
-                    -- Phase 6: LSP diagnostics from native LSP (replaces ALE).
+                    -- nvim_diagnostic covers ALL diagnostic sources: LSP, nvim-lint, etc.
+                    -- (nvim-lint writes to vim.diagnostic, so nvim_lint is not a separate source.)
                     {
                         "diagnostics",
-                        sources = { "nvim_lsp", "nvim_lint" },
+                        sources = { "nvim_diagnostic" },
                         symbols = { error = " ", warn = " ", info = " ", hint = " " },
                     },
                     "encoding",
