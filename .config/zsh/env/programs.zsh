@@ -8,10 +8,9 @@
 #   Defines environment for language runtimes and CLI tools.
 #
 # RESPONSIBILITIES
-#   ✔ Language environments:
-#     - mise (Go, Java, Node, etc.)
-#     - SDKMAN
+#   ✔ Language/tool environment variables:
 #     - Ruby, Python, Perl configs
+#     - build/runtime flags used by installed toolchains
 #
 #   ✔ Global tool behavior:
 #     - LESS
@@ -32,21 +31,6 @@
 #
 # LOADED FROM
 #   .zprofile
-# }}
-
-# mise {{
-# Cache the activation script to avoid spawning mise on every login shell.
-# Regenerate when the mise binary changes or the cache points at a different binary.
-if (( $+commands[mise] )); then
-	_mise_bin="${commands[mise]}"
-	_mise_cache="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/mise_activate.zsh"
-	if [ ! -s "$_mise_cache" ] || [ "$_mise_bin" -nt "$_mise_cache" ] || ! grep -Fq "$_mise_bin" "$_mise_cache"; then
-		test -d "${XDG_CACHE_HOME:-$HOME/.cache}/zsh" || mkdir -p "${XDG_CACHE_HOME:-$HOME/.cache}/zsh"
-		"$_mise_bin" activate zsh >| "$_mise_cache"
-	fi
-	source "$_mise_cache"
-	unset _mise_bin _mise_cache
-fi
 # }}
 
 #  Golang {{
