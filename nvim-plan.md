@@ -133,6 +133,7 @@ init.lua DisableFixers ─── ale_fix_on_save ──── → rewrite for co
 
 **Options:**
 - **A (recommended)**: Keep `nvim-autopairs`, disable `blink.cmp`'s `auto_brackets`. Avoids duplicate bracket insertion; preserves pair-deletion keymaps.
+> Chose this option!
 - **B**: Remove `nvim-autopairs`, use `blink.cmp`'s `auto_brackets` only. Simpler stack but loses treesitter-aware pair checking and `<C-h>`/`<C-w>` pair deletion.
 - **C**: Keep both (blink.cmp docs show nvim-autopairs integration via event hook).
 
