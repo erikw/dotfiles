@@ -14,10 +14,10 @@ data_home() {
 
 package_file() {
   case "${1:?missing tool name}" in
-    python) printf '%s/mise/packages/default-python-packages.txt\n' "$(config_home)" ;;
-    node) printf '%s/mise/packages/default-node-packages.txt\n' "$(config_home)" ;;
-    ruby) printf '%s/mise/packages/default-ruby-gems.txt\n' "$(config_home)" ;;
-    go) printf '%s/mise/packages/default-go-packages.txt\n' "$(config_home)" ;;
+    python) printf '%s/mise/packages/default-python.txt\n' "$(config_home)" ;;
+    node) printf '%s/mise/packages/default-node.txt\n' "$(config_home)" ;;
+    ruby) printf '%s/mise/packages/default-ruby.txt\n' "$(config_home)" ;;
+    go) printf '%s/mise/packages/default-go.txt\n' "$(config_home)" ;;
     *) printf 'Unsupported tool: %s\n' "$1" >&2; return 1 ;;
   esac
 }
@@ -45,12 +45,12 @@ load_packages() {
     [[ -n "$line" ]] || continue
 
     case "$line" in
-      \#*|//*)
+      \#*)
         continue
         ;;
     esac
 
-    line="$(printf '%s\n' "$line" | sed -E 's/[[:space:]]+#.*$//; s/[[:space:]]+\/\/.*$//')"
+    line="$(printf '%s\n' "$line" | sed -E 's/[[:space:]]+#.*$//')"
     line="$(trim_whitespace "$line")"
     [[ -n "$line" ]] || continue
 

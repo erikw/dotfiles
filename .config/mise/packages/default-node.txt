@@ -1,12 +1,9 @@
-# NOTE end-of-line #-comments does not work here.
-
 # Development
 # GitHub renders ToC automatically now.
-#markdown-toc
+# markdown-toc
 instant-markdown-d
 netlify-cli
-# Upgrade all packages in package.json with $(ncu -u). Ref: https://stackoverflow.com/a/22849716/265508
-npm-check-updates
+npm-check-updates # Upgrade all packages in package.json with $(ncu -u).
 vercel
 
 
@@ -22,5 +19,5 @@ vscode-langservers-extracted
 eslint
 prettier
 
-# REST test scripting with .http/.rest files
+# REST scripting for .http/.rest files
 httpyac
