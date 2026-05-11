@@ -352,8 +352,8 @@ return {
     -- Development: LSP/Completion {{
 
     -- LSP Core: mason + nvim-lspconfig {{
-    -- Phase 1: infrastructure installed, ALE still fully active.
-    -- Keymaps are added in Phase 2; formatters in Phase 4; linters in Phase 5.
+    -- Phase 2: ALE commented out; native LSP keymaps active.
+    -- Formatters added in Phase 4; linters in Phase 5.
     --
     -- Uses the modern nvim-lspconfig v2 API (Neovim 0.11+):
     --   vim.lsp.config()  — per-server settings
@@ -401,17 +401,11 @@ return {
         },
         event = { "BufReadPre", "BufNewFile" },
         config = function()
-            -- Phase 1: no-op hover/signature handlers while ALE still owns them.
-            -- Restored to defaults in Phase 2.
-            vim.lsp.handlers["textDocument/hover"] = function() end
-            vim.lsp.handlers["textDocument/signatureHelp"] = function() end
-
-            -- Show signs only; suppress virtual text + underlines to avoid
-            -- doubling with ALE diagnostics. Turned up fully in Phase 2.
+            -- Phase 2: full diagnostic display now that ALE is commented out.
             vim.diagnostic.config({
                 signs = true,
-                virtual_text = false,
-                underline = false,
+                virtual_text = true,
+                underline = true,
                 update_in_insert = false,
             })
 
@@ -430,25 +424,36 @@ return {
                 },
             })
 
-            -- Phase 1 LspAttach: disable LSP formatting so ALE fixers stay
-            -- authoritative. No keymaps yet — ALE still owns gd/gr/K/etc.
-            -- Both will be updated in Phase 2.
+            -- Phase 2 LspAttach: native LSP keymaps active. ALE is commented out.
+            -- Formatting disabled until conform.nvim is added in Phase 4.
             vim.api.nvim_create_autocmd("LspAttach", {
                 group = vim.api.nvim_create_augroup("NativeLspAttach", { clear = true }),
                 callback = function(args)
                     local client = vim.lsp.get_client_by_id(args.data.client_id)
                     if client then
+                        -- Disable LSP formatting — conform.nvim takes over in Phase 4.
                         client.server_capabilities.documentFormattingProvider = false
                         client.server_capabilities.documentRangeFormattingProvider = false
                     end
+                    local buf = args.buf
+                    -- TODO should we need to set these keymaps ourselves, aren'
+                    vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = buf, desc = "LSP: go to definition" })
+                    vim.keymap.set("n", "gr", vim.lsp.buf.references, { buffer = buf, desc = "LSP: find references" })
+                    vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = buf, desc = "LSP: hover" })
+                    vim.keymap.set("n", "<Space>rn", vim.lsp.buf.rename, { buffer = buf, desc = "LSP: rename" })
+                    vim.keymap.set("n", "<Leader>I", vim.lsp.buf.code_action, { buffer = buf, desc = "LSP: code action (import)" })
+                    vim.keymap.set("n", "<Space>ca", vim.lsp.buf.code_action, { buffer = buf, desc = "LSP: code action" })
+                    vim.keymap.set("n", "<C-k>", function() vim.diagnostic.goto_prev({ wrap = true }) end, { buffer = buf, desc = "LSP: previous diagnostic" })
+                    vim.keymap.set("n", "<C-j>", function() vim.diagnostic.goto_next({ wrap = true }) end, { buffer = buf, desc = "LSP: next diagnostic" })
                 end,
             })
         end,
     },
     -- }}
 
-    -- LSP linting engine (ALE). Phase 1: still fully active.
-    -- Will be progressively disabled in Phases 2-5 and removed in Phase 7.
+    --[[
+    -- LSP linting engine (ALE). Commented out in Phase 2.
+    -- Uncomment to restore; remove entirely in Phase 7.
     {
         "dense-analysis/ale",
         event = { "BufReadPre", "BufNewFile" },
@@ -540,8 +545,11 @@ return {
             )
         end,
     },
+    ]]
 
-    -- Method signature window, as ALE does not support it. Ref: https://www.reddit.com/r/vim/comments/jhqzsv/signature_help_via_ale/
+    --[[
+    -- Method signature window (ALE-based). Commented out in Phase 2.
+    -- Replaced by blink.cmp built-in signature in Phase 3.
     {
         "ray-x/lsp_signature.nvim",
         event = "BufReadPre", -- LspAttach won't fire since ALE uses its own LSP client (ale_use_neovim_lsp_api = 0)
@@ -550,6 +558,7 @@ return {
             select_signature_key = "<M-n>", -- cycle to next signature
         },
     },
+    ]]
 
     -- LSP symbols and tags viewer, like TagBar but with LSP support.
     {

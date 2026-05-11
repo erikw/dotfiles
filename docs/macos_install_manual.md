@@ -114,25 +114,6 @@ To use it:
 * Keyboard shortcuts: ctrl+opt+cmd+s
 
 ## Automator Actions
-### Screen Saver
-1. Open Automator.
-2. Create a new service (now named Quick Action).
-3. Choose "Run AppleScript".
-4. In the top of the window, set "Service receives selected" to "no input" and "in any application".
-5. Paste the following AppleScript:
-
-```applescript
-on run {input, parameters}
-    do shell script "/System/Library/CoreServices/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine"
-    return input
-end run
-```
-
-6. Save with the name "start_screensaver".
-7. Open System Preferences > Keyboard > Shortcuts > Services > General and assign this quick action the shortcut Ctrl+Cmd+L.
-
-If "start_screensaver" did not show up, try logging in and out or restarting the computer.
-
 ### Appearance Toggle (Light/Dark Mode)
 - Create an Automator.app Quick Action named "appearance_toggle".
 - Use the built-in action "Change System Appearance" by dragging it in, and set "Change Appearance" to "Toggle Light/Dark". This seems faster when toggling than the custom script `~/bin/automator/appearance_toggle.command`.
