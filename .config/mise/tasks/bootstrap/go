@@ -15,4 +15,7 @@ fi
 
 export GOBIN="${GOBIN:-$(data_home)/go/bin}"
 mkdir -p "$GOBIN"
-go install "${PACKAGES[@]}"
+for pkg in "${PACKAGES[@]}"; do
+  printf 'Installing Go package: %s\n' "$pkg"
+  go install "$pkg"
+done
