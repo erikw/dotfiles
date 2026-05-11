@@ -53,11 +53,13 @@ vim.api.nvim_create_user_command("WipeReg", "for i in range(34,122) | silent! ca
 vim.api.nvim_create_user_command("Cdpwd", "cd %:p:h", { force = true, desc = "Change to directory of current file." })
 vim.api.nvim_create_user_command("Lcdpwd", "lcd %:p:h", { force = true, desc = "Show the directory of current file." })
 vim.api.nvim_create_user_command("Sortline", 'call setline(line("."),join(sort(split(getline("."))), " "))', { force = true, desc = "Sort words on the current line." })
-vim.api.nvim_create_user_command(
-    "DisableFixers",
-    'execute "DisableStripWhitespaceOnSave" | execute "let g:ale_fix_on_save = 0"',
-    { force = true, desc = "Disable all fixers. Good when editing non-owned code bases." }
-)
+vim.api.nvim_create_user_command("DisableFixers", function()
+    -- Disable vim-better-whitespace strip-on-save.
+    vim.cmd("DisableStripWhitespaceOnSave")
+    -- Disable conform.nvim format-on-save (Phase 4).
+    -- conform's format_on_save function checks this global before formatting.
+    vim.g.disable_autoformat = true
+end, { force = true, desc = "Disable all fixers (conform format-on-save + whitespace stripping)." })
 
 local function DebuggerClear()
     local current_buf = vim.fn.bufnr()

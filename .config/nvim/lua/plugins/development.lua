@@ -364,9 +364,31 @@ return {
     {
         "mason-org/mason.nvim",
         build = ":MasonUpdate",
-        opts = {
-            ui = { border = "rounded" },
-        },
+        config = function()
+            require("mason").setup({ ui = { border = "rounded" } })
+
+            -- Auto-install non-LSP formatter/linter tools used by conform.nvim
+            -- and nvim-lint. LSP servers are managed by mason-lspconfig below.
+            local registry = require("mason-registry")
+            local tools = {
+                "ruff",      -- Python formatter (conform) + linter (nvim-lint)
+                "stylua",    -- Lua formatter (conform)
+                "prettier",  -- JS/TS/CSS/SCSS/JSON/YAML formatter (conform)
+                "goimports", -- Go formatter (conform)
+                -- rubocop intentionally omitted: mason's isolated gem env lacks
+                -- project cops (rubocop-rails etc.) and conflicts with mise's
+                -- rubocop --server daemon. Use mise-managed rubocop instead.
+                "luacheck",  -- Lua linter (nvim-lint, Phase 5)
+            }
+            registry.refresh(function()
+                for _, name in ipairs(tools) do
+                    local ok, pkg = pcall(registry.get_package, name)
+                    if ok and not pkg:is_installed() then
+                        pkg:install()
+                    end
+                end
+            end)
+        end,
     },
 
     -- mason-lspconfig v2: installs servers and calls vim.lsp.enable() for them.
@@ -488,6 +510,65 @@ return {
             fuzzy = { implementation = "prefer_rust_with_warning" },
         },
         opts_extend = { "sources.default" },
+    },
+    -- }}
+
+    -- Formatting: conform.nvim {{
+    -- Phase 4: replaces ALE fixers / ale_fix_on_save.
+    -- format_on_save is a function so we can skip Brewfiles and respect
+    -- vim.g.disable_autoformat (set by DisableFixers command in init.lua).
+    -- Ref: https://github.com/stevearc/conform.nvim
+    {
+        "stevearc/conform.nvim",
+        event = { "BufWritePre" },
+        cmd = { "ConformInfo" },
+        ---@module "conform"
+        ---@type conform.setupOpts
+        opts = {
+            formatters_by_ft = {
+                css        = { "prettier" },
+                javascript = { "prettier" },
+                typescript = { "prettier" },
+                json       = { "prettier" },
+                go         = { "goimports" }, -- gopls handles LSP-format separately
+                lua        = { "stylua" },
+                python     = { "ruff_format" }, -- replaces black + isort
+                ruby       = { "rubocop" },
+                scss       = { "prettier" },
+                yaml       = { "prettier" },
+            },
+            -- format_on_save as function: skip Brewfiles (mirrors ale_pattern_options)
+            -- and respect the global disable flag (used by DisableFixers).
+            format_on_save = function(bufnr)
+                if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+                    return
+                end
+                -- Brewfile: never format (mirrors ALE's ale_pattern_options Brewfile case).
+                if vim.bo[bufnr].filetype == "brewfile" then
+                    return
+                end
+                return { timeout_ms = 5000, lsp_format = "fallback" }
+            end,
+        },
+        config = function(_, opts)
+            require("conform").setup(opts)
+
+            -- rubocop --server cold-start takes ~8 s, which exceeds conform's
+            -- timeout. Pre-warm the server asynchronously when a Ruby file opens
+            -- so the server is ready by the time the user first writes the buffer.
+            vim.api.nvim_create_autocmd("FileType", {
+                group = vim.api.nvim_create_augroup("RubocopPrewarm", { clear = true }),
+                pattern = "ruby",
+                callback = function(ev)
+                    local file = ev.file
+                    if file == "" then return end
+                    vim.fn.jobstart(
+                        { "rubocop", "--server", "-f", "quiet", "--stderr", file },
+                        { detach = true }
+                    )
+                end,
+            })
+        end,
     },
     -- }}
 
