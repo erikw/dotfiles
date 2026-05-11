@@ -602,6 +602,22 @@ return {
     },
     -- }}
 
+    -- Diagnostics / quickfix panel (replaces plain :copen).
+    -- Ref: https://github.com/folke/trouble.nvim
+    {
+        "folke/trouble.nvim",
+        cmd = "Trouble",
+        opts = {},
+        keys = {
+            { "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>",                         desc = "Trouble: workspace diagnostics" },
+            { "<leader>xX", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",            desc = "Trouble: buffer diagnostics" },
+            { "<leader>cs", "<cmd>Trouble symbols toggle focus=false<cr>",                 desc = "Trouble: document symbols" },
+            { "<leader>cl", "<cmd>Trouble lsp toggle focus=false win.position=right<cr>", desc = "Trouble: LSP panel" },
+            { "<leader>xL", "<cmd>Trouble loclist toggle<cr>",                             desc = "Trouble: location list" },
+            { "<leader>xQ", "<cmd>Trouble qflist toggle<cr>",                             desc = "Trouble: quickfix list" },
+        },
+    },
+
     -- LSP symbols and tags viewer (replaces Vista.vim which is unmaintained for Neovim 0.11+).
     -- Uses treesitter or LSP as backend; integrates with lualine for symbol breadcrumbs.
     {
