@@ -60,6 +60,10 @@ vim.api.nvim_create_user_command("DisableFixers", function()
     -- conform's format_on_save function checks this global before formatting.
     vim.g.disable_autoformat = true
 end, { force = true, desc = "Disable all fixers (conform format-on-save + whitespace stripping)." })
+vim.api.nvim_create_user_command("EnableFixers", function()
+    vim.cmd("EnableStripWhitespaceOnSave")
+    vim.g.disable_autoformat = false
+end, { force = true, desc = "Re-enable all fixers (conform format-on-save + whitespace stripping)." })
 
 local function DebuggerClear()
     local current_buf = vim.fn.bufnr()
