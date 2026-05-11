@@ -60,7 +60,9 @@ return {
             vim.api.nvim_create_autocmd({ "BufReadPre", "BufNewFile", "BufEnter", "BufFilePre" }, {
                 pattern = "*/src/github.com/erikw/hackerrank-solutions/*.md,*/src/github.com/erikw/leetcode-solutions/*.md,[1-9]*.md",
                 group = augroup_imark,
-                command = "let g:instant_markdown_autostart=0",
+                callback = function()
+                    vim.g.instant_markdown_autostart = 0
+                end,
             })
         end,
     },
@@ -71,7 +73,7 @@ return {
         "nvim-tree/nvim-tree.lua",
         dependencies = { "nvim-tree/nvim-web-devicons" },
         keys = {
-            { "<F2>", ":NvimTreeToggle<CR>", { silent = true, desc = "Toggle file explorer tree." } },
+            { "<F2>", ":NvimTreeToggle<CR>", silent = true, desc = "Toggle file explorer tree." },
         },
         opts = {
             filters = { custom = { "^.git$" } },

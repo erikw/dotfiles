@@ -204,28 +204,11 @@ return {
         end,
     },
 
-    -- Git modified status in sign column
+    -- Git modified status in sign column. Replaces vim-gitgutter.
     {
-        "airblade/vim-gitgutter",
+        "lewis6991/gitsigns.nvim",
         event = "BufReadPre",
-        config = function()
-            vim.opt.updatetime = 250 -- Speedier update of gitgutter signs and CursorHold-based features.
-        end,
-    },
-
-    -- Markdown utilties like automatic list indention, TOC.
-    {
-        "preservim/vim-markdown",
-        ft = "markdown",
-        branch = "master", -- Otherwise loading on ft=markdown does not work. Ref: https://github.com/preservim/vim-markdown#installation
-        dependencies = { "godlygeek/tabular" },
-        config = function()
-            vim.g.vim_markdown_folding_disabled = 1 -- No fold by default
-            vim.g.vim_markdown_toc_autofit = 1 -- Make :Toc smaller
-            vim.g.vim_markdown_follow_anchor = 1 -- Let ge follow #anchors
-            vim.g.vim_markdown_new_list_item_indent = 2 -- Bullent space indents.
-            vim.keymap.set("n", "<Leader>3", ":Toc<CR>", { silent = true, desc = "Open markdown TOC in a quickfix window." })
-        end,
+        opts = {},
     },
 
     -- Toggle values like true/false with <Leader>i.
@@ -353,6 +336,18 @@ return {
 
     -- Development: LSP/Completion {{
 
+    -- Neovim Lua development: type stubs for vim.* APIs and luv.
+    -- Replaces the manual workspace.library approach in lua_ls configuration.
+    {
+        "folke/lazydev.nvim",
+        ft = "lua",
+        opts = {
+            library = {
+                { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+            },
+        },
+    },
+
     -- LSP Core: mason + nvim-lspconfig {{
     -- Uses the modern nvim-lspconfig v2 API (Neovim 0.11+):
     --   vim.lsp.config()  — per-server settings
@@ -436,16 +431,12 @@ return {
                 capabilities = require('blink.cmp').get_lsp_capabilities(),
             })
 
-            -- lua_ls: override the nvim-lspconfig default to teach it about the
-            -- Neovim runtime (vim.* globals, plugins in rtp).
+            -- lua_ls: override defaults; lazydev.nvim handles workspace.library.
             vim.lsp.config("lua_ls", {
                 settings = {
                     Lua = {
                         runtime = { version = "LuaJIT" },
-                        workspace = {
-                            checkThirdParty = false,
-                            library = { vim.env.VIMRUNTIME },
-                        },
+                        workspace = { checkThirdParty = false },
                         telemetry = { enable = false },
                     },
                 },
@@ -466,6 +457,8 @@ return {
                     -- so they are set explicitly. K is omitted — it's already a built-in default.
                     vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = buf, desc = "LSP: go to definition" })
                     vim.keymap.set("n", "gr", vim.lsp.buf.references, { buffer = buf, desc = "LSP: find references" })
+                    -- <Space>rn and <Space>ca intentionally use literal <Space>, not <Leader>,
+                    -- so they remain distinct if mapleader is ever changed.
                     vim.keymap.set("n", "<Space>rn", vim.lsp.buf.rename, { buffer = buf, desc = "LSP: rename" })
                     vim.keymap.set("n", "<Leader>I", vim.lsp.buf.code_action, { buffer = buf, desc = "LSP: code action (import)" })
                     vim.keymap.set("n", "<Space>ca", vim.lsp.buf.code_action, { buffer = buf, desc = "LSP: code action" })
@@ -519,7 +512,7 @@ return {
             },
             -- Built-in signature help.
             signature = { enabled = true },
-            fuzzy = { implementation = "prefer_rust_with_warning" },
+            fuzzy = { implementation = "rust" },
         },
         opts_extend = { "sources.default" },
     },

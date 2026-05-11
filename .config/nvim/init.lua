@@ -41,7 +41,7 @@ vim.g.loaded_perl_provider = 0
 
 -- Environment {{
 --
-vim.g.xdg_config_home = os.getenv("XDG_CONFIG_HOME") or "$HOME/.config"
+vim.g.xdg_config_home = os.getenv("XDG_CONFIG_HOME") or (os.getenv("HOME") .. "/.config")
 --vim.g.xdg_state_home = os.getenv("XDG_STATE_HOME") or "$HOME/.local/state"
 --vim.g.xdg_data_home = os.getenv("XDG_DATA_HOME") or "$HOME/.local/share"
 -- }}
@@ -49,7 +49,11 @@ vim.g.xdg_config_home = os.getenv("XDG_CONFIG_HOME") or "$HOME/.config"
 -- Commands {{
 vim.api.nvim_create_user_command("Wsudo", "silent write !sudo tee % > /dev/null", { force = true, desc = "Write with extended privileges." })
 -- Ref: https://stackoverflow.com/a/41003241/265508
-vim.api.nvim_create_user_command("WipeReg", "for i in range(34,122) | silent! call setreg(nr2char(i), []) | endfor", { force = true, desc = "Clear all registers." })
+vim.api.nvim_create_user_command("WipeReg", function()
+    for i = 34, 122 do
+        vim.fn.setreg(vim.fn.nr2char(i), {})
+    end
+end, { force = true, desc = "Clear all registers." })
 vim.api.nvim_create_user_command("Cdpwd", "cd %:p:h", { force = true, desc = "Change to directory of current file." })
 vim.api.nvim_create_user_command("Lcdpwd", "lcd %:p:h", { force = true, desc = "Show the directory of current file." })
 vim.api.nvim_create_user_command("Sortline", 'call setline(line("."),join(sort(split(getline("."))), " "))', { force = true, desc = "Sort words on the current line." })
@@ -78,12 +82,11 @@ vim.api.nvim_create_user_command("DebuggerClear", DebuggerClear, { force = true,
 -- Formatting {{
 vim.opt.linebreak = false -- Wrap on 'breakat'-chars.
 vim.opt.showbreak = "…" -- Indicate wrapped lines.
-vim.opt.smartindent = true -- Indent smart on C-like files.
 vim.opt.preserveindent = true -- Try to preserve indent structure on changes of current line.
 vim.opt.copyindent = true -- Copy indentstructure from existing lines.
 
-vim.opt.tabstop = 8 -- Let a tab be X spaces wide. 8 spaces for a tab render best as HTML on e.g. GithHub.
-vim.opt.shiftwidth = 8 -- Tab width for auto indent and >> shifting.
+vim.opt.tabstop = 4 -- Default tab display width; overridden per filetype in ftplugin/.
+vim.opt.shiftwidth = 4 -- Tab width for auto indent and >> shifting; overridden per filetype in ftplugin/.
 vim.opt.matchpairs:append("<:>") -- Also match <> with %.
 vim.opt.formatoptions = "tcroqwnl" -- How automatic formatting should happen.
 -- }}
@@ -96,6 +99,7 @@ vim.opt.undofile = true -- Save undo to file in undodir.
 vim.opt.undolevels = 2048 -- Levels of undo to keep in memory.
 vim.opt.timeoutlen = 700 -- Timout (ms) for mappings and keycodes. Make it a bit snappier.
 vim.opt.shortmess = "filmnrxtToOA" -- Abbreviate messages. 'A' disables the attention prompt when editing a file that is already open (beware: https://superuser.com/a/1065503)
+vim.opt.updatetime = 250 -- Milliseconds before CursorHold fires (used by LSP hover, gitsigns, etc.).
 -- }}
 
 -- Mappings {{
