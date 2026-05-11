@@ -111,6 +111,19 @@ return {
                         "filename",
                         path = 1, -- relative path
                     },
+                    -- aerial breadcrumb: shows current symbol context (e.g. MyClass > myMethod).
+                    { "aerial" },
+                },
+                lualine_x = {
+                    -- Phase 6: LSP diagnostics from native LSP (replaces ALE).
+                    {
+                        "diagnostics",
+                        sources = { "nvim_lsp", "nvim_lint" },
+                        symbols = { error = " ", warn = " ", info = " ", hint = " " },
+                    },
+                    "encoding",
+                    "fileformat",
+                    "filetype",
                 },
             },
             inactive_sections = {

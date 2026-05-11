@@ -718,17 +718,43 @@ return {
     },
     ]]
 
-    -- LSP symbols and tags viewer, like TagBar but with LSP support.
+    -- LSP symbols and tags viewer (replaces Vista.vim which is unmaintained for Neovim 0.11+).
+    -- Uses treesitter or LSP as backend; integrates with lualine for symbol breadcrumbs.
     {
-        "liuchengxu/vista.vim",
-        cmd = "Vista",
+        "stevearc/aerial.nvim",
+        dependencies = { "kyazdani42/nvim-web-devicons", "nvim-treesitter/nvim-treesitter" },
+        cmd = { "AerialToggle", "AerialOpen", "AerialNavToggle" },
         keys = {
-            { "<F3>", ":Vista!! <CR>", silent = true, desc = "Toggle Vista tag sidewindow." },
+            { "<F3>", "<cmd>AerialToggle!<CR>", silent = true, desc = "Toggle Aerial symbol sidebar." },
         },
-        init = function()
-            vim.g.vista_default_executive = "ale" -- Default executive.
-            vim.g.vista_sidebar_width = 50 -- Window width.
-        end,
+        opts = {
+            backends = { "treesitter", "lsp" },
+            layout = {
+                min_width = 50,
+                max_width = 50,
+                default_direction = "prefer_right",
+            },
+            show_guides = true,
+            -- Extend beyond the narrow default to show variables, constants, etc.
+            -- Full SymbolKind list: https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#symbolKind
+            filter_kind = {
+                "Class",
+                "Constant",
+                "Constructor",
+                "Enum",
+                "EnumMember",
+                "Field",
+                "Function",
+                "Interface",
+                "Method",
+                "Module",
+                "Namespace",
+                "Property",
+                "Struct",
+                "TypeParameter",
+                "Variable",
+            },
+        },
     },
 
     -- }}
