@@ -443,30 +443,58 @@ step_macos() {
 # Install asdf language plugins and their latest versions, then set each as
 # the global default.  Skipped in non-workstation environments (e.g. Codespaces)
 # where language runtimes are already provided by the dev container image.
-step_asdf() {
-  is_workstation || { log_info "Non-workstation environment — skipping asdf."; return 0; }
-  command -v asdf >/dev/null 2>&1 || die "asdf not found. Install it first (e.g. via Homebrew or the Brewfile)."
+# step_asdf() {
+#   is_workstation || { log_info "Non-workstation environment — skipping asdf."; return 0; }
+#   command -v asdf >/dev/null 2>&1 || die "asdf not found. Install it first (e.g. via Homebrew or the Brewfile)."
+#
+#   # Source asdf XDG env vars from the shared config (same file xdg.zsh sources).
+#   # shellcheck source=.config/zsh/env/asdf.sh
+#   source "$DOTFILES_DIR/.config/zsh/env/asdf.sh"
+#
+#   local -a plugins=(ruby python golang nodejs)
+#
+#   for plugin in "${plugins[@]}"; do
+#     if asdf plugin list | grep -q "^${plugin}$"; then
+#       log_info "asdf plugin already installed: $plugin"
+#     else
+#       log_info "Adding asdf plugin: $plugin"
+#       asdf plugin add "$plugin"
+#     fi
+#
+#     log_info "Installing latest $plugin..."
+#     asdf install "$plugin" latest
+#
+#     log_info "Setting global $plugin to latest..."
+#     asdf set -u "$plugin" latest
+#   done
+# }
 
-  # Source asdf XDG env vars from the shared config (same file xdg.zsh sources).
-  # shellcheck source=.config/zsh/env/asdf.sh
-  source "$DOTFILES_DIR/.config/zsh/env/asdf.sh"
+# Step: mise
+# Trust the tracked global mise config and install the tool versions it
+# declares. Skipped in non-workstation environments (e.g. Codespaces) where
+# language runtimes are already provided by the dev container image.
+step_mise() {
+  is_workstation || { log_info "Non-workstation environment — skipping mise."; return 0; }
+  command -v mise >/dev/null 2>&1 || die "mise not found. Install it first (e.g. via Homebrew or the Brewfile)."
 
-  local -a plugins=(ruby python golang nodejs)
+  local mise_config="${XDG_CONFIG_HOME:-$HOME/.config}/mise/config.toml"
+  local mise_config_target="$DOTFILES_DIR/.config/mise/config.toml"
 
-  for plugin in "${plugins[@]}"; do
-    if asdf plugin list | grep -q "^${plugin}$"; then
-      log_info "asdf plugin already installed: $plugin"
-    else
-      log_info "Adding asdf plugin: $plugin"
-      asdf plugin add "$plugin"
-    fi
+  if [[ -f "$mise_config" ]]; then
+    log_info "Trusting mise config: $mise_config"
+    mise trust -y "$mise_config"
+  fi
+  if [[ -f "$mise_config_target" && "$mise_config_target" != "$mise_config" ]]; then
+    log_info "Trusting mise config target: $mise_config_target"
+    mise trust -y "$mise_config_target"
+  fi
 
-    log_info "Installing latest $plugin..."
-    asdf install "$plugin" latest
+  log_info "Installing mise-managed tool versions from config..."
+  mise install
 
-    log_info "Setting global $plugin to latest..."
-    asdf set -u "$plugin" latest
-  done
+  # Set up in ~/.config/mise/tasks/bootstrap/
+  log_info "Installing default global packages via mise bootstrap tasks..."
+  mise run bootstrap
 }
 
 # Step: crontab
@@ -534,7 +562,8 @@ DEFAULT_STEPS=(
   "linux:Enable systemd user units (Linux workstation only)"
   "macos:Homebrew install/Brewfile/system config/iCloud symlinks (macOS only)"
   "windows:Full Windows setup via windows_install.ps1 (Windows only)"
-  "asdf:Install asdf language plugins and set global versions (workstation only)"
+  # "asdf:Install asdf language plugins and set global versions (workstation only)"
+  "mise:Install mise-managed @lts language runtimes (workstation only)"
   "crontab:Install crontab entries for backups (workstation only)"
   "ghq:Clone personal repos via ghq (workstation only)"
 )

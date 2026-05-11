@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+#MISE description="Install default global packages for every configured runtime"
+#MISE depends=["bootstrap:*"]
+
+:

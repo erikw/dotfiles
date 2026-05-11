@@ -8,10 +8,9 @@
 #   Defines environment for language runtimes and CLI tools.
 #
 # RESPONSIBILITIES
-#   ✔ Language environments:
-#     - asdf (Go, Java, Node, etc.)
-#     - SDKMAN
+#   ✔ Language/tool environment variables:
 #     - Ruby, Python, Perl configs
+#     - build/runtime flags used by installed toolchains
 #
 #   ✔ Global tool behavior:
 #     - LESS
@@ -45,14 +44,15 @@
 # Add asdf shims to env and PATH Ref: https://github.com/asdf-community/asdf-golang
 # NOTE this overrides set $GOPATH, $GOROOT & $GOBIN.
 # NOTE after installing ($ go install) a new package, reshim to make it available on $PATH with $(asdf reshim goalang)
-if [ -f "${ASDF_DATA_DIR:-$HOME/.asdf}/plugins/golang/set-env.zsh" ]; then
-	source "${ASDF_DATA_DIR:-$HOME/.asdf}/plugins/golang/set-env.zsh"
-	asdf_update_golang_env # Call directly to set up $GOBIN
-fi
-if [ -n "$GOBIN" ]; then
-	# Append to make sure that asdf shims path comes before.
-	PATH="$PATH:$GOBIN"
-fi
+# if [ -f "${ASDF_DATA_DIR:-$HOME/.asdf}/plugins/golang/set-env.zsh" ]; then
+#	source "${ASDF_DATA_DIR:-$HOME/.asdf}/plugins/golang/set-env.zsh"
+#	asdf_update_golang_env # Call directly to set up $GOBIN
+# fi
+# mise bootstrap tasks install Go tools to this default location when GOBIN is unset.
+# if [ -n "$GOBIN" ]; then
+#	# Append to make sure that asdf shims path comes before.
+#	PATH="$PATH:$GOBIN"
+# fi
 # }}
 
 # Java {{
@@ -81,7 +81,7 @@ fi
 # ruby-build: recommended build env.
 # Reference: https://github.com/rbenv/ruby-build/wiki#suggested-build-environment
 #export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
-if ((  $+commands[ruby-build] || $+commands[asdf] )) && [[ -n "$HOMEBREW_PREFIX" ]]; then
+if ((  $+commands[ruby-build] || $+commands[asdf] || $+commands[mise] )) && [[ -n "$HOMEBREW_PREFIX" ]]; then
 	# For Ruby versions 2.x-3.0
 	#export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$HOMEBREW_PREFIX/opt/openssl@1.1"
 	# For Ruby versions >=3.1

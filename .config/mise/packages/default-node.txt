@@ -1,0 +1,23 @@
+# Development
+# GitHub renders ToC automatically now.
+# markdown-toc
+instant-markdown-d
+netlify-cli
+npm-check-updates # Upgrade all packages in package.json with $(ncu -u).
+vercel
+
+
+# RoR requirements
+yarn
+
+# Language Servers (LSP)
+bash-language-server
+vim-language-server
+vscode-langservers-extracted
+
+# Linters & fixers
+eslint
+prettier
+
+# REST scripting for .http/.rest files
+httpyac

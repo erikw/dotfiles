@@ -1,0 +1,20 @@
+# To get readline support in irb(1).
+rb-readline
+
+pry-byebug # IRB replacement + step debugger.
+
+rubocop # Works well with ALE.
+
+# LSP
+solargraph
+
+# DAP
+debug
+
+git-bump # Add git-bump version tagger sub-command.
+
+gem-browse # Edit or browse a gem with $(gem edit <gem>) or $(gem open <gem>).
+
+gem-ctags # Generate tags file in installed gems automatically.
+
+algorithms # Heap, Priority Queue, Stack, ...

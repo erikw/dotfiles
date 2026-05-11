@@ -37,6 +37,20 @@
 # Set here rather than env/programs.zsh: only meaningful for interactive shells with a TTY.
 # (( $+commands[gpg] )) && export GPG_TTY=$TTY
 
+# mise — interactive shell integration for runtime shims and hooks.
+# Cache the activation script to avoid spawning mise on every interactive shell.
+# Regenerate when the mise binary changes or the cache points at a different binary.
+if (( $+commands[mise] )); then
+	_mise_bin="${commands[mise]}"
+	_mise_cache="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/mise_activate.zsh"
+	if [[ ! -s "$_mise_cache" ]] || [[ "$_mise_bin" -nt "$_mise_cache" ]] || ! grep -Fq "$_mise_bin" "$_mise_cache"; then
+		test -d "${XDG_CACHE_HOME:-$HOME/.cache}/zsh" || mkdir -p "${XDG_CACHE_HOME:-$HOME/.cache}/zsh"
+		"$_mise_bin" activate zsh >| "$_mise_cache"
+	fi
+	source "$_mise_cache"
+	unset _mise_bin _mise_cache
+fi
+
 # starship — cross-shell prompt.
 # Cache the init hook to avoid eval "$(starship init zsh)" subprocess on every shell start.
 # Works whether starship was installed via Homebrew, zinit, or anything else.

@@ -1,0 +1,14 @@
+[tools]
+go = "latest"
+node = "latest"
+python = "latest"
+ruby = "latest"
+
+
+[settings]
+
+[settings.python]
+compile = false
+
+[settings.ruby]
+compile = false

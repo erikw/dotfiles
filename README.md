@@ -40,6 +40,8 @@ Bootstrap using [`bin/dotfiles_bootstrap.sh`](bin/dotfiles_bootstrap.sh):
 ```
 This will interactively set up a GitHub SSH key, clone this repo, and run [`./install.sh`](https://github.com/erikw/dotfiles/blob/main/install.sh).
 
+To reinstall the default global packages for mise-managed runtimes later, run `mise run bootstrap` or a single runtime task such as `mise run bootstrap:python`. The package lists live under [`.config/mise/packages/`](.config/mise/packages/).
+
 
 ### Local branch
 If using this: uncomment the cronjob in user's crontab for `~/bin/dotfiles_backup_local.sh`.

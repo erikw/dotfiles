@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+#MISE description="Install default Python packages from the legacy ASDF package list"
+
+set -o errexit
+set -o nounset
+set -o pipefail
+
+source "$(dirname "$0")/_lib.sh"
+
+load_packages "$(package_file python)"
+if [[ ${#PACKAGES[@]} -eq 0 ]]; then
+  printf 'No Python packages configured.\n'
+  exit 0
+fi
+
+python -m pip install --upgrade --disable-pip-version-check "${PACKAGES[@]}"

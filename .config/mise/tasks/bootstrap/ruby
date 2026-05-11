@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+#MISE description="Install default Ruby gems from the legacy ASDF package list"
+
+set -o errexit
+set -o nounset
+set -o pipefail
+
+source "$(dirname "$0")/_lib.sh"
+
+load_packages "$(package_file ruby)"
+if [[ ${#PACKAGES[@]} -eq 0 ]]; then
+  printf 'No Ruby gems configured.\n'
+  exit 0
+fi
+
+unset GEM_HOME GEM_PATH
+gem install "${PACKAGES[@]}"

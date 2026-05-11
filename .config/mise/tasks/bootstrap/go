@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+#MISE description="Install default Go tools from the legacy ASDF package list"
+
+set -o errexit
+set -o nounset
+set -o pipefail
+
+source "$(dirname "$0")/_lib.sh"
+
+load_packages "$(package_file go)"
+if [[ ${#PACKAGES[@]} -eq 0 ]]; then
+  printf 'No Go tools configured.\n'
+  exit 0
+fi
+
+export GOBIN="${GOBIN:-$(data_home)/go/bin}"
+mkdir -p "$GOBIN"
+for pkg in "${PACKAGES[@]}"; do
+  printf 'Installing Go package: %s\n' "$pkg"
+  go install "$pkg"
+done

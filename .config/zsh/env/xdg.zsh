@@ -50,7 +50,7 @@ export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
 export CLAUDE_CONFIG_DIR="$XDG_CONFIG_HOME/claude"
 
 # asdf; Not yet fully compliant: https://github.com/asdf-vm/asdf/issues/687
-source "${XDG_CONFIG_HOME}/zsh/env/asdf.sh"
+# source "${XDG_CONFIG_HOME}/zsh/env/asdf.sh"
 
 
 # fzf-marks

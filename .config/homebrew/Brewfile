@@ -21,7 +21,6 @@
 				brew 'ack'
 				brew 'anomalyco/tap/opencode'
 				brew 'as-tree'	# A tree view of the contents of a directory. $(fd ... | as-tree)
-				brew 'asdf'
 				brew 'aspell'
 				brew 'bash'
 				brew 'bash-completion'
@@ -87,6 +86,7 @@
 				brew 'lsd' # A modern ls(1).
 				brew 'luacheck' # Linter used with ALE.
 				brew 'luarocks' # For Neovim plugins
+				brew 'mise'
 				brew 'mosh'
 				brew 'multitime'
 				brew 'ncdu' # An interactive du(1).
@@ -135,6 +135,7 @@
 # Formula: optional {
 				# brew 'antiword'
 				# brew 'asciinema'
+				# brew 'asdf'
 				# brew 'bashdb'
 				# brew 'cgdb'
 				# brew 'checkbashisms'
@@ -327,11 +328,11 @@
 				brew 'python-tk'	# Needed for pyenv when using some pip packages.
 
 				# asdf reqs - Python
-				brew 'openssl'
-				brew 'readline'
-				brew 'sqlite3'
-				brew 'xz'
-				brew 'zlib'
+				#brew 'openssl'
+				#brew 'readline'
+				#brew 'sqlite3'
+				#brew 'xz'
+				#brew 'zlib'
 # }
 
 # Developmenht: Ruby {
