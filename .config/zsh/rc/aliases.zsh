@@ -82,10 +82,12 @@ case $DESKTYPE in
 		alias afk='qdbus org.kde.screensaver /ScreenSaver org.freedesktop.ScreenSaver.SetActive true > /dev/null'
 		# Empty KDE trash folders.
 		alias emptytrash='rm -rf ~/.local/share/Trash/info/* ~/.local/share/Trash/files/*'
+		alias standby='systemctl suspend'
 		;;
 	gnome)
 		alias open='gnome-open'
 		alias xlogout='gnome-session-save --force-logout'
+		alias standby='systemctl suspend'
 		;;
 	mate)
 		alias open='mate-open'
@@ -100,9 +102,11 @@ case $DESKTYPE in
 		alias afk='xscreensaver-command -lock'		# Start screensaver.
 		alias xlogout='pkill -f startdwm.sh'
 		alias afk='slimlock'
+		alias standby='systemctl suspend'
 		;;
 	macos)
 		alias afk='/System/Library/CoreServices/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine'
+		alias standby='pmset sleepnow'
 
 	# Show or hide dotfiles in Finder.app.
 	alias mac_showhidden='defaults write com.apple.finder AppleShowAllFiles TRUE; killall Finder'
