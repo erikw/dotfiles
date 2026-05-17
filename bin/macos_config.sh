@@ -37,7 +37,11 @@ trap cleanup EXIT
 ensure_sudo_session() {
 	if ! $sudo_initialized; then
 		sudo -v
-		while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+		while true; do
+			sudo -n true
+			sleep 60
+			kill -0 "$$" || exit
+		done 2>/dev/null &
 		sudo_keepalive_pid=$!
 		sudo_initialized=true
 	fi
@@ -65,7 +69,7 @@ ensure_plist_dict_path() {
 	local current_path=
 	local part=
 
-	IFS=':' read -r -a path_parts <<< "${path#:}"
+	IFS=':' read -r -a path_parts <<<"${path#:}"
 	for part in "${path_parts[@]}"; do
 		current_path="${current_path}:${part}"
 		if ! /usr/libexec/PlistBuddy -c "Print ${current_path}" "$plist" >/dev/null 2>&1; then
@@ -114,7 +118,7 @@ elif [ -e "$sudoers_target" ] && run_with_sudo grep -Fq "$config_marker" "$sudoe
 fi
 if ! $sudoers_has_config_marker; then
 	sudoers_tmp="${tmp_dir}/99_my_settings"
-	cat > "$sudoers_tmp" << EOF
+	cat >"$sudoers_tmp" <<EOF
 ${config_marker}
 # Set cached password timeout in minutes.
 Defaults:${USER} timestamp_timeout=16
@@ -131,7 +135,6 @@ EOF
 	run_with_sudo mkdir -p /etc/sudoers.d
 	run_with_sudo install -m 0440 "$sudoers_tmp" "$sudoers_target"
 fi
-
 
 # Create power group and add user for sudo rule above.
 if ! dscacheutil -q group | grep -q "name: power"; then
@@ -158,7 +161,7 @@ done
 if $touch_id_supported && { grep -Fq "$config_marker" /etc/pam.d/sudo || ! grep -q 'pam_tid\.so' /etc/pam.d/sudo; }; then
 	pam_sudo_base="${tmp_dir}/pam_sudo.base"
 	pam_sudo_new="${tmp_dir}/pam_sudo.new"
-	grep -Fv "$config_marker" /etc/pam.d/sudo > "$pam_sudo_base"
+	grep -Fv "$config_marker" /etc/pam.d/sudo >"$pam_sudo_base"
 	{
 		if [ -n "$pam_reattach_path" ]; then
 			printf '%s\n' "auth       optional        ${pam_reattach_path} ${config_marker}"
@@ -167,7 +170,7 @@ if $touch_id_supported && { grep -Fq "$config_marker" /etc/pam.d/sudo || ! grep 
 			printf '%s\n' "auth       sufficient     pam_tid.so ${config_marker}"
 		fi
 		cat "$pam_sudo_base"
-	} > "$pam_sudo_new"
+	} >"$pam_sudo_new"
 	if ! cmp -s "$pam_sudo_new" /etc/pam.d/sudo; then
 		run_with_sudo install -m 0444 "$pam_sudo_new" /etc/pam.d/sudo
 	fi
@@ -185,6 +188,7 @@ fi
 
 # General {
 # * Appearance: Auto
+defaults write NSGlobalDomain AppleInterfaceStyleSwitchesAutomatically -bool true
 # }
 
 # Desktop & Dock {
@@ -228,8 +232,6 @@ defaults write com.apple.dock wvous-br-corner -int 0
 defaults write com.apple.dock wvous-br-modifier -int 0
 # }
 
-
-
 # Control Center {
 # - Wi-Fi: uncheck
 # - Bluetooth: uncheck
@@ -251,13 +253,9 @@ defaults write com.apple.dock wvous-br-modifier -int 0
 # - Time machine: Show in Menu Bar
 # }
 
-
-
 # Desktop & Dock {
-# * Uncheck "Show recent applications in Dock"
-#defaults write com.apple.dock show-recents -bool false
 # * Prevent accidential change of dock size or position by locking
-#defaults write com.apple.Dock position-immutable -bool true
+defaults write com.apple.Dock position-immutable -bool true
 
 # * Add ~/ (Stack, List)  and ~/Downloads (Stack, Automatic) to dock.
 # * For dual monitors: For all applications in dock: Right click > Option > assign to correct monitor and desktop.
@@ -312,6 +310,8 @@ if ! spctl --status 2>/dev/null | grep -q 'assessments disabled'; then
 	run_with_sudo spctl --master-disable
 fi
 # * Check: Require password <immediately> after sleep or screen saver begins
+defaults write com.apple.screensaver askForPassword -int 1
+defaults write com.apple.screensaver askForPasswordDelay -int 0
 ## FileVault
 # * Enable FileVault, with recovery key.
 ## Firewall
@@ -404,7 +404,7 @@ defaults write -g InitialKeyRepeat -int 25
 # For setting a new speed, easiest is to set the value in System Settings, then read desired value $(defaults read -g com.apple.mouse...)
 # * Tracking Speed:
 #defaults write -g com.apple.mouse.scaling 0.875  # 1st vertical mouse, 1/2
-defaults write -g com.apple.mouse.scaling 0.6875  # 2nd vertical mouse, 1/2 -1 notch
+defaults write -g com.apple.mouse.scaling 0.6875 # 2nd vertical mouse, 1/2 -1 notch
 # * Scrolling speed: 3/4
 defaults write -g com.apple.scrollwheel.scaling 0.75
 # * Double-click speed: 3/4
@@ -463,18 +463,17 @@ defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
 # * Set "Computer Name". Unfortunately different from system hostname (below).
 # * Set computers hostname.
 # Semi-idempotent; assume setting hostname is only desired to do 1 time, and that a default hostname is *.local something.
-if  hostname | grep -q .local; then
+if hostname | grep -q .local; then
 	new_hostname=
 	while [ -z "$new_hostname" ]; do
 		echo -n "Enter new computer hostname: "
 		read -r new_hostname
-	done;
+	done
 	current_hostname=$(scutil --get HostName 2>/dev/null || true)
 	if [ "$current_hostname" != "$new_hostname" ]; then
 		run_with_sudo scutil --set HostName "$new_hostname"
 	fi
 fi
-
 
 # * If want SMB file sharing:
 #  - Check File Sharing
@@ -490,10 +489,12 @@ fi
 
 # Archive Util.app {
 # * Uncheck "Reveal expanded items in Finder"
+defaults write com.apple.archiveutility dearchive-reveal-after -bool false
 # }
 
 # App Store {
 # * Uncheck "In-App Ratings & Reviews"
+defaults write com.apple.AppStore InAppReviewEnabled -bool false
 # }
 
 # Calendar.app {
@@ -548,8 +549,6 @@ defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
 # * Keep folders on top: In windows when sorting by name
 defaults write com.apple.finder _FXSortFoldersFirst -bool true
 
-
-
 ## Misc
 # * Sidebar Favourites, add to make it
 # - ~/
@@ -570,20 +569,12 @@ defaults write com.apple.finder _FXSortFoldersFirst -bool true
 # - /Volumes/ext0/daw/plugins/
 # - /Volumes/ext0/music/samples/
 
-
-# Show hidden files in Finder.
-#defaults write com.apple.finder AppleShowAllFiles YES
-
-# Save to disk (not to iCloud) by default
-#defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
-
 # Enable snap-to-grid for icons on the desktop and in other icon views
 finder_plist="$HOME/Library/Preferences/com.apple.finder.plist"
 for icon_view_path in \
 	":DesktopViewSettings:IconViewSettings" \
 	":FK_StandardViewSettings:IconViewSettings" \
-	":StandardViewSettings:IconViewSettings"
-do
+	":StandardViewSettings:IconViewSettings"; do
 	ensure_plist_dict_path "$finder_plist" "$icon_view_path"
 	set_plist_string "$finder_plist" "${icon_view_path}:arrangeBy" grid
 done
@@ -656,6 +647,7 @@ done
 #Profiles
 ## Shell
 # * When the shell exists: close if the shell exited cleanly
+defaults write com.apple.Terminal ShellExitAction -int 1
 # }
 
 # Safari.app {
@@ -665,6 +657,7 @@ done
 #   * Set to Start Page. Ref: https://forums.macrumors.com/threads/make-safaris-startpage-your-homepage.2289398/
 # * Remove history items: manually
 # * Uncheck "Open safe files after downloading"
+defaults write com.apple.Safari AutoOpenSafeDownloads -bool false
 ## Privacy
 # * Uncheck "Allow privacy-preserving measurement of ad effectiveness"
 ## Advanced
@@ -683,7 +676,6 @@ done
 # Or programatically. Ref: https://apple.stackexchange.com/a/260916
 #defaults write com.apple.Safari NSUserKeyEquivalents -dict-add 'Close Tab' '<string>@w</string></dict>'
 #defaults write com.apple.universalaccess com.apple.custommenu.apps -array-add '<string>com.apple.Safari</string>'
-
 
 # See current settings with:  $ defaults read com.apple.Safari
 # Prevent closing window when only pinned tabs left. Ref: https://apple.stackexchange.com/a/260916
@@ -717,7 +709,6 @@ defaults write com.apple.screencapture location "$HOME/media/images/screenshots"
 # Reference: https://apple.stackexchange.com/questions/340170/turn-off-macos-mojave-screenshot-preview-thumbnails-with-defaults-write-command
 defaults write com.apple.screencapture show-thumbnail -bool FALSE
 
-
 # iTerm2 shell integration
 # Reference: https://www.iterm2.com/documentation-shell-integration.html
 #curl -L https://iterm2.com/misc/install_shell_integration.sh | bash
@@ -736,7 +727,6 @@ defaults write -g NSWindowShouldDragOnGesture -bool true
 # * Enter:
 #   UUID=$UUID none apfs rw,noauto
 # * Restart computer to test.
-
 
 # Prepare user's crontab header.
 set +o errexit
