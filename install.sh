@@ -3,7 +3,7 @@
 #	vi: foldmarker={{,}} foldmethod=marker foldlevel=0
 # }}
 # Dotfiles installer.
-# Usage: ./install.sh [-h|--help] [-s|--step <step>]
+# Usage: ./install.sh [-h|--help] [-l|--list-steps] [-s|--step <step|range>]
 # NOTE make sure this script is idempotent!
 
 # Script setup {{
@@ -576,16 +576,8 @@ MANUAL_STEPS=(
 step_name()        { printf '%s' "${1%%:*}"; }
 step_description() { printf '%s' "${1#*:}"; }
 
-show_help() {
+show_step_listing() {
   cat <<EOF
-Usage: $SCRIPT_NAME [OPTIONS]
-
-Install and configure dotfiles by running setup steps in order.
-
-Options:
-  -s, --step <step>   Run a single named step instead of all default steps.
-  -h, --help          Show this help message and exit.
-
 Default steps (run in order when no --step is given):
 EOF
   local i=1
@@ -604,9 +596,72 @@ EOF
 
 Examples:
   $SCRIPT_NAME                   Run all default steps.
+  $SCRIPT_NAME --step 5-7        Run default steps 5 through 7.
+  $SCRIPT_NAME --step 3-         Run default step 3 and all following default steps.
   $SCRIPT_NAME --step link       Run only the link step.
   $SCRIPT_NAME --step unlink     Undo managed symlinks and restore backups.
 EOF
+}
+
+show_help() {
+  cat <<EOF
+Usage: $SCRIPT_NAME [OPTIONS]
+
+Install and configure dotfiles by running setup steps in order.
+
+Options:
+  -s, --step <step|range>
+                      Run a named step, step number, or default-step range
+                      instead of all default steps.
+  -l, --list-steps    List the steps that can be run and exit.
+  -h, --help          Show this help message and exit.
+
+EOF
+  show_step_listing
+}
+
+default_step_name_by_number() {
+  local number="$1"
+  local count="${#DEFAULT_STEPS[@]}"
+
+  (( number >= 1 && number <= count )) || return 1
+  step_name "${DEFAULT_STEPS[$(( number - 1 ))]}"
+}
+
+# Expand STEP selector ($1) into newline-delimited step names for execution.
+# Accepts a named step unchanged, or a default-step number/range like 2, 3-,
+# -4, or 5-7. Numeric selectors only apply to DEFAULT_STEPS.
+emit_selected_steps() {
+  local selector="$1"
+  local count="${#DEFAULT_STEPS[@]}"
+  local start="" end="" i
+
+  if [[ "$selector" =~ ^[0-9]+$ ]]; then
+    start=$((10#$selector))
+    end="$start"
+  elif [[ "$selector" =~ ^([0-9]+)-$ ]]; then
+    start=$((10#${BASH_REMATCH[1]}))
+    end="$count"
+  elif [[ "$selector" =~ ^-([0-9]+)$ ]]; then
+    start=1
+    end=$((10#${BASH_REMATCH[1]}))
+  elif [[ "$selector" =~ ^([0-9]+)-([0-9]+)$ ]]; then
+    start=$((10#${BASH_REMATCH[1]}))
+    end=$((10#${BASH_REMATCH[2]}))
+  else
+    printf '%s\n' "$selector"
+    return 0
+  fi
+
+  (( start >= 1 )) || die "Invalid step selector: '$selector'. Step numbers start at 1."
+  (( end >= 1 )) || die "Invalid step selector: '$selector'. Step numbers start at 1."
+  (( start <= end )) || die "Invalid step selector: '$selector'. Range start must not exceed range end."
+  (( end <= count )) || die "Invalid step selector: '$selector'. Default steps are numbered 1-$count."
+
+  for (( i = start; i <= end; i++ )); do
+    default_step_name_by_number "$i"
+    printf '\n'
+  done
 }
 
 run_step() {
@@ -626,22 +681,27 @@ run_step() {
 
 main() {
   trap 'die "Interrupted."' INT TERM
-  local step=""
+  local step_selector=""
+  local step_name=""
 
   while [[ $# -gt 0 ]]; do
     case "$1" in
       -h|--help) show_help; exit 0 ;;
+      -l|--list-steps) show_step_listing; exit 0 ;;
       -s|--step)
-        [[ $# -ge 2 && -n "${2:-}" ]] || die "Option '$1' requires a step name. Run '$SCRIPT_NAME --help' for usage."
-        step="$2"
+        [[ $# -ge 2 && -n "${2:-}" ]] || die "Option '$1' requires a step name, number, or range. Run '$SCRIPT_NAME --help' for usage."
+        step_selector="$2"
         shift 2
         ;;
       *) die "Unknown argument: '$1'. Run '$SCRIPT_NAME --help' for usage." ;;
     esac
   done
 
-  if [[ -n "$step" ]]; then
-    run_step "$step"
+  if [[ -n "$step_selector" ]]; then
+    while IFS= read -r step_name; do
+      [[ -n "$step_name" ]] || continue
+      run_step "$step_name"
+    done < <(emit_selected_steps "$step_selector")
   else
     for entry in "${DEFAULT_STEPS[@]}"; do
       run_step "$(step_name "$entry")"
