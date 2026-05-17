@@ -576,22 +576,23 @@ MANUAL_STEPS=(
 step_name()        { printf '%s' "${1%%:*}"; }
 step_description() { printf '%s' "${1#*:}"; }
 
-show_step_listing() {
-  cat <<EOF
-Default steps (run in order when no --step is given):
-EOF
+print_step_entries() {
   local i=1
   for entry in "${DEFAULT_STEPS[@]}"; do
     printf '  %-2d  %-14s  %s\n' "$i" "$(step_name "$entry")" "$(step_description "$entry")"
     i=$(( i + 1 ))
   done
-  cat <<EOF
-
-Manual-only steps (must be requested explicitly with --step):
-EOF
+  printf '\n'
   for entry in "${MANUAL_STEPS[@]}"; do
     printf '      %-14s  %s\n' "$(step_name "$entry")" "$(step_description "$entry")"
   done
+}
+
+show_step_listing() {
+  cat <<EOF
+Default steps (run in order when no --step is given):
+EOF
+  print_step_entries
   cat <<EOF
 
 Examples:
@@ -687,7 +688,7 @@ main() {
   while [[ $# -gt 0 ]]; do
     case "$1" in
       -h|--help) show_help; exit 0 ;;
-      -l|--list-steps) show_step_listing; exit 0 ;;
+      -l|--list-steps) print_step_entries; exit 0 ;;
       -s|--step)
         [[ $# -ge 2 && -n "${2:-}" ]] || die "Option '$1' requires a step name, number, or range. Run '$SCRIPT_NAME --help' for usage."
         step_selector="$2"
