@@ -516,15 +516,11 @@ return {
             -- LuaSnip snippets in the completion menu.
             snippets = { preset = "luasnip" },
             sources = {
-                default = { "lsp", "path", "snippets", "buffer" },
+                default = { "lsp", "path", "snippets" }, -- Removed 'buffer' to not autocomplete all written words in buffer
             },
             completion = {
                 menu = {
-                    -- Markdown writing often benefits from manual completion only,
-                    -- especially when thesaurus-like suggestions get noisy.
-                    auto_show = function(_, _)
-                        return vim.bo.filetype ~= "markdown"
-                    end,
+                    auto_show = true,
                 },
                 accept = {
                     -- Decision A: nvim-autopairs handles bracket insertion;
