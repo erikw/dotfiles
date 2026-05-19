@@ -552,13 +552,24 @@ return {
                 json = { "prettier" },
                 go = { "goimports" }, -- gopls handles LSP-format separately
                 lua = { "stylua" },
-                markdown = { "prettier" },
+                markdown = { "markdownlint" }, -- prettier dones't allow us to use `* ` as bullet point style.
                 python = { "ruff_format" }, -- replaces black + isort
                 ruby = { "rubocop" },
                 scss = { "prettier" },
                 sh = { "shfmt" },
                 zsh = { "shfmt" },
                 yaml = { "prettier" },
+            },
+            formatters = {
+                markdownlint = {
+                    inherit = true,
+                    args = {
+                        "--config",
+                        (vim.env.XDG_CONFIG_HOME or (vim.env.HOME .. "/.config")) .. "/markdownlint/markdownlint.yaml",
+                        "--fix",
+                        "$FILENAME",
+                    },
+                },
             },
             -- format_on_save as function: skip Brewfiles
             -- and respect the global disable flag (used by DisableFixers).
@@ -602,6 +613,14 @@ return {
             -- luacheck reads --config from its own arg, not $XDG_CONFIG_HOME automatically.
             local luacheck = lint.linters.luacheck
             luacheck.args = vim.list_extend({ "--config", (vim.env.XDG_CONFIG_HOME or (vim.env.HOME .. "/.config")) .. "/luacheck/.luacheckrc" }, luacheck.args or {})
+
+            -- markdownlint: point at XDG config so formatting/linting share the same Markdown rules.
+            local markdownlint = lint.linters.markdownlint
+            markdownlint.args = {
+                "--config",
+                (vim.env.XDG_CONFIG_HOME or (vim.env.HOME .. "/.config")) .. "/markdownlint/markdownlint.yaml",
+                "--stdin",
+            }
 
             vim.api.nvim_create_autocmd({ "BufWritePost", "BufReadPost" }, {
                 group = vim.api.nvim_create_augroup("NvimLint", { clear = true }),
