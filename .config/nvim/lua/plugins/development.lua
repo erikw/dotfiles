@@ -369,18 +369,18 @@ return {
         dependencies = { "mason-org/mason.nvim" },
         opts = {
             ensure_installed = {
-                "ruff",          -- Python formatter (conform) + linter (nvim-lint)
-                "stylua",        -- Lua formatter (conform)
-                "prettier",      -- JS/TS/CSS/SCSS/JSON/YAML formatter (conform)
-                "goimports",     -- Go formatter (conform)
+                "ruff", -- Python formatter (conform) + linter (nvim-lint)
+                "stylua", -- Lua formatter (conform)
+                "prettier", -- JS/TS/CSS/SCSS/JSON/YAML formatter (conform)
+                "goimports", -- Go formatter (conform)
                 "golangci-lint", -- Go linter (nvim-lint)
-                "shfmt",         -- Bash/sh formatter (conform)
-                "shellcheck",    -- Bash/sh linter; used internally by bashls
-                "markdownlint",  -- Markdown linter (nvim-lint)
+                "shfmt", -- Bash/sh formatter (conform)
+                "shellcheck", -- Bash/sh linter; used internally by bashls
+                "markdownlint", -- Markdown linter (nvim-lint)
                 -- rubocop intentionally omitted: mason's isolated gem env lacks
                 -- project cops (rubocop-rails etc.) and conflicts with mise's
                 -- rubocop --server daemon. Use mise-managed rubocop instead.
-                "luacheck",      -- Lua linter (nvim-lint)
+                "luacheck", -- Lua linter (nvim-lint)
             },
             auto_update = false,
             run_on_start = true,
@@ -394,15 +394,15 @@ return {
         dependencies = { "mason-org/mason.nvim", "neovim/nvim-lspconfig" },
         opts = {
             ensure_installed = {
-                "gopls",        -- Go
-                "eslint",       -- JavaScript / TypeScript
-                "jsonls",       -- JSON
+                "gopls", -- Go
+                "eslint", -- JavaScript / TypeScript
+                "jsonls", -- JSON
                 "basedpyright", -- Python (replaces pyright)
-                "ruby_lsp",     -- Ruby (replaces solargraph)
-                "bashls",       -- Shell
-                "texlab",       -- LaTeX
-                "vimls",        -- Vimscript
-                "lua_ls",       -- Lua
+                "ruby_lsp", -- Ruby (replaces solargraph)
+                "bashls", -- Shell
+                "texlab", -- LaTeX
+                "vimls", -- Vimscript
+                "lua_ls", -- Lua
             },
             -- automatic_enable = true is the default: mason-lspconfig calls
             -- vim.lsp.enable() for every installed server automatically.
@@ -427,8 +427,8 @@ return {
 
             -- Wire blink.cmp's extended capabilities (snippetSupport, resolveSupport, etc.)
             -- into every LSP server. Must run before any server starts.
-            vim.lsp.config('*', {
-                capabilities = require('blink.cmp').get_lsp_capabilities(),
+            vim.lsp.config("*", {
+                capabilities = require("blink.cmp").get_lsp_capabilities(),
             })
 
             -- bashls: also handle zsh buffers (shellcheck runs internally for both).
@@ -467,8 +467,12 @@ return {
                     vim.keymap.set("n", "<Space>rn", vim.lsp.buf.rename, { buffer = buf, desc = "LSP: rename" })
                     vim.keymap.set("n", "<Leader>I", vim.lsp.buf.code_action, { buffer = buf, desc = "LSP: code action (import)" })
                     vim.keymap.set("n", "<Space>ca", vim.lsp.buf.code_action, { buffer = buf, desc = "LSP: code action" })
-                    vim.keymap.set("n", "<C-k>", function() vim.diagnostic.goto_prev({ wrap = true }) end, { buffer = buf, desc = "LSP: previous diagnostic" })
-                    vim.keymap.set("n", "<C-j>", function() vim.diagnostic.goto_next({ wrap = true }) end, { buffer = buf, desc = "LSP: next diagnostic" })
+                    vim.keymap.set("n", "<C-k>", function()
+                        vim.diagnostic.goto_prev({ wrap = true })
+                    end, { buffer = buf, desc = "LSP: previous diagnostic" })
+                    vim.keymap.set("n", "<C-j>", function()
+                        vim.diagnostic.goto_next({ wrap = true })
+                    end, { buffer = buf, desc = "LSP: next diagnostic" })
                 end,
             })
         end,
@@ -535,21 +539,21 @@ return {
         ---@type conform.setupOpts
         opts = {
             formatters_by_ft = {
-                css        = { "prettier" },
+                css = { "prettier" },
                 javascript = { "prettier" },
                 typescript = { "prettier" },
-                json       = { "prettier" },
-                go         = { "goimports" }, -- gopls handles LSP-format separately
-                lua        = { "stylua" },
-                markdown   = { "prettier" },
-                python     = { "ruff_format" }, -- replaces black + isort
-                ruby       = { "rubocop" },
-                scss       = { "prettier" },
-                sh         = { "shfmt" },
-                zsh        = { "shfmt" },
-                yaml       = { "prettier" },
+                json = { "prettier" },
+                go = { "goimports" }, -- gopls handles LSP-format separately
+                lua = { "stylua" },
+                markdown = { "prettier" },
+                python = { "ruff_format" }, -- replaces black + isort
+                ruby = { "rubocop" },
+                scss = { "prettier" },
+                sh = { "shfmt" },
+                zsh = { "shfmt" },
+                yaml = { "prettier" },
             },
-                -- format_on_save as function: skip Brewfiles
+            -- format_on_save as function: skip Brewfiles
             -- and respect the global disable flag (used by DisableFixers).
             format_on_save = function(bufnr)
                 if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
@@ -579,21 +583,18 @@ return {
             local lint = require("lint")
 
             lint.linters_by_ft = {
-                go       = { "golangcilint" },  -- golangci-lint wraps staticcheck, errcheck, unused, etc.
-                markdown = { "markdownlint" },  -- markdown style/structure linting
-                python   = { "ruff" },          -- ruff covers flake8 + isort rules
-               -- ruby     = { "rubocop" },     -- supplemental; monitor for duplicates with ruby-lsp LSP diagnostics
-                lua      = { "luacheck" },       -- supplemental; lua_ls covers most, luacheck adds extra strictness
+                go = { "golangcilint" }, -- golangci-lint wraps staticcheck, errcheck, unused, etc.
+                markdown = { "markdownlint" }, -- markdown style/structure linting
+                python = { "ruff" }, -- ruff covers flake8 + isort rules
+                -- ruby     = { "rubocop" },     -- supplemental; monitor for duplicates with ruby-lsp LSP diagnostics
+                lua = { "luacheck" }, -- supplemental; lua_ls covers most, luacheck adds extra strictness
                 -- sh: omitted — bashls already runs shellcheck internally; adding it here duplicates diagnostics
             }
 
             -- luacheck: point at XDG config.
             -- luacheck reads --config from its own arg, not $XDG_CONFIG_HOME automatically.
             local luacheck = lint.linters.luacheck
-            luacheck.args = vim.list_extend(
-                { "--config", (vim.env.XDG_CONFIG_HOME or (vim.env.HOME .. "/.config")) .. "/luacheck/.luacheckrc" },
-                luacheck.args or {}
-            )
+            luacheck.args = vim.list_extend({ "--config", (vim.env.XDG_CONFIG_HOME or (vim.env.HOME .. "/.config")) .. "/luacheck/.luacheckrc" }, luacheck.args or {})
 
             vim.api.nvim_create_autocmd({ "BufWritePost", "BufReadPost" }, {
                 group = vim.api.nvim_create_augroup("NvimLint", { clear = true }),
@@ -612,12 +613,12 @@ return {
         cmd = "Trouble",
         opts = {},
         keys = {
-            { "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>",                         desc = "Trouble: workspace diagnostics" },
-            { "<leader>xX", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",            desc = "Trouble: buffer diagnostics" },
-            { "<leader>cs", "<cmd>Trouble symbols toggle focus=false<cr>",                 desc = "Trouble: document symbols" },
+            { "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", desc = "Trouble: workspace diagnostics" },
+            { "<leader>xX", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", desc = "Trouble: buffer diagnostics" },
+            { "<leader>cs", "<cmd>Trouble symbols toggle focus=false<cr>", desc = "Trouble: document symbols" },
             { "<leader>cl", "<cmd>Trouble lsp toggle focus=false win.position=right<cr>", desc = "Trouble: LSP panel" },
-            { "<leader>xL", "<cmd>Trouble loclist toggle<cr>",                             desc = "Trouble: location list" },
-            { "<leader>xQ", "<cmd>Trouble qflist toggle<cr>",                             desc = "Trouble: quickfix list" },
+            { "<leader>xL", "<cmd>Trouble loclist toggle<cr>", desc = "Trouble: location list" },
+            { "<leader>xQ", "<cmd>Trouble qflist toggle<cr>", desc = "Trouble: quickfix list" },
         },
     },
 
