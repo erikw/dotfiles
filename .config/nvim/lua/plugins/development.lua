@@ -512,6 +512,13 @@ return {
                 default = { "lsp", "path", "snippets", "buffer" },
             },
             completion = {
+                menu = {
+                    -- Markdown writing often benefits from manual completion only,
+                    -- especially when thesaurus-like suggestions get noisy.
+                    auto_show = function(_, _)
+                        return vim.bo.filetype ~= "markdown"
+                    end,
+                },
                 accept = {
                     -- Decision A: nvim-autopairs handles bracket insertion;
                     -- disable blink.cmp auto_brackets to avoid duplicates.
