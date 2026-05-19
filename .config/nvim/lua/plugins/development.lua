@@ -306,8 +306,18 @@ return {
         "superDross/ticket.vim",
         cmd = { "SaveSession", "OpenSession" },
         keys = {
-            { "<C-M-s>", ':execute ":SaveSession" <bar> echo "Session saved"<CR>', silent = true, desc = "Save current tickets.vim session." },
-            { "<C-M-o>", ':execute ":OpenSession" <bar> echo "Session loaded"<CR>', silent = true, desc = "Open saved tickets.vim session." },
+            {
+                "<C-M-s>",
+                ':execute ":SaveSession" <bar> echo "Session saved"<CR>',
+                silent = true,
+                desc = "Save current tickets.vim session.",
+            },
+            {
+                "<C-M-o>",
+                ':execute ":OpenSession" <bar> echo "Session loaded"<CR>',
+                silent = true,
+                desc = "Open saved tickets.vim session.",
+            },
         },
         init = function()
             vim.g.auto_ticket = 0 -- Automatically load tickets when starting vim without file arguments.
@@ -335,18 +345,6 @@ return {
     -- }}
 
     -- Development: LSP/Completion {{
-
-    -- Neovim Lua development: type stubs for vim.* APIs and luv.
-    -- Replaces the manual workspace.library approach in lua_ls configuration.
-    {
-        "folke/lazydev.nvim",
-        ft = "lua",
-        opts = {
-            library = {
-                { path = "${3rd}/luv/library", words = { "vim%.uv" } },
-            },
-        },
-    },
 
     -- LSP Core: mason + nvim-lspconfig {{
     -- Uses the modern nvim-lspconfig v2 API (Neovim 0.11+):
@@ -436,12 +434,20 @@ return {
                 filetypes = { "sh", "bash", "zsh" },
             })
 
-            -- lua_ls: override defaults; lazydev.nvim handles workspace.library.
+            -- lua_ls: configure Neovim runtime/library support explicitly for better completion.
             vim.lsp.config("lua_ls", {
                 settings = {
                     Lua = {
+                        diagnostics = {
+                            globals = { "vim" },
+                        },
                         runtime = { version = "LuaJIT" },
-                        workspace = { checkThirdParty = false },
+                        workspace = {
+                            checkThirdParty = false,
+                            library = vim.list_extend(vim.api.nvim_get_runtime_file("", true), {
+                                "${3rd}/luv/library",
+                            }),
+                        },
                         telemetry = { enable = false },
                     },
                 },
@@ -449,6 +455,7 @@ return {
 
             -- Enable inlay hints globally; Neovim only activates them for servers
             -- that advertise inlayHintProvider (gopls, basedpyright, lua_ls, etc.).
+            -- NOTE this is what enables array/hash index markers in lua files.
             vim.lsp.inlay_hint.enable(true)
 
             vim.api.nvim_create_autocmd("LspAttach", {
