@@ -51,32 +51,32 @@ source "$ZINIT_HOME/zinit.zsh"
 #
 
 # fzf — fuzzy finder. Shell integration configured in rc/tools.zsh.
-if (( ! $+commands[fzf] )); then
+if ((!$+commands[fzf])); then
 	zinit ice from"gh-r" as"program" pick"fzf"
 	zinit light junegunn/fzf
 fi
 
 # starship — cross-shell prompt. Init hook is sourced in rc/tools.zsh.
 # NOTE: starship's init hook is cached in rc/tools.zsh and works regardless of how starship was installed (zinit or Homebrew). Only the binary install is gated here.
-if (( ! $+commands[starship] )); then
+if ((!$+commands[starship])); then
 	zinit ice from"gh-r" as"program" pick"starship"
 	zinit light starship/starship
 fi
 
 # fd — fast alternative to find.
-if (( ! $+commands[fd] )); then
+if ((!$+commands[fd])); then
 	zinit ice from"gh-r" as"program" pick"**/fd"
 	zinit light sharkdp/fd
 fi
 
 # bat — cat with syntax highlighting. Used as MANPAGER in rc/tools.zsh.
-if (( ! $+commands[bat] )); then
+if ((!$+commands[bat])); then
 	zinit ice from"gh-r" as"program" pick"**/bat"
 	zinit light sharkdp/bat
 fi
 
 # ripgrep — fast grep alternative.
-if (( ! $+commands[rg] )); then
+if ((!$+commands[rg])); then
 	zinit ice from"gh-r" as"program" pick"**/rg"
 	zinit light BurntSushi/ripgrep
 fi
@@ -84,19 +84,19 @@ fi
 # direnv — per-directory env vars. Hook configured in rc/tools.zsh.
 # direnv ships a plain binary (not an archive), so extract"!" suppresses the
 # "didn't recognize archive type" error zinit would otherwise emit.
-if (( ! $+commands[direnv] )); then
+if ((!$+commands[direnv])); then
 	zinit ice from"gh-r" as"program" extract"!" mv"direnv* -> direnv" pick"direnv"
 	zinit light direnv/direnv
 fi
 
 # cloc — count lines of code. Perl script, no compilation needed.
-if (( ! $+commands[cloc] )); then
+if ((!$+commands[cloc])); then
 	zinit ice as"program" pick"cloc"
 	zinit light AlDanial/cloc
 fi
 
 # rename — Perl-based file renaming (compatible with Ubuntu's rename).
-if (( ! $+commands[rename] )); then
+if ((!$+commands[rename])); then
 	zinit ice as"program" pick"rename"
 	zinit light subogero/rename
 fi
@@ -137,8 +137,8 @@ zinit ice wait'0' lucid atload'!_zsh_autosuggest_start'
 zinit light zsh-users/zsh-autosuggestions
 
 # fzf-based tab completion UI. Loads after compinit by virtue of wait'0'.
-zinit ice wait'0' lucid
-zinit light Aloxaf/fzf-tab
+# zinit ice wait'0' lucid
+# zinit light Aloxaf/fzf-tab
 
 # Auto-pair brackets, quotes, etc. — inserts closing ), ], }, ", ' automatically.
 zinit ice wait'0' lucid

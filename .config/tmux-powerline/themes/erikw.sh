@@ -1,18 +1,6 @@
 # shellcheck shell=bash
 # Erikw's Custom Theme
 
-if tp_patched_font_in_use; then
-	TMUX_POWERLINE_SEPARATOR_LEFT_BOLD=""
-	TMUX_POWERLINE_SEPARATOR_LEFT_THIN=""
-	TMUX_POWERLINE_SEPARATOR_RIGHT_BOLD=""
-	TMUX_POWERLINE_SEPARATOR_RIGHT_THIN=""
-else
-	TMUX_POWERLINE_SEPARATOR_LEFT_BOLD="◀"
-	TMUX_POWERLINE_SEPARATOR_LEFT_THIN="❮"
-	TMUX_POWERLINE_SEPARATOR_RIGHT_BOLD="▶"
-	TMUX_POWERLINE_SEPARATOR_RIGHT_THIN="❯"
-fi
-
 # See Color formatting section below for details on what colors can be used here.
 TMUX_POWERLINE_DEFAULT_BACKGROUND_COLOR=${TMUX_POWERLINE_DEFAULT_BACKGROUND_COLOR:-'235'}
 TMUX_POWERLINE_DEFAULT_FOREGROUND_COLOR=${TMUX_POWERLINE_DEFAULT_FOREGROUND_COLOR:-'255'}
@@ -98,13 +86,12 @@ fi
 # of options to support the spacing_disable and separator_disable features can be used
 # The default_* and no_* can be used to keep the default behaviour.
 
-
 # shellcheck disable=SC1143,SC2128
 if [ -z "$TMUX_POWERLINE_LEFT_STATUS_SEGMENTS" ]; then
 	TMUX_POWERLINE_LEFT_STATUS_SEGMENTS=(
-		"tmux_session_info 148 234" \
-		"tmux_continuum_save" \
-		"tmux_continuum_status 14 7" \
+		"tmux_session_info 148 234"
+		"tmux_continuum_save"
+		"tmux_continuum_status 14 7"
 		#"hostname 33 0" \
 		#"ifstat 30 255" \
 		#"ifstat_sys 30 255" \
@@ -117,20 +104,18 @@ fi
 # shellcheck disable=SC1143,SC2128
 if [ -z "$TMUX_POWERLINE_RIGHT_STATUS_SEGMENTS" ]; then
 	TMUX_POWERLINE_RIGHT_STATUS_SEGMENTS=(
-		#"earthquake 3 0" \
-		#"pwd 89 211" \
-		"now_playing" \
-		"weather" \
+		"now_playing"
+		"weather"
 		#"macos_notification_count 29 255" \
 		#"cpu 240 136" \
 		#"load 237 167" \
 		#"tmux_mem_cpu_load 234 136" \
-		"battery 137 127" \
+		"battery 137 127"
 		#"rainbarf 0 ${TMUX_POWERLINE_DEFAULT_FOREGROUND_COLOR}" \
 		#"xkb_layout 125 117" \
-		"date_day 235 136" \
-		"date 235 136 ${TMUX_POWERLINE_SEPARATOR_LEFT_THIN}" \
-		"time 235 136 ${TMUX_POWERLINE_SEPARATOR_LEFT_THIN}" \
+		"date_day 235 136"
+		"date 235 136 ${TMUX_POWERLINE_SEPARATOR_LEFT_THIN}"
+		"time 235 136 ${TMUX_POWERLINE_SEPARATOR_LEFT_THIN}"
 		#"utc_time 235 136 ${TMUX_POWERLINE_SEPARATOR_LEFT_THIN}" \
 	)
 fi
