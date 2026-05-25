@@ -36,7 +36,7 @@ export GRIPHOME=$XDG_CONFIG_HOME/grip
 export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
 export SQLITE_HISTORY=$XDG_DATA_HOME/sqlite_history
 export XINITRC=$XDG_CONFIG_HOME/X11/xinitrc
-export ACKRC=$XDG_CONFIG_HOME/ack/ackrc	# Project local .ackrc is still possible.
+export ACKRC=$XDG_CONFIG_HOME/ack/ackrc # Project local .ackrc is still possible.
 export WGETRC=$XDG_CONFIG_HOME/wget/wgetrc
 export GDBHISTFILE=$XDG_DATA_HOME/gdb/history
 export SOLARGRAPH_CACHE=$XDG_CACHE_HOME/solargraph
@@ -54,6 +54,9 @@ export CLAUDE_CONFIG_DIR="$XDG_CONFIG_HOME/claude"
 # asdf; Not yet fully compliant: https://github.com/asdf-vm/asdf/issues/687
 # source "${XDG_CONFIG_HOME}/zsh/env/asdf.sh"
 
+# Go
+export GOPATH="$XDG_DATA_HOME/go"
+export GOMODCACHE="$XDG_CACHE_HOME/go/mod"
 
 # fzf-marks
 if [ "$CODESPACES" = true ]; then
@@ -75,7 +78,6 @@ export XCOMPOSEFILE=$XDG_CONFIG_HOME/X11/XCompose
 export BUNDLE_USER_CONFIG=$XDG_CONFIG_HOME/bundle/config
 export BUNDLE_USER_CACHE=$XDG_CACHE_HOME/bundle
 export BUNDLE_USER_PLUGIN=$XDG_DATA_HOME/bundle
-
 
 # Mailcap. Seems like can use envvar at least for NeoMutt. Ref: https://manpages.debian.org/testing/neomutt/neomutt.1.en.html
 export MAILCAPS="$XDG_DATA_HOME:$MAILCAPS"
