@@ -116,6 +116,7 @@
 	brew 'texlab' # Language server for LaTeX
 	brew 'tig'
 	brew 'tmux'
+	brew 'tokei'
 	brew 'tree'
 	brew 'tree-sitter-cli' # To make nvim :checkhealth happy.
 	brew 'unar'
@@ -302,6 +303,7 @@
 	# mas 'WeatherBug', id: 1059074180
 	# mas 'Xcode', id: 497799835
 	# mas 'feedly', id: 865_500_966
+	# mas 'Downcast', id: 668429425
 # }
 
 # Development: Java {

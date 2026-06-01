@@ -68,6 +68,16 @@ export TMUX_POWERLINE_SEG_BATTERY_TYPE="percentage"
 export TMUX_POWERLINE_SEG_BATTERY_NUM_HEARTS="5"
 # }
 
+# cpu_temp.sh {
+# CPU temperature icon
+export TMUX_POWERLINE_SEG_CPU_TEMP_ICON=" "
+# Linux only. Regexp to indicate a line containing CPU temperature in 'sensors' output.
+# Check the output of 'sensors' program, decide which line contains desired CPU temperature
+# and store an unique part of that line in this variable. It will be used by 'grep' program
+# to distinct the 'CPU temperature' line from the rest output lines.
+export TMUX_POWERLINE_SEG_CPU_TEMP_SENSORS_LINE_MARKER="Package id 0\|Physical id 0\|temp1"
+# }
+
 # date.sh {
 # date(1) format for the date. If you don't, for some reason, like ISO 8601 format you might want to have "%D" or "%m/%d/%Y".
 export TMUX_POWERLINE_SEG_DATE_FORMAT="%F"
@@ -199,7 +209,7 @@ export TMUX_POWERLINE_SEG_HOSTNAME_CUSTOM=""
 # }
 
 # mailcount.sh {
-# Mailbox type to use. Can be any of {apple_mail, gmail, maildir, mbox}
+# Mailbox type to use. Can be any of {apple_mail, gmail, maildir, mbox, mailcheck}
 export TMUX_POWERLINE_SEG_MAILCOUNT_MAILBOX_TYPE="apple_mail"
 
 ## Gmail
@@ -228,6 +238,14 @@ export TMUX_POWERLINE_SEG_MAILCOUNT_MBOX_INBOX=""
 ## mailcheck
 # Optional path to mailcheckrc
 export TMUX_POWERLINE_SEG_MAILCOUNT_MAILCHECKRC="/Users/erikw/.mailcheckrc"
+# }
+
+# mem_used.sh {
+# Memory icon
+export TMUX_POWERLINE_SEG_MEM_USED_ICON=" "
+# Measure unit of memory: "GB" or "MB".
+# In context of this segment "1 GB" equals "2 ^ 30 bytes" and "1 MB" eqauls "2 ^ 20 bytes".
+export TMUX_POWERLINE_SEG_MEM_USED_UNIT="GB"
 # }
 
 # mode_indicator.sh {
@@ -286,6 +304,10 @@ export TMUX_POWERLINE_SEG_NOW_PLAYING_MPD_PORT="6600"
 export TMUX_POWERLINE_SEG_NOW_PLAYING_MPD_SIMPLE_FORMAT="%artist% - %title%"
 # Song display format for playerctl. see "Format Strings" in playerctl(1).
 export TMUX_POWERLINE_SEG_NOW_PLAYING_PLAYERCTL_FORMAT="{{ artist }} - {{ title }}"
+# playerctl --player option value. Used to select specific players or set priority order. See "Description" in playerctl(1).
+# export TMUX_POWERLINE_SEG_NOW_PLAYING_PLAYERCTL_OPT_PLAYER=""
+# playerctl --ignore-player option value. See "Description" in playerctl(1).
+# export TMUX_POWERLINE_SEG_NOW_PLAYING_PLAYERCTL_OPT_IGNORE_PLAYER=""
 # Song display format for rhythmbox. see "FORMATS" in rhythmbox-client(1).
 export TMUX_POWERLINE_SEG_NOW_PLAYING_RHYTHMBOX_FORMAT="%aa - %tt"
 
@@ -302,6 +324,8 @@ export TMUX_POWERLINE_SEG_NOW_PLAYING_LASTFM_API_KEY=""
 export TMUX_POWERLINE_SEG_NOW_PLAYING_LASTFM_UPDATE_PERIOD="30"
 # Fancy char to display before now playing track
 export TMUX_POWERLINE_SEG_NOW_PLAYING_NOTE_CHAR="♫"
+# Text to display when nothing is playing. If empty, segment will not be displayed.
+export TMUX_POWERLINE_SEG_NOW_PLAYING_NOT_PLAYING=""
 
 # Plexamp
 # Set up steps for Plexamp
@@ -451,6 +475,17 @@ export TMUX_POWERLINE_SEG_WEATHER_LOCATION_UPDATE_PERIOD="86400"
 # Set both to "auto" to detect automatically based on your IP address, or set them manually
 export TMUX_POWERLINE_SEG_WEATHER_LAT="auto"
 export TMUX_POWERLINE_SEG_WEATHER_LON="auto"
+# Icon style for weather condition symbols:
+#   "emoji"       - emoji with VS16 variation selector (default, original behaviour)
+#   "emoji_fixed" - emoji with VS16 stripped; fixes status-bar scrolling/duplication
+#                   on terminals that miscount VS16 width (see issue #351)
+#   "nerdfonts"   - Nerd Font PUA icons (1 cell, no width ambiguity); also fixes #351
+#                   if you already use a Nerd Font in your terminal
+#   "auto"        - nerdfonts when a patched font is detected, else emoji
+# Note: after changing this value, delete the weather cache file to see the effect immediately:
+#   rm "/var/folders/kv/bqrlkz9x1wdg6w8jx1x9wlzc0000gn/T//tmux-powerline/weather_cache_data.txt"
+#   Run doctor.sh to find out the TMUX_POWERLINE_DIR_TEMPORARY path.
+export TMUX_POWERLINE_SEG_WEATHER_ICON_STYLE="nerdfont"
 # }
 
 # xkb_layout.sh {
