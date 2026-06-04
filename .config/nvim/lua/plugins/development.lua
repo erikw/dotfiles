@@ -252,7 +252,7 @@ return {
             require("nvim-treesitter").setup({
                 -- A list of parser names, or "all". Install manually with :TSInstall <parser>
                 -- comment - for parsing e.g. TODO markers in comments.
-                ensure_installed = { "comment", "lua", "vim", "ruby", "python", "javascript", "markdown" },
+                ensure_installed = { "comment", "lua", "vim", "ruby", "python", "go", "javascript", "markdown" },
                 -- Install parsers synchronously (only applied to `ensure_installed`)
                 sync_install = false,
                 -- Automatically install missing parsers when entering buffer
