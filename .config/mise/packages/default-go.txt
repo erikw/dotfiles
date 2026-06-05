@@ -36,3 +36,5 @@ golang.org/x/vuln/cmd/govulncheck@latest
 github.com/x-motemen/gore/cmd/gore@latest
 # semver. Now in Homebrew.
 # github.com/maykonlsf/semver-cli/cmd/semver@latest
+# Live-reload like Guard
+github.com/air-verse/air@latest
