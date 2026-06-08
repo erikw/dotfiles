@@ -249,14 +249,17 @@ return {
         lazy = false,
         build = ":TSUpdate",
         config = function()
-            require("nvim-treesitter").setup({
-                -- A list of parser names, or "all". Install manually with :TSInstall <parser>
-                -- comment - for parsing e.g. TODO markers in comments.
-                ensure_installed = { "comment", "lua", "vim", "ruby", "python", "go", "javascript", "markdown" },
-                -- Install parsers synchronously (only applied to `ensure_installed`)
-                sync_install = false,
-                -- Automatically install missing parsers when entering buffer
-                auto_install = true,
+            require("nvim-treesitter").setup()
+            -- comment - required for parsing TODO/NOPE/etc. markers injected into comments.
+            require("nvim-treesitter").install({
+                "comment",
+                "lua",
+                "vim",
+                "ruby",
+                "python",
+                "go",
+                "javascript",
+                "markdown",
             })
             -- The `main` branch no longer configures highlight/indent via setup().
             -- Enable treesitter-based highlighting for each buffer when a parser is available.
