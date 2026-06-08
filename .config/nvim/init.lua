@@ -126,6 +126,16 @@ vim.keymap.set("n", "YF", ':let @" = expand("%:p")<CR>', { silent = true, desc =
 vim.keymap.set("n", "gV", "`[v`]", { silent = true, desc = "Visually select the text that was last edited/pasted" })
 vim.keymap.set("c", "w\\", ':lua vim.api.nvim_err_writeln("Using a Swedish keyboard?")<CR>', { silent = true, desc = "Prevent saving buffer to a file ''." })
 
+-- Commenting
+-- Like Nerdtrees \gcy
+local function feedkeys(keys)
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(keys, true, false, true), "m", false)
+end
+vim.keymap.set("n", "gcy", function()
+    vim.cmd.normal({ args = { "yy" }, bang = true })
+    feedkeys("gcc")
+end, { desc = "Yank selection and comment it" })
+
 -- Toggles:
 vim.keymap.set("n", "<Leader>w", ":set wrap! wrap?<CR>", { silent = true, desc = "Toggle line wrapping." })
 vim.keymap.set("n", "<Leader>`", ":set list!<CR>", { silent = true, desc = "Toggle listing of characters. See listchars." })
