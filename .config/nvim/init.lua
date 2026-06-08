@@ -135,6 +135,9 @@ vim.keymap.set("n", "gcy", function()
     vim.cmd.normal({ args = { "yy" }, bang = true })
     feedkeys("gcc")
 end, { desc = "Yank selection and comment it" })
+vim.keymap.set("v", "gcy", function()
+    feedkeys("ygvgc")
+end, { desc = "Yank selection and comment it" })
 
 -- Toggles:
 vim.keymap.set("n", "<Leader>w", ":set wrap! wrap?<CR>", { silent = true, desc = "Toggle line wrapping." })
