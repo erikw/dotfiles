@@ -1,6 +1,5 @@
 {
   "Brewfile.vim": { "branch": "master", "commit": "022eea619c2280d34f92c5daba19191f43be0c78" },
-  "Comment.nvim": { "branch": "master", "commit": "e30b7f2008e52442154b66f7c519bfd2f1e32acb" },
   "LuaSnip": { "branch": "master", "commit": "642b0c595e11608b4c18219e93b88d7637af27bc" },
   "aerial.nvim": { "branch": "master", "commit": "28fe6e822ae344544c379d60fcb13c9519a1f08a" },
   "alpha-nvim": { "branch": "main", "commit": "6c6a89d5b068b5251c8bdf0dd57bb921bcfeeb09" },
@@ -40,8 +39,8 @@
   "sideways.vim": { "branch": "main", "commit": "1efb7db049e5536742dc89205f6e229297c31230" },
   "targets.vim": { "branch": "master", "commit": "6325416da8f89992b005db3e4517aaef0242602e" },
   "ticket.vim": { "branch": "master", "commit": "6d3f05177aafe5f8cc7ff272bedb20224da1034d" },
+  "todo-comments.nvim": { "branch": "main", "commit": "31e3c38ce9b29781e4422fc0322eb0a21f4e8668" },
   "trouble.nvim": { "branch": "main", "commit": "bd67efe408d4816e25e8491cc5ad4088e708a69a" },
-  "undotree": { "branch": "master", "commit": "6fa6b57cda8459e1e4b2ca34df702f55242f4e4d" },
   "urlview.nvim": { "branch": "main", "commit": "813736e6891b8dccca58aa3baaeabef032f44525" },
   "vim-better-whitespace": { "branch": "master", "commit": "de99b55a6fe8c96a69f9376f16b1d5d627a56e81" },
   "vim-capslock": { "branch": "master", "commit": "2bd1d47d35ac489b150d284141b6dce743a307f5" },

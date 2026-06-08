@@ -95,19 +95,6 @@ return {
         opts = {},
     },
 
-    -- Navigate history in a sidebar. Replaces old 'mbbill/undotree'
-    {
-        "mbbill/undotree",
-        keys = { "<F4>" },
-        init = function()
-            vim.g.undotree_WindowLayout = 2 -- Set style to have diff window below.
-            vim.g.undotree_SetFocusWhenToggle = 1 -- Put cursor in undo window on open.
-        end,
-        config = function()
-            vim.keymap.set("n", "<F4>", ":UndotreeToggle<CR>", { silent = true, desc = "Toggle Undotree side pane." })
-        end,
-    },
-
     -- Highlight and remove trailing whitespaces.
     {
         "ntpeters/vim-better-whitespace",

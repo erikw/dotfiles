@@ -299,20 +299,13 @@ vim.opt.listchars = { eol = "$", space = "·", tab = ">-", trail = "¬", extends
 require("config.lazy") -- ~/.config/nvim/lua/config/lazy.lua
 -- }}
 
--- Custom comment keyword highlights {{
--- matchadd is window-local and uses the same priority space as treesitter extmarks
--- (treesitter = 100). Priority 200 ensures NOPE renders on top of @comment extmarks.
--- Using a plain group name (not @-prefixed) for matchadd compatibility.
--- Re-link on ColorScheme so the color survives colorscheme switches (e.g. dark-notify).
-vim.api.nvim_set_hl(0, "CommentNope", { link = "@comment.error" })
-vim.api.nvim_create_autocmd("ColorScheme", {
-    callback = function() vim.api.nvim_set_hl(0, "CommentNope", { link = "@comment.error" }) end,
-})
-local function add_nope_match()
-    for _, m in ipairs(vim.fn.getmatches()) do
-        if m.group == "CommentNope" then return end
-    end
-    vim.fn.matchadd("CommentNope", [[\<NOPE\>]], 200)
-end
-vim.api.nvim_create_autocmd({ "VimEnter", "WinNew" }, { callback = add_nope_match })
+-- Built-in optional packages {{
+--(loaded after lazy.nvim to preserve runtimepath)
+
+-- Undotree: navigate undo history in a sidebar.
+vim.cmd.packadd("nvim.undotree")
+vim.keymap.set("n", "<F4>", "<cmd>Undotree<CR>", { silent = true, desc = "Toggle Undotree side pane." })
+
+-- Difftool: enhanced diff viewer; use :DiffTool <left> <right> or nvim -d file1 file2.
+-- vim.cmd.packadd("nvim.difftool")
 -- }}
