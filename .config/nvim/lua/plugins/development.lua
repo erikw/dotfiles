@@ -519,7 +519,7 @@ return {
             -- LuaSnip snippets in the completion menu.
             snippets = { preset = "luasnip" },
             sources = {
-                default = { "lsp", "path", "snippets" }, -- Removed 'buffer' to not autocomplete all written words in buffer
+                -- default = { "lsp", "path", "snippets" }, -- Removed 'buffer' to not autocomplete all written words in buffer
             },
             completion = {
                 menu = {
