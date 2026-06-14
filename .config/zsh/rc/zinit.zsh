@@ -111,8 +111,8 @@ zinit light seebi/dircolors-solarized
 
 # lazygit — TUI git client. Ships pre-built binaries; works as zinit fallback.
 # if (( ! $+commands[lazygit] )); then
-# 	zinit ice from"gh-r" as"program" pick"lazygit"
-# 	zinit light jesseduffield/lazygit
+#	zinit ice from"gh-r" as"program" pick"lazygit"
+#	zinit light jesseduffield/lazygit
 # fi
 
 # fzf-marks — bookmark directories with fzf.
