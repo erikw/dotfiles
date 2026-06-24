@@ -694,8 +694,8 @@ defaults write com.apple.Safari InstallExtensionUpdatesAutomatically -bool true
 # Show favorites bar in Safari by default:
 defaults write com.apple.Safari ShowFavoritesBar -bool true
 # Home page
-# defaults write com.apple.Safari HomePage -string "favorites://"
-defaults write com.apple.Safari HomePage -string "https://dhammapada.at/random"
+defaults write com.apple.Safari HomePage -string "favorites://"
+# defaults write com.apple.Safari HomePage -string "https://dhammapada.at/random"
 
 restart_process_if_running Safari
 # }
