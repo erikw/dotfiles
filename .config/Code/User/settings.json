@@ -299,5 +299,6 @@ JSON5 (close enouch got JSONC) validator: https://jsonformatter.org/json5-valida
     "vim.hlsearch": true,
     "vim.history": 100,
     "vim.matchpairs": "(:),{:},[:],<:>",
+    "terminal.integrated.enableMultiLinePasteWarning": "never",
     // ******************************** ⚠ Unsorted Below ********************************
 }
