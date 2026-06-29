@@ -11,43 +11,20 @@ return {
 
     -- Solarized theme that works with nvim-treesitter highlights.
     {
-        "ishan9299/nvim-solarized-lua",
-        lazy = false, -- make sure we load this during startup if it is your main colorscheme
-        priority = 1000, -- make sure to load this before all the other start plugins
-        config = function()
-            -- init.lua seeds vim.o.background before lazy.nvim starts to avoid a dark first paint.
-            vim.cmd([[colorscheme solarized]])
+        "maxmx03/solarized.nvim",
+        lazy = false,
+        priority = 1000,
+        opts = {},
+        config = function(_, opts)
+            vim.o.termguicolors = true
+            -- vim.o.background = "light"
+            require("solarized").setup(opts)
+            vim.cmd.colorscheme("solarized")
         end,
     },
     -- }}
 
-    --{'yamatsum/nvim-/ursorline'},    -- Highlight current word under cursor. Not compatible with dark-notify: https://github.com/cormacrelf/dark-notify/issues/8
     --{'sitiom/nvim-numbertoggle'},    -- Automatic relative / static line number toggling. Disabled as of https://github.com/sitiom/nvim-numbertoggle/issues/15
-    --{"RRethy/vim-illuminate"}, -- Highlight current word under cursor. Not compatible with dark-notify: https://github.com/cormacrelf/dark-notify/issues/8
-
-    -- Watch system light/dark mode changes after startup. Requires dark-notify(1).
-    {
-        "cormacrelf/dark-notify",
-        event = "VimEnter", -- start after UI is ready
-        keys = {
-            {
-                "<F5>",
-                function()
-                    require("dark_notify").toggle()
-                end,
-                desc = "Toggle dark/light mode",
-            },
-        },
-        --opts = {
-        --schemes = {
-        --    dark = "solarized",
-        --    light = "solarized",
-        --},
-        --},
-        config = function(_, opts)
-            require("dark_notify").run(opts)
-        end,
-    },
 
     -- Visualize marks in the sign column.
     {

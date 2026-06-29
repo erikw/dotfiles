@@ -218,14 +218,14 @@ vim.keymap.set("n", "<F7>", ToggleSpellSv, { silent = true, desc = "Toggle Swedi
 vim.keymap.set("n", "<F8>", ToggleSpellDe, { silent = true, desc = "Toggle German spell." })
 -- }}
 
--- -- ToggleBackgroundMode {{
--- NOPE replaced by dark-notify mapping.
--- function ToggleBackgroundMode()
---    local bg_new = vim.o.background == "light" and 'dark' or 'light'
---    vim.opt.background = bg_new
---    return bg_new
--- end
--- vim.keymap.set('n', '<F5>', ':lua print(ToggleBackgroundMode())', { silent = true, desc = 'Toggle between light and dark background mode.' })
+-- ToggleBackgroundMode {{
+local function ToggleBackgroundMode()
+    local bg_new = vim.o.background == "light" and "dark" or "light"
+    vim.o.background = bg_new
+    vim.notify("background: " .. bg_new, vim.log.levels.INFO, { title = "Neovim" })
+end
+-- TODO in future replace this with a native solution if nvim gains option for themes to automtomatically detect/toggle between light/dark mode. Using the dark-notify plugin caused too many side-effects like clearing treesitter custom highlights.
+vim.keymap.set("n", "<F5>", ToggleBackgroundMode, { silent = true, desc = "Toggle between light and dark background mode." })
 -- -- }}
 -- }}
 
