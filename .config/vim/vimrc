@@ -125,7 +125,7 @@ call plug#begin('~/.local/share/vim/plugged')
 
 " Development: LaTeX {
 	"Plug 'donRaphaco/neotex'				" Live preview PDF output from latex.
-	Plug 'LaTeX-Box-Team/LaTeX-Box'			" TODO replace with https://github.com/latex-lsp/texlab
+	Plug 'LaTeX-Box-Team/LaTeX-Box'
 " }
 
 " Development: Python {

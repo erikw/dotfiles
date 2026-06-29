@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 # Control irctor tmux session.
-# TODO could replace this with https://github.com/tmux-plugins/tmux-continuum/blob/master/docs/automatic_start.md
 session_name=irctor
 
 tmux start-server
@@ -9,12 +8,11 @@ tmux start-server
 source $HOME/bin/solarized_toggle_lib.sh
 set_solarized_theme() {
 	mode=$(st_read_macos_mode)
-	declare -A opts_g=( [mode]=$mode [macos_update]=false)
+	declare -A opts_g=([mode]=$mode [macos_update]=false)
 	st_set_tmux opts_g
 	# Also set iTerm, as the mode might be wrong on launch of the application
 	st_set_iterm2 opts_g
 }
-
 
 # Start session if it does not exists and set up my windows and panes.
 do_start() {
@@ -59,7 +57,7 @@ do_stop() {
 	echo "Stopping ${session_name}...  "
 
 	tmux select-window -t "$session_name":3
-	tmux send-keys -t "$session_name"  "quit" C-m
+	tmux send-keys -t "$session_name" "quit" C-m
 	sleep 0.5s
 	tmux kill-session -t "$session_name"
 }
@@ -87,20 +85,21 @@ do_clean_files() {
 }
 
 case $1 in
-	attach | "")
-		do_attach
-		;;
-	start)
-		do_start
-		;;
-	stop)
-		do_stop
-		;;
-	restart)
-		do_stop
-		do_start
-		;;
-	*)
-		echo "Command \"$1\"not available!" >&2
-		exit 1
+attach | "")
+	do_attach
+	;;
+start)
+	do_start
+	;;
+stop)
+	do_stop
+	;;
+restart)
+	do_stop
+	do_start
+	;;
+*)
+	echo "Command \"$1\"not available!" >&2
+	exit 1
+	;;
 esac

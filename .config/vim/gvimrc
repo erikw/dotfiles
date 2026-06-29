@@ -57,7 +57,7 @@
 " Auto color mode {
 " Macvim automatic OS appearance mode. See
 " https://github.com/macvim-dev/macvim/pull/929
-" TODO move this to ~/.vimrc if vim from macvim gets support for this as well!
+" Future: move this to ~/.vimrc if vim from macvim gets support for this as well!
 if s:os == "mac"
 	func! ChangeBackground()
 		if (v:os_appearance == 1)

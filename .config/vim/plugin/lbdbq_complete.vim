@@ -1,4 +1,3 @@
-" TODO use this instead? https://github.com/vim-scripts/lbdbq
 " Name: lbdbq_complete.vim
 " Summary: Complete ldbq-queries with ^x^u.
 " URL: http://dollyfish.net.nz/blog/2008-04-01/mutt-and-vim-custom-autocompletion

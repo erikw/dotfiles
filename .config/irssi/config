@@ -337,7 +337,7 @@ settings = {
     activity_hide_targets = "= ##linux #vim #archlinux &bitlbee -psyBNC";
     #theme = "colors/default";
     #hilight_color = "%B";
-    theme = "colors/solarized-universal";
+    # theme = "colors/solarized-universal";
     hilight_color = "= %R";
     autoclose_query = "86400";
     show_quit_once = "yes";

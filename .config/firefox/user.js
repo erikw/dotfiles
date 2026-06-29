@@ -2,7 +2,6 @@
 // Reference: http://kb.mozillazine.org/User.js_file
 // Copy this file to path/to/firefox/profile/user.js
 // Find changed values in profile/prefs.js or https://www.ghacks.net/2020/04/09/how-to-display-only-modified-preferences-on-aboutconfig/
-// TODO consider using https://github.com/denis-g/firefox-user.js
 
 // Startup: open prevoius windows and tabs
 user_pref("browser.startup.page", 3);
@@ -64,10 +63,8 @@ user_pref("privacy.trackingprotection.enabled", true);
 // Firefox sync intervall in ms. Default is to sync every 600000ms = 600000 / (10^3 * 60) min = 10min
 user_pref("services.sync.syncInterval", 300000);
 
-
 // Needs to be set for Tree Style Tabs userChrome.css hack to hide native tab bar should work. https://github.com/piroor/treestyletab/wiki/Code-snippets-for-custom-style-rules#for-userchromecss
 user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
-
 
 // disable; 1:shift; 4:alt; 8:meta (command). Set access key to Alt to prevent sites, e.g. wikimedia sites, from stealing my shortcuts (like E on wiki*).
 //user_pref("ui.key.contentAccess", 0						#);

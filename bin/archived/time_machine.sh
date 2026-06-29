@@ -9,8 +9,8 @@
 # Old options:
 # 	-E copy OS X extended attributes
 #	--exclude "*.DS_Store"
-#	--exclude "*.Trash" 
-#	--exclude "*.Trashes" 
+#	--exclude "*.Trash"
+#	--exclude "*.Trashes"
 #
 # Make a full restore from a backup:
 # 	rsync -avz --delete $destination/last/ $source
@@ -20,7 +20,6 @@
 #
 # Note that there is no trailing slash to the backup destination path.
 #
-# TODO delete some of the oldest backups if disk usage of $destination exceeds like 80%.
 
 date=$(date --date "-1 sec" "+%Y-%m-%d-%H%M%S")
 hostname=$(uname -n)
@@ -30,7 +29,7 @@ destination=
 
 # Get backup destination from argument, if given.
 case $1 in
-""|mypassport)
+"" | mypassport)
 	if [ ! -b /dev/mapper/backup-mypassport_crypt ]; then
 		echo "/dev/mapper/backup-mypassport_crypt not found" 1>&2
 		exit 1
@@ -53,32 +52,33 @@ mybook)
 	;;
 esac
 
-rsync 							\
-	--archive					\
-	--recursive					\
-	--verbose					\
-	--links						\
-	--hard-links					\
-	--stats 					\
-	--progress 					\
-	--human-readable				\
-	--ignore-errors					\
-	--acls						\
-	--xattrs 					\
-	--numeric-ids 					\
-	--log-file=/var/log/rsync/rsync-${date}.log	\
-	--exclude-from=${source}/.backup_exclude	\
-	--exclude-from=/home/erikw/.backup_exclude	\
-	--exclude-from=/mnt/media/.backup_exclude	\
-	--delete 					\
-	--delete-excluded 				\
-	--ignore-missing-args				\
-	--link-dest=${destination}/last 		\
-	"$source"					\
+rsync \
+	--archive \
+	--recursive \
+	--verbose \
+	--links \
+	--hard-links \
+	--stats \
+	--progress \
+	--human-readable \
+	--ignore-errors \
+	--acls \
+	--xattrs \
+	--numeric-ids \
+	--log-file=/var/log/rsync/rsync-${date}.log \
+	--exclude-from=${source}/.backup_exclude \
+	--exclude-from=/home/erikw/.backup_exclude \
+	--exclude-from=/mnt/media/.backup_exclude \
+	--delete \
+	--delete-excluded \
+	--ignore-missing-args \
+	--link-dest=${destination}/last \
+	"$source" \
 	"${destination}/incomplete_backup_${backup_id}"
 
 if [ "$?" -ne 0 ]; then
-	echo "rsync failed. Aborting." &1>&2
+	echo "rsync failed. Aborting." &
+	1>&2
 	exit 1
 fi
 
