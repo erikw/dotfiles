@@ -29,8 +29,10 @@ _emit_permutations() {
 	local target_len="$2"
 	local prefix="$3"
 	local depth="$4"
-	local -n counts_ref="$5"
-	local -n chars_ref="$6"
+	local counts_name="$5"
+	local chars_name="$6"
+	local -n counts_ref="$counts_name"
+	local -n chars_ref="$chars_name"
 
 	if ((depth == target_len)); then
 		if [[ "$prefix" != "$program" ]]; then
@@ -45,7 +47,7 @@ _emit_permutations() {
 			continue
 		fi
 		counts_ref["$char"]=$((counts_ref["$char"] - 1))
-		_emit_permutations "$program" "$target_len" "${prefix}${char}" $((depth + 1)) counts_ref chars_ref
+		_emit_permutations "$program" "$target_len" "${prefix}${char}" $((depth + 1)) "$counts_name" "$chars_name"
 		counts_ref["$char"]=$((counts_ref["$char"] + 1))
 	done
 }
