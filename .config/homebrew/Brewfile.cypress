@@ -23,7 +23,6 @@
 # }
 
 # Cask: default {
-	cask 'amazon-music'
 	cask 'cryptomator'
 	cask 'daisydisk'
 	cask 'google-cloud-sdk'  # for gcloud cli used for tardbot.
@@ -43,6 +42,7 @@
 # Cask: optional {
 =begin
 	cask 'ableton-live-suite' # If using latest version, which I'm not.
+	cask 'amazon-music'
 	cask 'android-file-transfer'
 	cask 'android-platform-tools'
 	cask 'jettison'
