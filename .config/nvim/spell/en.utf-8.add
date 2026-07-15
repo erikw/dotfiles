@@ -638,3 +638,6 @@ typers
 crontab
 enablement
 bash
+BigQuery
+RubyGems
+Minitest
