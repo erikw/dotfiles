@@ -132,7 +132,7 @@ JSON5 (close enouch got JSONC) validator: https://jsonformatter.org/json5-valida
         "EditorConfig.EditorConfig",
         "GitHub.codespaces",
         "GitHub.vscode-pull-request-github",
-        "Gruntfuggly.todo-tree",
+        "FanaticPythoner.better-todo-tree",
         "Wupb.arrange-selection",
         "aaron-bond.better-comments",
         "adpyke.codesnap",
@@ -240,7 +240,7 @@ JSON5 (close enouch got JSONC) validator: https://jsonformatter.org/json5-valida
     "javascript.suggest.paths": false,
 
     // ** Extension: Todo Tree **
-    "todo-tree.general.tags": [
+    "better-todo-tree.general.tags": [
         "BUG",
         "HACK",
         "FIXME",
@@ -251,7 +251,7 @@ JSON5 (close enouch got JSONC) validator: https://jsonformatter.org/json5-valida
         "NOTE",
         "NOPE"
     ],
-    "todo-tree.highlights.customHighlight": { // Icons at https://primer.style/foundations/icons
+    "better-todo-tree.highlights.customHighlight": { // Icons at https://primer.style/foundations/icons
         "NOTE": {
             "icon": "note"
         },
