@@ -23,17 +23,13 @@
 # }
 
 # Cask: default {
-	cask 'cryptomator'
 	cask 'daisydisk'
-	cask 'google-cloud-sdk'  # for gcloud cli used for tardbot.
 	cask 'gramps'
 	cask 'handbrake'
 	cask 'kid3'  # MP3 metadata editor
 	cask 'mactex'
-	cask 'mutify'
 	cask 'netnewswire'
 	cask 'send-to-kindle'
-	cask 'signal'
 	cask 'spotify'
 	cask 'zoom'
 # }
@@ -44,12 +40,14 @@
 	cask 'amazon-music'
 	cask 'android-file-transfer'
 	cask 'android-platform-tools'
+	cask 'cryptomator'
+	cask 'google-cloud-sdk'  # for gcloud cli used for tardbot.
 	cask 'google-drive' # For BTB Podcast management.
 	cask 'jettison'
 	cask 'microsoft-office'  # License managed at https://account.microsoft.com/services/
 	cask 'mixed-in-key'    # If using latest version, which I'm not.
 	cask 'musicbrainz-picard'
-	cask 'rekordbox'
+	cask 'signal'
 	cask 'transmission'
 =end
 # }
@@ -58,12 +56,10 @@
 # Prefer Mas over cask, as security fixes gets pushed out faster on the App Store.
 	mas 'Amazon Prime Video', id: 545519333
 	mas 'Budget Flow', id: 1640091876
-	mas 'CEWE Fotowelt', id: 1321448290
 	mas 'Exporter', id: 1099120373
 	mas 'Keynote', id: 409183694
 	mas 'Kindle Classic', id: 405399194
 	mas 'Mela', id: 1568924476
-	mas 'NepTunes', id: 1006739057
 	mas 'Numbers', id: 409203825
 	mas 'Pages', id: 409201541
 	mas 'PhotoSweeper', id: 463362050
@@ -74,9 +70,13 @@
 # }
 
 # Mas: optional {
-#mas 'MoneyStats Pro', id: 1501042913
-#mas 'Paprika Recipe Manager 3', id: 1303222628
-#mas 'djay', id: 450527929
+=begin
+    mas 'CEWE Fotowelt', id: 1321448290
+    mas 'MoneyStats Pro', id: 1501042913
+    mas 'NepTunes', id: 1006739057
+    mas 'Paprika Recipe Manager 3', id: 1303222628
+    mas 'djay', id: 450527929
+=end
 # }
 
 # Misc {

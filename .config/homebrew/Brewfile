@@ -7,19 +7,17 @@
 
 # It's not necessary to tap before installing 'tap/formula', but it gives a warning if not done.
 # Taps {
-	# tap 'homebrew/cask-drivers'      # For jabra-direct
-	tap 'anomalyco/tap'			# For https://opencode.ai, brew 'opencode'
-	tap 'beeftornado/rmtree' 	# rmtree: remove brew package's dependencies with $(brew rmtree <package>). brew 'rmtree'
-	tap 'cormacrelf/tap'  		# For dark-notify
-	tap 'erikw/tap'       		# For xdg-urlview
-	tap 'hashier/tap'     		# For macfolket, brew 'hashier'
-	tap 'homebrew/autoupdate' 	# https://github.com/Homebrew/homebrew-autoupdate
+	# tap 'homebrew/cask-drivers'   # For jabra-direct
+	tap 'beeftornado/rmtree'	# rmtree: remove brew package's dependencies with $(brew rmtree <package>). brew 'rmtree'
+	tap 'cormacrelf/tap'		# For dark-notify
+	tap 'erikw/tap'			# For xdg-urlview
+	tap 'hashier/tap'		# For macfolket, brew 'hashier'
+	tap 'homebrew/autoupdate'	# https://github.com/Homebrew/homebrew-autoupdate
 # }
 
 # Formula: default {
 	# brew 'pidof' # Deprecated
 	brew 'ack'
-	brew 'anomalyco/tap/opencode'
 	brew 'as-tree'	# A tree view of the contents of a directory. $(fd ... | as-tree)
 	brew 'aspell'
 	brew 'bash'
@@ -116,7 +114,7 @@
 	brew 'texlab' # Language server for LaTeX
 	brew 'tig'
 	brew 'tmux'
-	brew 'tokei'
+	brew 'tokei' # SLOC counter
 	brew 'tree'
 	brew 'tree-sitter-cli' # To make nvim :checkhealth happy.
 	brew 'unar'
@@ -134,135 +132,139 @@
 # }
 
 # Formula: optional {
-	# brew 'antiword'
-	# brew 'asciinema'
-	# brew 'asdf'
-	# brew 'bashdb'
-	# brew 'cgdb'
-	# brew 'checkbashisms'
-	# brew 'cmake'
-	# brew 'colormake'
-	# brew 'cpanminus'
-	# brew 'cscope'
-	# brew 'daemonize'
-	# brew 'elinks'
-	# brew 'emacs'
-	# brew 'entr'
-	# brew 'fswatch'	# For macos_appearance_monitor.sh
-	# brew 'gemini-cli'
-	# brew 'go'
-	# brew 'gopls' # Official LSP server for Go
-	# brew 'ipcalc'
-	# brew 'irssi'
-	# brew 'jsonlint'
-	# brew 'knock'
-	# brew 'llvm'
-	# brew 'multitail'
-	# brew 'mutt'
-	# brew 'ncftp'
-	# brew 'nethogs'
-	# brew 'node'
-	# brew 'notmuch'
-	# brew 'openvpn'
-	# brew 'pandoc' # UC: Generate PDF from Markdown
-	# brew 'pastebinit'
-	# brew 'postgresql'
-	# brew 'pv'
-	# brew 'sl'
-	# brew 'swiftlint'
-	# brew 'urlview' # For tmux link opening
-	# brew 'valgrind'
-	# brew 'wakeonlan'
-	# brew 'wego'
-	# brew 'zenity'
+=begin
+	brew 'antiword'
+	brew 'asciinema'
+	brew 'asdf'
+	brew 'bashdb'
+	brew 'cgdb'
+	brew 'checkbashisms'
+	brew 'cmake'
+	brew 'colormake'
+	brew 'cpanminus'
+	brew 'cscope'
+	brew 'daemonize'
+	brew 'elinks'
+	brew 'emacs'
+	brew 'entr'
+	brew 'fswatch'	# For macos_appearance_monitor.sh
+	brew 'gemini-cli'
+	brew 'go'
+	brew 'gopls' # Official LSP server for Go
+	brew 'ipcalc'
+	brew 'irssi'
+	brew 'jsonlint'
+	brew 'knock'
+	brew 'llvm'
+	brew 'multitail'
+	brew 'mutt'
+	brew 'ncftp'
+	brew 'nethogs'
+	brew 'node'
+	brew 'notmuch'
+	brew 'openvpn'
+	brew 'pandoc' # UC: Generate PDF from Markdown
+	brew 'pastebinit'
+	brew 'postgresql'
+	brew 'pv'
+	brew 'sl'
+	brew 'swiftlint'
+	brew 'urlview' # For tmux link opening
+	brew 'valgrind'
+	brew 'wakeonlan'
+	brew 'wego'
+	brew 'zenity'
+=end
 # }
 
 # Cask: default {
 	cask 'appcleaner'
 	cask 'boop'
-	cask 'chrysalis' # Configurator for Atreus keyboard.
 	cask 'claude-code'
-	cask 'clipy' # If needed, could replace with https://github.com/p0deje/Maccy even though pinned items not exactly like snippets
-	cask 'eurkey' # For ErgoDox
 	cask 'ghostty'
-	cask 'gimp'
 	cask 'google-chrome'
-	cask 'grammarly-desktop'
 	cask 'keepingyouawake'
 	cask 'keka'
 	cask 'macfolket'
-	cask 'rectangle'
 	cask 'vimr'
 	cask 'visual-studio-code'
 	cask 'vlc'
 # }
 
 # Cask: optional {
-	# cask 'amethyst'
-	# cask 'android-studio'
-	# cask 'audacity'
-	# cask 'awareness'
-	# cask 'bankid'
-	# cask 'burn'
-	# cask 'cheatsheet'
-	# cask 'colloquy'
-	# cask 'cron'
-	# cask 'cyberduck'
-	# cask 'dash' # Nope, this is now a subscription model.
-	# cask 'devutils' # A bit $$$
-	# cask 'docker'
-	# cask 'dozer'  # Hide menubar icons. Alternative to bartender
-	# cask 'dropbox'
-	# cask 'electric-sheep'
-	# cask 'epic-games'
-	# cask 'eqmac'
-	# cask 'firefox'
-	# cask 'freshback'
-	# cask 'gitify'
-	# cask 'google-drive'
-	# cask 'gpg-suite'
-	# cask 'handbrake'
-	# cask 'inkscape'
-	# cask 'insomnia'
-	# cask 'insync'
-	# cask 'intellij-idea-ce'
-	# cask 'iterm2'
-	# cask 'itsycal'
-	# cask 'jabra-direct'
-	# cask 'karabiner-elements'
-	# cask 'keepassxc'
-	# cask 'libreoffice'
-	# cask 'livereload'
-	# cask 'mactex'
-	# cask 'macvim'    # Prefer macvim cask to formula. Both provide MacVim.app but only the cask installs it to /Applications. Spotlight used to find both locations, but no only at /Applications. https://github.com/macvim-dev/macvim/issues/450#issuecomment-570202139
-	# cask 'max'
-	# cask 'microsoft-excel'
-	# cask 'microsoft-outlook'
-	# cask 'microsoft-powerpoint'
-	# cask 'microsoft-word'
-	# cask 'mp3tag'
-	# cask 'name-mangler'
-	# cask 'origin'
-	# cask 'pdftotext'
-	# cask 'postman'
-	# cask 'prey'
-	# cask 'pycharm-ce'
-	# cask 'qr-journal'
-	# cask 'sanesidebuttons' # Need to manually add it to System Preferences > Users & Groups > Login items. More powerful alt: mac-mouse-fix
-	# cask 'scroll-reverser'
-	# cask 'semulov'
-	# cask 'send-to-kindle'
-	# cask 'slack'
-	# cask 'sound-control'
-	# cask 'spotify'
-	# cask 'spotify-notifications'
-	# cask 'steam'
-	# cask 'stretchly'
-	# cask 'switch'     # Audio format converter
-	# cask 'veracrypt'
-	# cask 'virtualbox'
-	# cask 'wireshark'
-	# cask 'zoom'
+=begin
+	cask 'amethyst'
+	cask 'android-studio'
+	cask 'audacity'
+	cask 'awareness'
+	cask 'bankid'
+	cask 'burn'
+	cask 'cheatsheet'
+	cask 'chrysalis' # Configurator for Atreus keyboard.
+	cask 'clipy' # If needed, could replace with https://github.com/p0deje/Maccy even though pinned items not exactly like snippets
+	cask 'colloquy'
+	cask 'cron'
+	cask 'cyberduck'
+	cask 'dash' # Nope, this is now a subscription model.
+	cask 'devutils' # A bit $$$
+	cask 'docker'
+	cask 'dozer'  # Hide menubar icons. Alternative to bartender
+	cask 'dropbox'
+	cask 'electric-sheep'
+	cask 'epic-games'
+	cask 'eqmac'
+	cask 'eurkey' # For ErgoDox
+	cask 'firefox'
+	cask 'freshback'
+	cask 'gimp'
+	cask 'gitify'
+	cask 'google-drive'
+	cask 'gpg-suite'
+	cask 'grammarly-desktop'
+	cask 'handbrake'
+	cask 'inkscape'
+	cask 'insomnia'
+	cask 'insync'
+	cask 'intellij-idea-ce'
+	cask 'iterm2'
+	cask 'itsycal'
+	cask 'jabra-direct'
+	cask 'karabiner-elements'
+	cask 'keepassxc'
+	cask 'libreoffice'
+	cask 'livereload'
+	cask 'mactex'
+	cask 'macvim'    # Prefer macvim cask to formula. Both provide MacVim.app but only the cask installs it to /Applications. Spotlight used to find both locations, but no only at /Applications. https://github.com/macvim-dev/macvim/issues/450#issuecomment-570202139
+	cask 'max'
+	cask 'microsoft-excel'
+	cask 'microsoft-outlook'
+	cask 'microsoft-powerpoint'
+	cask 'microsoft-word'
+	cask 'mp3tag'
+	cask 'name-mangler'
+	cask 'origin'
+	cask 'pdftotext'
+	cask 'postman'
+	cask 'prey'
+	cask 'pycharm-ce'
+	cask 'qr-journal'
+	cask 'rectangle'
+	cask 'sanesidebuttons' # Need to manually add it to System Preferences > Users & Groups > Login items. More powerful alt: mac-mouse-fix
+	cask 'scroll-reverser'
+	cask 'semulov'
+	cask 'send-to-kindle'
+	cask 'slack'
+	cask 'sound-control'
+	cask 'spotify'
+	cask 'spotify-notifications'
+	cask 'steam'
+	cask 'stretchly'
+	cask 'switch'     # Audio format converter
+	cask 'veracrypt'
+	cask 'virtualbox'
+	cask 'wireshark'
+	cask 'zoom'
+=end
 # }
 
 # Mas: default {
@@ -277,8 +279,6 @@
 	# $ mas search <app>
 	mas 'Brother iPrint&Scan', id: 1_193_539_993 # Image Capture.app does not work for Brother DCP-7070DW
 	mas 'DaftCloud', id: 1320450034
-	mas 'Grammarly for Safari', id: 1_462_114_288
-	mas 'InstaRemind', id: 1_492_317_385
 	mas 'Overlap', id: 1_516_950_324
 	mas 'Shazam', id: 897_118_787
 	mas 'WorkingHours', id: 1_495_643_653
@@ -286,24 +286,28 @@
 	# Safari extensions:
 	# mas 'Polyglot', id: 1_471_801_525 # Currently broken: https://github.com/uetchy/Polyglot/issues/141
 	mas 'AdGuard for Safari', id: 1_440_147_259
-	mas 'Consent-O-Matic', id: 1_606_897_889
 	mas 'Dark Reader for Safari', id: 1_438_243_180
 	mas 'Keyword Search', id: 1_558_453_954
 # }
 
 # Mas: optional {
-	# mas 'Bitwarden', id: 1352778147
-	# mas 'GamePad Companion', id: 428799479
-	# mas 'Irvue', id: 1039633667
-	# mas 'Microsoft To Do', id: 1274495053
-	# mas 'Neural Mix Pro', id: 1527105121
-	# mas 'PhotoResize', id: 492236133
-	# mas 'Playlisty for Apple Music', id: 1459275972
-	# mas 'SwordSoft Screenink Free', id: 953841977
-	# mas 'WeatherBug', id: 1059074180
-	# mas 'Xcode', id: 497799835
-	# mas 'feedly', id: 865_500_966
-	# mas 'Downcast', id: 668429425
+=begin
+	mas 'Bitwarden', id: 1352778147
+	mas 'Consent-O-Matic', id: 1_606_897_889
+	mas 'Downcast', id: 668429425
+	mas 'GamePad Companion', id: 428799479
+	mas 'Grammarly for Safari', id: 1_462_114_288
+	mas 'InstaRemind', id: 1_492_317_385
+	mas 'Irvue', id: 1039633667
+	mas 'Microsoft To Do', id: 1274495053
+	mas 'Neural Mix Pro', id: 1527105121
+	mas 'PhotoResize', id: 492236133
+	mas 'Playlisty for Apple Music', id: 1459275972
+	mas 'SwordSoft Screenink Free', id: 953841977
+	mas 'WeatherBug', id: 1059074180
+	mas 'Xcode', id: 497799835
+	mas 'feedly', id: 865_500_966
+=end
 # }
 
 # Development: Java {
