@@ -641,3 +641,6 @@ bash
 BigQuery
 RubyGems
 Minitest
+lifecycle
+LaunchDarkly
+Datadog

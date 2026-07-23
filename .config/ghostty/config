@@ -76,5 +76,5 @@ link-previews = true
 macos-option-as-alt = left
 
 # Global shortcut to toggle quick terminal dropdown.
-keybind = global:cmd+`=toggle_quick_terminal
+#keybind = global:cmd+`=toggle_quick_terminal
 # }
