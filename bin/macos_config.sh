@@ -551,23 +551,21 @@ defaults write com.apple.finder _FXSortFoldersFirst -bool true
 
 ## Misc
 # * Sidebar Favourites, add to make it
+# - Recents
 # - ~/
-# - ~/.dropbox-data/Dropbox/
-# - ~/Desktop/
-# - ~/Documents
+# - ~/Documents/
 # - ~/Downloads
-# - ~/media/
-# - ~/media/images/screenshots/
-# - ~/media/music/production/
 # - ~/src/github.com/
 # - ~/src/github.com/erikw/erikw.me-jekyll/
-# - ~/tmp/
+# - ~/media/images/screenshots/
+# - ~/media/images/scanned/
+# - ~/media/
 # - ~/.config/finder/---------/
 # - /Applications
-# - /private/tmp
-# - /Volumes/ext0/daw/ableton/projects
-# - /Volumes/ext0/daw/plugins/
-# - /Volumes/ext0/music/samples/
+# - Airdrop
+# - ~/media/music/🎙️ BTB Podcast/
+# - ~/media/music/daw/ableton/
+# - ~/tmp/
 
 # Enable snap-to-grid for icons on the desktop and in other icon views
 finder_plist="$HOME/Library/Preferences/com.apple.finder.plist"

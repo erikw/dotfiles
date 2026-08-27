@@ -2,11 +2,8 @@
 
 ## General System
 
-### EurKey
-
-Enable the keymap from System Preferences > Keyboard > Input Sources. Replace US with EurKey.
-
 ### Brother DCP-7070dw
+
 * **Printer**
   * Install driver from <https://support.brother.com/g/b/downloadtop.aspx?c=eu_ot&lang=en&prod=dcp7070dw_eu>
   * System Preferences > Printers & Scanners > + > Add by Bonjour discovery on network
@@ -28,49 +25,14 @@ Ref: <https://support.pirateship.com/en/articles/2799085-mac-how-to-change-defau
   * Media Size: A4
   * Two-Sided Printing: Long-Edge Binding
 
-### Clipy
-
-#### General
-* Max clipboard history size: 100
-
-#### Menu
-* Number of items to place inline: 25
-* Number of items to place inside a folder: 75
-* Number of characters in the menu: 50
-
-#### Shortcuts
-* Menu > Main: NOP
-* Menu > History: Cmd+Shift+V
-* Menu > Snippets: Cmd+Shift+B
-* History > Clear history: Shift+Ctrl+Opt+Cmd+C
-
-#### Snippets
-
-Create snippets for some common items in `~/doc/tech/word_expansions.txt`.
-
-#### App
-* Check: Start at login
-* Uncheck: Show in menu bar
-
 ### Sensiblesidebuttons / Sanesidebuttons
+
 * Launch it one time to set right permissions needed.
 * From menu bar icon: hide icon
 * System Settings > General > Login items > add it manually
 
-### Mail.app
-
-GMailinator plug-in. The most maintained fork is <https://github.com/wwwjfy/GMailinator>, but using another fork's `install.sh` makes it easier: <https://github.com/jasoncodes/GMailinator/blob/master/install.sh>
-
-Requires full XCode.app installed from App Store.
-
-```sh
-ghq-get git@github.com:jasoncodes/GMailinator.git
-./install.sh
-```
-
-Then go to Mail.app > Preferences > General > Manage Plug-ins... > enable GMailinator.
-
 ### Ghostty
+
 * System Settings > Privacy & Security:
   * Full Disk Access: enable, to avoid many different permission request popups later
   * Accessibility Features: enable, for global shortcuts to work
@@ -78,9 +40,11 @@ Then go to Mail.app > Preferences > General > Manage Plug-ins... > enable GMaili
 ### Jettison
 
 #### Options
+
 * Check: Launch at start
 
 ##### Hotkeys
+
 * Eject external disks: Ctrl+Opt+Cmd+E
 * Eject disks and sleep: Ctrl+Opt+Cmd+S
 
@@ -91,15 +55,18 @@ Then go to Mail.app > Preferences > General > Manage Plug-ins... > enable GMaili
 Enable for most archives. Might have to change in Finder for it to be the default program for some files.
 
 #### Extraction
+
 * Uncheck "Reveal expanded items in Finder".
 
 ### Custom Fonts
+
 * Open Font Book.app > File > Add Fonts > `~/media/fonts/`
   * Skip all fonts with warnings/errors
 
 ### Pixelmator Pro
 
 #### General
+
 * Appearance: Auto
 * New Image contents: transparent
 
@@ -158,6 +125,7 @@ Import files from ~/bin/shortcuts/
 #### Dash.app
 
 ##### General
+
 * Show Dash and focus on search field: Cmd+Shift+D
 * Uncheck "Show dock icon"
 * Check "Show menu bar icon"
@@ -184,6 +152,7 @@ No good one exists that is easily installable. See <https://microsoft.github.io/
 #### Rails
 
 References:
+
 * <https://sergio-ildefonso.medium.com/install-ruby-and-rails-on-a-mac-7b8a1ccb5f4>
 * <https://gorails.com/setup/osx/10.13-high-sierra>
 
@@ -205,6 +174,7 @@ npm install -g yarn       # yarn - better than npm
 ### Python
 
 State of the art:
+
 * Python version: pyenv, or better with asdf
 * Project dependencies: poetry
 * Global python tools: pipx
@@ -216,18 +186,22 @@ State of the art:
 ### Djay Pro AI
 
 #### General
+
 * Slide Range ±: 8% — compromise of 6% or 10%. See <https://www.reddit.com/r/Beatmatch/comments/c9012w/pitch_control_6_or_10_my_thoughts_and_asking_for/>
   * Use +6% for learning, as the fader is very small
 * Uncheck: Reset (EQ, effect, controls)
 * Stop time: 0.0 seconds
 
 #### Devices
+
 * See `~/doc/music/device_setups.xlsx` DJ tab
 
 #### Library
+
 * Check: Hide unavailable tracks
 
 #### Appearance
+
 * Font size: 3/4
 * Check: Show bar numbers
 * Check: Show minute markers
@@ -244,6 +218,7 @@ Download from <https://www.ableton.com/en/account/>
 Set root path: `root=/Volumes/ext0/daw/`
 
 #### Look and Feel
+
 * Theme: Dark
 
 #### Audio
@@ -263,6 +238,7 @@ Use CoreAudio driver and Scarlett 2i2 for input/output, according to the Focusri
 Set up Ableton MIDI input/output according to the Novation Launchkey MK3 Manual (`~/doc/man/music/novation_launchkey_mk3_manual_v1.03.pdf`) page 12.
 
 Control Surfaces — the first 2 rows should be:
+
 * Control Surface: Launchkey MK3
 * Input: Launchkey MK3 37 (LKM3 DAW Output)
 * Output: Launchkey MK3 37 (LKM3 DAW Input)
@@ -270,6 +246,7 @@ Control Surfaces — the first 2 rows should be:
 Takeover mode: pickup
 
 Control Surfaces configuration:
+
 * Input Launchkey MK3 37 (LKM3 MIDI Output): Track=On, Sync=Off, Remote=On
 * Input Launchkey_MK3 Input (Launchkey): Track=On, Sync=Off, Remote=On
 * Output Launchkey MK3 37 (LKM3 MIDI Input): Track=On, Sync=On, Remote=On
@@ -278,10 +255,12 @@ Control Surfaces configuration:
 #### Files and Folders
 
 Adjust the default empty project using "Save current Set as Default" after:
+
 * Keeping 1 MIDI track only with brown color (drums).
 * Setting preview volume on master channel's mixer to -8dB (headphones are very loud by default).
 
 #### Library
+
 * Location of User Library: `$root/ableton/includes/user_library/`
 * Installation Folder for Packs: `$root/ableton/includes/factory_packs/`
 
@@ -315,9 +294,11 @@ $root/ableton/max/
 ### Amethyst
 
 #### General
+
 * Uncheck "Display layout when changing spaces".
 
 #### Layouts
+
 * Set the following layouts to be used: tall, fullscreen, floating.
 
 #### Shortcuts
@@ -328,17 +309,20 @@ Disable shortcuts as they conflict with EurKey input (like capital ÄÅ):
 * Select Tall layout (opt+shift+a), as opt+shift+a produces Å.
 
 #### Floating
+
 * Add Pixelmator Pro, as the mouse hover tooltips are treated as own windows.
 
 ### Scroll Reverser
 
 #### Scrolling
+
 * Check: Enable Scroll Reverser
 * Scrolling devices:
   * Uncheck: Reverse Trackpad
   * Check: Reverse Mouse
 
 ### iTerm2
+
 * Load settings from Preferences > General > Preferences tab > Load from custom folder or URL. Reference: <https://stackoverflow.com/a/23356086/265508>
 * System Settings > Privacy & Security > Full Disk Access: enable, to avoid many different permission request popups later
   * System Preferences > Security & Privacy > Privacy > Full Disk Access > Add iTerm.app
@@ -346,14 +330,17 @@ Disable shortcuts as they conflict with EurKey input (like capital ÄÅ):
 #### General
 
 ##### Closing
+
 * Make it easier to restart/poweroff by not confirming closing multiple windows — I always use tmux so it's not a problem.
   * Uncheck: Confirm closing multiple sessions.
   * Uncheck: Confirm "iTerm2 (#Q)"
 
 ##### Selection
+
 * Check "Applications in terminal may access clipboard" so that you can e.g. copy from vim buffer to GUI clipboard.
 
 ##### Colors
+
 * Check "use different colors for light and dark mode"
   * For Light Mode and Dark Mode, select Color Preset... with Solarized Light/Dark respectively.
 
@@ -368,12 +355,14 @@ Set font to one of:
 * Any NerdFont when using `lsd(1)`, e.g.: Hack Nerd Font, Regular, 14pt
 
 ##### Terminal
+
 * Notifications > Check "Silence Bell"
 * Check "Unlimited Scrollback"
 
 ##### Keys
 
 ###### General
+
 * Make Option key a Meta key, so e.g. tmux binding works on MBP internal keyboard.
   * Set "Left option key acts as" to "Esc+". NOTE: need karabiner-elements to get left alt to work on external PC keyboard.
 
@@ -389,14 +378,17 @@ Create shortcuts to toggle between Solarized dark & light:
   * Action: "Load Color Preset" > "Solarized Dark"
 
 ### Dropbox
+
 * Remove `~/Dropbox` symlink and create:
 
   ```sh
   ln -s /Users/erikw/Library/CloudStorage/Dropbox ~/dropbox
   ```
+
 * Create symlinks from `~/Library/CloudStorage/Dropbox/*` to `~/`. Don't create from `~/dropbox` because when there's >1 level of indirection, the macOS Dock won't follow the symlinks in the Stacks (list) folder feature.
 
 #### General
+
 * Dropbox badge: Never show (integrates into MS Office for example)
 
 ### InstaRemind
@@ -404,6 +396,7 @@ Create shortcuts to toggle between Solarized dark & light:
 Hotkey: Ctrl+Cmd+R (like Todoist's Ctrl+Cmd+A)
 
 ### Todoist
+
 * Disable macOS spelling correction in search bar by right-clicking in the search bar > Spelling and Grammar > uncheck "Correct Spelling Automatically". Reference: <https://osxdaily.com/2011/08/18/disable-spelling-auto-correct-safari-mac-os-x/>
 * Disable badge count on Dock icon: System Preferences > Notifications > Todoist > uncheck "Badge app icon"
 
