@@ -8,7 +8,6 @@ set -o nounset
 set -o pipefail
 [[ "${TRACE-0}" =~ ^1|t|y|true|yes$ ]] && set -o xtrace
 
-
 SSH_DIR="$HOME/.ssh"
 SSH_ID_DIR="$SSH_DIR/identityfiles"
 SSH_PRIV_KEY="$SSH_ID_DIR/github_id_ed25519"
@@ -18,7 +17,7 @@ REPOS_ROOT="$HOME/src/github.com/erikw"
 DOTFILES_ROOT="$REPOS_ROOT/dotfiles"
 
 is_macos() {
-  [[ "$OSTYPE" == "darwin"* ]]
+	[[ "$OSTYPE" == "darwin"* ]]
 }
 
 step() {
@@ -38,7 +37,7 @@ chmod 744 ssh-config-create.sh
 ./ssh-config-create.sh
 ssh-keygen -t ed25519 -f $SSH_ID_DIR/github_id_ed25519 -C "${USER}@${HOSTNAME} for erikw@github"
 
-cat << EOF >> $HOME/.ssh/config
+cat <<EOF >>$HOME/.ssh/config
 
 Host *github.com
 	Port 22
@@ -53,10 +52,10 @@ eval "$(ssh-agent)"
 eval "$cmd_agent"
 
 if type xclip >/dev/null 2>&1; then
-	xclip < "$SSH_PUB_KEY"
+	xclip <"$SSH_PUB_KEY"
 	echo "Copied public key to clipboard with xclip"
 elif type pbcopy >/dev/null 2>&1; then
-	pbcopy < "$SSH_PUB_KEY"
+	pbcopy <"$SSH_PUB_KEY"
 	echo "Copied public key to clipboard with pbcopy"
 fi
 
@@ -64,7 +63,11 @@ echo "Paste contents of $SSH_PUB_KEY to https://github.com/settings/keys"
 echo "Press enter to continue"
 read -r
 
-
+# Needed for git
+if is_macos; then
+	step "Setting up macOS xcode tools"
+	xcode-select --install
+fi
 
 step "Cloning dotfiles repo"
 mkdir -p $REPOS_ROOT
