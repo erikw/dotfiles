@@ -30,6 +30,7 @@
 	cask 'mactex'
 	cask 'netnewswire'
 	cask 'send-to-kindle'
+	cask 'signal'
 	cask 'spotify'
 	cask 'zoom'
 # }
@@ -47,7 +48,6 @@
 	cask 'microsoft-office'  # License managed at https://account.microsoft.com/services/
 	cask 'mixed-in-key'    # If using latest version, which I'm not.
 	cask 'musicbrainz-picard'
-	cask 'signal'
 	cask 'transmission'
 =end
 # }

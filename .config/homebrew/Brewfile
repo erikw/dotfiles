@@ -277,10 +277,8 @@
 	# $ find /Applications -path '*Contents/_MASReceipt/receipt' -maxdepth 4 -print |\sed 's#.app/Contents/_MASReceipt/receipt#.app#g; s#/Applications/##'
 	#
 	# $ mas search <app>
-	mas 'Brother iPrint&Scan', id: 1_193_539_993 # Image Capture.app does not work for Brother DCP-7070DW
 	mas 'DaftCloud', id: 1320450034
 	mas 'Overlap', id: 1_516_950_324
-	mas 'Shazam', id: 897_118_787
 	mas 'WorkingHours', id: 1_495_643_653
 
 	# Safari extensions:
@@ -293,6 +291,7 @@
 # Mas: optional {
 =begin
 	mas 'Bitwarden', id: 1352778147
+	mas 'Brother iPrint&Scan', id: 1_193_539_993 # Image Capture.app does not work for Brother DCP-7070DW
 	mas 'Consent-O-Matic', id: 1_606_897_889
 	mas 'Downcast', id: 668429425
 	mas 'GamePad Companion', id: 428799479
