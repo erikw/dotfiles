@@ -148,7 +148,7 @@ fi
 # To work within tmux, need to use pam_reattach. Ref: https://github.com/fabianishere/pam_reattach
 # Try detect if TouchID exist. Ref: https://apple.stackexchange.com/a/450646
 touch_id_supported=false
-if command -v bioutil >/dev/null 2>&1 && bioutil -r 2>/dev/null | grep -q "Touch ID for unlock"; then
+if command -v bioutil >/dev/null 2>&1 && bioutil -r 2>/dev/null | grep -q "Biometrics for unlock"; then
 	touch_id_supported=true
 fi
 pam_reattach_path=
