@@ -371,6 +371,8 @@ fi
 ### Mission Control:
 # * Show Notification Center: Cmd+F11
 # * Enable shortcuts Ctrl+[1-5] for switching to Desktops. (Need to open 5 spaces for this to show up + restart System Settings)
+## Dictation
+# * Enable
 # }
 
 # Mouse {
