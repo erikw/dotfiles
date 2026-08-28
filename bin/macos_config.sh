@@ -402,27 +402,14 @@ defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
 
 # Archive Util.app {
 # * Uncheck "Reveal expanded items in Finder"
-defaults write com.apple.archiveutility dearchive-reveal-after -bool false
 # }
 
 # App Store {
 # * Uncheck "Video Autoplay"
 # * Uncheck "In-App Ratings & Reviews"
-# defaults write com.apple.AppStore InAppReviewEnabled -bool false
 # }
 
 # Calendar.app {
-# * Sidebar: check "Siri Suggestions" calendar
-## General:
-# * Default calendar: my default Google calendar
-## Accounts
-# * Disable iCloud account
-### Google
-# * Refresh Calendars: every 5 minutes
-## Alerts (for Google)
-# * Events: None
-# * All Day Events: None
-# * Birthdays: None
 ## Advanced
 # * Check "Turn on time zone support"
 # * Check "Show events in year view"
@@ -431,74 +418,42 @@ defaults write com.apple.archiveutility dearchive-reveal-after -bool false
 
 # Finder.app {
 ## View
-# ** Show Path Bar
-defaults write com.apple.finder ShowPathbar -bool true
-# ** Show Status Bar
-defaults write com.apple.finder ShowStatusBar -bool true
+# * Show Path Bar
+# * Show Status Bar
 ### Show View Options
-# * First make sure to be in Column view before entering this menu
+# * First make sure to be in ~/ & in Column view before entering this menu
 # * Check "Always open in Column view" > Use as default
-# Four-letter codes for the view modes: `icnv`, `Nlsv`, `clmv`, `glyv`
-defaults write com.apple.finder FXPreferredViewStyle -string "clmv"
 # * Also open this dialog while being in ~/, then check "Show Library Folder". Reference: https://appletoolbox.com/unhide-access-mac-library-folder/:
-chflags nohidden ~/Library
+# * Show Library Folder: check
 ## Preferences
 ### General
-# *** Show on desktop: connected servers, disks
-defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
-defaults write com.apple.finder ShowMountedServersOnDesktop -bool true
-defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
+# *** Show on desktop: External disks, CD/DVD/iPOD, Connected servers
 # *** New Finder window shows: ~/
-#defaults write com.apple.finder NewWindowTargetPath -string "file:///$HOME/"  # Does not work!
-### Tags
-# * Show all
+defaults write com.apple.finder NewWindowTarget -string "PfLo"
+defaults write com.apple.finder NewWindowTargetPath -string "file://$HOME/"
 ### Sidebar
-# *** Hide: Airdrop, Documents, Downloads, Movies, Music, Pictures, Recent Tags
-# View > Customize Control Strip > Add "New Folder" shortcut
+* Hide: Shared
 ### Advanced
-# * Check: Show all file extensions in Finder
-defaults write NSGlobalDomain AppleShowAllExtensions -bool true
-# * Uncheck: Show warning before changing an extension.
-defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
+# * Show all file extensions: check
+# * Show warning before changing an extension: uncheck
+# * Show warning before remvoing from iCloud Drive: uncheck
 # * Keep folders on top: In windows when sorting by name
-defaults write com.apple.finder _FXSortFoldersFirst -bool true
 
-## Misc
-# * Sidebar Favourites, add to make it
-# - Recents
+## Sidebar Strucutre
+### Favorites
 # - ~/
-# - ~/Documents/
 # - ~/Downloads
-# - ~/src/github.com/
-# - ~/src/github.com/erikw/erikw.me-jekyll/
 # - ~/media/images/screenshots/
-# - ~/media/images/scanned/
+# - ~/src/github.com/
 # - ~/media/
-# - ~/.config/finder/---------/
-# - /Applications
-# - Airdrop
+# - ~/tmp/
 # - ~/media/music/🎙️ BTB Podcast/
 # - ~/media/music/daw/ableton/
-# - ~/tmp/
+# - /Applications
+# - ~/.config/finder/---------/
 
-# Enable snap-to-grid for icons on the desktop and in other icon views
-finder_plist="$HOME/Library/Preferences/com.apple.finder.plist"
-for icon_view_path in \
-	":DesktopViewSettings:IconViewSettings" \
-	":FK_StandardViewSettings:IconViewSettings" \
-	":StandardViewSettings:IconViewSettings"; do
-	ensure_plist_dict_path "$finder_plist" "$icon_view_path"
-	set_plist_string "$finder_plist" "${icon_view_path}:arrangeBy" grid
-done
-
-# Hide default un-hidable folders in home directory from Finder.
-# Reset with $ chflags nohidden <dir>
-#chflags hidden ~/Documents
-#chflags hidden ~/Downloads
-#chflags hidden ~/Movies
-#chflags hidden ~/Music
-#chflags hidden ~/Pictures
-#chflags hidden ~/Public
+## Desktop
+# Right click > Sort by > Snap to grid
 # }
 
 # Notification Center Widgets {
@@ -512,29 +467,24 @@ done
 # }
 
 # Mail.app {
-# * Drag my Gmail account to the top in the mailboxes left side list and collapse all other.
-# * In the top toolbar: move archive|trash|span button cluster all the way to the left for easier access to most commonly used button.
+# * Toolbar, arrange to: <archive|trash|spam> <space> <Get New><New mail> <space> <reply|reply-all|forward> <space> <search>
 # * In the New Mail window toolbar, click Aa to activate formatting options.
 ## Settings
 ### General
 # * Uncheck "Follow Up Suggestions"
-### Accounts
-# * Disable iCloud
-### Viewing
-# * Check "mark all messages as read when opening a conversation"
-### Composing
-# * Message format: plain text. NOPE use Rich Text, it's not the 90s anymore....
+# Junk Mail
+# * Check "Enable Junk mail filtering"
+# * When junk mail arrives: Move it to the Junk mailbox
 ### Signatures
 # * Add new signature "Standard".
-### Privacy
-# * Turn off everything
 # }
 
 # Music.app {
 ## Playback
-# Enable "Sound Enhancer" when using desktop speaker.
+# * Uncheck "Song Transitions"
+# * Check "Sound Enhancer"
 ## Files
-# * Uncheck "Keep music Media folder organized"
+# * Check "Keep music Media folder organized"
 # * Uncheck "Copy files to Music Media folder when adding to library"
 ## Advanced
 # * Check "Automatically update artwork"
@@ -552,7 +502,7 @@ done
 
 # Photos.app {
 ## General
-# * CHECK "Copy items to the photos library"
+# * Check "Show holiday events"
 # * Check Sharing: "Include location information"
 ## iCloud
 # * Select "Download Originals to this Mac"
@@ -566,117 +516,24 @@ defaults write com.apple.Terminal ShellExitAction -int 1
 # }
 
 # Safari.app {
-# Preferences
-## General
+# View
+# * Click "Show favorites bar"
+# Customized Toolbar:
+# * Add Icloud Tabs button
+## Preferences
+### General
+# * Safari opens with: All windows from last session
 # * Homepage: favorites://
-#   * Set to Start Page. Ref: https://forums.macrumors.com/threads/make-safaris-startpage-your-homepage.2289398/
 # * Remove history items: manually
 # * Uncheck "Open safe files after downloading"
-defaults write com.apple.Safari AutoOpenSafeDownloads -bool false
-## Privacy
-# * Uncheck "Allow privacy-preserving measurement of ad effectiveness"
-## Advanced
-# * Check "Smart search field: show full website address"
-# * Default encoding: UTF-8
-# * Check "Show developer menu in menu bar"
-
-# Customized Toolbar:
-
-# Other settings
-# * Prevent spell auto-correct: Edit > Spelling & Grammar > uncheck "Correct Spelling Automatically."
-
-# NOPE actually let's skip this, can't close last tab to start screen / home page.
-# * Prevent closing window on last tab. Ref: https://talk.macpowerusers.com/t/stop-safari-from-closing-window-when-closing-last-tab/21160
-# * System Settings > Keyboard > Keyboard Shortcuts > App Shortcuts > + Application: Safari.app, Menu Title: Close Tab, Shortcut: cmd+w
-# Or programatically. Ref: https://apple.stackexchange.com/a/260916
-#defaults write com.apple.Safari NSUserKeyEquivalents -dict-add 'Close Tab' '<string>@w</string></dict>'
-#defaults write com.apple.universalaccess com.apple.custommenu.apps -array-add '<string>com.apple.Safari</string>'
-
-# See current settings with:  $ defaults read com.apple.Safari
-# Prevent closing window when only pinned tabs left. Ref: https://apple.stackexchange.com/a/260916
-defaults write com.apple.Safari NSUserKeyEquivalents -dict-add 'Close Tab' '@w'
-if ! defaults_array_contains com.apple.universalaccess com.apple.custommenu.apps com.apple.Safari; then
-	defaults write com.apple.universalaccess com.apple.custommenu.apps -array-add "com.apple.Safari"
-fi
-# Show the full URL in the address bar
-defaults write com.apple.Safari ShowFullURLInSmartSearchField -bool true
-# Safari opens with last session
-defaults write com.apple.Safari AlwaysRestoreSessionAtLaunch -bool true
-# Enable the Develop menu and the Web Inspector in Safari
-defaults write com.apple.Safari IncludeDevelopMenu -bool true
-# Update extensions automatically
-defaults write com.apple.Safari InstallExtensionUpdatesAutomatically -bool true
-# Show favorites bar in Safari by default:
-defaults write com.apple.Safari ShowFavoritesBar -bool true
-# Home page
-defaults write com.apple.Safari HomePage -string "favorites://"
-# defaults write com.apple.Safari HomePage -string "https://dhammapada.at/random"
-
-restart_process_if_running Safari
+### Advanced
+# * Check "Show features for web developers"
 # }
 
 # Misc {
 # Change screenshot destination from Desktop to something sane.
 mkdir -p "$HOME/media/images/screenshots"
 defaults write com.apple.screencapture location "$HOME/media/images/screenshots"
-
-# Disable the thumbnail preview that delays saving the screenshot to disk.
-# Reference: https://apple.stackexchange.com/questions/340170/turn-off-macos-mojave-screenshot-preview-thumbnails-with-defaults-write-command
-defaults write com.apple.screencapture show-thumbnail -bool FALSE
-
-# iTerm2 shell integration
-# Reference: https://www.iterm2.com/documentation-shell-integration.html
-#curl -L https://iterm2.com/misc/install_shell_integration.sh | bash
-
-# Media shortcuts for external keyboard: follow instructions in ~/bin/macos_media_control/info.txt
-
-# Move any window with ctrl+cmd+click+drag, like typical Linux WMs.
-# Ref: https://mmazzarolo.com/blog/2022-04-16-drag-window-by-clicking-anywhere-on-macos/
-defaults write -g NSWindowShouldDragOnGesture -bool true
-
-# Ignore external disks that are for other systems e.g. encrypted Time Machine disk.
-# Ref: https://discussions.apple.com/docs/DOC-7942
-# Ref: https://akrabat.com/prevent-an-external-drive-from-auto-mounting-on-macos/
-# * $ UUID=$(diskutil info /dev/disk5s1 | grep "Volume UUID" | awk '{print $3}')
-# * $ sudo vifs  # Edits /etc/fstab
-# * Enter:
-#   UUID=$UUID none apfs rw,noauto
-# * Restart computer to test.
-
-# Prepare user's crontab header.
-set +o errexit
-read -r -d '' tab_new <<EOF
-${config_marker}
-# Environment
-#SHELL=/bin/sh
-# ~/ works, but not $HOME strangely enough.
-PATH=~/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/local/sbin:/sbin:/usr/sbin:/usr/bin:/bin
-# Reference: crontab(5).
-# Helper: https://crontab.guru/
-# Order of crontab fields
-# minute hour mday month wday	command
-
-
-#30	 19	 *	 *	 *	if_fail_notify restic_backup.sh
-#@monthly			   if_fail_notify restic_check.sh
-EOF
-set -o errexit
-set +o errexit
-tab_old=$(crontab -l 2>/dev/null)
-crontab_list_exit=$?
-set -o errexit
-if [ "$crontab_list_exit" -ne 0 ] && [ "$crontab_list_exit" -ne 1 ]; then
-	echo "Could not read current crontab" >&2
-	exit "$crontab_list_exit"
-fi
-# Idempotency: assume that if the config marker is in there, my standard crontab has been installed once.
-if ! printf '%s\n' "$tab_old" | grep -Fq "$config_marker"; then
-	if [ -n "$tab_old" ]; then
-		tab_new=$(printf "%s\n%s\n" "$tab_old" "$tab_new")
-	fi
-	echo "$tab_new" | crontab -
-fi
-
 # }
 
 restart_process_if_running Dock
