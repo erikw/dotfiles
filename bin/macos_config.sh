@@ -177,34 +177,32 @@ if $touch_id_supported && { grep -Fq "$config_marker" /etc/pam.d/sudo || ! grep 
 fi
 # }
 
-# TODO adapt this to System Settings in macOS Ventura
 # System Settings {
 # Apple ID {
 ## iCloud
+### iCloud Drive
 # * Uncheck "Optimize Mac Storage", so that Time Machine can back up all data.
-## Media & Purchases
-# * Free Downloads: Never Require
 # }
 
 # General {
+# }
+
+# Apearance {
 # * Appearance: Auto
-defaults write NSGlobalDomain AppleInterfaceStyleSwitchesAutomatically -bool true
+# defaults write NSGlobalDomain AppleInterfaceStyleSwitchesAutomatically -bool true
 # }
 
 # Desktop & Dock {
-# * Stage manager: enable
-#   * Enable Desktop items
 # }
 
 # Wallpaper {
 # * Add all folders in ~/media/images/wallpapers/dynamic_mac/.
 #   * See https://www.dynamicwallpaper.club/docs on how to use custom dynamic images.
 #   * See https://apple.stackexchange.com/questions/71070/how-to-change-desktop-wallpaper-for-all-virtual-desktops/415790#415790 on how to set wallpaper for all desktops.
-# }
 
-# Screensaer {
-# * Check "Show with clock"
 ###  Hot Corners:
+# Top right: Mission Controll
+# Bottom Left: Desktop
 # Reference: https://blog.jiayu.co/2018/12/quickly-configuring-hot-corners-on-macos/
 # Possible values:
 #  0: no-op
@@ -219,45 +217,38 @@ defaults write NSGlobalDomain AppleInterfaceStyleSwitchesAutomatically -bool tru
 # 12: Notification Center
 # 13: Lock Screen
 # * Top Left corner: NOP
-defaults write com.apple.dock wvous-tl-corner -int 0
-defaults write com.apple.dock wvous-tl-modifier -int 0
+# defaults write com.apple.dock wvous-tl-corner -int 0
+# defaults write com.apple.dock wvous-tl-modifier -int 0
 # * Top Right corner: Mission Control
-defaults write com.apple.dock wvous-tr-corner -int 2
-defaults write com.apple.dock wvous-tr-modifier -int 0
+# defaults write com.apple.dock wvous-tr-corner -int 2
+# defaults write com.apple.dock wvous-tr-modifier -int 0
 # * Bottom Left corner: Desktop
-defaults write com.apple.dock wvous-bl-corner -int 4
-defaults write com.apple.dock wvous-bl-modifier -int 0
+# defaults write com.apple.dock wvous-bl-corner -int 4
+# defaults write com.apple.dock wvous-bl-modifier -int 0
 # * Bottom Right corner: NOP
-defaults write com.apple.dock wvous-br-corner -int 0
-defaults write com.apple.dock wvous-br-modifier -int 0
+# defaults write com.apple.dock wvous-br-corner -int 0
+# defaults write com.apple.dock wvous-br-modifier -int 0
 # }
 
-# Control Center {
-# - Wi-Fi: uncheck
-# - Bluetooth: uncheck
-# - AirDrop: uncheck
+# Menu Bar {
+## Menu bar controlls (add to Control Center)
+# - Sounds: Recognize music (Shazam)
+# - Notes: Quick Note
+# - Budget Flow: Add new expense
+## Menu bar items to show (not mentioned = disabled)
+# - Wi-Fi: check
+# - Battery: check
 # - Focus: when active
-# - Keyboard Brightness: uncheck
 # - Screen Mirroring: when active
-# - Display: uncheck
+# - Display: when active
 # - Sound: always
-# - Now Playing: unchecked
-# * Other modules:
-# - Accessibility Shourtcuts: uncheck all
-# - Battery: Menu Bar, Control center. Show percentage
-# - Fast User Switching: uncheck all
-# * Menu Bar Only
-# - Clock: nop
-# - Spotlight: uncheck
-# - Siri: check
-# - Time machine: Show in Menu Bar
+# - Text Input: check
+# - Time Machine: check
+# - Timer: when active
 # }
 
 # Desktop & Dock {
-# * Prevent accidential change of dock size or position by locking
-defaults write com.apple.Dock position-immutable -bool true
-
-# * Add ~/ (Stack, List)  and ~/Downloads (Stack, Automatic) to dock.
+# * Add ~/ (Stack, List) and ~/Downloads (Stack, Automatic) to dock.
 # * For dual monitors: For all applications in dock: Right click > Option > assign to correct monitor and desktop.
 
 # Dim hidden apps (CMD+H) in the dock.
@@ -266,24 +257,27 @@ defaults write com.apple.Dock showhidden -boolean yes
 # Add two space separators in dock, to organize icons to correspond to which monitor I want them to be open on. Let them be order by the Spaces order too.
 dock_spacer_count=$(defaults read com.apple.dock persistent-apps 2>/dev/null | grep -c spacer-tile || true)
 while [ "$dock_spacer_count" -lt 2 ]; do
-	defaults write com.apple.dock persistent-apps -array-add '{tile-data={}; tile-type="spacer-tile";}'
+	defaults write com.apple.dock persistent-apps -array-add '{tile-type="small-spacer-tile";}'
+	killall Dock
 	dock_spacer_count=$((dock_spacer_count + 1))
 done
-# }
 
 # Mission Control {
 # * Unckeck "Automatically rearrange Spaces based on most recent use":
 defaults write com.apple.dock mru-spaces -bool false
 # }
+# }
 
 # Language & Region {
 # * Add English (US), Swedish, German
-defaults write NSGlobalDomain AppleLanguages -array en-us sv-se de-de
+# defaults write NSGlobalDomain AppleLanguages -array en-us sv-se de-de
 # * Region: Germany
-defaults write NSGlobalDomain AppleLocale en_DE
+# defaults write NSGlobalDomain AppleLocale en_DE
 # }
 
 # Network {
+## Firewall
+# * Turn on Firewall
 ## CloudflareDNS
 # * Ref: https://developers.cloudflare.com/1.1.1.1/setup/macos/
 # * For each network connection, manually add DNS servers: 1.1.1.1 & 1.0.0.1
@@ -292,36 +286,21 @@ defaults write NSGlobalDomain AppleLocale en_DE
 #	$ sudo networksetup -setdnsservers Wi-Fi 1.1.1.1 1.0.0.1
 # }
 
-# Notifications & Focus {
-## Notifications
-# * Uncheck "Show notification on lock screen" for all apps individually, to not leak notifications.
-# * Calendar.app: disable notifications if using Cron.app
-## Focus
-# * Turn on Do Not Disturb:
-#  - From 22:00 to 08:00
-#  -  When the display is sleeping
-#  -  When mirroring to TVs and projectors
+# Notifications {
 # }
 
-# Security & Privacy {
+# Lock Screen {
+# * Turn display off on battery when inactive: 2 minutes
+# * Turn display off on power adapter when inactive: 10 minutes
+# * Require password after screen saver...: Immediately
+# }
+
+# Privacy & Security {
 ## General
 # * Allow apps downloaded from: Anywhere
 if ! spctl --status 2>/dev/null | grep -q 'assessments disabled'; then
 	run_with_sudo spctl --master-disable
 fi
-# * Check: Require password <immediately> after sleep or screen saver begins
-defaults write com.apple.screensaver askForPassword -int 1
-defaults write com.apple.screensaver askForPasswordDelay -int 0
-## FileVault
-# * Enable FileVault, with recovery key.
-## Firewall
-# * Turn on firewall.
-# Reference: https://superuser.com/a/1641741
-if ! /usr/libexec/ApplicationFirewall/socketfilterfw --getglobalstate 2>/dev/null | grep -qi 'enabled'; then
-	run_with_sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setglobalstate on
-fi
-## Privacy
-# * Apple Advertising > uncheck "Personalize Ads".
 # }
 
 # Display {
@@ -332,31 +311,17 @@ fi
 # }
 
 # Battery {
-## Battery
-# * Turn display off after: 5 min
-## Power Adapter
-# * Turn display off after: 60 min
+## Options
 # * Check "Prevent your mac from automatically sleeping when the display is off"
 # }
 
 # Keyboard {
-## Keyboard
-# * Key Repeat: fastest
-#  Could make it even faster than allowed in System Settings by setting to 0 or 1, but that's too fast. Reference: https://stackoverflow.com/a/4490124
-defaults write NSGlobalDomain KeyRepeat -int 2
-# * Delay Until Repeat: short (2nd most right value)
-defaults write -g InitialKeyRepeat -int 25
+# * Key repeat rate: fastest
+# * Delay until repeat: 2nd most right value
 # * Turn off backlit after: 30 seconds.
-# Non-touchbar MPBs {
-# ** Uncheck "Use F1, F2 etc. keys as standard function keys".
-# }
-# Touchbar MBPs {
-# ** Press FN key to: Show F1, F2, etc Keys.
-# ** Check "Use F1, F2 etc. keys as standard function keys on external keyboards"
-### Customtize Control Strip (button)
-# * Most-right control strip buttons: Play/pause, Volume Slider, Mute, DnD
-# * To the expanded control strip: replace Siri with Sleep button to the very far right.
-# }
+## Text Replacements
+# * Set word expansions based on ~/doc/tech/word_expansions.txt
+## Keyboard Shortcuts
 ### Modifier Keys
 # ** NOTE if need to swap fn and ctrl on internal keyboard, use karabiner-elements.
 # * For internal keyboard:
@@ -366,41 +331,12 @@ defaults write -g InitialKeyRepeat -int 25
 #    (unless the keyboard is an Apple keyboard or has a "mac-switch" toggle):
 #    - Set Option -> Command
 #    - Set Command -> Option
-## Text
-# * Set word expansions based on ~/doc/tech/word_expansions.txt
-# * Spelling: Automatic by Language
-## Shortcuts
 ### Mission Control:
 # * Show Notification Center: Cmd+F11
-# * NOPE Enable shortcuts Ctrl+[1-5] for switching to Desktops. (Need to open 5 spaces for this to show up)
-# * Do not Distrurb on/off: Cmd+F12
-### Input Sources
-# * Enable shortcuts for cycling input sources _backwards_ ("Select the previous input source") with CTRL+OPT+Space.
-# * Check "Select the *previous* input source: ctrl+opt+space.
-# * Uncheck "Select next source"
-### Services
-# * Disable "Text > Open man Page in Terminal" -- annoying
-# * Disable "Text > Search man page Index in Terminal" -- annoying
-### App Shortcuts
-# * Maill.app: The default keyboard shortcut for archive an email, ctrl+cmd+a, conflicts with Todoist. Add another one.
-#	Reference: https://www.lifewire.com/archive-keyboard-shortcut-os-x-mail-1172749
-#   - Application: Maill.app
-#   - Menu Title: Archive
-#   - Keyboard shortcut: opt+a
-# * Put mac to sleep, to use same keyboard shortcut as Jettison when it's not installed
-#   Ref: https://apple.stackexchange.com/a/28168
-#   - Application: All Applications
-#   - Menu Title: Sleep
-#   - Keyboard Shortcut: ctrl+opt+cmd+s
-# Reason: keyboard shorcut clash on SHIFT+OPT with Amethyst's cycle layout.
-## Input Sources
-# * Add US, Swedish & German. NOTE should have been automatically added after adding these languages in Language & Region (AppleLanguages)
-# * Check "Show Input menu in menu bar".
+# * Enable shortcuts Ctrl+[1-5] for switching to Desktops. (Need to open 5 spaces for this to show up + restart System Settings)
 # }
 
 # Mouse {
-# * Uncheck "Scroll Direction: Natural. NOPE use scroll-reverser app instead, to have natural scroll with trackpad and normal scroll with external mouse.
-#defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
 # For setting a new speed, easiest is to set the value in System Settings, then read desired value $(defaults read -g com.apple.mouse...)
 # * Tracking Speed:
 #defaults write -g com.apple.mouse.scaling 0.875  # 1st vertical mouse, 1/2
@@ -415,18 +351,16 @@ defaults write -g com.apple.mouse.doubleClickThreshold 0.8
 # Trackpad {
 ## Point & Click
 # * Check "Tap to click"
-defaults -currentHost write -globalDomain com.apple.mouse.tapBehavior -int 1
 ## More Gestures
-# * Check App Expose
-defaults write com.apple.dock showAppExposeGestureEnabled -bool true
+# * App Expose: Swipe down with three fingers
 # }
 
-# Touch ID {
+# Touch ID & Passwords {
 # * Add a few fingers
 # }
 
 # Sound {
-# * Uncheck "Play sound on startup"
+# * Play sound on startup: uncheck
 # }
 
 # Printers & Scanners {
@@ -493,8 +427,9 @@ defaults write com.apple.archiveutility dearchive-reveal-after -bool false
 # }
 
 # App Store {
+# * Uncheck "Video Autoplay"
 # * Uncheck "In-App Ratings & Reviews"
-defaults write com.apple.AppStore InAppReviewEnabled -bool false
+# defaults write com.apple.AppStore InAppReviewEnabled -bool false
 # }
 
 # Calendar.app {
@@ -515,7 +450,7 @@ defaults write com.apple.AppStore InAppReviewEnabled -bool false
 # * Check "Show week numbers"
 # }
 
-# Finder {
+# Finder.app {
 ## View
 # ** Show Path Bar
 defaults write com.apple.finder ShowPathbar -bool true
@@ -587,11 +522,14 @@ done
 #chflags hidden ~/Public
 # }
 
-# Menu Bar {
+# Notification Center Widgets {
 # * On the notification/widget dropdown (click on clock), keep the following widgets
-#  - Calendar: Month
-#  - Calendar: Up next (M)
-#  - Weather: Forecast (L)
+# - Batteries: Status (S)
+# - Calendar: Month (S)
+# - Calendar: Up next (S)
+# - Forest (iPhone): Today's forest(S)
+# - Weather: Forecast (L)
+# - Screen Time: Daily widget (L)
 # }
 
 # Mail.app {

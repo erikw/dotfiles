@@ -1,4 +1,7 @@
 # macOS Manual Setup
+>
+> [!NOTE]  
+> Notes on config for builti-in app apps: see [macos_config.sh](../bin/macos_config.sh)
 
 ## General System
 
