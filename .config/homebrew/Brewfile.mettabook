@@ -23,6 +23,7 @@
 # }
 
 # Cask: default {
+	cask 'ableton-live-suite' # If using latest version, or use @VER
 	cask 'daisydisk'
 	cask 'gramps'
 	cask 'handbrake'
@@ -37,7 +38,6 @@
 
 # Cask: optional {
 =begin
-	cask 'ableton-live-suite' # If using latest version, which I'm not.
 	cask 'amazon-music'
 	cask 'android-file-transfer'
 	cask 'android-platform-tools'
