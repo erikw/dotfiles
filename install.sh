@@ -375,6 +375,10 @@ step_macos() {
 		/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 	fi
 
+	# ── macOS system configuration ─────────────────────────────────────────
+	log_info "Running macos_config.sh..."
+	"$DOTFILES_DIR/bin/macos_config.sh"
+
 	local brew_bin
 	brew_bin=/opt/homebrew/bin/brew
 	eval "$("$brew_bin" shellenv)"
@@ -383,6 +387,7 @@ step_macos() {
 	brew_prefix="$("$brew_bin" --prefix)"
 
 	# ── Brewfile ────────────────────────────────────────────────────────────
+	# Deps: for Brewfile.$HOSTNAME to be deteced, macos_config.sh must have been run.
 	log_info "Running Brewfile..."
 	brew bundle --file="$DOTFILES_DIR/.config/homebrew/Brewfile"
 
@@ -394,6 +399,7 @@ step_macos() {
 	fi
 
 	# ── Set Homebrew zsh as the login shell ─────────────────────────────────
+	# Deps: Brewfile has been installed
 	# Reference: https://rick.cogley.info/post/use-homebrew-zsh-instead-of-the-osx-default/
 	local brew_zsh="$brew_prefix/bin/zsh"
 	local cur_sh
@@ -442,10 +448,6 @@ step_macos() {
 	else
 		log_info "qlty already installed."
 	fi
-
-	# ── macOS system configuration ─────────────────────────────────────────
-	log_info "Running macos_config.sh..."
-	"$DOTFILES_DIR/bin/macos_config.sh"
 
 	# ── iCloud / macOS convenience symlinks ─────────────────────────────────
 	# These overlay the generic ~/dl and ~/doc dirs created by step_dirs.
@@ -539,8 +541,8 @@ step_crontab() {
 	fi
 
 	install_crontab_header "#dotfiles-install"
-	add_cron_entry "@monthly" "if_fail_do_notification crontab_backup.sh"
-	add_cron_entry "0 13 * * *" "if_fail_do_notification dotfiles_backup_local.sh"
+	add_cron_entry "@monthly" "if_fail_notify crontab_backup.sh"
+	# add_cron_entry "0 13 * * *" "if_fail_notify dotfiles_backup_local.sh"
 	# add_cron_entry "@monthly"   "if_fail_notify spotify-backup.sh"
 }
 
