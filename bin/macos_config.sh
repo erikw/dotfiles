@@ -338,8 +338,6 @@ defaults write com.apple.dock mru-spaces -bool false
 # }
 
 # Privacy & Security {
-## Full Disk Access
-# * Add Ghostty
 ## Security
 # * Allow applications from: App Store & Known Developers
 if ! spctl --status 2>/dev/null | grep -q 'assessments disabled'; then

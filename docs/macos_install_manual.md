@@ -3,79 +3,23 @@
 > [!NOTE]  
 > Notes on config for builti-in app apps: see [macos_config.sh](../bin/macos_config.sh)
 
-## General System
-
-### Brother DCP-7070dw
-
-* **Printer**
-  * Install driver from <https://support.brother.com/g/b/downloadtop.aspx?c=eu_ot&lang=en&prod=dcp7070dw_eu>
-  * System Preferences > Printers & Scanners > + > Add by Bonjour discovery on network
-* **Scanner**: use the "Brother iPrint&Scan" app from App Store, as the ICA driver (Image Capture.app) is not working.
-* If not already the case, make sure lpr uses the default printer:
-
-```sh
-lpstat -p -d
-lpoptions -d Brother_DCP_7070DW
-lpoptions -p Brother_DCP_7070DW  -o PageSize=A4 -o Printing=DuplexNoTumble -o Duplex/Two-Sided=true
-```
-
-Then set default options used for the GUI printing dialog.
-Ref: <https://support.pirateship.com/en/articles/2799085-mac-how-to-change-default-printer-settings>
-
-* Run `cupsctl WebInterface=yes`
-* Go to <http://localhost:631/printers/>, log in with system user and password
-* Select your printer > Dropdown: Set Default Options
-  * Media Size: A4
-  * Two-Sided Printing: Long-Edge Binding
-
-### Sensiblesidebuttons / Sanesidebuttons
-
-* Launch it one time to set right permissions needed.
-* From menu bar icon: hide icon
-* System Settings > General > Login items > add it manually
-
-### Ghostty
+## Ghostty
 
 * System Settings > Privacy & Security:
   * Full Disk Access: enable, to avoid many different permission request popups later
   * Accessibility Features: enable, for global shortcuts to work
 
-### Jettison
+## Custom Fonts
 
-#### Options
-
-* Check: Launch at start
-
-##### Hotkeys
-
-* Eject external disks: Ctrl+Opt+Cmd+E
-* Eject disks and sleep: Ctrl+Opt+Cmd+S
-
-### Custom Fonts
-
-* Open Font Book.app > File > Add Fonts > `~/media/fonts/`
+* Open Font Book.app > File > Add Fonts to Current User > `~/media/fonts/`
   * Skip all fonts with warnings/errors
 
-### Pixelmator Pro
+## Pixelmator Pro
 
-#### General
+### General
 
 * Appearance: Auto
 * New Image contents: transparent
-
-#### Extension
-
-Select "Save to Pictures" instead of iCloud.
-
-### dict.cc Dictionary Plugin
-
-From <https://www.dict.cc/?s=about%3Awordlist&l=e>
-
-To use it:
-
-* Open Dictionary.app > Preferences > enable and move up the preference order of the "Deutsch-Englisch" dictionary.
-
----
 
 ## Shortcuts.app
 
@@ -91,38 +35,16 @@ Import files from ~/bin/shortcuts/
 * Action: Change appearance (set to toggle)
 * Keyboard shortcut: ctrl+opt+cmd+t
 
-## Automator Actions
-
-### Control Center
->
-> TODO: replace this with a native System Preferences shortcut when supported.
-
-* Create an Automator Quick Action named "open_controlcenter" with AppleScript using the contents of `~/bin/automator/open_controlcenter.command`.
-* Bind to shortcut Cmd+F10.
-* For this to work: System Preferences > Security & Privacy > Privacy > Accessibility > allow System Preferences.app.
-
-### Now Playing
->
-> TODO: replace this with a native System Preferences shortcut when supported.
-
-* Create an Automator Quick Action named "open_nowplaying" with AppleScript using the contents of `~/bin/automator/open_nowplaying.command`.
-* Bind to shortcut Cmd+F9.
-* For this to work: System Preferences > Security & Privacy > Privacy > Accessibility > allow System Preferences.app.
-
----
-
-## Development
+## Dash.app
 
 ### General
-
-#### Dash.app
-
-##### General
 
 * Show Dash and focus on search field: Cmd+Shift+D
 * Uncheck "Show dock icon"
 * Check "Show menu bar icon"
-* Sync: set folder `~/dropbox/data/dash/` — own subdir so this can be shared with a work Dropbox account.
+* Sync: set folder `~/iCloud Drive/data/dash/` — own subdir so this can be shared with a work Dropbox account.
+
+## Development
 
 ### C/C++
 
@@ -171,8 +93,6 @@ State of the art:
 * Python version: pyenv, or better with asdf
 * Project dependencies: poetry
 * Global python tools: pipx
-
----
 
 ## DJing
 
@@ -279,3 +199,47 @@ $root/ableton/templates/
 $root/ableton/ableton_template_sets/
 $root/ableton/max/
 ```
+
+---
+
+# Archived
+
+### Brother DCP-7070dw
+
+* **Printer**
+  * Install driver from <https://support.brother.com/g/b/downloadtop.aspx?c=eu_ot&lang=en&prod=dcp7070dw_eu>
+  * System Preferences > Printers & Scanners > + > Add by Bonjour discovery on network
+* **Scanner**: use the "Brother iPrint&Scan" app from App Store, as the ICA driver (Image Capture.app) is not working.
+* If not already the case, make sure lpr uses the default printer:
+
+```sh
+lpstat -p -d
+lpoptions -d Brother_DCP_7070DW
+lpoptions -p Brother_DCP_7070DW  -o PageSize=A4 -o Printing=DuplexNoTumble -o Duplex/Two-Sided=true
+```
+
+Then set default options used for the GUI printing dialog.
+Ref: <https://support.pirateship.com/en/articles/2799085-mac-how-to-change-default-printer-settings>
+
+* Run `cupsctl WebInterface=yes`
+* Go to <http://localhost:631/printers/>, log in with system user and password
+* Select your printer > Dropdown: Set Default Options
+  * Media Size: A4
+  * Two-Sided Printing: Long-Edge Binding
+
+### Sensiblesidebuttons / Sanesidebuttons
+
+* Launch it one time to set right permissions needed.
+* From menu bar icon: hide icon
+* System Settings > General > Login items > add it manually
+
+## Jettison
+
+### Options
+
+* Check: Launch at start
+
+#### Hotkeys
+
+* Eject external disks: Ctrl+Opt+Cmd+E
+* Eject disks and sleep: Ctrl+Opt+Cmd+S
