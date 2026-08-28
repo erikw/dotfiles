@@ -184,7 +184,47 @@ fi
 # * Uncheck "Optimize Mac Storage", so that Time Machine can back up all data.
 # }
 
+# Network {
+## Firewall
+# * Turn on Firewall
+## CloudflareDNS
+# * Ref: https://developers.cloudflare.com/1.1.1.1/setup/macos/
+# * For each network connection, manually add DNS servers: 1.1.1.1 & 1.0.0.1
+# * Could do this kind of, but don't know name of all adapters and dont' want to set for all
+#	$ sudo networksetup -listallnetworkservices
+#	$ sudo networksetup -setdnsservers Wi-Fi 1.1.1.1 1.0.0.1
+# }
+
+# Battery {
+## Options
+# * Check "Prevent your mac from automatically sleeping when the display is off"
+# }
+
 # General {
+# Language & Region {
+# * Add English (US), Swedish, German
+# defaults write NSGlobalDomain AppleLanguages -array en-us sv-se de-de
+# * Region: Germany
+# defaults write NSGlobalDomain AppleLocale en_DE
+# Date format: yyyy-mm-dd
+# }
+
+# Sharing {
+# * Set "Computer Name". Unfortunately different from system hostname (below).
+# * Set computers hostname.
+# Semi-idempotent; assume setting hostname is only desired to do 1 time, and that a default hostname is *.local something.
+if hostname | grep -q .local; then
+	new_hostname=
+	while [ -z "$new_hostname" ]; do
+		echo -n "Enter new computer hostname: "
+		read -r new_hostname
+	done
+	current_hostname=$(scutil --get HostName 2>/dev/null || true)
+	if [ "$current_hostname" != "$new_hostname" ]; then
+		run_with_sudo scutil --set HostName "$new_hostname"
+	fi
+fi
+# }
 # }
 
 # Apearance {
@@ -198,7 +238,55 @@ fi
 ## Extensions
 # Use ChatGPT: check
 # }
+
 # Desktop & Dock {
+# * Add ~/ (Stack, List) and ~/Downloads (Stack, Automatic) to dock.
+# * For dual monitors: For all applications in dock: Right click > Option > assign to correct monitor and desktop.
+
+# Dim hidden apps (CMD+H) in the dock.
+defaults write com.apple.Dock showhidden -boolean yes
+
+# Add two space separators in dock, to organize icons to correspond to which monitor I want them to be open on. Let them be order by the Spaces order too.
+dock_spacer_count=$(defaults read com.apple.dock persistent-apps 2>/dev/null | grep -c spacer-tile || true)
+while [ "$dock_spacer_count" -lt 2 ]; do
+	defaults write com.apple.dock persistent-apps -array-add '{tile-type="small-spacer-tile";}'
+	killall Dock
+	dock_spacer_count=$((dock_spacer_count + 1))
+done
+
+# Mission Control {
+# * Unckeck "Automatically rearrange Spaces based on most recent use":
+defaults write com.apple.dock mru-spaces -bool false
+# }
+# }
+
+# Display {
+# * Move the white menu bar to the main monitor, so notifications etc. comes on it.
+# * Check "Show mirroring options in the menu bar when available".
+## Night Shift
+# * Schedule: Sunset to Sunrise
+# }
+
+# Menu Bar {
+## Menu bar controlls (add to Control Center)
+# - Sounds: Recognize music (Shazam)
+# - Notes: Quick Note
+# - Budget Flow: Add new expense
+## Menu bar items to show (not mentioned = disabled)
+# - Wi-Fi: check
+# - Battery: check
+# - Focus: when active
+# - Screen Mirroring: when active
+# - Display: when active
+# - Sound: always
+# - Text Input: check
+# - Time Machine: check
+# - Timer: when active
+# }
+
+# Spotlight {
+# Help Apple Improve Search: uncheck
+# Clipboard history is available in Spotlight: 7 days
 # }
 
 # Wallpaper {
@@ -236,69 +324,11 @@ fi
 # defaults write com.apple.dock wvous-br-modifier -int 0
 # }
 
-# Menu Bar {
-## Menu bar controlls (add to Control Center)
-# - Sounds: Recognize music (Shazam)
-# - Notes: Quick Note
-# - Budget Flow: Add new expense
-## Menu bar items to show (not mentioned = disabled)
-# - Wi-Fi: check
-# - Battery: check
-# - Focus: when active
-# - Screen Mirroring: when active
-# - Display: when active
-# - Sound: always
-# - Text Input: check
-# - Time Machine: check
-# - Timer: when active
-# }
-
-# Spotlight {
-# Help Apple Improve Search: uncheck
-# Clipboard history is available in Spotlight: 7 days
-# }
-
-# Desktop & Dock {
-# * Add ~/ (Stack, List) and ~/Downloads (Stack, Automatic) to dock.
-# * For dual monitors: For all applications in dock: Right click > Option > assign to correct monitor and desktop.
-
-# Dim hidden apps (CMD+H) in the dock.
-defaults write com.apple.Dock showhidden -boolean yes
-
-# Add two space separators in dock, to organize icons to correspond to which monitor I want them to be open on. Let them be order by the Spaces order too.
-dock_spacer_count=$(defaults read com.apple.dock persistent-apps 2>/dev/null | grep -c spacer-tile || true)
-while [ "$dock_spacer_count" -lt 2 ]; do
-	defaults write com.apple.dock persistent-apps -array-add '{tile-type="small-spacer-tile";}'
-	killall Dock
-	dock_spacer_count=$((dock_spacer_count + 1))
-done
-
-# Mission Control {
-# * Unckeck "Automatically rearrange Spaces based on most recent use":
-defaults write com.apple.dock mru-spaces -bool false
-# }
-# }
-
-# Language & Region {
-# * Add English (US), Swedish, German
-# defaults write NSGlobalDomain AppleLanguages -array en-us sv-se de-de
-# * Region: Germany
-# defaults write NSGlobalDomain AppleLocale en_DE
-# Date format: yyyy-mm-dd
-# }
-
-# Network {
-## Firewall
-# * Turn on Firewall
-## CloudflareDNS
-# * Ref: https://developers.cloudflare.com/1.1.1.1/setup/macos/
-# * For each network connection, manually add DNS servers: 1.1.1.1 & 1.0.0.1
-# * Could do this kind of, but don't know name of all adapters and dont' want to set for all
-#	$ sudo networksetup -listallnetworkservices
-#	$ sudo networksetup -setdnsservers Wi-Fi 1.1.1.1 1.0.0.1
-# }
-
 # Notifications {
+# }
+
+# Sound {
+# * Play sound on startup: uncheck
 # }
 
 # Lock Screen {
@@ -317,16 +347,11 @@ if ! spctl --status 2>/dev/null | grep -q 'assessments disabled'; then
 fi
 # }
 
-# Display {
-# * Move the white menu bar to the main monitor, so notifications etc. comes on it.
-# * Check "Show mirroring options in the menu bar when available".
-## Night Shift
-# * Schedule: Sunset to Sunrise
+# Touch ID & Passwords {
+# * Add a few fingers
 # }
 
-# Battery {
-## Options
-# * Check "Prevent your mac from automatically sleeping when the display is off"
+# Internet Accounts {
 # }
 
 # Keyboard {
@@ -369,37 +394,9 @@ defaults write -g com.apple.mouse.doubleClickThreshold 0.8
 # * App Expose: Swipe down with three fingers
 # }
 
-# Touch ID & Passwords {
-# * Add a few fingers
-# }
-
-# Sound {
-# * Play sound on startup: uncheck
-# }
-
 # Printers & Scanners {
 # Automatically quit printer app once the print jobs complete.
 defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
-# }
-
-# Internet Accounts {
-# }
-
-# Sharing {
-# * Set "Computer Name". Unfortunately different from system hostname (below).
-# * Set computers hostname.
-# Semi-idempotent; assume setting hostname is only desired to do 1 time, and that a default hostname is *.local something.
-if hostname | grep -q .local; then
-	new_hostname=
-	while [ -z "$new_hostname" ]; do
-		echo -n "Enter new computer hostname: "
-		read -r new_hostname
-	done
-	current_hostname=$(scutil --get HostName 2>/dev/null || true)
-	if [ "$current_hostname" != "$new_hostname" ]; then
-		run_with_sudo scutil --set HostName "$new_hostname"
-	fi
-fi
 # }
 # }
 
