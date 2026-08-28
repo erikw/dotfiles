@@ -22,6 +22,7 @@
 .config/go/telemetry/
 .config/grip/cache-*
 .config/gtk-2.0/
+.config/homebrew/trust.json.lock
 .config/htop/
 .config/ipython/
 .config/irb/irb_history
