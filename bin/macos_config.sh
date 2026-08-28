@@ -332,6 +332,8 @@ defaults write com.apple.dock mru-spaces -bool false
 # }
 
 # Notifications {
+## Notifications & Live Activities
+# * Allow notifications from iPhone: check
 # }
 
 # Sound {
@@ -411,6 +413,7 @@ defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
 ## Actions shortcuts
 # * New Reminder: nr
 # }
+
 # Archive Util.app {
 # * Uncheck "Reveal expanded items in Finder"
 # }
