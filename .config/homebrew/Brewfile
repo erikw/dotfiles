@@ -249,7 +249,6 @@
 	cask 'prey'
 	cask 'pycharm-ce'
 	cask 'qr-journal'
-	cask 'rectangle'
 	cask 'sanesidebuttons' # Need to manually add it to System Preferences > Users & Groups > Login items. More powerful alt: mac-mouse-fix
 	cask 'scroll-reverser'
 	cask 'semulov'

@@ -201,10 +201,11 @@ step_dirs() {
 		"$HOME/.local/share/gnupg" # GNUPGHOME must be 0700 or gpg refuses to use it
 	)
 	local -a normal_dirs=(
-		"$HOME/pub"
 		"$HOME/src"
 		"$HOME/tmp"
 	)
+	# macOS has ~/Public already
+	is_macos || normal_dirs+=("$HOME/pub")
 	# ~/dl is managed as a symlink to ~/Downloads on macOS; don't create it as a real dir.
 	is_macos || normal_dirs+=("$HOME/dl")
 

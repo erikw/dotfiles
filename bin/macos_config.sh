@@ -192,6 +192,12 @@ fi
 # defaults write NSGlobalDomain AppleInterfaceStyleSwitchesAutomatically -bool true
 # }
 
+# Apple Intelligence & Siri {
+# Listen for: Sir & Hey Siri
+# Keyboard shortcut: press cmd twice
+## Extensions
+# Use ChatGPT: check
+# }
 # Desktop & Dock {
 # }
 
@@ -247,6 +253,11 @@ fi
 # - Timer: when active
 # }
 
+# Spotlight {
+# Help Apple Improve Search: uncheck
+# Clipboard history is available in Spotlight: 7 days
+# }
+
 # Desktop & Dock {
 # * Add ~/ (Stack, List) and ~/Downloads (Stack, Automatic) to dock.
 # * For dual monitors: For all applications in dock: Right click > Option > assign to correct monitor and desktop.
@@ -273,6 +284,7 @@ defaults write com.apple.dock mru-spaces -bool false
 # defaults write NSGlobalDomain AppleLanguages -array en-us sv-se de-de
 # * Region: Germany
 # defaults write NSGlobalDomain AppleLocale en_DE
+# Date format: yyyy-mm-dd
 # }
 
 # Network {
@@ -296,8 +308,10 @@ defaults write com.apple.dock mru-spaces -bool false
 # }
 
 # Privacy & Security {
-## General
-# * Allow apps downloaded from: Anywhere
+## Full Disk Access
+# * Add Ghostty
+## Security
+# * Allow applications from: App Store & Known Developers
 if ! spctl --status 2>/dev/null | grep -q 'assessments disabled'; then
 	run_with_sudo spctl --master-disable
 fi
@@ -369,28 +383,6 @@ defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
 # }
 
 # Internet Accounts {
-# * Add Google account to get: Calendar, Contacts, mail etc.
-# }
-
-# Software Update {
-# * Check "Automatically keep my Mac up to date".
-# }
-
-# Bluetooth {
-# }
-
-# Users & Groups {
-# * Drag`n'drop a picture on to my profile.
-# }
-
-# Date & Time {
-# }
-
-# Accessibility {
-## Zoom
-# * Check "Use keyboard shortcuts to zoom".
-# * Select Zoom style: Picture-in-picture
-# ** Advanced > Controls tab > Uncheck "Hold Ctrl+Opt to temporarily toggle zoom" as this interferece with shortcut to toggle input language, and leave mouse cursor hidden after toggling input source.
 # }
 
 # Sharing {
@@ -408,16 +400,6 @@ if hostname | grep -q .local; then
 		run_with_sudo scutil --set HostName "$new_hostname"
 	fi
 fi
-
-# * If want SMB file sharing:
-#  - Check File Sharing
-#  - add ~/pub folder
-#  - Click Options and enable current user
-# }
-
-# Passwords {
-## Password Optons
-# * Disable "AutoFill passwords" to stop getting strong password suggestions in Safari, conflicting with password manager. Ref:https://discussions.apple.com/thread/252704886
 # }
 # }
 
