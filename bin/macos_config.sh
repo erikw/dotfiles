@@ -225,6 +225,13 @@ if hostname | grep -q .local; then
 	fi
 fi
 # }
+
+# Time Machine {
+# * Partition the disk with APFS (Case-sensitive, Encrypted) and with GUID partition map.
+# * Exclude the following paths
+#	* ~/.cache/
+#	* ~/Library/Caches/
+# }
 # }
 
 # Apearance {
@@ -400,6 +407,10 @@ defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
 # }
 # }
 
+# Spotlight {
+## Actions shortcuts
+# * New Reminder: nr
+# }
 # Archive Util.app {
 # * Uncheck "Reveal expanded items in Finder"
 # }
