@@ -35,6 +35,18 @@ Import files from ~/bin/shortcuts/
 * Action: Change appearance (set to toggle)
 * Keyboard shortcut: ctrl+opt+cmd+t
 
+### Eject all disks (replaces Jettison)
+
+* Action: Run Shell Script
+
+  ```bash
+    diskutil list external physical | awk '/^\/dev\/disk/ {print $1}' | while read disk; do
+      diskutil unmountDisk "$disk"
+    done
+  ```
+
+* Keyboard shortcut: ctrl+shift+opt+cmd+e
+
 ## Dash.app
 
 ### General
