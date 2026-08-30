@@ -47,6 +47,10 @@ Import files from ~/bin/shortcuts/
 
 * Keyboard shortcut: ctrl+opt+cmd+e
 
+## Chrome.app
+
+* Chrome (native menu) > Uncheck "Warn Before Quitting cmd+Q"
+
 ## Dash.app
 
 ### General

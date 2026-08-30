@@ -489,6 +489,8 @@ defaults write com.apple.finder NewWindowTargetPath -string "file://$HOME/"
 # Junk Mail
 # * Check "Enable Junk mail filtering"
 # * When junk mail arrives: Move it to the Junk mailbox
+### Viewing
+# * Check "Automatically view next message after discarding or archiving a message"
 ### Signatures
 # * Add new signature "Standard".
 # }

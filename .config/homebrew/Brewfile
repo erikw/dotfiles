@@ -221,7 +221,6 @@
 	cask 'gitify'
 	cask 'google-drive'
 	cask 'gpg-suite'
-	cask 'grammarly-desktop'
 	cask 'handbrake'
 	cask 'inkscape'
 	cask 'insomnia'
@@ -280,6 +279,7 @@
 	mas 'DaftCloud', id: 1320450034
 	mas 'Overlap', id: 1_516_950_324
 	mas 'WorkingHours', id: 1_495_643_653
+	mas 'Grammarly: AI Writing App', id: 1462114288
 
 	# Safari extensions:
 	# mas 'Polyglot', id: 1_471_801_525 # Currently broken: https://github.com/uetchy/Polyglot/issues/141
@@ -295,7 +295,6 @@
 	mas 'Consent-O-Matic', id: 1_606_897_889
 	mas 'Downcast', id: 668429425
 	mas 'GamePad Companion', id: 428799479
-	mas 'Grammarly for Safari', id: 1_462_114_288
 	mas 'InstaRemind', id: 1_492_317_385
 	mas 'Irvue', id: 1039633667
 	mas 'Microsoft To Do', id: 1274495053
