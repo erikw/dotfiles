@@ -184,6 +184,7 @@
 	cask 'copilot-cli'
 	cask 'ghostty'
 	cask 'google-chrome'
+	cask 'grammarly-desktop'
 	cask 'keepingyouawake'
 	cask 'keka'
 	cask 'macfolket'
