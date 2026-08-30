@@ -45,7 +45,7 @@ Import files from ~/bin/shortcuts/
     done
   ```
 
-* Keyboard shortcut: ctrl+shift+opt+cmd+e
+* Keyboard shortcut: ctrl+opt+cmd+e
 
 ## Dash.app
 
