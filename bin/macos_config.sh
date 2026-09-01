@@ -432,6 +432,10 @@ defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
 # }
 
 # Finder.app {
+## Set default apps for file extensions
+# * VimR: txt, md, yml
+# * VLC: mp3, m4a
+
 ## View
 # * Show Path Bar
 # * Show Status Bar
