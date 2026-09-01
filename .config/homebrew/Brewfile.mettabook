@@ -54,6 +54,7 @@
 
 # Mas: default {
 # Prefer Mas over cask, as security fixes gets pushed out faster on the App Store.
+	mas 'Aiko', id: 1672085276
 	mas 'Amazon Prime Video', id: 545519333
 	mas 'Budget Flow', id: 1640091876
 	mas 'Exporter', id: 1099120373

@@ -51,6 +51,12 @@ Import files from ~/bin/shortcuts/
 
 * Chrome (native menu) > Uncheck "Warn Before Quitting cmd+Q"
 
+## KeepingYouAwake.app
+
+### Advanced
+
+* Check "Allow the display to sleep" as I use this for long-running GUI processes.
+
 ## Dash.app
 
 ### General
@@ -146,9 +152,13 @@ Download from <https://www.ableton.com/en/account/>
 
 Set root path: `root=/Volumes/ext0/daw/`
 
-#### Look and Feel
+#### Display & Input
 
-* Theme: Dark
+* Zoom: 110%
+
+#### Theme & Colors
+
+* Theme: Classic Medium Dark
 
 #### Audio
 
@@ -203,6 +213,10 @@ Use Custom Paths for personal install paths; keep manuals etc in `$root/plugins/
 * Use VST3 Plug-In System Folder: true
 * Use VST3 Plug-In Custom Folder: true
 * VST3 Plug-In Custom Folder: `$root/plugins/VST3/`
+
+#### Plug-Ins
+
+* Auto-Warp Long Samples: off
 
 #### Other
 

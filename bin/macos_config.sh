@@ -197,7 +197,8 @@ fi
 
 # Battery {
 ## Options
-# * Check "Prevent your mac from automatically sleeping when the display is off"
+# * NOPE Check "Prevent your mac from automatically sleeping when the display is off"
+#	* Leave this off and instead for GUI programs use KeepingYouAwake and cli programs $(caffeinate -i ...)
 # }
 
 # General {
@@ -481,7 +482,7 @@ defaults write com.apple.finder NewWindowTargetPath -string "file://$HOME/"
 # }
 
 # Mail.app {
-# * Toolbar, arrange to: <archive|trash|spam> <space> <Get New><New mail> <space> <reply|reply-all|forward> <space> <search>
+# * Toolbar, arrange to: <archive><trash> <space> <Get New><New mail> <space> <reply|reply-all|forward> <space> <search>
 # * In the New Mail window toolbar, click Aa to activate formatting options.
 ## Settings
 ### General
