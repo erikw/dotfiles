@@ -357,6 +357,7 @@ fi
 
 # Touch ID & Passwords {
 # * Add a few fingers
+# * Enable unlock with Apple Watch
 # }
 
 # Internet Accounts {

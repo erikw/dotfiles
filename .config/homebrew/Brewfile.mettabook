@@ -26,7 +26,7 @@
 	cask 'ableton-live-suite' # If using latest version, or use @VER
 	cask 'daisydisk'
 	cask 'gramps'
-	cask 'handbrake'
+	cask 'handbrake-app'
 	cask 'kid3'  # MP3 metadata editor
 	cask 'mactex'
 	cask 'netnewswire'

@@ -3,18 +3,22 @@
 > [!NOTE]  
 > Notes on config for builti-in app apps: see [macos_config.sh](../bin/macos_config.sh)
 
-## Ghostty
-
-* System Settings > Privacy & Security:
-  * Full Disk Access: enable, to avoid many different permission request popups later
-  * Accessibility Features: enable, for global shortcuts to work
-
 ## Custom Fonts
 
 * Open Font Book.app > File > Add Fonts to Current User > `~/media/fonts/`
   * Skip all fonts with warnings/errors
 
-## Pixelmator Pro
+## Ghostty.app
+
+* System Settings > Privacy & Security:
+  * Full Disk Access: enable, to avoid many different permission request popups later
+  * Accessibility Features: enable, for global shortcuts to work
+
+## VimR.app
+
+* System Settings > Privacy & Security > Full Disk Access: check
+
+## Pixelmator Pro.app
 
 ### General
 
