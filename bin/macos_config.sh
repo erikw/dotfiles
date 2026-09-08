@@ -463,6 +463,7 @@ defaults write com.apple.finder NewWindowTargetPath -string "file://$HOME/"
 ### Favorites
 # - ~/
 # - ~/Downloads
+# - ~/Documents
 # - ~/media/images/screenshots/
 # - ~/src/github.com/
 # - ~/media/
@@ -470,6 +471,7 @@ defaults write com.apple.finder NewWindowTargetPath -string "file://$HOME/"
 # - ~/media/music/🎙️ BTB Podcast/
 # - ~/media/music/daw/ableton/
 # - /Applications
+# - /tmp
 # - ~/.config/finder/---------/
 
 ## Desktop
@@ -498,7 +500,7 @@ defaults write com.apple.finder NewWindowTargetPath -string "file://$HOME/"
 ### Viewing
 # * Check "Automatically view next message after discarding or archiving a message"
 ### Signatures
-# * Add new signature "Standard".
+# * Choose Signature: iCloud
 # }
 
 # Music.app {
@@ -540,7 +542,7 @@ defaults write com.apple.Terminal ShellExitAction -int 1
 # Safari.app {
 # View
 # * Click "Show favorites bar"
-# Customized Toolbar:
+# Customized Toolbar on the right of address field to: Downloads, iCloud tabs, Tab overview, New tab
 # * Add Icloud Tabs button
 ## Preferences
 ### General
