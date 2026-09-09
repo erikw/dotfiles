@@ -50,3 +50,7 @@
 .config/zsh/.zsh_funcs/_netlify
 .config/zsh/.zsh_funcs/_poetry
 .config/zsh/env.local
+.config/nvim/spell/*.spl
+.config/nvim/spell/*.sug
+.config/vim/spell/*.spl
+.config/vim/spell/*.sug
