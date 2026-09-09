@@ -714,6 +714,12 @@ return {
     --{'erikw/jcommenter.vim', ft = { 'java' } },    -- Generate javadoc.
     -- }}
 
+    -- Development: Markdown {{
+
+    { "bullets-vim/bullets.vim", ft = { "markdown", "text" } }, -- Auto-insert bullet point on <cr>
+
+    -- }}
+
     -- Development: LaTeX {{
     --{'donRaphaco/neotex', ft = { 'tex' } },  -- Live preview PDF output from latex.
     -- }}
