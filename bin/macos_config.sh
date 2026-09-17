@@ -281,7 +281,6 @@ defaults write com.apple.dock mru-spaces -bool false
 # - Notes: Quick Note
 # - Budget Flow: Add new expense
 ## Menu bar items to show (not mentioned = disabled)
-# - Wi-Fi: check
 # - Battery: check
 # - Focus: when active
 # - Screen Mirroring: when active
