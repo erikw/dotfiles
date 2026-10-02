@@ -22,6 +22,7 @@
 .config/go/telemetry/
 .config/grip/cache-*
 .config/gtk-2.0/
+.config/homebrew/trust.json
 .config/homebrew/trust.json.lock
 .config/htop/
 .config/ipython/
@@ -31,6 +32,8 @@
 .config/irssi/nicklistfifo
 .config/iterm2/
 .config/nvim/plugin/packer_compiled.lua
+.config/nvim/spell/*.spl
+.config/nvim/spell/*.sug
 .config/pudb/internal-cmdline-history.txt
 .config/pudb/saved-breakpoints-*
 .config/subversion/
@@ -43,6 +46,8 @@
 .config/vim/after/ftplugin/markdown/instant-markdown.vim
 .config/vim/autoload/plug.vim
 .config/vim/fuf-data/
+.config/vim/spell/*.spl
+.config/vim/spell/*.sug
 .config/vscode-dev-containers/
 .config/wireshark/
 .config/yarn/config
@@ -50,7 +55,3 @@
 .config/zsh/.zsh_funcs/_netlify
 .config/zsh/.zsh_funcs/_poetry
 .config/zsh/env.local
-.config/nvim/spell/*.spl
-.config/nvim/spell/*.sug
-.config/vim/spell/*.spl
-.config/vim/spell/*.sug

@@ -6,11 +6,11 @@
 
 # Taps {
 	#tap 'homebrew/cask-drivers' # For focusrite-control
+	tap 'maykonlsf/semver-cli' # For semver-cli, needed for tmux-powerline
 # }
 
 # Formula: default {
 	brew 'ffmpeg' # Dependency for yt-dlp
-	brew 'semver' # For tmux-powerline
 	brew 'yt-dlp'
 # }
 #
@@ -30,6 +30,7 @@
 	cask 'kid3'  # MP3 metadata editor
 	cask 'mactex'
 	cask 'netnewswire'
+	cask 'semver-cli' # For tmux-powerline
 	cask 'send-to-kindle'
 	cask 'signal'
 	cask 'spotify'
