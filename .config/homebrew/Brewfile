@@ -202,7 +202,6 @@
 	cask 'bankid'
 	cask 'burn'
 	cask 'cheatsheet'
-	cask 'chrysalis' # Configurator for Atreus keyboard.
 	cask 'clipy' # If needed, could replace with https://github.com/p0deje/Maccy even though pinned items not exactly like snippets
 	cask 'colloquy'
 	cask 'cron'
