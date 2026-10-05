@@ -458,6 +458,7 @@ step_macos() {
 	create_or_replace_symlink ~/Documents "$HOME/doc"
 	create_or_replace_symlink "$icloud" "$HOME/icloud"
 	create_or_replace_symlink "$icloud/bak" "$HOME/bak"
+	create_or_replace_symlink "$icloud/edu" "$HOME/edu"
 	create_or_replace_symlink "$icloud/media" "$HOME/media"
 	create_or_replace_symlink "$icloud/work" "$HOME/work"
 }
