@@ -369,6 +369,8 @@ fi
 ## Text Replacements
 # * Set word expansions based on ~/doc/tech/word_expansions.txt
 ## Keyboard Shortcuts
+### App Shortcuts
+# * Safari.app: "Export as PDF..." bind to cmd+shift+p
 ### Modifier Keys
 # ** NOTE if need to swap fn and ctrl on internal keyboard, use karabiner-elements.
 # * For internal keyboard:
