@@ -370,7 +370,9 @@ fi
 # * Set word expansions based on ~/doc/tech/word_expansions.txt
 ## Keyboard Shortcuts
 ### App Shortcuts
-# * Safari.app: "Export as PDF..." bind to cmd+shift+p
+# * Safari.app:
+#	*"Export as PDF..." bind to cmd+shift+p
+#	*"Dupliate Tab" bind to opt+d
 ### Modifier Keys
 # ** NOTE if need to swap fn and ctrl on internal keyboard, use karabiner-elements.
 # * For internal keyboard:

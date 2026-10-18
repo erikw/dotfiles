@@ -13,6 +13,7 @@
 .config/claude/
 .config/configstore/
 .config/dlv/.dbg_history
+.config/enchant/
 .config/fzf-marks/marks
 .config/fzf/
 .config/gcloud/

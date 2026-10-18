@@ -463,7 +463,7 @@ export TMUX_POWERLINE_SEG_VCS_BRANCH_SVN_SYMBOL_COLOUR="220"
 
 # weather.sh {
 # The data provider to use. Currently only "yrno" is supported.
-export TMUX_POWERLINE_SEG_WEATHER_DATA_PROVIDER="yrno"
+export TMUX_POWERLINE_SEG_WEATHER_DATA_PROVIDER="met"
 # What unit to use. Can be any of {c,f,k}.
 export TMUX_POWERLINE_SEG_WEATHER_UNIT="c"
 # How often to update the weather in seconds.
