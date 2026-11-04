@@ -554,7 +554,7 @@ defaults write com.apple.Terminal ShellExitAction -int 1
 # * Remove history items: manually
 # * Uncheck "Open safe files after downloading"
 ### Tabs
-# * Organize tabs: Automatically Create Topics
+# * Organize tabs: Show Related Tabs
 ### Advanced
 # * Check "Show features for web developers"
 # }
