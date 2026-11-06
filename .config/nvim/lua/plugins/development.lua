@@ -405,8 +405,12 @@ return {
                 "vimls", -- Vimscript
                 "lua_ls", -- Lua
             },
-            -- automatic_enable = true is the default: mason-lspconfig calls
-            -- vim.lsp.enable() for every installed server automatically.
+            -- Keep the Mason-installed ruby_lsp enabled, but not RuboCop. RuboCop
+            -- is intentionally managed by mise so project cops and its server do
+            -- not conflict with Mason's isolated gem environment.
+            automatic_enable = {
+                exclude = { "rubocop" },
+            },
         },
     },
 
@@ -425,6 +429,14 @@ return {
                 underline = true,
                 update_in_insert = false,
             })
+
+            -- Neovim 0.12's native :lsp command makes nvim-lspconfig omit this
+            -- legacy alias. Keep it for the established LSP health workflow.
+            if vim.fn.exists(":LspInfo") == 0 then
+                vim.api.nvim_create_user_command("LspInfo", "checkhealth vim.lsp", {
+                    desc = "Show LSP health information",
+                })
+            end
 
             -- Wire blink.cmp's extended capabilities (snippetSupport, resolveSupport, etc.)
             -- into every LSP server. Must run before any server starts.
