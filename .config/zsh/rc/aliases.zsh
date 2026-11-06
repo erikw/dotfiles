@@ -75,49 +75,49 @@
 
 # Desktop Environment specific {{
 case $DESKTYPE in
-	kde)
-		alias open='kde-open'
-		# Log out
-		alias xlogout='qdbus org.kde.ksmserver /KSMServer org.kde.KSMServerInterface.logout 0 0 2'
-		alias afk='qdbus org.kde.screensaver /ScreenSaver org.freedesktop.ScreenSaver.SetActive true > /dev/null'
-		# Empty KDE trash folders.
-		alias emptytrash='rm -rf ~/.local/share/Trash/info/* ~/.local/share/Trash/files/*'
-		alias standby='systemctl suspend'
-		;;
-	gnome)
-		alias open='gnome-open'
-		alias xlogout='gnome-session-save --force-logout'
-		alias standby='systemctl suspend'
-		;;
-	mate)
-		alias open='mate-open'
-		alias xlogout='mate-session-save --force-logout'
-		;;
-	openbox)
-		alias open='thunar'
-		alias xlogout='openbox-logout'
-		;;
-	dwm)
-		alias open='xdg-open'						# Open files.
-		alias afk='xscreensaver-command -lock'		# Start screensaver.
-		alias xlogout='pkill -f startdwm.sh'
-		alias afk='slimlock'
-		alias standby='systemctl suspend'
-		;;
-	macos)
-		alias afk='/System/Library/CoreServices/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine'
-		alias standby='pmset sleepnow'
+kde)
+	alias open='kde-open'
+	# Log out
+	alias xlogout='qdbus org.kde.ksmserver /KSMServer org.kde.KSMServerInterface.logout 0 0 2'
+	alias afk='qdbus org.kde.screensaver /ScreenSaver org.freedesktop.ScreenSaver.SetActive true > /dev/null'
+	# Empty KDE trash folders.
+	alias emptytrash='rm -rf ~/.local/share/Trash/info/* ~/.local/share/Trash/files/*'
+	alias standby='systemctl suspend'
+	;;
+gnome)
+	alias open='gnome-open'
+	alias xlogout='gnome-session-save --force-logout'
+	alias standby='systemctl suspend'
+	;;
+mate)
+	alias open='mate-open'
+	alias xlogout='mate-session-save --force-logout'
+	;;
+openbox)
+	alias open='thunar'
+	alias xlogout='openbox-logout'
+	;;
+dwm)
+	alias open='xdg-open'                  # Open files.
+	alias afk='xscreensaver-command -lock' # Start screensaver.
+	alias xlogout='pkill -f startdwm.sh'
+	alias afk='slimlock'
+	alias standby='systemctl suspend'
+	;;
+macos)
+	alias afk='/System/Library/CoreServices/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine'
+	alias standby='pmset sleepnow'
 
 	# Show or hide dotfiles in Finder.app.
 	alias mac_showhidden='defaults write com.apple.finder AppleShowAllFiles TRUE; killall Finder'
 	alias mac_hidehidden='defaults write com.apple.finder AppleShowAllFiles FALSE; killall Finder'
 
-	alias mac_emptytrash='rm -rf ~/.Trash/*'		# Empty trash bin.
-	alias mac_app_store_apps="find /Applications \-maxdepth 4 \-path '*Contents/_MASReceipt/receipt' -print |\sed 's#.app/Contents/_MASReceipt/receipt#.app#g; s#/Applications/##'"		# List apps installed from App Store.
+	alias mac_emptytrash='rm -rf ~/.Trash/*'                                                                                                                                        # Empty trash bin.
+	alias mac_app_store_apps="find /Applications \-maxdepth 4 \-path '*Contents/_MASReceipt/receipt' -print |\sed 's#.app/Contents/_MASReceipt/receipt#.app#g; s#/Applications/##'" # List apps installed from App Store.
 	;;
 *)
-	alias open='xdg-open'						# Open files.
-	alias afk='xscreensaver-command -lock'		# Start screensaver.
+	alias open='xdg-open'                  # Open files.
+	alias afk='xscreensaver-command -lock' # Start screensaver.
 	;;
 esac
 # }}
@@ -128,7 +128,7 @@ esac
 #	# auto colors/icons, and stable ISO-style timestamps.
 #	alias ls='eza --group-directories-first --icons=auto --color=auto --time-style=long-iso'
 # elif (( $+commands[lsd] )); then
-if (( $+commands[lsd] )); then
+if (($+commands[lsd])); then
 	alias ls=lsd
 else
 	LS_OPTIONS=()
@@ -138,7 +138,7 @@ else
 	# List with colors when output is terminal.
 	LS_OPTIONS+=(--color=auto)
 
-	if shell_is_macos && (( $+commands[gls] )); then
+	if shell_is_macos && (($+commands[gls])); then
 		# Still need to set alias with options, https://superuser.com/a/670563/42070.
 		# Note that for coreutil ls to have color output, dircolors must be evalued.
 		alias ls="gls ${LS_OPTIONS[*]}"
@@ -154,22 +154,22 @@ alias grep="grep --color=auto"
 # Force color e.g. to use when piping to less.
 alias grepc='grep --color=always'
 
-if (( $+commands[colordiff] )); then
+if (($+commands[colordiff])); then
 	alias cdiff='colordiff'
 fi
 
 # Use colored du if exists.
-if (( $+commands[cdu] )); then
+if (($+commands[cdu])); then
 	alias du='cdu -idh'
 fi
 
 # Make colors.
 #if has_command colormake; then
-	#alias make='colormake'
+#alias make='colormake'
 #fi
 
 # Compile with dem colors.
-if (( $+commands[gcc] )); then
+if (($+commands[gcc])); then
 	alias gcc="gcc -fdiagnostics-color=auto"
 fi
 
@@ -178,8 +178,8 @@ fi
 # Coreutils {{
 # Hand-picked tools that we use use instead of the basic BSD versions in macOS
 # AVOID gfind, ggrep as they can break source compilation builds.
-if shell_is_macos && (( $+commands[grm] )); then
-	alias rm='grm'	# The BSD version can't append arguments after filenames.
+if shell_is_macos && (($+commands[grm])); then
+	alias rm='grm' # The BSD version can't append arguments after filenames.
 fi
 #
 # }}
@@ -207,29 +207,29 @@ done
 # cd-bookmark {{
 # Bashmark-style aliases
 #if [ -e $XDG_CONFIG_HOME/cd-bookmark/bookmarks ]; then
-	#alias g='cd-bookmark -c'
-	#alias s='cd-bookmark -a'
-	#alias l='cd-bookmark -l'
-	#alias e='cd-bookmark -e'
-	#alias p='cd-bookmark -p'
-	#alias d='cd-bookmark -d'
+#alias g='cd-bookmark -c'
+#alias s='cd-bookmark -a'
+#alias l='cd-bookmark -l'
+#alias e='cd-bookmark -e'
+#alias p='cd-bookmark -p'
+#alias d='cd-bookmark -d'
 #fi
 # }}
 
 # fzf-marks {{
 # Bashmark style aliases
-if (( $+functions[fzm] )); then
+if (($+functions[fzm])); then
 	alias g='fzm'
 	alias s='mark'
 	alias e="vi $FZF_MARKS_FILE"
 	alias l="sort $FZF_MARKS_FILE"
 	alias d='fzf_marks_delete' # My custom zsh function.
-	alias p='fzf_marks_print' # My custom zsh function.
+	alias p='fzf_marks_print'  # My custom zsh function.
 fi
 # }}
 
 # Libreoffice {{
-if (( $+commands[libreoffice] )); then
+if (($+commands[libreoffice])); then
 	for app in base calc draw impress math writer; do
 		alias l$app="libreoffice --$app"
 	done
@@ -237,83 +237,84 @@ fi
 # }}
 
 # Vim {{
-if (( $+commands[nvim] )); then
+if (($+commands[nvim])); then
 	alias vi='nvim'
 	alias view='nvim -R'
 	alias nview='nvim -R'
 	alias nvimdiff='nvim -d'
 	alias nvimplain="vim -u NONE -i NONE"
-	alias nvim_clean='rm -rf ${XDG_DATA_HOME:-$HOME/.local/share}/nvim/{.netrwhist,shada,swap,undo,view}/ ${XDG_CACHE_HOME:-$HOME/.cache}/nvim/'		# It's a new-start!
-	alias vis='nvim -c OpenSession'  # Load ticket.vim session on start.
-elif (( $+commands[vim] )); then
-	alias vi='vim'						# Be IMproved.
-	alias view='vim -R'					# Not all distributions of Vim provide the readonly bin.
-	alias viplain="vim -u NONE -i NONE"				# Start wiht without reading ~/.vimrc and using ~/.viminfo.
-	alias vim_clean='rm -rf ~/.vim/{.netrwhist,fuf-data,swap,view,viminfo,yankring_v2.txt} ~/.vim/undo/* ~/.cache/vim/swap/'		# It's a new-start!
+	alias nvim_clean='rm -rf ${XDG_DATA_HOME:-$HOME/.local/share}/nvim/{.netrwhist,shada,swap,undo,view}/ ${XDG_CACHE_HOME:-$HOME/.cache}/nvim/' # It's a new-start!
+	alias vis='nvim -c OpenSession'                                                                                                              # Load ticket.vim session on start.
+elif (($+commands[vim])); then
+	alias vi='vim'                                                                                                           # Be IMproved.
+	alias view='vim -R'                                                                                                      # Not all distributions of Vim provide the readonly bin.
+	alias viplain="vim -u NONE -i NONE"                                                                                      # Start wiht without reading ~/.vimrc and using ~/.viminfo.
+	alias vim_clean='rm -rf ~/.vim/{.netrwhist,fuf-data,swap,view,viminfo,yankring_v2.txt} ~/.vim/undo/* ~/.cache/vim/swap/' # It's a new-start!
 fi
 # }}
 
 # Program enhancements {{
-alias emacs='emacs --no-window-system'		# Emacs belongs to the terminal.
-alias gdb='gdb -q'							# Suppress legal info.
-alias cgdb='cgdb -q'						# Suppress legal info.
+alias emacs='emacs --no-window-system' # Emacs belongs to the terminal.
+alias gdb='gdb -q'                     # Suppress legal info.
+alias cgdb='cgdb -q'                   # Suppress legal info.
 
-alias dfc='dfc -d'							# Show used column.
-alias octave='octave-cli --silent'			# Run in terminal without greeting message.
-alias xoctave='\octave'						# Default X version.
+alias dfc='dfc -d'                 # Show used column.
+alias octave='octave-cli --silent' # Run in terminal without greeting message.
+alias xoctave='\octave'            # Default X version.
 #alias matlab='matlab -nodesktop -nosplash'	# Run in terminal with no splash screen.
 #alias xmatlab='\matlab'					# Default X version.
-alias gimp='gimp --no-splash'				# Splash screens are just annoying.
+alias gimp='gimp --no-splash' # Splash screens are just annoying.
 #alias dmenu="dmenu -i"						# Ignore case.
-alias gpg='gpg --list-options no-show-photos'	# Don't open profile photos on listings - super annoying!
-alias grip='grip --browser'						# Open new tab in browser, until this can be configured: https://github.com/joeyespo/grip/issues/340
+alias copilota='copilot --allow-all'                              # Run copilot with `/allow-all on`
+alias gpg='gpg --list-options no-show-photos'                     # Don't open profile photos on listings - super annoying!
+alias grip='grip --browser'                                       # Open new tab in browser, until this can be configured: https://github.com/joeyespo/grip/issues/340
 alias pdflatex='pdflatex -interaction=nonstopmode -halt-on-error' # Quit on error.
 
 #has_command batman && alias man='batman'			# Using bat from bat-extras package.
 # }}
 
 # Short-hands {{
-alias ll='ls -l'										# I don't use it but aliens on my systems presumes its existence.
-alias vboxmanage='VBoxManage'							# Who likes caps?- I don't.
-alias shredzr='shred --zero --remove'					# Zero out and delete file.
-alias pkillf="pkill -9 -f"								# Force kill full name matched process.
-alias iperl="perl -de 0"								# Interactive perl.
-alias catu="cat -vet"									# A cat that likes unprintable characters.
-alias tiga='tig --all'									# Show all branches in tig.
-alias mkcscope_c='find . -name "*.[ch]" > cscope.files'		# Gen cscope file for C programs.
-alias reload_zsh='source $HOME/.zshrc'					# Reload zsh configuration.
-alias reload_bash='source $HOME/.bashrc'				# Reload bash configuration.
-alias remove_swap_files='find . -name "*.sw[op]" -delete'	# Delete all swap files in current path recursively.
-alias dusch='du -sch'									# The best file size calculator is a shower.
-alias beep='echo -en "\007"'							# Whoop whoop'
-alias image_dim="identify -format '%w %h\n'"			# Get dimmensions of an image.
-alias history-off='unset HISTFILE'				# Disable command history for the current shell.
-alias whatismyip='curl ifconfig.me && echo'		# Get external IP-address
+alias ll='ls -l'                                          # I don't use it but aliens on my systems presumes its existence.
+alias vboxmanage='VBoxManage'                             # Who likes caps?- I don't.
+alias shredzr='shred --zero --remove'                     # Zero out and delete file.
+alias pkillf="pkill -9 -f"                                # Force kill full name matched process.
+alias iperl="perl -de 0"                                  # Interactive perl.
+alias catu="cat -vet"                                     # A cat that likes unprintable characters.
+alias tiga='tig --all'                                    # Show all branches in tig.
+alias mkcscope_c='find . -name "*.[ch]" > cscope.files'   # Gen cscope file for C programs.
+alias reload_zsh='source $HOME/.zshrc'                    # Reload zsh configuration.
+alias reload_bash='source $HOME/.bashrc'                  # Reload bash configuration.
+alias remove_swap_files='find . -name "*.sw[op]" -delete' # Delete all swap files in current path recursively.
+alias dusch='du -sch'                                     # The best file size calculator is a shower.
+alias beep='echo -en "\007"'                              # Whoop whoop'
+alias image_dim="identify -format '%w %h\n'"              # Get dimmensions of an image.
+alias history-off='unset HISTFILE'                        # Disable command history for the current shell.
+alias whatismyip='curl ifconfig.me && echo'               # Get external IP-address
 #alias whatismyip='curl ifconfig.co'			# Get external IP-address
-alias path_print='echo $PATH | tr : \\n'			# Easier to read $PATH.
+alias path_print='echo $PATH | tr : \\n' # Easier to read $PATH.
 #alias goaccess_nginx='goaccess --log-format=COMBINED -m /var/log/nginx/access.log'	# Get web server stats based on log file.
 #alias goaccess_uberspace='uberspace_collect_access_log.sh && goaccess -m --agent-list --ignore-crawlers --config-file ~/etc/goaccess.conf --log-format=COMBINED --log-file ~/logs/www_access_log_all'
 #alias restic_env_b2='source $HOMEBREW_PREFIX/etc/restic/default.env.sh'		# Init restic env for B2.
 
 #alias find_dropbox_conflicts='find ~/dropbox/doc -name "*conflicted copy*"'	# Find conflicting synced dropbox files.
-alias find_large_files="find . -type f -size +5M -print0 | xargs -0 ls -lh | sort -k5,5 -h | awk '{print \$5, \$9}'"	# Find large files.
-alias find_large_pdfs="find . -name \"*.pdf\" -type f -size +5M -print0 | xargs -0 ls -lh | sort -k5,5 -h | awk '{print \$5, \$9}'"	# Find large PDFs.
+alias find_large_files="find . -type f -size +5M -print0 | xargs -0 ls -lh | sort -k5,5 -h | awk '{print \$5, \$9}'"                # Find large files.
+alias find_large_pdfs="find . -name \"*.pdf\" -type f -size +5M -print0 | xargs -0 ls -lh | sort -k5,5 -h | awk '{print \$5, \$9}'" # Find large PDFs.
 
 #alias git-root='cd $(git rev-parse --show-cdup)'		# Go to the root of a git. See overlay shell function as well.
-alias git_top_contribs='git log | grep Author | sort | uniq -c | sort -n -r'	# Show top authors of a git repo.
-alias ghq-get='ghq get --look'							# Fetch and cd to repository.
+alias git_top_contribs='git log | grep Author | sort | uniq -c | sort -n -r' # Show top authors of a git repo.
+alias ghq-get='ghq get --look'                                               # Fetch and cd to repository.
 alias clone=ghq-get
 
 if shell_is_linux; then
-	alias sysc='systemctl'									# The length of a name should correspond to its importance, see vi.
-	alias syscu='systemctl --user'							# Systemd user sessions.
+	alias sysc='systemctl'         # The length of a name should correspond to its importance, see vi.
+	alias syscu='systemctl --user' # Systemd user sessions.
 	alias journal='journalctl'
 elif shell_is_macos; then
-	alias brew_outdated='brew outdated -v | grep -v "\[pinned at .*\]" || :'		# Outdated brew packages.
-	alias intellijopen='open -a IntelliJ\ IDEA\ CE'	# Open Intellij with a path as an argument.
-	alias pycharmopen='open -a PyCharm\ CE'		# Open Pycharm with a path as an argument.
-	alias phpstormopen='open -a PhpStorm'		# Open PhpStorm with a path as an argument.
-	alias pixelmator='open -a Pixelmator\ Pro'	# Open Pixelmator with a path as an argument.
+	alias brew_outdated='brew outdated -v | grep -v "\[pinned at .*\]" || :' # Outdated brew packages.
+	alias intellijopen='open -a IntelliJ\ IDEA\ CE'                          # Open Intellij with a path as an argument.
+	alias pycharmopen='open -a PyCharm\ CE'                                  # Open Pycharm with a path as an argument.
+	alias phpstormopen='open -a PhpStorm'                                    # Open PhpStorm with a path as an argument.
+	alias pixelmator='open -a Pixelmator\ Pro'                               # Open Pixelmator with a path as an argument.
 fi
 
 # Testing
@@ -321,7 +322,6 @@ fi
 
 #alias x-proxy='ssh x -L 8080:x.com:123 -N'				# Start SSH tunnel web proxy to some server.
 #alias chromium-xproxy='chromium --proxy-server="http://localhost:8080"'	# Starts Chromium that uses X proxy tunnel.
-
 
 # Debian rename's some commands.
 if type ack-grep >/dev/null 2>&1; then
