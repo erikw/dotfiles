@@ -258,6 +258,7 @@ return {
                 "ruby",
                 "python",
                 "go",
+                "kotlin",
                 "javascript",
                 "markdown",
             })
@@ -396,6 +397,7 @@ return {
         opts = {
             ensure_installed = {
                 "gopls", -- Go
+                "kotlin_language_server", -- Kotlin
                 "eslint", -- JavaScript / TypeScript
                 "jsonls", -- JSON
                 "basedpyright", -- Python (replaces pyright)
@@ -447,6 +449,16 @@ return {
             -- bashls: also handle zsh buffers (shellcheck runs internally for both).
             vim.lsp.config("bashls", {
                 filetypes = { "sh", "bash", "zsh" },
+            })
+
+            -- kotlin-language-server requires initializationOptions to be a JSON object.
+            -- nvim-lspconfig normally uses the Gradle/Maven/Ant project root as storagePath,
+            -- but that is nil for standalone files and serializes as [], causing this server
+            -- to fail initialization. Keep a stable cache path as the rootless-file fallback.
+            vim.lsp.config("kotlin_language_server", {
+                init_options = {
+                    storagePath = vim.fn.stdpath("cache") .. "/kotlin-language-server",
+                },
             })
 
             -- lua_ls: configure Neovim runtime/library support explicitly for better completion.
