@@ -18,7 +18,6 @@
 # Formula: default {
 	# brew 'pidof' # Deprecated
 	brew 'ack'
-	brew 'as-tree'	# A tree view of the contents of a directory. $(fd ... | as-tree)
 	brew 'aspell'
 	brew 'bash'
 	brew 'bash-completion'
@@ -38,7 +37,6 @@
 	brew 'cormacrelf/tap/dark-notify' # To detect chagnes in OS light/dark appearens. Used by https://github.com/cormacrelf/dark-notify/
 	brew 'cowsay'
 	brew 'curl'
-	brew 'detox'
 	brew 'dfc'
 	brew 'dict'
 	brew 'diff-pdf'
