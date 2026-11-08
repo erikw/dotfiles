@@ -18,6 +18,10 @@
 
 * System Settings > Privacy & Security > Full Disk Access: check
 
+## Grammarly
+
+* Settings > Shortcuts > Open Grammarly > something random hard to trigger. ctrl+g is used for terminal stuff
+
 ## Pixelmator Pro.app
 
 ### General
