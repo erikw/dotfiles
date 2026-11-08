@@ -397,7 +397,7 @@ return {
         opts = {
             ensure_installed = {
                 "gopls", -- Go
-                "kotlin_language_server", -- Kotlin
+                "kotlin_lsp", -- Kotlin (JetBrains kotlin-lsp)
                 "eslint", -- JavaScript / TypeScript
                 "jsonls", -- JSON
                 "basedpyright", -- Python (replaces pyright)
@@ -407,9 +407,7 @@ return {
                 "vimls", -- Vimscript
                 "lua_ls", -- Lua
             },
-            -- Keep the Mason-installed ruby_lsp enabled, but not RuboCop. RuboCop
-            -- is intentionally managed by mise so project cops and its server do
-            -- not conflict with Mason's isolated gem environment.
+            -- Keep the Mason-installed ruby_lsp enabled, but not RuboCop replaced Kotlin server. RuboCop is intentionally managed by mise so project cops and its server do not conflict with Mason's isolated gem environment.
             automatic_enable = {
                 exclude = { "rubocop" },
             },
@@ -449,16 +447,6 @@ return {
             -- bashls: also handle zsh buffers (shellcheck runs internally for both).
             vim.lsp.config("bashls", {
                 filetypes = { "sh", "bash", "zsh" },
-            })
-
-            -- kotlin-language-server requires initializationOptions to be a JSON object.
-            -- nvim-lspconfig normally uses the Gradle/Maven/Ant project root as storagePath,
-            -- but that is nil for standalone files and serializes as [], causing this server
-            -- to fail initialization. Keep a stable cache path as the rootless-file fallback.
-            vim.lsp.config("kotlin_language_server", {
-                init_options = {
-                    storagePath = vim.fn.stdpath("cache") .. "/kotlin-language-server",
-                },
             })
 
             -- lua_ls: configure Neovim runtime/library support explicitly for better completion.
