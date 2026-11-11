@@ -35,26 +35,7 @@ _print() {
 
 
 _exec "Updating brew" brew update
-
-outdated=$(brew outdated --verbose | grep -v "\[pinned at .*\]" || :)
-if [ -n "$outdated" ]; then
-	_print "These packages are outdated: "
-	echo "$outdated"
-
-	upgrade=""
-	while :; do
-		echo -n "${CLI_PREFIX} Upgrade these? [Yn]: "
-		read upgrade
-		([ -z "$upgrade" ] || [ "$upgrade" = y ] || [ "$upgrade" = Y ] || [ "$upgrade" = n ]) && break
-	done
-	if [ "$upgrade" != n ]; then
-		#_exec "Upgrading brew formulas" brew upgrade --formulae
-		#_exec "Upgrading brew casks" brew upgrade --casks
-
-		formulas="$(echo "$outdated" | awk '{print $1}' | paste -sd ' ' - )"
-		_exec "Upgrading outdated" brew upgrade "$formulas"
-		_exec "Removing unused leaf formulas" brew autoremove
-		_exec "Cleaning up caches" brew cleanup
-		_exec "The brew doctor says" brew doctor || :		# Sneak around $(set -e) as the doctor command return error code.
-	fi
-fi
+_exec "Upgrading outdated" brew upgrade
+_exec "Removing unused leaf formulas" brew autoremove
+_exec "Cleaning up caches" brew cleanup
+_exec "The brew doctor says" brew doctor || :		# Sneak around $(set -e) as the doctor command return error code.
