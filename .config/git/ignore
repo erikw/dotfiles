@@ -44,5 +44,10 @@ cscope.in.out
 # Produced by delve
 debug.test
 
+
+# Kotlin development
+# Created by kotlin-lsp
+kls_database.db
+
 # Claude project data
 .claude/

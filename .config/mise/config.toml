@@ -1,5 +1,8 @@
 [tools]
 go = "latest"
+gradle = "latest"
+java = "latest"
+kotlin = "latest"
 node = "latest"
 python = "latest"
 ruby = "latest"
